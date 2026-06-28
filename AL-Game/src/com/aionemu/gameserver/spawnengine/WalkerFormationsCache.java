@@ -17,15 +17,15 @@
 package com.aionemu.gameserver.spawnengine;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import com.aionemu.commons.utils.internal.chmv8.PlatformDependent;
 
 /**
  * @author Rolandas
  */
 class WalkerFormationsCache {
 
-	private static Map<Integer, WorldWalkerFormations> formations = PlatformDependent.newConcurrentHashMap();
+	private static Map<Integer, WorldWalkerFormations> formations = new ConcurrentHashMap<Integer, WorldWalkerFormations>();
 
 	private WalkerFormationsCache() {
 	}

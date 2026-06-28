@@ -31,13 +31,13 @@ public class DatabaseConfig {
 	/**
 	 * Default database url.
 	 */
-	@Property(key = "database.url", defaultValue = "jdbc:mysql://localhost:3306/aion_uni")
+	@Property(key = "database.url", defaultValue = "jdbc:mysql://localhost:3306/aion_uni?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true&tcpKeepAlive=true&connectTimeout=10000&socketTimeout=120000")
 	public static String DATABASE_URL;
 
 	/**
 	 * Name of database Driver
 	 */
-	@Property(key = "database.driver", defaultValue = "com.mysql.jdbc.Driver")
+	@Property(key = "database.driver", defaultValue = "com.mysql.cj.jdbc.Driver")
 	public static Class<?> DATABASE_DRIVER;
 
 	/**
@@ -51,6 +51,61 @@ public class DatabaseConfig {
 	 */
 	@Property(key = "database.password", defaultValue = "root")
 	public static String DATABASE_PASSWORD;
+
+
+	/**
+	 * Preferred database pool. Use auto to prefer HikariCP when present and fallback to BoneCP.
+	 */
+	@Property(key = "database.pool", defaultValue = "auto")
+	public static String DATABASE_POOL;
+
+	/**
+	 * Max connections used by the JDK25/HikariCP pool.
+	 */
+	@Property(key = "database.connectionpool.connections.max", defaultValue = "10")
+	public static int DATABASE_CONNECTIONS_MAX;
+
+	/**
+	 * Max wait time when obtaining a DB connection.
+	 */
+	@Property(key = "database.connectionpool.timeout", defaultValue = "10000")
+	public static long DATABASE_CONNECTION_TIMEOUT;
+
+	/**
+	 * Recycle DB connections before MySQL/network silently closes them.
+	 */
+	@Property(key = "database.connectionpool.max_lifetime", defaultValue = "600000")
+	public static long DATABASE_MAX_LIFETIME;
+
+	/**
+	 * Close idle connections after this time.
+	 */
+	@Property(key = "database.connectionpool.idle_timeout", defaultValue = "300000")
+	public static long DATABASE_IDLE_TIMEOUT;
+
+	/**
+	 * Keep idle connections alive. HikariCP versions without this setter ignore it.
+	 */
+	@Property(key = "database.connectionpool.keepalive_time", defaultValue = "120000")
+	public static long DATABASE_KEEPALIVE_TIME;
+
+	/**
+	 * Max time for connection validation.
+	 */
+	@Property(key = "database.connectionpool.validation_timeout", defaultValue = "5000")
+	public static long DATABASE_VALIDATION_TIMEOUT;
+
+	/**
+	 * -1 = use pool default behavior.
+	 */
+	@Property(key = "database.connectionpool.minimum_idle", defaultValue = "-1")
+	public static int DATABASE_MINIMUM_IDLE;
+
+	/**
+	 * 0 = disabled. Use only when debugging connection leaks.
+	 */
+	@Property(key = "database.connectionpool.leak_detection_threshold", defaultValue = "0")
+	public static long DATABASE_LEAK_DETECTION_THRESHOLD;
 
 	/**
 	 * Amount of partitions used by BoneCP

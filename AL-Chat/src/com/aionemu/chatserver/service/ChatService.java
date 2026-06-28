@@ -23,6 +23,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,6 @@ import com.aionemu.chatserver.model.channel.ChatChannels;
 import com.aionemu.chatserver.network.aion.serverpackets.SM_PLAYER_AUTH_RESPONSE;
 import com.aionemu.chatserver.network.netty.handler.ClientChannelHandler;
 import com.aionemu.chatserver.network.netty.handler.ClientChannelHandler.State;
-import com.aionemu.commons.utils.internal.chmv8.PlatformDependent;
 
 /**
  * @author ATracer
@@ -47,7 +47,7 @@ public class ChatService {
         return instance;
     }
     private static final Logger log = LoggerFactory.getLogger(ChatService.class);
-    private Map<Integer, ChatClient> players = PlatformDependent.newConcurrentHashMap();
+    private Map<Integer, ChatClient> players = new ConcurrentHashMap<Integer, ChatClient>();
     private BroadcastService broadcastService;
 
     public ChatService() {

@@ -33,8 +33,8 @@
         <mkdir dir="${build.classes}" />
     </target>
 
-    <target name="compile" depends="init,check-jdk25-deps" description="Compile the source.">
-        <javac destdir="${build.classes}" optimize="on" debug="on" nowarn="off" source="1.8" target="1.8" includeantruntime="false">
+    <target name="compile" depends="init" description="Compile the source.">
+        <javac destdir="${build.classes}" optimize="on" debug="on" nowarn="off" release="8" includeantruntime="false">
 			<compilerarg value="-encoding"/>
 			<compilerarg value="UTF8"/>
 			<compilerarg value="-Xlint:-options"/>

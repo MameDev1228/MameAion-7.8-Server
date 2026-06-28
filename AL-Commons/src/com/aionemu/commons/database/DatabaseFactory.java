@@ -17,6 +17,7 @@
 
 package com.aionemu.commons.database;
 
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -32,180 +33,133 @@ import com.jolbox.bonecp.BoneCPConfig;
 /**
  * <b>Database Factory</b><br>
  * <br>
- * This file is used for creating a pool of connections for the server.<br>
- * It utilizes database.properties and creates a pool of connections and
- * automatically recycles them when closed.<br>
+ * Creates and owns the server DB connection pool.
  * <br>
- * DB.java utilizes the class.<br>
- * <br>
- * <p/>
+ * MameAion JDK25 note:
+ * HikariCP is supported through reflection so this module can still compile
+ * without a direct Hikari jar. Set database.pool=hikari and place HikariCP in
+ * libs to force it, or keep database.pool=auto to use Hikari when present and
+ * fallback to BoneCP otherwise.
  *
  * @author Disturbing
  * @author SoulKeeper
  */
 public class DatabaseFactory {
 
-	/**
-	 * Logger for this class
-	 */
 	private static final Logger log = LoggerFactory.getLogger(DatabaseFactory.class);
 
-	/**
-	 * Connection Pool holds all connections - Idle or Active
-	 */
-	private static BoneCP connectionPool;
-
-	/**
-	 * Returns name of the database that is used For isntance, MySQL returns
-	 * "MySQL"
-	 */
+	private static DbPoolAdapter connectionPool;
 	private static String databaseName;
-
-	/**
-	 * Retursn major version that is used For instance, MySQL 5.0.51 community
-	 * edition returns 5
-	 */
 	private static int databaseMajorVersion;
-
-	/**
-	 * Retursn minor version that is used For instance, MySQL 5.0.51 community
-	 * edition returns 0
-	 */
 	private static int databaseMinorVersion;
 
-	/**
-	 * Initializes DatabaseFactory.
-	 */
 	public synchronized static void init() {
 		if (connectionPool != null) {
 			return;
 		}
 
-		try {
-			DatabaseConfig.DATABASE_DRIVER.newInstance();
-		} catch (Exception e) {
-			log.error("Error obtaining DB driver", e);
-			throw new Error("DB Driver doesnt exist!");
-		}
-
-		if (DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MIN > DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MAX) {
-			log.error("Please check your database configuration. Minimum amount of connections is > maximum");
-			DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MAX = DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MIN;
-		}
-
-		BoneCPConfig config = new BoneCPConfig();
-		config.setPartitionCount(DatabaseConfig.DATABASE_BONECP_PARTITION_COUNT);
-		config.setMinConnectionsPerPartition(DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MIN);
-		config.setMaxConnectionsPerPartition(DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MAX);
-		config.setUsername(DatabaseConfig.DATABASE_USER);
-		config.setPassword(DatabaseConfig.DATABASE_PASSWORD);
-		config.setJdbcUrl(DatabaseConfig.DATABASE_URL);
-		config.setDisableJMX(true);
-
-		try {
-			connectionPool = new BoneCP(config);
-		} catch (SQLException e) {
-			log.error("Error while creating DB Connection pool", e);
-			throw new Error("DatabaseFactory not initialized!", e);
-		}
-		/* test if connection is still valid before returning */
-		// connectionPool.setTestOnBorrow(true);
-
-		try {
-			Connection c = getConnection();
-			DatabaseMetaData dmd = c.getMetaData();
-			databaseName = dmd.getDatabaseProductName();
-			databaseMajorVersion = dmd.getDatabaseMajorVersion();
-			databaseMinorVersion = dmd.getDatabaseMinorVersion();
-			c.close();
-		} catch (Exception e) {
-			log.error("Error with connection string: " + DatabaseConfig.DATABASE_URL, e);
-			throw new Error("DatabaseFactory not initialized!");
-		}
-
-		log.info("Successfully connected to database");
+		loadJdbcDriver();
+		connectionPool = createPoolAdapter();
+		readDatabaseMetadata();
+		log.info("Successfully connected to database using {} pool", connectionPool.getPoolName());
 	}
 
-	/**
-	 * Returns an active connection from pool. This function utilizes the
-	 * dataSource which grabs an object from the ObjectPool within its limits.
-	 * The GenericObjectPool.borrowObject()' function utilized in
-	 * 'DataSource.getConnection()' does not allow any connections to be
-	 * returned as null, thus a null check is not needed. Throws SQLException in
-	 * case of a Failed Connection
-	 *
-	 * @return Connection pooled connection
-	 * @throws java.sql.SQLException
-	 *             if can't get connection
-	 */
+	private static void loadJdbcDriver() {
+		try {
+			DatabaseConfig.DATABASE_DRIVER.getDeclaredConstructor().newInstance();
+		} catch (Throwable e) {
+			log.error("Error obtaining DB driver: {}", DatabaseConfig.DATABASE_DRIVER, e);
+			throw new Error("DB Driver doesn't exist or cannot be initialized: " + DatabaseConfig.DATABASE_DRIVER, e);
+		}
+	}
+
+	private static DbPoolAdapter createPoolAdapter() {
+		String poolMode = DatabaseConfig.DATABASE_POOL == null ? "auto" : DatabaseConfig.DATABASE_POOL.trim().toLowerCase();
+		boolean tryHikari = poolMode.equals("auto") || poolMode.equals("hikari");
+		boolean tryBoneCp = poolMode.equals("auto") || poolMode.equals("bonecp");
+
+		if (tryHikari) {
+			try {
+				return new HikariPoolAdapter();
+			} catch (ClassNotFoundException e) {
+				if (poolMode.equals("hikari")) {
+					log.error("database.pool=hikari is configured but HikariCP is missing from libs.", e);
+					throw new Error("HikariCP jar is missing. Add HikariCP to libs or set database.pool=auto/bonecp.", e);
+				}
+				log.warn("HikariCP not found in libs. Falling back to BoneCP. Add HikariCP and keep database.pool=auto to use the JDK25-preferred pool.");
+			} catch (Throwable e) {
+				if (poolMode.equals("hikari")) {
+					log.error("Error while creating HikariCP pool", e);
+					throw new Error("DatabaseFactory not initialized with HikariCP!", e);
+				}
+				log.warn("HikariCP pool creation failed. Falling back to BoneCP because database.pool=auto.", e);
+			}
+		}
+
+		if (tryBoneCp) {
+			return new BoneCpPoolAdapter();
+		}
+
+		throw new Error("Unsupported database.pool value: " + DatabaseConfig.DATABASE_POOL + " (expected auto, hikari, or bonecp)");
+	}
+
+	private static void readDatabaseMetadata() {
+		try {
+			Connection c = getConnection();
+			try {
+				DatabaseMetaData dmd = c.getMetaData();
+				databaseName = dmd.getDatabaseProductName();
+				databaseMajorVersion = dmd.getDatabaseMajorVersion();
+				databaseMinorVersion = dmd.getDatabaseMinorVersion();
+			} finally {
+				c.close();
+			}
+		} catch (Exception e) {
+			log.error("Error with connection string: " + DatabaseConfig.DATABASE_URL, e);
+			throw new Error("DatabaseFactory not initialized!", e);
+		}
+	}
+
 	public static Connection getConnection() throws SQLException {
+		if (connectionPool == null) {
+			throw new SQLException("DatabaseFactory is not initialized");
+		}
+
 		Connection con = connectionPool.getConnection();
 
 		if (!con.getAutoCommit()) {
-			log.error("Connection Settings Error: Connection obtained from database factory should be in auto-commit"
-					+ " mode. Forsing auto-commit to true. Please check source code for connections beeing not properly"
-					+ " closed.");
+			log.error("Connection Settings Error: Connection obtained from database factory should be in auto-commit mode. "
+					+ "Forcing auto-commit to true. Please check source code for connections being not properly closed.");
 			con.setAutoCommit(true);
 		}
 
 		return con;
 	}
 
-	/**
-	 * Returns number of active connections in the pool.
-	 *
-	 * @return int Active DB Connections
-	 */
 	public int getActiveConnections() {
-		return connectionPool.getTotalLeased();
+		return connectionPool == null ? 0 : connectionPool.getActiveConnections();
 	}
 
-	/**
-	 * Returns number of Idle connections. Idle connections represent the number
-	 * of instances in Database Connections that have once been connected and
-	 * now are closed and ready for re-use. The 'getConnection' function will
-	 * grab idle connections before creating new ones.
-	 *
-	 * @return int Idle DB Connections
-	 */
 	public int getIdleConnections() {
-		return connectionPool.getStatistics().getTotalFree();
+		return connectionPool == null ? 0 : connectionPool.getIdleConnections();
 	}
 
-	/**
-	 * Shuts down pool and closes connections
-	 */
 	public static synchronized void shutdown() {
 		try {
-			connectionPool.shutdown();
+			if (connectionPool != null) {
+				connectionPool.shutdown();
+			}
 		} catch (Exception e) {
 			log.warn("Failed to shutdown DatabaseFactory", e);
 		}
-
-		// set datasource to null so we can call init() once more...
 		connectionPool = null;
 	}
 
-	/**
-	 * Closes both prepared statement and result set
-	 * 
-	 * @param st
-	 *            prepared statement to close
-	 * @param con
-	 *            connection to close
-	 */
 	public static void close(PreparedStatement st, Connection con) {
 		close(st);
 		close(con);
 	}
 
-	/**
-	 * Helper method for silently close PreparedStament object.<br>
-	 * Associated connection object will not be closed.
-	 * 
-	 * @param st
-	 *            prepared statement to close
-	 */
 	public static void close(PreparedStatement st) {
 		if (st == null) {
 			return;
@@ -220,16 +174,6 @@ public class DatabaseFactory {
 		}
 	}
 
-	/**
-	 * Closes connection and returns it to the pool.<br>
-	 * It's ok to pass null variable here.<br>
-	 * When closing connection - this method will make sure that connection
-	 * returned to the pool in in autocommit mode.<br>
-	 * . If it's not - autocommit mode will be forced to 'true'
-	 *
-	 * @param con
-	 *            Connection object to close, can be null
-	 */
 	public static void close(Connection con) {
 		if (con == null)
 			return;
@@ -249,40 +193,193 @@ public class DatabaseFactory {
 		}
 	}
 
-	/**
-	 * Returns database name. For instance MySQL 5.0.51 community edition
-	 * returns MySQL
-	 *
-	 * @return database name that is used.
-	 */
 	public static String getDatabaseName() {
 		return databaseName;
 	}
 
-	/**
-	 * Returns database version. For instance MySQL 5.0.51 community edition
-	 * returns 5
-	 *
-	 * @return database major version
-	 */
 	public static int getDatabaseMajorVersion() {
 		return databaseMajorVersion;
 	}
 
-	/**
-	 * Returns database minor version. For instance MySQL 5.0.51 community
-	 * edition reutnrs 0
-	 *
-	 * @return database minor version
-	 */
 	public static int getDatabaseMinorVersion() {
 		return databaseMinorVersion;
 	}
 
-	/**
-	 * Default constructor.
-	 */
 	private DatabaseFactory() {
-		//
+	}
+
+	private interface DbPoolAdapter {
+		Connection getConnection() throws SQLException;
+		int getActiveConnections();
+		int getIdleConnections();
+		void shutdown();
+		String getPoolName();
+	}
+
+	private static final class BoneCpPoolAdapter implements DbPoolAdapter {
+		private final BoneCP pool;
+
+		private BoneCpPoolAdapter() {
+			if (DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MIN > DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MAX) {
+				log.error("Please check your database configuration. Minimum amount of connections is > maximum");
+				DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MAX = DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MIN;
+			}
+
+			BoneCPConfig config = new BoneCPConfig();
+			config.setPartitionCount(DatabaseConfig.DATABASE_BONECP_PARTITION_COUNT);
+			config.setMinConnectionsPerPartition(DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MIN);
+			config.setMaxConnectionsPerPartition(DatabaseConfig.DATABASE_BONECP_PARTITION_CONNECTIONS_MAX);
+			config.setUsername(DatabaseConfig.DATABASE_USER);
+			config.setPassword(DatabaseConfig.DATABASE_PASSWORD);
+			config.setJdbcUrl(DatabaseConfig.DATABASE_URL);
+			config.setDisableJMX(true);
+
+			try {
+				pool = new BoneCP(config);
+			} catch (SQLException e) {
+				log.error("Error while creating BoneCP DB Connection pool", e);
+				throw new Error("DatabaseFactory not initialized with BoneCP!", e);
+			}
+		}
+
+		@Override
+		public Connection getConnection() throws SQLException {
+			return pool.getConnection();
+		}
+
+		@Override
+		public int getActiveConnections() {
+			return pool.getTotalLeased();
+		}
+
+		@Override
+		public int getIdleConnections() {
+			return pool.getStatistics().getTotalFree();
+		}
+
+		@Override
+		public void shutdown() {
+			pool.shutdown();
+		}
+
+		@Override
+		public String getPoolName() {
+			return "BoneCP";
+		}
+	}
+
+	private static final class HikariPoolAdapter implements DbPoolAdapter {
+		private final Object dataSource;
+		private final Method getConnectionMethod;
+		private final Method closeMethod;
+
+		private HikariPoolAdapter() throws Exception {
+			Class<?> dataSourceClass = Class.forName("com.zaxxer.hikari.HikariDataSource");
+			dataSource = dataSourceClass.getDeclaredConstructor().newInstance();
+
+			invokeRequired(dataSource, "setPoolName", "MameAion-Hikari");
+			invokeRequired(dataSource, "setDriverClassName", DatabaseConfig.DATABASE_DRIVER.getName());
+			invokeRequired(dataSource, "setJdbcUrl", DatabaseConfig.DATABASE_URL);
+			invokeRequired(dataSource, "setUsername", DatabaseConfig.DATABASE_USER);
+			invokeRequired(dataSource, "setPassword", DatabaseConfig.DATABASE_PASSWORD);
+			invokeRequired(dataSource, "setMaximumPoolSize", DatabaseConfig.DATABASE_CONNECTIONS_MAX);
+			invokeRequired(dataSource, "setConnectionTimeout", DatabaseConfig.DATABASE_CONNECTION_TIMEOUT);
+			invokeRequired(dataSource, "setValidationTimeout", DatabaseConfig.DATABASE_VALIDATION_TIMEOUT);
+			invokeOptional(dataSource, "setMaxLifetime", DatabaseConfig.DATABASE_MAX_LIFETIME);
+			invokeOptional(dataSource, "setIdleTimeout", DatabaseConfig.DATABASE_IDLE_TIMEOUT);
+			invokeOptional(dataSource, "setKeepaliveTime", DatabaseConfig.DATABASE_KEEPALIVE_TIME);
+			invokeOptional(dataSource, "setLeakDetectionThreshold", DatabaseConfig.DATABASE_LEAK_DETECTION_THRESHOLD);
+			if (DatabaseConfig.DATABASE_MINIMUM_IDLE >= 0) {
+				invokeOptional(dataSource, "setMinimumIdle", DatabaseConfig.DATABASE_MINIMUM_IDLE);
+			}
+
+			getConnectionMethod = dataSourceClass.getMethod("getConnection");
+			closeMethod = dataSourceClass.getMethod("close");
+		}
+
+		@Override
+		public Connection getConnection() throws SQLException {
+			try {
+				return (Connection) getConnectionMethod.invoke(dataSource);
+			} catch (Throwable e) {
+				Throwable cause = e.getCause() != null ? e.getCause() : e;
+				if (cause instanceof SQLException) {
+					throw (SQLException) cause;
+				}
+				SQLException sqlException = new SQLException("Failed to obtain HikariCP connection", cause);
+				throw sqlException;
+			}
+		}
+
+		@Override
+		public int getActiveConnections() {
+			return getPoolMetric("getActiveConnections");
+		}
+
+		@Override
+		public int getIdleConnections() {
+			return getPoolMetric("getIdleConnections");
+		}
+
+		@Override
+		public void shutdown() {
+			try {
+				closeMethod.invoke(dataSource);
+			} catch (Throwable e) {
+				throw new RuntimeException("Failed to close HikariCP datasource", e);
+			}
+		}
+
+		@Override
+		public String getPoolName() {
+			return "HikariCP";
+		}
+
+		private int getPoolMetric(String methodName) {
+			try {
+				Object mxBean = dataSource.getClass().getMethod("getHikariPoolMXBean").invoke(dataSource);
+				if (mxBean == null) {
+					return -1;
+				}
+				Object value = mxBean.getClass().getMethod(methodName).invoke(mxBean);
+				return value instanceof Number ? ((Number) value).intValue() : -1;
+			} catch (Throwable e) {
+				return -1;
+			}
+		}
+	}
+
+	private static void invokeRequired(Object target, String methodName, Object value) throws Exception {
+		Method method = findSetter(target.getClass(), methodName, value);
+		if (method == null) {
+			throw new NoSuchMethodException(target.getClass().getName() + "." + methodName + "(" + value.getClass().getSimpleName() + ")");
+		}
+		method.invoke(target, value);
+	}
+
+	private static void invokeOptional(Object target, String methodName, Object value) throws Exception {
+		Method method = findSetter(target.getClass(), methodName, value);
+		if (method != null) {
+			method.invoke(target, value);
+		}
+	}
+
+	private static Method findSetter(Class<?> clazz, String methodName, Object value) {
+		Class<?> valueClass = value.getClass();
+		for (Method method : clazz.getMethods()) {
+			if (!method.getName().equals(methodName) || method.getParameterTypes().length != 1) {
+				continue;
+			}
+			Class<?> paramType = method.getParameterTypes()[0];
+			if (paramType.isPrimitive()) {
+				if ((paramType == int.class && valueClass == Integer.class) || (paramType == long.class && valueClass == Long.class)
+						|| (paramType == boolean.class && valueClass == Boolean.class)) {
+					return method;
+				}
+			} else if (paramType.isAssignableFrom(valueClass)) {
+				return method;
+			}
+		}
+		return null;
 	}
 }

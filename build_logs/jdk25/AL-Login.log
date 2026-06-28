@@ -1,0 +1,34 @@
+Buildfile: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build.xml
+
+clean:
+   [delete] Deleting directory C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build
+
+clean:
+
+init:
+    [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build
+    [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\classes
+
+compile:
+    [javac] Compiling 107 source files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\classes
+
+jar:
+      [jar] Building jar: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\AL-Login.jar
+
+dist:
+    [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist
+    [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login
+    [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\config
+    [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\data
+    [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\libs
+    [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\sql
+     [copy] Copying 1 file to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\libs
+     [copy] Copying 13 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\libs
+     [copy] Copying 5 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login
+     [copy] Copying 4 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\config
+     [copy] Copying 15 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\data
+     [copy] Copying 2 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\sql
+      [zip] Building zip: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\AL-Login.zip
+
+BUILD SUCCESSFUL
+Total time: 1 second

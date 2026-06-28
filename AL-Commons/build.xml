@@ -37,14 +37,15 @@
     
     
     <target name="compile"
-            depends="init,check-jdk25-deps"
+            depends="init"
             description="Compile the source.">
 
-        <javac destdir="${build.classes}" optimize="on" debug="on" nowarn="off" source="1.8" target="1.8" includeantruntime="false">       	
+        <javac destdir="${build.classes}" optimize="on" debug="on" nowarn="off" release="8" includeantruntime="false">       	
         	<compilerarg value="-encoding"/>
             <compilerarg value="UTF8"/>
 			<compilerarg value="-Xlint:-options"/>
 			<src path="${src}"/>
+			<exclude name="com/aionemu/commons/utils/internal/chmv8/**"/>
             <classpath refid="classpath"/> 
         </javac>
     </target>

@@ -19,6 +19,7 @@
 package com.aionemu.chatserver.model;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,6 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.chatserver.configs.Config;
 import com.aionemu.chatserver.model.channel.Channel;
 import com.aionemu.chatserver.network.netty.handler.ClientChannelHandler;
-import com.aionemu.commons.utils.internal.chmv8.PlatformDependent;
 
 /**
  * @author ATracer
@@ -54,7 +54,7 @@ public class ChatClient {
      * Map with all connected channels<br>
      * Only one channel of specific type can be added
      */
-    private Map<ChannelType, Channel> channelsList = PlatformDependent.newConcurrentHashMap();
+    private Map<ChannelType, Channel> channelsList = new ConcurrentHashMap<ChannelType, Channel>();
     // last time message was requested and broadcasted
     private long lastMessage;
     private String realName;

@@ -9,10 +9,15 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_STATS_INFO;
+import com.aionemu.gameserver.services.player.PlayerSyncService;
+import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.world.World;
 
 /**
- * 7.x unknown/audit packet. Kept as a non-mutating parser so opcode mapping can
- * be verified on the real 7.8 client.
+ * 7.x misc client request. In the 7.8 branch this packet is used as a safe
+ * runtime sync/detail request until the remaining UI payload variants are fully
+ * named from retail captures.
  */
 public class CM_UNK_1DB extends AionClientPacket {
 
@@ -42,6 +47,23 @@ public class CM_UNK_1DB extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
-		log.debug("CM_UNK_1DB audit player=" + (player != null ? player.getName() : "-") + " objectId=" + objectId + " action=" + action + " payload=" + java.util.Arrays.toString(payload));
+		if (player == null) {
+			return;
+		}
+		Player target = objectId > 0 ? World.getInstance().findPlayer(objectId) : player;
+		switch (action) {
+			case 0:
+				PacketSendUtility.sendPacket(player, new SM_STATS_INFO(player));
+				break;
+			case 1:
+				PlayerSyncService.resendVisibilityAndStats(target != null ? target : player, false);
+				break;
+			case 2:
+				PlayerSyncService.resendVisibilityAndStats(target != null ? target : player, true);
+				break;
+			default:
+				log.debug("CM_UNK_1DB audit player=" + player.getName() + " objectId=" + objectId + " action=" + action + " payload=" + java.util.Arrays.toString(payload));
+				break;
+		}
 	}
 }

@@ -19,6 +19,7 @@ package com.aionemu.gameserver.network.aion.clientpackets;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.services.instance.NeviwindCanyonService;
 
 /**
  * @author xTz
@@ -37,6 +38,13 @@ public class CM_INSTANCE_LEAVE extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
+		if (player == null) {
+			return;
+		}
+		if (player.getWorldId() == NeviwindCanyonService.MAP_ID) {
+			NeviwindCanyonService.getInstance().onInstanceLeave(player);
+			return;
+		}
 		if (player.isInInstance()) {
 			player.getPosition().getWorldMapInstance().getInstanceHandler().onExitInstance(player);
 		}

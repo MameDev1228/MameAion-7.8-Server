@@ -35,14 +35,20 @@ public class EnchantDaevanionBook {
 		return itemId >= 169501000 && itemId <= 169502999;
 	}
 
-	private static boolean isDaevanionEnchantMaterial(Item item) {
-		if (item == null || item.getItemTemplate() == null) {
+	private static boolean isDaevanionEnchantMaterial(Item item, Item parentBook) {
+		if (item == null || item.getItemTemplate() == null || parentBook == null || parentBook.getItemTemplate() == null) {
+			return false;
+		}
+		if (item.getObjectId() == parentBook.getObjectId()) {
 			return false;
 		}
 		int itemId = item.getItemId();
-		// 169501xxx are skill books. The 1695/1696 safety range keeps 7.x book
-		// variants valid while blocking random inventory items from being consumed.
-		return (itemId >= 169501000 && itemId <= 169502999) || (itemId >= 169600000 && itemId <= 169699999);
+		if (isDaevanionSkillBook(item)) {
+			return item.getItemTemplate().getItemQuality() == parentBook.getItemTemplate().getItemQuality();
+		}
+		// 7.x Daevanion enhancement/support materials. Keep this intentionally
+		// narrow so random consumables/equipment cannot be eaten by the opcode.
+		return itemId >= 169600000 && itemId <= 169699999;
 	}
 
 	public static void enchantDaevanionSkill(final Player player, final int skillId, final int bookObjId, final int materials) {
@@ -61,7 +67,7 @@ public class EnchantDaevanionBook {
 		}
 		if (materials != 0) {
 			Item materialItem = player.getInventory().getItemByObjId(materials);
-			if (materialItem == null || !isDaevanionEnchantMaterial(materialItem)) {
+			if (materialItem == null || !isDaevanionEnchantMaterial(materialItem, parentItem)) {
 				PacketSendUtility.sendMessage(player, "Daevanion skill enchant failed: invalid material category.");
 				return;
 			}
@@ -101,7 +107,7 @@ public class EnchantDaevanionBook {
 				}
 				if (materials != 0) {
 					Item liveMaterial = player.getInventory().getItemByObjId(materials);
-					if (liveMaterial == null || !isDaevanionEnchantMaterial(liveMaterial)) {
+					if (liveMaterial == null || !isDaevanionEnchantMaterial(liveMaterial, liveBook)) {
 						return;
 					}
 				}

@@ -54,10 +54,12 @@ public class NeviwindCanyonService {
 	private static final int OBJECTIVE_NORMAL_POINTS = 120;
 	private static final int OBJECTIVE_NAMED_POINTS = 350;
 	private static final int OBJECTIVE_BOSS_POINTS = 700;
+	private static final int MAX_PLAYERS_PER_INSTANCE = 48;
 
 	private final Map<Integer, Long> registeredPlayers = new ConcurrentHashMap<Integer, Long>();
 	private final Map<Integer, Session> activeSessionsByPlayer = new ConcurrentHashMap<Integer, Session>();
 	private final Map<Integer, NeviwindCanyonReward> rewardsByInstance = new ConcurrentHashMap<Integer, NeviwindCanyonReward>();
+	private final Map<Integer, Integer> activePlayerCountByInstance = new ConcurrentHashMap<Integer, Integer>();
 
 	public void handle(Player player, int action, int[] payload) {
 		if (player == null) {
@@ -126,14 +128,11 @@ public class NeviwindCanyonService {
 			return;
 		}
 		registeredPlayers.remove(player.getObjectId());
-		WorldMapInstance instance = createInstance();
-		if (instance == null) {
+		final NeviwindCanyonReward reward = getOrCreateMatchReward();
+		if (reward == null) {
 			PacketSendUtility.sendMessage(player, "Neviwind Canyon: map is not available.");
 			return;
 		}
-		NeviwindCanyonReward reward = new NeviwindCanyonReward(MAP_ID, instance.getInstanceId(), instance);
-		reward.setInstanceStartTime();
-		reward.setInstanceScoreType(InstanceScoreType.START_PROGRESS);
 		reward.regPlayerReward(player);
 		NeviwindCanyonPlayerReward playerReward = reward.getPlayerReward(player.getObjectId());
 		if (playerReward != null) {
@@ -143,22 +142,24 @@ public class NeviwindCanyonService {
 			playerReward.setRewardCount(1f);
 			playerReward.setBrokenSpinel(NORMAL_REWARD_CHEST);
 		}
-		rewardsByInstance.put(instance.getInstanceId(), reward);
-		activeSessionsByPlayer.put(player.getObjectId(), new Session(instance.getInstanceId(), System.currentTimeMillis()));
+		activeSessionsByPlayer.put(player.getObjectId(), new Session(reward.getInstanceId(), System.currentTimeMillis()));
+		incrementInstanceCount(reward.getInstanceId());
 		PacketSendUtility.sendPacket(player, new SM_NEVIWIND_CANYON(6));
 		reward.portToPosition(player);
 		PacketSendUtility.sendPacket(player, new SM_INSTANCE_SCORE(2, reward.getTime(), reward, player.getObjectId()));
-		log.info("Neviwind enter player={} instance={}", player.getName(), instance.getInstanceId());
+		sendScoreUpdate(reward, player.getObjectId());
+		log.info("Neviwind enter player=" + player.getName() + " instance=" + reward.getInstanceId() + " activePlayers=" + getActivePlayerCount(reward.getInstanceId()));
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
 				Session session = activeSessionsByPlayer.get(player.getObjectId());
-				if (session != null && player.isOnline() && player.getWorldId() == MAP_ID) {
+				if (session != null && player.isOnline() && player.getWorldId() == MAP_ID && session.instanceId == reward.getInstanceId()) {
 					rewardAndExit(player, 99);
 				}
 			}
 		}, 30 * 60 * 1000);
 	}
+
 
 	private void rewardAndExit(Player player, int action) {
 		Session session = activeSessionsByPlayer.remove(player.getObjectId());
@@ -206,6 +207,8 @@ public class NeviwindCanyonService {
 		if (player.getWorldId() == MAP_ID) {
 			TeleportService2.moveToBindLocation(player, true);
 		}
+		decrementInstanceCount(session.instanceId);
+		cleanupIfEmpty(session.instanceId);
 	}
 
 
@@ -312,6 +315,73 @@ public class NeviwindCanyonService {
 		reward.sendPacket(10, objectId);
 		reward.sendPacket(6, objectId);
 		reward.sendPacket(7, objectId);
+	}
+
+	private synchronized NeviwindCanyonReward getOrCreateMatchReward() {
+		for (NeviwindCanyonReward reward : rewardsByInstance.values()) {
+			if (reward == null || !reward.isStartProgress() || getActivePlayerCount(reward.getInstanceId()) >= MAX_PLAYERS_PER_INSTANCE) {
+				continue;
+			}
+			WorldMap map = World.getInstance().getWorldMap(MAP_ID);
+			if (map != null && map.getWorldMapInstanceById(reward.getInstanceId()) != null) {
+				return reward;
+			}
+		}
+		WorldMapInstance instance = createInstance();
+		if (instance == null) {
+			return null;
+		}
+		NeviwindCanyonReward reward = new NeviwindCanyonReward(MAP_ID, instance.getInstanceId(), instance);
+		reward.setInstanceStartTime();
+		reward.setInstanceScoreType(InstanceScoreType.START_PROGRESS);
+		rewardsByInstance.put(instance.getInstanceId(), reward);
+		activePlayerCountByInstance.put(instance.getInstanceId(), Integer.valueOf(0));
+		return reward;
+	}
+
+	private void incrementInstanceCount(int instanceId) {
+		activePlayerCountByInstance.put(instanceId, Integer.valueOf(getActivePlayerCount(instanceId) + 1));
+	}
+
+	private void decrementInstanceCount(int instanceId) {
+		int next = Math.max(0, getActivePlayerCount(instanceId) - 1);
+		if (next == 0) {
+			activePlayerCountByInstance.remove(instanceId);
+		}
+		else {
+			activePlayerCountByInstance.put(instanceId, Integer.valueOf(next));
+		}
+	}
+
+	private int getActivePlayerCount(int instanceId) {
+		Integer count = activePlayerCountByInstance.get(instanceId);
+		return count != null ? count.intValue() : 0;
+	}
+
+	public void onPlayerLogout(Player player) {
+		if (player == null) {
+			return;
+		}
+		Session session = activeSessionsByPlayer.remove(player.getObjectId());
+		registeredPlayers.remove(player.getObjectId());
+		if (session != null) {
+			decrementInstanceCount(session.instanceId);
+			cleanupIfEmpty(session.instanceId);
+		}
+	}
+
+	public void onInstanceLeave(Player player) {
+		rewardAndExit(player, 12);
+	}
+
+	private void cleanupIfEmpty(int instanceId) {
+		if (getActivePlayerCount(instanceId) > 0) {
+			return;
+		}
+		NeviwindCanyonReward reward = rewardsByInstance.get(instanceId);
+		if (reward != null && reward.isStartProgress()) {
+			reward.setInstanceScoreType(InstanceScoreType.END_PROGRESS);
+		}
 	}
 
 	private WorldMapInstance createInstance() {

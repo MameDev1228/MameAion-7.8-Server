@@ -16,6 +16,7 @@
  */
 package com.aionemu.gameserver.network.aion.serverpackets;
 
+import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
 import com.aionemu.gameserver.model.stats.container.PlayerGameStats;
@@ -94,22 +95,8 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeH(player.getFlyState());// [fly state] TODO (Naked Char changes Val)
 		writeH(16386); // TODO
 
-		if (player.getEquipment().getMainHandWeapon() != null) {
-			int mainHandminDMG = player.getEquipment().getMainHandWeapon().getItemTemplate().getWeaponStats().getMinDamage();
-			int mainHandmaxDMG = player.getEquipment().getMainHandWeapon().getItemTemplate().getWeaponStats().getMaxDamage();
-			int mainHandfinalDamage = mainHandminDMG + mainHandmaxDMG;
-			writeD(mainHandfinalDamage / 2); // TODO add Mboost
-		} else {
-			writeD(0); // <-- OK
-		}
-		if (player.getEquipment().getOffHandWeapon() != null) {
-			int offHandminDMG = player.getEquipment().getOffHandWeapon().getItemTemplate().getWeaponStats().getMinDamage();
-			int offHandmaxDMG = player.getEquipment().getOffHandWeapon().getItemTemplate().getWeaponStats().getMaxDamage();
-			int offHandfinalDamage = offHandminDMG + offHandmaxDMG;
-			writeD(offHandfinalDamage / 2); // TODO add Mboost
-		} else {
-			writeD(0); // <-- OK
-		}
+		writeD(getWeaponShownDamage(player.getEquipment().getMainHandWeapon(), true));
+		writeD(getWeaponShownDamage(player.getEquipment().getOffHandWeapon(), false));
 		writeB(new byte[16]); // <-- UNK 16*0
 		writeD(pgs.getMResist().getCurrent()); // <-- OK
 		writeF(pgs.getAttackRange().getCurrent() / 1000); // <-- OK
@@ -120,8 +107,8 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeD(pgs.getMainHandPCritical().getCurrent()); // <-- OK
 		writeD(pgs.getMainHandPAccuracy().getCurrent()); // <-- OK
 		writeD(pgs.getOffHandPAccuracy().getCurrent()); // <-- OK
-		writeH(0);
-		writeH(0);
+		writeH(clampH(pgs.getOffHandPCritical().getCurrent()));
+		writeH(clampH(pgs.getStat(StatEnum.MAIN_HAND_HITS, 0).getCurrent()));
 		writeD(pgs.getMAccuracy().getCurrent()); // <-- OK
 		writeD(pgs.getMCritical().getCurrent()); // <-- OK
 		writeF(pgs.getReverseStat(StatEnum.BOOST_CASTING_TIME, 1000).getCurrent() / 1000f);  
@@ -130,7 +117,7 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeD(pgs.getMainHandPAttack().getCurrent()); // <-- OK
 		writeD(pgs.getPDef().getCurrent()); // <-- OK
 		writeD(pgs.getMAttack().getCurrent()); // <-- OK
-		writeD(pgs.getMResist().getCurrent()); //
+		writeD(pgs.getMDef().getCurrent()); // 7.8 magical defense display
 		writeD(pgs.getPVPAttack().getCurrent());// TODO Zus. PVP-Angr. Checked 7.5
 		writeD(pgs.getPVPDefense().getCurrent());// TODO Zus. PVP-Abwehr Checked 7.5
 		writeD(pgs.getPVEAttack().getCurrent());// TODO Zus. PVE-Angr. Checked 7.5
@@ -141,10 +128,10 @@ public class SM_STATS_INFO extends AionServerPacket {
 		
 		writeD(pgs.getMBoost().getCurrent()); // TODO add Magie Abwehr + Magie Ausgleich (Mag. Angriff)
 		writeD(pgs.getMDef().getCurrent());// Mag. Defense
-		writeH(0);
-		writeH(pgs.getStat(StatEnum.HEAL_BOOST, 0).getCurrent()); // <-- OK
-		writeH(0);//294);// ??
-		writeH(0);//40);// ??
+		writeH(clampH(pgs.getStat(StatEnum.MAGIC_SKILL_BOOST_RESIST, 0).getCurrent()));
+		writeH(clampH(pgs.getStat(StatEnum.HEAL_BOOST, 0).getCurrent())); // <-- OK
+		writeH(clampH(pgs.getStat(StatEnum.PHYSICAL_CRITICAL_REDUCE_RATE, 0).getCurrent()));
+		writeH(clampH(pgs.getStat(StatEnum.MAGICAL_CRITICAL_REDUCE_RATE, 0).getCurrent()));
 		writeH(pgs.getStrikeResist().getCurrent()); // <-- OK
 		writeH(pgs.getSpellResist().getCurrent()); // <-- OK
 		writeD(player.getInventory().getLimit()); //
@@ -187,7 +174,7 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeH(current(StatEnum.STUMBLE_RESISTANCE_PENETRATION)); // Stolpern
 		writeH(current(StatEnum.PARALYZE_RESISTANCE_PENETRATION)); // Lähmung
 		writeH(current(StatEnum.STAGGER_RESISTANCE_PENETRATION)); // Rückschlag
-		writeH(current(StatEnum.BIND_RESISTANCE)); // Binden TODO: penetration stat missing in StatEnum
+		writeH(current(StatEnum.BIND_RESISTANCE)); // Bind penetration has no dedicated StatEnum in this source yet; mirror safely.
 		writeH(current(StatEnum.ROOT_RESISTANCE_PENETRATION)); // Unbeweglcih
 		writeH(current(StatEnum.SLEEP_RESISTANCE_PENETRATION)); // Schlaf
 		writeH(current(StatEnum.BLIND_RESISTANCE_PENETRATION)); // Blind
@@ -215,27 +202,13 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeH(0);
 		writeD(pgs.getFlyTime().getBase()); // <-- OK
 
-		if (player.getEquipment().getMainHandWeapon() != null) {
-			int mainHandminDMG = player.getEquipment().getMainHandWeapon().getItemTemplate().getWeaponStats().getMinDamage();
-			int mainHandmaxDMG = player.getEquipment().getMainHandWeapon().getItemTemplate().getWeaponStats().getMaxDamage();
-			int mainHandfinalDamage = mainHandminDMG + mainHandmaxDMG;
-			writeD(mainHandfinalDamage / 2); // TODO add Mboost
-		} else {
-			writeD(0);
-		}
-		if (player.getEquipment().getOffHandWeapon() != null) {
-			int offHandminDMG = player.getEquipment().getOffHandWeapon().getItemTemplate().getWeaponStats().getMinDamage();
-			int offHandmaxDMG = player.getEquipment().getOffHandWeapon().getItemTemplate().getWeaponStats().getMaxDamage();
-			int offHandfinalDamage = offHandminDMG + offHandmaxDMG;
-			writeD(offHandfinalDamage / 2); // TODO add Mboost
-		} else {
-			writeD(0);
-		}
+		writeD(getWeaponBaseDamage(player.getEquipment().getMainHandWeapon()));
+		writeD(getWeaponBaseDamage(player.getEquipment().getOffHandWeapon()));
 		
-		writeD(0);
-		writeD(0);
-		writeD(0);
-		writeD(0);
+		writeD(pgs.getPVPAttack().getBase());
+		writeD(pgs.getPVPDefense().getBase());
+		writeD(pgs.getPVEAttack().getBase());
+		writeD(pgs.getPVEDefense().getBase());
 		writeD(pgs.getMResist().getBase());
 		writeF(pgs.getAttackRange().getBase() / 1000f);
 		writeD(pgs.getEvasion().getBase()); // <-- OK
@@ -251,21 +224,42 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeH(0); // UNK
 		writeD(pgs.getMainHandPAttack().getBase()); // <-- OK
 		writeD(pgs.getPDef().getBase());//Phy Def  <-- OK
-		writeD(0); // <-- Changes M-Attack
-		writeD(0); // <-- Changes M-DEF
+		writeD(pgs.getMAttack().getBase());
+		writeD(pgs.getMDef().getBase());
 		writeH(pgs.getStrikeFort().getBase()); // Phys. krit. Schaden
 		writeH(pgs.getSpellFort().getBase()); // Mag. krit. Schaden
 		writeD(pgs.getMAttack().getBase()); // <-- OK
 		writeD(pgs.getMDef().getBase()); // <-- OK
-		writeH(pgs.getStat(StatEnum.HEAL_BOOST, 0).getBase()); // <-- OK);
-		writeH(0);
-		writeH(0);
-		writeH(0);
-		writeD(0);
+		writeH(clampH(pgs.getStat(StatEnum.HEAL_BOOST, 0).getBase())); // <-- OK);
+		writeH(clampH(pgs.getStat(StatEnum.MAGIC_SKILL_BOOST_RESIST, 0).getBase()));
+		writeH(clampH(pgs.getStrikeResist().getBase()));
+		writeH(clampH(pgs.getSpellResist().getBase()));
+		writeD(pgs.getStat(StatEnum.MAGIC_SKILL_BOOST_RESIST, 0).getBase());
 	}
 
 	private int current(StatEnum stat) {
 		return pgs.getStat(stat, 0).getCurrent();
+	}
+
+	private int clampH(int value) {
+		return Math.max(0, Math.min(0xFFFF, value));
+	}
+
+	private int getWeaponShownDamage(Item weapon, boolean mainHand) {
+		if (weapon == null || weapon.getItemTemplate() == null || !weapon.getItemTemplate().isWeapon()) {
+			return 0;
+		}
+		if (weapon.getItemTemplate().getAttackType().isMagical()) {
+			return mainHand ? pgs.getMainHandMAttack().getCurrent() : pgs.getOffHandMAttack().getCurrent();
+		}
+		return mainHand ? pgs.getMainHandPAttack().getCurrent() : pgs.getOffHandPAttack().getCurrent();
+	}
+
+	private int getWeaponBaseDamage(Item weapon) {
+		if (weapon == null || weapon.getItemTemplate() == null || !weapon.getItemTemplate().isWeapon()) {
+			return 0;
+		}
+		return weapon.getItemTemplate().getWeaponStats().getMeanDamage();
 	}
 }
 

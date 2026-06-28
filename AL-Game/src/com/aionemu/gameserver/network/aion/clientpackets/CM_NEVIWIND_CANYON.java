@@ -10,6 +10,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.services.instance.NeviwindCanyonService;
+import com.aionemu.gameserver.services.packet.PacketAuditService;
 
 /**
  * 7.x Neviwind Canyon UI packet.
@@ -50,6 +51,7 @@ public class CM_NEVIWIND_CANYON extends AionClientPacket {
 		if (log.isDebugEnabled()) {
 			log.debug("Neviwind packet player=" + player.getName() + " action=" + action + " payloadSize=" + payload.length);
 		}
+		PacketAuditService.getInstance().logAction(getPacketName(), getOpcode(), player, action, 0, payload, "neviwind_client_request");
 		NeviwindCanyonService.getInstance().handle(player, action, payload);
 	}
 }

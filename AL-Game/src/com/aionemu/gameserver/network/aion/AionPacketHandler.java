@@ -32,6 +32,7 @@ import com.aionemu.gameserver.configs.administration.DeveloperConfig;
 import com.aionemu.gameserver.configs.network.NetworkConfig;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.services.packet.PacketAuditService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.Util;
 
@@ -176,6 +177,7 @@ public class AionPacketHandler {
 		String message = String.format("Unknown packet received from Aion client: 0x%04X, state=%s, %s%n%s", id, state.toString(), playerInfo, hex);
 		log.warn(message);
 		appendUnknownPacketFile(id, state, playerInfo, hex);
+		PacketAuditService.getInstance().logUnknown(id, state, con, data);
 	}
 
 	private void invalidPacket(State state, ByteBuffer data, AionConnection con, String reason) {
@@ -189,6 +191,7 @@ public class AionPacketHandler {
 		String message = String.format("Invalid packet received from Aion client: reason=%s, state=%s, %s%n%s", reason, state.toString(), playerInfo, hex);
 		log.warn(message);
 		appendPacketFile("invalid_packets.log", 0, state, playerInfo, reason, hex);
+		PacketAuditService.getInstance().logInvalid(state, con, reason, data);
 	}
 
 	private String getConnectionInfo(AionConnection con) {

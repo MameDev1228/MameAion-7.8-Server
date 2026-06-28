@@ -53,13 +53,38 @@ public class RealRandomBonusService {
 		}
 	}
 
-	public static void rerollAllBonuses(Player player, Item item) {
+	public static boolean rerollAllBonuses(Player player, Item item) {
+		if (item == null || item.getItemTemplate() == null || item.getItemTemplate().getRealRndBonus() <= 0) {
+			return false;
+		}
+		RealRandomBonus oldBonus = item.getRealRndBonus();
+		List<StatFunction> fusionStat = oldBonus != null ? new ArrayList<StatFunction>(oldBonus.getFusionFunctions()) : new ArrayList<StatFunction>();
 		DAOManager.getDAO(RealItemRndBonusDAO.class).deleteMainRandomBonuses(item);
-		List<StatFunction> fusionStat = item.getRealRndBonus().getFusionFunctions();
 		item.setRealRndBonus(null);
 		setBonus(item);
+		if (item.getRealRndBonus() == null) {
+			return false;
+		}
 		item.getRealRndBonus().getFusionFunctions().addAll(fusionStat);
 		refreshStats(player, item);
+		return true;
+	}
+
+	public static int getLunaIdentificationCost(Item item, int requestedStatId) {
+		if (item == null || item.getItemTemplate() == null) {
+			return 0;
+		}
+		int cost = 0;
+		if (item.getItemTemplate().getRandomBonusId() > 0) {
+			cost += 4;
+		}
+		if (item.getItemTemplate().getOptionSlotBonus() != 0) {
+			cost += 4;
+		}
+		if (item.getItemTemplate().getRealRndBonus() > 0) {
+			cost += requestedStatId > 0 ? 8 : 12;
+		}
+		return cost;
 	}
 
 	public static boolean rerollSingleBonus(Player player, Item item, int statId) {

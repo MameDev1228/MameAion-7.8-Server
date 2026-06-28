@@ -287,8 +287,8 @@ public class AionPacketHandlerFactory {
 
 		// // ////////////////// UNK PACKET ////////////////////
 		addPacket(new CM_GF_WEBSHOP_TOKEN(0x122, State.AUTHED)); // 7.5 EU
-		//addPacket(new CM_UNK_1DB(0x1DB, State.IN_GAME)); // 5.0 TODO
-		addPacket(new CM_UNK_E3(0xE3, State.IN_GAME)); // 7.5 EU
+		addPacket(new CM_CLIENT_SYNC_DETAIL_REQUEST(0x1DB, State.IN_GAME)); // 7.8 client sync/detail request
+		addPacket(new CM_UI_PANEL_REFRESH_REQUEST(0xE3, State.IN_GAME)); // 7.8 UI/panel refresh request
 		//addPacket(new CM_UNK_1EA(0x1EA, State.IN_GAME)); // 5.3 EU
 		addPacket(new CM_RANK_LIST(0x1E7, State.IN_GAME)); // 7.5 EU TODO
 		addPacket(new CM_MY_DOCUMENTATION(0x1E4, State.IN_GAME)); // 7.5 EU TODO

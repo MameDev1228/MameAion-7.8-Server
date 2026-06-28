@@ -26,6 +26,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.services.combat.CombatSupportService;
+import com.aionemu.gameserver.services.packet.PacketAuditService;
 
 /**
  * 7.x Combat Support packet.
@@ -63,6 +64,7 @@ public class CM_COMBAT_SUPPORT extends AionClientPacket {
 		if (player == null) {
 			return;
 		}
+		PacketAuditService.getInstance().logAction(getPacketName(), getOpcode(), player, action, payload, "combat_support_client_request");
 		CombatSupportService.getInstance().handlePacket(player, action, payload);
 	}
 }

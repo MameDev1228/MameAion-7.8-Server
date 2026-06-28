@@ -15,6 +15,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_STATS_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.item.ItemPacketService;
 import com.aionemu.gameserver.services.item.RealRandomBonusService;
+import com.aionemu.gameserver.services.player.LunaShopService;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
@@ -48,6 +49,10 @@ public class CM_LUNA_IDENTIFICATION extends AionClientPacket {
 		Storage inventory = player.getInventory();
 		Item item = inventory.getItemByObjId(itemObjectId);
 		if (item == null) {
+			return;
+		}
+		int lunaCost = RealRandomBonusService.getLunaIdentificationCost(item, statId);
+		if (lunaCost > 0 && !LunaShopService.getInstance().spendLunaForSystem(player, lunaCost)) {
 			return;
 		}
 		boolean changed = rollLunaIdentification(player, item, statId);
@@ -84,8 +89,7 @@ public class CM_LUNA_IDENTIFICATION extends AionClientPacket {
 				changed |= RealRandomBonusService.rerollSingleBonus(player, item, requestedStatId);
 			}
 			else {
-				RealRandomBonusService.rerollAllBonuses(player, item);
-				changed = true;
+				changed |= RealRandomBonusService.rerollAllBonuses(player, item);
 			}
 		}
 		return changed;

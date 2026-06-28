@@ -66,6 +66,7 @@ import com.aionemu.gameserver.services.drop.DropService;
 import com.aionemu.gameserver.services.events.EventWindowService;
 import com.aionemu.gameserver.services.events.ShugoSweepService;
 import com.aionemu.gameserver.services.instance.InstanceService;
+import com.aionemu.gameserver.services.instance.NeviwindCanyonService;
 import com.aionemu.gameserver.services.summons.SummonsService;
 import com.aionemu.gameserver.services.toypet.PetService;
 import com.aionemu.gameserver.services.toypet.PetSpawnService;
@@ -123,6 +124,7 @@ public class PlayerLeaveWorldService {
 		BrokerService.getInstance().removePlayerCache(player);
 		ExchangeService.getInstance().cancelExchange(player);
 		CombatSupportService.getInstance().onLogout(player);
+		NeviwindCanyonService.getInstance().onPlayerLogout(player);
 		PlayerCollectionService.getInstance().onLogout(player);
 		RepurchaseService.getInstance().removeRepurchaseItems(player);
 		if (AutoGroupConfig.AUTO_GROUP_ENABLE) {

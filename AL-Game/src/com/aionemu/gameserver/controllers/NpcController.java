@@ -65,6 +65,7 @@ import com.aionemu.gameserver.services.SiegeService;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.services.drop.DropService;
+import com.aionemu.gameserver.services.instance.NeviwindCanyonService;
 import com.aionemu.gameserver.services.player.AchievementService;
 import com.aionemu.gameserver.services.player.PlayerFameService;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
@@ -177,6 +178,7 @@ public class NpcController extends CreatureController<Npc> {
 		PacketSendUtility.broadcastPacket(owner, new SM_EMOTION(owner, EmotionType.DIE, 0, owner.equals(lastAttacker) ? 0 : lastAttacker.getObjectId()));
 
 		try {
+			NeviwindCanyonService.getInstance().onNpcKilledByCreature(lastAttacker, owner);
 			if (owner.getAi2().poll(AIQuestion.SHOULD_REWARD)) {
 				this.doReward();
 			}

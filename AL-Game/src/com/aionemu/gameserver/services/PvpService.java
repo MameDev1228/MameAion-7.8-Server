@@ -41,6 +41,7 @@ import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
 import com.aionemu.gameserver.services.conquerer_protector.ConquerorsService;
+import com.aionemu.gameserver.services.instance.NeviwindCanyonService;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.player.AchievementService;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
@@ -201,6 +202,7 @@ public class PvpService {
 			}
 		}
 		ConquerorsService.getInstance().onKill(winner, victim);
+		NeviwindCanyonService.getInstance().onPlayerKill(winner, victim);
 
 		// notify Quest engine for winner + his group
 		notifyKillQuests(winner, victim);

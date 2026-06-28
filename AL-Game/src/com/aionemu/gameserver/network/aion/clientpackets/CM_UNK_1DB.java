@@ -18,6 +18,8 @@ public class CM_UNK_1DB extends AionClientPacket {
 
 	private static final Logger log = LoggerFactory.getLogger(CM_UNK_1DB.class);
 	private int objectId;
+	private int action;
+	private int[] payload;
 
 	public CM_UNK_1DB(int opcode, State state, State... restStates) {
 		super(opcode, state, restStates);
@@ -25,7 +27,13 @@ public class CM_UNK_1DB extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-		objectId = readD();
+		objectId = getRemainingBytes() >= 4 ? readD() : 0;
+		action = getRemainingBytes() >= 1 ? readC() : -1;
+		int count = getRemainingBytes() / 4;
+		payload = new int[count];
+		for (int i = 0; i < count; ++i) {
+			payload[i] = readD();
+		}
 		if (getRemainingBytes() > 0) {
 			readB(getRemainingBytes());
 		}
@@ -34,6 +42,6 @@ public class CM_UNK_1DB extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
-		log.debug("CM_UNK_1DB audit player=" + (player != null ? player.getName() : "-") + " objectId=" + objectId);
+		log.debug("CM_UNK_1DB audit player=" + (player != null ? player.getName() : "-") + " objectId=" + objectId + " action=" + action + " payload=" + java.util.Arrays.toString(payload));
 	}
 }

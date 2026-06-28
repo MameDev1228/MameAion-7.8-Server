@@ -11,6 +11,7 @@ import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.templates.item.ItemQuality;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_DAEVANION_SKILL_FUSION;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -22,14 +23,22 @@ public class CombineDaevanionBook {
 			return;
 		}
 		Set<Integer> uniqueObjects = new HashSet<Integer>();
+		ItemQuality quality = null;
 		for (int sacrifices : sacrificeBook) {
 			if (sacrifices <= 0 || !uniqueObjects.add(sacrifices)) {
 				PacketSendUtility.sendMessage(player, "Daevanion fusion failed: invalid material list.");
 				return;
 			}
 			Item item = player.getInventory().getItemByObjId(sacrifices);
-			if (item == null || item.getItemTemplate() == null) {
-				PacketSendUtility.sendMessage(player, "Daevanion fusion failed: material item is missing.");
+			if (item == null || item.getItemTemplate() == null || !EnchantDaevanionBook.isDaevanionSkillBook(item)) {
+				PacketSendUtility.sendMessage(player, "Daevanion fusion failed: material is not a Daevanion skill book.");
+				return;
+			}
+			if (quality == null) {
+				quality = item.getItemTemplate().getItemQuality();
+			}
+			else if (quality != item.getItemTemplate().getItemQuality()) {
+				PacketSendUtility.sendMessage(player, "Daevanion fusion failed: mixed material grades are not allowed.");
 				return;
 			}
 		}

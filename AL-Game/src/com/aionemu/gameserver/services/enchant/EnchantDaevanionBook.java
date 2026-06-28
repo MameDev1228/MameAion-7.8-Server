@@ -27,6 +27,24 @@ public class EnchantDaevanionBook {
 	private static final long ENCHANT_KINAH_COST = 100000L;
 	private static final int MAX_DAEVANION_ENCHANT = 15;
 
+	public static boolean isDaevanionSkillBook(Item item) {
+		if (item == null || item.getItemTemplate() == null) {
+			return false;
+		}
+		int itemId = item.getItemId();
+		return itemId >= 169501000 && itemId <= 169502999;
+	}
+
+	private static boolean isDaevanionEnchantMaterial(Item item) {
+		if (item == null || item.getItemTemplate() == null) {
+			return false;
+		}
+		int itemId = item.getItemId();
+		// 169501xxx are skill books. The 1695/1696 safety range keeps 7.x book
+		// variants valid while blocking random inventory items from being consumed.
+		return (itemId >= 169501000 && itemId <= 169502999) || (itemId >= 169600000 && itemId <= 169699999);
+	}
+
 	public static void enchantDaevanionSkill(final Player player, final int skillId, final int bookObjId, final int materials) {
 		if (player == null || skillId <= 0 || bookObjId <= 0) {
 			return;
@@ -37,9 +55,16 @@ public class EnchantDaevanionBook {
 			PacketSendUtility.sendMessage(player, "Daevanion skill enchant failed: invalid skill or book.");
 			return;
 		}
-		if (materials != 0 && player.getInventory().getItemByObjId(materials) == null) {
-			PacketSendUtility.sendMessage(player, "Daevanion skill enchant failed: material item is missing.");
+		if (!isDaevanionSkillBook(parentItem)) {
+			PacketSendUtility.sendMessage(player, "Daevanion skill enchant failed: the selected book is not a Daevanion skill book.");
 			return;
+		}
+		if (materials != 0) {
+			Item materialItem = player.getInventory().getItemByObjId(materials);
+			if (materialItem == null || !isDaevanionEnchantMaterial(materialItem)) {
+				PacketSendUtility.sendMessage(player, "Daevanion skill enchant failed: invalid material category.");
+				return;
+			}
 		}
 		if (player.getInventory().getKinah() < ENCHANT_KINAH_COST) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_NOT_ENOUGH_MONEY);
@@ -70,11 +95,15 @@ public class EnchantDaevanionBook {
 				player.getController().cancelTask(TaskId.ITEM_USE);
 				player.getObserveController().removeObserver(moveObserver);
 				PlayerSkillEntry liveSkill = player.getSkillList().getSkillEntry(skillId);
-				if (liveSkill == null || player.getInventory().getItemByObjId(bookObjId) == null) {
+				Item liveBook = player.getInventory().getItemByObjId(bookObjId);
+				if (liveSkill == null || liveBook == null || !isDaevanionSkillBook(liveBook)) {
 					return;
 				}
-				if (materials != 0 && player.getInventory().getItemByObjId(materials) == null) {
-					return;
+				if (materials != 0) {
+					Item liveMaterial = player.getInventory().getItemByObjId(materials);
+					if (liveMaterial == null || !isDaevanionEnchantMaterial(liveMaterial)) {
+						return;
+					}
 				}
 				if (player.getInventory().getKinah() < ENCHANT_KINAH_COST) {
 					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_NOT_ENOUGH_MONEY);

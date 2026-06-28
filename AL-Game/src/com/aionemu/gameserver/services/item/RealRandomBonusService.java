@@ -41,7 +41,8 @@ public class RealRandomBonusService {
 			List<RealRandomBonusStat> statsList = new ArrayList<RealRandomBonusStat>();
 			List<BonusStat> stats = new ArrayList<BonusStat>();
 			stats.addAll(rndBonus.getRndStat());
-			for (int i = 0; i < rndBonus.getRandomNumber(); ++i) {
+			int rollCount = Math.min(rndBonus.getRandomNumber(), stats.size());
+			for (int i = 0; i < rollCount; ++i) {
 				BonusStat stat = stats.get(Rnd.get(0, stats.size() - 1));
 				statsList.add(new RealRandomBonusStat(stat.getName(), Rnd.get(stat.getMin(), stat.getMax()), false));
 				stats.remove(stat);
@@ -61,25 +62,82 @@ public class RealRandomBonusService {
 		refreshStats(player, item);
 	}
 
-	public static void rerollSingleBonus(Player player, Item item, int statId) {
+	public static boolean rerollSingleBonus(Player player, Item item, int statId) {
+		if (item == null || item.getItemTemplate() == null || item.getItemTemplate().getRealRndBonus() <= 0) {
+			return false;
+		}
 		RealItemRandomBonus rndBonus = DataManager.ITEM_REAL_RANDOM_BONUSES.getRealBonusById(item.getItemTemplate().getRealRndBonus());
-		StatEnum statName = StatEnum.findByItemStoneMask(statId);
-		BonusStat stat = rndBonus.getRndStat().get(statId);
-		int value = Rnd.get(stat.getMin(), stat.getMax());
 		RealRandomBonus bonus = item.getRealRndBonus();
-		RealRandomBonusStat oldStat = null;
-		RealRandomBonusStat newStat = new RealRandomBonusStat(statName, value, false);
-		for (RealRandomBonusStat rs : bonus.getStats()) {
-			if (!rs.isFusion() && rs.getStat().equals(statName)) {
-				oldStat = rs;
+		if (rndBonus == null || rndBonus.getRndStat().isEmpty()) {
+			return false;
+		}
+		if (bonus == null) {
+			setBonus(item);
+			bonus = item.getRealRndBonus();
+			if (bonus == null) {
+				return false;
 			}
 		}
-		bonus.getStats().remove(oldStat);
+		BonusStat stat = resolveRequestedStat(rndBonus, statId, bonus);
+		if (stat == null) {
+			return false;
+		}
+		RealRandomBonusStat oldStat = null;
+		for (RealRandomBonusStat rs : bonus.getStats()) {
+			if (!rs.isFusion() && rs.getStat().equals(stat.getName())) {
+				oldStat = rs;
+				break;
+			}
+		}
+		if (oldStat == null) {
+			for (RealRandomBonusStat rs : bonus.getStats()) {
+				if (!rs.isFusion()) {
+					oldStat = rs;
+					break;
+				}
+			}
+		}
+		int value = Rnd.get(stat.getMin(), stat.getMax());
+		RealRandomBonusStat newStat = new RealRandomBonusStat(stat.getName(), value, false);
+		if (oldStat != null) {
+			bonus.getStats().remove(oldStat);
+		}
 		bonus.getStats().add(newStat);
 		bonus.recalcStats();
 		refreshStats(player, item);
 		DAOManager.getDAO(RealItemRndBonusDAO.class).deleteMainRandomBonuses(item);
 		DAOManager.getDAO(RealItemRndBonusDAO.class).updateRandomBonuses(bonus);
+		return true;
+	}
+
+	private static BonusStat resolveRequestedStat(RealItemRandomBonus rndBonus, int statId, RealRandomBonus currentBonus) {
+		if (statId >= 0 && statId < rndBonus.getRndStat().size()) {
+			return rndBonus.getRndStat().get(statId);
+		}
+		StatEnum requested = null;
+		try {
+			requested = StatEnum.findByItemStoneMask(statId);
+		}
+		catch (IllegalArgumentException ignored) {
+		}
+		if (requested != null) {
+			for (BonusStat stat : rndBonus.getRndStat()) {
+				if (requested.equals(stat.getName())) {
+					return stat;
+				}
+			}
+		}
+		for (RealRandomBonusStat existing : currentBonus.getStats()) {
+			if (existing.isFusion()) {
+				continue;
+			}
+			for (BonusStat stat : rndBonus.getRndStat()) {
+				if (existing.getStat().equals(stat.getName())) {
+					return stat;
+				}
+			}
+		}
+		return rndBonus.getRndStat().get(Rnd.get(0, rndBonus.getRndStat().size() - 1));
 	}
 
 	public static void addFusionRandomBonuses(Player player, Item firstItem, Item secondItem) {

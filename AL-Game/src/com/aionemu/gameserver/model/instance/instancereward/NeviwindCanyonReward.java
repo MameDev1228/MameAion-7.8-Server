@@ -46,7 +46,9 @@ public class NeviwindCanyonReward extends InstanceReward<NeviwindCanyonPlayerRew
 	private MutableInt elyosPoins = new MutableInt(3800);
 
 	private MutableInt asmodiansPvpKills = new MutableInt(0);
-	private MutableInt elyosPvpKills = new MutableInt(0);	
+	private MutableInt elyosPvpKills = new MutableInt(0);
+	private MutableInt asmodiansObjectiveKills = new MutableInt(0);
+	private MutableInt elyosObjectiveKills = new MutableInt(0);	
 	
     private int capPoints;
     private Race race;
@@ -130,7 +132,7 @@ public class NeviwindCanyonReward extends InstanceReward<NeviwindCanyonPlayerRew
     }
     
     public MutableInt getPointsByRace(final Race race) {
-        return (race == Race.ELYOS) ? elyosPoins : ((race == Race.ASMODIANS) ? asmodiansPoints : null);
+        return (race == Race.ELYOS) ? elyosPoins : ((race == Race.ASMODIANS) ? asmodiansPoints : new MutableInt(0));
     }
     
     public void addPointsByRace(Race race, int points) {
@@ -142,7 +144,7 @@ public class NeviwindCanyonReward extends InstanceReward<NeviwindCanyonPlayerRew
     }
     
     public MutableInt getPvpKillsByRace(Race race) {
-        return (race == Race.ELYOS) ? elyosPvpKills : (race == Race.ASMODIANS) ? asmodiansPvpKills : null;
+        return (race == Race.ELYOS) ? elyosPvpKills : (race == Race.ASMODIANS) ? asmodiansPvpKills : new MutableInt(0);
     }
     
     public void addPvpKillsByRace(Race race, int points) {
@@ -150,6 +152,18 @@ public class NeviwindCanyonReward extends InstanceReward<NeviwindCanyonPlayerRew
         pvpKillsByRace.add(points);
         if (pvpKillsByRace.intValue() < 0) {
             pvpKillsByRace.setValue(0);
+        }
+    }
+
+    public MutableInt getObjectiveKillsByRace(Race race) {
+        return (race == Race.ELYOS) ? elyosObjectiveKills : (race == Race.ASMODIANS) ? asmodiansObjectiveKills : new MutableInt(0);
+    }
+
+    public void addObjectiveKillsByRace(Race race, int points) {
+        MutableInt objectiveKillsByRace = getObjectiveKillsByRace(race);
+        objectiveKillsByRace.add(points);
+        if (objectiveKillsByRace.intValue() < 0) {
+            objectiveKillsByRace.setValue(0);
         }
     }
     

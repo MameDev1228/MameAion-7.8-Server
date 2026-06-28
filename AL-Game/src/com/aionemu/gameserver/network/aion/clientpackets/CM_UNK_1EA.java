@@ -9,9 +9,13 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_RANK_LIST;
+import com.aionemu.gameserver.services.ranking.PlayerRankingUpdateService;
+import java.util.List;
 
 /**
- * TODO - 7.x Rank List. Audit-only until the 7.8 payload is verified.
+ * 7.x alternate Rank List request. Phase9 wires the audited payload to the
+ * regular ranking service so the UI receives data instead of a debug-only stub.
  */
 public class CM_UNK_1EA extends AionClientPacket {
 
@@ -35,6 +39,17 @@ public class CM_UNK_1EA extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
-		log.debug("CM_UNK_1EA rank-list audit player=" + (player != null ? player.getName() : "-") + " listId=" + listId + " action=" + action);
+		if (listId <= 0) {
+			log.debug("CM_UNK_1EA rank-list audit player=" + (player != null ? player.getName() : "-") + " invalidListId=" + listId + " action=" + action);
+			return;
+		}
+		List<SM_RANK_LIST> packets = PlayerRankingUpdateService.getInstance().getPlayers(listId);
+		if (packets == null || packets.isEmpty()) {
+			log.warn("CM_UNK_1EA no rank packets listId=" + listId + " action=" + action + " player=" + (player != null ? player.getName() : "-"));
+			return;
+		}
+		for (SM_RANK_LIST packet : packets) {
+			sendPacket(packet);
+		}
 	}
 }

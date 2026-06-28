@@ -10,12 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.instance.InstanceEngine;
-import com.aionemu.gameserver.model.TeleportAnimation;
+import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.RewardType;
 import com.aionemu.gameserver.model.instance.InstanceScoreType;
 import com.aionemu.gameserver.model.instance.instancereward.NeviwindCanyonReward;
 import com.aionemu.gameserver.model.instance.playerreward.NeviwindCanyonPlayerReward;
+import com.aionemu.gameserver.model.templates.npc.NpcRank;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_INSTANCE_SCORE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_NEVIWIND_CANYON;
 import com.aionemu.gameserver.services.abyss.AbyssPointsService;
@@ -47,6 +49,11 @@ public class NeviwindCanyonService {
 	private static final byte ENTER_H = 60;
 	private static final int NORMAL_REWARD_CHEST = 188057336;
 	private static final int SPECIAL_REWARD_CHEST = 188057337;
+	private static final int PVP_KILL_POINTS = 250;
+	private static final int PVP_VICTIM_POINTS_LOSS = -50;
+	private static final int OBJECTIVE_NORMAL_POINTS = 120;
+	private static final int OBJECTIVE_NAMED_POINTS = 350;
+	private static final int OBJECTIVE_BOSS_POINTS = 700;
 
 	private final Map<Integer, Long> registeredPlayers = new ConcurrentHashMap<Integer, Long>();
 	private final Map<Integer, Session> activeSessionsByPlayer = new ConcurrentHashMap<Integer, Session>();
@@ -139,7 +146,7 @@ public class NeviwindCanyonService {
 		rewardsByInstance.put(instance.getInstanceId(), reward);
 		activeSessionsByPlayer.put(player.getObjectId(), new Session(instance.getInstanceId(), System.currentTimeMillis()));
 		PacketSendUtility.sendPacket(player, new SM_NEVIWIND_CANYON(6));
-		TeleportService2.teleportTo(player, MAP_ID, instance.getInstanceId(), ENTER_X, ENTER_Y, ENTER_Z, ENTER_H, TeleportAnimation.BEAM_ANIMATION);
+		reward.portToPosition(player);
 		PacketSendUtility.sendPacket(player, new SM_INSTANCE_SCORE(2, reward.getTime(), reward, player.getObjectId()));
 		log.info("Neviwind enter player={} instance={}", player.getName(), instance.getInstanceId());
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
@@ -172,15 +179,18 @@ public class NeviwindCanyonService {
 			if (playerReward != null) {
 				long elapsed = System.currentTimeMillis() - session.startTime;
 				boolean fullParticipation = elapsed >= 10 * 60 * 1000;
-				ap = fullParticipation ? reward.AbyssReward(false, false) : 500;
-				gp = fullParticipation ? reward.GloryReward(false, false) : 25;
-				exp = fullParticipation ? reward.ExpReward(false, false) : 2500;
-				chest = fullParticipation ? SPECIAL_REWARD_CHEST : NORMAL_REWARD_CHEST;
+				boolean isWin = reward.getWinnerRaceByScore() == player.getRace();
+				boolean objectiveCompleted = reward.getObjectiveKillsByRace(player.getRace()).intValue() > 0;
+				ap = fullParticipation ? reward.AbyssReward(isWin, objectiveCompleted) : Math.max(500, playerReward.getPoints() / 2);
+				gp = fullParticipation ? reward.GloryReward(isWin, objectiveCompleted) : 25;
+				exp = fullParticipation ? reward.ExpReward(isWin, objectiveCompleted) : 2500;
+				chest = isWin && fullParticipation ? SPECIAL_REWARD_CHEST : NORMAL_REWARD_CHEST;
 				playerReward.setRewardAp(ap);
 				playerReward.setRewardGp(gp);
 				playerReward.setRewardExp(exp);
 				playerReward.setRewardCount(1f);
 				playerReward.setBrokenSpinel(chest);
+				reward.setWinnerRace(reward.getWinnerRaceByScore());
 				reward.setInstanceScoreType(InstanceScoreType.END_PROGRESS);
 				PacketSendUtility.sendPacket(player, new SM_INSTANCE_SCORE(5, reward.getTime(), reward, player.getObjectId()));
 			}
@@ -196,6 +206,112 @@ public class NeviwindCanyonService {
 		if (player.getWorldId() == MAP_ID) {
 			TeleportService2.moveToBindLocation(player, true);
 		}
+	}
+
+
+	/**
+	 * Called from PvpService after the normal AP/quest reward flow. Keeps the
+	 * Neviwind scoreboard moving instead of only showing a static start/end UI.
+	 */
+	public void onPlayerKill(Player winner, Player victim) {
+		if (winner == null || victim == null || winner == victim) {
+			return;
+		}
+		if (winner.getWorldId() != MAP_ID || victim.getWorldId() != MAP_ID) {
+			return;
+		}
+		Session winnerSession = activeSessionsByPlayer.get(winner.getObjectId());
+		Session victimSession = activeSessionsByPlayer.get(victim.getObjectId());
+		if (winnerSession == null || victimSession == null || winnerSession.instanceId != victimSession.instanceId) {
+			return;
+		}
+		NeviwindCanyonReward reward = rewardsByInstance.get(winnerSession.instanceId);
+		if (reward == null) {
+			return;
+		}
+		NeviwindCanyonPlayerReward winnerReward = reward.getPlayerReward(winner.getObjectId());
+		NeviwindCanyonPlayerReward victimReward = reward.getPlayerReward(victim.getObjectId());
+		if (winnerReward == null) {
+			reward.regPlayerReward(winner);
+			winnerReward = reward.getPlayerReward(winner.getObjectId());
+		}
+		if (victimReward == null) {
+			reward.regPlayerReward(victim);
+			victimReward = reward.getPlayerReward(victim.getObjectId());
+		}
+		if (winnerReward != null) {
+			winnerReward.addPvPKillToPlayer();
+			winnerReward.addPoints(PVP_KILL_POINTS);
+		}
+		if (victimReward != null) {
+			victimReward.addPoints(PVP_VICTIM_POINTS_LOSS);
+		}
+		reward.addPvpKillsByRace(winner.getRace(), 1);
+		reward.addPointsByRace(winner.getRace(), PVP_KILL_POINTS);
+		reward.addPointsByRace(victim.getRace(), PVP_VICTIM_POINTS_LOSS);
+		reward.setWinnerRace(reward.getWinnerRaceByScore());
+		sendScoreUpdate(reward, winner.getObjectId());
+	}
+
+	/**
+	 * Called from NpcController for Neviwind map NPC deaths. Retail objectives are
+	 * data-driven, but until the full client table is mapped we score robustly by
+	 * NPC rank and named/boss-like template data.
+	 */
+	public void onObjectiveKill(Player killer, Npc npc) {
+		if (killer == null || npc == null || killer.getWorldId() != MAP_ID || npc.getWorldId() != MAP_ID) {
+			return;
+		}
+		Session session = activeSessionsByPlayer.get(killer.getObjectId());
+		if (session == null) {
+			return;
+		}
+		NeviwindCanyonReward reward = rewardsByInstance.get(session.instanceId);
+		if (reward == null) {
+			return;
+		}
+		NeviwindCanyonPlayerReward playerReward = reward.getPlayerReward(killer.getObjectId());
+		if (playerReward == null) {
+			reward.regPlayerReward(killer);
+			playerReward = reward.getPlayerReward(killer.getObjectId());
+		}
+		int points = getObjectivePoints(npc);
+		if (playerReward != null) {
+			playerReward.addMonsterKillToPlayer();
+			playerReward.addPoints(points);
+		}
+		reward.addObjectiveKillsByRace(killer.getRace(), 1);
+		reward.addPointsByRace(killer.getRace(), points);
+		reward.setWinnerRace(reward.getWinnerRaceByScore());
+		sendScoreUpdate(reward, killer.getObjectId());
+		if (reward.hasCapPoints()) {
+			reward.setInstanceScoreType(InstanceScoreType.END_PROGRESS);
+		}
+	}
+
+	public void onNpcKilledByCreature(Creature attacker, Npc npc) {
+		Player killer = attacker instanceof Player ? (Player) attacker : attacker != null && attacker.getMaster() instanceof Player ? (Player) attacker.getMaster() : null;
+		onObjectiveKill(killer, npc);
+	}
+
+	private int getObjectivePoints(Npc npc) {
+		NpcRank rank = npc.getObjectTemplate() != null ? npc.getObjectTemplate().getRank() : null;
+		if (rank == NpcRank.MASTER || rank == NpcRank.VETERAN) {
+			return OBJECTIVE_BOSS_POINTS;
+		}
+		if (rank == NpcRank.EXPERT) {
+			return OBJECTIVE_NAMED_POINTS;
+		}
+		return OBJECTIVE_NORMAL_POINTS;
+	}
+
+	private void sendScoreUpdate(NeviwindCanyonReward reward, Integer objectId) {
+		if (reward == null) {
+			return;
+		}
+		reward.sendPacket(10, objectId);
+		reward.sendPacket(6, objectId);
+		reward.sendPacket(7, objectId);
 	}
 
 	private WorldMapInstance createInstance() {

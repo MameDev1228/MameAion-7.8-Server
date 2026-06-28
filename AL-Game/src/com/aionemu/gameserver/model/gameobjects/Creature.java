@@ -441,7 +441,7 @@ public abstract class Creature extends VisibleObject {
 	/**
 	 * This is adding broadcast to player.
 	 */
-	public final void addPacketBroadcastMask(BroadcastMode mode) {
+	public final synchronized void addPacketBroadcastMask(BroadcastMode mode) {
 		packetBroadcastMask |= mode.mask();
 
 		PacketBroadcaster.getInstance().add(this);
@@ -455,7 +455,7 @@ public abstract class Creature extends VisibleObject {
 	/**
 	 * This is removing broadcast from player.
 	 */
-	public final void removePacketBroadcastMask(BroadcastMode mode) {
+	public final synchronized void removePacketBroadcastMask(BroadcastMode mode) {
 		packetBroadcastMask &= ~mode.mask();
 
 		// Debug
@@ -467,7 +467,7 @@ public abstract class Creature extends VisibleObject {
 	/**
 	 * Broadcast getter.
 	 */
-	public final byte getPacketBroadcastMask() {
+	public final synchronized byte getPacketBroadcastMask() {
 		return packetBroadcastMask;
 	}
 

@@ -66,9 +66,9 @@ public abstract class AionClientPacket extends BaseClientPacket<AionConnection> 
 			}
 		}
 		catch (Throwable e) {
-			String name = getConnection().getAccount().getName();
-			if (name == null) {
-				name = getConnection().getIP();
+			String name = getConnection() != null ? getConnection().getIP() : "unknown";
+			if (getConnection() != null && getConnection().getAccount() != null && getConnection().getAccount().getName() != null) {
+				name = getConnection().getAccount().getName();
 			}
 
 			log.error("Error handling client (" + name + ") message :" + this, e);

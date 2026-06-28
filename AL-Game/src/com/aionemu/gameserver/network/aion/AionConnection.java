@@ -44,6 +44,7 @@ import com.aionemu.gameserver.network.loginserver.LoginServer;
 import com.aionemu.gameserver.network.loginserver.serverpackets.SM_MAC;
 import com.aionemu.gameserver.services.player.PlayerLeaveWorldService;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
+import com.aionemu.gameserver.utils.Util;
 import com.google.common.base.Preconditions;
 
 import javolution.util.FastList;
@@ -259,6 +260,8 @@ public class AionConnection extends AConnection {
 			return false;
 		}
 
+		ByteBuffer rawPacketForDiagnostics = data.asReadOnlyBuffer();
+		rawPacketForDiagnostics.position(0);
 		AionClientPacket pck = aionPacketHandler.handle(data, this);
 
 		/**
@@ -296,6 +299,9 @@ public class AionConnection extends AConnection {
 
 			if (pck.read()) {
 				packetProcessor.executePacket(pck);
+			}
+			else {
+				log.warn("Client packet read failed. packet=" + pck + ", state=" + getState() + ", connection=" + this + System.lineSeparator() + Util.toHex(rawPacketForDiagnostics));
 			}
 		}
 

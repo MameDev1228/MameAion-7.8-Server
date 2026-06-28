@@ -741,6 +741,8 @@ public class TeleportService2 {
 		PacketSendUtility.sendPacket(player, new SM_PLAYER_SPAWN(player));
 		player.setPortAnimation(4);
 		PacketSendUtility.sendPacket(player, new SM_PLAYER_INFO(player, false));
+		PacketSendUtility.sendPacket(player, new SM_STATS_INFO(player));
+		player.updateKnownlist();
 		if (player.isLegionMember()) {
 			PacketSendUtility.broadcastPacketToLegion(player.getLegion(), new SM_LEGION_UPDATE_MEMBER(player, 0, ""));
 		}

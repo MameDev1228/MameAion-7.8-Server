@@ -16,7 +16,12 @@
  */
 package com.aionemu.gameserver.network.aion;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +46,8 @@ public class AionPacketHandler {
 	 * logger for this class
 	 */
 	private static final Logger log = LoggerFactory.getLogger(AionPacketHandler.class);
+	private static final Object UNKNOWN_PACKET_LOG_LOCK = new Object();
+	private static final SimpleDateFormat UNKNOWN_PACKET_DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	private Map<Integer, AionClientPacket> packetsPrototypes = new HashMap<Integer, AionClientPacket>();
 
 	/**
@@ -67,7 +74,7 @@ public class AionPacketHandler {
 		AionClientPacket prototype = packetsPrototypes.get(id);
 
 		if (prototype == null) {
-			unknownPacket(state, id, buf);
+			unknownPacket(state, id, buf, con);
 			return null;
 		}
 
@@ -96,8 +103,9 @@ public class AionPacketHandler {
 		res.setBuffer(buf);
 		res.setConnection(con);
 
-		if (con.getState().equals(State.IN_GAME) && con.getActivePlayer().getPlayerAccount().getMembership() == 10) {
-			PacketSendUtility.sendMessage(con.getActivePlayer(), "0x" + Integer.toHexString(res.getOpcode()).toUpperCase() + " : " + res.getPacketName());
+		Player activePlayer = con.getActivePlayer();
+		if (con.getState().equals(State.IN_GAME) && activePlayer != null && activePlayer.getPlayerAccount().getMembership() == 10) {
+			PacketSendUtility.sendMessage(activePlayer, "0x" + Integer.toHexString(res.getOpcode()).toUpperCase() + " : " + res.getPacketName());
 		}
 		return res;
 	}
@@ -148,9 +156,47 @@ public class AionPacketHandler {
 	 * @param id
 	 * @param data
 	 */
-	private void unknownPacket(State state, int id, ByteBuffer data) {
-		if (NetworkConfig.DISPLAY_UNKNOWNPACKETS) {
-			log.warn(String.format("Unknown packet received from Aion client: 0x%04X, state=%s %n%s", id, state.toString(), Util.toHex(data)));
+	private void unknownPacket(State state, int id, ByteBuffer data, AionConnection con) {
+		if (!NetworkConfig.DISPLAY_UNKNOWNPACKETS) {
+			return;
+		}
+
+		ByteBuffer fullPacket = data.asReadOnlyBuffer();
+		fullPacket.position(0);
+		String hex = Util.toHex(fullPacket);
+		String playerInfo = getConnectionInfo(con);
+		String message = String.format("Unknown packet received from Aion client: 0x%04X, state=%s, %s%n%s", id, state.toString(), playerInfo, hex);
+		log.warn(message);
+		appendUnknownPacketFile(id, state, playerInfo, hex);
+	}
+
+	private String getConnectionInfo(AionConnection con) {
+		if (con == null) {
+			return "connection=null";
+		}
+		Player player = con.getActivePlayer();
+		String playerName = player != null ? player.getName() : "-";
+		int objectId = player != null ? player.getObjectId() : 0;
+		String accountName = con.getAccount() != null ? con.getAccount().getName() : "-";
+		return "ip=" + con.getIP() + ", account=" + accountName + ", player=" + playerName + ", objectId=" + objectId;
+	}
+
+	private void appendUnknownPacketFile(int id, State state, String playerInfo, String hex) {
+		synchronized (UNKNOWN_PACKET_LOG_LOCK) {
+			File dir = new File("log/packets");
+			if (!dir.exists() && !dir.mkdirs()) {
+				return;
+			}
+			File file = new File(dir, "unknown_packets.log");
+			try (FileWriter writer = new FileWriter(file, true)) {
+				writer.write("[" + UNKNOWN_PACKET_DATE.format(new Date()) + "] ");
+				writer.write(String.format("opcode=0x%04X state=%s %s%n", id, state.toString(), playerInfo));
+				writer.write(hex);
+				writer.write(System.lineSeparator());
+				writer.write(System.lineSeparator());
+			} catch (IOException e) {
+				log.warn("Failed to write unknown packet log file", e);
+			}
 		}
 	}
 }

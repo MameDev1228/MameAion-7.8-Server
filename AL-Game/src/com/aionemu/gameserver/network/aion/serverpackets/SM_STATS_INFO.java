@@ -136,11 +136,11 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeD(pgs.getPVEAttack().getCurrent());// TODO Zus. PVE-Angr. Checked 7.5
 		writeD(pgs.getPVEDefense().getCurrent());// TODO Zus. PVE-Abwehr Checked 7.5
 		
-		writeH(0);// TODO Phys. krit. Schaden Checked 7.5
-		writeH(0);// TODO Mag. krit. Schaden Checked 7.5
+		writeH(pgs.getStrikeFort().getCurrent());// Phys. krit. Schaden
+		writeH(pgs.getSpellFort().getCurrent());// Mag. krit. Schaden
 		
 		writeD(pgs.getMBoost().getCurrent()); // TODO add Magie Abwehr + Magie Ausgleich (Mag. Angriff)
-		writeD(0);//pgs.getMDef().getCurrent());// ??
+		writeD(pgs.getMDef().getCurrent());// Mag. Defense
 		writeH(0);
 		writeH(pgs.getStat(StatEnum.HEAL_BOOST, 0).getCurrent()); // <-- OK
 		writeH(0);//294);// ??
@@ -166,33 +166,33 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeB(new byte[22]);
 		
 		// START Zustands Wiederstände
-		writeH(0); // Äthergriff
-		writeH(0); // Angst
-		writeH(0); // Betäubung
-		writeH(0); // Stolpern
-		writeH(0); // Lähmung
-		writeH(0); // Rückschlag
-		writeH(0); // Binden
-		writeH(0); // Unbeweglcih
-		writeH(0); // Schlaf
-		writeH(0); // Blind
-		writeH(0); // Geschwindigkeit verringern
-		writeH(0); // Schweigen
+		writeH(current(StatEnum.OPENAREIAL_RESISTANCE)); // Äthergriff
+		writeH(current(StatEnum.FEAR_RESISTANCE)); // Angst
+		writeH(current(StatEnum.STUN_RESISTANCE)); // Betäubung
+		writeH(current(StatEnum.STUMBLE_RESISTANCE)); // Stolpern
+		writeH(current(StatEnum.PARALYZE_RESISTANCE)); // Lähmung
+		writeH(current(StatEnum.STAGGER_RESISTANCE)); // Rückschlag
+		writeH(current(StatEnum.BIND_RESISTANCE)); // Binden
+		writeH(current(StatEnum.ROOT_RESISTANCE)); // Unbeweglcih
+		writeH(current(StatEnum.SLEEP_RESISTANCE)); // Schlaf
+		writeH(current(StatEnum.BLIND_RESISTANCE)); // Blind
+		writeH(current(StatEnum.SLOW_RESISTANCE)); // Geschwindigkeit verringern
+		writeH(current(StatEnum.SILENCE_RESISTANCE)); // Schweigen
 		// ENDE Zustands Wiederstände
 		
 		// START Zustands Durchdringung
-		writeH(0); // Äthergriff
-		writeH(0); // Angst
-		writeH(0); // Betäubung
-		writeH(0); // Stolpern
-		writeH(0); // Lähmung
-		writeH(0); // Rückschlag
-		writeH(0); // Binden
-		writeH(0); // Unbeweglcih
-		writeH(0); // Schlaf
-		writeH(0); // Blind
-		writeH(0); // Geschwindigkeit verringern
-		writeH(0); // Schweigen
+		writeH(current(StatEnum.OPENAREIAL_RESISTANCE_PENETRATION)); // Äthergriff
+		writeH(current(StatEnum.FEAR_RESISTANCE_PENETRATION)); // Angst
+		writeH(current(StatEnum.STUN_RESISTANCE_PENETRATION)); // Betäubung
+		writeH(current(StatEnum.STUMBLE_RESISTANCE_PENETRATION)); // Stolpern
+		writeH(current(StatEnum.PARALYZE_RESISTANCE_PENETRATION)); // Lähmung
+		writeH(current(StatEnum.STAGGER_RESISTANCE_PENETRATION)); // Rückschlag
+		writeH(current(StatEnum.BIND_RESISTANCE)); // Binden TODO: penetration stat missing in StatEnum
+		writeH(current(StatEnum.ROOT_RESISTANCE_PENETRATION)); // Unbeweglcih
+		writeH(current(StatEnum.SLEEP_RESISTANCE_PENETRATION)); // Schlaf
+		writeH(current(StatEnum.BLIND_RESISTANCE_PENETRATION)); // Blind
+		writeH(current(StatEnum.SLOW_RESISTANCE_PENETRATION)); // Geschwindigkeit verringern
+		writeH(current(StatEnum.SILENCE_RESISTANCE_PENETRATION)); // Schweigen
 		// ENDE Zustands Durchdringung
 		writeH(0);
 		
@@ -237,7 +237,7 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeD(0);
 		writeD(0);
 		writeD(pgs.getMResist().getBase());
-		writeF(pgs.getAttackRange().getBase());
+		writeF(pgs.getAttackRange().getBase() / 1000f);
 		writeD(pgs.getEvasion().getBase()); // <-- OK
 		writeD(pgs.getParry().getBase()); // <-- OK
 		writeD(pgs.getBlock().getBase()); // <-- OK
@@ -253,8 +253,8 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeD(pgs.getPDef().getBase());//Phy Def  <-- OK
 		writeD(0); // <-- Changes M-Attack
 		writeD(0); // <-- Changes M-DEF
-		writeH(0); // TODO Phys. krit. Sc....
-		writeH(0); // TODO Mag. krit. Sc....
+		writeH(pgs.getStrikeFort().getBase()); // Phys. krit. Schaden
+		writeH(pgs.getSpellFort().getBase()); // Mag. krit. Schaden
 		writeD(pgs.getMAttack().getBase()); // <-- OK
 		writeD(pgs.getMDef().getBase()); // <-- OK
 		writeH(pgs.getStat(StatEnum.HEAL_BOOST, 0).getBase()); // <-- OK);
@@ -262,6 +262,10 @@ public class SM_STATS_INFO extends AionServerPacket {
 		writeH(0);
 		writeH(0);
 		writeD(0);
+	}
+
+	private int current(StatEnum stat) {
+		return pgs.getStat(stat, 0).getCurrent();
 	}
 }
 

@@ -26,7 +26,6 @@ import com.aionemu.gameserver.services.AtreianPassportService;
  */
 public class CM_ATREIAN_PASSPORT extends AionClientPacket {
 
-	@SuppressWarnings("unused")
 	private int passportId;
 
 	public CM_ATREIAN_PASSPORT(int opcode, State state, State... restStates) {
@@ -44,6 +43,6 @@ public class CM_ATREIAN_PASSPORT extends AionClientPacket {
 		if (player == null) {
 			return;
 		}
-		AtreianPassportService.getInstance().getReward(player, 11);
+		AtreianPassportService.getInstance().getReward(player, passportId);
 	}
 }

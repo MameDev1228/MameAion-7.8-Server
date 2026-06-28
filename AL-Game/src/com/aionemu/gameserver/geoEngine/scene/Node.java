@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.activation.UnsupportedDataTypeException;
 
 import com.aionemu.gameserver.geoEngine.bounding.BoundingVolume;
 import com.aionemu.gameserver.geoEngine.collision.Collidable;
@@ -476,7 +475,7 @@ public class Node extends Spatial implements Cloneable {
 				node.attachChild(((Node) (spatial)).clone());
 			}
 			else {
-				new UnsupportedDataTypeException();
+				throw new IllegalStateException("Unsupported child spatial type: " + spatial.getClass().getName());
 			}
 		}
 		return node;

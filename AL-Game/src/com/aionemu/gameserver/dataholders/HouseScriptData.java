@@ -45,12 +45,15 @@ import javax.xml.validation.SchemaFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.aionemu.gameserver.model.templates.housing.LBox;
-import com.sun.org.apache.xml.internal.serialize.OutputFormat;
-import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 /**
  * @author Rolandas
@@ -114,17 +117,16 @@ public class HouseScriptData {
 		public static String format(String unformattedXml) {
 			try {
 				final Document document = parseXmlFile(unformattedXml);
-
-				OutputFormat format = new OutputFormat(document);
-				format.setIndenting(true);
-				format.setIndent(2);
-				format.setEncoding("UTF-16");
+				Transformer transformer = TransformerFactory.newInstance().newTransformer();
+				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+				transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-16");
+				transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 				Writer out = new StringWriter();
-				XMLSerializer serializer = new XMLSerializer(out, format);
-				serializer.serialize(document);
+				transformer.transform(new DOMSource(document), new StreamResult(out));
 				return out.toString();
 			}
-			catch (IOException e) {
+			catch (Exception e) {
+				log.warn("Could not format house script XML", e);
 			}
 			return null;
 		}

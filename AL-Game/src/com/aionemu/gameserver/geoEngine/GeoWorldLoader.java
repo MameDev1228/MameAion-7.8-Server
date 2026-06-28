@@ -50,8 +50,6 @@ import com.aionemu.gameserver.model.templates.materials.MaterialTemplate;
 import com.aionemu.gameserver.world.zone.ZoneName;
 import com.aionemu.gameserver.world.zone.ZoneService;
 
-import sun.misc.Cleaner;
-import sun.nio.ch.DirectBuffer;
 
 /**
  * @author Mr. Poke
@@ -291,9 +289,20 @@ public class GeoWorldLoader {
 	}
 
 	private static void destroyDirectByteBuffer(Buffer toBeDestroyed) {
-		Cleaner cleaner = ((DirectBuffer) toBeDestroyed).cleaner();
-		if (cleaner != null) {
-			cleaner.clean();
+		if (!(toBeDestroyed instanceof ByteBuffer)) {
+			return;
+		}
+		try {
+			Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
+			java.lang.reflect.Field theUnsafe = unsafeClass.getDeclaredField("theUnsafe");
+			theUnsafe.setAccessible(true);
+			Object unsafe = theUnsafe.get(null);
+			java.lang.reflect.Method invokeCleaner = unsafeClass.getMethod("invokeCleaner", ByteBuffer.class);
+			invokeCleaner.invoke(unsafe, (ByteBuffer) toBeDestroyed);
+		}
+		catch (Throwable ignored) {
+			// JDK 9+ strongly encapsulates direct-buffer internals. If explicit
+			// cleaning is denied, let the VM reclaim it normally.
 		}
 	}
 }

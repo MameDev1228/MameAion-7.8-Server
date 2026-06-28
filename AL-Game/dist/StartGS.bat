@@ -4,16 +4,14 @@ color 1B
 TITLE Aion German - Game Server Console
 :START
 CLS
-SET JAVAVER=1.7
+SET JAVAVER=25
 SET NUMAENABLE=false
 CLS
 IF "%MODE%" == "" (
 CALL PanelGS.bat
 )
 
-IF "%JAVAVER%" == "1.7" (
-SET JAVA_OPTS=-XX:-UseSplitVerifier -XX:+TieredCompilation %JAVA_OPTS%
-)
+SET JAVA_OPTS=-XX:+UseG1GC -Dfile.encoding=UTF-8 -DconsoleEncoding=UTF-8 %JAVA_OPTS%
 IF "%NUMAENABLE%" == "true" (
 SET JAVA_OPTS=-XX:+UseNUMA %JAVA_OPTS%
 )

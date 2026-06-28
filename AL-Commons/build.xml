@@ -14,6 +14,8 @@
     <path id="classpath">
         <fileset dir="${lib}">
             <include name="*.jar"/>
+            <exclude name="javac-*.jar"/>
+            <exclude name="jsr166-*.jar"/>
         </fileset>
     </path>   
     
@@ -33,8 +35,10 @@
             depends="init"
             description="Compile the source.">
 
-        <javac destdir="${build.classes}" optimize="on" debug="on" nowarn="off" source="1.7" target="1.7" includeantruntime="false">       	
-        	<src path="${src}"/>
+        <javac destdir="${build.classes}" optimize="on" debug="on" nowarn="off" source="1.8" target="1.8" includeantruntime="false">       	
+        	<compilerarg value="-encoding"/>
+            <compilerarg value="UTF8"/>
+			<src path="${src}"/>
             <classpath refid="classpath"/> 
         </javac>
     </target>
@@ -69,6 +73,8 @@
     	<copy todir="${build.dist.commons}/libs">
 			<fileset dir="${lib}">
 				<include name="*.jar"/>
+            <exclude name="javac-*.jar"/>
+            <exclude name="jsr166-*.jar"/>
 			</fileset>
 		</copy>
 

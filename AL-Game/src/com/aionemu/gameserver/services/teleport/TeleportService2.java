@@ -751,14 +751,17 @@ public class TeleportService2 {
 		World.getInstance().despawn(player);
 		InstanceReviveStartPoints revivePoint = getReviveInstanceStartPoints(worldId);
 		if (revivePoint != null) {
-			TeleportService2.teleportTo(player, worldId, worldId, revivePoint.getX(), revivePoint.getY(), revivePoint.getY(), (byte) revivePoint.getY());
+			World.getInstance().setPosition(player, worldId, player.getInstanceId(), revivePoint.getX(), revivePoint.getY(), revivePoint.getZ(), (byte) revivePoint.getH());
 		} else {
 			moveToBindLocation(player, false);
 		}
+		player.getController().startProtectionActiveTask();
 		PacketSendUtility.sendPacket(player, new SM_CHANNEL_INFO(player.getPosition()));
 		PacketSendUtility.sendPacket(player, new SM_PLAYER_SPAWN(player));
 		player.setPortAnimation(4);
 		PacketSendUtility.sendPacket(player, new SM_PLAYER_INFO(player, false));
+		PacketSendUtility.sendPacket(player, new SM_STATS_INFO(player));
+		player.updateKnownlist();
 		if (player.isLegionMember()) {
 			PacketSendUtility.broadcastPacketToLegion(player.getLegion(), new SM_LEGION_UPDATE_MEMBER(player, 0, ""));
 		}

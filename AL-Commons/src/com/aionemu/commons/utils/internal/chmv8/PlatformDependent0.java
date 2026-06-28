@@ -24,7 +24,6 @@ import java.nio.ByteBuffer;
 
 import com.aionemu.commons.utils.SystemPropertyUtil;
 
-import sun.misc.Cleaner;
 import sun.misc.Unsafe;
 
 /**
@@ -51,8 +50,7 @@ final class PlatformDependent0 {
 		try {
 			cleanerField = direct.getClass().getDeclaredField("cleaner");
 			cleanerField.setAccessible(true);
-			Cleaner cleaner = (Cleaner) cleanerField.get(direct);
-			cleaner.clean();
+			clean(cleanerField.get(direct));
 		} catch (Throwable t) {
 			cleanerField = null;
 		}
@@ -69,8 +67,7 @@ final class PlatformDependent0 {
 					addressField = null;
 				}
 				if (cleanerField != null) {
-					Cleaner cleaner = (Cleaner) cleanerField.get(direct);
-					cleaner.clean();
+					clean(cleanerField.get(direct));
 				}
 			}
 		} catch (Throwable t) {
@@ -133,16 +130,23 @@ final class PlatformDependent0 {
 	}
 
 	static void freeDirectBuffer(ByteBuffer buffer) {
-		Cleaner cleaner;
 		try {
-			cleaner = (Cleaner) getObject(buffer, CLEANER_FIELD_OFFSET);
+			Object cleaner = getObject(buffer, CLEANER_FIELD_OFFSET);
 			if (cleaner == null) {
 				throw new IllegalArgumentException(
 						"attempted to deallocate the buffer which was allocated via JNIEnv->NewDirectByteBuffer()");
 			}
-			cleaner.clean();
+			clean(cleaner);
 		} catch (Throwable t) {
 			// Nothing we can do here.
+		}
+	}
+
+	private static void clean(Object cleaner) throws Exception {
+		if (cleaner != null) {
+			Method clean = cleaner.getClass().getDeclaredMethod("clean");
+			clean.setAccessible(true);
+			clean.invoke(cleaner);
 		}
 	}
 

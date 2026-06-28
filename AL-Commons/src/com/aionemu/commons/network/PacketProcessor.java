@@ -163,7 +163,9 @@ public class PacketProcessor<T extends AConnection> {
 	 * PacketProcessor Thread count based on Runtime needs.
 	 */
 	private void startCheckerThread() {
-		new Thread(new CheckerTask(), "PacketProcessor:Checker").start();
+		Thread checker = new Thread(new CheckerTask(), "PacketProcessor:Checker");
+		checker.setDaemon(true);
+		checker.start();
 	}
 
 	/**
@@ -191,7 +193,7 @@ public class PacketProcessor<T extends AConnection> {
 	 * Threads than "minThreads"
 	 */
 	private void killThread() {
-		if (threads.size() < minThreads) {
+		if (threads.size() > minThreads) {
 			Thread t = threads.remove((threads.size() - 1));
 			log.debug("Killing PacketProcessor Thread: " + t.getName());
 			t.interrupt();
@@ -293,25 +295,32 @@ public class PacketProcessor<T extends AConnection> {
 		 */
 		@Override
 		public void run() {
-			/* Sleep for some time */
-			try {
-				Thread.sleep(sleepTime);
-			} catch (InterruptedException e) {
-				// we dont care
-			}
+			for (;;) {
+				try {
+					Thread.sleep(sleepTime);
+				} catch (InterruptedException e) {
+					return;
+				}
 
-			/* Number of packets waiting for execution */
-			int packetsToExecute = packets.size();
+				lock.lock();
+				try {
+					/* Number of packets waiting for execution */
+					int packetsToExecute = packets.size();
 
-			if (packetsToExecute < lastSize && packetsToExecute < threadKillThreshold) {
-				// too much threads
-				killThread();
-			} else if (packetsToExecute > lastSize && packetsToExecute > threadSpawnThreshold) {
-				// too small amount of threads
-				if (!newThread() && packetsToExecute >= threadSpawnThreshold * 3)
-					log.info("Lagg detected! [" + packetsToExecute + " client packets are waiting for execution]. You should consider increasing PacketProcessor maxThreads or hardware upgrade.");
+					if (packetsToExecute < lastSize && packetsToExecute < threadKillThreshold) {
+						// too much threads
+						killThread();
+					} else if (packetsToExecute > lastSize && packetsToExecute > threadSpawnThreshold) {
+						// too small amount of threads
+						if (!newThread() && packetsToExecute >= threadSpawnThreshold * 3) {
+							log.info("Lagg detected! [" + packetsToExecute + " client packets are waiting for execution]. You should consider increasing PacketProcessor maxThreads or hardware upgrade.");
+						}
+					}
+					lastSize = packetsToExecute;
+				} finally {
+					lock.unlock();
+				}
 			}
-			lastSize = packetsToExecute;
 		}
 	}
 }

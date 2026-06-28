@@ -65,6 +65,9 @@ public class CM_MOVE_IN_AIR extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
+		if (player == null || !player.isSpawned()) {
+			return;
+		}
 		if (player.isInState(CreatureState.FLIGHT_TELEPORT)) {
 			if (player.isUsingFlyTeleport()) {
 				player.setFlightDistance(distance);
@@ -72,7 +75,7 @@ public class CM_MOVE_IN_AIR extends AionClientPacket {
 			else if (player.isInPlayerMode(PlayerMode.WINDSTREAM)) {
 				player.windstreamPath.distance = distance;
 			}
-			World.getInstance().updatePosition(player, x, y, z, (byte) 0);
+			World.getInstance().updatePosition(player, x, y, z, player.getHeading());
 			player.getMoveController().updateLastMove();
 		}
 	}

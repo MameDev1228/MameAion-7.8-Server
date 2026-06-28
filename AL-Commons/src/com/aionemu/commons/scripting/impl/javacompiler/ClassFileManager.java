@@ -202,7 +202,7 @@ public class ClassFileManager extends ForwardingJavaFileManager<JavaFileManager>
 	@Override
 	public String inferBinaryName(Location location, JavaFileObject file) {
 		if (file instanceof BinaryClass) {
-			return ((BinaryClass) file).inferBinaryName(null);
+			return ((BinaryClass) file).inferBinaryName();
 		}
 
 		return super.inferBinaryName(location, file);

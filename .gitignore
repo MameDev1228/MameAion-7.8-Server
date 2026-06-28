@@ -1,14 +1,15 @@
-commons/target/
-chat-server/config/mycs.properties
-chat-server/log/
-chat-server/target/
-game-server/cache/
-game-server/config/mygs.properties
-game-server/log/
-game-server/target/
-login-server/config/myls.properties
-login-server/log/
-login-server/target/
+AL-Commons/target/
+AL-Chat/config/mycs.properties
+AL-Chat/log/
+AL-Chat/target/
+AL-Game/cache/
+AL-Game/config/mygs.properties
+AL-Game/log/
+AL-Game/target/
+AL-Login/config/myls.properties
+AL-Login/log/
+AL-Login/target/
+dist_jdk25/*
 
 **/.idea/
 **/.settings/

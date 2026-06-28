@@ -39,6 +39,7 @@ import com.aionemu.commons.network.NioServer;
 import com.aionemu.commons.network.ServerCfg;
 import com.aionemu.commons.services.CronService;
 import com.aionemu.commons.utils.AEInfos;
+import com.aionemu.commons.utils.runtime.MameRuntimeSelfCheck;
 import com.aionemu.gameserver.ai2.AI2Engine;
 import com.aionemu.gameserver.ai2.manager.LookManager;
 import com.aionemu.gameserver.cache.HTMLCache;
@@ -233,6 +234,7 @@ public class GameServer {
 		final CountDownLatch progressLatch = new CountDownLatch(parallelEngines.length);
 		final CountDownLatch progressLatch2 = new CountDownLatch(worldEngines.length);
 		initalizeLoggger();
+		MameRuntimeSelfCheck.printOnce("GameServer");
 		initUtilityServicesAndConfig();
 		Util.printSection(" ### StaticData ### ");
 		DataManager.getInstance();

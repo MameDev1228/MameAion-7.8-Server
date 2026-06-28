@@ -59,8 +59,16 @@ public class AionPacketHandler {
 	 */
 	public AionClientPacket handle(ByteBuffer data, AionConnection client) {
 		State state = client.getState();
+		if (data == null || data.remaining() < 5) {
+			invalidPacket(state, data, client, "too short for 7.x opcode header");
+			return null;
+		}
 		int id = data.getShort() & 0xffff;
-		/* Second opcodec. */
+		/* Second opcode / 7.x client header bytes. */
+		if (data.remaining() < 3) {
+			invalidPacket(state, data, client, "missing secondary opcode/header bytes for opcode 0x" + String.format("%04X", id));
+			return null;
+		}
 		data.position(data.position() + 3);
 
 		return getPacket(state, id, data, client);
@@ -170,6 +178,19 @@ public class AionPacketHandler {
 		appendUnknownPacketFile(id, state, playerInfo, hex);
 	}
 
+	private void invalidPacket(State state, ByteBuffer data, AionConnection con, String reason) {
+		ByteBuffer fullPacket = data != null ? data.asReadOnlyBuffer() : null;
+		String hex = "<no buffer>";
+		if (fullPacket != null) {
+			fullPacket.position(0);
+			hex = Util.toHex(fullPacket);
+		}
+		String playerInfo = getConnectionInfo(con);
+		String message = String.format("Invalid packet received from Aion client: reason=%s, state=%s, %s%n%s", reason, state.toString(), playerInfo, hex);
+		log.warn(message);
+		appendPacketFile("invalid_packets.log", 0, state, playerInfo, reason, hex);
+	}
+
 	private String getConnectionInfo(AionConnection con) {
 		if (con == null) {
 			return "connection=null";
@@ -182,20 +203,28 @@ public class AionPacketHandler {
 	}
 
 	private void appendUnknownPacketFile(int id, State state, String playerInfo, String hex) {
+		appendPacketFile("unknown_packets.log", id, state, playerInfo, null, hex);
+	}
+
+	private void appendPacketFile(String fileName, int id, State state, String playerInfo, String reason, String hex) {
 		synchronized (UNKNOWN_PACKET_LOG_LOCK) {
 			File dir = new File("log/packets");
 			if (!dir.exists() && !dir.mkdirs()) {
 				return;
 			}
-			File file = new File(dir, "unknown_packets.log");
+			File file = new File(dir, fileName);
 			try (FileWriter writer = new FileWriter(file, true)) {
 				writer.write("[" + UNKNOWN_PACKET_DATE.format(new Date()) + "] ");
-				writer.write(String.format("opcode=0x%04X state=%s %s%n", id, state.toString(), playerInfo));
+				if (reason == null) {
+					writer.write(String.format("opcode=0x%04X state=%s %s%n", id, state.toString(), playerInfo));
+				} else {
+					writer.write(String.format("state=%s reason=%s %s%n", state.toString(), reason, playerInfo));
+				}
 				writer.write(hex);
 				writer.write(System.lineSeparator());
 				writer.write(System.lineSeparator());
 			} catch (IOException e) {
-				log.warn("Failed to write unknown packet log file", e);
+				log.warn("Failed to write packet audit log file " + fileName, e);
 			}
 		}
 	}

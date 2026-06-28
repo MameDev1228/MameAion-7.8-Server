@@ -41,6 +41,7 @@ import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.commons.services.CronService;
 import com.aionemu.commons.utils.AEInfos;
 import com.aionemu.commons.utils.ExitCode;
+import com.aionemu.commons.utils.runtime.MameRuntimeSelfCheck;
 import com.aionemu.loginserver.configs.Config;
 import com.aionemu.loginserver.controller.BannedIpController;
 import com.aionemu.loginserver.controller.PremiumController;
@@ -113,6 +114,7 @@ public class LoginServer {
         long start = System.currentTimeMillis();
 
         initalizeLoggger();
+        MameRuntimeSelfCheck.printOnce("LoginServer");
         CronService.initSingleton(ThreadPoolManagerRunnableRunner.class);
 
         //write a timestamp that can be used by TruncateToZipFileAppender

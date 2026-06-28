@@ -1,30 +1,23 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 
 /**
- * @author Falke_34
+ * TODO - 7.x Rank List. Audit-only until the 7.8 payload is verified.
  */
 public class CM_UNK_1EA extends AionClientPacket {
 
-	// TODO - Rank List
+	private static final Logger log = LoggerFactory.getLogger(CM_UNK_1EA.class);
+	private int listId;
+	private int action;
 
 	public CM_UNK_1EA(int opcode, State state, State... restStates) {
 		super(opcode, state, restStates);
@@ -32,11 +25,16 @@ public class CM_UNK_1EA extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-		readD();
-		readC();
+		listId = readD();
+		action = readC();
+		if (getRemainingBytes() > 0) {
+			readB(getRemainingBytes());
+		}
 	}
 
 	@Override
 	protected void runImpl() {
+		Player player = getConnection().getActivePlayer();
+		log.debug("CM_UNK_1EA rank-list audit player=" + (player != null ? player.getName() : "-") + " listId=" + listId + " action=" + action);
 	}
 }

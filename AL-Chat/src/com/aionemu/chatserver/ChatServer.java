@@ -43,6 +43,7 @@ import com.aionemu.chatserver.service.GameServerService;
 import com.aionemu.chatserver.service.RestartService;
 import com.aionemu.chatserver.utils.IdFactory;
 import com.aionemu.commons.utils.AEInfos;
+import com.aionemu.commons.utils.runtime.MameRuntimeSelfCheck;
 import org.slf4j.Logger;
 
 /**
@@ -105,6 +106,7 @@ public class ChatServer {
         long start = System.currentTimeMillis();
 
         initalizeLoggger();
+        MameRuntimeSelfCheck.printOnce("ChatServer");
 
         Config.load();
         AEInfos.printAllInfos();

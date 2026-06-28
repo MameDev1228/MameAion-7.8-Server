@@ -98,23 +98,34 @@ public class AtreianPassportService {
 	}
 
 	public void getReward(Player player, int passportId) {
+		if (player == null) {
+			return;
+		}
 		AtreianPassportTemplate atreianPassportRewards = DataManager.ATREIAN_PASSPORT_DATA.getAtreianPassportId(passportId);
+		if (atreianPassportRewards == null) {
+			log.warn("Unknown Atreian Passport reward request. player={} passportId={}", player.getName(), passportId);
+			return;
+		}
 		int accountId = player.getPlayerAccount().getId();
 		AtreianPassportDAO dao = DAOManager.getDAO(AtreianPassportDAO.class);
 		Calendar cal = Calendar.getInstance();
 		cal.setTimeInMillis(player.getCreationDate());
 		int stamps = dao.getStamps(accountId, passportId);
+		Timestamp now = new Timestamp(System.currentTimeMillis());
+		Timestamp lastStamp = dao.getLastStamp(accountId, passportId);
+		if (lastStamp == null || now.getTime() - lastStamp.getTime() < 86400000L) {
+			PacketSendUtility.sendPacket(player, new SM_ATREIAN_PASSPORT(passportId, stamps, 1, true));
+			return;
+		}
 		for (AtreianPassportRewards component : atreianPassportRewards.getRewards()) {
-			Timestamp now = new Timestamp(System.currentTimeMillis());
-			Timestamp lastStamp = dao.getLastStamp(accountId, passportId);
-			if (now.getTime() - lastStamp.getTime() >= 86400000L) {
-				if (component.getRewardItemNum() == stamps + 1) {
-					ItemService.addItem(player, component.getRewardItemId(), component.getRewardItemCount());
-					PacketSendUtility.sendPacket(player, new SM_ATREIAN_PASSPORT(passportId, stamps + 1, 1, true));
-					DAOManager.getDAO(AtreianPassportDAO.class).updatePassport(accountId, passportId, stamps + 1, true, now);
-				}
+			if (component.getRewardItemNum() == stamps + 1) {
+				ItemService.addItem(player, component.getRewardItemId(), component.getRewardItemCount());
+				PacketSendUtility.sendPacket(player, new SM_ATREIAN_PASSPORT(passportId, stamps + 1, 1, true));
+				dao.updatePassport(accountId, passportId, stamps + 1, true, now);
+				return;
 			}
 		}
+		log.warn("Atreian Passport has no reward for next stamp. player=" + player.getName() + " passportId=" + passportId + " stamps=" + stamps);
 	}
 
 	public void getPassports(Map<Integer, AtreianPassportTemplate> raw) {

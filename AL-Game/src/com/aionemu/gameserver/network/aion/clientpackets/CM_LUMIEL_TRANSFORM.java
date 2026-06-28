@@ -41,6 +41,7 @@ public class CM_LUMIEL_TRANSFORM extends AionClientPacket {
 
 	protected void readImpl() {
 		player = (getConnection()).getActivePlayer();
+		matrials.clear();
 		actionId = readH();
 		switch (actionId) {
 			case 1:
@@ -59,10 +60,19 @@ public class CM_LUMIEL_TRANSFORM extends AionClientPacket {
 				break;
 			case 4:
 				lumielId = readD();
+				break;
+			default:
+				if (getRemainingBytes() > 0) {
+					readB(getRemainingBytes());
+				}
+				break;
 		}
 	}
 
 	protected void runImpl() {
+		if (player == null) {
+			return;
+		}
 		switch (actionId) {
 			case 1:
 				LumielTransformService.getInstance().sendLumielPacket(player);
@@ -75,6 +85,9 @@ public class CM_LUMIEL_TRANSFORM extends AionClientPacket {
 				break;
 			case 4:
 				LumielTransformService.getInstance().onRewardPlayer(player, lumielId);
+				break;
+			default:
+				break;
 		}
 	}
 }

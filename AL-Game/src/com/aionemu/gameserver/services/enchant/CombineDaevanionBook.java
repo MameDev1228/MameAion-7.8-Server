@@ -1,24 +1,15 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services.enchant;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.aionemu.commons.utils.Rnd;
+import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_DAEVANION_SKILL_FUSION;
 import com.aionemu.gameserver.services.item.ItemService;
@@ -27,195 +18,66 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 public class CombineDaevanionBook {
 
 	public static void combineDaevanionBook(Player player, ArrayList<Integer> sacrificeBook) {
+		if (player == null || sacrificeBook == null || sacrificeBook.size() < 2) {
+			return;
+		}
+		Set<Integer> uniqueObjects = new HashSet<Integer>();
 		for (int sacrifices : sacrificeBook) {
-			player.getInventory().decreaseByObjectId(sacrifices, 1L);
+			if (sacrifices <= 0 || !uniqueObjects.add(sacrifices)) {
+				PacketSendUtility.sendMessage(player, "Daevanion fusion failed: invalid material list.");
+				return;
+			}
+			Item item = player.getInventory().getItemByObjId(sacrifices);
+			if (item == null || item.getItemTemplate() == null) {
+				PacketSendUtility.sendMessage(player, "Daevanion fusion failed: material item is missing.");
+				return;
+			}
 		}
-		int result = 0;
-		int chance = Rnd.get((int) 0, (int) 3);
-		switch (player.getPlayerClass()) {
-		case GLADIATOR: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501640, (int) 169501645);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501784, (int) 169501785);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501806, (int) 169501807);
-			}
-			if (chance != 3)
-				break;
-			result = 169501773;
-			break;
+		int result = rollResult(player);
+		if (result <= 0 || DataManager.ITEM_DATA.getItemTemplate(result) == null) {
+			PacketSendUtility.sendPacket(player, new SM_DAEVANION_SKILL_FUSION(0, 0));
+			PacketSendUtility.sendMessage(player, "Daevanion fusion failed: result template is missing.");
+			return;
 		}
-		case TEMPLAR: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501646, (int) 169501651);
+		for (int sacrifices : uniqueObjects) {
+			if (!player.getInventory().decreaseByObjectId(sacrifices, 1L)) {
+				PacketSendUtility.sendMessage(player, "Daevanion fusion failed while consuming materials.");
+				return;
 			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501786, (int) 169501787);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501808, (int) 169501809);
-			}
-			if (chance != 3)
-				break;
-			result = 169501774;
-			break;
-		}
-		case ASSASSIN: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501652, (int) 169501657);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501788, (int) 169501789);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501810, (int) 169501811);
-			}
-			if (chance != 3)
-				break;
-			result = 169501775;
-			break;
-		}
-		case RANGER: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501658, (int) 169501663);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501790, (int) 169501791);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501812, (int) 169501813);
-			}
-			if (chance != 3)
-				break;
-			result = 169501776;
-			break;
-		}
-		case SORCERER: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501676, (int) 169501681);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501792, (int) 169501793);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501818, (int) 169501819);
-			}
-			if (chance != 3)
-				break;
-			result = 169501777;
-			break;
-		}
-		case SPIRIT_MASTER: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501682, (int) 169501687);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501794, (int) 169501795);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501820, (int) 169501821);
-			}
-			if (chance != 3)
-				break;
-			result = 169501778;
-			break;
-		}
-		case CLERIC: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501664, (int) 169501669);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501796, (int) 169501797);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501816, (int) 169501817);
-			}
-			if (chance != 3)
-				break;
-			result = 169501779;
-			break;
-		}
-		case CHANTER: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501670, (int) 169501675);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501798, (int) 169501799);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501814, (int) 169501815);
-			}
-			if (chance != 3)
-				break;
-			result = 169501780;
-			break;
-		}
-		case GUNNER: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501688, (int) 169501693);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501800, (int) 169501801);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501826, (int) 169501827);
-			}
-			if (chance != 3)
-				break;
-			result = 169501781;
-			break;
-		}
-		case BARD: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501700, (int) 169501705);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501802, (int) 169501803);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501822, (int) 169501823);
-			}
-			if (chance != 3)
-				break;
-			result = 169501782;
-			break;
-		}
-		case RIDER: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501694, (int) 169501699);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501804, (int) 169501805);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501824, (int) 169501825);
-			}
-			if (chance != 3)
-				break;
-			result = 169501783;
-			break;
-		}
-		case PAINTER: {
-			if (chance == 0) {
-				result = Rnd.get((int) 169501872, (int) 169501877);
-			}
-			if (chance == 1) {
-				result = Rnd.get((int) 169501878, (int) 169501879);
-			}
-			if (chance == 2) {
-				result = Rnd.get((int) 169501880, (int) 169501881);
-			}
-			if (chance != 3)
-				break;
-			result = 169501882;
-		}
-		default:
-			break;
 		}
 		PacketSendUtility.sendPacket(player, new SM_DAEVANION_SKILL_FUSION(1, result));
 		ItemService.addItem(player, result, 1L);
+	}
+
+	private static int rollResult(Player player) {
+		int chance = Rnd.get(0, 3);
+		switch (player.getPlayerClass()) {
+			case GLADIATOR:
+				return chance == 0 ? Rnd.get(169501640, 169501645) : chance == 1 ? Rnd.get(169501784, 169501785) : chance == 2 ? Rnd.get(169501806, 169501807) : 169501773;
+			case TEMPLAR:
+				return chance == 0 ? Rnd.get(169501646, 169501651) : chance == 1 ? Rnd.get(169501786, 169501787) : chance == 2 ? Rnd.get(169501808, 169501809) : 169501774;
+			case ASSASSIN:
+				return chance == 0 ? Rnd.get(169501652, 169501657) : chance == 1 ? Rnd.get(169501788, 169501789) : chance == 2 ? Rnd.get(169501810, 169501811) : 169501775;
+			case RANGER:
+				return chance == 0 ? Rnd.get(169501658, 169501663) : chance == 1 ? Rnd.get(169501790, 169501791) : chance == 2 ? Rnd.get(169501812, 169501813) : 169501776;
+			case SORCERER:
+				return chance == 0 ? Rnd.get(169501676, 169501681) : chance == 1 ? Rnd.get(169501792, 169501793) : chance == 2 ? Rnd.get(169501818, 169501819) : 169501777;
+			case SPIRIT_MASTER:
+				return chance == 0 ? Rnd.get(169501682, 169501687) : chance == 1 ? Rnd.get(169501794, 169501795) : chance == 2 ? Rnd.get(169501820, 169501821) : 169501778;
+			case CLERIC:
+				return chance == 0 ? Rnd.get(169501664, 169501669) : chance == 1 ? Rnd.get(169501796, 169501797) : chance == 2 ? Rnd.get(169501816, 169501817) : 169501779;
+			case CHANTER:
+				return chance == 0 ? Rnd.get(169501670, 169501675) : chance == 1 ? Rnd.get(169501798, 169501799) : chance == 2 ? Rnd.get(169501814, 169501815) : 169501780;
+			case GUNNER:
+				return chance == 0 ? Rnd.get(169501688, 169501693) : chance == 1 ? Rnd.get(169501800, 169501801) : chance == 2 ? Rnd.get(169501826, 169501827) : 169501781;
+			case BARD:
+				return chance == 0 ? Rnd.get(169501700, 169501705) : chance == 1 ? Rnd.get(169501802, 169501803) : chance == 2 ? Rnd.get(169501822, 169501823) : 169501782;
+			case RIDER:
+				return chance == 0 ? Rnd.get(169501694, 169501699) : chance == 1 ? Rnd.get(169501804, 169501805) : chance == 2 ? Rnd.get(169501824, 169501825) : 169501783;
+			case PAINTER:
+				return chance == 0 ? Rnd.get(169501872, 169501877) : chance == 1 ? Rnd.get(169501878, 169501879) : chance == 2 ? Rnd.get(169501880, 169501881) : 169501882;
+			default:
+				return 0;
+		}
 	}
 }

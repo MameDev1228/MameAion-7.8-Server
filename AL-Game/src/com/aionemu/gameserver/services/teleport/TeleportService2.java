@@ -83,6 +83,7 @@ import com.aionemu.gameserver.services.instance.InstanceService;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.services.player.AchievementService;
 import com.aionemu.gameserver.services.player.LunaShopService;
+import com.aionemu.gameserver.services.player.PlayerSyncService;
 import com.aionemu.gameserver.services.trade.PricesService;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -537,6 +538,7 @@ public class TeleportService2 {
 	 * @param b
 	 */
 	public static void moveToKiskLocation(Player player, WorldPosition kisk) {
+		PlayerSyncService.prepareForGroundReviveTeleport(player);
 		teleportTo(player, kisk.getMapId(), kisk.getX(), kisk.getY(), kisk.getZ(), kisk.getHeading());
 	}
 
@@ -611,6 +613,7 @@ public class TeleportService2 {
 	}
 
 	public static void moveToBindLocation(Player player, boolean useTeleport, int delay) {
+		PlayerSyncService.prepareForGroundReviveTeleport(player);
 		byte h = 0;
 		int worldId;
 		float x;
@@ -729,6 +732,7 @@ public class TeleportService2 {
 	}
 
 	public static void teleportWorldStartPoint(Player player, int worldId) {
+		PlayerSyncService.prepareForGroundReviveTeleport(player);
 		player.getController().onLeaveWorld();
 		World.getInstance().despawn(player);
 		WorldReviveStartPoints startPoint = getReviveWorldStartPoints(worldId, player.getRace(), player.getLevel());
@@ -749,6 +753,7 @@ public class TeleportService2 {
 	}
 
 	public static void teleportInstanceStartPoint(Player player, int worldId) {
+		PlayerSyncService.prepareForGroundReviveTeleport(player);
 		player.getController().onLeaveWorld();
 		World.getInstance().despawn(player);
 		InstanceReviveStartPoints revivePoint = getReviveInstanceStartPoints(worldId);

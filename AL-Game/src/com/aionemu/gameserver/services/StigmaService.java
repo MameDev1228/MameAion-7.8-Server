@@ -71,7 +71,7 @@ public class StigmaService {
 			}
 			else if (ItemSlot.isMajorStigma(slot)) {
 				// check the number of Major stigma wearing
-				if (getPossibleAdvancedStigmaCount(player) <= player.getEquipment().getEquippedItemsMajorStigma().size()) {
+				if (getPossibleMajorStigmaCount(player) <= player.getEquipment().getEquippedItemsMajorStigma().size()) {
 					AuditLogger.info(player, "Possible client hack Major stigma count big :O");
 					return false;
 				}
@@ -155,6 +155,9 @@ public class StigmaService {
 	public static List<StigmaSkill> getStigmaInfoUpToLevel(int playerLvl, int startingStigmaSkillid) {
 		List<StigmaSkill> stigmaList = new ArrayList<StigmaSkill>();
 		SkillLearnTemplate[] temps = DataManager.SKILL_TREE_DATA.getTemplatesForSkill(startingStigmaSkillid);
+		if (temps == null || temps.length == 0) {
+			return stigmaList;
+		}
 		String skillName;
 
 		for (SkillLearnTemplate skillTemp : temps) {
@@ -167,6 +170,9 @@ public class StigmaService {
 					id = 4603;
 				}
 				SkillLearnTemplate[] NextTemps = DataManager.SKILL_TREE_DATA.getTemplatesForSkill(id);
+				if (NextTemps == null || NextTemps.length == 0) {
+					continue;
+				}
 				for (SkillLearnTemplate skillTemp2 : NextTemps) {
 					if (skillTemp2.getName().equalsIgnoreCase(skillName)) {
 						if (playerLvl >= skillTemp2.getMinLevel()) {
@@ -184,7 +190,18 @@ public class StigmaService {
 				}
 			}
 		}
-		return null;
+		return stigmaList;
+	}
+
+	/**
+	 * Rebuild hidden stigma and derived stigma state after 7.x stigma UI changes.
+	 */
+	public static void resyncStigmaState(Player player) {
+		if (player == null) {
+			return;
+		}
+		player.getSkillList().deleteHiddenStigmaSilent(player);
+		recheckHiddenStigma(player);
 	}
 
 	/**
@@ -295,9 +312,7 @@ public class StigmaService {
 					log.warn("Stigma info missing for item: " + item.getItemTemplate().getTemplateId());
 					return;
 				}
-				if (item.getItemTemplate().getTemplateId() == 140001132) {
-					System.out.println("!!! USED !!!");
-				}
+				
 				player.getSkillList().addStigmaSkill(player, stigmaInfo.getSkills(), false);
 				player.getSkillList().deleteHiddenStigmaSilent(player);
 				recheckHiddenStigma(player);

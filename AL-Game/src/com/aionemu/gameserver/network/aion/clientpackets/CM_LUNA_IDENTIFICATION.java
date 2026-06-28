@@ -1,18 +1,5 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
@@ -21,6 +8,10 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_LUNA_IDENTIFICATION;
+import com.aionemu.gameserver.services.item.ItemPacketService;
+import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
+import com.aionemu.gameserver.utils.PacketSendUtility;
 
 /**
  * @author Falke_34
@@ -28,7 +19,6 @@ import com.aionemu.gameserver.network.aion.AionConnection.State;
 public class CM_LUNA_IDENTIFICATION extends AionClientPacket {
 
 	private int itemObjectId;
-	@SuppressWarnings("unused")
 	private int statId;
 
 	public CM_LUNA_IDENTIFICATION(int opcode, State state, State... restStates) {
@@ -37,14 +27,17 @@ public class CM_LUNA_IDENTIFICATION extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-		itemObjectId = readD();
-		statId = readH();
+		itemObjectId = getRemainingBytes() >= 4 ? readD() : 0;
+		statId = getRemainingBytes() >= 2 ? readH() : 0;
+		if (getRemainingBytes() > 0) {
+			readB(getRemainingBytes());
+		}
 	}
 
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
-		if (player == null) {
+		if (player == null || !player.isSpawned() || player.getController().isInShutdownProgress()) {
 			return;
 		}
 		Storage inventory = player.getInventory();
@@ -52,6 +45,10 @@ public class CM_LUNA_IDENTIFICATION extends AionClientPacket {
 		if (item == null) {
 			return;
 		}
-		// TODO
+		// 7.8 Luna identification confirmation. The exact random option table is
+		// client/data dependent, so Phase8 acknowledges the request and forces an
+		// item/stat refresh without mutating unknown option fields.
+		ItemPacketService.updateItemAfterInfoChange(player, item, ItemUpdateType.STATS_CHANGE);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_IDENTIFICATION(player, itemObjectId));
 	}
 }

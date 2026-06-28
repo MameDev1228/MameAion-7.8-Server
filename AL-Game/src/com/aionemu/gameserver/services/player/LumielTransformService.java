@@ -65,14 +65,31 @@ public class LumielTransformService {
 	}
 
 	public void onRewardPoints(Player player, int lumielId, Map<Integer, Long> matrials) {
+		if (player == null || matrials == null || matrials.isEmpty()) {
+			return;
+		}
 		long finalScore = 0;
 		LumielTransform lumielTransform = player.getPlayerLumiel().get(lumielId);
+		if (lumielTransform == null) {
+			log.warn("Unknown Lumiel transform id. player={} lumielId={}", player.getName(), lumielId);
+			return;
+		}
 		for (Map.Entry<Integer, Long> mats : matrials.entrySet()) {
 			Item mat = player.getInventory().getItemByObjId(mats.getKey());
 			Long count = mats.getValue();
+			if (mat == null || count == null || count <= 0 || mat.getItemCount() < count) {
+				continue;
+			}
 			LumielMaterialTemplate materialTemplate = DataManager.LUMIEL_MATERIAL_DATA.getTemplate(lumielId, mat.getItemId());
+			if (materialTemplate == null) {
+				log.warn("Invalid Lumiel material. player=" + player.getName() + " lumielId=" + lumielId + " itemId=" + mat.getItemId());
+				continue;
+			}
 			finalScore += (long) materialTemplate.getPoint() * count;
 			player.getInventory().decreaseByItemId(mat.getItemId(), count);
+		}
+		if (finalScore <= 0) {
+			return;
 		}
 		lumielTransform.setPoints(lumielTransform.getPoints() + finalScore);
 		getDao().updateLumielTransform(player, lumielTransform);
@@ -81,6 +98,10 @@ public class LumielTransformService {
 
 	public void onGenerateReward(Player player, int lumielId) {
 		LumielTransformTemplate template = DataManager.LUMIEL_TEMPLATE_DATA.getTemplate(lumielId);
+		if (player == null || template == null) {
+			log.warn("Cannot generate Lumiel reward. player={} lumielId={}", player != null ? player.getName() : "-", lumielId);
+			return;
+		}
 		FastList<LumielRewardItem> rewardItems = new FastList<LumielRewardItem>();
 		for (LumielTransformReward reward : template.getLumielTransformRewards()) {
 			int index = Rnd.get((int) 0, (int) (reward.getLumielTransformRewards().size() - 1));
@@ -102,6 +123,10 @@ public class LumielTransformService {
 		}
 		List<LumielRewardItem> rewards = getPlayerRewardList(player);
 		LumielTransform lumielTransform = player.getPlayerLumiel().get(lumielId);
+		if (lumielTransform == null || rewards == null || rewards.isEmpty()) {
+			log.warn("Cannot claim Lumiel reward. player=" + player.getName() + " lumielId=" + lumielId + " rewards=" + (rewards != null ? rewards.size() : 0));
+			return;
+		}
 		int index = Rnd.get((int) 0, (int) (rewards.size() - 1));
 		LumielRewardItem reward = rewards.get(index);
 		PacketSendUtility.sendPacket(player, new SM_LUMIEL_TRANSFORM_REWARD(lumielId, reward));

@@ -1,18 +1,5 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services.enchant;
 
@@ -29,6 +16,7 @@ import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_DAEVANION_SKILL_ENCHANT;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_USAGE_ANIMATION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_LIST;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_STATS_INFO;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.skillengine.model.SkillLearnTemplate;
 import com.aionemu.gameserver.utils.PacketSendUtility;
@@ -36,15 +24,32 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 
 public class EnchantDaevanionBook {
 
+	private static final long ENCHANT_KINAH_COST = 100000L;
+	private static final int MAX_DAEVANION_ENCHANT = 15;
+
 	public static void enchantDaevanionSkill(final Player player, final int skillId, final int bookObjId, final int materials) {
+		if (player == null || skillId <= 0 || bookObjId <= 0) {
+			return;
+		}
 		final Item parentItem = player.getInventory().getItemByObjId(bookObjId);
-		ItemTemplate template = parentItem.getItemTemplate();
-		final int nameId = template.getNameId();
 		final PlayerSkillEntry skill = player.getSkillList().getSkillEntry(skillId);
-		final boolean isSuccess = Rnd.chance((int) 75);
-		final int currentEnchant = skill.getSkillLevel();
-		if (player.getInventory().getKinah() < 100000) {
+		if (parentItem == null || parentItem.getItemTemplate() == null || skill == null) {
+			PacketSendUtility.sendMessage(player, "Daevanion skill enchant failed: invalid skill or book.");
+			return;
+		}
+		if (materials != 0 && player.getInventory().getItemByObjId(materials) == null) {
+			PacketSendUtility.sendMessage(player, "Daevanion skill enchant failed: material item is missing.");
+			return;
+		}
+		if (player.getInventory().getKinah() < ENCHANT_KINAH_COST) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_NOT_ENOUGH_MONEY);
+			return;
+		}
+		final ItemTemplate template = parentItem.getItemTemplate();
+		final int nameId = template.getNameId();
+		final int currentEnchant = Math.max(1, skill.getSkillLevel());
+		if (currentEnchant >= MAX_DAEVANION_ENCHANT) {
+			PacketSendUtility.sendMessage(player, "Daevanion skill is already at maximum enchant level.");
 			return;
 		}
 		final ItemUseObserver moveObserver = new ItemUseObserver() {
@@ -62,38 +67,45 @@ public class EnchantDaevanionBook {
 
 			@Override
 			public void run() {
-				int enchantLevel;
 				player.getController().cancelTask(TaskId.ITEM_USE);
 				player.getObserveController().removeObserver(moveObserver);
+				PlayerSkillEntry liveSkill = player.getSkillList().getSkillEntry(skillId);
+				if (liveSkill == null || player.getInventory().getItemByObjId(bookObjId) == null) {
+					return;
+				}
+				if (materials != 0 && player.getInventory().getItemByObjId(materials) == null) {
+					return;
+				}
+				if (player.getInventory().getKinah() < ENCHANT_KINAH_COST) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_NOT_ENOUGH_MONEY);
+					return;
+				}
 				PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(), 0, 1, 1), true);
 				if (!player.getInventory().decreaseByObjectId(bookObjId, 1L)) {
 					return;
 				}
-				player.getInventory().decreaseKinah(100000L);
+				player.getInventory().decreaseKinah(ENCHANT_KINAH_COST);
 				if (materials != 0) {
 					player.getInventory().decreaseByObjectId(materials, 1L);
 				}
-				if (isSuccess) {
-					enchantLevel = currentEnchant + 1;
-					skill.setSkillLvl(enchantLevel);
-					player.getSkillList().addSkill(player, skill.getSkillId(), enchantLevel);
-					PacketSendUtility.sendPacket(player, new SM_SKILL_LIST(player, player.getSkillList().getBasicSkills()));
-					PacketSendUtility.sendPacket(player, new SM_DAEVANION_SKILL_ENCHANT(skillId, skill.getSkillLevel(), currentEnchant));
-				} 
-				else {
-					enchantLevel = currentEnchant - 1;
-					skill.setSkillLvl(enchantLevel);
-					player.getSkillList().addSkill(player, skill.getSkillId(), enchantLevel);
-					PacketSendUtility.sendPacket(player, new SM_SKILL_LIST(player, player.getSkillList().getBasicSkills()));
-					PacketSendUtility.sendPacket(player, new SM_DAEVANION_SKILL_ENCHANT(skillId, skill.getSkillLevel(), currentEnchant));
-				}
-				if (currentEnchant >= 15) {
+				boolean success = Rnd.chance(75);
+				int before = Math.max(1, liveSkill.getSkillLevel());
+				int enchantLevel = success ? Math.min(MAX_DAEVANION_ENCHANT, before + 1) : Math.max(1, before - 1);
+				liveSkill.setSkillLvl(enchantLevel);
+				player.getSkillList().addSkill(player, liveSkill.getSkillId(), enchantLevel);
+				PacketSendUtility.sendPacket(player, new SM_SKILL_LIST(player, player.getSkillList().getBasicSkills()));
+				PacketSendUtility.sendPacket(player, new SM_DAEVANION_SKILL_ENCHANT(skillId, before, enchantLevel));
+				PacketSendUtility.sendPacket(player, new SM_STATS_INFO(player));
+				if (enchantLevel >= MAX_DAEVANION_ENCHANT) {
 					SkillLearnTemplate[] skillTemplates = DataManager.SKILL_TREE_DATA.getTemplatesFor(player.getPlayerClass(), player.getLevel(), player.getRace());
 					PlayerSkillList playerSkillList = player.getSkillList();
-					for (SkillLearnTemplate template : skillTemplates) {
-						if (template.getRequiredSkill() != skillId)
-							continue;
-						playerSkillList.addSkill(player, template.getSkillId(), 1);
+					if (skillTemplates != null) {
+						for (SkillLearnTemplate template : skillTemplates) {
+							if (template.getRequiredSkill() != skillId) {
+								continue;
+							}
+							playerSkillList.addSkill(player, template.getSkillId(), 1);
+						}
 					}
 				}
 			}

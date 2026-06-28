@@ -1,23 +1,14 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.services.enchant.CombineDaevanionBook;
@@ -27,8 +18,10 @@ import com.aionemu.gameserver.services.enchant.CombineDaevanionBook;
  */
 public class CM_DAEVANION_SKILL_FUSION extends AionClientPacket {
 
-    private ArrayList<Integer> sacrificeBook = new ArrayList<Integer>();
-    private int count;
+	private static final Logger log = LoggerFactory.getLogger(CM_DAEVANION_SKILL_FUSION.class);
+
+	private ArrayList<Integer> sacrificeBook = new ArrayList<Integer>();
+	private int count;
 
 	public CM_DAEVANION_SKILL_FUSION(int opcode, State state, State... restStates) {
 		super(opcode, state, restStates);
@@ -36,14 +29,29 @@ public class CM_DAEVANION_SKILL_FUSION extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-		readD();
-		count = readH();
-        for (int i = 0; i < count; ++i) {
-            sacrificeBook.add(readD());
-        }
-    }
+		if (getRemainingBytes() >= 4) {
+			readD();
+		}
+		count = getRemainingBytes() >= 2 ? readH() : 0;
+		int safeCount = Math.min(count, 24);
+		for (int i = 0; i < safeCount && getRemainingBytes() >= 4; ++i) {
+			sacrificeBook.add(readD());
+		}
+		if (getRemainingBytes() > 0) {
+			readB(getRemainingBytes());
+		}
+	}
 
-    protected void runImpl() {
-    	CombineDaevanionBook.combineDaevanionBook(getConnection().getActivePlayer(), sacrificeBook);
-    }
+	@Override
+	protected void runImpl() {
+		Player player = getConnection().getActivePlayer();
+		if (player == null || !player.isSpawned() || player.getController().isInShutdownProgress()) {
+			return;
+		}
+		if (sacrificeBook.size() < 2) {
+			log.debug("Invalid daevanion fusion packet player=" + player.getName() + " declaredCount=" + count + " actualCount=" + sacrificeBook.size());
+			return;
+		}
+		CombineDaevanionBook.combineDaevanionBook(player, sacrificeBook);
+	}
 }

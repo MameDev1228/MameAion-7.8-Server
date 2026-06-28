@@ -138,9 +138,7 @@ public class PlayerReviveService {
 		player.getController().startProtectionActiveTask();
 		player.setPortAnimation(4);
 		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REBIRTH_MASSAGE_ME);
-		if (player.getIsFlyingBeforeDeath()) {
-			player.getFlyController().startFly();
-		}
+		PlayerSyncService.prepareForGroundReviveTeleport(player);
 		player.getGameStats().updateStatsAndSpeedVisually();
 		PacketSendUtility.sendPacket(player, new SM_PLAYER_INFO(player, false));
 		PacketSendUtility.sendPacket(player, new SM_MOTION(player.getObjectId(), player.getMotions().getActiveMotions()));
@@ -183,9 +181,7 @@ public class PlayerReviveService {
 			revive(player, 25, 25, false, skillId);
 			player.getController().startProtectionActiveTask();
 			player.setPortAnimation(4);
-			if (player.getIsFlyingBeforeDeath()) {
-				player.getFlyController().startFly();
-			}
+			PlayerSyncService.prepareForGroundReviveTeleport(player);
 			player.getGameStats().updateStatsAndSpeedVisually();
 			player.unsetResPosState();
 			TeleportService2.moveToKiskLocation(player, bind);
@@ -210,6 +206,7 @@ public class PlayerReviveService {
 		player.getController().startProtectionActiveTask();
 		player.setPortAnimation(4);
 		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REBIRTH_MASSAGE_ME);
+		PlayerSyncService.prepareForGroundReviveTeleport(player);
 		player.getGameStats().updateStatsAndSpeedVisually();
 		PacketSendUtility.sendPacket(player, new SM_PLAYER_INFO(player, false));
 		PacketSendUtility.sendPacket(player, new SM_MOTION(player.getObjectId(), player.getMotions().getActiveMotions()));
@@ -307,6 +304,7 @@ public class PlayerReviveService {
 		revive(player, 25, 25, true, skillId);
 		player.setPortAnimation(4);
 		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REBIRTH_MASSAGE_ME);
+		PlayerSyncService.prepareForGroundReviveTeleport(player);
 		player.getGameStats().updateStatsAndSpeedVisually();
 		PacketSendUtility.sendPacket(player, new SM_PLAYER_INFO(player, false));
 		PacketSendUtility.sendPacket(player, new SM_MOTION(player.getObjectId(), player.getMotions().getActiveMotions()));

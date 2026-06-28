@@ -143,8 +143,17 @@ public class MinionService {
 	}
 
 	public void spawnMinion(Player player, int minionObjId) {
+		if (player == null || player.getMinionList() == null || minionObjId == 0) {
+			return;
+		}
 		MinionCommonData minionCommonData = player.getMinionList().getMinion(minionObjId);
+		if (minionCommonData == null) {
+			return;
+		}
 		MinionTemplate minionTemplate = DataManager.MINION_DATA.getMinionTemplate(minionCommonData.getMinionId());
+		if (minionTemplate == null || minionTemplate.getAction() == null) {
+			return;
+		}
 		MinionController controller = new MinionController();
 		Minion minion = new Minion(minionTemplate, controller, minionCommonData, player);
 		Iterator<MinionSkill> iterator = minionTemplate.getAction().getSkillsCollections().iterator();
@@ -168,14 +177,25 @@ public class MinionService {
 	}
 
 	public void despawnMinion(Player player, int minionObjId) {
+		if (player == null || player.getMinionList() == null || minionObjId == 0) {
+			return;
+		}
 		MinionCommonData minionCommonData = player.getMinionList().getMinion(minionObjId);
-		Iterator<MinionSkill> iterator = DataManager.MINION_DATA.getMinionTemplate(minionCommonData.getMinionId()).getAction().getSkillsCollections().iterator();
-		while (iterator.hasNext()) {
-			SkillLearnService.removeSkill(player, iterator.next().getSkillId());
+		if (minionCommonData == null) {
+			return;
+		}
+		MinionTemplate template = DataManager.MINION_DATA.getMinionTemplate(minionCommonData.getMinionId());
+		if (template != null && template.getAction() != null) {
+			Iterator<MinionSkill> iterator = template.getAction().getSkillsCollections().iterator();
+			while (iterator.hasNext()) {
+				SkillLearnService.removeSkill(player, iterator.next().getSkillId());
+			}
 		}
 		minionCommonData.setIsLooting(false);
 		minionCommonData.setIsBuffing(false);
-		player.getMinion().getController().delete();
+		if (player.getMinion() != null) {
+			player.getMinion().getController().delete();
+		}
 		player.setMinion(null);
 		player.getMinionList().setLastUsed(0);
 		player.getCommonData().setLastMinion(0);
@@ -187,25 +207,13 @@ public class MinionService {
 	}
 
 	public void onTeleportPlayer(Player player) {
+		if (player == null || player.getCommonData() == null || player.getMinionList() == null) {
+			return;
+		}
 		PlayerCommonData pcd = player.getCommonData();
 		int minionObjId = pcd.getLastMinion();
 		if (minionObjId != 0) {
-			MinionCommonData minionCommonData = player.getMinionList().getMinion(minionObjId);
-			Iterator<MinionSkill> iterator = DataManager.MINION_DATA.getMinionTemplate(minionCommonData.getMinionId()).getAction().getSkillsCollections().iterator();
-			while (iterator.hasNext()) {
-				SkillLearnService.removeSkill(player, iterator.next().getSkillId());
-			}
-			minionCommonData.setIsLooting(false);
-			minionCommonData.setIsBuffing(false);
-			player.getMinion().getController().delete();
-			player.setMinion(null);
-			player.getMinionList().setLastUsed(0);
-			player.getCommonData().setLastMinion(0);
-			player.getCommonData().setMinionEnergy(0);
-			player.getMinionList().updateMinionsList();
-			DAOManager.getDAO(PlayerDAO.class).storePlayer(player);
-			mb.end(player);
-			PacketSendUtility.broadcastPacketAndReceive(player, new SM_MINIONS(7, minionCommonData));
+			despawnMinion(player, minionObjId);
 		}
 	}
 
@@ -547,7 +555,16 @@ public class MinionService {
 	}
 
 	public void renameMinion(Player player, int objId, String name) {
+		if (player == null || player.getMinionList() == null) {
+			return;
+		}
 		MinionCommonData mcd = player.getMinionList().getMinion(objId);
+		if (mcd == null) {
+			return;
+		}
+		if (name == null) {
+			name = "";
+		}
 		if (name.length() > 9) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_FAMILIAR_MSG_FAIL_CHANGE_NAME_OVERLENGTH);
 			return;
@@ -568,6 +585,13 @@ public class MinionService {
 	}
 
 	public void activateLoot(Player player, int minionObj, boolean activate) {
+		if (player == null || player.getMinionList() == null) {
+			return;
+		}
+		MinionCommonData mcd = player.getMinionList().getMinion(minionObj);
+		if (mcd == null) {
+			return;
+		}
 		if (activate) {
 			if (player.isInTeam()) {
 				LootRuleType lootType = player.getLootGroupRules().getLootRule();
@@ -578,68 +602,66 @@ public class MinionService {
 			}
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LOOTING_PET_MESSAGE01);
 		}
-		MinionCommonData mcd = player.getMinionList().getMinion(minionObj);
 		mcd.setIsLooting(activate);
 		PacketSendUtility.sendPacket(player, new SM_MINIONS(activate));
 	}
 
 	public void relocateDoping(Player player, int minionObjectId, int targetSlot, int destinationSlot) {
-		MinionCommonData minions = player.getMinionList().getMinion(minionObjectId);
-		if (minions == null || minions.getDopingBag() == null) {
+		MinionCommonData minion = getOwnedMinion(player, minionObjectId);
+		if (minion == null || minion.getDopingBag() == null || targetSlot < 0 || destinationSlot < 0) {
 			return;
 		}
-		int[] scrollBag = minions.getDopingBag().getScrollsUsed();
-		int targetItem = scrollBag[targetSlot - 2];
-		if (destinationSlot - 2 > scrollBag.length - 1) {
-			minions.getDopingBag().setItem(targetItem, destinationSlot);
-			PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 2, targetItem, destinationSlot));
-			minions.getDopingBag().setItem(0, targetSlot);
-			PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 2, targetItem, targetSlot));
-		} else {
-			minions.getDopingBag().setItem(scrollBag[destinationSlot - 2], targetSlot);
-			PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 2, scrollBag[destinationSlot - 2], targetSlot));
-			minions.getDopingBag().setItem(targetItem, destinationSlot);
-			PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 2, targetItem, destinationSlot));
-		}
+		int targetItem = getDopingBagItem(minion, targetSlot);
+		int destinationItem = getDopingBagItem(minion, destinationSlot);
+		minion.getDopingBag().setItem(destinationItem, targetSlot);
+		minion.getDopingBag().setItem(targetItem, destinationSlot);
+		PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 2, minionObjectId, targetItem, targetSlot, destinationSlot));
 	}
 
 	public void addItemToDopingBag(Player player, int action, int minionObjectId, int itemId, int targetSlot) {
-		if (player.getMinion() == null) {
+		MinionCommonData minion = getOwnedMinion(player, minionObjectId);
+		if (minion == null || minion.getDopingBag() == null || itemId <= 0 || targetSlot < 0) {
 			return;
 		}
-		Minion minions = player.getMinion();
-		minions.getCommonData().getDopingBag().setItem(itemId, targetSlot);
-		if (minions.getCommonData().getDopingBag().getFoodItem() != 0) {
+		if (player.getInventory().getItemCountByItemId(itemId) <= 0) {
+			return;
 		}
-		if (minions.getCommonData().getDopingBag().getDrinkItem() != 0) {
-		}
-		for (int n : minions.getCommonData().getDopingBag().getScrollsUsed()) {
-		}
-		PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 0, itemId, targetSlot));
+		minion.getDopingBag().setItem(itemId, targetSlot);
+		PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 0, minionObjectId, itemId, targetSlot));
 	}
 
 	public void buffPlayer(final Player player, int minionObjectId, int itemId, final int slot) {
-		Minion minion = player.getMinion();
-		if (minion == null || minion.getCommonData().getDopingBag() == null) {
+		MinionCommonData minionData = getOwnedMinion(player, minionObjectId);
+		Minion minion = player != null ? player.getMinion() : null;
+		if (player == null || minionData == null || minion == null || minion.getCommonData().getDopingBag() == null || itemId <= 0) {
 			return;
 		}
 		List<Item> items = player.getInventory().getItemsByItemId(itemId);
+		if (items == null || items.isEmpty()) {
+			minion.getCommonData().setIsBuffing(false);
+			PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 3, minionObjectId, itemId, slot));
+			return;
+		}
 		Item useItem = items.get(0);
+		if (useItem == null || useItem.getItemTemplate() == null || useItem.getItemTemplate().getActions() == null) {
+			return;
+		}
 		ItemActions itemActions = useItem.getItemTemplate().getActions();
 		ItemUseLimits limit = new ItemUseLimits();
 		int useDelay = player.getItemCooldown(useItem.getItemTemplate()) / 3;
 		if (useDelay < 3000) {
 			useDelay = 3000;
 		}
-		limit.setDelayId(useItem.getItemTemplate().getUseLimits().getDelayId());
-		limit.setDelayTime(useDelay);
+		if (useItem.getItemTemplate().getUseLimits() != null) {
+			limit.setDelayId(useItem.getItemTemplate().getUseLimits().getDelayId());
+			limit.setDelayTime(useDelay);
+		}
 		if (player.isItemUseDisabled(limit)) {
 			final int useItemId = itemId;
 			ThreadPoolManager.getInstance().schedule(new Runnable() {
-
 				@Override
 				public void run() {
-					PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 3, useItemId, slot));
+					PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 3, minionObjectId, useItemId, slot));
 				}
 			}, useDelay);
 			return;
@@ -654,21 +676,66 @@ public class MinionService {
 				}
 			}
 		}
-		PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 3, itemId, slot));
-		itemId = minion.getCommonData().getDopingBag().getFoodItem();
-		long totalDopes = player.getInventory().getItemCountByItemId(itemId);
-		itemId = minion.getCommonData().getDopingBag().getDrinkItem();
-		totalDopes += player.getInventory().getItemCountByItemId(itemId);
-		int[] scrollBag = minion.getCommonData().getDopingBag().getScrollsUsed();
+		minion.getCommonData().setIsBuffing(true);
+		PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 3, minionObjectId, itemId, slot));
+		if (getTotalDopingItems(player, minion.getCommonData()) == 0) {
+			minion.getCommonData().setIsBuffing(false);
+			PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 3, minionObjectId, itemId, slot));
+		}
+	}
+
+
+	public void removeItemFromDopingBag(Player player, int minionObjectId, int targetSlot) {
+		MinionCommonData minion = getOwnedMinion(player, minionObjectId);
+		if (minion == null || minion.getDopingBag() == null || targetSlot < 0) {
+			return;
+		}
+		minion.getDopingBag().setItem(0, targetSlot);
+		PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 1, minionObjectId, 0, targetSlot));
+	}
+
+	private MinionCommonData getOwnedMinion(Player player, int minionObjectId) {
+		if (player == null || player.getMinionList() == null || minionObjectId == 0) {
+			return null;
+		}
+		return player.getMinionList().getMinion(minionObjectId);
+	}
+
+	private int getDopingBagItem(MinionCommonData minion, int slot) {
+		if (minion == null || minion.getDopingBag() == null || slot < 0) {
+			return 0;
+		}
+		if (slot == 0) {
+			return minion.getDopingBag().getFoodItem();
+		}
+		if (slot == 1) {
+			return minion.getDopingBag().getDrinkItem();
+		}
+		int[] scrolls = minion.getDopingBag().getScrollsUsed();
+		int index = slot - 2;
+		return index >= 0 && index < scrolls.length ? scrolls[index] : 0;
+	}
+
+	private long getTotalDopingItems(Player player, MinionCommonData minion) {
+		if (player == null || minion == null || minion.getDopingBag() == null) {
+			return 0;
+		}
+		long totalDopes = 0;
+		int itemId = minion.getDopingBag().getFoodItem();
+		if (itemId != 0) {
+			totalDopes += player.getInventory().getItemCountByItemId(itemId);
+		}
+		itemId = minion.getDopingBag().getDrinkItem();
+		if (itemId != 0) {
+			totalDopes += player.getInventory().getItemCountByItemId(itemId);
+		}
+		int[] scrollBag = minion.getDopingBag().getScrollsUsed();
 		for (int i = 0; i < scrollBag.length; ++i) {
 			if (scrollBag[i] != 0) {
 				totalDopes += player.getInventory().getItemCountByItemId(scrollBag[i]);
 			}
 		}
-		if (totalDopes == 0) {
-			minion.getCommonData().setIsBuffing(false);
-			PacketSendUtility.sendPacket(player, new SM_MINIONS(9, 3, itemId, slot));
-		}
+		return totalDopes;
 	}
 
 	public static MinionService getInstance() {

@@ -16,6 +16,9 @@
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.aionemu.gameserver.model.ChatType;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
@@ -27,6 +30,8 @@ import com.aionemu.gameserver.services.player.LunaShopService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
 public class CM_LUNA_SYSTEM extends AionClientPacket {
+
+	private static final Logger log = LoggerFactory.getLogger(CM_LUNA_SYSTEM.class);
 
 	private int actionId;
 	private int indun_id;
@@ -46,46 +51,53 @@ public class CM_LUNA_SYSTEM extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-		actionId = readC();
+		actionId = readCIfPresent();
 		switch (actionId) {
 			case 0: // Taki's Missions Teleport.
-				indun_id = readD();
-				indun_unk = readC();
+				indun_id = readDIfPresent();
+				indun_unk = readCIfPresent();
 				break;
 			case 2: // Karunerk's Workshop.
-				recipe_id = readD();
+				recipe_id = readDIfPresent();
 				break;
 			case 4: // Buy Necessary Materials.
-				material_item_id = readD();
-				material_item_count = readQ();
+				material_item_id = readDIfPresent();
+				material_item_count = readQIfPresent();
 				break;
 			case 6:
 			case 7:
-				this.teleportId = readD();
-				break;
-			case 8: // Dorinerk's Wardrobe.
-				break;
-			case 9: // Expand wardrobe slot
+				teleportId = readDIfPresent();
 				break;
 			case 10: // Apply wardrobe appearance
-				slot = readC();
-				ItemObjId = readD();
+				slot = readCIfPresent();
+				ItemObjId = readDIfPresent();
 				break;
 			case 11: // Modify appearance
-				slot = readC();
-				ItemObjId = readD();
-				lunaCost = readC();
-				break;
-			case 12: // Open Chest.
+				slot = readCIfPresent();
+				ItemObjId = readDIfPresent();
+				lunaCost = readCIfPresent();
 				break;
 			case 14: // Taki's Adventure.
-				indun_id = readD();
+				indun_id = readDIfPresent();
 				break;
-			case 15: //Luna Dice Game
-				break;
-			case 16://Luna Dice Game Reward
+			default:
 				break;
 		}
+		if (getRemainingBytes() > 0) {
+			readB(getRemainingBytes());
+		}
+	}
+
+	private int readCIfPresent() {
+		return getRemainingBytes() >= 1 ? readC() : 0;
+	}
+
+	private int readDIfPresent() {
+		return getRemainingBytes() >= 4 ? readD() : 0;
+	}
+
+	private long readQIfPresent() {
+		return getRemainingBytes() >= 8 ? readQ() : 0L;
 	}
 
 	@Override
@@ -149,7 +161,7 @@ public class CM_LUNA_SYSTEM extends AionClientPacket {
 				LunaShopService.getInstance().diceGameReward(player);
 				break;
 			default:
-				System.out.println("UNKOWN ACTION-ID: " + actionId);
+				log.debug("Unknown Luna action {} from {}", actionId, player.getName());
 				break;
 		}
 	}

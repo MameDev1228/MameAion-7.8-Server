@@ -3,6 +3,8 @@
  */
 package admincommands;
 
+import java.util.List;
+
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.services.player.PlayerSyncService;
@@ -12,26 +14,36 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import com.aionemu.gameserver.world.World;
 
 /**
- * Re-sends the minimal player visibility/stat packets used to diagnose kisk
- * revive, teleport and air-move desyncs.
+ * Prints runtime state useful for diagnosing 7.8 stat/visibility/air desyncs.
  */
-public class Resync extends AdminCommand {
+public class SyncDebug extends AdminCommand {
 
-	public Resync() {
-		super("resync");
+	public SyncDebug() {
+		super("syncdebug");
 	}
 
 	@Override
 	public void execute(Player admin, String... params) {
 		Player target = resolveTarget(admin, params);
 		if (target == null) {
-			PacketSendUtility.sendMessage(admin, "syntax //resync [self|target|characterName]");
+			PacketSendUtility.sendMessage(admin, "syntax //syncdebug [self|target|characterName] [resync|ground]");
 			return;
 		}
-		resync(target);
-		PacketSendUtility.sendMessage(admin, "Resync sent for " + target.getName() + ".");
-		if (target != admin) {
-			PacketSendUtility.sendMessage(target, "Your visibility/stat state was resynchronized by " + admin.getName() + ".");
+
+		if (params != null && params.length > 1) {
+			if ("ground".equalsIgnoreCase(params[1])) {
+				PlayerSyncService.prepareForGroundReviveTeleport(target);
+				PacketSendUtility.sendMessage(admin, "Ground/air transient state cleared for " + target.getName() + ".");
+			}
+			else if ("resync".equalsIgnoreCase(params[1])) {
+				PlayerSyncService.resendVisibilityAndStats(target, true);
+				PacketSendUtility.sendMessage(admin, "Visibility/stat resync sent for " + target.getName() + ".");
+			}
+		}
+
+		List<String> lines = PlayerSyncService.buildSyncDebugLines(target);
+		for (String line : lines) {
+			PacketSendUtility.sendMessage(admin, line);
 		}
 	}
 
@@ -46,12 +58,8 @@ public class Resync extends AdminCommand {
 		return World.getInstance().findPlayer(Util.convertName(params[0]));
 	}
 
-	private void resync(Player player) {
-		PlayerSyncService.resendVisibilityAndStats(player, true);
-	}
-
 	@Override
 	public void onFail(Player player, String message) {
-		PacketSendUtility.sendMessage(player, "syntax //resync [self|target|characterName]");
+		PacketSendUtility.sendMessage(player, "syntax //syncdebug [self|target|characterName] [resync|ground]");
 	}
 }

@@ -1,20 +1,10 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
@@ -24,16 +14,12 @@ import com.aionemu.gameserver.services.craft.MagicCraftService;
 /**
  * @author Falke_34, FrozenKiller
  */
-
 public class CM_MAGIC_CRAFT extends AionClientPacket {
 
+	private static final Logger log = LoggerFactory.getLogger(CM_MAGIC_CRAFT.class);
+
 	private int action;
-	@SuppressWarnings("unused")
-	private int targetTemplateId;
 	private int recipeId;
-	@SuppressWarnings("unused")
-	private int targetObjId;
-	private int materialsCount;
 	private int craftType;
 
 	public CM_MAGIC_CRAFT(int opcode, State state, State... restStates) {
@@ -42,48 +28,59 @@ public class CM_MAGIC_CRAFT extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-		action = readC();
+		action = readCIfPresent();
 		switch (action) {
 			case 0: // Cancel MagicCraft
-				targetTemplateId = readD();
-				recipeId = readD();
-				targetObjId = readD();
-				materialsCount = readH();
-				craftType = readC();
-				break;
 			case 1: // Start MagicCraft
-				targetTemplateId = readD(); // TODO
-				recipeId = readD();
-				targetObjId = readD(); // TODO
-				materialsCount = readH();
-				craftType = readC(); // TODO
-				for (int i = 0; i < materialsCount; i++) {
+				readDIfPresent(); // targetTemplateId
+				recipeId = readDIfPresent();
+				readDIfPresent(); // targetObjId
+				int materialsCount = readHIfPresent();
+				craftType = readCIfPresent();
+				for (int i = 0; i < materialsCount && getRemainingBytes() >= 12; i++) {
 					readD(); // materialId
 					readQ(); // materialCount
 				}
+				if (getRemainingBytes() > 0) {
+					readB(getRemainingBytes());
+				}
+				break;
+			default:
+				if (getRemainingBytes() > 0) {
+					readB(getRemainingBytes());
+				}
+				break;
 		}
+	}
+
+	private int readCIfPresent() {
+		return getRemainingBytes() >= 1 ? readC() : 0;
+	}
+
+	private int readHIfPresent() {
+		return getRemainingBytes() >= 2 ? readH() : 0;
+	}
+
+	private int readDIfPresent() {
+		return getRemainingBytes() >= 4 ? readD() : 0;
 	}
 
 	@Override
 	protected void runImpl() {
 		final Player player = getConnection().getActivePlayer();
-
-		if (player == null || !player.isSpawned()) {
+		if (player == null || !player.isSpawned() || player.getController().isInShutdownProgress()) {
 			return;
 		}
-		if (player.getController().isInShutdownProgress()) {
-			return;
-		}
-
 		switch (action) {
-			case 0: { // cancel
-				MagicCraftService.sendCancelMagicCraft(player); // TODO (NullPointer)
+			case 0:
+				MagicCraftService.sendCancelMagicCraft(player);
 				break;
-			}
-			case 1: { // start
+			case 1:
 				MagicCraftService.startMagicCraft(player, recipeId, craftType);
 				break;
-			}
+			default:
+				log.debug("Unhandled magic craft action {} from {}", action, player.getName());
+				break;
 		}
 	}
 }

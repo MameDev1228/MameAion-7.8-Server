@@ -123,6 +123,16 @@ public class SM_MINIONS extends AionServerPacket {
         dopeSlot = slot;
         subaction = 0;
     }
+
+    public SM_MINIONS(int action, int dopeAction, int minionObjId, int itemId, int slot) {
+        this(action, dopeAction, itemId, slot);
+        this.minionObjId = minionObjId;
+    }
+
+    public SM_MINIONS(int action, int dopeAction, int minionObjId, int itemId, int sourceSlot, int destinationSlot) {
+        this(action, dopeAction, minionObjId, itemId, sourceSlot);
+        this.slot2 = destinationSlot;
+    }
     
     public SM_MINIONS(Player player, int action) {
         this.action = action;
@@ -283,9 +293,17 @@ public class SM_MINIONS extends AionServerPacket {
                                 writeD(dopeSlot);
                                 break;
                             }
+                            case 2: {
+                                writeD(minionObjId);
+                                writeD(itemObjectId);
+                                writeD(dopeSlot);
+                                writeD(slot2);
+                                break;
+                            }
                             case 3: {
                                 writeD(minionObjId);
                                 writeD(itemObjectId);
+                                writeD(dopeSlot);
                                 break;
                             }
                         }

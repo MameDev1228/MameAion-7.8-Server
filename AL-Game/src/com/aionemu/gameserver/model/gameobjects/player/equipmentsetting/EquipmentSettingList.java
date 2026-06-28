@@ -50,7 +50,16 @@ public class EquipmentSettingList {
 			earringsRight, ringLeft, ringRight, necklace, shoulder, pants, powershardLeft, powershardRight, wings, waist, mOffHand,
 			sOffHand, plume, bracelet);
 		equipmentSetting.put(slot, equipmentSettings);
-		DAOManager.getDAO(PlayerEquipmentSettingDAO.class).insertEquipmentSetting(owner, equipmentSettings);
+		if (isNew) {
+			DAOManager.getDAO(PlayerEquipmentSettingDAO.class).insertEquipmentSetting(owner, equipmentSettings);
+		}
+	}
+
+	public EquipmentSetting get(int slot) {
+		if (equipmentSetting == null) {
+			return null;
+		}
+		return equipmentSetting.get(slot);
 	}
 
 	public Collection<EquipmentSetting> getEquipmentSetting() {

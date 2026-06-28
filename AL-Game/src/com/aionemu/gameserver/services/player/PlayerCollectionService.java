@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.dao.PlayerCollectionDAO;
 import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.collection.PlayerCollection;
 import com.aionemu.gameserver.model.gameobjects.player.collection.PlayerCollectionEntry;
@@ -85,12 +86,28 @@ public class PlayerCollectionService {
 	}
 
 	public void registerCollection(Player player, int id, int index, int objectId, int count) {
-		log.info("index : " + index);
-		int matSize = DataManager.COLLECTION_TEMPLATE_DATA.getTemplate(id).getMaterials().size();
+		if (player == null || player.getPlayerCollection() == null || count <= 0) {
+			return;
+		}
+		CollectionTemplate template = DataManager.COLLECTION_TEMPLATE_DATA.getTemplate(id);
+		if (template == null) {
+			log.warn("Unknown collection registration. player=" + player.getName() + " collectionId=" + id + " index=" + index + " objectId=" + objectId + " count=" + count);
+			return;
+		}
+		if (index < 0 || index >= template.getMaterials().size()) {
+			log.warn("Invalid collection material index. player=" + player.getName() + " collectionId=" + id + " index=" + index + " matSize=" + template.getMaterials().size());
+			return;
+		}
+		Item item = player.getInventory().getItemByObjId(objectId);
+		if (item == null || item.getItemCount() < count) {
+			PacketSendUtility.sendMessage(player, "Collection registration failed: material item is missing.");
+			return;
+		}
+		int matSize = template.getMaterials().size();
 		PlayerCollectionEntry entry = null;
 		if (player.getPlayerCollection().getPlayerCollectionEntry().containsKey(id)) {
 			entry = player.getPlayerCollection().getPlayerCollectionEntry().get(id);
-		} 
+		}
 		else {
 			entry = new PlayerCollectionEntry(id, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 0);
 			getDao().insertCollection(player, entry);
@@ -102,7 +119,7 @@ public class PlayerCollectionService {
 			entry.update(index);
 			entry.setStep(entry.getStep() + 1);
 			PacketSendUtility.sendPacket(player, new SM_PLAYER_COLLECTION_REGISTER(entry));
-			if (entry.getStep() == matSize) {
+			if (entry.getStep() >= matSize) {
 				completeCollection(player, entry);
 			}
 			getDao().updateCollection(player, entry);

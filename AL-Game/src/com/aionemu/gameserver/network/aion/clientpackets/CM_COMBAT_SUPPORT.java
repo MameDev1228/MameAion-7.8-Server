@@ -25,14 +25,14 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.services.combat.CombatSupportService;
 
 /**
  * 7.x Combat Support packet.
  *
- * This packet is still an audit stub. It must not silently discard the client
- * intent, but it also must not hard-code an unverified 7.8 payload length.
- * We keep it variable-length so the opcode audit can run without triggering
- * false read failures when the client sends a shorter/longer payload.
+ * Variable-length 7.8 payload parser. The actual behavior is implemented in
+ * CombatSupportService so this packet no longer silently discards the client
+ * intent.
  */
 public class CM_COMBAT_SUPPORT extends AionClientPacket {
 
@@ -63,6 +63,6 @@ public class CM_COMBAT_SUPPORT extends AionClientPacket {
 		if (player == null) {
 			return;
 		}
-		log.debug("CombatSupport audit packet player=" + player.getName() + " action=" + action + " payload=" + payload);
+		CombatSupportService.getInstance().handlePacket(player, action, payload);
 	}
 }

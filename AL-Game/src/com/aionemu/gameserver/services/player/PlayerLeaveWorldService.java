@@ -61,6 +61,7 @@ import com.aionemu.gameserver.services.PunishmentService;
 import com.aionemu.gameserver.services.RepurchaseService;
 import com.aionemu.gameserver.services.SkillLearnService;
 import com.aionemu.gameserver.services.conquerer_protector.ConquerorsService;
+import com.aionemu.gameserver.services.combat.CombatSupportService;
 import com.aionemu.gameserver.services.drop.DropService;
 import com.aionemu.gameserver.services.events.EventWindowService;
 import com.aionemu.gameserver.services.events.ShugoSweepService;
@@ -121,6 +122,7 @@ public class PlayerLeaveWorldService {
 		PetService.getInstance().onPlayerLogout(player);
 		BrokerService.getInstance().removePlayerCache(player);
 		ExchangeService.getInstance().cancelExchange(player);
+		CombatSupportService.getInstance().onLogout(player);
 		PlayerCollectionService.getInstance().onLogout(player);
 		RepurchaseService.getInstance().removeRepurchaseItems(player);
 		if (AutoGroupConfig.AUTO_GROUP_ENABLE) {

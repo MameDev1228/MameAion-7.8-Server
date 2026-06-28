@@ -16,7 +16,8 @@
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
-import com.aionemu.gameserver.GameServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
@@ -28,6 +29,7 @@ import com.aionemu.gameserver.services.player.PlayerCubicService;
  */
 public class CM_CUBIC extends AionClientPacket {
 
+    private static final Logger log = LoggerFactory.getLogger(CM_CUBIC.class);
     private int cubicId;
     
 	public CM_CUBIC(int opcode, State state, State... restStates) {
@@ -36,8 +38,11 @@ public class CM_CUBIC extends AionClientPacket {
 
 	@Override
     protected void readImpl() {
-        cubicId = readD(); // Id Cube
-        GameServer.log.info("CubeId: " + cubicId + ""); //For Debug 
+        cubicId = getRemainingBytes() >= 4 ? readD() : 0; // Id Cube
+        if (getRemainingBytes() > 0) {
+            readB(getRemainingBytes());
+        }
+        log.debug("Cubic register request: {}", cubicId);
     }
 
 	@Override

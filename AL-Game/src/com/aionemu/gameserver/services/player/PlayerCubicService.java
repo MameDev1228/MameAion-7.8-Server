@@ -1,21 +1,9 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- * Aion-Lightning is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the Free
- * Software Foundation, either version 3 of the License, or (at your option) any
- * later version.
- *
- * Aion-Lightning is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details. * You should have received a copy of the GNU General Public License
- * along with Aion-Lightning. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services.player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import com.aionemu.commons.database.dao.DAOManager;
@@ -36,203 +24,155 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_STATS_INFO;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
 /**
+ * 7.x Cubic registration/stat bridge.
+ *
+ * Phase7 fixes the previous per-singleton mutable stat list, nested login packet
+ * spam, and missing null/item checks that could crash the opcode path.
+ *
  * @author Phantom_KNA
  */
 public class PlayerCubicService implements StatOwner {
 
-	PlayerMCEntry[] maxMonsterCubic;
-
 	private PlayerCubicService() {
 		GameServer.log.info("[PlayerCubic] loaded ...");
 	}
-	private List<IStatFunction> modifiers = new ArrayList<IStatFunction>();
-	private HashMap<Integer, Integer> cubic = new HashMap<>();
-	private HashMap<Integer, Integer> rank = new HashMap<>();
-	private HashMap<Integer, Integer> level = new HashMap<>();
-	private HashMap<Integer, Integer> statValue = new HashMap<>();
 
-	/**
-	 *
-	 * @param player
-	 */
 	public void onLogin(Player player) {
+		if (player == null) {
+			return;
+		}
 		player.getGameStats().endEffect(this);
 		player.setBonus(false);
-		modifiers.clear();
-		
-		player.setMonsterCubic(null);
 		player.setMonsterCubic(DAOManager.getDAO(PlayerCubicsDAO.class).load(player));
-		maxMonsterCubic = player.getMonsterCubic().getAllMC();
-		
 		PacketSendUtility.sendPacket(player, new SM_CUBIC_INFO(124));
-		
-		for (PlayerMCEntry playerMonsterCubic : maxMonsterCubic) {
-			try {
-				modifiers.add(new StatAddFunction(getStatValueByCategory(playerMonsterCubic.getCategory()), playerMonsterCubic.getStatValue(), true));
-			} catch (Exception ex) {
-				GameServer.log.error("Error on add stat.", ex);
+		if (player.getMonsterCubic() != null) {
+			for (PlayerMCEntry entry : player.getMonsterCubic().getAllMC()) {
+				sendCubicInfo(player, entry);
 			}
-			cubic.put(playerMonsterCubic.getCubeId(), playerMonsterCubic.getCubeId());
-			rank.put(playerMonsterCubic.getCubeId(), playerMonsterCubic.getRank());
-			level.put(playerMonsterCubic.getCubeId(), playerMonsterCubic.getLevel());
-			statValue.put(playerMonsterCubic.getCubeId(), playerMonsterCubic.getStatValue());
-			
-			for (int cubicId = 1; cubicId <= 124; cubicId++) {
-				if (cubic.containsKey(cubicId)) { // Enviar los cubus obtenidos por el personaje
-					CubicsTemplate monsterCubic = DataManager.CUBICS_DATA.getCubicsId(cubicId);
-					long itemsCubicInBag = player.getInventory().getItemCountByItemId(monsterCubic.getItemIdCubic());
-					PacketSendUtility.sendPacket(player, new SM_CUBIC(cubic.get(cubicId), rank.get(cubic.get(cubicId)),level.get(cubic.get(cubicId)), (int) itemsCubicInBag));
+		}
+		rebuildStats(player);
+	}
+
+	private void sendCubicInfo(Player player, PlayerMCEntry entry) {
+		if (player == null || entry == null) {
+			return;
+		}
+		CubicsTemplate template = DataManager.CUBICS_DATA.getCubicsId(entry.getCubeId());
+		if (template == null) {
+			return;
+		}
+		long itemsCubicInBag = player.getInventory().getItemCountByItemId(template.getItemIdCubic());
+		PacketSendUtility.sendPacket(player, new SM_CUBIC(entry.getCubeId(), entry.getRank(), entry.getLevel(), (int) itemsCubicInBag));
+	}
+
+	private void rebuildStats(Player player) {
+		player.getGameStats().endEffect(this);
+		List<IStatFunction> modifiers = new ArrayList<IStatFunction>();
+		if (player.getMonsterCubic() != null) {
+			for (PlayerMCEntry entry : player.getMonsterCubic().getAllMC()) {
+				StatEnum stat = getStatValueByCategory(entry.getCategory());
+				if (stat != null && entry.getStatValue() != 0) {
+					modifiers.add(new StatAddFunction(stat, entry.getStatValue(), true));
 				}
 			}
 		}
 		player.setBonus(true);
 		player.getGameStats().addEffect(this, modifiers);
 		PacketSendUtility.sendPacket(player, new SM_STATS_INFO(player));
-		cubic.clear();
-		rank.clear();
-		level.clear();
-		statValue.clear();
 	}
 
-	/*
-	 * Obtener el valor estadisticas en base a la categoria de el Cubus
-	 */
 	private StatEnum getStatValueByCategory(int category) {
-		StatEnum statName = null;
 		switch (category) {
-		case 88:
-			statName = StatEnum.cubic_stat_catacombs_3rd_atk;
-			statName = StatEnum.cubic_stat_catacombs_3rd;
-			break;
-		case 89:
-			statName = StatEnum.idseal_hard_boss_3rd_atk;
-			statName = StatEnum.idseal_hard_boss_3rd;
-			break;	
-		case 90:
-			statName = StatEnum.idseal_hard_boss_2nd_atk;
-			statName = StatEnum.idseal_hard_boss_2nd;
-			break;
-		case 91:
-			statName = StatEnum.idf8_Dragon_Altar_atk;
-			statName = StatEnum.idf8_Dragon_Altar;
-			break;
-		case 92:
-			statName = StatEnum.idseal_hard_boss_1st_atk;
-			statName = StatEnum.idseal_hard_boss_1st;
-			break;	
-		case 93:
-			statName = StatEnum.idf8_house_hugerider_atk;
-			statName = StatEnum.IDF8_House_HugeRider;
-			break;
-		case 94:
-			statName = StatEnum.bidldf8_lab_boss_04_atk;
-			statName = StatEnum.IDLDF8_Lab_Boss;
-			break;
-		case 95:
-			statName = StatEnum.idf7_weapon_hard_boss_1st_atk;
-			statName = StatEnum.IDF7_Weapon_Hard_Boss_1st;
-			break;
-		case 96:
-			statName = StatEnum.idf7_weapon_hard_boss_2nd_atk;
-			statName = StatEnum.IDF7_Weapon_Hard_Boss_2nd;
-			break;			
-		case 97:
-			statName = StatEnum.idf7_weapon_hard_boss_3rd_atk;
-			statName = StatEnum.IDF7_Weapon_Hard_Boss_3rd;
-			break;	
-		case 98:
-			statName = StatEnum.idf7_weapon_hard_boss_final_atk;
-			statName = StatEnum.IDF7_Weapon_Hard_Boss_Final;
-			break;	
-		case 99:
-			statName = StatEnum.EXTRA_ERESHKIGAL_DAMAGE;
-			statName = StatEnum.REDUCE_ERESHKIGAL_DAMAGE;
-			break;
-		case 100:
-			statName = StatEnum.MAXHP;
-			break;
-		case 101:
-			statName = StatEnum.MAXMP;
-			break;
-		case 102:
-			statName = StatEnum.HEAL_BOOST;
-			break;
-		case 103:
-			statName = StatEnum.PHYSICAL_ATTACK; // TODO .PHYSICALPOWERBOOST; //Not Added in Src
-			break;
-		case 104:
-			statName = StatEnum.BOOST_MAGICAL_SKILL; // TODO .MAGICALPOWERBOOST; //Not Added in Src
-			break;
-		case 105:
-			statName = StatEnum.PHYSICAL_DEFENSE; // TODO .PHYSICALPOWERBOOSTRESIST; //Not Added in Src
-			break;
-		case 106:
-			statName = StatEnum.MAGICAL_DEFEND; // TODO .MAGICALPOWERBOOSTRESIST; //Not Added in Src
-			break;
-		case 107:
-			statName = StatEnum.PHYSICAL_ACCURACY;
-			break;
-		case 108:
-			statName = StatEnum.MAGICAL_ACCURACY;
-			break;
-		case 109:
-			statName = StatEnum.EVASION;
-			break;
-		case 110:
-			statName = StatEnum.PARRY;
-			break;
-		case 111:
-			statName = StatEnum.BLOCK;
-			break;
-		case 112:
-			statName = StatEnum.MAGICAL_RESIST;
-			break;
+			case 88:
+				return StatEnum.cubic_stat_catacombs_3rd;
+			case 89:
+				return StatEnum.idseal_hard_boss_3rd;
+			case 90:
+				return StatEnum.idseal_hard_boss_2nd;
+			case 91:
+				return StatEnum.idf8_Dragon_Altar;
+			case 92:
+				return StatEnum.idseal_hard_boss_1st;
+			case 93:
+				return StatEnum.IDF8_House_HugeRider;
+			case 94:
+				return StatEnum.IDLDF8_Lab_Boss;
+			case 95:
+				return StatEnum.IDF7_Weapon_Hard_Boss_1st;
+			case 96:
+				return StatEnum.IDF7_Weapon_Hard_Boss_2nd;
+			case 97:
+				return StatEnum.IDF7_Weapon_Hard_Boss_3rd;
+			case 98:
+				return StatEnum.IDF7_Weapon_Hard_Boss_Final;
+			case 99:
+				return StatEnum.REDUCE_ERESHKIGAL_DAMAGE;
+			case 100:
+				return StatEnum.MAXHP;
+			case 101:
+				return StatEnum.MAXMP;
+			case 102:
+				return StatEnum.HEAL_BOOST;
+			case 103:
+				return StatEnum.PHYSICAL_ATTACK;
+			case 104:
+				return StatEnum.BOOST_MAGICAL_SKILL;
+			case 105:
+				return StatEnum.PHYSICAL_DEFENSE;
+			case 106:
+				return StatEnum.MAGICAL_DEFEND;
+			case 107:
+				return StatEnum.PHYSICAL_ACCURACY;
+			case 108:
+				return StatEnum.MAGICAL_ACCURACY;
+			case 109:
+				return StatEnum.EVASION;
+			case 110:
+				return StatEnum.PARRY;
+			case 111:
+				return StatEnum.BLOCK;
+			case 112:
+				return StatEnum.MAGICAL_RESIST;
+			default:
+				return null;
 		}
-		return statName;
 	}
 
-	/**
-	 *
-	 * @param player
-	 * @param cubicId
-	 */
 	public void registerCubic(Player player, int cubicId) {
+		if (player == null || cubicId <= 0) {
+			return;
+		}
 		CubicsTemplate monsterCubic = DataManager.CUBICS_DATA.getCubicsId(cubicId);
+		if (monsterCubic == null) {
+			return;
+		}
+		if (player.getInventory().getItemCountByItemId(monsterCubic.getItemIdCubic()) <= 0) {
+			return;
+		}
 		int rankById = DAOManager.getDAO(PlayerCubicsDAO.class).getRankById(player.getObjectId(), cubicId);
 		int level = DAOManager.getDAO(PlayerCubicsDAO.class).getLevelById(player.getObjectId(), cubicId);
 		int statValue = DAOManager.getDAO(PlayerCubicsDAO.class).getStatValueById(player.getObjectId(), cubicId);
 		level++;
-		for (StatCoreList coreList : monsterCubic.getStatLists()) {
-			if (rankById <= monsterCubic.getMaxRank()) {
-				if (level == coreList.getLevel()) {
+		if (monsterCubic.getStatLists() != null) {
+			for (StatCoreList coreList : monsterCubic.getStatLists()) {
+				if (coreList != null && rankById < monsterCubic.getMaxRank() && level == coreList.getLevel()) {
 					rankById++;
 					statValue = coreList.getValue();
 					break;
 				}
 			}
 		}
-		player.getMonsterCubic().add(player, cubicId, rankById, level, statValue, monsterCubic.getCategory());
-		player.getGameStats().endEffect(this);
-		player.setBonus(false);
-		modifiers.clear();
-		player.setMonsterCubic(null);
-		player.setMonsterCubic(DAOManager.getDAO(PlayerCubicsDAO.class).load(player));
-		for (PlayerMCEntry playerMonsterCubic : player.getMonsterCubic().getAllMC()) {
-			try {
-				modifiers.add(new StatAddFunction(getStatValueByCategory(playerMonsterCubic.getCategory()), playerMonsterCubic.getStatValue(), true));
-			} catch (Exception ex) {
-				GameServer.log.error("Error on add stat.", ex);
-			}
-		}
 		player.getInventory().decreaseByItemId(monsterCubic.getItemIdCubic(), 1);
+		if (player.getMonsterCubic() == null) {
+			player.setMonsterCubic(DAOManager.getDAO(PlayerCubicsDAO.class).load(player));
+		}
+		player.getMonsterCubic().add(player, cubicId, rankById, level, statValue, monsterCubic.getCategory());
 		PacketSendUtility.sendPacket(player, new SM_CUBIC(cubicId, rankById, level, 0));
 		long itemsCubicInBag = player.getInventory().getItemCountByItemId(monsterCubic.getItemIdCubic());
 		if (itemsCubicInBag > 0 && monsterCubic.getMaxRank() != rankById) {
 			PacketSendUtility.sendPacket(player, new SM_CUBIC(cubicId, rankById, level, (int) itemsCubicInBag));
 		}
-		player.setBonus(true);
-		player.getGameStats().addEffect(this, modifiers);
-		PacketSendUtility.sendPacket(player, new SM_STATS_INFO(player));
+		rebuildStats(player);
 	}
 
 	public static PlayerCubicService getInstance() {
@@ -240,7 +180,6 @@ public class PlayerCubicService implements StatOwner {
 	}
 
 	private static class NewSingletonHolder {
-
 		private static final PlayerCubicService INSTANCE = new PlayerCubicService();
 	}
 }

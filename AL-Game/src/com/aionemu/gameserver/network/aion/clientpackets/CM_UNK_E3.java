@@ -1,28 +1,29 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 
 /**
- * @author Falke_34
+ * 7.5/7.8 client-side misc packet.
+ *
+ * Kept registered so the client is not disconnected, but no longer completely
+ * silent: if a 7.8 client starts sending payload here, we get an actionable log
+ * without read failures.
  */
 public class CM_UNK_E3 extends AionClientPacket {
+
+	private static final Logger log = LoggerFactory.getLogger(CM_UNK_E3.class);
+	private final List<Integer> payload = new ArrayList<Integer>();
 
 	public CM_UNK_E3(int opcode, State state, State... restStates) {
 		super(opcode, state, restStates);
@@ -30,11 +31,20 @@ public class CM_UNK_E3 extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-		// empty
+		payload.clear();
+		while (getRemainingBytes() >= 4) {
+			payload.add(readD());
+		}
+		if (getRemainingBytes() > 0) {
+			readB(getRemainingBytes());
+		}
 	}
 
 	@Override
 	protected void runImpl() {
-		// empty
+		if (!payload.isEmpty()) {
+			Player player = getConnection().getActivePlayer();
+			log.debug("CM_UNK_E3 payload player=" + (player != null ? player.getName() : "-") + " payload=" + payload);
+		}
 	}
 }

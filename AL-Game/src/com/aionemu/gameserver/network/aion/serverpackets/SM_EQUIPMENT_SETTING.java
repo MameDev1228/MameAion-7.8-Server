@@ -35,7 +35,7 @@ public class SM_EQUIPMENT_SETTING extends AionServerPacket {
 
 	@Override
 	protected void writeImpl(AionConnection con) {
-		writeH(equipmentSetting.size());
+		writeH(equipmentSetting == null ? 0 : equipmentSetting.size());
 		if (equipmentSetting != null) {
 			for (EquipmentSetting eqSetting : equipmentSetting) {
 				writeD(eqSetting.getSlot());

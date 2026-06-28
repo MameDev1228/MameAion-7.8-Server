@@ -1,18 +1,5 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
@@ -32,66 +19,71 @@ import com.aionemu.gameserver.services.TransformationService;
 public class CM_TRANSFORMATION extends AionClientPacket {
 
 	private static final Logger log = LoggerFactory.getLogger(CM_TRANSFORMATION.class);
-    private int itemObjId;
-    @SuppressWarnings("unused")
-	private int multy;
-    private int actionId;
-    private int cardId;
-    @SuppressWarnings("unused")
-	private int collectionId;
-    @SuppressWarnings("unused")
-	private int activeCollection;
-    private ArrayList<Integer> materials;
-    
-    public CM_TRANSFORMATION(int opcode, State state, State... restStates) {
-        super(opcode, state, restStates);
-        materials = new ArrayList<Integer>();
-    }
-    
-    protected void readImpl() {
-        switch (actionId = readH()) {
-            case 0: {
-                itemObjId = readD();
-                multy = readC();
-                break;
-            }
-            case 1: {
-                cardId = readD();
-                itemObjId = readD();
-                break;
-            }
-            case 2: {
-                materials.clear();
-                materials.add(readD());
-                materials.add(readD());
-                materials.add(readD());
-                materials.add(readD());
-                materials.add(readD());
-                materials.add(readD());
-                break;
-            }
-            default: {
-                log.info("unknow function Id : " + actionId + " read : " + getRemainingBytes());
-                break;
-            }
-        }
-    }
-    
-    protected void runImpl() {
-        Player player = getConnection().getActivePlayer();
-        switch (actionId) {
-            case 0: {
-                TransformationService.getInstance().makeTransform(player, itemObjId);
-                break;
-            }
-            case 1: {
-            	TransformationService.getInstance().onPlayerTransform(player, itemObjId, cardId);
-                break;
-            }
-            case 2: {
-            	TransformationService.getInstance().onCombineTransformation(player, materials);
-                break;
-            }
-        }
-    }
+	private int itemObjId;
+	private int actionId;
+	private int cardId;
+	private ArrayList<Integer> materials = new ArrayList<Integer>();
+
+	public CM_TRANSFORMATION(int opcode, State state, State... restStates) {
+		super(opcode, state, restStates);
+	}
+
+	@Override
+	protected void readImpl() {
+		materials.clear();
+		actionId = getRemainingBytes() >= 2 ? readH() : -1;
+		switch (actionId) {
+			case 0:
+				itemObjId = readDIfPresent();
+				readCIfPresent();
+				break;
+			case 1:
+				cardId = readDIfPresent();
+				itemObjId = readDIfPresent();
+				break;
+			case 2:
+				for (int i = 0; i < 6 && getRemainingBytes() >= 4; i++) {
+					materials.add(readD());
+				}
+				break;
+			default:
+				log.debug("Unknown transformation action {} remaining {}", actionId, getRemainingBytes());
+				if (getRemainingBytes() > 0) {
+					readB(getRemainingBytes());
+				}
+				break;
+		}
+		if (getRemainingBytes() > 0) {
+			readB(getRemainingBytes());
+		}
+	}
+
+	private int readDIfPresent() {
+		return getRemainingBytes() >= 4 ? readD() : 0;
+	}
+
+	private int readCIfPresent() {
+		return getRemainingBytes() >= 1 ? readC() : 0;
+	}
+
+	@Override
+	protected void runImpl() {
+		Player player = getConnection().getActivePlayer();
+		if (player == null) {
+			return;
+		}
+		switch (actionId) {
+			case 0:
+				TransformationService.getInstance().makeTransform(player, itemObjId);
+				break;
+			case 1:
+				TransformationService.getInstance().onPlayerTransform(player, itemObjId, cardId);
+				break;
+			case 2:
+				TransformationService.getInstance().onCombineTransformation(player, materials);
+				break;
+			default:
+				break;
+		}
+	}
 }

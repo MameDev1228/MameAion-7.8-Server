@@ -1,18 +1,5 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services.craft;
 
@@ -25,7 +12,6 @@ import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.DescriptionId;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.StaticObject;
-import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.RewardType;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
@@ -40,59 +26,91 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 /**
  * @author Falke_34, FrozenKiller
  */
-
-// ExP & Find a good Crit rate
-
 public class MagicCraftService {
 
 	private static final Logger log = LoggerFactory.getLogger("MAGIC_CRAFT_LOG");
 
 	public static void startMagicCraft(Player player, int recipeId, int craftType) {
-
+		if (player == null) {
+			return;
+		}
 		RecipeTemplate recipeTemplate = DataManager.RECIPE_DATA.getRecipeTemplateById(recipeId);
-		VisibleObject target = player.getKnownList().getObject(player.getObjectId());
+		if (recipeTemplate == null) {
+			sendCancelMagicCraft(player);
+			return;
+		}
 		ItemTemplate itemTemplate = DataManager.ITEM_DATA.getItemTemplate(recipeTemplate.getProductid());
-
 		if (!checkMagicCraft(player, recipeTemplate, itemTemplate)) {
 			sendCancelMagicCraft(player);
 			return;
 		}
-		player.setCraftingTask(new MagicCraftTask(player, (StaticObject) target, recipeTemplate));
+		player.setCraftingTask(new MagicCraftTask(player, (StaticObject) null, recipeTemplate));
 		player.getCraftingTask().start();
 	}
 
 	private static boolean checkMagicCraft(Player player, RecipeTemplate recipeTemplate, ItemTemplate itemTemplate) {
-
-		if (recipeTemplate == null) {
-			return false;
-		}
-		if (itemTemplate == null) {
+		if (recipeTemplate == null || itemTemplate == null) {
 			return false;
 		}
 		if (player.getCraftingTask() != null && player.getCraftingTask().isInProgress()) {
 			return false;
 		}
+		if (player.getInventory().getFreeSlots() == 0) {
+			return false;
+		}
+		if (recipeTemplate.getComponent() != null) {
+			for (Component items : recipeTemplate.getComponent()) {
+				if (items == null || items.getItemid() <= 0 || items.getQuantity() <= 0) {
+					return false;
+				}
+				if (DataManager.ITEM_DATA.getItemTemplate(items.getItemid()) == null) {
+					return false;
+				}
+				if (player.getInventory().getItemCountByItemId(items.getItemid()) < items.getQuantity()) {
+					return false;
+				}
+			}
+		}
 		return true;
 	}
 
 	public static void finishMagicCrafting(final Player player, RecipeTemplate recipetemplate, int critCount, int bonus) {
-		int xpReward = ((2 * (recipetemplate.getSkillpoint() + 100) * (recipetemplate.getSkillpoint() + 100) + 60)); // should be more or less Exp ?
-		xpReward = xpReward + (xpReward * bonus / 100); // bonus
+		if (player == null || recipetemplate == null) {
+			return;
+		}
+		int xpReward = ((2 * (recipetemplate.getSkillpoint() + 100) * (recipetemplate.getSkillpoint() + 100) + 60));
+		xpReward = xpReward + (xpReward * bonus / 100);
 
 		if (player.getInventory().getFreeSlots() == 0) {
 			sendCancelMagicCraft(player);
 			return;
 		}
 
-		for (Component items : recipetemplate.getComponent()) {
-			player.getInventory().decreaseByItemId(items.getItemid(), items.getQuantity());
+		if (recipetemplate.getComponent() != null) {
+			for (Component items : recipetemplate.getComponent()) {
+				if (player.getInventory().getItemCountByItemId(items.getItemid()) < items.getQuantity()) {
+					sendCancelMagicCraft(player);
+					return;
+				}
+			}
+			for (Component items : recipetemplate.getComponent()) {
+				player.getInventory().decreaseByItemId(items.getItemid(), items.getQuantity());
+			}
 		}
-		int critVal = (Rnd.get(10000));
 
-		int productItemId = (recipetemplate.getComboProductSize() > 0 && critVal > 9800) ? recipetemplate.getComboProduct(1) : recipetemplate.getProductid();
+		int critVal = Rnd.get(10000);
+		int productItemId = recipetemplate.getProductid();
+		Integer comboProduct = recipetemplate.getComboProductSize() > 0 && critVal > 9800 ? recipetemplate.getComboProduct(1) : null;
+		if (comboProduct != null && DataManager.ITEM_DATA.getItemTemplate(comboProduct) != null) {
+			productItemId = comboProduct;
+		}
+		ItemTemplate itemTemplate = DataManager.ITEM_DATA.getItemTemplate(productItemId);
+		if (itemTemplate == null) {
+			sendCancelMagicCraft(player);
+			return;
+		}
 
 		ItemService.addItem(player, productItemId, recipetemplate.getQuantity(), new ItemUpdatePredicate() {
-
 			@Override
 			public boolean changeItem(Item item) {
 				if (item.getItemTemplate().isWeapon() || item.getItemTemplate().isArmor()) {
@@ -102,23 +120,21 @@ public class MagicCraftService {
 			}
 		});
 
-		ItemTemplate itemTemplate = DataManager.ITEM_DATA.getItemTemplate(productItemId);
 		if (LoggingConfig.LOG_CRAFT) {
-			log.info(((recipetemplate.getComboProductSize() != null && critVal > 9800) ? "[CRAFT][Critical] ID/Count" : "[MAGIC_CRAFT][Normal] Added ID/Count") + (LoggingConfig.ENABLE_ADVANCED_LOGGING ? "/Item Name - " + productItemId + "/" + recipetemplate.getQuantity() + "/" + itemTemplate.getName() : " - " + productItemId + "/" + recipetemplate.getQuantity()) + " to player: " + player.getName());
+			log.info(((comboProduct != null && critVal > 9800) ? "[MAGIC_CRAFT][Critical] ID/Count" : "[MAGIC_CRAFT][Normal] Added ID/Count") + (LoggingConfig.ENABLE_ADVANCED_LOGGING ? "/Item Name - " + productItemId + "/" + recipetemplate.getQuantity() + "/" + itemTemplate.getName() : " - " + productItemId + "/" + recipetemplate.getQuantity()) + " to player: " + player.getName());
 		}
 
 		int gainedCraftExp = (int) RewardType.CRAFTING.calcReward(player, xpReward);
-
 		if (player.getSkillList().addSkillXp(player, recipetemplate.getSkillid(), gainedCraftExp, recipetemplate.getSkillpoint())) {
 			player.getCommonData().addExp(xpReward, RewardType.CRAFTING);
 		}
-		else {
+		else if (DataManager.SKILL_DATA.getSkillTemplate(recipetemplate.getSkillid()) != null) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_DONT_GET_PRODUCTION_EXP(new DescriptionId(DataManager.SKILL_DATA.getSkillTemplate(recipetemplate.getSkillid()).getNameId())));
 		}
 	}
 
 	public static void sendCancelMagicCraft(Player player) {
-		if (player.getCraftingTask().isInProgress()) {
+		if (player != null && player.getCraftingTask() != null && player.getCraftingTask().isInProgress()) {
 			player.getCraftingTask().abort();
 		}
 	}

@@ -1,22 +1,12 @@
 /**
  * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
@@ -28,8 +18,9 @@ import com.aionemu.gameserver.services.ranking.PlayerRankingUpdateService;
  */
 public class CM_RANK_LIST extends AionClientPacket {
 
+	private static final Logger log = LoggerFactory.getLogger(CM_RANK_LIST.class);
 	private int tableId;
-//    private int serverSwitch;
+	private int serverSwitch;
 
 	public CM_RANK_LIST(int opcode, State state, State... restStates) {
 		super(opcode, state, restStates);
@@ -37,15 +28,22 @@ public class CM_RANK_LIST extends AionClientPacket {
 
 	@Override
 	protected void readImpl() {
-        tableId = readD();
-//        serverSwitch = readC();
+		tableId = readD();
+		serverSwitch = getRemainingBytes() > 0 ? readC() : -1;
+		if (getRemainingBytes() > 0) {
+			readB(getRemainingBytes());
+		}
 	}
 
-    @Override
-    protected void runImpl() {
-        List<SM_RANK_LIST> results = PlayerRankingUpdateService.getInstance().getPlayers(tableId);
-        for (SM_RANK_LIST packet: results) {
-            sendPacket(packet);
+	@Override
+	protected void runImpl() {
+		List<SM_RANK_LIST> results = PlayerRankingUpdateService.getInstance().getPlayers(tableId);
+		if (results == null || results.isEmpty()) {
+			log.warn("Rank list requested but no packet could be generated. tableId={} serverSwitch={}", tableId, serverSwitch);
+			return;
 		}
-    }
+		for (SM_RANK_LIST packet : results) {
+			sendPacket(packet);
+		}
+	}
 }

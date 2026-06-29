@@ -73,6 +73,7 @@ public class LoginServer {
 	private LoginServerConnection loginServer;
 	private NioServer nioServer;
 	private boolean serverShutdown = false;
+	private boolean reconnectScheduled = false;
 
 	public static final LoginServer getInstance() {
 		return SingletonHolder.instance;
@@ -125,6 +126,62 @@ public class LoginServer {
 	}
 
 	/**
+	 * Called when LoginServer explicitly rejects GameServer authentication.
+	 * The old behavior terminated the whole GameServer process. In MameAion we keep
+	 * the GameServer alive and retry the LoginServer handshake periodically, because
+	 * wrong LS DB mask/password or LS reload timing should not kill the runtime.
+	 */
+	public void authenticationFailed(LoginServerConnection failedConnection, String reason) {
+		log.warn("LoginServer authentication failed: " + reason + ". GameServer will stay online and retry in 10 seconds.");
+
+		if (loginServer == failedConnection) {
+			loginServer = null;
+		}
+
+		if (failedConnection != null) {
+			failedConnection.close(true);
+		}
+
+		scheduleReconnect(10000, "authentication failed");
+	}
+
+	/**
+	 * Schedules a single LoginServer reconnect attempt. Duplicate schedules are
+	 * collapsed to avoid reconnect storms when auth failure and disconnect callbacks
+	 * happen at the same time.
+	 */
+	private synchronized void scheduleReconnect(final long delay, final String reason) {
+		if (serverShutdown) {
+			return;
+		}
+		if (reconnectScheduled) {
+			log.info("LoginServer reconnect is already scheduled. Reason ignored: " + reason);
+			return;
+		}
+		reconnectScheduled = true;
+		log.info("LoginServer reconnect scheduled in " + (delay / 1000) + " seconds. Reason: " + reason);
+
+		ThreadPoolManager.getInstance().schedule(new Runnable() {
+
+			@Override
+			public void run() {
+				synchronized (LoginServer.this) {
+					reconnectScheduled = false;
+				}
+
+				if (serverShutdown) {
+					return;
+				}
+				if (loginServer != null && loginServer.getState() == State.AUTHED) {
+					return;
+				}
+
+				connect();
+			}
+		}, delay);
+	}
+
+	/**
 	 * This method is called when we lost connection to LoginServer. We will disconnects all aionClients waiting for LoginServer response and also try reconnect to LoginServer.
 	 */
 	public void loginServerDown() {
@@ -143,17 +200,9 @@ public class LoginServer {
 		}
 
 		/**
-		 * Reconnect after 5s if not server shutdown sequence
+		 * Reconnect after 10s if not server shutdown sequence.
 		 */
-		if (!serverShutdown) {
-			ThreadPoolManager.getInstance().schedule(new Runnable() {
-
-				@Override
-				public void run() {
-					connect();
-				}
-			}, 5000);
-		}
+		scheduleReconnect(10000, "connection lost");
 	}
 
 	/**

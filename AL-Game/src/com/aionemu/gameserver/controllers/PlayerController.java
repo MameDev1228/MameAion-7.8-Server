@@ -113,6 +113,7 @@ import com.aionemu.gameserver.services.abyss.AbyssService;
 import com.aionemu.gameserver.services.craft.CraftSkillUpdateService;
 import com.aionemu.gameserver.services.instance.InstanceService;
 import com.aionemu.gameserver.services.item.ItemService;
+import com.aionemu.gameserver.services.debug.StatAuditService;
 import com.aionemu.gameserver.services.player.AchievementService;
 import com.aionemu.gameserver.services.summons.SummonsService;
 import com.aionemu.gameserver.services.teleport.TeleportService2;
@@ -191,6 +192,8 @@ public class PlayerController extends CreatureController<Player> {
 		}
 		else if (object instanceof Npc) {
 			Npc npc = ((Npc) object);
+			long npcVisibleStart = System.currentTimeMillis();
+			StatAuditService.getInstance().npcVisibility(getOwner(), npc, "see_start", 0);
 			LookManager.corrigateHeading(npc, this.getOwner());
 			PacketSendUtility.sendPacket(getOwner(), new SM_NPC_INFO(npc, getOwner()));
 			PacketSendUtility.sendPacket(getOwner(), new SM_EMOTION(npc, EmotionType.SELECT_TARGET));
@@ -199,6 +202,7 @@ public class PlayerController extends CreatureController<Player> {
 				npc.getEffectController().sendEffectIconsTo(getOwner());
 			}
 			QuestEngine.getInstance().onAtDistance(new QuestEnv(object, getOwner(), 0, 0));
+			StatAuditService.getInstance().npcVisibility(getOwner(), npc, "see_done", System.currentTimeMillis() - npcVisibleStart);
 		}
 		else if (object instanceof Summon) {
 			Summon npc = ((Summon) object);
@@ -582,7 +586,15 @@ public class PlayerController extends CreatureController<Player> {
 		cancelGathering();
 		super.onAttack(creature, skillId, type, damage, notifyAttack, log);
 
-		PacketSendUtility.broadcastPacket(getOwner(), new SM_ATTACK_STATUS(getOwner(), creature, type, skillId, damage, log), true);
+		StatAuditService.getInstance().combatAttackStatus(getOwner(), creature, type, skillId, damage, log, notifyAttack, "PlayerController.onAttack");
+		SM_ATTACK_STATUS attackStatus = new SM_ATTACK_STATUS(getOwner(), creature, type, skillId, damage, log);
+		if (StatAuditService.getInstance().shouldSuppressZeroDamageNpcToPlayer(getOwner(), creature, damage)) {
+			StatAuditService.getInstance().suppressedAttackStatus(getOwner(), creature, skillId, damage, "PlayerController.onAttack");
+			PacketSendUtility.broadcastPacket(getOwner(), attackStatus, false);
+		}
+		else {
+			PacketSendUtility.broadcastPacket(getOwner(), attackStatus, true);
+		}
 
 		lastAttackedMilis = System.currentTimeMillis();
 	}

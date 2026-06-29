@@ -21,10 +21,10 @@ dist:
     [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Chat\build\dist\AL-Chat\config
     [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Chat\build\dist\AL-Chat\libs
      [copy] Copying 1 file to C:\MameAion\ServerFile\aion-server-7.8\AL-Chat\build\dist\AL-Chat\libs
-     [copy] Copying 16 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Chat\build\dist\AL-Chat\libs
+     [copy] Copying 26 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Chat\build\dist\AL-Chat\libs
      [copy] Copying 2 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Chat\build\dist\AL-Chat
      [copy] Copying 2 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Chat\build\dist\AL-Chat\config
       [zip] Building zip: C:\MameAion\ServerFile\aion-server-7.8\AL-Chat\build\AL-Chat.zip
 
 BUILD SUCCESSFUL
-Total time: 1 second
+Total time: 2 seconds

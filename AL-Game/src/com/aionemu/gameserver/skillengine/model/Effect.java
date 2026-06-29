@@ -39,6 +39,7 @@ import com.aionemu.gameserver.model.stats.container.StatEnum;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_PLAYER_STANCE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_ACTIVATION;
+import com.aionemu.gameserver.services.debug.StatAuditService;
 import com.aionemu.gameserver.skillengine.condition.Conditions;
 import com.aionemu.gameserver.skillengine.effect.DamageEffect;
 import com.aionemu.gameserver.skillengine.effect.DelayedSpellAttackInstantEffect;
@@ -883,7 +884,10 @@ public class Effect implements StatOwner {
 		schedulePeriodicActions();
 
 		for (EffectTemplate template : successEffects.values()) {
+			StatAuditService.StatSnapshot before = effected instanceof Player ? StatAuditService.getInstance().snapshot((Player) effected) : null;
 			template.startEffect(this);
+			StatAuditService.StatSnapshot after = effected instanceof Player ? StatAuditService.getInstance().snapshot((Player) effected) : null;
+			StatAuditService.getInstance().effectTrace("start", this, template.getClass().getSimpleName(), before, after);
 			checkUseEquipmentConditions();
 			checkCancelOnDmg();
 		}
@@ -1029,7 +1033,10 @@ public class Effect implements StatOwner {
 		}
 
 		for (EffectTemplate template : successEffects.values()) {
+			StatAuditService.StatSnapshot before = effected instanceof Player ? StatAuditService.getInstance().snapshot((Player) effected) : null;
 			template.endEffect(this);
+			StatAuditService.StatSnapshot after = effected instanceof Player ? StatAuditService.getInstance().snapshot((Player) effected) : null;
+			StatAuditService.getInstance().effectTrace("end", this, template.getClass().getSimpleName(), before, after);
 		}
 
 		// if effect is a stance, remove stance from player
@@ -1523,7 +1530,10 @@ public class Effect implements StatOwner {
 
 	public void endEffects() {
 		for (EffectTemplate template : successEffects.values()) {
+			StatAuditService.StatSnapshot before = effected instanceof Player ? StatAuditService.getInstance().snapshot((Player) effected) : null;
 			template.endEffect(this);
+			StatAuditService.StatSnapshot after = effected instanceof Player ? StatAuditService.getInstance().snapshot((Player) effected) : null;
+			StatAuditService.getInstance().effectTrace("end", this, template.getClass().getSimpleName(), before, after);
 		}
 	}
 

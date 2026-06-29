@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.ai2.event.AIEventType;
 import com.aionemu.gameserver.ai2.poll.AIQuestion;
+import com.aionemu.gameserver.configs.administration.DeveloperConfig;
 import com.aionemu.gameserver.configs.main.GroupConfig;
 import com.aionemu.gameserver.configs.main.RateConfig;
 import com.aionemu.gameserver.controllers.attack.AggroInfo;
@@ -129,7 +130,9 @@ public class NpcController extends CreatureController<Npc> {
 
 		owner.getLifeStats().setCurrentHpPercent(100);
 		owner.getLifeStats().setCurrentMpPercent(100);
-		owner.getAi2().onGeneralEvent(AIEventType.RESPAWNED);
+		if (owner.getAi2() != null) {
+			owner.getAi2().onGeneralEvent(AIEventType.RESPAWNED);
+		}
 
 		if (owner.getSpawn().canFly()) {
 			owner.setState(CreatureState.FLYING);
@@ -142,7 +145,9 @@ public class NpcController extends CreatureController<Npc> {
 	@Override
 	public void onAfterSpawn() {
 		super.onAfterSpawn();
-		getOwner().getAi2().onGeneralEvent(AIEventType.SPAWNED);
+		if (getOwner().getAi2() != null) {
+			getOwner().getAi2().onGeneralEvent(AIEventType.SPAWNED);
+		}
 	}
 
 	@Override
@@ -400,6 +405,11 @@ public class NpcController extends CreatureController<Npc> {
 			QuestEngine.getInstance().onAttack(new QuestEnv(npc, (Player) actingCreature, 0, 0));
 		}
 
+		if (DeveloperConfig.COMBAT_TRACE_ENABLE) {
+			NpcController.log.info("[COMBAT_TRACE] victimNpc={} npcId={} attacker={} attackerType={} skillId={} type={} damage={} hp={}/{}", new Object[] {
+				npc.getObjectId(), npc.getNpcId(), actingCreature != null ? actingCreature.getObjectId() : 0, actingCreature != null ? actingCreature.getClass().getSimpleName() : "null", skillId, type, damage,
+				npc.getLifeStats().getCurrentHp(), npc.getLifeStats().getMaxHp() });
+		}
 		PacketSendUtility.broadcastPacket(npc, new SM_ATTACK_STATUS(npc, actingCreature, type, skillId, damage, log));
 	}
 

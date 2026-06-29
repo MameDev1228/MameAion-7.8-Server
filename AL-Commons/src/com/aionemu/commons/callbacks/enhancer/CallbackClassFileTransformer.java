@@ -61,6 +61,15 @@ public abstract class CallbackClassFileTransformer implements ClassFileTransform
 				return null;
 			}
 
+			// JDK25 verifier is stricter about legacy Javassist injected stackmaps.
+			// AbstractAI is loaded by the script engine and has a single object callback hook;
+			// transforming it can produce VerifyError before AI handlers are registered.
+			// Keep AI boot reliable and skip only this known unsafe class.
+			if ("com/aionemu/gameserver/ai2/AbstractAI".equals(className)) {
+				log.info("Class " + className + " skipped for JDK25 callback transformation safety.");
+				return null;
+			}
+
 			// actual class transformation
 			return transformClass(loader, classfileBuffer);
 		} catch (Exception e) {

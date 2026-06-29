@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.network.packet.BaseClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.services.packet.ProtocolTraceService;
 
 /**
  * Base class for every Aion -> LS Client Packet
@@ -66,6 +67,9 @@ public abstract class AionClientPacket extends BaseClientPacket<AionConnection> 
 			}
 		}
 		catch (Throwable e) {
+			if (getConnection() != null) {
+				ProtocolTraceService.getInstance().dump(getConnection(), "C2S_RUN_EXCEPTION_" + getPacketName(), e);
+			}
 			String name = getConnection() != null ? getConnection().getIP() : "unknown";
 			if (getConnection() != null && getConnection().getAccount() != null && getConnection().getAccount().getName() != null) {
 				name = getConnection().getAccount().getName();
@@ -119,6 +123,7 @@ public abstract class AionClientPacket extends BaseClientPacket<AionConnection> 
 		boolean valid = validStates.contains(state);
 
 		if (!valid) {
+			ProtocolTraceService.getInstance().recordEvent(getConnection(), "C2S_INVALID_STATE_" + getPacketName(), "packetValidStates=" + validStates + ", currentState=" + state);
 			log.info(this + " wont be processed cuz its valid state don't match current connection state: " + state);
 		}
 		return valid;

@@ -1,0 +1,42 @@
+
+C:\MameAion\ServerFile\aion-server-7.8>・ｿ@echo off 
+'・ｿ@echo' は、内部コマンドまたは外部コマンド、
+操作可能なプログラムまたはバッチ ファイルとして認識されていません。
+
+C:\MameAion\ServerFile\aion-server-7.8>setlocal
+
+C:\MameAion\ServerFile\aion-server-7.8>rem MameAion 7.8.0 JDK25 build wrapper. 
+
+C:\MameAion\ServerFile\aion-server-7.8>rem Run this from the AionLightning-7.8.0 root folder. 
+
+C:\MameAion\ServerFile\aion-server-7.8>call "C:\MameAion\ServerFile\aion-server-7.8\Tools\MameJDK25\build_jdk25_all.bat"  
+
+============================================================
+ MameAion 7.8.0 JDK25 Build
+============================================================
+ Root      : C:\MameAion\ServerFile\aion-server-7.8
+ Mode      : all
+ JAVA_HOME : C:\Program Files\Java\jdk-25.0.3
+ ANT_HOME  : C:\MameAion\ServerFile\aion-server-7.8\Tools\Ant
+ Logs      : C:\MameAion\ServerFile\aion-server-7.8\build_logs\jdk25
+ Output    : C:\MameAion\ServerFile\aion-server-7.8\dist_jdk25
+------------------------------------------------------------
+java version "25.0.3" 2026-04-21 LTS
+Java(TM) SE Runtime Environment (build 25.0.3+9-LTS-195)
+Java HotSpot(TM) 64-Bit Server VM (build 25.0.3+9-LTS-195, mixed mode, sharing)
+javac 25.0.3
+Apache Ant(TM) version 1.9.14 compiled on March 12 2019
+============================================================
+
+
+[PHASE12] Removing incompatible old Javassist jars from module libs
+指定されたバッチ ラベルが見つかりません - build_module
+
+============================================================
+ BUILD FAILED
+============================================================
+ Failed log: 
+
+
+Send this log if you want the next patch to continue from the error.
+============================================================

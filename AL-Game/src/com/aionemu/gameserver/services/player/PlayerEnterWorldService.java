@@ -134,6 +134,7 @@ import com.aionemu.gameserver.services.MinionService;
 import com.aionemu.gameserver.services.PetitionService;
 import com.aionemu.gameserver.services.PunishmentService;
 import com.aionemu.gameserver.services.PunishmentService.PunishmentType;
+import com.aionemu.gameserver.services.packet.ProtocolTraceService;
 import com.aionemu.gameserver.services.SiegeService;
 import com.aionemu.gameserver.services.SkillLearnService;
 import com.aionemu.gameserver.services.StigmaService;
@@ -326,21 +327,45 @@ public final class PlayerEnterWorldService {
 	 * @param objectId
 	 */
 	public static final void enterWorld(AionConnection client, int objectId) {
+		ProtocolTraceService.getInstance().enterWorldStep(client, objectId, "00_start", "enterWorld scheduled");
+		try {
+			enterWorld0(client, objectId);
+			ProtocolTraceService.getInstance().enterWorldStep(client, objectId, "99_return", "enterWorld returned normally");
+		}
+		catch (RuntimeException e) {
+			ProtocolTraceService.getInstance().enterWorldStep(client, objectId, "99_exception", e.getClass().getSimpleName() + ": " + e.getMessage());
+			ProtocolTraceService.getInstance().dump(client, "ENTER_WORLD_EXCEPTION_" + objectId, e);
+			throw e;
+		}
+		catch (Error e) {
+			ProtocolTraceService.getInstance().enterWorldStep(client, objectId, "99_error", e.getClass().getSimpleName() + ": " + e.getMessage());
+			ProtocolTraceService.getInstance().dump(client, "ENTER_WORLD_ERROR_" + objectId, e);
+			throw e;
+		}
+	}
+
+	private static final void enterWorld0(AionConnection client, int objectId) {
 		Account account = client.getAccount();
+		ProtocolTraceService.getInstance().enterWorldStep(client, objectId, "01_account", account != null ? account.getName() : "account=null");
 		PlayerAccountData playerAccData = client.getAccount().getPlayerAccountData(objectId);
 
 		if (playerAccData == null) {
+			ProtocolTraceService.getInstance().enterWorldStep(client, objectId, "02_player_account_missing", "playerAccData=null");
 			// Somebody wanted to login on character that is not at his account
 			return;
 		}
+		ProtocolTraceService.getInstance().enterWorldStep(client, objectId, "02_player_account", "playerAccData ok");
 		Player player = PlayerService.getPlayer(objectId, account);
+		ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "03_player_loaded", player != null ? "PlayerService ok" : "player=null");
 
 		if (player != null && client.setActivePlayer(player)) {
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "04_active_player_set", "state=" + client.getState());
 			player.setClientConnection(client);
 
 			log.info("[MAC_AUDIT] Player " + player.getName() + " (account " + account.getName() + ") has entered world with " + client.getMacAddress() + " MAC.");
             log.info("[HDD_AUDIT] Player " + player.getName() + " (account " + account.getName() + ") has entered world with " + client.getHddSerial() + " HDD.");
 			World.getInstance().storeObject(player);
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "05_world_store", "world object stored");
 
 			StigmaService.onPlayerLogin(player);
 
@@ -415,6 +440,7 @@ public final class PlayerEnterWorldService {
 
 			// init instanceService
 			InstanceService.onPlayerLogin(player);
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "06_instance_login", "instance service ok");
 
 			// SM_FAST_TRACK
 			client.sendPacket(new SM_FAST_TRACK(0, 1, true));
@@ -428,12 +454,15 @@ public final class PlayerEnterWorldService {
 				player.getSkillList().addSkill(player, 302, 129);
 			}
 			AbyssSkillService.onEnterWorld(player);
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "07_abyss_skill", "abyss skill ok");
 
 			// SM_SKILL_LIST TODO: check the split size
 			client.sendPacket(new SM_SKILL_LIST(player, player.getSkillList().getBasicSkills()));
 			for (PlayerSkillEntry stigmaSkill : player.getSkillList().getStigmaSkills()) {
 				client.sendPacket(new SM_SKILL_LIST(player, stigmaSkill));
 			}
+
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "08_skill_packets", "skill list queued");
 
 			// SM_SKILL_COOLDOWN
 			if (player.getSkillCoolDowns() != null)
@@ -459,6 +488,8 @@ public final class PlayerEnterWorldService {
 
 			// SM_QUEST_LIST
 			client.sendPacket(new SM_QUEST_LIST(questList));
+
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "09_quest_packets", "quest packets queued");
 
 			// SM_SKILL_ANIMATION
 			client.sendPacket(new SM_SKILL_ANIMATION(player));
@@ -514,6 +545,7 @@ public final class PlayerEnterWorldService {
 			// SM_INVENTORY_INFO, SM_CHANNEL_INFO, SM_STATS_INFO
 			// and SM_CUBE_UPDATE advancedStigmas ?! (not on offi)
 			sendItemInfos(client, player);
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "10_item_infos", "inventory/channel/stats initial packets queued");
 
 			// SM_EQUIPMENT_SETTING
 			if (!player.getEquipmentSettingList().getEquipmentSetting().isEmpty()) {
@@ -536,9 +568,11 @@ public final class PlayerEnterWorldService {
 			VortexService.getInstance().validateLoginZone(player);
 			KiskService.getInstance().onLogin(player);
 			playerLoggedIn(player);
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "11_prespawn_login", "preSpawn/loginZone/playerLoggedIn ok");
 
 			// SM_PLAYER_SPAWN
 			client.sendPacket(new SM_PLAYER_SPAWN(player));
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "12_player_spawn", "SM_PLAYER_SPAWN queued");
 
 			// SM_TOWNS_LIST
 			TownService.getInstance().onEnterWorld(player);
@@ -623,12 +657,14 @@ public final class PlayerEnterWorldService {
 
 			// SM_ABYSS_RANK
 			client.sendPacket(new SM_ABYSS_RANK(player.getAbyssRank()));
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "13_abyss_rank", player.getAbyssRank() != null ? "SM_ABYSS_RANK queued" : "abyssRank=null");
 
 			// SM_ABYSS_RANK_POINTS - huge list ....
 			client.sendPacket(new SM_ABYSS_RANK_POINTS()); // TODO
 
 			// SM_STATS_INFO
 			client.sendPacket(new SM_STATS_INFO(player)); // offi 4.9.1
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "14_stats_info", "SM_STATS_INFO queued");
 
 			// SM_FATIGUE
 			if (CustomConfig.FATIGUE_SYSTEM_ENABLED)
@@ -958,6 +994,7 @@ public final class PlayerEnterWorldService {
 			LumielTransformService.getInstance().onLogin(player);
 			PlayerCollectionService.getInstance().onLogin(player);
 			PlayerTransferService.getInstance().onEnterWorld(player);
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "15_late_services", "collection/transfer services ok");
 			player.setPartnerId(DAOManager.getDAO(WeddingDAO.class).loadPartnerId(player));
 
 			if (ConquerorProtectorConfig.ENABLE_GUARDIAN_PVP)
@@ -968,6 +1005,7 @@ public final class PlayerEnterWorldService {
 
 			player.getController().updateZone();
 			player.getController().updateNearbyQuests();
+			ProtocolTraceService.getInstance().enterWorldStep(client, player, objectId, "98_complete", "enterWorld completed");
 		}
 		else
 			log.info("[DEBUG] enter world" + objectId + ", Player: " + player);

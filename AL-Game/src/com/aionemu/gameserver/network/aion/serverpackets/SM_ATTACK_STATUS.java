@@ -16,10 +16,12 @@
  */
 package com.aionemu.gameserver.network.aion.serverpackets;
 
+import com.aionemu.gameserver.configs.administration.DeveloperConfig;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
+import com.aionemu.gameserver.services.debug.StatAuditService;
 
 /**
  * @author alexa026
@@ -136,18 +138,20 @@ public class SM_ATTACK_STATUS extends AionServerPacket {
 				break;
 		}
 		writeC(type.getValue());
-		writeC(creature.getLifeStats().getHpPercentage());
+		if (type == TYPE.HEAL_MP || type == TYPE.ABSORBED_MP || type == TYPE.MP || type == TYPE.NATURAL_MP) {
+			writeC(creature.getLifeStats().getMpPercentage());
+		}
+		else {
+			writeC(creature.getLifeStats().getHpPercentage());
+		}
 		writeH(skillId);
-		if (attacker instanceof Player) {
+		int skillSkinId = 0;
+		if (DeveloperConfig.PACKET_ATTACK_STATUS_SKILL_SKIN && attacker instanceof Player) {
 			Player player = (Player) attacker;
-			if (player != null) {
-				writeH(player.getSkillSkinList().getSkinId(skillId));
-			} else {
-				writeH(0);
-			}
-		} else {
-			writeH(0); // 5.3
-		} 
+			skillSkinId = player.getSkillSkinList().getSkinId(skillId);
+		}
+		writeH(skillSkinId);
+		StatAuditService.getInstance().attackStatusPacket(creature, attacker, type, skillId, value, logId, skillSkinId);
 		if (skillId != 0) {
 			writeH(logId);
 		} else {

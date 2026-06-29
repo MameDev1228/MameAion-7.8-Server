@@ -25,6 +25,7 @@ import com.aionemu.gameserver.model.Gender;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.actions.PlayerMode;
 import com.aionemu.gameserver.model.gameobjects.Item;
+import com.aionemu.gameserver.model.gameobjects.player.AbyssRank;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerAppearance;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
@@ -34,6 +35,7 @@ import com.aionemu.gameserver.model.items.ItemSlot;
 import com.aionemu.gameserver.model.team.legion.LegionEmblemType;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
+import com.aionemu.gameserver.utils.stats.AbyssRankEnum;
 
 import javolution.util.FastList;
 
@@ -61,6 +63,13 @@ public class SM_PLAYER_INFO extends AionServerPacket {
 	public SM_PLAYER_INFO(Player player, boolean enemy) {
 		this.player = player;
 		this.enemy = enemy;
+	}
+
+	private static AbyssRank safeAbyssRank(AbyssRank rank) {
+		if (rank == null || rank.getRank() == null) {
+			return new AbyssRank(0, 0, 0, 0, 0, 0, AbyssRankEnum.GRADE9_SOLDIER.getId(), 0, 0, 0, 0, AbyssRankEnum.GRADE9_SOLDIER.getId(), 0, 0, 0, System.currentTimeMillis());
+		}
+		return rank;
 	}
 
 	/**
@@ -355,7 +364,8 @@ public class SM_PLAYER_INFO extends AionServerPacket {
 		writeH(player.getLevel()); // [level]
 		writeH(player.getPlayerSettings().getDisplay()); // unk - 0x04
 		writeH(player.getPlayerSettings().getDeny()); // unk - 0x00
-		writeH(player.getAbyssRank().getRank().getId()); // abyss rank
+		AbyssRank abyssRank = safeAbyssRank(player.getAbyssRank());
+		writeH(abyssRank.getRank().getId()); // abyss rank
 
 		writeH(0x00); // unk - 0x01
 		writeD(0x00); // unk 5.4
@@ -374,7 +384,7 @@ public class SM_PLAYER_INFO extends AionServerPacket {
 		PlayerConquererProtectorData pcdd = player.getConquerorProtectorData();
 		writeC(pcdd.getConquerorBuffLevel());
 		writeC(pcdd.getProtectorBuffLevel());
-		switch (player.getAbyssRank().getRank()) {
+		switch (abyssRank.getRank()) {
 			case STAR1_OFFICER:
 			case STAR2_OFFICER:
 			case STAR3_OFFICER:

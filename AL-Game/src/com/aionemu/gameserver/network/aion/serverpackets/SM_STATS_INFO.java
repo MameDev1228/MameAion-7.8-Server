@@ -246,7 +246,7 @@ public class SM_STATS_INFO extends AionServerPacket {
 	}
 
 	private int getWeaponShownDamage(Item weapon, boolean mainHand) {
-		if (weapon == null || weapon.getItemTemplate() == null || !weapon.getItemTemplate().isWeapon()) {
+		if (weapon == null || weapon.getItemTemplate() == null || !weapon.getItemTemplate().isWeapon() || weapon.getItemTemplate().getWeaponStats() == null) {
 			return 0;
 		}
 		if (weapon.getItemTemplate().getAttackType().isMagical()) {
@@ -256,7 +256,7 @@ public class SM_STATS_INFO extends AionServerPacket {
 	}
 
 	private int getWeaponBaseDamage(Item weapon) {
-		if (weapon == null || weapon.getItemTemplate() == null || !weapon.getItemTemplate().isWeapon()) {
+		if (weapon == null || weapon.getItemTemplate() == null || !weapon.getItemTemplate().isWeapon() || weapon.getItemTemplate().getWeaponStats() == null) {
 			return 0;
 		}
 		return weapon.getItemTemplate().getWeaponStats().getMeanDamage();

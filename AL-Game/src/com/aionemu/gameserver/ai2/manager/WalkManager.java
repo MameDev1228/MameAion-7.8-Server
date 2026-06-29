@@ -30,6 +30,7 @@ import com.aionemu.gameserver.geoEngine.math.Vector3f;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.templates.walker.RouteStep;
 import com.aionemu.gameserver.model.templates.walker.WalkerTemplate;
+import com.aionemu.gameserver.services.debug.StatAuditService;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.geo.GeoService;
@@ -47,6 +48,7 @@ public class WalkManager {
 	public static boolean startWalking(NpcAI2 npcAI) {
 		npcAI.setStateIfNot(AIState.WALKING);
 		Npc owner = npcAI.getOwner();
+		StatAuditService.getInstance().aiWalk(owner, "startWalking", "walkerId=" + owner.getSpawn().getWalkerId() + " randomWalk=" + owner.getSpawn().getRandomWalk());
 		WalkerTemplate template = DataManager.WALKER_DATA.getWalkerTemplate(owner.getSpawn().getWalkerId());
 		if (template != null) {
 			npcAI.setSubStateIfNot(AISubState.WALK_PATH);
@@ -78,17 +80,21 @@ public class WalkManager {
 	 */
 	private static boolean startRandomWalking(NpcAI2 npcAI, Npc owner) {
 		if (!AIConfig.ACTIVE_NPC_MOVEMENT) {
+			StatAuditService.getInstance().aiWalk(owner, "randomWalkSkip", "ACTIVE_NPC_MOVEMENT=false");
 			return false;
 		}
 		int randomWalkNr = owner.getSpawn().getRandomWalk();
 		if (randomWalkNr == 0) {
+			StatAuditService.getInstance().aiWalk(owner, "randomWalkSkip", "randomWalk=0");
 			return false;
 		}
 		if (npcAI.setSubStateIfNot(AISubState.WALK_RANDOM)) {
+			StatAuditService.getInstance().aiWalk(owner, "randomWalkStart", "range=" + randomWalkNr);
 			EmoteManager.emoteStartWalking(npcAI.getOwner());
 			chooseNextRandomPoint(npcAI);
 			return true;
 		}
+		StatAuditService.getInstance().aiWalk(owner, "randomWalkSkip", "subStateAlready=" + npcAI.getSubState());
 		return false;
 	}
 
@@ -99,9 +105,11 @@ public class WalkManager {
 	 */
 	protected static void startRouteWalking(NpcAI2 npcAI, Npc owner, WalkerTemplate template) {
 		if (!AIConfig.ACTIVE_NPC_MOVEMENT) {
+			StatAuditService.getInstance().aiWalk(owner, "routeWalkSkip", "ACTIVE_NPC_MOVEMENT=false");
 			return;
 		}
 		List<RouteStep> route = template.getRouteSteps();
+		StatAuditService.getInstance().aiWalk(owner, "routeWalkStart", "routeSteps=" + (route != null ? route.size() : 0));
 		int currentPoint = owner.getMoveController().getCurrentPoint();
 		RouteStep nextStep = findNextRoutStep(owner, route);
 		owner.getMoveController().setCurrentRoute(route);

@@ -29,9 +29,16 @@ public class SM_ABYSS_RANK extends AionServerPacket {
 	private AbyssRank rank;
 	private int currentRankId;
 
+	private static AbyssRank safeRank(AbyssRank rank) {
+		if (rank == null || rank.getRank() == null) {
+			return new AbyssRank(0, 0, 0, 0, 0, 0, AbyssRankEnum.GRADE9_SOLDIER.getId(), 0, 0, 0, 0, AbyssRankEnum.GRADE9_SOLDIER.getId(), 0, 0, 0, System.currentTimeMillis());
+		}
+		return rank;
+	}
+
 	public SM_ABYSS_RANK(AbyssRank rank) {
-		this.rank = rank;
-		this.currentRankId = rank.getRank().getId();
+		this.rank = safeRank(rank);
+		this.currentRankId = this.rank.getRank().getId();
 	}
 
 	@Override

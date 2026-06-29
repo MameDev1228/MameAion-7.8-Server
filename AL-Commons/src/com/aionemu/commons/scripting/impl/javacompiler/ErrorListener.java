@@ -45,10 +45,10 @@ public class ErrorListener implements DiagnosticListener<JavaFileObject> {
 	@Override
 	public void report(Diagnostic<? extends JavaFileObject> diagnostic) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Java Compiler ");
-		sb.append(diagnostic.getKind());
+		sb.append("Javaコンパイラ ");
+		sb.append(toJapaneseKind(diagnostic.getKind()));
 		sb.append(": ");
-		sb.append(diagnostic.getMessage(Locale.ENGLISH));
+		sb.append(diagnostic.getMessage(Locale.ROOT));
 		if (diagnostic.getSource() != null) {
 			sb.append("\n");
 			sb.append("Source: ");
@@ -60,6 +60,27 @@ public class ErrorListener implements DiagnosticListener<JavaFileObject> {
 			sb.append("Column: ");
 			sb.append(diagnostic.getColumnNumber());
 		}
-		log.error(sb.toString());
+
+		if (diagnostic.getKind() == Diagnostic.Kind.ERROR) {
+			log.error(sb.toString());
+		} else if (diagnostic.getKind() == Diagnostic.Kind.WARNING || diagnostic.getKind() == Diagnostic.Kind.MANDATORY_WARNING) {
+			log.warn(sb.toString());
+		} else {
+			log.info(sb.toString());
+		}
+	}
+
+	private String toJapaneseKind(Diagnostic.Kind kind) {
+		switch (kind) {
+			case ERROR:
+				return "エラー";
+			case WARNING:
+			case MANDATORY_WARNING:
+				return "警告";
+			case NOTE:
+				return "メモ";
+			default:
+				return kind.name();
+		}
 	}
 }

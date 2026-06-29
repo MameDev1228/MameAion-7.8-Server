@@ -16,6 +16,7 @@
 			<include name="*.jar"/>
             <exclude name="javac-*.jar"/>
             <exclude name="jsr166-*.jar"/>
+            <exclude name="javassist-3.15.0-GA.jar"/>
 		</fileset>
 	</path>
 
@@ -76,6 +77,7 @@
                 <include name="*.jar" />
 			<exclude name="javac-*.jar" />
 			<exclude name="jsr166-*.jar" />
+			<exclude name="javassist-3.15.0-GA.jar" />
             </fileset>
         </copy>
 

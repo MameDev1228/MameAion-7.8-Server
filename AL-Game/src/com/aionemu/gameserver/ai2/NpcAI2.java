@@ -20,10 +20,12 @@ import com.aionemu.gameserver.ai2.handler.ActivateEventHandler;
 import com.aionemu.gameserver.ai2.handler.DiedEventHandler;
 import com.aionemu.gameserver.ai2.handler.ShoutEventHandler;
 import com.aionemu.gameserver.ai2.handler.SpawnEventHandler;
+import com.aionemu.gameserver.ai2.handler.ThinkEventHandler;
 import com.aionemu.gameserver.ai2.poll.AIAnswer;
 import com.aionemu.gameserver.ai2.poll.AIAnswers;
 import com.aionemu.gameserver.ai2.poll.AIQuestion;
 import com.aionemu.gameserver.ai2.poll.NpcAIPolls;
+import com.aionemu.gameserver.configs.administration.DeveloperConfig;
 import com.aionemu.gameserver.configs.main.AIConfig;
 import com.aionemu.gameserver.controllers.attack.AggroList;
 import com.aionemu.gameserver.controllers.effect.EffectController;
@@ -37,6 +39,7 @@ import com.aionemu.gameserver.model.skill.NpcSkillList;
 import com.aionemu.gameserver.model.stats.container.NpcLifeStats;
 import com.aionemu.gameserver.model.templates.npc.NpcTemplate;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
+import com.aionemu.gameserver.services.debug.StatAuditService;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.world.knownlist.KnownList;
 
@@ -108,6 +111,16 @@ public class NpcAI2 extends AITemplate {
 
 	protected boolean isInRange(VisibleObject object, int range) {
 		return MathUtil.isIn3dRange(getOwner(), object, range);
+	}
+
+
+	@Override
+	public void think() {
+		if (!DeveloperConfig.AI_DEFAULT_THINK_ENABLE) {
+			return;
+		}
+		StatAuditService.getInstance().aiWalk(getOwner(), "think", "state=" + getState() + " subState=" + getSubState());
+		ThinkEventHandler.onThink(this);
 	}
 
 	@Override

@@ -113,17 +113,23 @@ public class SM_ATTACK extends AionServerPacket {
 			writeC(attack.getAttackStatus().getId());
 			byte shieldType = (byte) attack.getShieldType();
 			writeC(shieldType);
-			writeB(new byte[16]); // TODO
 
 			/**
+			 * 7.x structure follows the working 7.x reference packet.
+			 * Do not add the old 16-byte placeholder here; it shifts the remaining fields and can cause wrong client-side damage display.
 			 * shield Type: 1: reflector 2: normal shield 8: protect effect (ex. skillId: 417 Bodyguard) TODO find out 4
 			 */
 			switch (shieldType) {
 				case 0:
 				case 2:
+					writeD(attack.getProtectorId());
+					writeD(attack.getProtectedDamage());
+					writeD(attack.getProtectedSkillId());
+					writeD(attack.getReflectedDamage());
 					break;
 				case 8:
 				case 10:
+					writeD(attack.getShieldMp());
 					writeD(attack.getProtectorId());
 					writeD(attack.getProtectedDamage());
 					writeD(attack.getProtectedSkillId());

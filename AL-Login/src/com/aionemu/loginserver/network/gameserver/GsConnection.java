@@ -144,7 +144,7 @@ public class GsConnection extends AConnection {
      */
     @Override
     protected final void onDisconnect() {
-        if (Config.ENABLE_PINGPONG) {
+        if (Config.ENABLE_PINGPONG && this.pingThread != null) {
             this.pingThread.closeMe();
         }
         log.info(this + " disconnected");

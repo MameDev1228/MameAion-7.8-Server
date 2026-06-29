@@ -57,6 +57,9 @@ public class TribeRelationsData {
 
 	public TribeClass getBaseTribe(TribeClass tribeName) {
 		Tribe tribe = tribeNameMap.get(tribeName);
+		if (tribe == null) {
+			return TribeClass.GENERAL;
+		}
 		return tribe.getBase();
 	}
 

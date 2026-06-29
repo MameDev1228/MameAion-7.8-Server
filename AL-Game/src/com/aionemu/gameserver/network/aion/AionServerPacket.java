@@ -24,6 +24,7 @@ import com.aionemu.commons.network.packet.BaseServerPacket;
 import com.aionemu.gameserver.configs.administration.DeveloperConfig;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.Crypt;
+import com.aionemu.gameserver.services.packet.ProtocolTraceService;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.Util;
@@ -138,10 +139,22 @@ public abstract class AionServerPacket extends BaseServerPacket {
 			}
 		}
 
-		this.setBuf(buffer);
-		buf.putShort((short) 0);
-		writeOP(getOpcode());
-		writeImpl(con);
+		try {
+			this.setBuf(buffer);
+			buf.putShort((short) 0);
+			writeOP(getOpcode());
+			writeImpl(con);
+		}
+		catch (RuntimeException e) {
+			ProtocolTraceService.getInstance().recordEvent(con, "S2C_WRITE_IMPL_EXCEPTION_" + getPacketName(), e.getClass().getSimpleName() + ": " + e.getMessage());
+			ProtocolTraceService.getInstance().dump(con, "S2C_WRITE_IMPL_EXCEPTION_" + getPacketName(), e);
+			throw e;
+		}
+		catch (Error e) {
+			ProtocolTraceService.getInstance().recordEvent(con, "S2C_WRITE_IMPL_ERROR_" + getPacketName(), e.getClass().getSimpleName() + ": " + e.getMessage());
+			ProtocolTraceService.getInstance().dump(con, "S2C_WRITE_IMPL_ERROR_" + getPacketName(), e);
+			throw e;
+		}
 		buf.flip();
 		/**
 		 * Display Packets Name + Hex-Bytes in Chat Window
@@ -169,6 +182,7 @@ public abstract class AionServerPacket extends BaseServerPacket {
 		buf.position(BufCurrentPos);
 
 		buf.putShort((short) buf.limit());
+		ProtocolTraceService.getInstance().recordServer(con, this, buf.asReadOnlyBuffer(), "write_ok");
 		ByteBuffer b = buf.slice();
 		buf.position(0);
 		con.encrypt(b);

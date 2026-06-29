@@ -28,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.dao.DAOManager;
+import com.aionemu.gameserver.configs.administration.DeveloperConfig;
 import com.aionemu.gameserver.controllers.observer.ActionObserver;
 import com.aionemu.gameserver.controllers.observer.ObserverType;
 import com.aionemu.gameserver.dao.InventoryDAO;
@@ -43,6 +44,7 @@ import com.aionemu.gameserver.model.gameobjects.PersistentState;
 import com.aionemu.gameserver.model.gameobjects.Summon;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.items.ItemSlot;
+import com.aionemu.gameserver.model.stats.container.PlayerGameStats;
 import com.aionemu.gameserver.model.stats.listeners.ItemEquipmentListener;
 import com.aionemu.gameserver.model.templates.item.ArmorType;
 import com.aionemu.gameserver.model.templates.item.ItemCategory;
@@ -266,10 +268,28 @@ public class Equipment {
 			// update stats
 			notifyItemEquipped(item);
 			owner.getLifeStats().updateCurrentStats();
+			owner.getGameStats().updateStatsAndSpeedVisually();
+			traceEquipmentStats("equip", item);
 			setPersistentState(PersistentState.UPDATE_REQUIRED);
 			QuestEngine.getInstance().onEquipItem(new QuestEnv(null, owner, 0, 0), item.getItemId());
 
 			return item;
+		}
+	}
+
+	private void traceEquipmentStats(String action, Item item) {
+		if (!DeveloperConfig.EQUIPMENT_TRACE_ENABLE || owner == null || owner.getGameStats() == null || owner.getLifeStats() == null || item == null || item.getItemTemplate() == null) {
+			return;
+		}
+		try {
+			PlayerGameStats stats = owner.getGameStats();
+			log.info("[EQUIP_TRACE] action={} player={} itemId={} itemObjId={} slot={} type={} attackType={} weaponStats={} maxHp={} curHp={} maxMp={} curMp={} pAtk={} mAtk={} acc={} mAcc={} pCrit={} mCrit={}", new Object[] {
+				action, owner.getName(), item.getItemId(), item.getObjectId(), item.getEquipmentSlot(), item.getItemTemplate().getItemType(), item.getItemTemplate().getAttackType(),
+				item.getItemTemplate().getWeaponStats() != null, stats.getMaxHp().getCurrent(), owner.getLifeStats().getCurrentHp(), stats.getMaxMp().getCurrent(), owner.getLifeStats().getCurrentMp(),
+				stats.getMainHandPAttack().getCurrent(), stats.getMAttack().getCurrent(), stats.getMainHandPAccuracy().getCurrent(), stats.getMAccuracy().getCurrent(), stats.getMainHandPCritical().getCurrent(), stats.getMCritical().getCurrent() });
+		}
+		catch (Exception e) {
+			log.warn("[EQUIP_TRACE_FAIL] action={} player={} itemId={} reason={}", new Object[] { action, owner.getName(), item.getItemId(), e.toString() });
 		}
 	}
 
@@ -371,6 +391,7 @@ public class Equipment {
 		notifyItemUnequip(item);
 		owner.getLifeStats().updateCurrentStats();
 		owner.getGameStats().updateStatsAndSpeedVisually();
+		traceEquipmentStats("unequip", item);
 		owner.getInventory().put(item);
 	}
 
@@ -1158,6 +1179,9 @@ public class Equipment {
 
 		owner.getLifeStats().updateCurrentStats();
 		owner.getGameStats().updateStatsAndSpeedVisually();
+		for (Item item : equippedWeapon) {
+			traceEquipmentStats("switchhand", item);
+		}
 
 		// remove stance effect when switchhand
 		if (owner.getController().isUnderStance()) {

@@ -50,21 +50,19 @@ public class ZCXInfo {
 	public static void getInfo() throws IOException {
 		readInfo();
 		System.out.println("");
-		System.out.println("      .o.        o8o                          .oooooo.");
-		System.out.println("     .888.       `\"'                         d8P'  `Y8b");
-		System.out.println("    .8\"888.     oooo   .ooooo.  ooo. .oo.   888            .ooooo.  oooo d8b");
-		System.out.println("   .8' `888.    `888  d88' `88b `888P\"Y88b  888           d88' `88b `888\"\"8P ");
-		System.out.println("  .88ooo8888.    888  888   888  888   888  888     ooooo 888ooo888  888");
-		System.out.println(" .8'     `888.   888  888   888  888   888  `88.    .88'  888    .o  888");
-		System.out.println(" o88o     o8888o o888o `Y8bod8P' o888o o888o  `Y8bood8P'   `Y8bod8P' d888b");
+		System.out.println("============================================================");
+		System.out.println("                    MameAion 7.8");
+		System.out.println("              JDK25 Runtime Server Core");
+		System.out.println("============================================================");
 		System.out.println("");
-		System.out.println("######## This is an AionGerman-Core - based on an AionLightning Source ########");
+		System.out.println("######## MameAion 7.8.0 - Private Server Core ########");
 		System.out.println("");
-		System.out.println("");
-		System.out.println("\t\t\tThanks to all who helped this project!");
-		System.out.println("\t\t\tMajor Patch: " + getVersion());
-		System.out.println("\t\t\tMinor Patch: " + getMinor());
-		System.out.println("\t\t\tCopyright: " + getCopyright());
+		System.out.println("			Project: MameAion 7.8");
+		System.out.println("			Runtime Line: MameAion 7.8.0 / JDK25");
+		System.out.println("			Source Line: 7.8 EU compatible server core");
+		System.out.println("			Major Patch: " + getVersion());
+		System.out.println("			Minor Patch: " + getMinor());
+		System.out.println("			Copyright: " + getCopyright());
 		System.out.println("");
 	}
 

@@ -22,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.model.stats.container.StatEnum;
+import com.aionemu.gameserver.services.debug.StatAuditService;
 
 /**
  * @author ATracer
@@ -29,8 +30,9 @@ import com.aionemu.gameserver.model.stats.container.StatEnum;
 public class StatCapUtil {
 
 	protected static final Logger log = LoggerFactory.getLogger(StatCapUtil.class);
-	static final int LOWER_CAP = Short.MIN_VALUE; // -32767
+	static final int LOWER_CAP = Short.MIN_VALUE; // -32768
 	static final int UPPER_CAP = Short.MAX_VALUE; // 32767
+	static final int EXTENDED_UPPER_CAP = Integer.MAX_VALUE; // 7.x visible stats can exceed signed short range
 
 	static class StatLimits {
 
@@ -153,16 +155,40 @@ public class StatCapUtil {
 			case PVP_DEFEND_RATIO_MAGICAL:
 				value = 900;
 				break;
-			case MAXHP:
+				case MAXHP:
 			case MAXMP:
 			case HEAL_BOOST:
 			case HEAL_SKILL_BOOST:
+			case PHYSICAL_ATTACK:
+			case MAGICAL_ATTACK:
+			case MAIN_HAND_POWER:
+			case OFF_HAND_POWER:
+			case MAIN_HAND_MAGICAL_POWER:
+			case OFF_HAND_MAGICAL_POWER:
+			case MAIN_HAND_MAGICAL_ATTACK:
+			case OFF_HAND_MAGICAL_ATTACK:
 			case PHYSICAL_ACCURACY:
+			case MAGICAL_ACCURACY:
+			case MAIN_HAND_ACCURACY:
+			case OFF_HAND_ACCURACY:
+			case MAIN_HAND_MAGICAL_ACCURACY:
+			case OFF_HAND_MAGICAL_ACCURACY:
 			case PHYSICAL_CRITICAL:
+			case MAGICAL_CRITICAL:
+			case MAIN_HAND_CRITICAL:
+			case OFF_HAND_CRITICAL:
+			case MAIN_HAND_MAGICAL_CRITICAL:
+			case OFF_HAND_MAGICAL_CRITICAL:
+			case PHYSICAL_DEFENSE:
+			case MAGICAL_DEFEND:
+			case MAGICAL_RESIST:
+			case EVASION:
+			case PARRY:
+			case BLOCK:
 			case BOOST_MAGICAL_SKILL:
 			case BOOST_DURATION_BUFF:
 			case BOOST_SPELL_ATTACK:
-				value = Integer.MAX_VALUE;
+				value = EXTENDED_UPPER_CAP;
 				break;
 			default:
 				break;
@@ -171,11 +197,14 @@ public class StatCapUtil {
 	}
 
 	private static void calculate(Stat2 stat2, int lowerCap, int upperCap) {
-		if (stat2.getCurrent() > upperCap) {
+		int before = stat2.getCurrent();
+		if (before > upperCap) {
 			stat2.setBonus(upperCap - stat2.getBase());
+			StatAuditService.getInstance().statCap(stat2, before, stat2.getCurrent(), lowerCap, upperCap, "upper");
 		}
-		else if (stat2.getCurrent() < lowerCap) {
+		else if (before < lowerCap) {
 			stat2.setBonus(lowerCap - stat2.getBase());
+			StatAuditService.getInstance().statCap(stat2, before, stat2.getCurrent(), lowerCap, upperCap, "lower");
 		}
 	}
 }

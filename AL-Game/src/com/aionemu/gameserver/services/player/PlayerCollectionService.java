@@ -77,6 +77,10 @@ public class PlayerCollectionService {
 	}
 
 	public void onLogout(Player player) {
+		if (player == null || player.getPlayerCollection() == null) {
+			log.warn("[PlayerCollectionService] Skip logout cleanup because collection is not initialized" + (player != null ? " for playerId=" + player.getObjectId() : "."));
+			return;
+		}
 		for (PlayerCollectionEntry complete : player.getPlayerCollection().getCompleteCollection()) {
 			complete.end(player);
 		}

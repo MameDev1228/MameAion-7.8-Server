@@ -175,7 +175,11 @@ public class Npc extends Creature {
 
 	@Override
 	public TribeClass getBaseTribe() {
-		return DataManager.TRIBE_RELATIONS_DATA.getBaseTribe(getTribe());
+		TribeClass tribe = getTribe();
+		if (tribe == null) {
+			return TribeClass.GENERAL;
+		}
+		return DataManager.TRIBE_RELATIONS_DATA.getBaseTribe(tribe);
 	}
 
 	public int getAggroRange() {
@@ -229,6 +233,10 @@ public class Npc extends Creature {
 
 	@Override
 	public int getType(Creature creature) {
+		if (getTribe() == null || creature == null || creature.getTribe() == null) {
+			int safeType = getObjectTemplate().isDialogNpc() ? CreatureType.FRIEND.getId() : CreatureType.PEACE.getId();
+			return safeType;
+		}
 		int typeForPlayer = -1;
 		if (TribeRelationService.isInvulnerable(this, creature)) {
 			typeForPlayer = CreatureType.INVULNERABLE.getId();

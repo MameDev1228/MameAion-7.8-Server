@@ -37,7 +37,7 @@ public class DatabaseConfig {
 	/**
 	 * Name of database Driver
 	 */
-	@Property(key = "database.driver", defaultValue = "com.mysql.cj.jdbc.Driver")
+	@Property(key = "database.driver", defaultValue = "com.mysql.jdbc.Driver")
 	public static Class<?> DATABASE_DRIVER;
 
 	/**

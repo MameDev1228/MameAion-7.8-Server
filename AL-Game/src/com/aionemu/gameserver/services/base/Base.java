@@ -21,6 +21,10 @@ import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.aionemu.commons.callbacks.Callback;
 import com.aionemu.commons.callbacks.EnhancedObject;
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.ai2.AbstractAI;
@@ -53,6 +57,8 @@ import javolution.util.FastList;
  * @author Source
  */
 public class Base<BL extends BaseLocation> {
+
+	private static final Logger log = LoggerFactory.getLogger(Base.class);
 
 	private Future<?> startAssault, stopAssault;
 	private final BL baseLocation;
@@ -459,15 +465,35 @@ public class Base<BL extends BaseLocation> {
 	}
 
 	protected void addBossListeners() {
-		AbstractAI ai = (AbstractAI) getBoss().getAi2();
-		EnhancedObject eo = (EnhancedObject) ai;
-		eo.addCallback(getBossListener());
+		if (getBoss() == null) {
+			return;
+		}
+		addObjectCallbackIfPossible(getBoss().getAi2(), getBossListener(), "base boss death");
 	}
 
 	protected void rmvBossListener() {
-		AbstractAI ai = (AbstractAI) getBoss().getAi2();
-		EnhancedObject eo = (EnhancedObject) ai;
-		eo.removeCallback(getBossListener());
+		if (getBoss() == null) {
+			return;
+		}
+		removeObjectCallbackIfPossible(getBoss().getAi2(), getBossListener(), "base boss death");
+	}
+
+	private void addObjectCallbackIfPossible(Object target, Callback<?> callback, String label) {
+		if (target instanceof EnhancedObject) {
+			((EnhancedObject) target).addCallback(callback);
+		}
+		else {
+			log.warn("[BaseService] " + label + " callback skipped for base " + getId() + " because " + (target == null ? "null" : target.getClass().getName()) + " is not EnhancedObject. JDK25 safe mode keeps booting.");
+		}
+	}
+
+	private void removeObjectCallbackIfPossible(Object target, Callback<?> callback, String label) {
+		if (target instanceof EnhancedObject) {
+			((EnhancedObject) target).removeCallback(callback);
+		}
+		else if (target != null) {
+			log.debug("[BaseService] " + label + " callback remove skipped for base " + getId() + " because " + target.getClass().getName() + " is not EnhancedObject.");
+		}
 	}
 
 	public Npc getFlag() {

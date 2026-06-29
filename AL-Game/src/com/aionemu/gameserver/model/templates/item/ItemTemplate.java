@@ -456,7 +456,29 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public ItemAttackType getAttackType() {
-		return attackType;
+		if (attackType != null) {
+			return attackType;
+		}
+		return inferAttackType();
+	}
+
+	private ItemAttackType inferAttackType() {
+		if (!isWeapon() || weaponType == null) {
+			return ItemAttackType.PHYSICAL;
+		}
+		switch (weaponType) {
+			case BOOK_2H:
+			case ORB_2H:
+			case GUN_1H:
+			case CANNON_2H:
+			case HARP_2H:
+			case GUN_2H:
+			case SPRAY_2H:
+			case KEYBLADE_2H:
+				return ItemAttackType.MAGICAL_FIRE;
+			default:
+				return ItemAttackType.PHYSICAL;
+		}
 	}
 
 	public float getAttackGap() {
@@ -664,7 +686,7 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public boolean isTwoHandWeapon() {
-		if (!isWeapon()) {
+		if (!isWeapon() || weaponType == null) {
 			return false;
 		}
 		return weaponType.getRequiredSlots() == 2 ? true : false;

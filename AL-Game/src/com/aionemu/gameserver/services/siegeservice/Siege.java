@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.aionemu.commons.callbacks.Callback;
 import com.aionemu.commons.callbacks.EnhancedObject;
 import com.aionemu.gameserver.ai2.AbstractAI;
 import com.aionemu.gameserver.configs.main.SiegeConfig;
@@ -180,25 +181,42 @@ public abstract class Siege<SL extends SiegeLocation> {
 	}
 
 	protected void registerSiegeBossListeners() {
-		// Add hate listener - we should know when someone attacked general
-		EnhancedObject eo = (EnhancedObject) getBoss().getAggroList();
-		eo.addCallback(getSiegeBossDoAddDamageListener());
+		if (getBoss() == null) {
+			return;
+		}
 
-		// Add die listener - we should stop the siege when general dies
-		AbstractAI ai = (AbstractAI) getBoss().getAi2();
-		eo = (EnhancedObject) ai;
-		eo.addCallback(getSiegeBossDeathListener());
+		// Add hate listener - we should know when someone attacked general.
+		addObjectCallbackIfPossible(getBoss().getAggroList(), getSiegeBossDoAddDamageListener(), "siege boss aggro");
+
+		// Add die listener - we should stop the siege when general dies.
+		addObjectCallbackIfPossible(getBoss().getAi2(), getSiegeBossDeathListener(), "siege boss AI death");
 	}
 
 	protected void unregisterSiegeBossListeners() {
-		// Add hate listener - we should know when someone attacked general
-		EnhancedObject eo = (EnhancedObject) getBoss().getAggroList();
-		eo.removeCallback(getSiegeBossDoAddDamageListener());
+		if (getBoss() == null) {
+			return;
+		}
 
-		// Add die listener - we should stop the siege when general dies
-		AbstractAI ai = (AbstractAI) getBoss().getAi2();
-		eo = (EnhancedObject) ai;
-		eo.removeCallback(getSiegeBossDeathListener());
+		removeObjectCallbackIfPossible(getBoss().getAggroList(), getSiegeBossDoAddDamageListener(), "siege boss aggro");
+		removeObjectCallbackIfPossible(getBoss().getAi2(), getSiegeBossDeathListener(), "siege boss AI death");
+	}
+
+	private void addObjectCallbackIfPossible(Object target, Callback<?> callback, String label) {
+		if (target instanceof EnhancedObject) {
+			((EnhancedObject) target).addCallback(callback);
+		}
+		else {
+			log.warn("[SiegeService] " + label + " callback skipped for siege " + getSiegeLocationId() + " because " + (target == null ? "null" : target.getClass().getName()) + " is not EnhancedObject. JDK25 safe mode keeps booting.");
+		}
+	}
+
+	private void removeObjectCallbackIfPossible(Object target, Callback<?> callback, String label) {
+		if (target instanceof EnhancedObject) {
+			((EnhancedObject) target).removeCallback(callback);
+		}
+		else if (target != null) {
+			log.debug("[SiegeService] " + label + " callback remove skipped for siege " + getSiegeLocationId() + " because " + target.getClass().getName() + " is not EnhancedObject.");
+		}
 	}
 
 	protected void initSiegeBoss() {

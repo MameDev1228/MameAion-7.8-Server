@@ -155,8 +155,21 @@ public class ConfigurableProcessor {
 				log.debug("Field " + f.getName() + " of class " + f.getDeclaringClass().getName() + " wasn't modified");
 			}
 		} catch (Exception e) {
-			log.error("Can't transform field " + f.getName() + " of class " + f.getDeclaringClass());
-			throw new RuntimeException();
+			Property property = f.getAnnotation(Property.class);
+			String key = property == null ? "<unknown>" : property.key();
+			String value = null;
+			try {
+				value = property == null ? null : findPropertyByKey(key, props);
+			} catch (Exception ignored) {
+			}
+			if (value == null && property != null) {
+				value = property.defaultValue();
+			}
+			if (key != null && key.toLowerCase().contains("password")) {
+				value = "<redacted>";
+			}
+			log.error("Can't transform field {} of class {} from property '{}' value '{}'", f.getName(), f.getDeclaringClass().getName(), key, value, e);
+			throw new RuntimeException("Can't transform field " + f.getName() + " from property " + key, e);
 		}
 		f.setAccessible(oldAccessible);
 	}

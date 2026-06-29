@@ -36,23 +36,37 @@ public class NetworkUtils {
 	 * @return true if address match pattern
 	 */
 	public static boolean checkIPMatching(String pattern, String address) {
+		if (pattern == null || address == null)
+			return false;
+
+		pattern = pattern.trim();
+		address = address.trim();
 		if (pattern.equals("*.*.*.*") || pattern.equals("*"))
 			return true;
 
 		String[] mask = pattern.split("\\.");
 		String[] ip_address = address.split("\\.");
+		if (mask.length != ip_address.length)
+			return false;
+
 		for (int i = 0; i < mask.length; i++) {
-			if (mask[i].equals("*") || mask[i].equals(ip_address[i]))
+			if (mask[i].equals("*"))
 				continue;
 			else if (mask[i].contains("-")) {
-				byte min = Byte.parseByte(mask[i].split("-")[0]);
-				byte max = Byte.parseByte(mask[i].split("-")[1]);
-				byte ip = Byte.parseByte(ip_address[i]);
+				int min = Integer.parseInt(mask[i].split("-")[0]);
+				int max = Integer.parseInt(mask[i].split("-")[1]);
+				int ip = Integer.parseInt(ip_address[i]);
 				if (ip < min || ip > max)
 					return false;
+			} else if (parseOctet(mask[i]) == parseOctet(ip_address[i])) {
+				continue;
 			} else
 				return false;
 		}
 		return true;
+	}
+
+	private static int parseOctet(String octet) {
+		return Integer.parseInt(octet.trim());
 	}
 }

@@ -69,4 +69,75 @@ public class DeveloperConfig {
 	 */
 	@Property(key = "gameserver.developer.show.packets.inchat.accesslevel", defaultValue = "6")
 	public static int SHOW_PACKETS_INCHAT_ACCESSLEVEL;
+	/**
+	 * Lightweight per-connection protocol trace for 7.8 opcode/JDK25 migration.
+	 */
+	@Property(key = "gameserver.developer.protocol.trace.enable", defaultValue = "true")
+	public static boolean PROTOCOL_TRACE_ENABLE;
+	@Property(key = "gameserver.developer.protocol.trace.dir", defaultValue = "log/protocol")
+	public static String PROTOCOL_TRACE_DIR;
+	@Property(key = "gameserver.developer.protocol.trace.last.packets", defaultValue = "200")
+	public static int PROTOCOL_TRACE_LAST_PACKETS;
+	@Property(key = "gameserver.developer.protocol.trace.hex.bytes", defaultValue = "128")
+	public static int PROTOCOL_TRACE_HEX_BYTES;
+	@Property(key = "gameserver.developer.protocol.trace.dump.on.disconnect", defaultValue = "true")
+	public static boolean PROTOCOL_TRACE_DUMP_ON_DISCONNECT;
+	@Property(key = "gameserver.developer.protocol.trace.dump.on.exception", defaultValue = "true")
+	public static boolean PROTOCOL_TRACE_DUMP_ON_EXCEPTION;
+	@Property(key = "gameserver.developer.protocol.trace.enterworld", defaultValue = "true")
+	public static boolean PROTOCOL_TRACE_ENTER_WORLD;
+	@Property(key = "gameserver.developer.protocol.trace.log.client.packets", defaultValue = "false")
+	public static boolean PROTOCOL_TRACE_LOG_CLIENT_PACKETS;
+	@Property(key = "gameserver.developer.protocol.trace.log.server.packets", defaultValue = "false")
+	public static boolean PROTOCOL_TRACE_LOG_SERVER_PACKETS;
+
+	@Property(key = "gameserver.developer.equipment.trace.enable", defaultValue = "true")
+	public static boolean EQUIPMENT_TRACE_ENABLE;
+	@Property(key = "gameserver.developer.equipment.trace.console", defaultValue = "true")
+	public static boolean EQUIPMENT_TRACE_CONSOLE;
+	@Property(key = "gameserver.developer.equipment.trace.verbose", defaultValue = "true")
+	public static boolean EQUIPMENT_TRACE_VERBOSE;
+	@Property(key = "gameserver.developer.combat.trace.enable", defaultValue = "true")
+	public static boolean COMBAT_TRACE_ENABLE;
+	@Property(key = "gameserver.developer.combat.trace.console", defaultValue = "true")
+	public static boolean COMBAT_TRACE_CONSOLE;
+	@Property(key = "gameserver.developer.combat.trace.player.only", defaultValue = "true")
+	public static boolean COMBAT_TRACE_PLAYER_ONLY;
+	@Property(key = "gameserver.developer.combat.suppress.zero.damage.npc.to.player", defaultValue = "true")
+	public static boolean COMBAT_SUPPRESS_ZERO_DAMAGE_NPC_TO_PLAYER;
+	@Property(key = "gameserver.developer.buff.trace.enable", defaultValue = "true")
+	public static boolean BUFF_TRACE_ENABLE;
+	@Property(key = "gameserver.developer.buff.trace.console", defaultValue = "true")
+	public static boolean BUFF_TRACE_CONSOLE;
+	@Property(key = "gameserver.developer.stat.audit.file.enable", defaultValue = "true")
+	public static boolean STAT_AUDIT_FILE_ENABLE;
+	@Property(key = "gameserver.developer.stat.audit.dir", defaultValue = "log/devprobe")
+	public static String STAT_AUDIT_DIR;
+
+	@Property(key = "gameserver.developer.skill.trace.enable", defaultValue = "true")
+	public static boolean SKILL_TRACE_ENABLE;
+	@Property(key = "gameserver.developer.skill.trace.console", defaultValue = "true")
+	public static boolean SKILL_TRACE_CONSOLE;
+	@Property(key = "gameserver.developer.effect.trace.all.enable", defaultValue = "true")
+	public static boolean EFFECT_TRACE_ALL_ENABLE;
+	@Property(key = "gameserver.developer.effect.trace.console", defaultValue = "false")
+	public static boolean EFFECT_TRACE_CONSOLE;
+	@Property(key = "gameserver.developer.npc.visibility.trace.enable", defaultValue = "true")
+	public static boolean NPC_VISIBILITY_TRACE_ENABLE;
+	@Property(key = "gameserver.developer.npc.visibility.trace.console", defaultValue = "false")
+	public static boolean NPC_VISIBILITY_TRACE_CONSOLE;
+	@Property(key = "gameserver.developer.ai.walk.trace.enable", defaultValue = "true")
+	public static boolean AI_WALK_TRACE_ENABLE;
+	@Property(key = "gameserver.developer.ai.walk.trace.console", defaultValue = "false")
+	public static boolean AI_WALK_TRACE_CONSOLE;
+	@Property(key = "gameserver.developer.ai.default.think.enable", defaultValue = "true")
+	public static boolean AI_DEFAULT_THINK_ENABLE;
+	@Property(key = "gameserver.developer.packet.attackstatus.skill.skin", defaultValue = "false")
+	public static boolean PACKET_ATTACK_STATUS_SKILL_SKIN;
+
+	@Property(key = "gameserver.developer.stat.cap.trace.enable", defaultValue = "true")
+	public static boolean STAT_CAP_TRACE_ENABLE;
+	@Property(key = "gameserver.developer.stat.cap.trace.console", defaultValue = "true")
+	public static boolean STAT_CAP_TRACE_CONSOLE;
+
 }

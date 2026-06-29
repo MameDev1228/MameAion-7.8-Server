@@ -99,6 +99,7 @@ public class ObjectCallbackEnhancer extends CallbackClassFileTransformer {
 				enhanceMethod(method);
 			}
 
+			rebuildStackMapForModernJdk(cp, clazz);
 			return clazz.toBytecode();
 		} else {
 			log.trace("Class " + clazz.getName() + " was not enhanced");
@@ -354,4 +355,14 @@ public class ObjectCallbackEnhancer extends CallbackClassFileTransformer {
 		return !(Modifier.isAbstract(modifiers) || Modifier.isNative(modifiers) || Modifier.isStatic(modifiers))
 				&& CallbacksUtil.isAnnotationPresent(method, ObjectCallback.class);
 	}
+	private void rebuildStackMapForModernJdk(ClassPool cp, CtClass clazz) {
+		try {
+			clazz.rebuildClassFile();
+		}
+		catch (Throwable t) {
+			log.warn("Could not rebuild stack map for " + clazz.getName() + "; continuing with original frames.", t);
+		}
+	}
+
+
 }

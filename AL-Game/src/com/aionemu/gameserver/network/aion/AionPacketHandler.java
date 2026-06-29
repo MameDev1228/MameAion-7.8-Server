@@ -33,6 +33,7 @@ import com.aionemu.gameserver.configs.network.NetworkConfig;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.services.packet.PacketAuditService;
+import com.aionemu.gameserver.services.packet.ProtocolTraceService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.Util;
 
@@ -86,6 +87,8 @@ public class AionPacketHandler {
 			unknownPacket(state, id, buf, con);
 			return null;
 		}
+
+		ProtocolTraceService.getInstance().recordClient(con, prototype.getPacketName(), id, state, buf, "known_opcode");
 
 		/**
 		 * Display Packets Name + Hex-Bytes in Chat Window
@@ -174,6 +177,7 @@ public class AionPacketHandler {
 		fullPacket.position(0);
 		String hex = Util.toHex(fullPacket);
 		String playerInfo = getConnectionInfo(con);
+		ProtocolTraceService.getInstance().recordClient(con, "UNKNOWN_C2S", id, state, data, "unregistered_opcode");
 		String message = String.format("Unknown packet received from Aion client: 0x%04X, state=%s, %s%n%s", id, state.toString(), playerInfo, hex);
 		log.warn(message);
 		appendUnknownPacketFile(id, state, playerInfo, hex);
@@ -188,6 +192,8 @@ public class AionPacketHandler {
 			hex = Util.toHex(fullPacket);
 		}
 		String playerInfo = getConnectionInfo(con);
+		ProtocolTraceService.getInstance().recordClient(con, "INVALID_C2S", 0, state, data, reason);
+		ProtocolTraceService.getInstance().dump(con, "INVALID_C2S_" + reason, null);
 		String message = String.format("Invalid packet received from Aion client: reason=%s, state=%s, %s%n%s", reason, state.toString(), playerInfo, hex);
 		log.warn(message);
 		appendPacketFile("invalid_packets.log", 0, state, playerInfo, reason, hex);

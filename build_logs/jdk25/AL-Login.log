@@ -23,7 +23,7 @@ dist:
     [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\libs
     [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\sql
      [copy] Copying 1 file to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\libs
-     [copy] Copying 13 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\libs
+     [copy] Copying 23 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\libs
      [copy] Copying 5 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login
      [copy] Copying 4 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\config
      [copy] Copying 15 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\dist\AL-Login\data
@@ -31,4 +31,4 @@ dist:
       [zip] Building zip: C:\MameAion\ServerFile\aion-server-7.8\AL-Login\build\AL-Login.zip
 
 BUILD SUCCESSFUL
-Total time: 1 second
+Total time: 3 seconds

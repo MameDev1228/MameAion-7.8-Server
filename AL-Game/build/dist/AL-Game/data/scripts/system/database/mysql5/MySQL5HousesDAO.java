@@ -22,6 +22,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.Collection;
 import java.util.HashMap;
@@ -124,12 +125,15 @@ public class MySQL5HousesDAO extends HousesDAO {
 			stmt.setInt(2, house.getAddress().getId());
 			stmt.setInt(3, house.getBuilding().getId());
 			stmt.setInt(4, house.getOwnerId());
-			if (house.getAcquiredTime() == null) {
-				stmt.setNull(5, Types.TIMESTAMP);
+			Timestamp acquiredTime = house.getAcquiredTime();
+			if (acquiredTime == null) {
+				// MameAion 7.8 / MySQL8 strict mode: houses.acquire_time is NOT NULL.
+				// Unsold auction houses/studios may not have an acquired time yet, but sending
+				// an explicit SQL NULL bypasses the DB DEFAULT and breaks the insert.
+				acquiredTime = new Timestamp(System.currentTimeMillis());
+				house.setAcquiredTime(acquiredTime);
 			}
-			else {
-				stmt.setTimestamp(5, house.getAcquiredTime());
-			}
+			stmt.setTimestamp(5, acquiredTime);
 
 			stmt.setInt(6, house.getPermissions());
 			stmt.setString(7, house.getStatus().toString());
@@ -150,7 +154,7 @@ public class MySQL5HousesDAO extends HousesDAO {
 			}
 
 			byte[] signNotice = house.getSignNotice();
-			if (signNotice.length == 0) {
+			if (signNotice == null || signNotice.length == 0) {
 				stmt.setNull(11, Types.BINARY);
 			}
 			else {
@@ -180,12 +184,12 @@ public class MySQL5HousesDAO extends HousesDAO {
 
 			stmt.setInt(1, house.getBuilding().getId());
 			stmt.setInt(2, house.getOwnerId());
-			if (house.getAcquiredTime() == null) {
-				stmt.setNull(3, Types.TIMESTAMP);
+			Timestamp acquiredTime = house.getAcquiredTime();
+			if (acquiredTime == null) {
+				acquiredTime = new Timestamp(System.currentTimeMillis());
+				house.setAcquiredTime(acquiredTime);
 			}
-			else {
-				stmt.setTimestamp(3, house.getAcquiredTime());
-			}
+			stmt.setTimestamp(3, acquiredTime);
 
 			stmt.setInt(4, house.getPermissions());
 			stmt.setString(5, house.getStatus().toString());
@@ -206,7 +210,7 @@ public class MySQL5HousesDAO extends HousesDAO {
 			}
 
 			byte[] signNotice = house.getSignNotice();
-			if (signNotice.length == 0) {
+			if (signNotice == null || signNotice.length == 0) {
 				stmt.setNull(9, Types.BINARY);
 			}
 			else {

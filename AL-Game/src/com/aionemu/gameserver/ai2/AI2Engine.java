@@ -97,8 +97,26 @@ public class AI2Engine implements GameEngine {
 
 	public final AI2 setupAI(String name, Creature owner) {
 		AbstractAI aiInstance = null;
+		String requestedName = name;
+		Class<? extends AbstractAI> aiClass = aiMap.get(name);
+
+		if (aiClass == null && name != null && !"dummy".equals(name)) {
+			log.warn("[AIEngine] AI factory missing '{}', fallback to dummy", name);
+			name = "dummy";
+			aiClass = aiMap.get(name);
+		}
+		if (aiClass == null && !"general".equals(name)) {
+			log.warn("[AIEngine] AI factory missing dummy, fallback to general");
+			name = "general";
+			aiClass = aiMap.get(name);
+		}
+		if (aiClass == null) {
+			log.error("[AIEngine] AI factory has no usable fallback for '{}'. Loaded AI handlers: {}", requestedName, aiMap.keySet());
+			return null;
+		}
+
 		try {
-			aiInstance = aiMap.get(name).newInstance();
+			aiInstance = aiClass.getDeclaredConstructor().newInstance();
 			aiInstance.setOwner(owner);
 			owner.setAi2(aiInstance);
 			if (AIConfig.ONCREATE_DEBUG) {
@@ -106,7 +124,7 @@ public class AI2Engine implements GameEngine {
 			}
 		}
 		catch (Exception e) {
-			log.error("[AIEngine] AI factory error: " + name, e);
+			log.error("[AIEngine] AI factory error: " + requestedName + " -> " + name, e);
 		}
 		return aiInstance;
 	}

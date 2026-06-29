@@ -95,10 +95,15 @@ public class CM_GS_AUTH extends GsClientPacket {
     protected void runImpl() {
         final GsConnection client = this.getConnection();
 
+        log.info("[GS-AUTH-PACKET] received id=" + (gameServerId & 0xFF) + " remoteIp=" + client.getIP() + " port=" + port
+            + " maxPlayers=" + maxPlayers + " defaultAddress=" + formatAddress(defaultAddress) + " ipRangeCount=" + (ipRanges == null ? 0 : ipRanges.size())
+            + " passwordLength=" + (password == null ? -1 : password.length()));
+
         GsAuthResponse resp = GameServerTable.registerGameServer(client, gameServerId, defaultAddress, ipRanges, port, maxPlayers, password);
+        log.info("[GS-AUTH-PACKET] result id=" + (gameServerId & 0xFF) + " remoteIp=" + client.getIP() + " response=" + resp);
         switch (resp) {
             case AUTHED:
-                log.info("Gameserver #" + gameServerId + " is now online.");
+                log.info("Gameserver #" + (gameServerId & 0xFF) + " is now online.");
                 client.setState(State.AUTHED);
                 client.sendPacket(new SM_GS_AUTH_RESPONSE(resp));
                 ThreadPoolManager.getInstance().schedule(new Runnable() {
@@ -112,5 +117,19 @@ public class CM_GS_AUTH extends GsClientPacket {
             default:
                 client.close(new SM_GS_AUTH_RESPONSE(resp), false);
         }
+    }
+
+    private String formatAddress(byte[] address) {
+        if (address == null || address.length == 0) {
+            return "empty";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < address.length; i++) {
+            if (i > 0) {
+                sb.append('.');
+            }
+            sb.append(address[i] & 0xFF);
+        }
+        return sb.toString();
     }
 }

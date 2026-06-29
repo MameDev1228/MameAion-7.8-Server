@@ -30,6 +30,7 @@ import com.aionemu.commons.network.Dispatcher;
 import com.aionemu.commons.network.PacketProcessor;
 import com.aionemu.commons.utils.concurrent.ExecuteWrapper;
 import com.aionemu.commons.utils.concurrent.RunnableStatsManager;
+import com.aionemu.gameserver.configs.administration.DeveloperConfig;
 import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.configs.main.SecurityConfig;
 import com.aionemu.gameserver.configs.network.NetworkConfig;
@@ -42,6 +43,7 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_KEY;
 import com.aionemu.gameserver.network.factories.AionPacketHandlerFactory;
 import com.aionemu.gameserver.network.loginserver.LoginServer;
 import com.aionemu.gameserver.network.loginserver.serverpackets.SM_MAC;
+import com.aionemu.gameserver.services.packet.ProtocolTraceService;
 import com.aionemu.gameserver.services.player.PlayerLeaveWorldService;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.Util;
@@ -301,6 +303,8 @@ public class AionConnection extends AConnection {
 				packetProcessor.executePacket(pck);
 			}
 			else {
+				ProtocolTraceService.getInstance().recordClient(this, pck.getPacketName(), pck.getOpcode(), getState(), rawPacketForDiagnostics, "read_failed");
+				ProtocolTraceService.getInstance().dump(this, "C2S_READ_FAIL_" + pck.getPacketName(), null);
 				log.warn("Client packet read failed. packet=" + pck + ", state=" + getState() + ", connection=" + this + System.lineSeparator() + Util.toHex(rawPacketForDiagnostics));
 			}
 		}
@@ -327,6 +331,14 @@ public class AionConnection extends AConnection {
 				packet.write(this, data);
 				return true;
 			}
+			catch (RuntimeException e) {
+				ProtocolTraceService.getInstance().dump(this, "S2C_WRITE_EXCEPTION_" + packet.getPacketName(), e);
+				throw e;
+			}
+			catch (Error e) {
+				ProtocolTraceService.getInstance().dump(this, "S2C_WRITE_ERROR_" + packet.getPacketName(), e);
+				throw e;
+			}
 			finally {
 				RunnableStatsManager.handleStats(packet.getClass(), "runImpl()", System.nanoTime() - begin);
 			}
@@ -352,6 +364,9 @@ public class AionConnection extends AConnection {
 		/**
 		 * Client starts authentication procedure
 		 */
+		if (DeveloperConfig.PROTOCOL_TRACE_DUMP_ON_DISCONNECT) {
+			ProtocolTraceService.getInstance().dump(this, "DISCONNECT", null);
+		}
 		pingChecker.stop();
 		if (getAccount() != null) {
 			LoginServer.getInstance().aionClientDisconnected(getAccount().getId());

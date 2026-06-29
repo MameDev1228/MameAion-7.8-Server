@@ -40,6 +40,10 @@ public class MySQL5DAOUtils {
 	 * @return supports or not
 	 */
 	public static boolean supports(String db, int majorVersion, int minorVersion) {
-		return MYSQL_DB_NAME.equals(db) && majorVersion == 5;
+		if (db == null) {
+			return false;
+		}
+		String databaseName = db.toLowerCase(java.util.Locale.ROOT);
+		return (databaseName.contains("mysql") || databaseName.contains("mariadb")) && majorVersion >= 5;
 	}
 }

@@ -10,7 +10,7 @@ init:
     [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\classes
 
 compile:
-    [javac] Compiling 2818 source files to C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\classes
+    [javac] Compiling 2820 source files to C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\classes
     [javac] ノート: C:\MameAion\ServerFile\aion-server-7.8\AL-Game\src\com\aionemu\gameserver\model\templates\minion\MinionActions.javaの操作は、未チェックまたは安全ではありません。
     [javac] ノート: 詳細は、-Xlint:uncheckedオプションを指定して再コンパイルしてください。
 
@@ -25,7 +25,7 @@ dist:
     [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\dist\AL-Game\libs
     [mkdir] Created dir: C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\dist\AL-Game\sql
      [copy] Copying 1 file to C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\dist\AL-Game\libs
-     [copy] Copying 22 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\dist\AL-Game\libs
+     [copy] Copying 32 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\dist\AL-Game\libs
      [copy] Copying 8 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\dist\AL-Game
      [copy] Copying 56 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\dist\AL-Game\config
      [copy] Copying 1590 files to C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\dist\AL-Game\data
@@ -33,4 +33,4 @@ dist:
       [zip] Building zip: C:\MameAion\ServerFile\aion-server-7.8\AL-Game\build\AL-Game.zip
 
 BUILD SUCCESSFUL
-Total time: 16 seconds
+Total time: 35 seconds

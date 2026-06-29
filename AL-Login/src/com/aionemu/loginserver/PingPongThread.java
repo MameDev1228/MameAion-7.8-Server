@@ -51,7 +51,14 @@ public class PingPongThread implements Runnable {
 
     @Override
     public void run() {
-        log.info("PingPong for gameserver #" + this.connection.getGameServerInfo().getId() + " has started.");
+        GameServerInfo info = getInfo();
+        if (info == null) {
+            uptime = false;
+            log.warn("PingPong start skipped because GameServerInfo is null. Connection was probably rejected before authentication: " + connection);
+            return;
+        }
+
+        log.info("PingPong for gameserver #" + (info.getId() & 0xFF) + " has started.");
         while (uptime) {
             try {
                 Thread.sleep(Config.PINGPONG_DELAY);
@@ -64,17 +71,23 @@ public class PingPongThread implements Runnable {
             }
 
             try {
+                info = getInfo();
+                if (info == null) {
+                    uptime = false;
+                    log.warn("PingPong stopped because GameServerInfo became null. Connection=" + connection);
+                    return;
+                }
+
                 connection.sendPacket(ping);
                 requests++;
-                if(SvStatsConfig.SVSTATS_ENABLE)
-				{
-					int currentID = this.connection.getGameServerInfo().getId();
-					int currentPlayer = this.connection.getGameServerInfo().getCurrentPlayers();
-					int currentMax = this.connection.getGameServerInfo().getMaxPlayers();
-						DAOManager.getDAO(SvStatsDAO.class).update_SvStats_Online(currentID, 1, currentPlayer, currentMax);
-				}
+                if (SvStatsConfig.SVSTATS_ENABLE) {
+                    int currentID = info.getId();
+                    int currentPlayer = info.getCurrentPlayers();
+                    int currentMax = info.getMaxPlayers();
+                    DAOManager.getDAO(SvStatsDAO.class).update_SvStats_Online(currentID, 1, currentPlayer, currentMax);
+                }
             } catch (Exception ex) {
-                log.error("PingThread#" + connection.getGameServerInfo().getId(), ex);
+                log.error("PingThread#" + getServerIdForLog(), ex);
             }
         }
     }
@@ -87,13 +100,13 @@ public class PingPongThread implements Runnable {
     public boolean validateResponse() {
         if (requests >= 2) {
             uptime = false;
-            log.info("Gameserver #" + connection.getGameServerInfo().getId() + " [PID=" + this.serverPID + "] died, closing.");
+            GameServerInfo info = getInfo();
+            log.info("Gameserver #" + getServerIdForLog() + " [PID=" + this.serverPID + "] died, closing.");
 
-            if(SvStatsConfig.SVSTATS_ENABLE)
-			{
-				int currentID = connection.getGameServerInfo().getId();
-				DAOManager.getDAO(SvStatsDAO.class).update_SvStats_Offline(currentID, 0, 0);
-			}
+            if (SvStatsConfig.SVSTATS_ENABLE && info != null) {
+                int currentID = info.getId();
+                DAOManager.getDAO(SvStatsDAO.class).update_SvStats_Offline(currentID, 0, 0);
+            }
             connection.close(false);
             if (killProcess && serverPID != -1) {
                 if (System.getProperty("os.name").toLowerCase().indexOf("windows") != -1) {
@@ -113,10 +126,24 @@ public class PingPongThread implements Runnable {
     public void closeMe() {
         uptime = false;
 
-        if(SvStatsConfig.SVSTATS_ENABLE)
-		{
-			int currentID = connection.getGameServerInfo().getId();
-			DAOManager.getDAO(SvStatsDAO.class).update_SvStats_Offline(currentID, 0, 0);
-		}
+        GameServerInfo info = getInfo();
+        if (info == null) {
+            log.debug("PingPong close skipped SvStats offline update because GameServerInfo is null. Connection=" + connection);
+            return;
+        }
+
+        if (SvStatsConfig.SVSTATS_ENABLE) {
+            int currentID = info.getId();
+            DAOManager.getDAO(SvStatsDAO.class).update_SvStats_Offline(currentID, 0, 0);
+        }
+    }
+
+    private GameServerInfo getInfo() {
+        return connection == null ? null : connection.getGameServerInfo();
+    }
+
+    private String getServerIdForLog() {
+        GameServerInfo info = getInfo();
+        return info == null ? "unauthenticated" : String.valueOf(info.getId() & 0xFF);
     }
 }

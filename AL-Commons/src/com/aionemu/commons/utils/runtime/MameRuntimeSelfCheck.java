@@ -39,13 +39,13 @@ public final class MameRuntimeSelfCheck {
 
 	private static void print(String serverName) {
 		log.info("==================================================");
-		log.info("MameAion Runtime SelfCheck: " + safe(serverName));
-		log.info("java.version=" + System.getProperty("java.version"));
-		log.info("java.vendor=" + System.getProperty("java.vendor"));
-		log.info("java.home=" + System.getProperty("java.home"));
-		log.info("java.vm.name=" + System.getProperty("java.vm.name"));
-		log.info("os.name=" + System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + System.getProperty("os.arch"));
-		log.info("input.arguments=" + ManagementFactory.getRuntimeMXBean().getInputArguments());
+		log.info("MameAion 実行環境セルフチェック: " + safe(serverName));
+		log.info("Javaバージョン=" + System.getProperty("java.version"));
+		log.info("Javaベンダー=" + System.getProperty("java.vendor"));
+		log.info("Javaホーム=" + System.getProperty("java.home"));
+		log.info("VM名=" + System.getProperty("java.vm.name"));
+		log.info("OS=" + System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + System.getProperty("os.arch"));
+		log.info("起動引数=" + ManagementFactory.getRuntimeMXBean().getInputArguments());
 
 		boolean jaxbApi = exists("javax.xml.bind.JAXBContext");
 		boolean jaxbRuntime = exists("com.sun.xml.bind.v2.ContextFactory") || exists("org.glassfish.jaxb.runtime.v2.ContextFactory");
@@ -65,29 +65,29 @@ public final class MameRuntimeSelfCheck {
 
 		List<String> warnings = new ArrayList<String>();
 		if (isJdkAtLeast(11) && (!jaxbApi || !jaxbRuntime || !activation)) {
-			warnings.add("JDK11+ requires external JAXB/Activation runtime jars in libs.");
+			warnings.add("JDK11以降では libs に JAXB / Activation の実行時jarが必要です。");
 		}
 		if (!mysql8 && !mysql5) {
-			warnings.add("No MySQL JDBC driver detected. Login/Game DB startup will fail.");
+			warnings.add("MySQL JDBC driver が見つかりません。Login/Game のDB起動に失敗します。");
 		}
 		if (!hikari && !bonecp) {
-			warnings.add("No supported DB pool detected. Add HikariCP or keep BoneCP fallback libs.");
+			warnings.add("利用可能なDB接続プールが見つかりません。HikariCP または BoneCP fallback を libs に入れてください。");
 		}
 		for (String warning : warnings) {
-			log.warn("MameAion Runtime SelfCheck warning: " + warning);
+			log.warn("MameAion 実行環境セルフチェック警告: " + warning);
 		}
 		if (warnings.isEmpty()) {
-			log.info("MameAion Runtime SelfCheck completed without dependency warnings.");
+			log.info("MameAion 実行環境セルフチェック完了: 依存関係の警告なし。");
 		}
 		log.info("==================================================");
 	}
 
 	private static void logDependency(String name, boolean present, boolean requiredForJdk25Runtime) {
-		String level = present ? "OK" : (requiredForJdk25Runtime ? "MISSING" : "optional/missing");
+		String level = present ? "OK" : (requiredForJdk25Runtime ? "不足" : "任意/未導入");
 		if (present || !requiredForJdk25Runtime) {
-			log.info("Runtime dependency " + level + ": " + name);
+			log.info("実行時依存関係 " + level + ": " + name);
 		} else {
-			log.warn("Runtime dependency " + level + ": " + name);
+			log.warn("実行時依存関係 " + level + ": " + name);
 		}
 	}
 

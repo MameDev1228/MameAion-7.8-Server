@@ -18,6 +18,10 @@ package com.aionemu.gameserver.services.vortexservice;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.aionemu.commons.callbacks.Callback;
 import com.aionemu.commons.callbacks.EnhancedObject;
 import com.aionemu.gameserver.ai2.AbstractAI;
 import com.aionemu.gameserver.model.gameobjects.Npc;
@@ -33,6 +37,8 @@ import javolution.util.FastMap;
  * @author Source
  */
 public abstract class DimensionalVortex<VL extends VortexLocation> {
+
+	private static final Logger log = LoggerFactory.getLogger(DimensionalVortex.class);
 
 	private final VL vortexLocation;
 	private final GeneratorDestroyListener generatorDestroyListener = new GeneratorDestroyListener(this);
@@ -115,15 +121,35 @@ public abstract class DimensionalVortex<VL extends VortexLocation> {
 	}
 
 	protected void registerSiegeBossListeners() {
-		AbstractAI ai = (AbstractAI) getGenerator().getAi2();
-		EnhancedObject eo = (EnhancedObject) ai;
-		eo.addCallback(getGeneratorDestroyListener());
+		if (getGenerator() == null) {
+			return;
+		}
+		addObjectCallbackIfPossible(getGenerator().getAi2(), getGeneratorDestroyListener(), "vortex generator death");
 	}
 
 	protected void unregisterSiegeBossListeners() {
-		AbstractAI ai = (AbstractAI) getGenerator().getAi2();
-		EnhancedObject eo = (EnhancedObject) ai;
-		eo.removeCallback(getGeneratorDestroyListener());
+		if (getGenerator() == null) {
+			return;
+		}
+		removeObjectCallbackIfPossible(getGenerator().getAi2(), getGeneratorDestroyListener(), "vortex generator death");
+	}
+
+	private void addObjectCallbackIfPossible(Object target, Callback<?> callback, String label) {
+		if (target instanceof EnhancedObject) {
+			((EnhancedObject) target).addCallback(callback);
+		}
+		else {
+			log.warn("[VortexService] " + label + " callback skipped for vortex " + getVortexLocationId() + " because " + (target == null ? "null" : target.getClass().getName()) + " is not EnhancedObject. JDK25 safe mode keeps booting.");
+		}
+	}
+
+	private void removeObjectCallbackIfPossible(Object target, Callback<?> callback, String label) {
+		if (target instanceof EnhancedObject) {
+			((EnhancedObject) target).removeCallback(callback);
+		}
+		else if (target != null) {
+			log.debug("[VortexService] " + label + " callback remove skipped for vortex " + getVortexLocationId() + " because " + target.getClass().getName() + " is not EnhancedObject.");
+		}
 	}
 
 	public boolean isGeneratorDestroyed() {

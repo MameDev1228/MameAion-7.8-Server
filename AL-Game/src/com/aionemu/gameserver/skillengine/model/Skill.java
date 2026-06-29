@@ -58,6 +58,7 @@ import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.restrictions.RestrictionsManager;
 import com.aionemu.gameserver.services.MinionService;
 import com.aionemu.gameserver.services.MotionLoggingService;
+import com.aionemu.gameserver.services.debug.StatAuditService;
 import com.aionemu.gameserver.services.abyss.AbyssService;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.skillengine.SkillEngine;
@@ -181,6 +182,7 @@ public class Skill {
 		Properties properties = skillTemplate.getProperties();
 		if (properties != null && !properties.validate(this)) {
 			log.debug("properties failed");
+			StatAuditService.getInstance().skillTrace(this, "canUseFail", "properties");
 			return false;
 		}
 
@@ -194,6 +196,7 @@ public class Skill {
         }
 
 		if (!preCastCheck()) {
+			StatAuditService.getInstance().skillTrace(this, "canUseFail", "preCastCheck");
 			return false;
 		}
 
@@ -204,19 +207,23 @@ public class Skill {
 				long time = player.getLastCounterSkill(skillTemplate.getCounterSkill());
 				if ((time + 5000) < System.currentTimeMillis()) {
 					log.debug("chain skill failed, too late");
+					StatAuditService.getInstance().skillTrace(this, "canUseFail", "counterSkillTooLate");
 					return false;
 				}
 			}
 
 			if (skillMethod == SkillMethod.ITEM && duration > 0 && player.getMoveController().isInMove()) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_CANCELED(new DescriptionId(getItemTemplate().getNameId())));
+				StatAuditService.getInstance().skillTrace(this, "canUseFail", "itemWhileMoving");
 				return false;
 			}
 		}
 		if (!validateEffectedList()) {
+			StatAuditService.getInstance().skillTrace(this, "canUseFail", "validateEffectedList");
 			return false;
 		}
 
+		StatAuditService.getInstance().skillTrace(this, "canUseOk", "effectedList=" + effectedList.size());
 		return true;
 	}
 
@@ -254,6 +261,7 @@ public class Skill {
 		// TODO: Enable non-targeted, non-point AOE skills to trigger.
 		if (targetType == 0 && effectedList.size() == 0 && firstTargetAttribute != FirstTargetAttribute.ME && targetRangeAttribute != TargetRangeAttribute.AREA) {
 			log.debug("targettype failed");
+			StatAuditService.getInstance().skillTrace(this, "validateFail", "targetTypeNoEffected targetType=" + targetType + " firstTargetAttribute=" + firstTargetAttribute + " targetRangeAttribute=" + targetRangeAttribute);
 			return false;
 		}
 
@@ -278,7 +286,9 @@ public class Skill {
 	}
 
 	private boolean useSkill(boolean checkAnimation, boolean checkproperties) {
+		StatAuditService.getInstance().skillTrace(this, "useRequest", "checkAnimation=" + checkAnimation + " checkproperties=" + checkproperties);
 		if (checkproperties && !canUseSkill()) {
+			StatAuditService.getInstance().skillTrace(this, "useDenied", "canUseSkill=false");
 			return false;
 		}
 
@@ -290,6 +300,7 @@ public class Skill {
 			// must be after calculateskillduration
 			if (checkAnimation && !checkAnimationTime()) {
 				log.debug("check animation time failed");
+				StatAuditService.getInstance().skillTrace(this, "useDenied", "checkAnimationTime=false");
 				return false;
 			}
 		}
@@ -316,6 +327,7 @@ public class Skill {
 		// send packets to start casting
 		if (skillMethod == SkillMethod.CAST || skillMethod == SkillMethod.ITEM || skillMethod == SkillMethod.CHARGE) {
 			castStartTime = System.currentTimeMillis();
+			StatAuditService.getInstance().skillTrace(this, "startCast", "method=" + skillMethod + " duration=" + duration);
 			startCast();
 			if (effector instanceof Npc) {
 				((NpcAI2) ((Npc) effector).getAi2()).setSubStateIfNot(AISubState.CAST);
@@ -325,11 +337,14 @@ public class Skill {
 		effector.getObserveController().attach(conditionChangeListener);
 
 		if (this.duration > 0) {
+			StatAuditService.getInstance().skillTrace(this, "scheduleEndCast", "delay=" + this.duration);
 			schedule(this.duration);
 		}
 		else {
+			StatAuditService.getInstance().skillTrace(this, "instantEndCast", "duration=0");
 			endCast();
 		}
+		StatAuditService.getInstance().skillTrace(this, "useAccepted", "duration=" + duration);
 		return true;
 	}
 
@@ -1226,6 +1241,7 @@ public class Skill {
 	 */
 	protected void startCast() {
 		int targetObjId = firstTarget != null ? firstTarget.getObjectId() : 0;
+		StatAuditService.getInstance().skillTrace(this, "startCastPacket", "targetObjId=" + targetObjId + " targetType=" + targetType);
 
 		if (skillMethod == SkillMethod.CAST || skillMethod == SkillMethod.CHARGE) {
 			switch (targetType) {
@@ -1492,6 +1508,7 @@ public class Skill {
 	 * @param effects
 	 */
 	private void sendCastspellEnd(int spellStatus, int dashStatus, List<Effect> effects) {
+		StatAuditService.getInstance().skillTrace(this, "castEndPacket", "spellStatus=" + spellStatus + " dashStatus=" + dashStatus + " effects=" + (effects != null ? effects.size() : 0));
 		getSkillSkinData();
 		if (skillMethod == SkillMethod.CAST || skillMethod == SkillMethod.CHARGE) {
 			switch (targetType) {
@@ -1765,6 +1782,14 @@ public class Skill {
 
 	public void setDuration(int t) {
 		this.duration = t;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public int getTargetType() {
+		return targetType;
 	}
 
 	public float getX() {

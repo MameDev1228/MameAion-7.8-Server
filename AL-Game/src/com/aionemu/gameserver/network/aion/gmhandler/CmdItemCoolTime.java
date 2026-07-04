@@ -54,8 +54,8 @@ public class CmdItemCoolTime extends AbstractGMHandler {
             for (Integer delayId : delayIds) {
                 playerT.setSkillCoolDown(delayId, currentTime);
             }
+            PacketSendUtility.sendPacket(playerT, new SM_SKILL_COOLDOWN(playerT, delayIds));
             delayIds.clear();
-            PacketSendUtility.sendPacket(playerT, new SM_SKILL_COOLDOWN(playerT.getSkillCoolDowns()));
         }
 
         if (playerT.getItemCoolDowns() != null) {

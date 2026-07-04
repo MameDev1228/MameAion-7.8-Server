@@ -38,13 +38,14 @@ import java.util.Iterator;
  * @author ATracer modified by Wakizashi
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "skillTemplate", propOrder = { "properties", "startconditions", "useconditions", "useequipmentconditions", "effects", "actions",
+@XmlType(name = "skillTemplate", propOrder = { "properties", "startconditions", "useconditions", "endconditions", "useequipmentconditions", "effects", "actions",
 	"periodicActions", "motion" })
 public class SkillTemplate {
 
 	protected Properties properties;
 	protected Conditions startconditions;
 	protected Conditions useconditions;
+	protected Conditions endconditions;
 	protected Conditions useequipmentconditions;
 	protected Effects effects;
 	protected Actions actions;
@@ -64,14 +65,20 @@ public class SkillTemplate {
 	protected String skillgroup = "NONE";
 	@XmlAttribute(name = "skill_group_name")
 	protected String skill_group_name;
+	@XmlAttribute(name = "group")
+	protected String group;
 	@XmlAttribute
 	protected int delayId;
+	@XmlAttribute
+	protected int cooldownId;
 	@XmlAttribute
 	protected int lvl;
 	@XmlAttribute(name = "skilltype", required = true)
 	protected SkillType type = SkillType.NONE;
 	@XmlAttribute(name = "skillsubtype", required = true)
 	protected SkillSubType subType;
+	@XmlAttribute(name = "skill_category")
+	protected SkillCategory skillCategory = SkillCategory.NONE;
 	@XmlAttribute(name = "tslot")
 	protected SkillTargetSlot targetSlot;
 	@XmlAttribute(name = "tslot_level")
@@ -88,6 +95,8 @@ public class SkillTemplate {
     protected int toggleTimer;
 	@XmlAttribute(name = "cooldown")
 	protected int cooldown;
+	@XmlAttribute(name = "cooldown_delta_lv")
+	protected int cooldownDeltaLv;
 	@XmlAttribute(name = "penalty_skill_id")
 	protected int penaltySkillId;
 	@XmlAttribute(name = "provoke_critical_id")
@@ -116,6 +125,8 @@ public class SkillTemplate {
 	protected boolean isBattlefield;
 	@XmlAttribute(name = "minion")
     protected boolean isMinion;
+	@XmlAttribute(name = "is_minion_skill")
+    protected boolean isMinionSkill;
 	@XmlAttribute(name = "ground")
 	protected boolean isGroundSkill;
 	@XmlAttribute(name = "unpottable")
@@ -128,6 +139,12 @@ public class SkillTemplate {
 	protected AttackStatus counterSkill = null;
 	@XmlAttribute(name = "noremoveatdie")
 	protected boolean noRemoveAtDie = false;
+	@XmlAttribute(name = "no_save_on_logout")
+	protected boolean noSaveOnLogout = false;
+	@XmlAttribute(name = "provoke_after_critical")
+	protected int provokeAfterCritical;
+	@XmlAttribute(name = "provoke_self_after_critical")
+	protected boolean provokeSelfAfterCritical;
 	@XmlAttribute(name = "charge_set_name")
 	protected String charge_set_name;
 	@XmlAttribute(name = "stigma")
@@ -157,6 +174,13 @@ public class SkillTemplate {
 	 */
 	public Conditions getUseconditions() {
 		return useconditions;
+	}
+
+	/**
+	 * Gets the value of the endconditions property. ArchSoft-compatible optional schema hook.
+	 */
+	public Conditions getEndconditions() {
+		return endconditions;
 	}
 
 	/**
@@ -236,7 +260,13 @@ public class SkillTemplate {
 	 * @return the group
 	 */
 	public String getGroup() {
-		return skill_group_name;
+		if (skill_group_name != null && !skill_group_name.isEmpty() && !"NONE".equals(skill_group_name)) {
+			return skill_group_name;
+		}
+		if (group != null && !group.isEmpty() && !"NONE".equals(group)) {
+			return group;
+		}
+		return skillgroup;
 	}
 
 	/**
@@ -260,6 +290,10 @@ public class SkillTemplate {
 	 */
 	public SkillSubType getSubType() {
 		return subType;
+	}
+
+	public SkillCategory getSkillCategory() {
+		return skillCategory;
 	}
 
 	/**
@@ -346,6 +380,24 @@ public class SkillTemplate {
 	 */
 	public int getCooldown() {
 		return cooldown;
+	}
+
+	/**
+	 * ArchSoft-compatible cooldown calculation. Some 6.x/7.x templates store a
+	 * base cooldown plus a per-level delta instead of writing every final level
+	 * value directly into the cooldown attribute. Keep this as a pure scalar
+	 * helper so CT ownership, delayId handling, and packet sync logic remain
+	 * unchanged.
+	 */
+	public int getCooldownForLevel(int skillLevel) {
+		int value = cooldown;
+		if (cooldownDeltaLv != 0)
+			value += cooldownDeltaLv * skillLevel;
+		return Math.max(0, value);
+	}
+
+	public int getCooldownDeltaLv() {
+		return cooldownDeltaLv;
 	}
 
 	/**
@@ -443,7 +495,11 @@ public class SkillTemplate {
     }
 
 	public int getDelayId() {
-		return (delayId > 0) ? delayId : skillId;
+		return delayId > 0 ? delayId : getCooldownId();
+	}
+
+	public int getCooldownId() {
+		return cooldownId > 0 ? cooldownId : skillId;
 	}
 	
 	public boolean isDeityAvatar() {
@@ -459,7 +515,11 @@ public class SkillTemplate {
 	}
 	
 	public boolean isMinion() {
-		return isMinion;
+		return isMinion || isMinionSkill;
+	}
+
+	public boolean isMinionSkill() {
+		return isMinionSkill;
 	}
 	
 	public boolean isGroundSkill() {
@@ -484,6 +544,18 @@ public class SkillTemplate {
 
 	public boolean isNoRemoveAtDie() {
 		return noRemoveAtDie;
+	}
+
+	public boolean isNoSaveOnLogout() {
+		return noSaveOnLogout;
+	}
+
+	public int getProvokeAfterCritical() {
+		return provokeAfterCritical;
+	}
+
+	public boolean isProvokeSelfAfterCritical() {
+		return provokeSelfAfterCritical;
 	}
 
 	public String getChargeSetName() {

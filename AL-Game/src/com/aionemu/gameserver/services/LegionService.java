@@ -75,7 +75,7 @@ public class LegionService {
 	 * Legion Restrictions
 	 */
 	private LegionRestrictions legionRestrictions = new LegionRestrictions();
-	private static final String MAME_JP_LEGION_PATTERN = "[a-zA-Z0-9 _\\u3000\\u3040-\\u309F\\u30A0-\\u30FF\\u31F0-\\u31FF\\u3400-\\u4DBF\\u4E00-\\u9FFF\\uF900-\\uFAFF\\u3005\\u3006\\u3007\\u30FC\\u30FB]{2,32}";
+	private static final String MAME_JP_LEGION_PATTERN = "[\\p{L}\\p{N} _\\u3000\\u3005\\u3006\\u3007\\u30FC\\u30FB]{2,32}";
 
 	public static LegionService getInstance() {
 		return SingletonHolder.instance;

@@ -55,6 +55,7 @@ import java.util.Random;
 public class TransformService
 {
     private static final Logger log = LoggerFactory.getLogger(TransformService.class);
+    private final Map<Integer, Boolean> lastTransformInvisibleMode = new FastMap<Integer, Boolean>().shared();
 	
     public void onPlayerLogin(Player player) {
         PacketSendUtility.sendPacket(player, new SM_TRANSFORM_LIST(0, player));
@@ -111,7 +112,7 @@ public class TransformService
 	
     public void onPlayerTransform(final Player player, final int itemObjId, final int cardId) {
         final TransformBookTemplate book = DataManager.TRANSFORM_BOOK_DATA.getTransformBookById(cardId);
-        final Item item = player.getInventory().getItemByObjId(itemObjId);
+        final Item item = resolveTransformScroll(player, itemObjId);
         if (book == null || item == null) {
             return;
         }
@@ -124,9 +125,12 @@ public class TransformService
             //Transformation Mode.
             PacketSendUtility.playerSendPacketTime(player, SM_SYSTEM_MESSAGE.STR_MSG_ACT_STATE_POLYMORPH, 3000);
             return;
-        } if (!player.getInventory().decreaseByObjectId(itemObjId, 1)) {
+        } if (!player.getInventory().decreaseByObjectId(item.getObjectId(), 1)) {
             return;
         }
+        // Official-like shortcut behavior: when the transform icon is triggered without
+        // a concrete scroll object id, reuse the last selected scroll mode.
+        lastTransformInvisibleMode.put(player.getObjectId(), invisibleTransform);
         // Normal transformation scroll: cast the normal TransformBook skill and allow visual model change.
         // Transparent transformation scroll: cast the matching transparent skill when it exists, mark the
         // TransformEffect as stats-only, and force-clear visual transform packets after casting.
@@ -146,6 +150,35 @@ public class TransformService
             log.info("[MAME-TRANSFORM][INVISIBLE] player=" + player.getName() + " itemId=" + item.getItemId()
                 + " cardId=" + cardId + " normalSkill=" + normalSkillId + " castSkill=" + castSkillId + " visual=stats-only");
         }
+    }
+
+    private Item resolveTransformScroll(final Player player, final int itemObjId) {
+        if (player == null || player.getInventory() == null) {
+            return null;
+        }
+        Item item = player.getInventory().getItemByObjId(itemObjId);
+        if (item != null) {
+            return item;
+        }
+        Boolean invisible = lastTransformInvisibleMode.get(player.getObjectId());
+        if (Boolean.TRUE.equals(invisible)) {
+            item = player.getInventory().getFirstItemByItemId(190099001);
+            if (item == null) {
+                item = player.getInventory().getFirstItemByItemId(190099002);
+            }
+            if (item == null) {
+                item = player.getInventory().getFirstItemByItemId(190099000);
+            }
+        } else {
+            item = player.getInventory().getFirstItemByItemId(190099000);
+            if (item == null) {
+                item = player.getInventory().getFirstItemByItemId(190099001);
+            }
+            if (item == null) {
+                item = player.getInventory().getFirstItemByItemId(190099002);
+            }
+        }
+        return item;
     }
 
     private void normalizeInvisibleTransform(final Player player) {

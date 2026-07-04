@@ -94,6 +94,10 @@ public class ChainCondition extends Condition {
 		return category;
 	}
 
+	public String getPreCategory() {
+		return precategory;
+	}
+
 	public int getTime() {
 		return time;
 	}

@@ -508,7 +508,22 @@ public final class MameClientCompatDebug {
         if (player == null) {
             return "player=null";
         }
-        return itemSummary("main", player.getEquipment().getMainHandWeapon()) + " | " + itemSummary("off", player.getEquipment().getOffHandWeapon());
+        StringBuilder sb = new StringBuilder();
+        sb.append(itemSummary("main", player.getEquipment().getMainHandWeapon()));
+        sb.append(" | ").append(itemSummary("off", player.getEquipment().getOffHandWeapon()));
+        int count = 0;
+        for (Item equipped : player.getEquipment().getEquippedItems()) {
+            if (equipped == null || equipped == player.getEquipment().getMainHandWeapon() || equipped == player.getEquipment().getOffHandWeapon()) {
+                continue;
+            }
+            sb.append(" | ").append(itemSummary("eq" + count, equipped));
+            count++;
+            if (count >= 24) {
+                sb.append(" | ...");
+                break;
+            }
+        }
+        return sb.toString();
     }
 
     private static String itemSummary(String slot, Item item) {
@@ -539,8 +554,15 @@ public final class MameClientCompatDebug {
             + "/name=" + tpl.getName()
             + "/type=" + tpl.getWeaponType()
             + "/attackType=" + tpl.getAttackType()
+            + "/slot=" + item.getEquipmentSlot()
             + "/enchant=" + item.getEnchantLevel()
+            + "/enchantPvPvE=" + item.getEnchantPvPvELevel()
             + "/authorize=" + item.getAuthorizeLevel()
+            + "/enchantTable=" + tpl.getEnchantTableId()
+            + "/temperingTable=" + tpl.getTemperingTableId()
+            + "/enchantType=" + tpl.getEnchantType()
+            + "/rndBonusCount=" + (item.getRndBonus() == null ? 0 : item.getRndBonus().size())
+            + "/currentMods=" + (item.getCurrentModifiers() == null ? 0 : item.getCurrentModifiers().size())
             + "/" + weapon
             + "/templateMods=" + modifierSummary(tpl);
     }

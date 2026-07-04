@@ -15,6 +15,7 @@
 			<xs:element name="properties" type="Properties" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="startconditions" type="Conditions" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="useconditions" type="Conditions" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="endconditions" type="Conditions" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="useequipmentconditions" type="Conditions" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="effects" type="Effects" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="actions" type="Actions" minOccurs="0" maxOccurs="1"/>
@@ -30,12 +31,15 @@
 		<xs:attribute name="name_desc" type="xs:string"/>
 		<xs:attribute name="nameId" type="xs:int"/>
 		<xs:attribute name="skill_group_name" type="xs:string"/>
+		<xs:attribute name="group" type="xs:string"/>
 		<xs:attribute name="stack" type="xs:string"/>
 		<xs:attribute name="delayId" type="xs:int"/>
+		<xs:attribute name="cooldownId" type="xs:int"/>
 		<xs:attribute name="lvl" type="xs:int"/>
 		<xs:attribute name="skilltype" type="skillType" use="required"/>
 		<xs:attribute name="attacktype" type="attackType"/>
 		<xs:attribute name="skillsubtype" type="skillSubType" use="required"/>
+		<xs:attribute name="skill_category" type="skillCategory" use="optional" default="NONE"/>
 		<xs:attribute name="conflict_id" type="xs:int"/>
 		<xs:attribute name="tslot" type="TargetSlot"/>
 		<xs:attribute name="tslot_level" use="optional" type="xs:int" default="0"/>
@@ -47,6 +51,7 @@
 		<xs:attribute name="duration" type="xs:int" use="required"/>
 		<xs:attribute name="toggle_timer" type="xs:int"/>
 		<xs:attribute name="cooldown" type="xs:int" use="optional" default="0"/>
+		<xs:attribute name="cooldown_delta_lv" type="xs:int" use="optional" default="0"/>
 		<xs:attribute name="pvp_damage" type="xs:int"/>
 		<xs:attribute name="pvp_duration" type="xs:int"/>
 		<xs:attribute name="chain_skill_prob" type="xs:int" use="optional" default="100"/>
@@ -58,10 +63,14 @@
 		<xs:attribute name="archdaeva" type="xs:boolean" use="optional" default="false"/>
 		<xs:attribute name="battlefield" type="xs:boolean" use="optional" default="false"/>
 		<xs:attribute name="minion" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="is_minion_skill" type="xs:boolean" use="optional" default="false"/>
 		<xs:attribute name="ground" type="xs:boolean" use="optional" default="false"/>
 		<xs:attribute name="unpottable" type="xs:boolean" use="optional" default="false"/>
 		<xs:attribute name="remove_flyend" type="xs:boolean" use="optional" default="false"/>
 		<xs:attribute name="noremoveatdie" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="no_save_on_logout" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="provoke_after_critical" type="xs:int" use="optional" default="0"/>
+		<xs:attribute name="provoke_self_after_critical" type="xs:boolean" use="optional" default="false"/>
 		<xs:attribute name="charge_set_name" type="xs:string"/>
 		<xs:attribute name="use_battery" type="xs:int" use="optional" default="0"/>
 	</xs:complexType>
@@ -1694,6 +1703,20 @@
 			<xs:enumeration value="ALL_SKILL"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="skillCategory">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NONE"/>
+			<xs:enumeration value="CHAIN_SKILL"/>
+			<xs:enumeration value="PHYSICAL_DEBUFF"/>
+			<xs:enumeration value="HEAL"/>
+			<xs:enumeration value="MENTAL_DEBUFF"/>
+			<xs:enumeration value="REBIRTH"/>
+			<xs:enumeration value="DISPELL"/>
+			<xs:enumeration value="DEATHBLOW"/>
+			<xs:enumeration value="DRAIN"/>
+		</xs:restriction>
+	</xs:simpleType>
+
 	<xs:simpleType name="skillType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="NONE"/>

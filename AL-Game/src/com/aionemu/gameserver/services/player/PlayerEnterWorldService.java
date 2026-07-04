@@ -274,7 +274,7 @@ public final class PlayerEnterWorldService
 			for (PlayerSkillEntry stigmaSkill: player.getSkillList().getStigmaSkills()) {
 				client.sendPacket(new SM_SKILL_LIST(player, stigmaSkill));
 			} if (player.getSkillCoolDowns() != null) {
-				client.sendPacket(new SM_SKILL_COOLDOWN(player.getSkillCoolDowns()));
+				client.sendPacket(new SM_SKILL_COOLDOWN(player, player.getSkillCoolDowns(), false));
 			} if (player.getItemCoolDowns() != null) {
 				client.sendPacket(new SM_ITEM_COOLDOWN(player.getItemCoolDowns()));
 			}

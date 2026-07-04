@@ -334,6 +334,8 @@ public class Skill
 	private void setCooldowns() {
 		int cooldown = effector.getSkillCooldown(skillTemplate);
 		if (cooldown != 0) {
+			if (skillTemplate.getCooldownDeltaLv() != 0)
+				cooldown = skillTemplate.getCooldownForLevel(this.skillLevel);
 			cooldown = StigmaEnchantCoolDown(this, cooldown);
 			effector.setSkillCoolDown(skillTemplate.getDelayId(), cooldown * 100 + this.duration + System.currentTimeMillis());
 			effector.setSkillCoolDownBase(skillTemplate.getDelayId(), System.currentTimeMillis());
@@ -1970,10 +1972,23 @@ public class Skill
 		SkillEngine.getInstance().applyEffectDirectly(provokeSkill, firstTarget, effector, 0);
 	}
 
+	private boolean isClientUnsafeTransformVisualSkill() {
+		int skillId = skillTemplate != null ? skillTemplate.getSkillId() : 0;
+		return (skillId >= 5030 && skillId <= 5080) || skillId == 5375 || skillId == 5376 || (skillId >= 5607 && skillId <= 5657);
+	}
+
 	/**
 	 * Start casting of skill
 	 */
 	private void startCast() {
+		// MameAion v63: CC2/EU7.7 client can crash when nearby players receive
+		// transform-book skill cast visuals (crash logs showed player actor + skillId
+		// 5080).  The buff/effect is still applied server-side; only the noisy visual
+		// cast packet is suppressed.  The actual model/stat transform is handled by
+		// SM_TRANSFORM/TransformEffect.
+		if (isClientUnsafeTransformVisualSkill()) {
+			return;
+		}
         int targetObjId = firstTarget != null ? firstTarget.getObjectId() : 0;
         if (skillMethod == SkillMethod.CAST) {
             switch (targetType) {
@@ -2036,7 +2051,8 @@ public class Skill
 
 			skillTemplate = DataManager.SKILL_DATA.getSkillTemplate(skillId);
 
-			effector.setSkillCoolDown(skillTemplate.getDelayId(), skillTemplate.getCooldown() * 100 + System.currentTimeMillis());
+			int cooldown = skillTemplate.getCooldownForLevel(this.skillLevel);
+			effector.setSkillCoolDown(skillTemplate.getDelayId(), cooldown * 100 + System.currentTimeMillis());
 		}
 
 		// if target out of range
@@ -2249,6 +2265,9 @@ public class Skill
 	 * @param effects
 	 */
 	private void sendCastspellEnd(int spellStatus, int dashStatus, List<Effect> effects) {
+		if (isClientUnsafeTransformVisualSkill()) {
+			return;
+		}
 		if ((this.skillMethod == SkillMethod.CAST)) {
             switch (this.targetType) {
                 case 0:

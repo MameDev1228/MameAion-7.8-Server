@@ -68,14 +68,20 @@ public abstract class AionServerPacket extends BaseServerPacket {
 	 * @param con
 	 * @param buf
 	 */
-	public final void write(AionConnection con, ByteBuffer buffer) {
-		// MameAion: the dispatcher normally clears the write buffer before each packet,
-		// but after a skipped/failed packet the buffer can re-enter this method with
-		// limit=0/read-mode on some reconnect/write-interest paths.  SM_MOVE is tiny,
-		// so BufferOverflowException there means the ByteBuffer state was dirty, not
-		// that the movement packet is oversized.  Reset it here as the last line of
-		// defense before serializing any server packet.
-		buffer.clear();
+	public final synchronized void write(AionConnection con, ByteBuffer buffer) {
+		// MameAion v64: AionServerPacket keeps a mutable buf field. Broadcast helpers often
+		// enqueue the same packet instance to multiple player connections, and multiple
+		// dispatcher threads can serialize that same object at the same time. Without a
+		// per-packet lock, setBuf()/writeImpl() races can make one connection write into
+		// another connection's ByteBuffer, producing SM_SYSTEM_MESSAGE/SM_MOVE/SM_ATTACK
+		// BufferOverflow and client-side disconnect storms. Serialize one packet instance
+		// at a time while keeping the original frame format.
+		// MameAion v62: rollback to the original packet framing.
+		// v60/v61 tried to reset/reframe the shared dispatcher buffer here, but small
+		// packets like SM_MOVE/SM_ATTACK started throwing BufferOverflow/IOOBE and the
+		// client could misread following packets as HP/level/unknown UI data.  Keep the
+		// connection-level guard in AionConnection, but do not mutate the normal packet
+		// writer semantics.
 		if (con.getState().equals(AionConnection.State.IN_GAME) && con.getActivePlayer().getPlayerAccount().getAccessLevel() == 5 && NetworkConfig.DISPLAY_PACKETS) {
 			if (!this.getPacketName().equals("SM_MESSAGE")) {
 				PacketSendUtility.sendMessage(con.getActivePlayer(), "0x" + Integer.toHexString(this.getOpcode()).toUpperCase() + " : " + this.getPacketName());
@@ -85,14 +91,8 @@ public abstract class AionServerPacket extends BaseServerPacket {
 		buf.putShort((short) 0);
 		writeOP(getOpcode());
 		writeImpl(con);
-		int packetLength = buf.position();
 		buf.flip();
-		// Use an absolute length write and then slice from byte 2.  The old relative
-		// putShort() could throw BufferOverflowException if a previous write path left
-		// the shared dispatcher buffer in an unexpected state; absolute write keeps the
-		// packet framing stable and preserves the original encryption range.
-		buf.putShort(0, (short) packetLength);
-		buf.position(2);
+		buf.putShort((short) buf.limit());
 		ByteBuffer b = buf.slice();
 		buf.position(0);
 		con.encrypt(b);

@@ -1,13 +1,24 @@
 package admincommands;
 
+import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.MameClientCompatDebug;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_STATS_INFO;
+import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class MameDebug extends AdminCommand {
+
+    private static final Logger log = LoggerFactory.getLogger(MameDebug.class);
 
     public MameDebug() {
         super("mamedebug");
@@ -40,6 +51,12 @@ public class MameDebug extends AdminCommand {
             MameClientCompatDebug.logAudit(target, "manual");
             PacketSendUtility.sendMessage(admin, MameClientCompatDebug.statsSummary(target));
             PacketSendUtility.sendMessage(admin, MameClientCompatDebug.equipmentSummary(target));
+        } else if ("skill".equals(mode)) {
+            printSkill(admin, params);
+        } else if ("skilldelay".equals(mode) || "cooldown".equals(mode)) {
+            printSkillDelayGroup(admin, params);
+        } else if ("skillaudit".equals(mode)) {
+            auditSkillTemplates(admin, params);
         } else if ("status".equals(mode)) {
             PacketSendUtility.sendMessage(admin, "Mame CC2 debug: " + MameClientCompatDebug.getTargetText() + " statsMode=" + MameClientCompatDebug.getStatsInfoModeName() + " dmgMode=" + MameClientCompatDebug.getPhysicalSkillDamageModeName());
         } else if ("statsmode".equals(mode)) {
@@ -76,6 +93,168 @@ public class MameDebug extends AdminCommand {
         }
     }
 
+
+    private void printSkill(Player admin, String... params) {
+        if (params.length < 2) {
+            PacketSendUtility.sendMessage(admin, "Usage: //mamedebug skill <skillId>");
+            return;
+        }
+        Integer skillId = parseInt(params[1]);
+        if (skillId == null) {
+            PacketSendUtility.sendMessage(admin, "skillId must be integer: " + params[1]);
+            return;
+        }
+        SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skillId);
+        if (template == null) {
+            PacketSendUtility.sendMessage(admin, "Skill not found: " + skillId);
+            return;
+        }
+        String line1 = skillLine(template);
+        String line2 = skillExtraLine(template);
+        PacketSendUtility.sendMessage(admin, line1);
+        PacketSendUtility.sendMessage(admin, line2);
+        log.info("[MAME-SKILL-AUDIT][SKILL] " + line1 + " | " + line2);
+    }
+
+    private void printSkillDelayGroup(Player admin, String... params) {
+        if (params.length < 2) {
+            PacketSendUtility.sendMessage(admin, "Usage: //mamedebug skilldelay <delayId|cooldownId>");
+            return;
+        }
+        Integer delayId = parseInt(params[1]);
+        if (delayId == null) {
+            PacketSendUtility.sendMessage(admin, "delayId must be integer: " + params[1]);
+            return;
+        }
+        ArrayList<Integer> skills = DataManager.SKILL_DATA.getSkillsForDelayId(delayId);
+        if (skills == null || skills.isEmpty()) {
+            PacketSendUtility.sendMessage(admin, "No skills for delayId/cooldownId=" + delayId);
+            return;
+        }
+        Collections.sort(skills);
+        PacketSendUtility.sendMessage(admin, "delayId=" + delayId + " skillCount=" + skills.size() + " first=" + previewSkills(skills, 18));
+        int printed = 0;
+        for (Integer skillId : skills) {
+            SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skillId);
+            if (template == null) {
+                continue;
+            }
+            if (printed < 8) {
+                PacketSendUtility.sendMessage(admin, skillLine(template));
+            }
+            log.info("[MAME-SKILL-AUDIT][DELAY_GROUP] delayId=" + delayId + " " + skillLine(template));
+            printed++;
+        }
+        if (printed > 8) {
+            PacketSendUtility.sendMessage(admin, "... " + (printed - 8) + " more lines written to console.log");
+        }
+    }
+
+    private void auditSkillTemplates(Player admin, String... params) {
+        int limit = 50;
+        if (params.length >= 2) {
+            Integer parsedLimit = parseInt(params[1]);
+            if (parsedLimit != null && parsedLimit > 0) {
+                limit = parsedLimit;
+            }
+        }
+        List<SkillTemplate> risky = new ArrayList<SkillTemplate>();
+        int total = 0;
+        int noDelayWithCooldown = 0;
+        int noCooldownButDuration = 0;
+        int negativeLike = 0;
+        int duplicateDelayLarge = 0;
+        for (SkillTemplate template : DataManager.SKILL_DATA.getSkillTemplates()) {
+            if (template == null) {
+                continue;
+            }
+            total++;
+            boolean risk = false;
+            if (template.getCooldown() > 0 && template.getDelayId() <= 0) {
+                noDelayWithCooldown++;
+                risk = true;
+            }
+            if (template.getCooldown() <= 0 && template.getDuration() > 0 && template.isActive()) {
+                noCooldownButDuration++;
+            }
+            if (template.getCooldown() < 0 || template.getDuration() < 0 || template.getPvpDamage() < 0 || template.getPvpDuration() < 0) {
+                negativeLike++;
+                risk = true;
+            }
+            ArrayList<Integer> group = DataManager.SKILL_DATA.getSkillsForDelayId(template.getDelayId());
+            if (template.getDelayId() > 0 && group != null && group.size() > 60) {
+                duplicateDelayLarge++;
+                risk = true;
+            }
+            if (risk) {
+                risky.add(template);
+            }
+        }
+        Collections.sort(risky, new Comparator<SkillTemplate>() {
+            @Override
+            public int compare(SkillTemplate a, SkillTemplate b) {
+                return Integer.compare(a.getSkillId(), b.getSkillId());
+            }
+        });
+        String summary = "SkillAudit total=" + total + " risky=" + risky.size() + " noDelayWithCooldown=" + noDelayWithCooldown
+                + " noCooldownButDuration=" + noCooldownButDuration + " negative=" + negativeLike + " largeDelayGroups=" + duplicateDelayLarge;
+        PacketSendUtility.sendMessage(admin, summary);
+        log.info("[MAME-SKILL-AUDIT][SUMMARY] " + summary);
+        int printed = 0;
+        for (SkillTemplate template : risky) {
+            if (printed < limit) {
+                PacketSendUtility.sendMessage(admin, skillLine(template));
+            }
+            log.warn("[MAME-SKILL-AUDIT][RISK] " + skillLine(template) + " | " + skillExtraLine(template));
+            printed++;
+        }
+        if (printed > limit) {
+            PacketSendUtility.sendMessage(admin, "... " + (printed - limit) + " more risky skills written to console.log");
+        }
+    }
+
+    private String skillLine(SkillTemplate template) {
+        return "skill=" + template.getSkillId() + " lvl=" + template.getLvl() + " name=\"" + safe(template.getName()) + "\" cd="
+                + template.getCooldown() + " delay=" + template.getDelayId() + " cooldownId=" + template.getCooldownId()
+                + " delta=" + template.getCooldownDeltaLv() + " dur=" + template.getDuration()
+                + " pvpDmg=" + template.getPvpDamage() + " pvpDur=" + template.getPvpDuration();
+    }
+
+    private String skillExtraLine(SkillTemplate template) {
+        int effectCount = template.getEffects() != null && template.getEffects().getEffects() != null ? template.getEffects().getEffects().size() : 0;
+        return "type=" + template.getType() + "/" + template.getSubType() + " activation=" + template.getActivationAttribute()
+                + " group=" + safe(template.getGroup()) + " stack=" + safe(template.getStack()) + " tslot=" + template.getTargetSlot()
+                + " chainProb=" + template.getChainSkillProb() + " ammoSpeed=" + template.getAmmoSpeed()
+                + " conflict=" + template.getConflictId() + " noremoveAtDie=" + template.isNoRemoveAtDie()
+                + " noSaveOnLogout=" + template.isNoSaveOnLogout() + " effects=" + effectCount;
+    }
+
+    private String previewSkills(ArrayList<Integer> skills, int limit) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < skills.size() && i < limit; i++) {
+            if (i > 0) {
+                sb.append(',');
+            }
+            sb.append(skills.get(i));
+        }
+        if (skills.size() > limit) {
+            sb.append("...");
+        }
+        return sb.toString();
+    }
+
+    private Integer parseInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private String safe(String value) {
+        return value == null ? "" : value;
+    }
+
     private Player resolveTarget(Player admin) {
         VisibleObject target = admin.getTarget();
         if (target instanceof Player) {
@@ -92,5 +271,8 @@ public class MameDebug extends AdminCommand {
         PacketSendUtility.sendMessage(admin, "//mamedebug statsmode 77|base-current|cc2-clean - switch SM_STATS_INFO mode");
         PacketSendUtility.sendMessage(admin, "//mamedebug dmgmode legacy - damage formula is locked to legacy-initial-source");
         PacketSendUtility.sendMessage(admin, "//mamedebug refreshstats - resend SM_STATS_INFO to selected/self");
+        PacketSendUtility.sendMessage(admin, "//mamedebug skill <skillId> - print current skill template values");
+        PacketSendUtility.sendMessage(admin, "//mamedebug skilldelay <delayId> - print cooldown/delay group");
+        PacketSendUtility.sendMessage(admin, "//mamedebug skillaudit [limit] - scan risky cooldown/template rows");
     }
 }

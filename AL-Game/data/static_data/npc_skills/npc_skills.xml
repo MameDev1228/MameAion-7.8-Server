@@ -19720,7 +19720,6 @@
     </npcskills>
 	<!-- LDF5A_Killer_Sub_V07 -->
 	<npcskills npcid="662611">
-		<npcskill probability="90" skilllevel="1" skillid="17332"/>
 		<npcskill probability="90" skilllevel="1" skillid="17333"/>
 	    <npcskill probability="90" skilllevel="1" skillid="20700"/>
 		<npcskill probability="90" skilllevel="1" skillid="21286"/>
@@ -19730,7 +19729,6 @@
     </npcskills>
 	<!-- LDF5A_Killer_Sub_V08 -->
 	<npcskills npcid="662627">
-		<npcskill probability="90" skilllevel="1" skillid="17332"/>
 		<npcskill probability="90" skilllevel="1" skillid="17333"/>
 	    <npcskill probability="90" skilllevel="1" skillid="20700"/>
 		<npcskill probability="90" skilllevel="1" skillid="21286"/>
@@ -19740,7 +19738,6 @@
     </npcskills>
 	<!-- LDF5A_Killer_Sub_V09 -->
 	<npcskills npcid="662643">
-		<npcskill probability="90" skilllevel="1" skillid="17332"/>
 		<npcskill probability="90" skilllevel="1" skillid="17333"/>
 	    <npcskill probability="90" skilllevel="1" skillid="20700"/>
 		<npcskill probability="90" skilllevel="1" skillid="21286"/>
@@ -19750,7 +19747,6 @@
     </npcskills>
 	<!-- LDF5A_Killer_Sub_V10 -->
 	<npcskills npcid="662659">
-		<npcskill probability="90" skilllevel="1" skillid="17332"/>
 		<npcskill probability="90" skilllevel="1" skillid="17333"/>
 	    <npcskill probability="90" skilllevel="1" skillid="20700"/>
 		<npcskill probability="90" skilllevel="1" skillid="21286"/>

@@ -21,6 +21,7 @@ import com.aionemu.commons.utils.Rnd;
 
 import com.aionemu.gameserver.configs.administration.AdminConfig;
 import com.aionemu.gameserver.configs.main.EnchantsConfig;
+import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.controllers.observer.ItemUseObserver;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.DecomposeStuffData;
@@ -49,6 +50,7 @@ import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.services.item.ItemSocketService;
 import com.aionemu.gameserver.skillengine.model.SkillLearnTemplate;
+import com.aionemu.gameserver.utils.MameClientCompatDebug;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.RndArray;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
@@ -507,42 +509,259 @@ public class EnchantService
     }
 	
     public static void onItemEquip(Player player, Item item) {
+        if (!GSConfig.ARCHSOFT_STATS_CORE_ENABLE) {
+            onItemEquipLegacy(player, item);
+            return;
+        }
         List<IStatFunction> modifiers = new ArrayList<IStatFunction>();
         try {
-            if (item.getItemTemplate().getEnchantTableId() > 0) {
-                ItemEnchantTemplate ie1 = DataManager.ITEM_ENCHANT_DATA.getEnchantePveTemplate(item.getItemTemplate().getEnchantTableId());
-                if (item.getEnchantPvPvELevel() > 0 && ie1 != null) {
-                    try {
-                        for (IStatFunction stat : ie1.getStats(item.getEnchantPvPvELevel())) {
-                            modifiers.add(new StatEnchantFunction(item, stat.getName(), stat.getValue()));
-                        }
-                    } catch (Exception localException2) {
-                        log.error("Cant add enchant modifiers for item: " + item.getItemId() + " , " + ie1.getStats(item.getEnchantPvPvELevel()));
-                    }
-                }
-            } if (item.getItemTemplate().getTemperingTableId() > 0) {
-                ItemEnchantTemplate ie2 = DataManager.ITEM_ENCHANT_DATA.getEnchantePvpTemplate(item.getItemTemplate().getTemperingTableId());
-                int pvpEnchantLevel = item.getItemTemplate().getEnchantType() == EnchantType.PVP && item.getEnchantPvPvELevel() > 0
-                    ? item.getEnchantPvPvELevel()
-                    : item.getAuthorizeLevel();
-                if (pvpEnchantLevel > 0 && ie2 != null) {
-                    try {
-                        for (IStatFunction stat : ie2.getStats(pvpEnchantLevel)) {
-                            modifiers.add(new StatEnchantFunction(item, stat.getName(), stat.getValue()));
-                        }
-                    } catch (Exception localException2) {
-                        log.error("Cant add pvp/authorize modifiers for item: " + item.getItemId() + " , level=" + pvpEnchantLevel, localException2);
-                    }
-                }
-            } if (!modifiers.isEmpty()) {
+            applyEnchantTable(player, item, item.getItemTemplate().getEnchantTableId(), true, modifiers);
+            applyEnchantTable(player, item, item.getItemTemplate().getTemperingTableId(), false, modifiers);
+
+            if (!modifiers.isEmpty()) {
                 player.getGameStats().addEffect(item, modifiers);
-				player.getGameStats().updateStatsAndSpeedVisually();
+                player.getGameStats().updateStatsAndSpeedVisually();
+            } else if (MameClientCompatDebug.isTarget(player) && hasVisibleEnchantOrAuthorize(item)) {
+                log.info("[MAME-STATS][ENCHANT_NONE] player=" + player.getName()
+                    + " itemId=" + item.getItemId()
+                    + " enchant=" + item.getEnchantLevel()
+                    + " enchantPvPvE=" + item.getEnchantPvPvELevel()
+                    + " authorize=" + item.getAuthorizeLevel()
+                    + " enchantTable=" + item.getItemTemplate().getEnchantTableId()
+                    + " temperingTable=" + item.getItemTemplate().getTemperingTableId()
+                    + " type=" + item.getItemTemplate().getEnchantType());
             }
         } catch (Exception ex) {
             log.error("Error on item equip.", ex);
         }
     }
-	
+
+    private static void onItemEquipLegacy(Player player, Item item) {
+        List<IStatFunction> modifiers = new ArrayList<IStatFunction>();
+        try {
+            if (item.getItemTemplate().getEnchantTableId() > 0) {
+                ItemEnchantTemplate ie1 = DataManager.ITEM_ENCHANT_DATA.getEnchantePveTemplate(item.getItemTemplate().getEnchantTableId());
+                int pveEnchantLevel = item.getEnchantPvPvELevel() > 0 ? item.getEnchantPvPvELevel() : item.getEnchantLevel();
+                if (pveEnchantLevel > 0 && ie1 != null) {
+                    try {
+                        List<? extends IStatFunction> stats = ie1.getStats(pveEnchantLevel);
+                        if (stats == null && pveEnchantLevel > 0) {
+                            stats = ie1.getStats(Math.min(pveEnchantLevel, 15));
+                        }
+                        if (stats != null) {
+                            for (IStatFunction stat : stats) {
+                                modifiers.add(new StatEnchantFunction(item, stat.getName(), stat.getValue()));
+                            }
+                        }
+                    } catch (Exception localException2) {
+                        log.error("Cant add enchant modifiers for item: " + item.getItemId() + " , level=" + pveEnchantLevel, localException2);
+                    }
+                }
+            }
+            if (item.getItemTemplate().getTemperingTableId() > 0) {
+                ItemEnchantTemplate ie2 = DataManager.ITEM_ENCHANT_DATA.getEnchantePvpTemplate(item.getItemTemplate().getTemperingTableId());
+                int pvpEnchantLevel = 0;
+                if (item.getItemTemplate().getEnchantType() == EnchantType.PVP && item.getEnchantPvPvELevel() > 0) {
+                    pvpEnchantLevel = item.getEnchantPvPvELevel();
+                } else if (item.getAuthorizeLevel() > 0) {
+                    pvpEnchantLevel = item.getAuthorizeLevel();
+                } else if (item.getEnchantLevel() > 0) {
+                    pvpEnchantLevel = item.getEnchantLevel();
+                }
+                if (pvpEnchantLevel > 0 && ie2 != null) {
+                    try {
+                        List<? extends IStatFunction> stats = ie2.getStats(pvpEnchantLevel);
+                        if (stats == null && pvpEnchantLevel > 0) {
+                            stats = ie2.getStats(Math.min(pvpEnchantLevel, 15));
+                        }
+                        if (stats != null) {
+                            for (IStatFunction stat : stats) {
+                                modifiers.add(new StatEnchantFunction(item, stat.getName(), stat.getValue()));
+                            }
+                        }
+                    } catch (Exception localException2) {
+                        log.error("Cant add pvp/authorize modifiers for item: " + item.getItemId() + " , level=" + pvpEnchantLevel, localException2);
+                    }
+                }
+            }
+            if (!modifiers.isEmpty()) {
+                player.getGameStats().addEffect(item, modifiers);
+                player.getGameStats().updateStatsAndSpeedVisually();
+            }
+        } catch (Exception ex) {
+            log.error("Error on item equip.", ex);
+        }
+    }
+
+    private static boolean hasVisibleEnchantOrAuthorize(Item item) {
+        return item != null && (item.getEnchantLevel() > 0 || item.getEnchantPvPvELevel() > 0 || item.getAuthorizeLevel() > 0);
+    }
+
+    private static void applyEnchantTable(Player player, Item item, int tableId, boolean primaryEnchantTable, List<IStatFunction> modifiers) {
+        if (player == null || item == null || tableId <= 0) {
+            return;
+        }
+        ItemEnchantTemplate template = DataManager.ITEM_ENCHANT_DATA.getTemplateByTypeOrAny(tableId, primaryEnchantTable ? EnchantType.PVE : EnchantType.PVP);
+        if (template == null) {
+            if (MameClientCompatDebug.isTarget(player)) {
+                log.info("[MAME-STATS][ENCHANT_TABLE_MISSING] player=" + player.getName()
+                    + " itemId=" + item.getItemId()
+                    + " tableId=" + tableId
+                    + " primary=" + primaryEnchantTable
+                    + " enchant=" + item.getEnchantLevel()
+                    + " enchantPvPvE=" + item.getEnchantPvPvELevel()
+                    + " authorize=" + item.getAuthorizeLevel());
+            }
+            return;
+        }
+
+        int[] candidateLevels = primaryEnchantTable ? getPrimaryEnchantLevelCandidates(item) : getTemperingLevelCandidates(item);
+        AppliedEnchantStats applied = resolveEnchantStats(template, candidateLevels);
+        if (applied == null || applied.stats == null || applied.stats.isEmpty()) {
+            if (MameClientCompatDebug.isTarget(player) && hasPositiveCandidate(candidateLevels)) {
+                log.info("[MAME-STATS][ENCHANT_STATS_MISSING] player=" + player.getName()
+                    + " itemId=" + item.getItemId()
+                    + " tableId=" + tableId
+                    + " tableType=" + template.getType()
+                    + " primary=" + primaryEnchantTable
+                    + " candidates=" + formatCandidates(candidateLevels)
+                    + " maxLevel=" + template.getMaxStatLevel());
+            }
+            return;
+        }
+
+        for (IStatFunction stat : applied.stats) {
+            if (stat != null) {
+                modifiers.add(new StatEnchantFunction(item, stat.getName(), stat.getValue()));
+            }
+        }
+        if (MameClientCompatDebug.isTarget(player)) {
+            log.info("[MAME-STATS][ENCHANT_APPLY] player=" + player.getName()
+                + " itemId=" + item.getItemId()
+                + " tableId=" + tableId
+                + " tableType=" + template.getType()
+                + " primary=" + primaryEnchantTable
+                + " requestedLevel=" + applied.requestedLevel
+                + " resolvedLevel=" + applied.resolvedLevel
+                + " candidates=" + formatCandidates(candidateLevels)
+                + " stats=" + statsSummary(applied.stats));
+        }
+    }
+
+    private static int[] getPrimaryEnchantLevelCandidates(Item item) {
+        return uniquePositiveLevels(new int[] {
+            item.getEnchantPvPvELevel(),
+            item.getEnchantLevel(),
+            item.getAuthorizeLevel()
+        });
+    }
+
+    private static int[] getTemperingLevelCandidates(Item item) {
+        return uniquePositiveLevels(new int[] {
+            item.getAuthorizeLevel(),
+            item.getEnchantPvPvELevel(),
+            item.getEnchantLevel()
+        });
+    }
+
+    private static int[] uniquePositiveLevels(int[] input) {
+        int[] tmp = new int[input.length];
+        int size = 0;
+        for (int level : input) {
+            if (level <= 0) {
+                continue;
+            }
+            boolean exists = false;
+            for (int i = 0; i < size; i++) {
+                if (tmp[i] == level) {
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists) {
+                tmp[size++] = level;
+            }
+        }
+        int[] result = new int[size];
+        System.arraycopy(tmp, 0, result, 0, size);
+        return result;
+    }
+
+    private static boolean hasPositiveCandidate(int[] candidateLevels) {
+        return candidateLevels != null && candidateLevels.length > 0;
+    }
+
+    private static AppliedEnchantStats resolveEnchantStats(ItemEnchantTemplate template, int[] candidateLevels) {
+        if (template == null || candidateLevels == null) {
+            return null;
+        }
+        for (int requestedLevel : candidateLevels) {
+            List<? extends IStatFunction> exact = template.getStats(requestedLevel);
+            if (exact != null && !exact.isEmpty()) {
+                return new AppliedEnchantStats(requestedLevel, requestedLevel, exact);
+            }
+        }
+        for (int requestedLevel : candidateLevels) {
+            int resolvedLevel = template.getClosestStatLevel(requestedLevel);
+            if (resolvedLevel > 0) {
+                List<? extends IStatFunction> stats = template.getStats(resolvedLevel);
+                if (stats != null && !stats.isEmpty()) {
+                    return new AppliedEnchantStats(requestedLevel, resolvedLevel, stats);
+                }
+            }
+        }
+        return null;
+    }
+
+    private static String formatCandidates(int[] candidateLevels) {
+        if (candidateLevels == null || candidateLevels.length == 0) {
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < candidateLevels.length; i++) {
+            if (i > 0) {
+                sb.append(',');
+            }
+            sb.append(candidateLevels[i]);
+        }
+        return sb.append(']').toString();
+    }
+
+    private static String statsSummary(List<? extends IStatFunction> stats) {
+        if (stats == null || stats.isEmpty()) {
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder("[");
+        int count = 0;
+        for (IStatFunction stat : stats) {
+            if (stat == null) {
+                continue;
+            }
+            if (count > 0) {
+                sb.append(',');
+            }
+            sb.append(stat.getName()).append('=').append(stat.getValue());
+            count++;
+            if (count >= 16) {
+                sb.append(",...");
+                break;
+            }
+        }
+        return sb.append(']').toString();
+    }
+
+    private static final class AppliedEnchantStats {
+        final int requestedLevel;
+        final int resolvedLevel;
+        final List<? extends IStatFunction> stats;
+
+        AppliedEnchantStats(int requestedLevel, int resolvedLevel, List<? extends IStatFunction> stats) {
+            this.requestedLevel = requestedLevel;
+            this.resolvedLevel = resolvedLevel;
+            this.stats = stats;
+        }
+    }
+
     /**
      * http://aionpowerbook.com/powerbook/Glory:_Shield
      *

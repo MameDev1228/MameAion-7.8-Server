@@ -48,9 +48,9 @@ public class ItemEnchantData
         for (ItemEnchantTemplate it : this.enchantTemplates) {
             getEnchantMap().put(it.getId(), it);
 
-            if(it.getType() == EnchantType.PVE) {
+            if (it.getType() == EnchantType.PVE) {
                 pve.put(it.getId(), it);
-            } else {
+            } else if (it.getType() == EnchantType.PVP) {
                 pvp.put(it.getId(), it);
             }
         }
@@ -70,6 +70,16 @@ public class ItemEnchantData
 
     public ItemEnchantTemplate getEnchantePvpTemplate(int id) {
         return this.pvp.get(id);
+    }
+
+    public ItemEnchantTemplate getTemplateByTypeOrAny(int id, EnchantType preferredType) {
+        ItemEnchantTemplate template = null;
+        if (preferredType == EnchantType.PVE) {
+            template = getEnchantePveTemplate(id);
+        } else if (preferredType == EnchantType.PVP) {
+            template = getEnchantePvpTemplate(id);
+        }
+        return template != null ? template : getEnchantTemplate(id);
     }
 	
     public int size() {

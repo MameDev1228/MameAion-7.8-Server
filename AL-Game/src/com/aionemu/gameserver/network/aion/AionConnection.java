@@ -44,6 +44,7 @@ import java.nio.BufferOverflowException;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Object representing connection between GameServer and Aion Client.
@@ -121,6 +122,14 @@ public class AionConnection extends AConnection {
 
 	private String macAddress;
 
+	// MameAion v63: keep a small packet audit trail so a sudden disconnect can be
+	// diagnosed even when the client only shows "world disconnected".
+	private final String[] lastOutboundPackets = new String[24];
+	private final String[] lastInboundPackets = new String[24];
+	private final AtomicInteger outboundPacketAuditIndex = new AtomicInteger();
+	private final AtomicInteger inboundPacketAuditIndex = new AtomicInteger();
+	private volatile String closeReason = "none";
+
 	/** Ping checker - for detecting hanged up connections **/
 	private PingChecker pingChecker;
 	
@@ -184,19 +193,22 @@ public class AionConnection extends AConnection {
 				nbInvalidPackets++;
 				log.debug("[" + nbInvalidPackets + "/" + MAX_INVALID_PACKETS + "] Decrypt fail, client packet passed...");
 				if (nbInvalidPackets >= MAX_INVALID_PACKETS) {
-					log.warn("Decrypt fail!");
+					closeReason = "decrypt_fail";
+					log.warn("[MAME-NET][DISCONNECT_TRIGGER] reason=decrypt_fail " + auditIdentity() + " inbound=" + dumpInboundAudit() + " outbound=" + dumpOutboundAudit());
 					return false;
 				}
 				return true;
 			}
 		}
 		catch (Exception ex) {
-			log.error("Exception caught during decrypt!" + ex.getMessage());
+			closeReason = "decrypt_exception:" + ex.getClass().getSimpleName();
+			log.error("[MAME-NET][DISCONNECT_TRIGGER] reason=" + closeReason + " " + auditIdentity() + " inbound=" + dumpInboundAudit() + " outbound=" + dumpOutboundAudit(), ex);
 			return false;
 		}
 
 		if(data.remaining() < 5) {//op + static code + op == 5 bytes
-			log.error("Received fake packet from: "+this);
+			closeReason = "fake_packet_remaining_" + data.remaining();
+			log.error("[MAME-NET][DISCONNECT_TRIGGER] reason=" + closeReason + " " + auditIdentity() + " inbound=" + dumpInboundAudit() + " outbound=" + dumpOutboundAudit());
 			return false;
 		}
 			
@@ -206,6 +218,7 @@ public class AionConnection extends AConnection {
 		 * Execute packet only if packet exist (!= null) and read was ok.
 		 */
 		if (pck != null) {
+			recordInboundPacket(pck.getPacketName(), pck.getOpcode(), data.remaining());
 			if (SecurityConfig.PFF_ENABLE) {
 				int opcode = pck.getOpcode();
 				if(pff.length > opcode) {		
@@ -230,8 +243,13 @@ public class AionConnection extends AConnection {
 				}
 			}
 			
-			if(pck.read())
+			if (pck.read()) {
 				packetProcessor.executePacket(pck);
+			} else {
+				log.warn("[MAME-NET][BAD_CLIENT_PACKET] packet=" + pck.getPacketName()
+					+ " opcode=0x" + Integer.toHexString(pck.getOpcode()).toUpperCase()
+					+ " " + auditIdentity() + " inbound=" + dumpInboundAudit() + " outbound=" + dumpOutboundAudit());
+			}
 		}
 
 		return true;
@@ -263,6 +281,7 @@ public class AionConnection extends AConnection {
 					+ " player=" + (player != null ? player.getName() : lastPlayerName)
 					+ " ip=" + getIP() + " state=" + getState() + " queued=" + sendMsgQueue.size()
 					+ " capacity=" + data.capacity() + " remaining=" + data.remaining()
+					+ " inbound=" + dumpInboundAudit() + " outbound=" + dumpOutboundAudit()
 					+ " - packet skipped; connection kept alive", e);
 				return false;
 			}
@@ -274,6 +293,7 @@ public class AionConnection extends AConnection {
 					+ " account=" + (getAccount() != null ? getAccount().getName() : "null")
 					+ " player=" + (player != null ? player.getName() : lastPlayerName)
 					+ " ip=" + getIP() + " state=" + getState() + " queued=" + sendMsgQueue.size()
+					+ " inbound=" + dumpInboundAudit() + " outbound=" + dumpOutboundAudit()
 					+ " - packet skipped; connection kept alive", e);
 				return false;
 			}
@@ -299,6 +319,12 @@ public class AionConnection extends AConnection {
 	 */
 	@Override
 	protected final void onDisconnect() {
+		Player auditPlayer = getActivePlayer();
+		log.warn("[MAME-NET][DISCONNECT] reason=" + closeReason + " " + auditIdentity()
+			+ " player=" + (auditPlayer != null ? auditPlayer.getName() : lastPlayerName)
+			+ " pos=" + (auditPlayer != null ? (auditPlayer.getWorldId() + "/" + auditPlayer.getInstanceId() + " " + auditPlayer.getX() + "," + auditPlayer.getY() + "," + auditPlayer.getZ()) : "null")
+			+ " queued=" + sendMsgQueue.size() + " pendingClose=" + pendingClose + " forced=" + isForcedClosing
+			+ " inbound=" + dumpInboundAudit() + " outbound=" + dumpOutboundAudit());
 		/**
 		 * Client starts authentication procedure
 		 */
@@ -345,6 +371,7 @@ public class AionConnection extends AConnection {
 			if (isWriteDisabled())
 				return;
 
+			recordOutboundPacket(bp);
 			sendMsgQueue.addLast(bp);
 			enableWriteInterest();
 		}
@@ -365,6 +392,8 @@ public class AionConnection extends AConnection {
 			if (isWriteDisabled())
 				return;
 
+			closeReason = "server_close_packet:" + (closePacket != null ? closePacket.getPacketName() : "null");
+			log.warn("[MAME-NET][CLOSE_REQUEST] reason=" + closeReason + " forced=" + forced + " " + auditIdentity() + " queued=" + sendMsgQueue.size() + " inbound=" + dumpInboundAudit() + " outbound=" + dumpOutboundAudit());
 			pendingClose = true;
 			isForcedClosing = forced;
 			sendMsgQueue.clear();
@@ -457,6 +486,8 @@ public class AionConnection extends AConnection {
 	}
 
 	public void closeNow() {
+		closeReason = "closeNow";
+		log.warn("[MAME-NET][CLOSE_NOW] " + auditIdentity() + " inbound=" + dumpInboundAudit() + " outbound=" + dumpOutboundAudit());
 		this.close(false);
 	}
 
@@ -477,6 +508,51 @@ public class AionConnection extends AConnection {
 		}
 		return "";
 	}
+	private void recordOutboundPacket(AionServerPacket packet) {
+		if (packet == null) {
+			return;
+		}
+		int index = Math.abs(outboundPacketAuditIndex.getAndIncrement() % lastOutboundPackets.length);
+		lastOutboundPackets[index] = System.currentTimeMillis() + ":" + packet.getPacketName() + "(0x" + Integer.toHexString(packet.getOpcode()).toUpperCase() + ")";
+	}
+
+	private void recordInboundPacket(String packetName, int opcode, int remaining) {
+		int index = Math.abs(inboundPacketAuditIndex.getAndIncrement() % lastInboundPackets.length);
+		lastInboundPackets[index] = System.currentTimeMillis() + ":" + packetName + "(0x" + Integer.toHexString(opcode).toUpperCase() + ",rem=" + remaining + ")";
+	}
+
+	private String dumpOutboundAudit() {
+		return dumpAudit(lastOutboundPackets, outboundPacketAuditIndex.get());
+	}
+
+	private String dumpInboundAudit() {
+		return dumpAudit(lastInboundPackets, inboundPacketAuditIndex.get());
+	}
+
+	private String dumpAudit(String[] entries, int index) {
+		StringBuilder sb = new StringBuilder("[");
+		for (int i = 0; i < entries.length; i++) {
+			int pos = Math.floorMod(index + i, entries.length);
+			String entry = entries[pos];
+			if (entry == null) {
+				continue;
+			}
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+			sb.append(entry);
+		}
+		sb.append(']');
+		return sb.toString();
+	}
+
+	private String auditIdentity() {
+		Player player = getActivePlayer();
+		return "account=" + (getAccount() != null ? getAccount().getName() : "null")
+			+ " player=" + (player != null ? player.getName() : lastPlayerName)
+			+ " ip=" + getIP() + " state=" + getState();
+	}
+
 
 	private class PingChecker implements Runnable {
 

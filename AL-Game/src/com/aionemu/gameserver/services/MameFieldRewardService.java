@@ -26,6 +26,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 public final class MameFieldRewardService {
 
     private static final int LAKRUM_WORLD_ID = 800050000;
+    private static final int DOMAHA_WORLD_ID = 800060000;
     private static final int CRIMSON_KATALAM_WORLD_ID = 800030000;
     private static final long KATALAM_BASE_KINAH = 25_000_000L;
 
@@ -37,6 +38,15 @@ public final class MameFieldRewardService {
         new BonusDrop(188074436, 40.0f, 1),
         new BonusDrop(190095008, 15.0f, 1),
         new BonusDrop(190090040,  1.0f, 1)
+    };
+
+    private static final BonusDrop[] DOMAHA_BASIC_DROPS = new BonusDrop[] {
+        new BonusDrop(188070768, 30.0f, 1),      // Ancient Daevanion Skill Book
+        new BonusDrop(188070330, 20.0f, 1),      // Legendary Daevanion Skill Book
+        new BonusDrop(188070929, 10.0f, 1),      // Ultimate Daevanion Skill Book
+        new BonusDrop(188070399,  3.0f, 1),      // Skill Card Selection
+        new BonusDrop(190200005, 10.0f, 1, 10),  // S-grade Minionite x1-10
+        new BonusDrop(190080119, 25.0f, 1)       // Minion Contract
     };
 
     private static final RewardItem[] KATALAM_BASE_REWARDS = new RewardItem[] {
@@ -56,28 +66,49 @@ public final class MameFieldRewardService {
         if (npc == null || droppedItems == null || npc.getWorldId() != LAKRUM_WORLD_ID) {
             return index;
         }
-        if (isLakrumWorldRaid(npc.getNpcId())) {
+        if (isLakrumWorldRaid(npc)) {
             return index;
         }
         for (BonusDrop rule : LAKRUM_BASIC_DROPS) {
             if (rollPercent(rule.chance)) {
-                droppedItems.add(createDropItem(index++, winnerObjId, npc.getObjectId(), rule.itemId, rule.count));
+                droppedItems.add(createDropItem(index++, winnerObjId, npc.getObjectId(), rule.itemId, rule.rollCount()));
             }
         }
         return index;
     }
 
-    private static boolean isLakrumWorldRaid(int npcId) {
+
+    /**
+     * Adds independent Domaha field bonus drops. Each rule rolls independently, so several items can drop at once.
+     */
+    public static int addDomahaBasicDrops(Npc npc, Set<DropItem> droppedItems, int index, int winnerObjId) {
+        if (npc == null || droppedItems == null || npc.getWorldId() != DOMAHA_WORLD_ID) {
+            return index;
+        }
+        for (BonusDrop rule : DOMAHA_BASIC_DROPS) {
+            if (rollPercent(rule.chance)) {
+                droppedItems.add(createDropItem(index++, winnerObjId, npc.getObjectId(), rule.itemId, rule.rollCount()));
+            }
+        }
+        return index;
+    }
+
+    private static boolean isLakrumWorldRaid(Npc npc) {
+        if (npc == null) {
+            return false;
+        }
+        int npcId = npc.getNpcId();
         switch (npcId) {
             case 655120: // Scout Kabar
             case 655121: // Scout Paltan
             case 655122: // Inspector Kephrata
             case 655123: // Guard Captain Haznish
             case 655124: // Mad King Laurent
-            case 655240: // Berserk Anomos
+            case 655240: // Berserk/Crazed Anomos
                 return true;
             default:
-                return false;
+                String name = npc.getName();
+                return name != null && name.toLowerCase().contains("anomos");
         }
     }
 
@@ -180,12 +211,25 @@ public final class MameFieldRewardService {
     private static final class BonusDrop {
         private final int itemId;
         private final float chance;
-        private final long count;
+        private final long minCount;
+        private final long maxCount;
 
         private BonusDrop(int itemId, float chance, long count) {
+            this(itemId, chance, count, count);
+        }
+
+        private BonusDrop(int itemId, float chance, long minCount, long maxCount) {
             this.itemId = itemId;
             this.chance = chance;
-            this.count = count;
+            this.minCount = minCount;
+            this.maxCount = Math.max(minCount, maxCount);
+        }
+
+        private long rollCount() {
+            if (minCount == maxCount) {
+                return minCount;
+            }
+            return Rnd.get((int) minCount, (int) maxCount);
         }
     }
 

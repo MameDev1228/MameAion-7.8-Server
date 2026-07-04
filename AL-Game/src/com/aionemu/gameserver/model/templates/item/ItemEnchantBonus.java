@@ -17,7 +17,7 @@ public class ItemEnchantBonus
 	private int level;
 	
 	public List<StatFunction> getModifiers() {
-		return this.modifiers.getModifiers();
+		return this.modifiers == null ? null : this.modifiers.getModifiers();
 	}
 	
 	public int getLevel() {

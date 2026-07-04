@@ -86,23 +86,10 @@ public class TeleportService2
 				PacketSendUtility.sendMessage(player, "Missing info at teleport_location.xml with locId: " + locId);
 			    return;
 			}
-		} if (location.getRequiredQuest() == 60300) {
-			if (player.getRace() == Race.ELYOS) {
-				QuestState qs = player.getQuestStateList().getQuestState(location.getRequiredQuest());
-				if (qs == null || qs.getStatus() != QuestStatus.COMPLETE) { //All Aboard!
-					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_CANT_OWN_NOT_COMPLETE_QUEST(60300));
-					return;
-				}
-			}
-		} if (location.getRequiredQuest() == 70300) {
-			if (player.getRace() == Race.ASMODIANS) {
-				QuestState qs = player.getQuestStateList().getQuestState(location.getRequiredQuest());
-				if (qs == null || qs.getStatus() != QuestStatus.COMPLETE) { //Arriving in Gelkmaros.
-					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_HOUSING_CANT_OWN_NOT_COMPLETE_QUEST(70300));
-					return;
-				}
-			}
-		} if (!checkKinahForTransportation(location, player)) {
+		} // MameAion v62: public teleporter routes should not be locked behind
+		// campaign prerequisite quests on this private server.  Keep race/kinah/map
+		// validation, but bypass requiredQuest checks such as 60300/70300.
+		if (!checkKinahForTransportation(location, player)) {
 			return;
 		} if (location.getType() == TeleportType.FLIGHT) {
 			player.unsetPlayerMode(PlayerMode.RIDE);

@@ -43,8 +43,8 @@ public class RemoveCd extends AdminCommand {
 					for (Integer delayId : delayIds)
 						player.setSkillCoolDown(delayId, currentTime);
 
+					PacketSendUtility.sendPacket(player, new SM_SKILL_COOLDOWN(player, delayIds));
 					delayIds.clear();
-					PacketSendUtility.sendPacket(player, new SM_SKILL_COOLDOWN(player.getSkillCoolDowns()));
 				}
 
 				if (player.getItemCoolDowns() != null) {

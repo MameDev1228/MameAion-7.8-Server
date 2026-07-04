@@ -594,16 +594,30 @@ public abstract class Creature extends VisibleObject
 			return false;
 		}
 
-		if (coolDown < System.currentTimeMillis()) {
+		long now = System.currentTimeMillis();
+		if (coolDown < now) {
 			removeSkillCoolDown(delayId);
 			return false;
+		}
+		// MameAion v62: protect against corrupted cooldown end-times after map/instance
+		// transitions.  A 2 sec skill must not become 955 hours server-side.  Skill.java
+		// stores cooldown as templateCooldown * 100ms, so clamp any impossible remaining
+		// time to the real template cooldown window.
+		long maxRemaining = Math.max(1000L, template.getDuration() + (long) template.getCooldown() * 100L + 5000L);
+		if (coolDown - now > Math.max(60000L, maxRemaining)) {
+			long rawLeft = coolDown - now;
+			coolDown = now + maxRemaining;
+			skillCoolDowns.put(delayId, coolDown);
+			log.warn("[MAME-COOLDOWN][CLAMP_SERVER] creature=" + getName() + " skill=" + template.getSkillId()
+				+ " delayId=" + delayId + " rawLeftMs=" + rawLeft + " clampedLeftMs=" + maxRemaining
+				+ " templateCooldown=" + template.getCooldown() + " duration=" + template.getDuration());
 		}
 
 		/*
 		 * Some shared cooldown skills have indipendent and different cooldown they must not be blocked
 		 */
 		if (skillCoolDownsBase != null && skillCoolDownsBase.get(delayId) != null) {
-			if ((template.getDuration() + template.getCooldown() * 100 + skillCoolDownsBase.get(delayId)) < System.currentTimeMillis())
+			if ((template.getDuration() + template.getCooldown() * 100 + skillCoolDownsBase.get(delayId)) < now)
 				return false;
 		}
 

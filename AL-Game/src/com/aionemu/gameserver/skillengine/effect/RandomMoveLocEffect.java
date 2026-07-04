@@ -92,8 +92,8 @@ public class RandomMoveLocEffect extends EffectTemplate
 				} for (Integer delayId: delayIds) {
 					effector.setSkillCoolDown(delayId, currentTime);
 				}
+				PacketSendUtility.sendPacket(effector, new SM_SKILL_COOLDOWN(effector, delayIds));
 				delayIds.clear();
-				PacketSendUtility.sendPacket(effector, new SM_SKILL_COOLDOWN(effector.getSkillCoolDowns()));
 			}
 		}
 		double radian = Math.toRadians(MathUtil.convertHeadingToDegree(effector.getHeading()));

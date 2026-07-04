@@ -110,12 +110,12 @@ public class PlayerController extends CreatureController<Player>
 				player.getEffectController().updatePlayerEffectIcons();
 				PacketSendUtility.sendPacket(getOwner(), new SM_USE_ROBOT(player, getRobotInfo(player).getRobotId()));
 			} if (player.isTransformed()) {
-				TeleportService2.playerTransformation(getOwner());
-				TeleportService2.instanceTransformation(getOwner());
-				TeleportService2.archdaevaTransformation(getOwner());
-				player.getEffectController().updatePlayerEffectIcons();
-				PacketSendUtility.broadcastPacketAndReceive(player, new SM_TRANSFORM(player, true));
-				PacketSendUtility.broadcastPacketAndReceive(player, new SM_TRANSFORM(player, player.getTransformedModelId(), true, player.getTransformedItemId(), player.getTransformedSkillId()));
+				// MameAion v62: see() must only describe the object being seen to the
+				// observer.  The old code refreshed the observer's own transform and
+				// broadcast the seen player's transform to nearby clients whenever a
+				// player entered known-list, which can corrupt client-side actor state.
+				PacketSendUtility.sendPacket(getOwner(), new SM_TRANSFORM(player, true));
+				PacketSendUtility.sendPacket(getOwner(), new SM_TRANSFORM(player, player.getTransformedModelId(), true, player.getTransformedItemId(), player.getTransformedSkillId()));
             } if (player.isInPlayerMode(PlayerMode.RIDE)) {
 				PacketSendUtility.sendPacket(getOwner(), new SM_EMOTION(player, EmotionType.RIDE, 0, player.ride.getNpcId()));
 			} else if (player.getPet() != null) {
@@ -123,11 +123,11 @@ public class PlayerController extends CreatureController<Player>
 				PacketSendUtility.sendPacket(getOwner(), new SM_PET(3, player.getPet()));
 			} else if (player.getMinion() != null) {
 				LoggerFactory.getLogger(PlayerController.class).debug("Player " + getOwner().getName() + " sees " + object.getName() + " that has Minion");
-				// MameAion CC2/EU7.7: when this observer sees another player that already has a minion,
-					// send the minion appearance only to this observer.  Broadcasting from inside see()
-					// re-sends the minion spawn to the owner and every nearby client whenever any
-					// player enters knownlist, which can corrupt client UI/state and trigger disconnects.
-					PacketSendUtility.sendPacket(getOwner(), new SM_MINION(6, player.getMinion().getCommonData(), 0));
+				// MameAion v62 emergency isolation: do not send an extra SM_MINION from
+				// PlayerController.see(). Active summon/despawn still sends minion packets,
+				// but known-list entry must be side-effect free until the CC2/EU7.7 minion
+				// appearance packet is fully verified. This targets the "approach player ->
+				// HP/level glitch or disconnect" incident.
 			}
 			player.getEffectController().sendEffectIconsTo(getOwner());
 		} else if (object instanceof Kisk) {

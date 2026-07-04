@@ -79,7 +79,7 @@ public class EnchantStigmaAction extends AbstractItemAction
 		} else {
 			enchantCast = EnchantsConfig.ENCHANT_SPEED;
 		}
-		final boolean isStigmaSuccess = Rnd.chance(65);
+		final boolean isStigmaSuccess = isGuaranteedStigmaEnchantStone(parentItem) || Rnd.chance(65);
         final int parentItemId = parentItem.getItemId();
         final int parentObjectId = parentItem.getObjectId();
         PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItemId, enchantCast, 0, 0), true);
@@ -145,6 +145,18 @@ public class EnchantStigmaAction extends AbstractItemAction
         }, enchantCast));
     }
 	
+	private boolean isGuaranteedStigmaEnchantStone(Item item) {
+		if (item == null || item.getItemTemplate() == null) {
+			return false;
+		}
+		int itemId = item.getItemId();
+		if (itemId == 166075000 || itemId == 166075001) {
+			return true;
+		}
+		String name = item.getItemTemplate().getName();
+		return name != null && name.toLowerCase().contains("100_stigma");
+	}
+
     public static int getStigmaByQuality(Item item) {
         int price = 0;
         switch (item.getItemTemplate().getItemQuality()) {

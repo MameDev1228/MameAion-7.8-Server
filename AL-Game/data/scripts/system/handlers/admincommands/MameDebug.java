@@ -55,6 +55,10 @@ public class MameDebug extends AdminCommand {
             printSkill(admin, params);
         } else if ("skilldelay".equals(mode) || "cooldown".equals(mode)) {
             printSkillDelayGroup(admin, params);
+        } else if ("skillgroup".equals(mode) || "skillcd".equals(mode)) {
+            printSkillDelayGroupBySkill(admin, params);
+        } else if ("skillpenalty".equals(mode)) {
+            printSkillPenalty(admin, params);
         } else if ("skillaudit".equals(mode)) {
             auditSkillTemplates(admin, params);
         } else if ("status".equals(mode)) {
@@ -126,6 +130,10 @@ public class MameDebug extends AdminCommand {
             PacketSendUtility.sendMessage(admin, "delayId must be integer: " + params[1]);
             return;
         }
+        printDelayGroup(admin, delayId);
+    }
+
+    private void printDelayGroup(Player admin, int delayId) {
         ArrayList<Integer> skills = DataManager.SKILL_DATA.getSkillsForDelayId(delayId);
         if (skills == null || skills.isEmpty()) {
             PacketSendUtility.sendMessage(admin, "No skills for delayId/cooldownId=" + delayId);
@@ -139,15 +147,66 @@ public class MameDebug extends AdminCommand {
             if (template == null) {
                 continue;
             }
-            if (printed < 8) {
+            if (printed < 10) {
                 PacketSendUtility.sendMessage(admin, skillLine(template));
             }
-            log.info("[MAME-SKILL-AUDIT][DELAY_GROUP] delayId=" + delayId + " " + skillLine(template));
+            log.info("[MAME-SKILL-AUDIT][DELAY_GROUP] delayId=" + delayId + " " + skillLine(template) + " | " + skillExtraLine(template));
             printed++;
         }
-        if (printed > 8) {
-            PacketSendUtility.sendMessage(admin, "... " + (printed - 8) + " more lines written to console.log");
+        if (printed > 10) {
+            PacketSendUtility.sendMessage(admin, "... " + (printed - 10) + " more lines written to console.log");
         }
+    }
+
+
+    private void printSkillDelayGroupBySkill(Player admin, String... params) {
+        if (params.length < 2) {
+            PacketSendUtility.sendMessage(admin, "Usage: //mamedebug skillgroup <skillId>");
+            return;
+        }
+        Integer skillId = parseInt(params[1]);
+        if (skillId == null) {
+            PacketSendUtility.sendMessage(admin, "skillId must be integer: " + params[1]);
+            return;
+        }
+        SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skillId);
+        if (template == null) {
+            PacketSendUtility.sendMessage(admin, "Skill not found: " + skillId);
+            return;
+        }
+        PacketSendUtility.sendMessage(admin, "Selected: " + skillLine(template));
+        printDelayGroup(admin, template.getDelayId());
+    }
+
+    private void printSkillPenalty(Player admin, String... params) {
+        if (params.length < 2) {
+            PacketSendUtility.sendMessage(admin, "Usage: //mamedebug skillpenalty <skillId>");
+            return;
+        }
+        Integer skillId = parseInt(params[1]);
+        if (skillId == null) {
+            PacketSendUtility.sendMessage(admin, "skillId must be integer: " + params[1]);
+            return;
+        }
+        SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skillId);
+        if (template == null) {
+            PacketSendUtility.sendMessage(admin, "Skill not found: " + skillId);
+            return;
+        }
+        PacketSendUtility.sendMessage(admin, "Selected: " + skillLine(template));
+        int penaltyId = template.getPenaltySkillId();
+        if (penaltyId <= 0) {
+            PacketSendUtility.sendMessage(admin, "No penalty_skill_id on skill=" + skillId);
+            return;
+        }
+        SkillTemplate penalty = DataManager.SKILL_DATA.getSkillTemplate(penaltyId);
+        if (penalty == null) {
+            PacketSendUtility.sendMessage(admin, "penalty_skill_id=" + penaltyId + " is not loaded");
+            return;
+        }
+        PacketSendUtility.sendMessage(admin, "Penalty: " + skillLine(penalty));
+        PacketSendUtility.sendMessage(admin, skillExtraLine(penalty));
+        log.info("[MAME-SKILL-AUDIT][PENALTY] source=" + skillLine(template) + " | penalty=" + skillLine(penalty) + " | " + skillExtraLine(penalty));
     }
 
     private void auditSkillTemplates(Player admin, String... params) {
@@ -273,6 +332,8 @@ public class MameDebug extends AdminCommand {
         PacketSendUtility.sendMessage(admin, "//mamedebug refreshstats - resend SM_STATS_INFO to selected/self");
         PacketSendUtility.sendMessage(admin, "//mamedebug skill <skillId> - print current skill template values");
         PacketSendUtility.sendMessage(admin, "//mamedebug skilldelay <delayId> - print cooldown/delay group");
+        PacketSendUtility.sendMessage(admin, "//mamedebug skillgroup <skillId> - print selected skill and its cooldown/delay group");
+        PacketSendUtility.sendMessage(admin, "//mamedebug skillpenalty <skillId> - print penalty_skill_id target, if any");
         PacketSendUtility.sendMessage(admin, "//mamedebug skillaudit [limit] - scan risky cooldown/template rows");
     }
 }

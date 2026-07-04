@@ -254,7 +254,10 @@ public class PlayerGameStats extends CreatureGameStats<Player>
 
 	@Override
 	public Stat2 getPDef() {
-		return getStat(StatEnum.PHYSICAL_POWER_BOOST_RESIST, 0);
+		// ArchSoft/6.x+ strict mapping: classic Physical Defense is PHYSICAL_DEFENSE.
+		// PHYSICAL_POWER_BOOST_RESIST is the modern Physical Attack resist used in ReFly A_net,
+		// not the profile's classic defence slot. Mixing these caused wrong tooltip values.
+		return getStat(StatEnum.PHYSICAL_DEFENSE, 0);
 	}
 
 	@Override
@@ -298,45 +301,26 @@ public class PlayerGameStats extends CreatureGameStats<Player>
 
 	@Override
 	public Stat2 getAttackRange() {
+		// ArchSoft behaviour: with dual weapons, use the smaller real weapon range.
 		int base = 1500;
+		int minWeaponRange = Integer.MAX_VALUE;
 		Equipment equipment = owner.getEquipment();
 		Item mainHandWeapon = equipment.getMainHandWeapon();
 		Item offHandWeapon = equipment.getOffHandWeapon();
 		if (mainHandWeapon != null) {
-			base = mainHandWeapon.getItemTemplate().getWeaponStats().getAttackRange();
-			if (!mainHandWeapon.getItemTemplate().isTwoHandWeapon() && mainHandWeapon != null && offHandWeapon != null && offHandWeapon.getItemTemplate().getArmorType() != ArmorType.SHIELD) {
-				if (mainHandWeapon.getItemTemplate().getWeaponStats().getAttackRange() != offHandWeapon.getItemTemplate().getWeaponStats().getAttackRange()) {
-					if (mainHandWeapon.getItemTemplate().getWeaponType() == WeaponType.DAGGER_1H && offHandWeapon.getItemTemplate().getWeaponType() == WeaponType.DAGGER_1H) {
-						base = 1500;
-					} else if (mainHandWeapon.getItemTemplate().getWeaponType() == WeaponType.DAGGER_1H && offHandWeapon.getItemTemplate().getWeaponType() == WeaponType.SWORD_1H) {
-						base = 1500;
-					} else if (mainHandWeapon.getItemTemplate().getWeaponType() == WeaponType.SWORD_1H && offHandWeapon.getItemTemplate().getWeaponType() == WeaponType.DAGGER_1H) {
-						base = 1500;
-					} else if (mainHandWeapon.getItemTemplate().getWeaponType() == WeaponType.DAGGER_1H && offHandWeapon.getItemTemplate().getWeaponType() == WeaponType.MACE_1H) {
-						base = 1500;
-					} else if (mainHandWeapon.getItemTemplate().getWeaponType() == WeaponType.MACE_1H && offHandWeapon.getItemTemplate().getWeaponType() == WeaponType.DAGGER_1H) {
-						base = 1500;
-					} else if (mainHandWeapon.getItemTemplate().getWeaponType() == WeaponType.MACE_1H && offHandWeapon.getItemTemplate().getWeaponType() == WeaponType.SWORD_1H) {
-						base = 1500;
-					} else if (mainHandWeapon.getItemTemplate().getWeaponType() == WeaponType.MACE_1H && offHandWeapon.getItemTemplate().getWeaponType() == WeaponType.MACE_1H) {
-						base = 1500;
-					} else if (mainHandWeapon.getItemTemplate().getWeaponType() == WeaponType.SWORD_1H && offHandWeapon.getItemTemplate().getWeaponType() == WeaponType.MACE_1H) {
-						base = 1500;
-					} else {
-						if (mainHandWeapon != null && offHandWeapon != null && offHandWeapon.getItemTemplate().getArmorType() != ArmorType.SHIELD) {
-							base = mainHandWeapon.getItemTemplate().getWeaponStats().getAttackRange();
-							//log.info("[Error] PlayerGameStats] mainHandWeapon ["+mainHandWeapon.getItemTemplate().getItemType()+"] offHandWeapon ["+offHandWeapon.getItemTemplate().getItemType()+"]");
-						}
-					}
-				}
-			}
+			minWeaponRange = Math.min(minWeaponRange, mainHandWeapon.getItemTemplate().getWeaponStats().getAttackRange());
 		}
-		return getStat(StatEnum.ATTACK_RANGE, base);
+		if (offHandWeapon != null && offHandWeapon != mainHandWeapon && offHandWeapon.getItemTemplate().isWeapon() && offHandWeapon.getItemTemplate().getArmorType() != ArmorType.SHIELD) {
+			minWeaponRange = Math.min(minWeaponRange, offHandWeapon.getItemTemplate().getWeaponStats().getAttackRange());
+		}
+		return getStat(StatEnum.ATTACK_RANGE, minWeaponRange == Integer.MAX_VALUE ? base : minWeaponRange);
 	}
 
 	@Override
 	public Stat2 getMDef() {
-		return getStat(StatEnum.MAGICAL_POWER_BOOST_RESIST, 0);
+		// ArchSoft/6.x+ strict mapping: classic Magical Defense is MAGICAL_DEFEND.
+		// MAGICAL_POWER_BOOST_RESIST remains the modern Magical Attack resist.
+		return getStat(StatEnum.MAGICAL_DEFEND, 0);
 	}
 
 	@Override
@@ -533,17 +517,16 @@ public class PlayerGameStats extends CreatureGameStats<Player>
 
 	@Override
 	public Stat2 getMAccuracy() {
+        // ArchSoft hard-copy behaviour: base magic accuracy + weapon magic accuracy + modifiers.
+        // The old local HAGI-derived bonus inflated the displayed and actual resist check input,
+        // and did not exist in the ArchSoft 6.x/7.x stat path.
         PlayerStatsTemplate pst = DataManager.PLAYER_STATS_DATA.getTemplate(this.owner.getPlayerClass(), this.owner.getLevel());
         int base = pst.getMagicAccuracy();
         Item mainHandWeapon = this.owner.getEquipment().getMainHandWeapon();
         if (mainHandWeapon != null) {
             base += mainHandWeapon.getItemTemplate().getWeaponStats().getMagicalAccuracy();
         }
-        Stat2 stat = getStat(StatEnum.MAGICAL_ACCURACY, base);
-        int HAGI = this.owner.getGameStats().getStat(StatEnum.AGILITY, 0).getCurrent();
-        int MAccuracyCalculation = Math.round(2286 * HAGI / (376.0F + HAGI));
-        stat.addToBonus(MAccuracyCalculation);
-        return stat;
+        return getStat(StatEnum.MAGICAL_ACCURACY, base);
     }
 
     public Stat2 getOffHandMAccuracy() {

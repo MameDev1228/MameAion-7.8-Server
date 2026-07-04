@@ -132,21 +132,25 @@ public class ItemEquipmentListener
 		ItemTemplate itemTemplate = item.getItemTemplate();
 		long slot = item.getEquipmentSlot();
 		List<StatFunction> modifiers = itemTemplate.getModifiers();
-		if (modifiers == null) {
-			return;
-		}
-		List<StatFunction> allModifiers = null;
+		List<StatFunction> allModifiers = new ArrayList<StatFunction>();
+
+		// ArchSoft StatsCore phase: never abort the whole item when the primary
+		// <modifiers> block is absent. Some 7.x items still need fusion/enchant/tuning
+		// paths and the audit currentModifiers must represent exactly what this item
+		// contributes through the template path.
 		if ((slot & ItemSlot.MAIN_OR_SUB.getSlotIdMask()) != 0) {
-			allModifiers = wrapModifiers(item, modifiers);
+			if (modifiers != null) {
+				allModifiers.addAll(wrapModifiers(item, modifiers));
+			}
 			if (item.hasFusionedItem()) {
-				// add all bonus modifiers according to rules
+				// add all bonus modifiers according to ArchSoft fusion rules
 				ItemTemplate fusionedItemTemplate = item.getFusionedItemTemplate();
 				WeaponType weaponType = fusionedItemTemplate.getWeaponType();
 				List<StatFunction> fusionedItemModifiers = fusionedItemTemplate.getModifiers();
 				if (fusionedItemModifiers != null) {
 					allModifiers.addAll(wrapModifiers(item, fusionedItemModifiers));
 				}
-				// add 10% of Magic Boost and Attack
+				// add 10% of magic boost and weapon attack from fused weapon
 				WeaponStats weaponStats = fusionedItemTemplate.getWeaponStats();
 				if (weaponStats != null) {
 					int boostMagicalSkill = Math.round(0.1f * weaponStats.getBoostMagicalSkill());
@@ -164,24 +168,33 @@ public class ItemEquipmentListener
 					}
 				}
 			}
-		} else {
-			allModifiers = modifiers;
+		} else if (modifiers != null) {
+			// Accessories/armour: apply every template modifier as-is.
+			// This is the path that carries accuracy/magic accuracy/evasion/resist from accessories.
+			allModifiers.addAll(modifiers);
 		}
+
 		item.setCurrentModifiers(allModifiers);
-		cgs.addEffect(item, allModifiers);
+		if (!allModifiers.isEmpty()) {
+			cgs.addEffect(item, allModifiers);
+		}
 	}
 	
 	private static List<StatFunction> wrapModifiers(Item item, List<StatFunction> modifiers) {
 		List<StatFunction> allModifiers = new ArrayList<StatFunction>();
+		if (modifiers == null) {
+			return allModifiers;
+		}
 		for (StatFunction modifier : modifiers) {
+			if (modifier == null) {
+				continue;
+			}
 			switch (modifier.getName()) {
 				case ATTACK_SPEED:
 				case BOOST_CASTING_TIME:
-				case PVE_POWER_BOOST:
-				case PVP_POWER_BOOST:
-				continue;
+					continue;
 				default:
-				allModifiers.add(modifier);
+					allModifiers.add(modifier);
 			}
 		}
 		return allModifiers;

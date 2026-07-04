@@ -5,6 +5,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
 import com.aionemu.gameserver.model.stats.container.PlayerGameStats;
 import com.aionemu.gameserver.model.stats.container.PlayerLifeStats;
+import com.aionemu.gameserver.model.stats.calc.Stat2;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
 import com.aionemu.gameserver.model.templates.item.WeaponType;
 import com.aionemu.gameserver.network.aion.AionConnection;
@@ -185,48 +186,48 @@ public class SM_STATS_INFO extends AionServerPacket
 		writeD(pgs.getMaxMp().getBase());
 		writeD(pgs.getMaxDp().getBase());
 		writeD(pgs.getFlyTime().getBase());
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMainHandPAttack().getCurrent() : pgs.getMainHandPAttack().getBase());
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getOffHandPAttack().getCurrent() : pgs.getOffHandPAttack().getBase());
-        writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMainHandMAttack().getCurrent() : pgs.getMainHandMAttack().getBase());
-        writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getOffHandMAttack().getCurrent() : pgs.getOffHandMAttack().getBase());
+		writeD(displayBase(pgs.getMainHandPAttack()));
+		writeD(displayBase(pgs.getOffHandPAttack()));
+        writeD(displayBase(pgs.getMainHandMAttack()));
+        writeD(displayBase(pgs.getOffHandMAttack()));
 
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? (MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getPDef().getCurrent() : pgs.getPDef().getBase()) : 0); // base/current physical defence, ArchSoft confirmed
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? (MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMDef().getCurrent() : pgs.getMDef().getBase()) : 0); // base/current magical defence, ArchSoft confirmed
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getPDef()) : 0); // base/current physical defence, ArchSoft confirmed
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getMDef()) : 0); // base/current magical defence, ArchSoft confirmed
 		writeD(0); //unk 7.5 //6039
 		writeH(0); //unk 7.5 //0
 		writeH(0); //unk 7.5 //16752
 
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMResist().getCurrent() : pgs.getMResist().getBase()); //unk
-		writeF((MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getAttackRange().getCurrent() : pgs.getAttackRange().getBase()) / 1000f);
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getEvasion().getCurrent() : pgs.getEvasion().getBase()); //evasion
+		writeD(displayBase(pgs.getMResist())); //unk
+		writeF((displayBase(pgs.getAttackRange())) / 1000f);
+		writeD(displayBase(pgs.getEvasion())); //evasion
 
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getParry().getCurrent() : pgs.getParry().getBase()); //base parry
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getBlock().getCurrent() : pgs.getBlock().getBase()); //base block
-		writeH(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getPCritical().getCurrent() : pgs.getPCritical().getBase());
-		writeH(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getOffHandPCritical().getCurrent() : pgs.getOffHandPCritical().getBase());
+		writeD(displayBase(pgs.getParry())); //base parry
+		writeD(displayBase(pgs.getBlock())); //base block
+		writeH(displayBase(pgs.getPCritical()));
+		writeH(displayBase(pgs.getOffHandPCritical()));
 
-		writeH(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMCritical().getCurrent() : pgs.getMCritical().getBase());
-		writeH(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMCritical().getCurrent() : pgs.getMCritical().getBase()); //off hand
+		writeH(displayBase(pgs.getMCritical()));
+		writeH(displayBase(pgs.getMCritical())); //off hand
 
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getPAccuracy().getCurrent() : pgs.getPAccuracy().getBase()); //base accu
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getOffHandPAccuracy().getCurrent() : pgs.getOffHandPAccuracy().getBase());
+		writeD(displayBase(pgs.getPAccuracy())); //base accu
+		writeD(displayBase(pgs.getOffHandPAccuracy()));
 
 		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? 0 : 1); // ArchSoft writes zero; keep legacy one only when disabled
 		// CC2/KR 7.7 reads this tooltip-base slot for modern Physical Attack.
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getPhysicPowerBoost().getBase() : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getPhysicPowerBoost().getBase() : (MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMAccuracy().getCurrent() : pgs.getMAccuracy().getBase())));
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMAccuracy().getBase() : 0); // base magic accuracy fallback, ArchSoft confirmed nearby slot
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getPhysicPowerBoost()) : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getPhysicPowerBoost().getBase() : (MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMAccuracy().getCurrent() : pgs.getMAccuracy().getBase())));
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getMAccuracy()) : 0); // base magic accuracy fallback, ArchSoft confirmed nearby slot
 		// Keep the original physical-power slot for legacy mode; ArchSoft mode sends the confirmed base Physical Attack.
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getPhysicPowerBoost().getBase() : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getMAccuracy().getBase() : (MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getPhysicPowerBoost().getCurrent() : pgs.getPhysicPowerBoost().getBase()))); //base physical attack 6.x
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getPhysicPowerBoostResist().getCurrent() : pgs.getPhysicPowerBoostResist().getBase()); //base physical defence 6.x
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMagicPowerBoost().getCurrent() : pgs.getMagicPowerBoost().getBase()); //base magical attack 6.x
-		writeD(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMagicPowerBoostResist().getCurrent() : pgs.getMagicPowerBoostResist().getBase()); //base magical defence 6.x
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getPhysicPowerBoost()) : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getMAccuracy().getBase() : (displayBase(pgs.getPhysicPowerBoost())))); //base physical attack 6.x
+		writeD(displayBase(pgs.getPhysicPowerBoostResist())); //base physical defence 6.x
+		writeD(displayBase(pgs.getMagicPowerBoost())); //base magical attack 6.x
+		writeD(displayBase(pgs.getMagicPowerBoostResist())); //base magical defence 6.x
 
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMagicPowerBoost().getBase() : 0); //ArchSoft base magical attack 2 / legacy reserved
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMagicPowerBoostResist().getBase() : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getPhysicDamageBoost().getBase() : (MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMDef().getCurrent() : pgs.getMDef().getBase()))); //ArchSoft base magical defence 2 / legacy CC2 probe
-		writeH(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getPhysicDamageBoost().getBase() : 0); //7.2 Physical Damage Boost base
-		writeH(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMagicDamageBoost().getBase() : 0); //7.2 Magical Damage Boost base
-		writeH(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getPhysicDamageBoostResist().getCurrent() : pgs.getPhysicDamageBoostResist().getBase()); //7.2 Physical Damage Boost Resist
-		writeH(MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMagicDamageBoostResist().getCurrent() : pgs.getMagicDamageBoostResist().getBase()); //7.2 Magical Damage Boost Resist
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getMagicPowerBoost()) : 0); //ArchSoft base magical attack 2 / legacy reserved
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getMagicPowerBoostResist()) : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getPhysicDamageBoost().getBase() : (displayBase(pgs.getMDef())))); //ArchSoft base magical defence 2 / legacy CC2 probe
+		writeH(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getPhysicDamageBoost()) : 0); //7.2 Physical Damage Boost base
+		writeH(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getMagicDamageBoost()) : 0); //7.2 Magical Damage Boost base
+		writeH(displayBase(pgs.getPhysicDamageBoostResist())); //7.2 Physical Damage Boost Resist
+		writeH(displayBase(pgs.getMagicDamageBoostResist())); //7.2 Magical Damage Boost Resist
 	}
 
 	private void writeSpecialStateResistBlock() {
@@ -257,6 +258,16 @@ public class SM_STATS_INFO extends AionServerPacket
 		writeH(statCurrent(StatEnum.BLIND_RESISTANCE_PENETRATION));
 		writeH(statCurrent(StatEnum.SLOW_RESISTANCE_PENETRATION));
 		writeH(statCurrent(StatEnum.SILENCE_RESISTANCE_PENETRATION));
+	}
+
+	private int displayBase(Stat2 stat) {
+		if (stat == null) {
+			return 0;
+		}
+		if (GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE && GSConfig.ARCHSOFT_STATS_DISPLAY_FORCE_BASE_CURRENT) {
+			return stat.getCurrent();
+		}
+		return MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? stat.getCurrent() : stat.getBase();
 	}
 
 	private int statCurrent(StatEnum stat) {

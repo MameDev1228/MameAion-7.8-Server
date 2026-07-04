@@ -487,6 +487,8 @@ public final class MameClientCompatDebug {
             + " magicDmgBoost=" + statFull(pgs.getMagicDamageBoost())
             + " magicBoostRes=" + statFull(pgs.getMagicPowerBoostResist())
             + " magicDmgRes=" + statFull(pgs.getMagicDamageBoostResist())
+            + " classicPDef=" + statFull(pgs.getPDef())
+            + " classicMDef=" + statFull(pgs.getMDef())
             + " pveBoost=" + statFull(pgs.getPvePowerBoost())
             + " pveBoostRes=" + statFull(pgs.getPvePowerBoostResist())
             + " pvpBoost=" + statFull(pgs.getPvpPowerBoost())
@@ -562,9 +564,57 @@ public final class MameClientCompatDebug {
             + "/temperingTable=" + tpl.getTemperingTableId()
             + "/enchantType=" + tpl.getEnchantType()
             + "/rndBonusCount=" + (item.getRndBonus() == null ? 0 : item.getRndBonus().size())
+            + "/rndBonus=" + rndBonusSummary(item)
             + "/currentMods=" + (item.getCurrentModifiers() == null ? 0 : item.getCurrentModifiers().size())
+            + "/currentModsDetail=" + statFunctionSummary(item.getCurrentModifiers())
             + "/" + weapon
             + "/templateMods=" + modifierSummary(tpl);
+    }
+
+    private static String rndBonusSummary(Item item) {
+        if (item == null || item.getRndBonus() == null || item.getRndBonus().isEmpty()) {
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder("[");
+        int count = 0;
+        for (java.util.Map.Entry<Integer, com.aionemu.gameserver.model.gameobjects.item.ItemRndBonus> entry : item.getRndBonus().entrySet()) {
+            if (entry == null || entry.getValue() == null) {
+                continue;
+            }
+            if (count > 0) {
+                sb.append(',');
+            }
+            sb.append(entry.getKey()).append('=').append(entry.getValue().getValue());
+            count++;
+            if (count >= 16) {
+                sb.append(",...");
+                break;
+            }
+        }
+        return sb.append(']').toString();
+    }
+
+    private static String statFunctionSummary(java.util.List<StatFunction> functions) {
+        if (functions == null || functions.isEmpty()) {
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder("[");
+        int count = 0;
+        for (StatFunction function : functions) {
+            if (function == null) {
+                continue;
+            }
+            if (count > 0) {
+                sb.append(',');
+            }
+            sb.append(function.getName()).append('=').append(function.getValue()).append(function.isBonus() ? "/bonus" : "/base");
+            count++;
+            if (count >= 24) {
+                sb.append(",...");
+                break;
+            }
+        }
+        return sb.append(']').toString();
     }
 
     private static String modifierSummary(ItemTemplate tpl) {

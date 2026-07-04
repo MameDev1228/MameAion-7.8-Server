@@ -50205,7 +50205,7 @@
         </actions>
         <motion name="signetexp2" speed="50"/>
     </skill_template>
-    <skill_template skill_id="3254" name="Agony Rune" nameId="4574183" name_desc="AS_ChainSignetBurst_G6" use_battery="6" delayId="845" stack="SKILL_AS_CHAINSIGNETBURST" lvl="6" skill_group_name="AS_ChainSignetBurst" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="121" duration="0" cancel_rate="10">
+    <skill_template skill_id="3254" name="Agony Rune" nameId="4574183" name_desc="AS_ChainSignetBurst_G6" use_battery="6" delayId="845" stack="SKILL_AS_CHAINSIGNETBURST" lvl="6" skill_group_name="AS_ChainSignetBurst" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="120" duration="0" cancel_rate="10">
         <properties first_target="TARGET" first_target_range="10" target_relation="ENEMY" target_type="ONLYONE"/>
         <startconditions>
             <mp value="249" delta="-4"/>
@@ -79975,7 +79975,7 @@
         </actions>
         <motion name="phburst" speed="80" instant_skill="true"/>
     </skill_template>
-    <skill_template skill_id="5093" name="Seal Eruption" nameId="4583323" name_desc="AS_SignetBurst_Custom_A" use_battery="8" delayId="671" stack="SKILL_AS_SIGNETBURST_CUSTOM_A" lvl="200" skill_group_name="AS_SignetBurst" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="101" duration="0" cancel_rate="20" chain_skill_prob="100">
+    <skill_template skill_id="5093" name="Seal Eruption" nameId="4583323" name_desc="AS_SignetBurst_Custom_A" use_battery="8" delayId="671" stack="SKILL_AS_SIGNETBURST_CUSTOM_A" lvl="200" skill_group_name="AS_SignetBurst" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="100" duration="0" cancel_rate="20" chain_skill_prob="100">
         <properties first_target="TARGET" first_target_range="10" target_relation="ENEMY" target_type="ONLYONE"/>
         <startconditions>
             <mp value="270" delta="0"/>
@@ -79992,7 +79992,7 @@
         </actions>
         <motion name="signetexp1" speed="85"/>
     </skill_template>
-    <skill_template skill_id="5094" name="Seal Destruction" nameId="4583327" name_desc="AS_SignetBurst_Custom_B" use_battery="8" delayId="671" stack="SKILL_AS_SIGNETBURST_CUSTOM_B" lvl="200" skill_group_name="AS_SignetBurst" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="1818" duration="0" penalty_skill_id="9278" cancel_rate="20" chain_skill_prob="100">
+    <skill_template skill_id="5094" name="Seal Destruction" nameId="4583327" name_desc="AS_SignetBurst_Custom_B" use_battery="8" delayId="671" stack="SKILL_AS_SIGNETBURST_CUSTOM_B" lvl="200" skill_group_name="AS_SignetBurst" skilltype="MAGICAL" skillsubtype="ATTACK" tslot="NONE" activation="ACTIVE" cooldown="180" duration="0" penalty_skill_id="9278" cancel_rate="20" chain_skill_prob="100">
         <properties first_target="TARGET" first_target_range="10" target_relation="ENEMY" target_type="ONLYONE"/>
         <startconditions>
             <mp value="270" delta="0"/>

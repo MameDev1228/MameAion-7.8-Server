@@ -90,6 +90,14 @@ public class GSConfig
 	@Property(key = "gameserver.stats.archsoft_display.enable", defaultValue = "true")
 	public static boolean ARCHSOFT_STATS_DISPLAY_ENABLE;
 
+	/**
+	 * v78: avoid CC2/KR profile red negative values caused by mismatched current/base
+	 * comparison slots. When ArchSoft display is enabled, base comparison fields for
+	 * combat stats are written from the same stat family as the current fields.
+	 */
+	@Property(key = "gameserver.stats.archsoft_display.force_base_current", defaultValue = "true")
+	public static boolean ARCHSOFT_STATS_DISPLAY_FORCE_BASE_CURRENT;
+
 	@Property(key = "gameserver.master.server.enable", defaultValue = "false")
 	public static boolean MASTER_SERVER;
 }

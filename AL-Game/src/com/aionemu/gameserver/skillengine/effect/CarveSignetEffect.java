@@ -28,8 +28,8 @@ public class CarveSignetEffect extends DamageEffect
 	@XmlAttribute(required = true)
 	protected String signet;
 	
-	@XmlAttribute(required = true)
-	protected final float prob = 100;
+	@XmlAttribute(required = false)
+	protected float prob = 100;
 	
 	private int nextSignetLevel = 1;
 	
@@ -38,25 +38,20 @@ public class CarveSignetEffect extends DamageEffect
 		super.applyEffect(effect);
 		if (Rnd.get(0, 100) > prob) {
 			return;
-		} if (signetlvl == 0) {
-			signetlvl = 1;
 		}
 		Effect placedSignet = effect.getEffected().getEffectController().getAnormalEffect(signet);
 		if (placedSignet != null) {
 			placedSignet.endEffect();
 		}
-		nextSignetLevel = 1;
-		if (placedSignet != null) {
-			nextSignetLevel = placedSignet.getSkillId() - 8302 + 1;
-			if (nextSignetLevel > signetlvl || nextSignetLevel > 5) {
-				nextSignetLevel--;
-			}
-		} if (nextSignetLevel < signetlvlstart) {
-			nextSignetLevel = signetlvlstart + 0;
+		int skillId = resolveSignetSkillId(nextSignetLevel);
+		SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skillId);
+		if (template == null) {
+			log.warn("[MAME-SIGNET][MISSING_TEMPLATE] sourceSkill=" + effect.getSkillId() + " signet=" + signet + " signetid=" + signetid
+					+ " nextLevel=" + nextSignetLevel + " resolvedSkill=" + skillId + " maxLevel=" + getMaxSignetLevel());
+			return;
 		}
 		effect.setCarvedSignet(nextSignetLevel);
-		SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(8302 + nextSignetLevel);
-		Effect newEffect = new Effect(effect.getEffector(), effect.getEffected(), template, effect.getCarvedSignet(), 0);
+		Effect newEffect = new Effect(effect.getEffector(), effect.getEffected(), template, nextSignetLevel, 0);
 		newEffect.initialize();
 		newEffect.applyEffect();
 	}
@@ -66,5 +61,64 @@ public class CarveSignetEffect extends DamageEffect
 		if (!super.calculate(effect, DamageType.PHYSICAL)) {
 			return;
 		}
+		int maxLevel = getMaxSignetLevel();
+		int addLevel = signetlvlstart > 0 ? signetlvlstart : 1;
+		Effect placedSignet = effect.getEffected().getEffectController().getAnormalEffect(signet);
+		nextSignetLevel = addLevel;
+		if (placedSignet != null) {
+			int currentLevel = placedSignet.getSkillLevel();
+			if (currentLevel <= 0) {
+				currentLevel = resolveLevelFromSignetSkillId(placedSignet.getSkillId(), maxLevel);
+			}
+			if (currentLevel >= maxLevel) {
+				nextSignetLevel = maxLevel;
+			} else {
+				nextSignetLevel = Math.min(maxLevel, currentLevel + addLevel);
+			}
+		}
+		nextSignetLevel = Math.max(1, Math.min(maxLevel, nextSignetLevel));
+		effect.setCarvedSignet(nextSignetLevel);
+	}
+
+	private int getMaxSignetLevel() {
+		return signetlvl > 0 ? Math.min(signetlvl, 5) : 1;
+	}
+
+	private int resolveSignetSkillId(int level) {
+		int maxLevel = getMaxSignetLevel();
+		int clampedLevel = Math.max(1, Math.min(maxLevel, level));
+		// ArchSoft data stores signetid as the first signet template id, e.g. 8303.
+		if (isStartStyleSignetId(maxLevel)) {
+			return signetid + clampedLevel - 1;
+		}
+		// Current 7.7 data often stores signetid as the max template id, e.g. 8307 for a 5-stage signet.
+		int maxStyle = signetid - maxLevel + clampedLevel;
+		if (DataManager.SKILL_DATA.getSkillTemplate(maxStyle) != null) {
+			return maxStyle;
+		}
+		// Legacy Encom fallback for SYSTEM_SKILL_SIGNET1: 8303..8307.
+		int legacyStyle = 8302 + clampedLevel;
+		if (DataManager.SKILL_DATA.getSkillTemplate(legacyStyle) != null) {
+			return legacyStyle;
+		}
+		return signetid;
+	}
+
+	private int resolveLevelFromSignetSkillId(int skillId, int maxLevel) {
+		if (isStartStyleSignetId(maxLevel) && skillId >= signetid && skillId < signetid + maxLevel) {
+			return skillId - signetid + 1;
+		}
+		int maxStyleStart = signetid - maxLevel + 1;
+		if (skillId >= maxStyleStart && skillId <= signetid) {
+			return skillId - maxStyleStart + 1;
+		}
+		if (skillId >= 8303 && skillId <= 8307) {
+			return skillId - 8302;
+		}
+		return 1;
+	}
+
+	private boolean isStartStyleSignetId(int maxLevel) {
+		return DataManager.SKILL_DATA.getSkillTemplate(signetid + maxLevel - 1) != null;
 	}
 }

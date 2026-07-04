@@ -7,6 +7,7 @@ import com.aionemu.gameserver.utils.MameClientCompatDebug;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_STATS_INFO;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
+import com.aionemu.gameserver.skillengine.effect.EffectTemplate;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.lang.reflect.Field;
 
 public class MameDebug extends AdminCommand {
 
@@ -59,6 +62,10 @@ public class MameDebug extends AdminCommand {
             printSkillDelayGroupBySkill(admin, params);
         } else if ("skillpenalty".equals(mode)) {
             printSkillPenalty(admin, params);
+        } else if ("skilleffects".equals(mode) || "skillsignet".equals(mode)) {
+            printSkillEffects(admin, params);
+        } else if ("skillcooldowns".equals(mode) || "cooldowns".equals(mode)) {
+            printPlayerCooldowns(admin, params);
         } else if ("skillaudit".equals(mode)) {
             auditSkillTemplates(admin, params);
         } else if ("status".equals(mode)) {
@@ -209,6 +216,75 @@ public class MameDebug extends AdminCommand {
         log.info("[MAME-SKILL-AUDIT][PENALTY] source=" + skillLine(template) + " | penalty=" + skillLine(penalty) + " | " + skillExtraLine(penalty));
     }
 
+    private void printSkillEffects(Player admin, String... params) {
+        if (params.length < 2) {
+            PacketSendUtility.sendMessage(admin, "Usage: //mamedebug skilleffects <skillId>");
+            return;
+        }
+        Integer skillId = parseInt(params[1]);
+        if (skillId == null) {
+            PacketSendUtility.sendMessage(admin, "skillId must be integer: " + params[1]);
+            return;
+        }
+        SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skillId);
+        if (template == null) {
+            PacketSendUtility.sendMessage(admin, "Skill not found: " + skillId);
+            return;
+        }
+        PacketSendUtility.sendMessage(admin, "Selected: " + skillLine(template));
+        if (template.getEffects() == null || template.getEffects().getEffects() == null || template.getEffects().getEffects().isEmpty()) {
+            PacketSendUtility.sendMessage(admin, "No effects on skill=" + skillId);
+            return;
+        }
+        int idx = 0;
+        for (EffectTemplate effect : template.getEffects().getEffects()) {
+            idx++;
+            String line = "effect#" + idx + " " + effect.getClass().getSimpleName()
+                    + fieldIfPresent(effect, "signet")
+                    + fieldIfPresent(effect, "signetid")
+                    + fieldIfPresent(effect, "signetlvlstart")
+                    + fieldIfPresent(effect, "signetlvl")
+                    + fieldIfPresent(effect, "prob")
+                    + fieldIfPresent(effect, "removeCd")
+                    + fieldIfPresent(effect, "value")
+                    + fieldIfPresent(effect, "delta")
+                    + fieldIfPresent(effect, "duration2");
+            PacketSendUtility.sendMessage(admin, line);
+            log.info("[MAME-SKILL-AUDIT][EFFECT] skill=" + skillId + " " + line);
+        }
+    }
+
+    private void printPlayerCooldowns(Player admin, String... params) {
+        Player target = resolveTarget(admin);
+        Integer filterDelayId = params.length >= 2 ? parseInt(params[1]) : null;
+        Map<Integer, Long> cooldowns = target.getSkillCoolDowns();
+        if (cooldowns == null || cooldowns.isEmpty()) {
+            PacketSendUtility.sendMessage(admin, "No active skill cooldowns for " + target.getName());
+            return;
+        }
+        long now = System.currentTimeMillis();
+        ArrayList<Integer> delayIds = new ArrayList<Integer>(cooldowns.keySet());
+        Collections.sort(delayIds);
+        int printed = 0;
+        for (Integer delayId : delayIds) {
+            if (filterDelayId != null && !filterDelayId.equals(delayId)) {
+                continue;
+            }
+            Long end = cooldowns.get(delayId);
+            long leftMs = end == null ? 0 : Math.max(0L, end - now);
+            ArrayList<Integer> group = DataManager.SKILL_DATA.getSkillsForDelayId(delayId);
+            String line = "cooldown delayId=" + delayId + " leftMs=" + leftMs + " leftSec=" + (leftMs / 1000L)
+                    + " groupCount=" + (group == null ? 0 : group.size())
+                    + " skills=" + (group == null ? "" : previewSkills(group, 12));
+            PacketSendUtility.sendMessage(admin, line);
+            log.info("[MAME-COOLDOWN][AUDIT] player=" + target.getName() + " " + line);
+            printed++;
+        }
+        if (printed == 0) {
+            PacketSendUtility.sendMessage(admin, "No active cooldown for delayId=" + filterDelayId + " on " + target.getName());
+        }
+    }
+
     private void auditSkillTemplates(Player admin, String... params) {
         int limit = 50;
         if (params.length >= 2) {
@@ -302,6 +378,35 @@ public class MameDebug extends AdminCommand {
         return sb.toString();
     }
 
+    private String fieldIfPresent(Object obj, String name) {
+        Field field = findField(obj.getClass(), name);
+        if (field == null) {
+            return "";
+        }
+        try {
+            field.setAccessible(true);
+            Object value = field.get(obj);
+            if (value == null) {
+                return " " + name + "=null";
+            }
+            return " " + name + "=" + String.valueOf(value);
+        } catch (Exception e) {
+            return " " + name + "=<err>";
+        }
+    }
+
+    private Field findField(Class<?> type, String name) {
+        Class<?> current = type;
+        while (current != null) {
+            try {
+                return current.getDeclaredField(name);
+            } catch (NoSuchFieldException ignored) {
+                current = current.getSuperclass();
+            }
+        }
+        return null;
+    }
+
     private Integer parseInt(String value) {
         try {
             return Integer.parseInt(value);
@@ -334,6 +439,8 @@ public class MameDebug extends AdminCommand {
         PacketSendUtility.sendMessage(admin, "//mamedebug skilldelay <delayId> - print cooldown/delay group");
         PacketSendUtility.sendMessage(admin, "//mamedebug skillgroup <skillId> - print selected skill and its cooldown/delay group");
         PacketSendUtility.sendMessage(admin, "//mamedebug skillpenalty <skillId> - print penalty_skill_id target, if any");
+        PacketSendUtility.sendMessage(admin, "//mamedebug skilleffects <skillId> - print effect internals such as signetlvl/remove_cd");
+        PacketSendUtility.sendMessage(admin, "//mamedebug skillcooldowns [delayId] - print selected/self active cooldown map");
         PacketSendUtility.sendMessage(admin, "//mamedebug skillaudit [limit] - scan risky cooldown/template rows");
     }
 }

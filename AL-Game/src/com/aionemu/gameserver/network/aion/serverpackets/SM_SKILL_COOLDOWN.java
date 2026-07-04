@@ -88,7 +88,7 @@ public class SM_SKILL_COOLDOWN extends AionServerPacket {
 			if (expirationTime == null) {
 				continue;
 			}
-			cooldowns.add(new Cooldown(skill.getSkillId(), expirationTime, calculateDurationMillis(template, skill.getSkillLevel())));
+			cooldowns.add(new Cooldown(skill.getSkillId(), expirationTime, calculateRuntimeDurationMillis(player, delayId, expirationTime, template, skill.getSkillLevel())));
 		}
 		sortForClient();
 	}
@@ -140,6 +140,18 @@ public class SM_SKILL_COOLDOWN extends AionServerPacket {
 		}
 		int cooldown = skillLevel > 0 ? template.getCooldownForLevel(skillLevel) : template.getCooldown();
 		return Math.max(0, cooldown * 100);
+	}
+
+	private static int calculateRuntimeDurationMillis(Player player, int delayId, long expirationTime, SkillTemplate template, int skillLevel) {
+		long baseTime = player == null ? 0 : player.getSkillCoolDownBase(delayId);
+		if (baseTime > 0 && expirationTime > baseTime) {
+			long duration = expirationTime - baseTime;
+			if (duration > Integer.MAX_VALUE) {
+				return Integer.MAX_VALUE;
+			}
+			return (int) duration;
+		}
+		return calculateDurationMillis(template, skillLevel);
 	}
 
 	private static int getTemplateDurationMillis(int skillId) {

@@ -50011,7 +50011,7 @@
         </startconditions>
         <effects>
             <signetburst signetlvl="5" signet="SYSTEM_SKILL_SIGNET1" value="2610" e="1" accmod2="500" element="FIRE" hoptype="DAMAGE"/>
-			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="2" value="50" e="2" critprobmod2="100" basiclvl="60" preeffect="1" preeffect_prob="100" hoptype="DAMAGE"/>
+			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="5" value="50" e="2" critprobmod2="100" basiclvl="60" preeffect="1" preeffect_prob="100" hoptype="DAMAGE"/>
         </effects>
         <actions>
             <mpuse value="166" delta="0"/>
@@ -50026,7 +50026,7 @@
         </startconditions>
         <effects>
             <signetburst signetlvl="5" signet="SYSTEM_SKILL_SIGNET1" value="2805" e="1" accmod2="500" element="FIRE" hoptype="DAMAGE"/>
-			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="2" value="50" e="2" critprobmod2="100" basiclvl="60" preeffect="1" preeffect_prob="100" hoptype="DAMAGE"/>
+			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="5" value="50" e="2" critprobmod2="100" basiclvl="60" preeffect="1" preeffect_prob="100" hoptype="DAMAGE"/>
         </effects>
         <actions>
             <mpuse value="261" delta="0"/>
@@ -50041,7 +50041,7 @@
         </startconditions>
         <effects>
             <signetburst signetlvl="5" signet="SYSTEM_SKILL_SIGNET1" value="3159" e="1" accmod2="500" element="FIRE" hoptype="DAMAGE"/>
-			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="2" value="50" e="2" critprobmod2="100" basiclvl="60" preeffect="1" preeffect_prob="100" hoptype="DAMAGE"/>
+			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="5" value="50" e="2" critprobmod2="100" basiclvl="60" preeffect="1" preeffect_prob="100" hoptype="DAMAGE"/>
         </effects>
         <actions>
             <mpuse value="356" delta="0"/>
@@ -52710,7 +52710,7 @@
             <playermove allow="false"/>
         </useconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="2" value="661" delta="57" e="1" critprobmod2="100" hoptype="DAMAGE"/>
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="5" value="661" delta="57" e="1" critprobmod2="100" hoptype="DAMAGE"/>
             <poison checktime="2000" value="87" delta="7" duration2="10000" effectid="20005" e="2" critprobmod2="100" noresist="true" element="EARTH" preeffect="1" preeffect_prob="100"/>
             <snare duration2="10000" effectid="20007" e="3" critprobmod2="100" element="FIRE" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="3675">
                 <change stat="SPEED" func="PERCENT" value="-50"/>
@@ -52733,7 +52733,7 @@
             <playermove allow="false"/>
         </useconditions>
         <effects>
-			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="2" value="1237" delta="93" e="1" critprobmod2="100" hoptype="DAMAGE"/>
+			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="5" value="1237" delta="93" e="1" critprobmod2="100" hoptype="DAMAGE"/>
             <poison checktime="2000" value="91" delta="10" duration2="10000" effectid="20005" e="2" critprobmod2="100" noresist="true" element="EARTH" preeffect="1" preeffect_prob="100"/>
             <snare duration2="10000" effectid="20007" e="3" critprobmod2="100" element="FIRE" preeffect="1" preeffect_prob="100" hoptype="SKILLLV" hopb="3930">
                 <change stat="SPEED" func="PERCENT" value="-50"/>
@@ -52753,7 +52753,7 @@
             <chain category="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="1" value="84" delta="5" e="1" critprobmod2="100" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="84" delta="5" e="1" critprobmod2="100" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52770,7 +52770,7 @@
             <chain category="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="1" value="145" delta="7" e="1" critprobmod2="100" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="145" delta="7" e="1" critprobmod2="100" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52787,7 +52787,7 @@
             <chain category="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="1" value="206" delta="7" e="1" critprobmod2="100" basiclvl="20" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="206" delta="7" e="1" critprobmod2="100" basiclvl="20" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52804,7 +52804,7 @@
             <chain category="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="1" value="268" delta="10" e="1" critprobmod2="100" basiclvl="20" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="268" delta="10" e="1" critprobmod2="100" basiclvl="20" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52821,7 +52821,7 @@
             <chain category="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="1" value="328" delta="12" e="1" critprobmod2="100" basiclvl="40" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="328" delta="12" e="1" critprobmod2="100" basiclvl="40" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52838,7 +52838,7 @@
             <chain category="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="1" value="389" delta="12" e="1" critprobmod2="100" basiclvl="40" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="389" delta="12" e="1" critprobmod2="100" basiclvl="40" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52855,7 +52855,7 @@
             <chain category="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="1" value="450" delta="15" e="1" critprobmod2="100" basiclvl="60" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="450" delta="15" e="1" critprobmod2="100" basiclvl="60" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52872,7 +52872,7 @@
             <chain category="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="1" value="511" delta="15" e="1" critprobmod2="100" basiclvl="60" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="511" delta="15" e="1" critprobmod2="100" basiclvl="60" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52889,7 +52889,7 @@
             <chain category="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="1" value="571" delta="17" e="1" critprobmod2="100" basiclvl="60" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="571" delta="17" e="1" critprobmod2="100" basiclvl="60" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52906,7 +52906,7 @@
             <chain category="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="1" value="948" delta="30" e="1" critprobmod2="100" basiclvl="60" hoptype="DAMAGE">
+			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="948" delta="30" e="1" critprobmod2="100" basiclvl="60" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52923,7 +52923,7 @@
             <chain category="SRA_CHAINE_2TH" precategory="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="2" value="132" delta="10" e="1" critprobmod2="100" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="132" delta="10" e="1" critprobmod2="100" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52940,7 +52940,7 @@
             <chain category="SRA_CHAINE_2TH" precategory="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="2" value="205" delta="12" e="1" critprobmod2="100" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="205" delta="12" e="1" critprobmod2="100" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52957,7 +52957,7 @@
             <chain category="SRA_CHAINE_2TH" precategory="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="2" value="278" delta="12" e="1" critprobmod2="100" basiclvl="10" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="278" delta="12" e="1" critprobmod2="100" basiclvl="10" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52974,7 +52974,7 @@
             <chain category="SRA_CHAINE_2TH" precategory="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="2" value="352" delta="15" e="1" critprobmod2="100" basiclvl="10" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="352" delta="15" e="1" critprobmod2="100" basiclvl="10" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -52991,7 +52991,7 @@
             <chain category="SRA_CHAINE_2TH" precategory="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="2" value="425" delta="17" e="1" critprobmod2="100" basiclvl="20" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="425" delta="17" e="1" critprobmod2="100" basiclvl="20" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -53008,7 +53008,7 @@
             <chain category="SRA_CHAINE_2TH" precategory="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="2" value="498" delta="17" e="1" critprobmod2="100" basiclvl="20" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="498" delta="17" e="1" critprobmod2="100" basiclvl="20" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -53025,7 +53025,7 @@
             <chain category="SRA_CHAINE_2TH" precategory="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="2" value="571" delta="20" e="1" critprobmod2="100" basiclvl="30" hoptype="DAMAGE">
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="571" delta="20" e="1" critprobmod2="100" basiclvl="30" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -53042,7 +53042,7 @@
             <chain category="SRA_CHAINE_2TH" precategory="SRA_CHAINE_1TH" time="3000"/>
         </startconditions>
         <effects>
-			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="2" value="966" delta="33" e="1" critprobmod2="100" basiclvl="40" hoptype="DAMAGE">
+			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="966" delta="33" e="1" critprobmod2="100" basiclvl="40" hoptype="DAMAGE">
                 <subeffect skill_id="8219"/>
             </carvesignet>
         </effects>
@@ -53062,7 +53062,7 @@
             <playermove allow="false"/>
         </useconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="3" value="188" delta="15" e="1" critprobmod2="100" hoptype="DAMAGE"/>
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="188" delta="15" e="1" critprobmod2="100" hoptype="DAMAGE"/>
         </effects>
         <actions>
             <mpuse value="41" delta="0"/>
@@ -53080,7 +53080,7 @@
             <playermove allow="false"/>
         </useconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="3" value="282" delta="17" e="1" critprobmod2="100" hoptype="DAMAGE"/>
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="282" delta="17" e="1" critprobmod2="100" hoptype="DAMAGE"/>
         </effects>
         <actions>
             <mpuse value="56" delta="0"/>
@@ -53098,7 +53098,7 @@
             <playermove allow="false"/>
         </useconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="3" value="374" delta="17" e="1" critprobmod2="100" hoptype="DAMAGE"/>
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="374" delta="17" e="1" critprobmod2="100" hoptype="DAMAGE"/>
         </effects>
         <actions>
             <mpuse value="72" delta="0"/>
@@ -53116,7 +53116,7 @@
             <playermove allow="false"/>
         </useconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="3" value="467" delta="20" e="1" critprobmod2="100" hoptype="DAMAGE"/>
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="467" delta="20" e="1" critprobmod2="100" hoptype="DAMAGE"/>
         </effects>
         <actions>
             <mpuse value="87" delta="0"/>
@@ -53134,7 +53134,7 @@
             <playermove allow="false"/>
         </useconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="3" value="559" delta="22" e="1" critprobmod2="100" hoptype="DAMAGE"/>
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="559" delta="22" e="1" critprobmod2="100" hoptype="DAMAGE"/>
         </effects>
         <actions>
             <mpuse value="103" delta="0"/>
@@ -53152,7 +53152,7 @@
             <playermove allow="false"/>
         </useconditions>
         <effects>
-            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="3" value="652" delta="25" e="1" critprobmod2="100" hoptype="DAMAGE"/>
+            <carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvl="5" value="652" delta="25" e="1" critprobmod2="100" hoptype="DAMAGE"/>
         </effects>
         <actions>
             <mpuse value="118" delta="0"/>
@@ -95102,7 +95102,7 @@
             <signetburst signetlvl="5" signet="SYSTEM_SKILL_SIGNET1" value="3159" e="1" accmod2="500" element="FIRE" hoptype="DAMAGE">
 			    <subeffect skill_id="9564" addeffect="true"/>
             </signetburst>
-			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="2" value="50" e="2" critprobmod2="100" basiclvl="60" preeffect="1" preeffect_prob="100" hoptype="DAMAGE"/>
+			<carvesignet signet="SYSTEM_SKILL_SIGNET1" signetid="8307" signetlvlstart="2" signetlvl="5" value="50" e="2" critprobmod2="100" basiclvl="60" preeffect="1" preeffect_prob="100" hoptype="DAMAGE"/>
         </effects>
         <actions>
             <mpuse value="356" delta="0"/>

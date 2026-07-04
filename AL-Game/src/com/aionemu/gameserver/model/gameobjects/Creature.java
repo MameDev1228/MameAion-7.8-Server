@@ -686,6 +686,18 @@ public abstract class Creature extends VisibleObject
 	}
 
 	/**
+	 * Returns the start timestamp of the currently registered cooldown group.
+	 * Used by CC2/EU7.7 cooldown serialization to send the real runtime duration
+	 * after stigma enhancement, cooldown_delta_lv, charge skills, or CT reduction effects.
+	 */
+	public long getSkillCoolDownBase(int delayId) {
+		if (skillCoolDownsBase == null || !skillCoolDownsBase.containsKey(delayId))
+			return 0;
+		Long value = skillCoolDownsBase.get(delayId);
+		return value == null ? 0 : value;
+	}
+
+	/**
 	 * @return isAdminNeutral value
 	 */
 	public int getAdminNeutral() {

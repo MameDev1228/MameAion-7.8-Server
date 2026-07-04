@@ -232,6 +232,7 @@ public class DropRegistrationService
 			}
 		}
 		index = MameFieldRewardService.addLakrumBasicDrops(npc, droppedItems, index, winnerObj);
+		index = MameFieldRewardService.addLakrumAnomosWorldRaidDrops(npc, droppedItems, index, winnerObj);
 		index = MameFieldRewardService.addDomahaBasicDrops(npc, droppedItems, index, winnerObj);
 		if (npc.getPosition().isInstanceMap()) {
 			npc.getPosition().getWorldMapInstance().getInstanceHandler().onDropRegistered(npc);

@@ -49,6 +49,26 @@ public final class MameFieldRewardService {
         new BonusDrop(190080119, 25.0f, 1)       // Minion Contract
     };
 
+    private static final BonusDrop[] LAKRUM_ANOMOS_FIXED_DROPS = new BonusDrop[] {
+        new BonusDrop(190095008, 100.0f, 2),  // Legendary transformation contract x2
+        new BonusDrop(190095008, 100.0f, 2),
+        new BonusDrop(190095008, 100.0f, 2),
+        new BonusDrop(190095008, 100.0f, 2),
+        new BonusDrop(190095008, 100.0f, 2),
+        new BonusDrop(166075000, 100.0f, 3),  // Stigma enchant stone x3
+        new BonusDrop(166075000, 100.0f, 3),
+        new BonusDrop(166075000, 100.0f, 3),
+        new BonusDrop(166075000, 100.0f, 3),
+        new BonusDrop(166033102, 100.0f, 10), // Ultimate PvP enchant stone x10
+        new BonusDrop(166023102, 100.0f, 10)  // Ultimate PvE enchant stone x10
+    };
+
+    private static final BonusDrop[] LAKRUM_ANOMOS_SPECIAL_DROPS = new BonusDrop[] {
+        // 188078139 was present in the legacy drop XML, but it is not present in the current 7.7 item templates.
+        // Use the existing finality equipment random box so Crazed/Berserk Anomos actually drops a usable box.
+        new BonusDrop(188075257, 60.0f, 1)
+    };
+
     private static final RewardItem[] KATALAM_BASE_REWARDS = new RewardItem[] {
         new RewardItem(166033102, 10),
         new RewardItem(166023102, 10),
@@ -91,6 +111,44 @@ public final class MameFieldRewardService {
             }
         }
         return index;
+    }
+
+    /**
+     * Adds Lakrum Anomos world raid drops through the runtime drop path.
+     * The XML entry can be skipped when the spawned template/name differs from the static Berserk Anomos row,
+     * so keep the reward here as an independent safety net for Crazed/Berserk Anomos.
+     */
+    public static int addLakrumAnomosWorldRaidDrops(Npc npc, Set<DropItem> droppedItems, int index, int winnerObjId) {
+        if (!isLakrumAnomos(npc) || droppedItems == null) {
+            return index;
+        }
+        for (BonusDrop rule : LAKRUM_ANOMOS_FIXED_DROPS) {
+            if (rollPercent(rule.chance)) {
+                droppedItems.add(createDropItem(index++, winnerObjId, npc.getObjectId(), rule.itemId, rule.rollCount()));
+            }
+        }
+        for (BonusDrop rule : LAKRUM_ANOMOS_SPECIAL_DROPS) {
+            if (rollPercent(rule.chance)) {
+                droppedItems.add(createDropItem(index++, winnerObjId, npc.getObjectId(), rule.itemId, rule.rollCount()));
+            }
+        }
+        for (BonusDrop rule : LAKRUM_BASIC_DROPS) {
+            if (rollPercent(rule.chance)) {
+                droppedItems.add(createDropItem(index++, winnerObjId, npc.getObjectId(), rule.itemId, rule.rollCount()));
+            }
+        }
+        return index;
+    }
+
+    private static boolean isLakrumAnomos(Npc npc) {
+        if (npc == null || npc.getWorldId() != LAKRUM_WORLD_ID) {
+            return false;
+        }
+        if (npc.getNpcId() == 655240) {
+            return true;
+        }
+        String name = npc.getName();
+        return name != null && name.toLowerCase().contains("anomos");
     }
 
     private static boolean isLakrumWorldRaid(Npc npc) {

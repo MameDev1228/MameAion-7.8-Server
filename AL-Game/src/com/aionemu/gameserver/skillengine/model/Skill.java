@@ -2053,6 +2053,7 @@ public class Skill
 
 			int cooldown = skillTemplate.getCooldownForLevel(this.skillLevel);
 			effector.setSkillCoolDown(skillTemplate.getDelayId(), cooldown * 100 + System.currentTimeMillis());
+			effector.setSkillCoolDownBase(skillTemplate.getDelayId(), System.currentTimeMillis());
 		}
 
 		// if target out of range

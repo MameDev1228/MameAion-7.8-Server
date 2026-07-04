@@ -85,8 +85,14 @@ public abstract class AionServerPacket extends BaseServerPacket {
 		buf.putShort((short) 0);
 		writeOP(getOpcode());
 		writeImpl(con);
+		int packetLength = buf.position();
 		buf.flip();
-		buf.putShort((short) buf.limit());
+		// Use an absolute length write and then slice from byte 2.  The old relative
+		// putShort() could throw BufferOverflowException if a previous write path left
+		// the shared dispatcher buffer in an unexpected state; absolute write keeps the
+		// packet framing stable and preserves the original encryption range.
+		buf.putShort(0, (short) packetLength);
+		buf.position(2);
 		ByteBuffer b = buf.slice();
 		buf.position(0);
 		con.encrypt(b);

@@ -214,9 +214,10 @@ public class MinionService
 		// This callback is also used by client/server catch-up teleport paths.
 		// It must NOT behave like unsummon -> summon, otherwise minion skills,
 		// auto-buff state, loot state, energy and stat buff are reset every time
-		// the minion snaps back to its owner. Keep the logical minion alive and
-		// only refresh the visual summon packet around the owner.
-		PacketSendUtility.broadcastPacketAndReceive(player, new SM_MINION(6, minionCommonData));
+		// the minion snaps back to its owner. CC2/EU7.7 is also sensitive to
+		// receiving another player's minion summon packet during known-list refresh,
+		// so the catch-up refresh is owner-only.
+		PacketSendUtility.sendPacket(player, new SM_MINION(6, minionCommonData));
 	}
 	
 	public void onLoggedIn(Player player) {

@@ -27,6 +27,7 @@ import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.team2.group.PlayerGroup;
 import com.aionemu.gameserver.model.templates.zone.ZoneClassName;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_COOLDOWN;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
 import com.aionemu.gameserver.skillengine.effect.EffectType;
 import com.aionemu.gameserver.skillengine.model.Skill;
@@ -106,6 +107,10 @@ public class PlayerRestrictions extends AbstractRestrictions
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_SKILL_CANT_CAST_PHYSICAL_SKILL_IN_FEAR);
 			return false;
 		} if (player.isSkillDisabled(template)) {
+			// Client can lose cooldown icons after instance/map transitions.
+			// If the server still has a real cooldown, immediately resync the whole cooldown map.
+			if (player.getSkillCoolDowns() != null)
+				PacketSendUtility.sendPacket(player, new SM_SKILL_COOLDOWN(player.getSkillCoolDowns()));
 			return false;
 		} if (player.getTransformModel().isActive() && player.getTransformModel().getType() == TransformType.NONE) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_SKILL_CAN_NOT_CAST_IN_SHAPECHANGE);

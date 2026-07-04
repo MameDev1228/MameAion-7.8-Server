@@ -33,6 +33,14 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 
 public class SkillAttackManager
 {
+	private static boolean isClientCrashRiskNpcSkill(int skillId) {
+		// MameAion CC2/EU7.7 compatibility guard.
+		// Client crash reports repeatedly pointed at these NPC skill IDs:
+		// 19589 from Inggison/Gelkmaros guardian/training NPCs and 19606 from Demaha quest guards.
+		// Block them server-side for NPC AI instead of chasing hundreds of duplicated XML entries.
+		return skillId == 19589 || skillId == 19606;
+	}
+
 	public static void performAttack(NpcAI2 npcAI, int delay) {
 		if (npcAI.getOwner().getObjectTemplate().getAttackRange() == 0) {
 			if (npcAI.getOwner().getTarget() != null && !MathUtil.isInRange(npcAI.getOwner(), npcAI.getOwner().getTarget(), npcAI.getOwner().getAggroRange())) {
@@ -59,6 +67,10 @@ public class SkillAttackManager
 			}
 		} if (target != null && !target.getLifeStats().isAlreadyDead()) {
 			final int skillId = npcAI.getSkillId();
+			if (isClientCrashRiskNpcSkill(skillId)) {
+				afterUseSkill(npcAI);
+				return;
+			}
 			final int skillLevel = npcAI.getSkillLevel();
 			SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skillId);
 			int duration = template.getDuration();
@@ -109,6 +121,8 @@ public class SkillAttackManager
 			if (npcSkill != null) {
 				int currentHpPercent = owner.getLifeStats().getHpPercentage();
 				if (npcSkill.isReady(currentHpPercent, System.currentTimeMillis() - owner.getGameStats().getFightStartingTime())) {
+					if (isClientCrashRiskNpcSkill(npcSkill.getSkillId()))
+						return null;
 					SkillTemplate template = npcSkill.getSkillTemplate();
 					if ((template.getType() == SkillType.MAGICAL && owner.getEffectController().isAbnormalSet(AbnormalState.SILENCE))
 					|| (template.getType() == SkillType.PHYSICAL && owner.getEffectController().isAbnormalSet(AbnormalState.BIND))

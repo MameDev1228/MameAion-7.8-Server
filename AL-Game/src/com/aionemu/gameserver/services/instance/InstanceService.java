@@ -18,6 +18,7 @@ import com.aionemu.gameserver.model.team2.league.League;
 import com.aionemu.gameserver.model.templates.world.WorldMapTemplate;
 import com.aionemu.gameserver.network.aion.SystemMessageId;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_COOLDOWN;
 import com.aionemu.gameserver.services.AutoGroupService;
 import com.aionemu.gameserver.services.HousingService;
 import com.aionemu.gameserver.services.player.LunaShopService;
@@ -304,6 +305,11 @@ public class InstanceService
 			player.getLunaBuffBonus().endEffect(player);
 			player.setLunaBuffBonus(null);
 		}
+		// MameAion CC2/EU7.7: leaving instances/map transitions can clear the
+		// client cooldown display while server cooldowns remain active.  Resend them
+		// immediately so UI and server state stay synchronized.
+		if (player.getSkillCoolDowns() != null)
+			PacketSendUtility.sendPacket(player, new SM_SKILL_COOLDOWN(player.getSkillCoolDowns()));
 	}
 	
 	public static void onEnterZone(Player player, ZoneInstance zone) {

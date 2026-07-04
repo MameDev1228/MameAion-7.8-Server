@@ -36,13 +36,25 @@ public class SM_SKILL_COOLDOWN extends AionServerPacket
     	writeH(calculateSize());
         writeC(1);
         long currentTime = System.currentTimeMillis();
+        if (cooldowns == null) {
+            return;
+        }
         for (Map.Entry<Integer, Long> entry : cooldowns.entrySet()) {
             int left = (int) ((entry.getValue() - currentTime) / 1000);
+            if (left <= 0) {
+                continue;
+            }
             ArrayList<Integer> skillsWithCooldown = DataManager.SKILL_DATA.getSkillsForDelayId(entry.getKey());
+            if (skillsWithCooldown == null || skillsWithCooldown.isEmpty()) {
+                continue;
+            }
             for (int index = 0; index < skillsWithCooldown.size(); index++) {
                 int skillId = skillsWithCooldown.get(index);
+                if (DataManager.SKILL_DATA.getSkillTemplate(skillId) == null) {
+                    continue;
+                }
                 writeH(skillId);
-                writeD(left > 0 ? left : 0);
+                writeD(left);
                 writeD(DataManager.SKILL_DATA.getSkillTemplate(skillId).getCooldown());
             }
         }
@@ -50,8 +62,22 @@ public class SM_SKILL_COOLDOWN extends AionServerPacket
 	
 	private int calculateSize() {
         int size = 0;
+        long currentTime = System.currentTimeMillis();
+        if (cooldowns == null) {
+            return 0;
+        }
         for (Map.Entry<Integer, Long> entry : cooldowns.entrySet()) {
-            size += DataManager.SKILL_DATA.getSkillsForDelayId(entry.getKey()).size();
+            if (entry.getValue() == null || entry.getValue() <= currentTime) {
+                continue;
+            }
+            ArrayList<Integer> skillsWithCooldown = DataManager.SKILL_DATA.getSkillsForDelayId(entry.getKey());
+            if (skillsWithCooldown != null) {
+                for (int skillId : skillsWithCooldown) {
+                    if (DataManager.SKILL_DATA.getSkillTemplate(skillId) != null) {
+                        size++;
+                    }
+                }
+            }
         }
         return size;
     }

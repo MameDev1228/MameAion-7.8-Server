@@ -123,7 +123,11 @@ public class PlayerController extends CreatureController<Player>
 				PacketSendUtility.sendPacket(getOwner(), new SM_PET(3, player.getPet()));
 			} else if (player.getMinion() != null) {
 				LoggerFactory.getLogger(PlayerController.class).debug("Player " + getOwner().getName() + " sees " + object.getName() + " that has Minion");
-				PacketSendUtility.broadcastPacketAndReceive(player, new SM_MINION(6, player.getMinion().getCommonData(), 0));
+				// MameAion CC2/EU7.7: when this observer sees another player that already has a minion,
+					// send the minion appearance only to this observer.  Broadcasting from inside see()
+					// re-sends the minion spawn to the owner and every nearby client whenever any
+					// player enters knownlist, which can corrupt client UI/state and trigger disconnects.
+					PacketSendUtility.sendPacket(getOwner(), new SM_MINION(6, player.getMinion().getCommonData(), 0));
 			}
 			player.getEffectController().sendEffectIconsTo(getOwner());
 		} else if (object instanceof Kisk) {

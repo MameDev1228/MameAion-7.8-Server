@@ -1862,18 +1862,17 @@ public class Skill
 			serverTime *= motion.getSpeed();
 		}
 		Stat2 attackSpeed = player.getGameStats().getAttackSpeed();
-		// MameAion: CC2/EU7.7 shows faster skill/attack animations when attack speed is
-		// improved, but the old server gate ignored attack speed and kept nextSkillUse
-		// based on the slow base motion time.  That made the second skill feel delayed
-		// even when the client animation had already finished.
+		// MameAion: official-like action lock.  The client plays physical skill
+		// animations with the current attack-speed stat, so the server-side next-skill
+		// gate must use the same motion time instead of a fixed base motion.  GameStats
+		// already contains the capped/current attack-speed value; this guard only rejects
+		// corrupt zero/negative values and extreme broken data.
 		if (attackSpeed.getBase() > 0 && attackSpeed.getCurrent() > 0 && attackSpeed.getBase() != attackSpeed.getCurrent()) {
 			float attackSpeedRatio = (float) attackSpeed.getCurrent() / (float) attackSpeed.getBase();
-			// Lower attack-speed value means faster.  Keep a sane guard so bad stats do not
-			// produce zero/negative animation gates or increase lag unexpectedly.
-			if (attackSpeedRatio < 0.50f)
-				attackSpeedRatio = 0.50f;
-			else if (attackSpeedRatio > 1.00f)
-				attackSpeedRatio = 1.00f;
+			if (attackSpeedRatio < 0.10f)
+				attackSpeedRatio = 0.10f;
+			else if (attackSpeedRatio > 2.00f)
+				attackSpeedRatio = 2.00f;
 			serverTime *= attackSpeedRatio;
 		}
 

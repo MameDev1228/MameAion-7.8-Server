@@ -5,6 +5,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_COOLDOWN;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.MameClientCompatDebug;
@@ -21,6 +22,7 @@ public class CM_CASTSPELL extends AionClientPacket
 	private int hitTime;
 	private int level;
 	private int unk;
+	private static final long ACTION_LOCK_INPUT_GRACE_MS = 180L;
 	Logger log = LoggerFactory.getLogger(CM_CASTSPELL.class);
 	
 	public CM_CASTSPELL(int opcode, State state, State... restStates) {
@@ -77,7 +79,8 @@ public class CM_CASTSPELL extends AionClientPacket
 			player.getController().stopProtectionActiveTask();
 		}
 		long currentTime = System.currentTimeMillis();
-		if (player.getNextSkillUse() > currentTime) {
+		long nextSkillUse = player.getNextSkillUse();
+		if (nextSkillUse > currentTime + ACTION_LOCK_INPUT_GRACE_MS) {
 			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300021));
 			return;
 		} if (!player.getLifeStats().isAlreadyDead()) {

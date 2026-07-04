@@ -314,7 +314,7 @@ public class EnchantService
         }
         targetItem.setEnchantPvPvELevel(currentEnchant);
         if (targetItem.isEquipped()) {
-            player.getGameStats().updateStatsVisually();
+            ItemEquipmentListener.refreshEquippedItemStats(targetItem, player);
         }
 		ItemPacketService.updateItemAfterInfoChange(player, targetItem, ItemUpdateType.STATS_CHANGE);
 		if (targetItem.isEquipped()) {
@@ -522,13 +522,16 @@ public class EnchantService
                 }
             } if (item.getItemTemplate().getTemperingTableId() > 0) {
                 ItemEnchantTemplate ie2 = DataManager.ITEM_ENCHANT_DATA.getEnchantePvpTemplate(item.getItemTemplate().getTemperingTableId());
-                if (item.getAuthorizeLevel() > 0 && ie2 != null) {
+                int pvpEnchantLevel = item.getItemTemplate().getEnchantType() == EnchantType.PVP && item.getEnchantPvPvELevel() > 0
+                    ? item.getEnchantPvPvELevel()
+                    : item.getAuthorizeLevel();
+                if (pvpEnchantLevel > 0 && ie2 != null) {
                     try {
-                        for (IStatFunction stat : ie2.getStats(item.getAuthorizeLevel())) {
+                        for (IStatFunction stat : ie2.getStats(pvpEnchantLevel)) {
                             modifiers.add(new StatEnchantFunction(item, stat.getName(), stat.getValue()));
                         }
                     } catch (Exception localException2) {
-                        log.error("Cant add authorize modifiers for item: " + item.getItemId() + " , " + ie2.getStats(item.getAuthorizeLevel()));
+                        log.error("Cant add pvp/authorize modifiers for item: " + item.getItemId() + " , level=" + pvpEnchantLevel, localException2);
                     }
                 }
             } if (!modifiers.isEmpty()) {
@@ -592,7 +595,7 @@ public class EnchantService
         }
         PacketSendUtility.sendPacket(player, new SM_INVENTORY_UPDATE_ITEM(player, targetItem));
         if (targetItem.isEquipped()) {
-            player.getGameStats().updateStatsVisually();
+            ItemEquipmentListener.refreshEquippedItemStats(targetItem, player);
         }
         ItemPacketService.updateItemAfterInfoChange(player, targetItem);
         if (targetItem.isEquipped()) {
@@ -890,7 +893,7 @@ public class EnchantService
         }
         targetItem.setEnchantLevel(currentEnchant);
         if (targetItem.isEquipped()) {
-            player.getGameStats().updateStatsVisually();
+            ItemEquipmentListener.refreshEquippedItemStats(targetItem, player);
         }
         ItemPacketService.updateItemAfterInfoChange(player, targetItem, ItemUpdateType.STATS_CHANGE);
         if (targetItem.isEquipped()) {
@@ -926,7 +929,7 @@ public class EnchantService
         }
         targetItem.setEnchantLevel(currentEnchant);
         if (targetItem.isEquipped()) {
-            player.getGameStats().updateStatsVisually();
+            ItemEquipmentListener.refreshEquippedItemStats(targetItem, player);
         }
         ItemPacketService.updateItemAfterInfoChange(player, targetItem, ItemUpdateType.STATS_CHANGE);
         if (targetItem.isEquipped()) {
@@ -982,7 +985,7 @@ public class EnchantService
         }
         targetItem.setEnchantLevel(currentEnchant);
         if (targetItem.isEquipped()) {
-            player.getGameStats().updateStatsVisually();
+            ItemEquipmentListener.refreshEquippedItemStats(targetItem, player);
         }
         ItemPacketService.updateItemAfterInfoChange(player, targetItem, ItemUpdateType.STATS_CHANGE);
         if (targetItem.isEquipped()) {

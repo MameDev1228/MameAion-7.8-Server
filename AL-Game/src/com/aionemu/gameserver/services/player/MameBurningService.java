@@ -7,9 +7,12 @@ import java.util.List;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.configs.main.CustomConfig;
+import com.aionemu.gameserver.dao.PlayerBindPointDAO;
 import com.aionemu.gameserver.dao.ServerVariablesDAO;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.PlayerClass;
+import com.aionemu.gameserver.model.gameobjects.PersistentState;
+import com.aionemu.gameserver.model.gameobjects.player.BindPointPosition;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.ItemId;
@@ -121,8 +124,8 @@ public final class MameBurningService {
         }
         refreshPlayer(player);
         setStage(player, STAGE_COMPLETED);
-        PacketSendUtility.sendBrightYellowMessageOnCenter(player, "バーニング支援が完了しました。ラクルムへ移動します。");
-        teleportToLakrum(player);
+        PacketSendUtility.sendBrightYellowMessageOnCenter(player, "バーニング支援が完了しました。拠点へ移動します。");
+        teleportToFactionBase(player);
         log.info("[MAME-BURNING] completed player=" + player.getName() + " class=" + player.getPlayerClass() + " level=" + player.getLevel());
     }
 
@@ -166,15 +169,32 @@ public final class MameBurningService {
             + " freeSlots=" + player.getInventory().getFreeSlots() + " player=" + player.getName());
     }
 
-    private static void teleportToLakrum(Player player) {
+    private static void teleportToFactionBase(Player player) {
         try {
             if (player.getRace() == Race.ASMODIANS) {
-                TeleportService2.teleportTo(player, 800050000, 1888.0000f, 2316.0000f, 264.0000f, (byte) 7);
+                setBindPoint(player, 220070000, 1788.0000f, 2917.0000f, 554.0000f, (byte) 99);
+                TeleportService2.teleportTo(player, 220070000, 1788.0000f, 2917.0000f, 554.0000f, (byte) 99);
+                log.info("[MAME-BURNING] completed teleport target=Gelkmaros player=" + player.getName());
             } else {
-                TeleportService2.teleportTo(player, 800050000, 2013.0000f, 927.0000f, 256.0000f, (byte) 114);
+                setBindPoint(player, 210050000, 1306.0000f, 238.0000f, 595.0000f, (byte) 17);
+                TeleportService2.teleportTo(player, 210050000, 1306.0000f, 238.0000f, 595.0000f, (byte) 17);
+                log.info("[MAME-BURNING] completed teleport target=Inggison player=" + player.getName());
             }
         } catch (Exception e) {
-            log.warn("[MAME-BURNING] failed to teleport player to Lakrum: " + player.getName(), e);
+            log.warn("[MAME-BURNING] failed to teleport player to faction base: " + player.getName(), e);
+        }
+    }
+
+    private static void setBindPoint(Player player, int worldId, float x, float y, float z, byte heading) {
+        try {
+            BindPointPosition bindPoint = new BindPointPosition(worldId, x, y, z, heading);
+            bindPoint.setPersistentState(PersistentState.NEW);
+            player.setBindPoint(bindPoint);
+            DAOManager.getDAO(PlayerBindPointDAO.class).store(player);
+            TeleportService2.sendSetBindPoint(player);
+            log.info("[MAME-BURNING][BIND] world=" + worldId + " x=" + x + " y=" + y + " z=" + z + " player=" + player.getName());
+        } catch (Exception e) {
+            log.warn("[MAME-BURNING] failed to set bind point: " + player.getName(), e);
         }
     }
 

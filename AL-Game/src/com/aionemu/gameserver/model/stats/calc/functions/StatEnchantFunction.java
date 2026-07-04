@@ -32,13 +32,12 @@ public class StatEnchantFunction extends StatAddFunction
         if (!item.isEquipped()) {
             return;
         }
-        int enchantLvl = this.item.getEnchantLevel();
-		int authorizeLvl = this.item.getAuthorizeLevel();
-		if (enchantLvl == 0) {
-            return;
-        } if (authorizeLvl == 0) {
-            return;
-        } if ((item.getEquipmentSlot() & ItemSlot.MAIN_OFF_HAND.getSlotIdMask()) != 0 || (item.getEquipmentSlot() & ItemSlot.SUB_OFF_HAND.getSlotIdMask()) != 0) {
+        // MAME: Enchant/authorize bonus functions are created only for the current positive
+        // enchant level in EnchantService.onItemEquip(). The old guard required both
+        // enchantLevel and authorizeLevel to be non-zero, which blocked normal PvE/PvP
+        // equipment bonuses because 7.x equipment stores these values separately
+        // (enchantPvPvELevel / authorizeLevel).
+        if ((item.getEquipmentSlot() & ItemSlot.MAIN_OFF_HAND.getSlotIdMask()) != 0 || (item.getEquipmentSlot() & ItemSlot.SUB_OFF_HAND.getSlotIdMask()) != 0) {
             return;
         }
         stat.addToBase(point);

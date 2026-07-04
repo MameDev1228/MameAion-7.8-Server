@@ -109,6 +109,24 @@ public class ItemEquipmentListener
 		EnchantService.GloryShieldSkill(owner);
 		ItemTuningService.onItemUnEquip(owner, item);
 	}
+
+	/**
+	 * Rebuilds only the stat effects owned by this equipped item after enchant/authorize/retune
+	 * values changed. Full onItemEquipment() is intentionally not reused here because it also
+	 * re-adds manastones, idian/godstone hooks and temporary skills, which can duplicate effects
+	 * while the item is already equipped.
+	 */
+	public static void refreshEquippedItemStats(Item item, Player owner) {
+		if (item == null || owner == null || !item.isEquipped()) {
+			return;
+		}
+		owner.getGameStats().endEffect(item);
+		onItemEquipment(item, owner.getGameStats(), owner);
+		EnchantService.onItemEquip(owner, item);
+		ItemTuningService.onItemEquip(owner, item);
+		owner.getLifeStats().updateCurrentStats();
+		owner.getGameStats().updateStatsAndSpeedVisually();
+	}
 	
 	private static void onItemEquipment(Item item, CreatureGameStats<?> cgs, Player player) {
 		ItemTemplate itemTemplate = item.getItemTemplate();

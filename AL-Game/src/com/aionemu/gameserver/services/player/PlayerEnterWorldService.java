@@ -98,9 +98,9 @@ import java.util.concurrent.ScheduledFuture;
 public final class PlayerEnterWorldService
 {
 	private static final Logger log = LoggerFactory.getLogger("GAMECONNECTION_LOG");
-	private static final String serverName = "Welcome to " + GSConfig.SERVER_NAME + "!";
+	private static final String serverName = GSConfig.SERVER_NAME + " へようこそ！";
 	////
-	private static final String serverIntro = "Voting brings glory and wealth.";
+	private static final String serverIntro = "不具合報告・要望はDiscordまでお願いします。";
 	private static final String serverInfo;
 	private static final String alInfo;
 	private static final Set<Integer> pendingEnterWorld = new HashSet<Integer>();
@@ -109,13 +109,13 @@ public final class PlayerEnterWorldService
 	static ScheduledFuture<?> adv = null;
 	
 	static {
-		String infoBuffer = "Annonce: Welcome at " + GSConfig.SERVER_NAME + " server.\n";
+		String infoBuffer = "お知らせ: MameAionへようこそ。\n";
 		infoBuffer = infoBuffer + "=============================\n";
-		infoBuffer = infoBuffer + "Info: type .faction for speak to everyone in server.";
+		infoBuffer = infoBuffer + "Info: .faction でサーバー全体チャットを利用できます。\n";
 		infoBuffer = infoBuffer + "=============================\n";
 		String alBuffer = "=============================\n";
-		alBuffer = alBuffer + "This emu is developed by Encom.\n";
-		alBuffer = alBuffer + "Copyright© 2009 - 2020 Encom\n";
+		alBuffer = alBuffer + "MameAion 7.7 compatible server\n";
+		alBuffer = alBuffer + "Have fun and enjoy MameAion.\n";
 		if (GSConfig.SERVER_MOTD_DISPLAYREV) {
 			alBuffer = alBuffer + "=============================\n";
 			alBuffer = alBuffer + "Server Revision: " + String.format("%-6s", new Object[] { new Version(GameServer.class).getRevision() }) + "\n";
@@ -413,7 +413,7 @@ public final class PlayerEnterWorldService
 				BoostEventService.getInstance().onLogin(player);
 			}
 			//Color Chat.
-			PacketSendUtility.sendBrightYellowMessageOnCenter(player, ColorChat.colorChat("Welcome to Aion Classic", "1 0 5 0"));
+			PacketSendUtility.sendBrightYellowMessageOnCenter(player, ColorChat.colorChat("MameAion へようこそ", "1 0 5 0"));
 			LoginServerInfo(player);
 			if (EventsConfig.ENABLE_F2P_AUTO_BENEFITS) {
 				F2pService.getInstance().onEnterWorld(player);
@@ -655,15 +655,15 @@ public final class PlayerEnterWorldService
 	
 	public static final void LoginServerInfo(Player player) {
 		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "============================"));
-		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0] Welcome to Aion Classic 7.x"));
-		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0] [Bugs & Suggestions] go DISCORD."));
-		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0] [NEVER!!! type in this windows]"));
+		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0] MameAion へようこそ"));
+		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0] 不具合報告・要望はDiscordまでお願いします。"));
+		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0] このウィンドウは案内専用です。入力しないでください。"));
 		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "============================"));
-		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0] Account Information"));
-		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0][color:Toll Points：;0 1 0] " + player.getClientConnection().getAccount().getToll()));
-		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0][color:Luna Points：;0 1 0] " + player.getLunaAccount()));
+		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0] アカウント情報"));
+		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0][color:トールポイント：;0 1 0] " + player.getClientConnection().getAccount().getToll()));
+		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0][color:ルナポイント：;0 1 0] " + player.getLunaAccount()));
 		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "============================"));
-		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0][color:Player Name：;0 1 0] " + player.getName()));
+		PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300564, "[color:Info：;0 1 0][color:キャラクター名：;0 1 0] " + player.getName()));
 	}
 
 	public static void doTest(Player player) {

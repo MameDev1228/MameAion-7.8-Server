@@ -56,12 +56,29 @@ public final class MameFieldRewardService {
         if (npc == null || droppedItems == null || npc.getWorldId() != LAKRUM_WORLD_ID) {
             return index;
         }
+        if (isLakrumWorldRaid(npc.getNpcId())) {
+            return index;
+        }
         for (BonusDrop rule : LAKRUM_BASIC_DROPS) {
             if (rollPercent(rule.chance)) {
                 droppedItems.add(createDropItem(index++, winnerObjId, npc.getObjectId(), rule.itemId, rule.count));
             }
         }
         return index;
+    }
+
+    private static boolean isLakrumWorldRaid(int npcId) {
+        switch (npcId) {
+            case 655120: // Scout Kabar
+            case 655121: // Scout Paltan
+            case 655122: // Inspector Kephrata
+            case 655123: // Guard Captain Haznish
+            case 655124: // Mad King Laurent
+            case 655240: // Berserk Anomos
+                return true;
+            default:
+                return false;
+        }
     }
 
     /**

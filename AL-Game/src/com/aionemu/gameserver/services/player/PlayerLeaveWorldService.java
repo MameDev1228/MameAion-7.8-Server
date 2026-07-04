@@ -141,7 +141,10 @@ public class PlayerLeaveWorldService
 		if (player.getController().isInShutdownProgress()) {
 			PlayerLeaveWorldService.startLeaveWorld(player);
 		} else {
-			int delay = 15;
+			// MameAion 7.7 client can reconnect very quickly after a crash/disconnect.
+			// The old 15s delayed logout kept the DB/world online flag alive and caused
+			// "Illegal account auth detected" on immediate reconnect.
+			int delay = 1;
 			PlayerLeaveWorldService.startLeaveWorldDelay(player, (delay * 1000));
 		}
 	}

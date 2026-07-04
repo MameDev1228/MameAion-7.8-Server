@@ -1,11 +1,14 @@
 package com.aionemu.gameserver.model.stats.container;
 
 import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.LOG;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.TYPE;
 import com.aionemu.gameserver.services.LifeStatsRestoreService;
+import com.aionemu.gameserver.services.DuelService;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
+import com.aionemu.gameserver.skillengine.model.SkillTargetSlot;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import org.apache.commons.lang.NullArgumentException;
 import org.slf4j.Logger;
@@ -63,11 +66,16 @@ public abstract class CreatureLifeStats<T extends Creature>
 			throw new NullArgumentException("attacker");
 		}
 		boolean isDied = false;
+		boolean isDuelDefeat = false;
 		hpLock.lock();
 		try {
 			if (!alreadyDead) {
 				int newHp = this.currentHp - value;
-				if (newHp < 0) {
+				if (newHp <= 0 && isDuelDefeat(attacker)) {
+					newHp = 1;
+					isDuelDefeat = true;
+				}
+				else if (newHp < 0) {
 					newHp = 0;
 					alreadyDead = true;
 					isDied = true;
@@ -78,10 +86,28 @@ public abstract class CreatureLifeStats<T extends Creature>
 			hpLock.unlock();
 		} if (value != 0) {
 			onReduceHp();
+		} if (isDuelDefeat) {
+			Player player = (Player) getOwner();
+			player.getController().cancelCurrentSkill();
+			player.getEffectController().removeAbnormalEffectsByTargetSlot(SkillTargetSlot.DEBUFF);
+			DuelService.getInstance().loseDuel(player);
 		} if (isDied) {
 			getOwner().getController().onDie(attacker);
 		}
 		return currentHp;
+	}
+
+	private boolean isDuelDefeat(Creature attacker) {
+		if (!(getOwner() instanceof Player)) {
+			return false;
+		}
+		Creature master = attacker.getMaster();
+		if (!(master instanceof Player)) {
+			return false;
+		}
+		Player player = (Player) getOwner();
+		Player opponent = (Player) master;
+		return DuelService.getInstance().isDueling(player.getObjectId(), opponent.getObjectId());
 	}
 	
 	public int reduceMp(int value) {

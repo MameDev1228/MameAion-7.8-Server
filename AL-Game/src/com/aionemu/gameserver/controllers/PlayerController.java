@@ -294,13 +294,10 @@ public class PlayerController extends CreatureController<Player>
 				AbyssService.rankedKillAnnounce(player);
 			}
 		} if (DuelService.getInstance().isDueling(player.getObjectId())) {
-			if (master != null && DuelService.getInstance().isDueling(player.getObjectId(), master.getObjectId())) {
-				DuelService.getInstance().loseDuel(player);
-				player.getEffectController().removeAbnormalEffectsByTargetSlot(SkillTargetSlot.DEBUFF);
-				player.getLifeStats().setCurrentHp(player.getLifeStats().getMaxHp() / 3);
-				return;
-			}
 			DuelService.getInstance().loseDuel(player);
+			player.getEffectController().removeAbnormalEffectsByTargetSlot(SkillTargetSlot.DEBUFF);
+			player.getLifeStats().setCurrentHp(1);
+			return;
 		}
 		Summon summon = player.getSummon();
 		if (summon != null) {

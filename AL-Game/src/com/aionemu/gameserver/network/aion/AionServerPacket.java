@@ -69,6 +69,13 @@ public abstract class AionServerPacket extends BaseServerPacket {
 	 * @param buf
 	 */
 	public final void write(AionConnection con, ByteBuffer buffer) {
+		// MameAion: the dispatcher normally clears the write buffer before each packet,
+		// but after a skipped/failed packet the buffer can re-enter this method with
+		// limit=0/read-mode on some reconnect/write-interest paths.  SM_MOVE is tiny,
+		// so BufferOverflowException there means the ByteBuffer state was dirty, not
+		// that the movement packet is oversized.  Reset it here as the last line of
+		// defense before serializing any server packet.
+		buffer.clear();
 		if (con.getState().equals(AionConnection.State.IN_GAME) && con.getActivePlayer().getPlayerAccount().getAccessLevel() == 5 && NetworkConfig.DISPLAY_PACKETS) {
 			if (!this.getPacketName().equals("SM_MESSAGE")) {
 				PacketSendUtility.sendMessage(con.getActivePlayer(), "0x" + Integer.toHexString(this.getOpcode()).toUpperCase() + " : " + this.getPacketName());

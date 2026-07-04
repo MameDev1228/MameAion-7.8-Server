@@ -26,10 +26,10 @@ public class MySQL5SeasonRankingDAO extends SeasonRankingDAO
 {
     private static final Logger log = LoggerFactory.getLogger(MySQL5SeasonRankingDAO.class);
 	
-    public static final String SELECT_PLAYERS_RANKING = "SELECT competition_ranking.rank, competition_ranking.last_rank, competition_ranking.points, competition_ranking.player_id, players.name, players.id, players.player_class, players.race FROM competition_ranking INNER JOIN players ON competition_ranking.player_id = players.id WHERE competition_ranking.table_id = ? AND competition_ranking.points > 0 ORDER BY competition_ranking.points DESC LIMIT 0, 300";
+    public static final String SELECT_PLAYERS_RANKING = "SELECT competition_ranking.`rank`, competition_ranking.last_rank, competition_ranking.points, competition_ranking.player_id, players.name, players.id, players.player_class, players.race FROM competition_ranking INNER JOIN players ON competition_ranking.player_id = players.id WHERE competition_ranking.table_id = ? AND competition_ranking.points > 0 ORDER BY competition_ranking.points DESC LIMIT 0, 300";
     public static final String SELECT_MY_HISTORY = "SELECT * FROM competition_ranking  WHERE player_id = ? AND table_id = ?";
-    public static final String INSERT_QUERY = "INSERT INTO competition_ranking (player_id, table_id, rank, last_rank, points, last_points, high_points, low_points, position_match) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    public static final String UPDATE_QUERY = "UPDATE competition_ranking SET  rank = ?, last_rank = ?, points = ?, last_points = ?, high_points = ?, low_points = ?, position_match = ? WHERE player_id = ? AND table_id = ?";
+    public static final String INSERT_QUERY = "INSERT INTO competition_ranking (player_id, table_id, `rank`, last_rank, points, last_points, high_points, low_points, position_match) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public static final String UPDATE_QUERY = "UPDATE competition_ranking SET  `rank` = ?, last_rank = ?, points = ?, last_points = ?, high_points = ?, low_points = ?, position_match = ? WHERE player_id = ? AND table_id = ?";
 	
     @Override
     public ArrayList<SeasonRankingResult> getCompetitionRankingPlayers(int tableId) {
@@ -42,7 +42,7 @@ public class MySQL5SeasonRankingDAO extends SeasonRankingDAO
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
                 String name = resultSet.getString("players.name");
-                int rank = resultSet.getInt("competition_ranking.rank");
+                int rank = resultSet.getInt("competition_ranking.`rank`");
                 int last_rank = resultSet.getInt("competition_ranking.last_rank");
                 int pc = resultSet.getInt("competition_ranking.points");
                 int playerId = resultSet.getInt("players.id");
@@ -110,7 +110,9 @@ public class MySQL5SeasonRankingDAO extends SeasonRankingDAO
                 result = updateGloryRank(player.getObjectId(), rank);
             break;
         }
-        rank.setPersistentState(PersistentState.UPDATED);
+        if (result) {
+            rank.setPersistentState(PersistentState.UPDATED);
+        }
         return result;
     }
 	
@@ -176,7 +178,9 @@ public class MySQL5SeasonRankingDAO extends SeasonRankingDAO
                 result = updateInfinityRank(player.getObjectId(), rank);
             break;
         }
-        rank.setPersistentState(PersistentState.UPDATED);
+        if (result) {
+            rank.setPersistentState(PersistentState.UPDATED);
+        }
         return result;
     }
 	
@@ -242,7 +246,9 @@ public class MySQL5SeasonRankingDAO extends SeasonRankingDAO
                 result = update6VS6Rank(player.getObjectId(), rank);
             break;
         }
-        rank.setPersistentState(PersistentState.UPDATED);
+        if (result) {
+            rank.setPersistentState(PersistentState.UPDATED);
+        }
         return result;
     }
 	
@@ -308,7 +314,9 @@ public class MySQL5SeasonRankingDAO extends SeasonRankingDAO
                 result = updateDamageRank(player.getObjectId(), rank);
             break;
         }
-        rank.setPersistentState(PersistentState.UPDATED);
+        if (result) {
+            rank.setPersistentState(PersistentState.UPDATED);
+        }
         return result;
     }
 	

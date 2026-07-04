@@ -140,6 +140,9 @@ public class ItemTuningService
 				player.getObserveController().removeObserver(moveObserver);
 				PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), item.getObjectId(), item.getItemId(), 0, 1, 1), true);
                 if (item.getItemTemplate().getRandomBonusId() != 0) {
+                    if (item.isEquipped()) {
+                        onItemUnEquip(player, item);
+                    }
                     RandomBonus bonus = DataManager.ITEM_RANDOM_BONUSES.getRndBonusById(item.getItemTemplate().getRandomBonusId());
                     ItemRndBonus rndBonus = item.getRndBonus().get(statId);
                     for (RandomAttr rnd : bonus.getRandomAttr()) {

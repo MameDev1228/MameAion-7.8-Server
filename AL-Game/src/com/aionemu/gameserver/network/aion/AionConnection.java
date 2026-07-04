@@ -40,6 +40,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.BufferOverflowException;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.atomic.AtomicReference;
@@ -50,6 +51,12 @@ import java.util.concurrent.atomic.AtomicReference;
  * @author -Nemesiss-
  */
 public class AionConnection extends AConnection {
+
+	/** CC2/EU7.7 clients can receive shop/ranking/html/inventory packets that exceed 16KB.
+	 *  A too-small write buffer used to throw BufferOverflowException and disconnect players.
+	 */
+	private static final int CLIENT_READ_BUFFER_SIZE = 8192 * 8;
+	private static final int CLIENT_WRITE_BUFFER_SIZE = 8192 * 8;
 
 	/**
 	 * Logger for this class.
@@ -129,7 +136,7 @@ public class AionConnection extends AConnection {
 	 * @throws IOException
 	 */
 	public AionConnection(SocketChannel sc, Dispatcher d) throws IOException {
-		super(sc, d, 8192*2, 8192*2);
+		super(sc, d, CLIENT_READ_BUFFER_SIZE, CLIENT_WRITE_BUFFER_SIZE);
 		AionPacketHandlerFactory aionPacketHandlerFactory = AionPacketHandlerFactory.getInstance();
 		this.aionPacketHandler = aionPacketHandlerFactory.getPacketHandler();
 
@@ -246,6 +253,29 @@ public class AionConnection extends AConnection {
 			try {
 				packet.write(this, data);
 				return true;
+			}
+			catch (BufferOverflowException e) {
+				data.clear();
+				Player player = getActivePlayer();
+				log.error("[MAME-NET][SKIP_OVERSIZE_PACKET] packet=" + packet.getPacketName()
+					+ " opcode=0x" + Integer.toHexString(packet.getOpcode()).toUpperCase()
+					+ " account=" + (getAccount() != null ? getAccount().getName() : "null")
+					+ " player=" + (player != null ? player.getName() : lastPlayerName)
+					+ " ip=" + getIP() + " state=" + getState() + " queued=" + sendMsgQueue.size()
+					+ " capacity=" + data.capacity() + " remaining=" + data.remaining()
+					+ " - packet skipped; connection kept alive", e);
+				return false;
+			}
+			catch (RuntimeException e) {
+				data.clear();
+				Player player = getActivePlayer();
+				log.error("[MAME-NET][SKIP_PACKET_WRITE_ERROR] packet=" + packet.getPacketName()
+					+ " opcode=0x" + Integer.toHexString(packet.getOpcode()).toUpperCase()
+					+ " account=" + (getAccount() != null ? getAccount().getName() : "null")
+					+ " player=" + (player != null ? player.getName() : lastPlayerName)
+					+ " ip=" + getIP() + " state=" + getState() + " queued=" + sendMsgQueue.size()
+					+ " - packet skipped; connection kept alive", e);
+				return false;
 			}
 			finally {
 				RunnableStatsManager.handleStats(packet.getClass(), "runImpl()", System.nanoTime() - begin);

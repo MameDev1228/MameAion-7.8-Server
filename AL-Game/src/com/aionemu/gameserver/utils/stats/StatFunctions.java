@@ -253,35 +253,82 @@ public class StatFunctions
 		return GSConfig.ARCHSOFT_DAMAGE_FORMULA_ENABLE;
 	}
 
-	private static int getContextPowerBoost(Creature attacker, Creature target) {
+	private static boolean useReFlyDamageFormula() {
+		return GSConfig.REFLY_DAMAGE_FORMULA_ENABLE;
+	}
+
+	private static final int REFLY_OLD_CONTEXT_ATTACK_MAX = 1000; // PDF: Total old PvE/PvP attack maximum 100%.
+	private static final int REFLY_OLD_CONTEXT_NET_MIN = -900; // PDF: Net old PvE/PvP attack minimum -90%.
+	private static final int REFLY_ANET_MAX = 20000; // PDF: A_net maximum value 20,000.
+	private static final float REFLY_PVP_GLOBAL_REDUCTION = 0.26f; // PDF: Global PvP damage reduction.
+
+	private static int clampReFlyAnet(int value) {
+		if (value < 0)
+			return 0;
+		return Math.min(value, REFLY_ANET_MAX);
+	}
+
+	private static int getReFlyOldPvePvpNet(Creature attacker, Creature target) {
 		if (attacker == null || target == null)
 			return 0;
-		return attacker.isPvpTarget(target) ? attacker.getGameStats().getPvpPowerBoost().getCurrent() : attacker.getGameStats().getPvePowerBoost().getCurrent();
+		int attack = attacker.isPvpTarget(target) ? attacker.getGameStats().getPvpPowerBoost().getCurrent() : attacker.getGameStats().getPvePowerBoost().getCurrent();
+		int defence = attacker.isPvpTarget(target) ? target.getGameStats().getPvpPowerBoostResist().getCurrent() : target.getGameStats().getPvePowerBoostResist().getCurrent();
+		// ReFly spec: Total PvE/PvP attack is capped at +100%, then defence is subtracted.
+		attack = Math.min(Math.max(attack, 0), REFLY_OLD_CONTEXT_ATTACK_MAX);
+		return Math.max(REFLY_OLD_CONTEXT_NET_MIN, attack - defence);
 	}
 
-	private static int getContextPowerBoostResist(Creature attacker, Creature target) {
-		if (target == null)
+	private static int getReFlyPhysicalAnet(Creature attacker, Creature target) {
+		int attack = attacker.getGameStats().getPhysicPowerBoost().getCurrent();
+		int defence = target.getGameStats().getPhysicPowerBoostResist().getCurrent();
+		return clampReFlyAnet(attack + getReFlyOldPvePvpNet(attacker, target) - defence);
+	}
+
+	private static int getReFlyMagicalAnet(Creature attacker, Creature target) {
+		int attack = attacker.getGameStats().getMagicPowerBoost().getCurrent();
+		int defence = target.getGameStats().getMagicPowerBoostResist().getCurrent();
+		return clampReFlyAnet(attack + getReFlyOldPvePvpNet(attacker, target) - defence);
+	}
+
+	private static int getBasePower(Creature creature) {
+		return Math.max(1, creature.getGameStats().getPower().getBase());
+	}
+
+	private static int getBaseKnowledge(Creature creature) {
+		return Math.max(1, creature.getGameStats().getKnowledge().getBase());
+	}
+
+	private static float getReFlyShardMultiplier(Creature creature) {
+		return creature instanceof Player && creature.isInState(CreatureState.POWERSHARD) ? 1.25f : 1f;
+	}
+
+	private static float getReFlyAutoStatPercent(Stat2 handStat, int weaponMeanDamage) {
+		if (handStat == null || weaponMeanDamage <= 0)
+			return 0f;
+		// Stat system stores weapon mastery / weapon attack % as rate changes on the hand stat base.
+		// Convert the observed base delta back to the WM/D_pct term used by the ReFly formula.
+		return Math.max(0f, (handStat.getBase() - weaponMeanDamage) * 100f / weaponMeanDamage);
+	}
+
+	private static int getReFlyAutoAdditiveDamage(Stat2 handStat) {
+		if (handStat == null)
 			return 0;
-		return attacker != null && attacker.isPvpTarget(target) ? target.getGameStats().getPvpPowerBoostResist().getCurrent() : target.getGameStats().getPvePowerBoostResist().getCurrent();
+		// Existing stat bucket for old weapon attack additions / manastones / additive weapon attack.
+		return Math.max(0, handStat.getBonus());
 	}
 
-	private static float getArchSoftBonusDamageMultiplier(int attackPowerBoost, int attackDamageBoost, int contextBoost, int resistPowerBoost, int resistDamageBoost, int contextResist) {
-		int net = (attackPowerBoost + attackDamageBoost + contextBoost) - (resistPowerBoost + resistDamageBoost + contextResist);
-		return Math.max(0, net * 0.001f);
-	}
-
-	private static int getPowerShardDamage(Player player, Item weapon, boolean isMainHand) {
-		if (player == null || !player.isInState(CreatureState.POWERSHARD))
-			return 0;
-		Equipment equipment = player.getEquipment();
-		int result = 0;
-		Item firstShard = equipment.getMainHandPowerShard();
-		Item secondShard = null;
-		if (firstShard != null)
-			result += firstShard.getItemTemplate().getWeaponBoost();
-		if (secondShard != null)
-			result += secondShard.getItemTemplate().getWeaponBoost();
-		return result;
+	private static void logReFlyDamage(String type, Creature attacker, Creature target, float raw, float after, int anet, int pvpDamage) {
+		if (!GSConfig.REFLY_DAMAGE_DEBUG_ENABLE || !MameClientCompatDebug.involves(attacker, target))
+			return;
+		log.info("[MAME-DAMAGE][REFLY_STRICT] type=" + type
+			+ " attacker=" + MameClientCompatDebug.describe(attacker)
+			+ " target=" + MameClientCompatDebug.describe(target)
+			+ " anet=" + anet
+			+ " oldContextNet=" + getReFlyOldPvePvpNet(attacker, target)
+			+ " pvp=" + (attacker != null && target != null && attacker.isPvpTarget(target))
+			+ " pvpDamage=" + pvpDamage
+			+ " raw=" + Math.round(raw)
+			+ " after=" + Math.round(after));
 	}
 
 	/**
@@ -292,242 +339,126 @@ public class StatFunctions
 	 * @return Damage made to target (-hp value)
 	 */
 	public static int calculatePhysicalAttackDamage(Creature attacker, Creature target, boolean isMainHand) {
-		Stat2 pAttack;
-		if (isMainHand) {
-			pAttack = attacker.getGameStats().getMainHandPAttack();
-		} else {
-			pAttack = ((Player) attacker).getGameStats().getOffHandPAttack();
-		}
+		Stat2 pAttack = isMainHand ? attacker.getGameStats().getMainHandPAttack() : ((Player) attacker).getGameStats().getOffHandPAttack();
 
-		if (useArchSoftDamageFormula()) {
-			int physicalPowerBoost = attacker.getGameStats().getPhysicPowerBoost().getCurrent();
-			int physicalDamageBoost = attacker.getGameStats().getPhysicDamageBoost().getCurrent();
-			int contextBoost = getContextPowerBoost(attacker, target);
-			int physicalPowerBoostResist = target.getGameStats().getPhysicPowerBoostResist().getCurrent();
-			int physicalDamageBoostResist = target.getGameStats().getPhysicDamageBoostResist().getCurrent();
-			int contextResist = getContextPowerBoostResist(attacker, target);
-			float bonusDamage = getArchSoftBonusDamageMultiplier(physicalPowerBoost, physicalDamageBoost, contextBoost, physicalPowerBoostResist, physicalDamageBoostResist, contextResist);
-
+		if (useReFlyDamageFormula()) {
+			int anet = getReFlyPhysicalAnet(attacker, target);
 			float resultDamage;
 			if (attacker instanceof Player) {
 				Player player = (Player) attacker;
 				Equipment equipment = player.getEquipment();
 				Item weapon = isMainHand ? equipment.getMainHandWeapon() : equipment.getOffHandWeapon();
-				if (weapon != null) {
+				if (weapon == null || weapon.getItemTemplate().getWeaponStats() == null) {
+					int dw = Rnd.get(16, 20);
+					resultDamage = dw * (getBasePower(attacker) / 100f + anet / 1000f);
+				} else {
 					WeaponStats weaponStat = weapon.getItemTemplate().getWeaponStats();
-					if (weaponStat == null)
-						return 0;
-					int totalMin = weaponStat.getMinDamage();
-					int totalMax = weaponStat.getMaxDamage();
-					if (totalMax < totalMin)
-						totalMax = totalMin;
-					int weaponAttack = Rnd.get(totalMin, totalMax);
-					float power = attacker.getGameStats().getPower().getCurrent();
-					resultDamage = weaponAttack * ((power + pAttack.getCurrent()) / 100f);
-					resultDamage += resultDamage * bonusDamage;
+					int min = weaponStat.getMinDamage();
+					int max = Math.max(min, weaponStat.getMaxDamage());
+					int dw = Rnd.get(min, max);
+					int mean = Math.max(1, weaponStat.getMeanDamage());
+					float wmAndDpct = getReFlyAutoStatPercent(pAttack, mean);
+					int dAdd = getReFlyAutoAdditiveDamage(pAttack);
+					resultDamage = dw * (getBasePower(attacker) / 100f + wmAndDpct / 100f + anet / 1000f) + dAdd;
 					if (!isMainHand)
 						resultDamage *= 0.8f;
-					resultDamage += getPowerShardDamage(player, weapon, isMainHand);
-				} else {
-					int totalMin = 16;
-					int totalMax = 20;
-					float power = attacker.getGameStats().getPower().getCurrent() * 0.01f;
-					int diff = Math.round((totalMax - totalMin) * power / 2);
-					resultDamage = pAttack.getBonus() + pAttack.getBase();
-					resultDamage += Rnd.get(-diff, diff);
-					resultDamage += resultDamage * bonusDamage;
 				}
 			} else {
-				resultDamage = (pAttack.getCurrent() + physicalPowerBoost + physicalDamageBoost + contextBoost) - ((physicalPowerBoostResist + physicalDamageBoostResist + contextResist) * 0.1f);
+				// NPC templates in this source expose a single attack stat rather than weapon min/max.
+				// Use it as D_w fallback, then apply the same ReFly auto-attack coefficient.
+				float dw = Math.max(1, pAttack.getCurrent());
+				resultDamage = dw * (getBasePower(attacker) / 100f + anet / 1000f);
 			}
+			resultDamage *= getReFlyShardMultiplier(attacker);
 			if (resultDamage <= 0)
 				resultDamage = 1;
+			logReFlyDamage("physical-auto", attacker, target, resultDamage, resultDamage, anet, 0);
 			return Math.round(resultDamage);
 		}
 
-		Stat2 pPowerBoost;
-		Stat2 pvePowerBoost;
-		Stat2 physicDamageBoost;
-		pPowerBoost = attacker.getGameStats().getPhysicPowerBoost();
-		pvePowerBoost = attacker.getGameStats().getPvePowerBoost();
-		physicDamageBoost = attacker.getGameStats().getPhysicDamageBoost();
-		int contextPowerBoostCurrent = pvePowerBoost.getCurrent();
-		int contextPowerBoostBase = pvePowerBoost.getBase();
-		int contextPowerBoostBonus = pvePowerBoost.getBonus();
-		float resultDamage = pAttack.getCurrent() + pPowerBoost.getCurrent() + contextPowerBoostCurrent + physicDamageBoost.getCurrent();
-		float baseDamage = pAttack.getBase() + pPowerBoost.getBase() + contextPowerBoostBase + physicDamageBoost.getBase();
-		if (attacker instanceof Player) {
-			Equipment equipment = ((Player) attacker).getEquipment();
-			Item weapon;
-			if (isMainHand) {
-				weapon = equipment.getMainHandWeapon();
-			} else {
-				weapon = equipment.getOffHandWeapon();
-			} if (weapon != null) {
-				WeaponStats weaponStat = weapon.getItemTemplate().getWeaponStats();
-				if (weaponStat == null) {
-					return 0;
-			    }
-				int totalMin = weaponStat.getMinDamage();
-				int totalMax = weaponStat.getMaxDamage();
-				float power = attacker.getGameStats().getPower().getCurrent() * 0.01f;
-				int diff = Math.round((totalMax - totalMin) * power / 2);
-				resultDamage = pAttack.getBonus() + pPowerBoost.getBonus() + contextPowerBoostBonus + physicDamageBoost.getBonus() + baseDamage;
-				int negativeDiff = diff;
-				if (!isMainHand) {
-					negativeDiff = (int)Math.round((200 - ((Player)attacker).getDualEffectValue()) * 0.01 * diff);
-				}
-				resultDamage += Rnd.get(-negativeDiff, diff);
-				if (attacker.isInState(CreatureState.POWERSHARD)) {
-					Item firstShard = equipment.getMainHandPowerShard();
-                    if (firstShard != null) {
-                        resultDamage += firstShard.getItemTemplate().getWeaponBoost();
-                    }
-				}
-			} else {
-				int totalMin = 16;
-				int totalMax = 20;
-				float power = attacker.getGameStats().getPower().getCurrent() * 0.01f;
-				int diff = Math.round((totalMax - totalMin) * power / 2);
-				resultDamage = pAttack.getBonus() + pPowerBoost.getBonus() + contextPowerBoostBonus + physicDamageBoost.getBonus() + baseDamage;
-				resultDamage += Rnd.get(-diff, diff);
-			}
-		} else {
-			int rnd = (int) (resultDamage * 0.25);
-			resultDamage += Rnd.get(-rnd, rnd);
-		}
-		float pDef = target.getGameStats().getPhysicPowerBoostResist().getBonus() + getMovementModifier(target, StatEnum.PHYSICAL_POWER_BOOST_RESIST, target.getGameStats().getPhysicPowerBoostResist().getBase() + getMovementModifier(target, StatEnum.PHYSICAL_DAMAGE_BOOST_RESIST, target.getGameStats().getPhysicDamageBoostResist().getBase()));
-		resultDamage -= (pDef * 0.10f);
-		if (resultDamage <= 0) {
+		// Legacy fallback when ReFly strict formula is disabled.
+		float resultDamage = pAttack.getCurrent();
+		if (resultDamage <= 0)
 			resultDamage = 1;
-		}
 		return Math.round(resultDamage);
 	}
 	
 	public static int calculateMagicalAttackDamage(Creature attacker, Creature target, SkillElement element, boolean isMainHand) {
-		Stat2 mAttack;
-        if (isMainHand) {
-            mAttack = attacker.getGameStats().getMainHandMAttack();
-        } else {
-            mAttack = ((Player) attacker).getGameStats().getOffHandMAttack();
-        }
+		Stat2 mAttack = isMainHand ? attacker.getGameStats().getMainHandMAttack() : ((Player) attacker).getGameStats().getOffHandMAttack();
 
-		if (useArchSoftDamageFormula()) {
-			int magicalPowerBoost = attacker.getGameStats().getMagicPowerBoost().getCurrent();
-			int magicalDamageBoost = attacker.getGameStats().getMagicDamageBoost().getCurrent();
-			int contextBoost = getContextPowerBoost(attacker, target);
-			int magicalPowerBoostResist = target.getGameStats().getMagicPowerBoostResist().getCurrent();
-			int magicalDamageBoostResist = target.getGameStats().getMagicDamageBoostResist().getCurrent();
-			int contextResist = getContextPowerBoostResist(attacker, target);
-			float bonusDamage = getArchSoftBonusDamageMultiplier(magicalPowerBoost, magicalDamageBoost, contextBoost, magicalPowerBoostResist, magicalDamageBoostResist, contextResist);
+		if (useReFlyDamageFormula()) {
+			int anet = getReFlyMagicalAnet(attacker, target);
 			float resultDamage;
 			if (attacker instanceof Player) {
 				Player player = (Player) attacker;
 				Equipment equipment = player.getEquipment();
 				Item weapon = isMainHand ? equipment.getMainHandWeapon() : equipment.getOffHandWeapon();
-				if (weapon != null) {
+				if (weapon == null || weapon.getItemTemplate().getWeaponStats() == null) {
+					int dw = Rnd.get(16, 20);
+					resultDamage = dw * (getBaseKnowledge(attacker) / 100f + anet / 1000f);
+				} else {
 					WeaponStats weaponStat = weapon.getItemTemplate().getWeaponStats();
-					if (weaponStat == null)
-						return 0;
-					int totalMin = weaponStat.getMinDamage();
-					int totalMax = weaponStat.getMaxDamage();
-					if (totalMax < totalMin)
-						totalMax = totalMin;
-					int weaponAttack = Rnd.get(totalMin, totalMax);
-					float knowledge = attacker.getGameStats().getKnowledge().getCurrent();
-					resultDamage = weaponAttack * ((knowledge + mAttack.getCurrent()) / 100f);
-					resultDamage += resultDamage * bonusDamage;
+					int min = weaponStat.getMinDamage();
+					int max = Math.max(min, weaponStat.getMaxDamage());
+					int dw = Rnd.get(min, max);
+					int mean = Math.max(1, weaponStat.getMeanDamage());
+					float wmAndDpct = getReFlyAutoStatPercent(mAttack, mean);
+					int dAdd = getReFlyAutoAdditiveDamage(mAttack);
+					resultDamage = dw * (getBaseKnowledge(attacker) / 100f + wmAndDpct / 100f + anet / 1000f) + dAdd;
 					if (!isMainHand)
 						resultDamage *= 0.8f;
-					resultDamage += getPowerShardDamage(player, weapon, isMainHand);
-				} else {
-					int totalMin = 16;
-					int totalMax = 20;
-					float knowledge = attacker.getGameStats().getKnowledge().getCurrent() * 0.01f;
-					int diff = Math.round((totalMax - totalMin) * knowledge / 2);
-					resultDamage = mAttack.getBonus() + mAttack.getBase();
-					resultDamage += Rnd.get(-diff, diff);
-					resultDamage += resultDamage * bonusDamage;
 				}
 			} else {
-				resultDamage = (magicalPowerBoost + magicalDamageBoost + contextBoost) - ((magicalPowerBoostResist + magicalDamageBoostResist + contextResist) * 0.1f);
+				float dw = Math.max(1, mAttack.getCurrent());
+				resultDamage = dw * (getBaseKnowledge(attacker) / 100f + anet / 1000f);
 			}
-			if (element != SkillElement.NONE) {
-				float elementalDef = getMovementModifier(target, SkillElement.getResistanceForElement(element), target.getGameStats().getMagicalDefenseFor(element));
-				resultDamage = Math.round(resultDamage * (1 - elementalDef / 1300f));
-			}
+			resultDamage *= getReFlyShardMultiplier(attacker);
 			if (resultDamage <= 0)
 				resultDamage = 1;
+			logReFlyDamage("magical-auto", attacker, target, resultDamage, resultDamage, anet, 0);
 			return Math.round(resultDamage);
 		}
 
-		Stat2 mPowerBoost;
-		Stat2 pvePowerBoost;
-		Stat2 magicDamageBoost;
-		mPowerBoost = attacker.getGameStats().getMagicPowerBoost();
-		pvePowerBoost = attacker.getGameStats().getPvePowerBoost();
-		magicDamageBoost = attacker.getGameStats().getMagicDamageBoost();
-		int contextPowerBoostCurrent = pvePowerBoost.getCurrent();
-        float resultDamage = mAttack.getCurrent() + mPowerBoost.getCurrent() + contextPowerBoostCurrent + magicDamageBoost.getCurrent();
-        if (attacker instanceof Player) {
-            Equipment equipment = ((Player) attacker).getEquipment();
-            Item weapon = equipment.getMainHandWeapon();
-            if (weapon != null) {
-                WeaponStats weaponStat = weapon.getItemTemplate().getWeaponStats();
-                if (weaponStat == null) {
-                    return 0;
-                }
-                int totalMin = weaponStat.getMinDamage();
-                int totalMax = weaponStat.getMaxDamage();
-                float knowledge = attacker.getGameStats().getKnowledge().getCurrent() * 0.01f;
-                int diff = Math.round((totalMax - totalMin) * knowledge / 2);
-				resultDamage = mAttack.getBonus() + getMovementModifier(attacker, StatEnum.MAGICAL_POWER_BOOST, mAttack.getBase() + getMovementModifier(attacker, StatEnum.MAGICAL_DAMAGE_BOOST, mAttack.getBase() - target.getGameStats().getMBResist().getCurrent()));
-				resultDamage += Rnd.get(-diff, diff);
-				resultDamage = resultDamage / 1.5F;
-				if (attacker.isInState(CreatureState.POWERSHARD)) {
-					Item firstShard = equipment.getMainHandPowerShard();
-                    if (firstShard != null) {
-                        resultDamage += firstShard.getItemTemplate().getWeaponBoost();
-                    }
-				}
-            }
-        } if (element != SkillElement.NONE) {
-            float elementalDef = getMovementModifier(target, SkillElement.getResistanceForElement(element), target.getGameStats().getMagicalDefenseFor(element));
-            resultDamage = Math.round(resultDamage * (1 - elementalDef / 1300f));
-        } if (resultDamage <= 0) {
-            resultDamage = 1;
-        }
-        return Math.round(resultDamage);
-    }
+		float resultDamage = mAttack.getCurrent();
+		if (resultDamage <= 0)
+			resultDamage = 1;
+		return Math.round(resultDamage);
+	}
 	
-    public static int calculateMagicalSkillDamage(Creature speller, Creature target, int baseDamages, int bonus, SkillElement element, boolean useMagicBoost, boolean useKnowledge, boolean noReduce, int pvpDamage) {
-        CreatureGameStats<?> sgs = speller.getGameStats();
-        CreatureGameStats<?> tgs = target.getGameStats();
+	public static int calculatePhysicalSkillDamage(Creature attacker, Creature target, int skillDamage, int bonus, int pvpDamage, SkillElement element, boolean noReduce) {
+		if (!useReFlyDamageFormula()) {
+			int damage = calculatePhysicalAttackDamage(attacker, target, true) + skillDamage + bonus;
+			damage = (int) adjustDamages(attacker, target, damage, pvpDamage, true);
+			return Math.max(0, damage);
+		}
+		int anet = getReFlyPhysicalAnet(attacker, target);
+		// ReFly spec: physical attack skills use K=100 and no longer take Power in the final formula.
+		// The incoming value is the client tooltip damage D_t, so derive D_s = 100 * D_t / base Power.
+		float baseSkillDamage = skillDamage * (100f / getBasePower(attacker));
+		float skillMultiplier = attacker.getObserveController().getBasePhysicalDamageMultiplier(true);
+		float raw = (baseSkillDamage * (1f + anet / 1000f) + bonus) * skillMultiplier;
+		raw *= getReFlyShardMultiplier(attacker);
+		float adjusted = adjustDamages(attacker, target, raw, pvpDamage, true, element, noReduce);
+		logReFlyDamage("physical-skill", attacker, target, raw, adjusted, anet, pvpDamage);
+		return Math.round(Math.max(0, adjusted));
+	}
 
-		if (useArchSoftDamageFormula()) {
-			int magicalPowerBoost = useMagicBoost ? sgs.getMagicPowerBoost().getCurrent() : 0;
-			int magicalDamageBoost = useMagicBoost ? sgs.getMagicDamageBoost().getCurrent() : 0;
-			int contextBoost = useMagicBoost ? getContextPowerBoost(speller, target) : 0;
-			int magicalPowerBoostResist = useMagicBoost ? tgs.getMagicPowerBoostResist().getCurrent() : 0;
-			int magicalDamageBoostResist = useMagicBoost ? tgs.getMagicDamageBoostResist().getCurrent() : 0;
-			int contextResist = useMagicBoost ? getContextPowerBoostResist(speller, target) : 0;
-			float damageMultiplier = speller.getObserveController().getBaseMagicalDamageMultiplier();
-			float knowledge = useKnowledge ? Math.max(1, sgs.getKnowledge().getCurrent()) : 100;
-			float baseSkillDmg = baseDamages * (100f / knowledge);
-			float bonusDamage = getArchSoftBonusDamageMultiplier(magicalPowerBoost, magicalDamageBoost, contextBoost, magicalPowerBoostResist, magicalDamageBoostResist, contextResist);
-			int shardDmg = 0;
-			if (speller instanceof Player && speller.isInState(CreatureState.POWERSHARD)) {
-				Equipment equipment = ((Player) speller).getEquipment();
-				Item firstShard = equipment.getMainHandPowerShard();
-				if (firstShard != null)
-					shardDmg += firstShard.getItemTemplate().getWeaponBoost();
-			}
-			float damages = (baseDamages + baseSkillDmg * bonusDamage + bonus + shardDmg) * damageMultiplier;
-			damages -= tgs.getStat(StatEnum.MAGICAL_DEFEND, 0).getCurrent() / 10f;
+    public static int calculateMagicalSkillDamage(Creature speller, Creature target, int baseDamages, int bonus, SkillElement element, boolean useMagicBoost, boolean useKnowledge, boolean noReduce, int pvpDamage) {
+		CreatureGameStats<?> sgs = speller.getGameStats();
+
+		if (useReFlyDamageFormula()) {
+			int anet = useMagicBoost ? getReFlyMagicalAnet(speller, target) : 0;
+			float skillMultiplier = speller.getObserveController().getBaseMagicalDamageMultiplier();
+			float k = useKnowledge ? Math.max(1, sgs.getKnowledge().getCurrent()) : 100f;
+			// ReFly spec: magical DoT / SM damage-on-dispel can force K=100. For ordinary spells,
+			// derive D_s from tooltip D_t using base Knowledge, then multiply by current K.
+			float ds = useKnowledge ? baseDamages * (100f / getBaseKnowledge(speller)) : baseDamages;
+			float raw = (ds * (k / 100f + anet / 1000f) + bonus) * skillMultiplier;
+			raw *= getReFlyShardMultiplier(speller);
 			elements = element;
-			float beforeAdjust = damages;
-			damages = adjustDamages(speller, target, damages, pvpDamage, useKnowledge);
-			MameClientCompatDebug.logMagicalSkillFormula(speller, target, baseDamages, bonus, beforeAdjust, beforeAdjust, damages, element, useMagicBoost, useKnowledge, noReduce, pvpDamage);
+			float damages = adjustDamages(speller, target, raw, pvpDamage, useKnowledge, element, noReduce);
+			MameClientCompatDebug.logMagicalSkillFormula(speller, target, baseDamages, bonus, raw, raw, damages, element, useMagicBoost, useKnowledge, noReduce, pvpDamage);
+			logReFlyDamage("magical-skill", speller, target, raw, damages, anet, pvpDamage);
 			if (damages <= 0)
 				damages = 1;
 			if (target instanceof Npc)
@@ -535,39 +466,14 @@ public class StatFunctions
 			return Math.round(damages);
 		}
 
-        int magicPowerBoost = useMagicBoost ? sgs.getMagicPowerBoost().getCurrent() : 0;
-        int pvePowerBoost = useMagicBoost ? sgs.getPvePowerBoost().getCurrent() : 0;
-        int magicDamageBoost = useMagicBoost ? sgs.getMagicDamageBoost().getCurrent() : 0;
-        int mPBResist = tgs.getMagicPowerBoostResist().getCurrent();
-        int MDef = tgs.getMDef().getCurrent();
-        int knowledge = useKnowledge ? sgs.getKnowledge().getCurrent() : 0;
-        if ((magicPowerBoost - mPBResist) > 3200) {
-            magicPowerBoost = 3201;
-        } else {
-            magicPowerBoost = magicPowerBoost - mPBResist;
-        } if ((magicPowerBoost - MDef) < 1) {
-            magicPowerBoost = 1;
-        } else {
-            magicPowerBoost -= MDef;
-        }
-        float damages = baseDamages * (knowledge / 100f + magicPowerBoost / 1000f + pvePowerBoost / 100f + magicDamageBoost / 1000f);
-        damages = sgs.getStat(StatEnum.BOOST_SPELL_ATTACK, (int) damages).getCurrent();
-        damages += bonus;
-        if (!noReduce && element != SkillElement.NONE) {
-            float elementalDef = getMovementModifier(target, SkillElement.getResistanceForElement(element), tgs.getMagicalDefenseFor(element));
-            damages = Math.round(damages * (1 - (elementalDef / 1300f)));
-        }
-        elements = element;
-        float beforeAdjust = damages;
-        damages = adjustDamages(speller, target, damages, pvpDamage, useKnowledge);
-        MameClientCompatDebug.logMagicalSkillFormula(speller, target, baseDamages, bonus, beforeAdjust, beforeAdjust, damages, element, useMagicBoost, useKnowledge, noReduce, pvpDamage);
-        if (damages <= 0) {
-            damages = 1;
-        } if (target instanceof Npc) {
-            return target.getAi2().modifyDamage((int) damages);
-        }
-        return Math.round(damages);
-    }
+		float damages = baseDamages + bonus;
+		damages = adjustDamages(speller, target, damages, pvpDamage, useKnowledge);
+		if (damages <= 0)
+			damages = 1;
+		if (target instanceof Npc)
+			return target.getAi2().modifyDamage((int) damages);
+		return Math.round(damages);
+	}
 
 	/**
 	 * Calculates MAGICAL CRITICAL chance
@@ -634,26 +540,40 @@ public class StatFunctions
 	 * Adjust baseDamages according to their level.
 	 **/
 	public static float adjustDamages(Creature attacker, Creature target, float damages, int pvpDamage, boolean useMovement) {
-        if (attacker.isPvpTarget(target)) {
-            if (pvpDamage > 0) {
-                damages *= pvpDamage * 0.01;
-            }
-            if (!useArchSoftDamageFormula() && !MameClientCompatDebug.isModernDamageMode()) {
-                damages = Math.round(damages * 0.01f);
-			    float pvpPowerBoost = attacker.getGameStats().getStat(StatEnum.PVP_POWER_BOOST, 0).getCurrent();
-			    float pvpPowerBoostResist = target.getGameStats().getStat(StatEnum.PVP_POWER_BOOST_RESIST, 0).getCurrent();
-			    pvpPowerBoost = pvpPowerBoost * 0.01f;
-			    pvpPowerBoostResist = pvpPowerBoostResist * 0.01f;
-			    damages = Math.round((damages / 0.5f) + (damages * pvpPowerBoost) - (damages * pvpPowerBoostResist));
-            }
-        } else if (target instanceof Npc) {
-            int levelDiff = target.getLevel() - attacker.getLevel();
-            damages *= (1f - getNpcLevelDiffMod(levelDiff, 0));
-        } if (useMovement) {
-            damages = movementDamageBonus(attacker, damages);
-        }
-        return damages;
-    }
+		return adjustDamages(attacker, target, damages, pvpDamage, useMovement, elements, false);
+	}
+
+	public static float adjustDamages(Creature attacker, Creature target, float damages, int pvpDamage, boolean useMovement, SkillElement element, boolean noReduce) {
+		if (attacker.isPvpTarget(target)) {
+			if (pvpDamage > 0)
+				damages *= pvpDamage * 0.01f;
+			if (useReFlyDamageFormula() && !noReduce)
+				damages = Math.round(damages * REFLY_PVP_GLOBAL_REDUCTION);
+			else if (useArchSoftDamageFormula() && !noReduce)
+				damages = Math.round(damages * GSConfig.ARCHSOFT_DAMAGE_PVP_REDUCTION);
+			else if (!useArchSoftDamageFormula() && !MameClientCompatDebug.isModernDamageMode()) {
+				damages = Math.round(damages * 0.01f);
+				float pvpPowerBoost = attacker.getGameStats().getStat(StatEnum.PVP_POWER_BOOST, 0).getCurrent();
+				float pvpPowerBoostResist = target.getGameStats().getStat(StatEnum.PVP_POWER_BOOST_RESIST, 0).getCurrent();
+				pvpPowerBoost = pvpPowerBoost * 0.01f;
+				pvpPowerBoostResist = pvpPowerBoostResist * 0.01f;
+				damages = Math.round((damages / 0.5f) + (damages * pvpPowerBoost) - (damages * pvpPowerBoostResist));
+			}
+		} else if (target instanceof Npc) {
+			int levelDiff = target.getLevel() - attacker.getLevel();
+			if (useReFlyDamageFormula()) {
+				if (levelDiff >= 12)
+					damages = 1;
+				else if (levelDiff > 2)
+					damages *= Math.max(0f, 1f - ((levelDiff - 2) * 0.1f));
+			} else {
+				damages *= (1f - getNpcLevelDiffMod(levelDiff, 0));
+			}
+		}
+		if (useMovement)
+			damages = movementDamageBonus(attacker, damages);
+		return damages;
+	}
 	
 	/**
 	 * Calculates DODGE chance
@@ -670,6 +590,12 @@ public class StatFunctions
         }
         float accuracy = attacker.getGameStats().getPAccuracy().getCurrent() + accMod;
         float dodge = attacked.getGameStats().getEvasion().getBonus() + getMovementModifier(attacked, StatEnum.EVASION, attacked.getGameStats().getEvasion().getBase());
+        if (useArchSoftDamageFormula()) {
+            if (attacked instanceof Npc && ((Npc) attacked).hasEntity())
+                return false;
+            float dodgeRate = archSoftAvoidRate(dodge, accuracy, 30f);
+            return Rnd.nextInt(100) < dodgeRate;
+        }
         float dodgeRate = dodge - accuracy;
         if (attacked instanceof Npc) {
             int levelDiff = attacked.getLevel() - attacker.getLevel();
@@ -694,6 +620,10 @@ public class StatFunctions
         }
         float accuracy = attacker.getGameStats().getPAccuracy().getCurrent();
         float parry = attacked.getGameStats().getParry().getBonus() + getMovementModifier(attacked, StatEnum.PARRY, attacked.getGameStats().getParry().getBase());
+        if (useArchSoftDamageFormula()) {
+            float parryRate = archSoftAvoidRate(parry, accuracy, 40f);
+            return Rnd.nextInt(100) < parryRate;
+        }
         float parryRate = parry - accuracy;
         return calculatePhysicalEvasion(parryRate, 400);
     }
@@ -711,6 +641,10 @@ public class StatFunctions
         }
         float accuracy = attacker.getGameStats().getPAccuracy().getCurrent();
         float block = attacked.getGameStats().getBlock().getBonus() + getMovementModifier(attacked, StatEnum.BLOCK, attacked.getGameStats().getBlock().getBase());
+        if (useArchSoftDamageFormula()) {
+            float blockRate = archSoftAvoidRate(block, accuracy, 50f);
+            return Rnd.nextInt(100) < blockRate;
+        }
         float blockRate = block - accuracy;
         if (blockRate > 500) {
             blockRate = 500;
@@ -718,6 +652,18 @@ public class StatFunctions
         return Rnd.nextInt(1000) < blockRate;
     }
 	
+
+	private static float archSoftAvoidRate(float defenceStat, float accuracy, float capPercent) {
+		float diff = defenceStat - accuracy;
+		float denominator = 24000f + diff;
+		if (denominator <= 1f)
+			denominator = 1f;
+		float rate = 220f * diff / denominator;
+		if (rate <= 0f)
+			return 0f;
+		return capPercent > 0f ? Math.min(rate, capPercent) : rate;
+	}
+
 	/**
 	 * Accuracy (includes evasion/parry/block formulas): Accuracy formula is based on opponents evasion/parry/block vs
 	 * your own Accuracy. If your Accuracy is 300 or more above opponents evasion/parry/block then you can not be evaded,
@@ -785,6 +731,18 @@ public class StatFunctions
         }
         int attackerLevel = attacker.getLevel();
         int targetLevel = attacked.getLevel();
+        if (useArchSoftDamageFormula()) {
+            float accuracy = attacker.getGameStats().getMAccuracy().getCurrent() + accMod;
+            float resist = attacked.getGameStats().getMResist().getCurrent();
+            float resistRate = 220f * (resist - accuracy) / (24000f + resist - accuracy);
+            if ((targetLevel - attackerLevel) > 2)
+                resistRate += (targetLevel - attackerLevel - 2) * 10f;
+            if (resistRate <= 0)
+                resistRate = 1f; // 0.1% because caller uses 0..1000 threshold
+            if (resistRate > 50f)
+                resistRate = 50f;
+            return Math.round(resistRate * 10f);
+        }
         int resistRate = attacked.getGameStats().getMResist().getCurrent() - attacker.getGameStats().getMAccuracy().getCurrent() - accMod;
         if ((targetLevel - attackerLevel) > 2) {
             resistRate += (targetLevel - attackerLevel - 2) * 100;
@@ -891,12 +849,12 @@ public class StatFunctions
             break;
             case 6:
             case 2:
-                value -= value * 0.8f;
+                value *= 0.8f;
             break;
             case 5:
             case 4:
             case 3:
-                value -= value * 0.8f;
+                value *= 0.8f;
             break;
         }
         return value;

@@ -64,6 +64,25 @@ public class GSConfig
 	@Property(key = "gameserver.damage.archsoft_formula.enable", defaultValue = "true")
 	public static boolean ARCHSOFT_DAMAGE_FORMULA_ENABLE;
 
+	@Property(key = "gameserver.damage.archsoft_pvp_reduction", defaultValue = "0.26")
+	public static float ARCHSOFT_DAMAGE_PVP_REDUCTION;
+
+
+	@Property(key = "gameserver.combat.archsoft_avoidance_caps.enable", defaultValue = "false")
+	public static boolean ARCHSOFT_AVOIDANCE_CAPS_ENABLE;
+
+	/**
+	 * MameAion75 v77b: ReFly 6.0/7.0 damage formula strict mode.
+	 * Implements the PDF equations directly: auto attacks, skill damage, A_net 0..20000,
+	 * old PvE/PvP attack cap/net floor, PvP 0.26, shard 1.25, movement and level rules.
+	 */
+	@Property(key = "gameserver.damage.refly_formula.enable", defaultValue = "true")
+	public static boolean REFLY_DAMAGE_FORMULA_ENABLE;
+
+
+	@Property(key = "gameserver.damage.refly_debug.enable", defaultValue = "false")
+	public static boolean REFLY_DAMAGE_DEBUG_ENABLE;
+
 	/**
 	 * MameAion75 v69: fill the confirmed ArchSoft client stat slots for attack/defence display.
 	 * This keeps the 7.7 packet length/order but replaces known zero placeholders with real stats.

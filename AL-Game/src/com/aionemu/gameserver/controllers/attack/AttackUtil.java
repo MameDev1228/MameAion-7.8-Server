@@ -17,6 +17,7 @@
 package com.aionemu.gameserver.controllers.attack;
 
 import com.aionemu.commons.utils.Rnd;
+import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.SkillElement;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -117,14 +118,18 @@ public class AttackUtil
 			mainHandStatus = calculatePhysicalStatus(attacker, attacked, true);
 		}
 		int mainHandHits = 1;
+		WeaponType mainHandWeaponType = null;
 		if (attacker instanceof Player) {
 			Item mainHandWeapon = ((Player) attacker).getEquipment().getMainHandWeapon();
+			mainHandWeaponType = ((Player) attacker).getEquipment().getMainHandWeaponType();
 			if (mainHandWeapon != null) {
 				mainHandHits = Rnd.get(1, mainHandWeapon.getItemTemplate().getWeaponStats().getHitCount());
 			}
 		} else {
 			mainHandHits = Rnd.get(1, 3);
 		}
+		if (GSConfig.REFLY_DAMAGE_FORMULA_ENABLE)
+			damage = applyReFlyAutoMultiStrikeBonus(damage, mainHandHits, mainHandWeaponType);
 		splitPhysicalDamage(attacker, attacked, mainHandHits, damage, mainHandStatus, attackList);
 		return mainHandStatus;
 	}
@@ -135,9 +140,36 @@ public class AttackUtil
 	private static final void calculateOffHandResult(Creature attacker, Creature attacked, AttackStatus mainHandStatus, List<AttackResult> attackList) {
 		AttackStatus offHandStatus = AttackStatus.getOffHandStats(mainHandStatus);
 		Item offHandWeapon = ((Player) attacker).getEquipment().getOffHandWeapon();
+		WeaponType offHandWeaponType = ((Player) attacker).getEquipment().getOffHandWeaponType();
 		int offHandDamage = StatFunctions.calculateAttackDamage(attacker, attacked, false, SkillElement.NONE);
 		int offHandHits = Rnd.get(1, offHandWeapon.getItemTemplate().getWeaponStats().getHitCount());
+		if (GSConfig.REFLY_DAMAGE_FORMULA_ENABLE)
+			offHandDamage = applyReFlyAutoMultiStrikeBonus(offHandDamage, offHandHits, offHandWeaponType);
 		splitPhysicalDamage(attacker, attacked, offHandHits, offHandDamage, offHandStatus, attackList);
+	}
+
+	private static int applyReFlyAutoMultiStrikeBonus(int damage, int hitCount, WeaponType weaponType) {
+		if (hitCount <= 1 || !isReFlyMeleeMultiStrikeWeapon(weaponType))
+			return damage;
+		// ReFly spec: auto attack multi-strike is a final multiplicative adjustment for melee weapons only.
+		// 2-strike: 1.0x / 1.1x, 3-strike: 1.0x / 1.1x / 1.2x, 4-strike: 1.0x / 1.1x / 1.2x / 1.3x.
+		int resolvedHitCount = Math.min(hitCount, 4);
+		return Math.round(damage * (1f + 0.1f * (resolvedHitCount - 1)));
+	}
+
+	private static boolean isReFlyMeleeMultiStrikeWeapon(WeaponType weaponType) {
+		if (weaponType == null)
+			return false;
+		switch (weaponType) {
+			case SWORD_1H:
+			case MACE_1H:
+			case STAFF_2H:
+			case SWORD_2H:
+			case POLEARM_2H:
+				return true;
+			default:
+				return false;
+		}
 	}
 
 	/**
@@ -149,6 +181,10 @@ public class AttackUtil
 
 		switch (AttackStatus.getBaseStatus(status)) {
 			case BLOCK:
+				if (GSConfig.REFLY_DAMAGE_FORMULA_ENABLE) {
+					damage = Math.round(damage * 0.25f);
+					break;
+				}
 				int reduce = damage-attacked.getGameStats().getPositiveReverseStat(StatEnum.DAMAGE_REDUCE, damage);
 				if (attacked instanceof Player){
 					Item shield = ((Player)attacked).getEquipment().getEquippedShield();
@@ -193,16 +229,42 @@ public class AttackUtil
 		return attackList;
 	}
 
-	/**
-	 * @param damages
-	 * @param weaponType
-	 * @return
-	 */
-	private static float calculateWeaponCritical(Creature attacked, float damages, WeaponType weaponType, StatEnum stat){
-		return calculateWeaponCritical(attacked, damages, weaponType, 0, stat);
+
+	private static float getReFlyCriticalMultiplier(WeaponType weaponType, StatEnum stat) {
+		// ReFly PDF final damage adjustments:
+		// Dagger 2.3, Sword 2.2, Mace 2.0, Greatsword/Polearm 1.8,
+		// Bow/Staff/Chromablaster/Paint Rings 1.7, Magic 1.5, Unarmed 1.0.
+		if (stat.equals(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE))
+			return 1.5f;
+		if (weaponType == null)
+			return 1.0f;
+		switch (weaponType) {
+			case DAGGER_1H:
+				return 2.3f;
+			case SWORD_1H:
+				return 2.2f;
+			case MACE_1H:
+				return 2.0f;
+			case SWORD_2H:
+			case POLEARM_2H:
+				return 1.8f;
+			case BOW:
+			case STAFF_2H:
+			case GUN_1H:
+			case CANNON_2H:
+			case CHROMABLASTER_2H:
+				return 1.7f;
+			case BOOK_2H:
+			case ORB_2H:
+			case HARP_2H:
+			case KEYBLADE_2H:
+				return 1.5f;
+			default:
+				return 1.0f;
+		}
 	}
-	
-	private static float calculateWeaponCritical(Creature attacked, float damages, WeaponType weaponType, int critAddDmg, StatEnum stat) {
+
+	private static float getLegacyCriticalMultiplier(WeaponType weaponType, StatEnum stat) {
 		float coeficient = 2f;
 		if (weaponType != null) {
 			switch (weaponType) {
@@ -229,10 +291,26 @@ public class AttackUtil
 				default:
 					coeficient = 1.5f;
 				break;
-			} if (stat.equals(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE)) {
-				coeficient = 1.5f;
 			}
+			if (stat.equals(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE))
+				coeficient = 1.5f;
 		}
+		return coeficient;
+	}
+
+	/**
+	 * @param damages
+	 * @param weaponType
+	 * @return
+	 */
+	private static float calculateWeaponCritical(Creature attacked, float damages, WeaponType weaponType, StatEnum stat){
+		return calculateWeaponCritical(attacked, damages, weaponType, 0, stat);
+	}
+	
+	private static float calculateWeaponCritical(Creature attacked, float damages, WeaponType weaponType, int critAddDmg, StatEnum stat) {
+		float coeficient = GSConfig.REFLY_DAMAGE_FORMULA_ENABLE
+			? getReFlyCriticalMultiplier(weaponType, stat)
+			: getLegacyCriticalMultiplier(weaponType, stat);
 		coeficient += (float)critAddDmg / 100f;
 		damages = Math.round(damages * coeficient);
 		if (attacked instanceof Npc) {
@@ -255,6 +333,58 @@ public class AttackUtil
 		int damage = 0;
 		int baseAttack = 0;
 		boolean physicalSkillFormulaProbe = effector instanceof Player && effector.getAttackType() == ItemAttackType.PHYSICAL;
+		if (GSConfig.REFLY_DAMAGE_FORMULA_ENABLE && effector.getAttackType() == ItemAttackType.PHYSICAL) {
+			int conditionalBonus = 0;
+			int effectiveSkillDamage = skillDamage;
+			if (func == Func.PERCENT) {
+				baseAttack = effector.getGameStats().getMainHandPAttack().getBase();
+				effectiveSkillDamage = Math.round(baseAttack * skillDamage / 100f);
+			}
+			if (modifier != null) {
+				int bonus = modifier.analyze(effect);
+				if (modifier.getFunc() == Func.PERCENT) {
+					baseAttack = effector.getGameStats().getMainHandPAttack().getBase();
+					conditionalBonus += baseAttack * bonus / 100f;
+				} else {
+					conditionalBonus += bonus;
+				}
+			}
+			damage = StatFunctions.calculatePhysicalSkillDamage(effector, effected, effectiveSkillDamage, conditionalBonus, effect.getPvpDamage(), SkillElement.NONE, false);
+			AttackStatus status = calculatePhysicalStatus(effector, effected, true, accMod, critProbMod2, true, cannotMiss);
+			switch (AttackStatus.getBaseStatus(status)) {
+				case DODGE:
+					damage = 0;
+				break;
+				case BLOCK:
+					damage = Math.round(damage * 0.25f);
+				break;
+				case PARRY:
+					damage = Math.round(damage * 0.6f);
+				break;
+				default:
+				break;
+			}
+			if (status.isCritical()) {
+				if (effector instanceof Player) {
+					WeaponType weaponType = ((Player) effector).getEquipment().getMainHandWeaponType();
+					damage = (int) calculateWeaponCritical(effected, damage, weaponType, critAddDmg, StatEnum.PHYSICAL_CRITICAL_DAMAGE_REDUCE);
+					applyEffectOnCritical((Player) effector, effected, effect.getSkillId());
+				} else {
+					damage = (int) calculateWeaponCritical(effected, damage, null, critAddDmg, StatEnum.PHYSICAL_CRITICAL_DAMAGE_REDUCE);
+				}
+			}
+			if (effected instanceof Npc)
+				damage = effected.getAi2().modifyDamage(damage);
+			if (effector instanceof Npc)
+				damage = effector.getAi2().modifyOwnerDamage(damage);
+			if (shared && !effect.getSkill().getEffectedList().isEmpty())
+				damage /= effect.getSkill().getEffectedList().size();
+			if (damage < 0)
+				damage = 0;
+			calculateEffectResult(effect, effected, damage, status, HitType.PHHIT, ignoreShield);
+			MameClientCompatDebug.logPhysicalSkillFormula(effect, skillDamage, 0, effectiveSkillDamage + conditionalBonus, damage, func == null ? "null" : func.name());
+			return;
+		}
 		/**
 		 * - Some Archdaeva equipment will give boosted combat stats against certain monster types.
 		 * - If the gear and the monster type match, you will get bonus damage.
@@ -342,6 +472,10 @@ public class AttackUtil
 			status = calculateMagicalStatus(effector, effected, critProbMod2, true);
 		} switch (AttackStatus.getBaseStatus(status)) {
 			case BLOCK:
+				if (GSConfig.REFLY_DAMAGE_FORMULA_ENABLE) {
+					damage = Math.round(damage * 0.25f);
+					break;
+				}
 				int reduce = damage-effected.getGameStats().getPositiveReverseStat(StatEnum.DAMAGE_REDUCE, damage);
 				if (effected instanceof Player) {
 					Item shield = ((Player)effected).getEquipment().getEquippedShield();

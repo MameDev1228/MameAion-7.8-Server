@@ -98,12 +98,14 @@ public class SM_STATS_INFO extends AionServerPacket
         writeD(pgs.getPvpPowerBoostResist().getCurrent()); //pvp def
         writeD(pgs.getPvePowerBoost().getCurrent()); //pve damage
         writeD(pgs.getPvePowerBoostResist().getCurrent()); //pve def
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMagicPowerBoost().getCurrent() : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getPhysicDamageBoost().getCurrent() : pgs.getMDef().getCurrent())); // ArchSoft current magical attack 2 / legacy CC2 probe
-
-		writeH(pgs.getHealBoost().getCurrent()); // current healing boost low word, ArchSoft confirmed
-		writeH(0); // reserved high word for legacy layout
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMagicPowerBoostResist().getCurrent() : 0); // ArchSoft current magical defence 2 / legacy reserved
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getHealBoost().getCurrent() : 107); // current healing boost / legacy KR fixed probe
+		// ArchSoft hard-order current extended combat block.
+		// Keep the CC2/EU7.7 packet length, but do not duplicate heal boost into the
+		// magical defence slot. The previous mixed mapping made the profile tooltip compare
+		// against wrong base fields and showed unrelated red/negative values.
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMagicPowerBoost().getCurrent() : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getPhysicDamageBoost().getCurrent() : pgs.getMDef().getCurrent())); // ArchSoft current magical attack 2
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMagicPowerBoostResist().getCurrent() : pgs.getHealBoost().getCurrent()); // ArchSoft current magical defence 2
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getHealBoost().getCurrent() : 107); // ArchSoft current healing boost
+		writeD(0); // ArchSoft/7.x reserved, never write fake fixed stat here
 
 		writeH(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getPhysicDamageBoostResist().getCurrent() : 180); //7.2 Physical Damage Boost Resist / legacy hidden value
 		writeH(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMagicDamageBoostResist().getCurrent() : 50); //7.2 Magical Damage Boost Resist / legacy hidden value

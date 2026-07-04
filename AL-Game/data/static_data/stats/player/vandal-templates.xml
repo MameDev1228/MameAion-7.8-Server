@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<player_stats_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../stats.xsd">
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="9">
+		<stats_template maxHp="1003" maxMp="3484" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="135" block="135" parry="135" main_hand_attack="17" main_hand_accuracy="135" main_hand_crit_rate="2" magic_accuracy="135" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="10">
+		<stats_template maxHp="1203" maxMp="4336" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="150" block="150" parry="150" main_hand_attack="18" main_hand_accuracy="150" main_hand_crit_rate="2" magic_accuracy="150" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="11">
+		<stats_template maxHp="1311" maxMp="4698" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="165" block="165" parry="165" main_hand_attack="18" main_hand_accuracy="165" main_hand_crit_rate="2" magic_accuracy="165" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="12">
+		<stats_template maxHp="1423" maxMp="5060" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="180" block="180" parry="180" main_hand_attack="18" main_hand_accuracy="180" main_hand_crit_rate="2" magic_accuracy="180" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="13">
+		<stats_template maxHp="1539" maxMp="5422" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="195" block="195" parry="195" main_hand_attack="18" main_hand_accuracy="195" main_hand_crit_rate="2" magic_accuracy="195" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="14">
+		<stats_template maxHp="1659" maxMp="5784" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="210" block="210" parry="210" main_hand_attack="18" main_hand_accuracy="210" main_hand_crit_rate="2" magic_accuracy="210" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="15">
+		<stats_template maxHp="1782" maxMp="6146" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="225" block="225" parry="225" main_hand_attack="18" main_hand_accuracy="225" main_hand_crit_rate="2" magic_accuracy="225" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="16">
+		<stats_template maxHp="1909" maxMp="6508" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="240" block="240" parry="240" main_hand_attack="18" main_hand_accuracy="240" main_hand_crit_rate="2" magic_accuracy="240" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="17">
+		<stats_template maxHp="2040" maxMp="6870" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="255" block="255" parry="255" main_hand_attack="18" main_hand_accuracy="255" main_hand_crit_rate="2" magic_accuracy="255" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="18">
+		<stats_template maxHp="2174" maxMp="7232" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="270" block="270" parry="270" main_hand_attack="18" main_hand_accuracy="270" main_hand_crit_rate="2" magic_accuracy="270" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="19">
+		<stats_template maxHp="2312" maxMp="7594" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="285" block="285" parry="285" main_hand_attack="18" main_hand_accuracy="285" main_hand_crit_rate="2" magic_accuracy="285" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="20">
+		<stats_template maxHp="2454" maxMp="7956" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="300" block="300" parry="300" main_hand_attack="18" main_hand_accuracy="300" main_hand_crit_rate="2" magic_accuracy="300" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="21">
+		<stats_template maxHp="2596" maxMp="8318" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="315" block="315" parry="315" main_hand_attack="18" main_hand_accuracy="315" main_hand_crit_rate="2" magic_accuracy="315" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="22">
+		<stats_template maxHp="2738" maxMp="8680" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="330" block="330" parry="330" main_hand_attack="18" main_hand_accuracy="330" main_hand_crit_rate="2" magic_accuracy="330" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="23">
+		<stats_template maxHp="2880" maxMp="9042" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="345" block="345" parry="345" main_hand_attack="18" main_hand_accuracy="345" main_hand_crit_rate="2" magic_accuracy="345" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="24">
+		<stats_template maxHp="3022" maxMp="9404" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="360" block="360" parry="360" main_hand_attack="18" main_hand_accuracy="360" main_hand_crit_rate="2" magic_accuracy="360" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="25">
+		<stats_template maxHp="3164" maxMp="9766" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="375" block="375" parry="375" main_hand_attack="18" main_hand_accuracy="375" main_hand_crit_rate="2" magic_accuracy="375" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="26">
+		<stats_template maxHp="3306" maxMp="10128" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="390" block="390" parry="390" main_hand_attack="18" main_hand_accuracy="390" main_hand_crit_rate="2" magic_accuracy="390" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="27">
+		<stats_template maxHp="3448" maxMp="10490" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="405" block="405" parry="405" main_hand_attack="18" main_hand_accuracy="405" main_hand_crit_rate="2" magic_accuracy="405" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="28">
+		<stats_template maxHp="3590" maxMp="10852" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="420" block="420" parry="420" main_hand_attack="18" main_hand_accuracy="420" main_hand_crit_rate="2" magic_accuracy="420" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="29">
+		<stats_template maxHp="3732" maxMp="11214" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="435" block="435" parry="435" main_hand_attack="18" main_hand_accuracy="435" main_hand_crit_rate="2" magic_accuracy="435" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="30">
+		<stats_template maxHp="3874" maxMp="11576" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="450" block="450" parry="450" main_hand_attack="18" main_hand_accuracy="450" main_hand_crit_rate="2" magic_accuracy="450" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="31">
+		<stats_template maxHp="4016" maxMp="11938" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="465" block="465" parry="465" main_hand_attack="18" main_hand_accuracy="465" main_hand_crit_rate="2" magic_accuracy="465" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="32">
+		<stats_template maxHp="4158" maxMp="12300" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="480" block="480" parry="480" main_hand_attack="18" main_hand_accuracy="480" main_hand_crit_rate="2" magic_accuracy="480" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="33">
+		<stats_template maxHp="4300" maxMp="12662" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="495" block="495" parry="495" main_hand_attack="18" main_hand_accuracy="495" main_hand_crit_rate="2" magic_accuracy="495" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="34">
+		<stats_template maxHp="4442" maxMp="13024" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="510" block="510" parry="510" main_hand_attack="18" main_hand_accuracy="510" main_hand_crit_rate="2" magic_accuracy="510" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="35">
+		<stats_template maxHp="4584" maxMp="13386" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="525" block="525" parry="525" main_hand_attack="18" main_hand_accuracy="525" main_hand_crit_rate="2" magic_accuracy="525" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="36">
+		<stats_template maxHp="4726" maxMp="13748" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="540" block="540" parry="540" main_hand_attack="18" main_hand_accuracy="540" main_hand_crit_rate="2" magic_accuracy="540" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="37">
+		<stats_template maxHp="4868" maxMp="14110" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="555" block="555" parry="555" main_hand_attack="18" main_hand_accuracy="555" main_hand_crit_rate="2" magic_accuracy="555" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="38">
+		<stats_template maxHp="5010" maxMp="14472" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="570" block="570" parry="570" main_hand_attack="18" main_hand_accuracy="570" main_hand_crit_rate="2" magic_accuracy="570" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="39">
+		<stats_template maxHp="5152" maxMp="14834" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="585" block="585" parry="585" main_hand_attack="18" main_hand_accuracy="585" main_hand_crit_rate="2" magic_accuracy="585" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="40">
+		<stats_template maxHp="5294" maxMp="15196" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="600" block="600" parry="600" main_hand_attack="18" main_hand_accuracy="600" main_hand_crit_rate="2" magic_accuracy="600" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="41">
+		<stats_template maxHp="5436" maxMp="15558" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="615" block="615" parry="615" main_hand_attack="18" main_hand_accuracy="615" main_hand_crit_rate="2" magic_accuracy="615" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="42">
+		<stats_template maxHp="5578" maxMp="15920" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="630" block="630" parry="630" main_hand_attack="18" main_hand_accuracy="630" main_hand_crit_rate="2" magic_accuracy="630" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="43">
+		<stats_template maxHp="5720" maxMp="16282" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="645" block="645" parry="645" main_hand_attack="18" main_hand_accuracy="645" main_hand_crit_rate="2" magic_accuracy="645" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="44">
+		<stats_template maxHp="5862" maxMp="16644" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="660" block="660" parry="660" main_hand_attack="18" main_hand_accuracy="660" main_hand_crit_rate="2" magic_accuracy="660" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="45">
+		<stats_template maxHp="6004" maxMp="17006" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="675" block="675" parry="675" main_hand_attack="18" main_hand_accuracy="675" main_hand_crit_rate="2" magic_accuracy="675" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="46">
+		<stats_template maxHp="6146" maxMp="17368" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="690" block="690" parry="690" main_hand_attack="18" main_hand_accuracy="690" main_hand_crit_rate="2" magic_accuracy="690" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="47">
+		<stats_template maxHp="6288" maxMp="17730" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="705" block="705" parry="705" main_hand_attack="18" main_hand_accuracy="705" main_hand_crit_rate="2" magic_accuracy="705" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="48">
+		<stats_template maxHp="6430" maxMp="18092" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="720" block="720" parry="720" main_hand_attack="18" main_hand_accuracy="720" main_hand_crit_rate="2" magic_accuracy="720" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="49">
+		<stats_template maxHp="6572" maxMp="18454" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="735" block="735" parry="735" main_hand_attack="18" main_hand_accuracy="735" main_hand_crit_rate="2" magic_accuracy="735" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="50">
+		<stats_template maxHp="6714" maxMp="18816" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="750" block="750" parry="750" main_hand_attack="18" main_hand_accuracy="750" main_hand_crit_rate="2" magic_accuracy="750" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="51">
+		<stats_template maxHp="6856" maxMp="19178" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="765" block="765" parry="765" main_hand_attack="18" main_hand_accuracy="765" main_hand_crit_rate="2" magic_accuracy="765" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="52">
+		<stats_template maxHp="6998" maxMp="19540" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="780" block="780" parry="780" main_hand_attack="18" main_hand_accuracy="780" main_hand_crit_rate="2" magic_accuracy="780" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="53">
+		<stats_template maxHp="7140" maxMp="19902" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="795" block="795" parry="795" main_hand_attack="18" main_hand_accuracy="795" main_hand_crit_rate="2" magic_accuracy="795" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="54">
+		<stats_template maxHp="7282" maxMp="20264" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="810" block="810" parry="810" main_hand_attack="18" main_hand_accuracy="810" main_hand_crit_rate="2" magic_accuracy="810" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="55">
+		<stats_template maxHp="7424" maxMp="20626" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="825" block="825" parry="825" main_hand_attack="18" main_hand_accuracy="825" main_hand_crit_rate="2" magic_accuracy="825" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="56">
+		<stats_template maxHp="7566" maxMp="20988" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="840" block="840" parry="840" main_hand_attack="18" main_hand_accuracy="840" main_hand_crit_rate="2" magic_accuracy="840" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="57">
+		<stats_template maxHp="7708" maxMp="21350" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="855" block="855" parry="855" main_hand_attack="18" main_hand_accuracy="855" main_hand_crit_rate="2" magic_accuracy="855" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="58">
+		<stats_template maxHp="7850" maxMp="21712" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="870" block="870" parry="870" main_hand_attack="18" main_hand_accuracy="870" main_hand_crit_rate="2" magic_accuracy="870" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="59">
+		<stats_template maxHp="7992" maxMp="22074" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="885" block="885" parry="885" main_hand_attack="18" main_hand_accuracy="885" main_hand_crit_rate="2" magic_accuracy="885" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="60">
+		<stats_template maxHp="8134" maxMp="22436" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="900" block="900" parry="900" main_hand_attack="18" main_hand_accuracy="900" main_hand_crit_rate="2" magic_accuracy="900" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="61">
+		<stats_template maxHp="8276" maxMp="22798" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="915" block="915" parry="915" main_hand_attack="18" main_hand_accuracy="915" main_hand_crit_rate="2" magic_accuracy="915" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="62">
+		<stats_template maxHp="8418" maxMp="23160" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="930" block="930" parry="930" main_hand_attack="18" main_hand_accuracy="930" main_hand_crit_rate="2" magic_accuracy="930" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="63">
+		<stats_template maxHp="8560" maxMp="23522" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="945" block="945" parry="945" main_hand_attack="18" main_hand_accuracy="945" main_hand_crit_rate="2" magic_accuracy="945" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="64">
+		<stats_template maxHp="8702" maxMp="23884" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="960" block="960" parry="960" main_hand_attack="18" main_hand_accuracy="960" main_hand_crit_rate="2" magic_accuracy="960" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="65">
+		<stats_template maxHp="8844" maxMp="24246" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="975" block="975" parry="975" main_hand_attack="18" main_hand_accuracy="975" main_hand_crit_rate="2" magic_accuracy="975" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="66">
+		<stats_template maxHp="8986" maxMp="24608" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="990" block="990" parry="990" main_hand_attack="18" main_hand_accuracy="990" main_hand_crit_rate="2" magic_accuracy="990" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="67">
+		<stats_template maxHp="9128" maxMp="24970" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1005" block="1005" parry="1005" main_hand_attack="18" main_hand_accuracy="1005" main_hand_crit_rate="2" magic_accuracy="1005" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="68">
+		<stats_template maxHp="9270" maxMp="25332" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1020" block="1020" parry="1020" main_hand_attack="18" main_hand_accuracy="1020" main_hand_crit_rate="2" magic_accuracy="1020" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="69">
+		<stats_template maxHp="9412" maxMp="25694" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1035" block="1035" parry="1035" main_hand_attack="18" main_hand_accuracy="1035" main_hand_crit_rate="2" magic_accuracy="1035" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="70">
+		<stats_template maxHp="9554" maxMp="26056" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1050" block="1050" parry="1050" main_hand_attack="18" main_hand_accuracy="1050" main_hand_crit_rate="2" magic_accuracy="1050" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="71">
+		<stats_template maxHp="9696" maxMp="26418" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1065" block="1065" parry="1065" main_hand_attack="18" main_hand_accuracy="1065" main_hand_crit_rate="2" magic_accuracy="1065" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="72">
+		<stats_template maxHp="9838" maxMp="26780" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1080" block="1080" parry="1080" main_hand_attack="18" main_hand_accuracy="1080" main_hand_crit_rate="2" magic_accuracy="1080" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="73">
+		<stats_template maxHp="9980" maxMp="27142" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1095" block="1095" parry="1095" main_hand_attack="18" main_hand_accuracy="1095" main_hand_crit_rate="2" magic_accuracy="1095" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="74">
+		<stats_template maxHp="10122" maxMp="27504" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1110" block="1110" parry="1110" main_hand_attack="18" main_hand_accuracy="1110" main_hand_crit_rate="2" magic_accuracy="1110" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="75">
+		<stats_template maxHp="10264" maxMp="27866" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1125" block="1125" parry="1125" main_hand_attack="18" main_hand_accuracy="1125" main_hand_crit_rate="2" magic_accuracy="1125" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="76">
+		<stats_template maxHp="10406" maxMp="28228" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1140" block="1140" parry="1140" main_hand_attack="18" main_hand_accuracy="1140" main_hand_crit_rate="2" magic_accuracy="1140" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="77">
+		<stats_template maxHp="10548" maxMp="28590" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1155" block="1155" parry="1155" main_hand_attack="18" main_hand_accuracy="1155" main_hand_crit_rate="2" magic_accuracy="1155" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="78">
+		<stats_template maxHp="10690" maxMp="28952" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1170" block="1170" parry="1170" main_hand_attack="18" main_hand_accuracy="1170" main_hand_crit_rate="2" magic_accuracy="1170" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="79">
+		<stats_template maxHp="10832" maxMp="29314" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1185" block="1185" parry="1185" main_hand_attack="18" main_hand_accuracy="1185" main_hand_crit_rate="2" magic_accuracy="1185" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="VANDAL" level="80">
+		<stats_template maxHp="10974" maxMp="29676" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1200" block="1200" parry="1200" main_hand_attack="18" main_hand_accuracy="1200" main_hand_crit_rate="2" magic_accuracy="1200" crit_spell="50"/>
+	</player_stats>
+	
+	<!--
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="81">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1064" block="1164" parry="1144" main_hand_attack="18" main_hand_accuracy="898" main_hand_crit_rate="2" magic_accuracy="1152" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="82">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1076" block="1176" parry="1156" main_hand_attack="18" main_hand_accuracy="906" main_hand_crit_rate="2" magic_accuracy="1166" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="83">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1088" block="1188" parry="1168" main_hand_attack="18" main_hand_accuracy="914" main_hand_crit_rate="2" magic_accuracy="1180" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="84">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1100" block="1200" parry="1180" main_hand_attack="18" main_hand_accuracy="922" main_hand_crit_rate="2" magic_accuracy="1194" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="85">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1112" block="1212" parry="1192" main_hand_attack="18" main_hand_accuracy="930" main_hand_crit_rate="2" magic_accuracy="1208" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="86">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1124" block="1224" parry="1204" main_hand_attack="18" main_hand_accuracy="938" main_hand_crit_rate="2" magic_accuracy="1222" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="87">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1136" block="1236" parry="1216" main_hand_attack="18" main_hand_accuracy="946" main_hand_crit_rate="2" magic_accuracy="1236" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="88">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1148" block="1248" parry="1228" main_hand_attack="18" main_hand_accuracy="954" main_hand_crit_rate="2" magic_accuracy="1250" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="89">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1160" block="1260" parry="1240" main_hand_attack="18" main_hand_accuracy="962" main_hand_crit_rate="2" magic_accuracy="1264" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="90">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1172" block="1272" parry="1262" main_hand_attack="18" main_hand_accuracy="970" main_hand_crit_rate="2" magic_accuracy="1278" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="91">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1184" block="1284" parry="1274" main_hand_attack="18" main_hand_accuracy="978" main_hand_crit_rate="2" magic_accuracy="1292" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="92">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1196" block="1296" parry="1286" main_hand_attack="18" main_hand_accuracy="986" main_hand_crit_rate="2" magic_accuracy="1306" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="93">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1208" block="1308" parry="1298" main_hand_attack="18" main_hand_accuracy="994" main_hand_crit_rate="2" magic_accuracy="1320" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="94">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1220" block="1320" parry="1310" main_hand_attack="18" main_hand_accuracy="1002" main_hand_crit_rate="2" magic_accuracy="1334" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="95">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1232" block="1332" parry="1322" main_hand_attack="18" main_hand_accuracy="1010" main_hand_crit_rate="2" magic_accuracy="1348" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="96">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1244" block="1344" parry="1334" main_hand_attack="18" main_hand_accuracy="1018" main_hand_crit_rate="2" magic_accuracy="1362" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="97">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1256" block="1356" parry="1346" main_hand_attack="18" main_hand_accuracy="1026" main_hand_crit_rate="2" magic_accuracy="1376" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="98">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1268" block="1368" parry="1358" main_hand_attack="18" main_hand_accuracy="1034" main_hand_crit_rate="2" magic_accuracy="1390" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="99">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1280" block="1380" parry="1370" main_hand_attack="18" main_hand_accuracy="1042" main_hand_crit_rate="2" magic_accuracy="1404" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="VANDAL" level="100">
+		<stats_template maxHp="11934" maxMp="5378" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1292" block="1392" parry="1382" main_hand_attack="18" main_hand_accuracy="1050" main_hand_crit_rate="2" magic_accuracy="1418" crit_spell="50"/>
+	</player_stats> -->
+</player_stats_templates>

@@ -1,43 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- parsed by phpTools from Aion Germany Group (Mariella) at 2018-09-08 09:44 -->
 <quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
-    <!-- 10 Quests listed -->
-    <!--
-        [BEGIN] SUMMARY
-               60300 [TODO]   Inggison Area
-               60301 [TODO]   The Meaning of the Obelisks
-               60302 [TODO]   In Taloc's Forest
-               60303 [TODO]   Drana, the Energy Source of the Balaur
-               60304 [TODO]   A Method for Removing Drana
-               60305 [TODO]   The Secret of the Underground Temple
-               60306 [TODO]   A Hard Test
-               60307 [TODO]   The Best Decision
-               60308 [TODO]   Taloc, a Mysterious Elim
-               60309 [TODO]   Report on the Undirborg Enterprise
-               61900 [SCRIPT] For Royer 1
-               61901 [SCRIPT] For Royer 2
-               61902 [SCRIPT] The Secret of Taloc
-               61903 [SCRIPT] Core of the Problem
-               61904 [SCRIPT] Aether in Brohum Fur
-               61905 [SCRIPT] Dragon Breath
-               61906 [SCRIPT] Petrified Sampling
-               61907 [SCRIPT] Rewriting History
-               61908 [SCRIPT] There's Gold in That Thar Valley
-               61909 [SCRIPT] Easy as 4,3,2,1
-               61910 [SCRIPT] Gracious Meininerk
-               61911 [SCRIPT] In Our Hour of Need
-               61912 [TODO]   Ice Cold Revenge
-               61913 [SCRIPT] Balaur Hunt on Mephistis Farm
-               61914 [SCRIPT] Analysis of the Impending Contamination
-               61915 [SCRIPT] Local Delicacies
-               61916 [SCRIPT] Cute Beady Eyes?
-               61917 [SCRIPT] Enter the Dragonbound
-               61918 [SCRIPT] Goal of the Dragonbound
-               61919 [SCRIPT] Reian Revenge
-               80261 [SCRIPT] [Event] Preparing a Birthday Celebration Feast
-        [END] SUMMARY
-    -->
-    <!-- REPORTING QUESTS -->
-    <!-- COLLECTING QUESTS -->
-    <!-- HUNTING QUESTS -->
+<!--
+    Inggison 7.x
+	Make By Encom
+ -->
+	<item_collecting id="61903" start_npc_ids="798953" end_npc_ids="798953" start_dialog_id="4762" start_dialog_id2="1011" action_item_ids="700611 700612 700613 700614"/>
+	<item_collecting id="61904" start_npc_ids="798952" end_npc_ids="798952" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="61905" start_npc_ids="820073" end_npc_ids="798981" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="61908" start_npc_ids="798948" end_npc_ids="798984" start_dialog_id="4762" start_dialog_id2="1011" action_item_ids="700615"/>
+	<item_collecting id="61911" start_npc_ids="798985" end_npc_ids="798985" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="61914" start_npc_ids="820069" end_npc_ids="798999" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="61915" start_npc_ids="798993" end_npc_ids="799031" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="61918" start_npc_ids="799030" end_npc_ids="799030" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="61921" start_npc_ids="798952" end_npc_ids="820073" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="61962" start_npc_ids="839958" end_npc_ids="839958" start_dialog_id="4762" start_dialog_id2="1011"/>
+	
+	<monster_hunt id="61912" start_npc_ids="798985" end_npc_ids="820005" start_dialog_id="4762">
+		<monster var="1" npc_ids="650587 650588 650589 650590 650591 650592" end_var="5"/>
+	</monster_hunt>
+	<monster_hunt id="61932" start_npc_ids="798929" end_npc_ids="798929" start_dialog_id="4762">
+		<monster var="1" npc_ids="662103 662104 662105 662106" end_var="20"/>
+	</monster_hunt>
+	<monster_hunt id="61946" start_npc_ids="839960" end_npc_ids="839960" start_dialog_id="4762">
+		<monster var="1" npc_ids="661964 661965 661966 661967 661968 661969" end_var="10"/>
+		<monster var="1" npc_ids="661970 661971 661972 661973 661974 661975" end_var="10"/>
+		<monster var="1" npc_ids="661976 661977 661978 661979 661980 661981" end_var="10"/>
+		<monster var="1" npc_ids="661982 661983 661984 661985 661986 661987" end_var="10"/>
+		<monster var="1" npc_ids="661988 661989 661990" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="61947" start_npc_ids="839961" end_npc_ids="839961" start_dialog_id="4762">
+		<monster var="1" npc_ids="661991 661992 661993 661994 661995 661996" end_var="10"/>
+		<monster var="1" npc_ids="661997 661998 661999 662000 662001 662002" end_var="10"/>
+		<monster var="1" npc_ids="662003 662004 662005 662006 662007 662008" end_var="10"/>
+		<monster var="1" npc_ids="662009 662010 662011 662012 662013 662014" end_var="10"/>
+		<monster var="1" npc_ids="662015 662016 662017 662018 662019" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="61948" start_npc_ids="839962" end_npc_ids="839962" start_dialog_id="4762">
+		<monster var="1" npc_ids="662020 662021 662022 662023 662024 662025" end_var="10"/>
+		<monster var="1" npc_ids="662026 662027 662028 662029 662030" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="61949" start_npc_ids="839963" end_npc_ids="839963" start_dialog_id="4762">
+		<monster var="1" npc_ids="662031 662032 662033 662034 662035 662036" end_var="10"/>
+		<monster var="1" npc_ids="662037 662038 662039 662040 662041 662042" end_var="10"/>
+		<monster var="1" npc_ids="662043 662044" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="61950" start_npc_ids="839964" end_npc_ids="839964" start_dialog_id="4762">
+		<monster var="1" npc_ids="662045 662046 662047 662048 662049 662050" end_var="10"/>
+		<monster var="1" npc_ids="662050 662051 662052 662053 662054" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="61961" start_npc_ids="839958" end_npc_ids="839958" start_dialog_id="4762">
+		<monster var="1" npc_ids="839965 839966 839967 839968 839969" end_var="1"/>
+	</monster_hunt>
+	<monster_hunt id="61970" start_npc_ids="799552" end_npc_ids="799552" start_dialog_id="4762">
+		<monster var="1" npc_ids="650500 650501 650502 650503 650504 650505" end_var="10"/>
+		<monster var="1" npc_ids="650506 650507 650508 650509 650510 650511" end_var="10"/>
+		<monster var="1" npc_ids="650512 650513 650514 650515 650516 650517" end_var="10"/>
+		<monster var="1" npc_ids="650518 650519 650520 650521 650522 650523" end_var="10"/>
+		<monster var="1" npc_ids="650524 650525 650526 650527 650528" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="61971" start_npc_ids="799552" end_npc_ids="799552" start_dialog_id="4762">
+		<monster var="1" npc_ids="650901 650902 650903 650904 650905 650906" end_var="10"/>
+		<monster var="1" npc_ids="650907 650908 650909 650910 650922 650923" end_var="10"/>
+		<monster var="1" npc_ids="650924 650925 650926 650927 650928 650929" end_var="10"/>
+		<monster var="1" npc_ids="650930 650931 650932 650933 650934 650935" end_var="10"/>
+		<monster var="1" npc_ids="650936 650937 650938 650939 650940" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="61973" start_npc_ids="799029" end_npc_ids="799029" start_dialog_id="4762">
+		<monster var="1" npc_ids="650611 650612 650613 650614 650615 650616" end_var="10"/>
+		<monster var="1" npc_ids="650617 650618 650619 650620 650621 650622" end_var="10"/>
+		<monster var="1" npc_ids="650623 650624 650625 650626" end_var="10"/>
+	</monster_hunt>
 </quest_scripts>

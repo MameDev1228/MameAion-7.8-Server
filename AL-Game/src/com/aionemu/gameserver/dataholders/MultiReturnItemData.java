@@ -1,68 +1,66 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.dataholders;
 
-import java.util.Iterator;
-import java.util.List;
+import com.aionemu.gameserver.model.templates.teleport.MultiReturn;
+import com.aionemu.gameserver.model.templates.teleport.MultiReturnLocationList;
+import gnu.trove.map.hash.TIntObjectHashMap;
 
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
-import com.aionemu.gameserver.model.templates.teleport.ScrollItem;
-import com.aionemu.gameserver.model.templates.teleport.ScrollItemLocationList;
+/****/
+/** Author Rinzler (Encom)
+/****/
 
-import gnu.trove.map.hash.TIntObjectHashMap;
-
-@XmlRootElement(name = "item_multi_returns")
+@XmlRootElement(name = "multi_returns")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class MultiReturnItemData {
-
+public class MultiReturnItemData
+{
 	@XmlElement(name = "item")
-	private List<ScrollItem> ItemList;
-	private TIntObjectHashMap<List<ScrollItemLocationList>> ItemLocationList = new TIntObjectHashMap<List<ScrollItemLocationList>>();
-
-	void afterUnmarshal(Unmarshaller Unmarshaller, Object Object) {
+	private List<MultiReturn> ItemList;
+	
+	private TIntObjectHashMap<List<MultiReturnLocationList>> ItemLocationList = new TIntObjectHashMap<>();
+	
+	void afterUnmarshal(Unmarshaller u, Object parent) {
 		ItemLocationList.clear();
-		Iterator<ScrollItem> Iterator = ItemList.iterator();
-		while (Iterator.hasNext()) {
-			ScrollItem ScrollItem = Iterator.next();
-			ItemLocationList.put(ScrollItem.getId(), ScrollItem.getLocationList());
+		for (MultiReturn template: ItemList) {
+			ItemLocationList.put(template.getId(), template.getMultiReturnList());
 		}
 	}
-
+	
 	public int size() {
 		return ItemLocationList.size();
 	}
-
-	public ScrollItem getScrollItembyId(int id) {
-		Iterator<ScrollItem> Iterator = ItemList.iterator();
-		while (Iterator.hasNext()) {
-			ScrollItem ScrollItem = Iterator.next();
-			if (ScrollItem.getId() == id) {
-				return ScrollItem;
+	
+	public MultiReturn getMultiReturnById(int id) {
+		for (MultiReturn template: ItemList) {
+			if (template.getId() == id) {
+				return template;
 			}
 		}
 		return null;
 	}
-
-	public List<ScrollItem> getScrollItems() {
+	
+	public List<MultiReturn> getMultiReturns() {
 		return ItemList;
 	}
 }

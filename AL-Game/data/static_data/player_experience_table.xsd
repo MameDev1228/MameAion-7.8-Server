@@ -10,9 +10,5 @@
 	<xs:complexType name="ExpItem">
 		<xs:attribute name="level" type="xs:int" use="required"/>
 		<xs:attribute name="exp" type="xs:long" use="required"/>
-		<xs:attribute name="cp" type="xs:int" use="optional" default="0"/>
-		<xs:attribute name="cp_lvlup" type="xs:int" use="optional" default="0"/>
-		<xs:attribute name="feverpoint_boost" type="xs:long" use="optional" default="0"/>
-		<xs:attribute name="feverpoint_max" type="xs:long" use="optional" default="0"/>
 	</xs:complexType>
 </xs:schema>

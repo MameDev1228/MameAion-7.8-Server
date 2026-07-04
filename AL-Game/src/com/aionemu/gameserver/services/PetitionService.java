@@ -1,30 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.dao.PetitionDAO;
@@ -33,6 +23,10 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_PETITION;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 /**
  * @author zdead
@@ -40,6 +34,7 @@ import com.aionemu.gameserver.world.World;
 public class PetitionService {
 
 	private static Logger log = LoggerFactory.getLogger(PetitionService.class);
+
 	private static SortedMap<Integer, Petition> registeredPetitions = new TreeMap<Integer, Petition>();
 
 	public static final PetitionService getInstance() {
@@ -62,15 +57,12 @@ public class PetitionService {
 	public void deletePetition(int playerObjId) {
 		Set<Petition> petitions = new HashSet<Petition>();
 		for (Petition p : registeredPetitions.values()) {
-			if (p.getPlayerObjId() == playerObjId) {
+			if (p.getPlayerObjId() == playerObjId)
 				petitions.add(p);
-			}
 		}
-		for (Petition p : petitions) {
-			if (registeredPetitions.containsKey(p.getPetitionId())) {
+		for (Petition p : petitions)
+			if(registeredPetitions.containsKey(p.getPetitionId()))
 				registeredPetitions.remove(p.getPetitionId());
-			}
-		}
 
 		DAOManager.getDAO(PetitionDAO.class).deletePetition(playerObjId);
 		if (playerObjId > 0 && World.getInstance().findPlayer(playerObjId) != null) {
@@ -91,7 +83,8 @@ public class PetitionService {
 		}
 	}
 
-	public synchronized Petition registerPetition(Player sender, int typeId, String title, String contentText, String additionalData) {
+	public synchronized Petition registerPetition(Player sender, int typeId, String title, String contentText,
+		String additionalData) {
 		int id = DAOManager.getDAO(PetitionDAO.class).getNextAvailableId();
 		Petition ptt = new Petition(id, sender.getObjectId(), typeId, title, contentText, additionalData, 0);
 		DAOManager.getDAO(PetitionDAO.class).insertPetition(ptt);
@@ -103,9 +96,8 @@ public class PetitionService {
 	private void rebroadcastPlayerData() {
 		for (Petition p : registeredPetitions.values()) {
 			Player player = World.getInstance().findPlayer(p.getPlayerObjId());
-			if (player != null) {
+			if (player != null)
 				PacketSendUtility.sendPacket(player, new SM_PETITION(p));
-			}
 		}
 	}
 
@@ -114,7 +106,8 @@ public class PetitionService {
 		while (players.hasNext()) {
 			Player p = players.next();
 			if (p.getAccessLevel() > 0) {
-				PacketSendUtility.sendBrightYellowMessageOnCenter(p, "New Support Petition from: " + sender.getName() + " (#" + petitionId + ")");
+				PacketSendUtility
+					.sendBrightYellowMessageOnCenter(p, "New Support Petition from: " + sender.getName() + " (#" + petitionId + ")");
 			}
 		}
 	}
@@ -126,18 +119,16 @@ public class PetitionService {
 	public boolean hasRegisteredPetition(int playerObjId) {
 		boolean result = false;
 		for (Petition p : registeredPetitions.values()) {
-			if (p.getPlayerObjId() == playerObjId) {
+			if (p.getPlayerObjId() == playerObjId)
 				result = true;
-			}
 		}
 		return result;
 	}
 
 	public Petition getPetition(int playerObjId) {
 		for (Petition p : registeredPetitions.values()) {
-			if (p.getPlayerObjId() == playerObjId) {
+			if (p.getPlayerObjId() == playerObjId)
 				return p;
-			}
 		}
 		return null;
 	}
@@ -149,9 +140,8 @@ public class PetitionService {
 	public int getWaitingPlayers(int playerObjId) {
 		int counter = 0;
 		for (Petition p : registeredPetitions.values()) {
-			if (p.getPlayerObjId() == playerObjId) {
+			if (p.getPlayerObjId() == playerObjId)
 				break;
-			}
 			counter++;
 		}
 		return counter;
@@ -162,9 +152,8 @@ public class PetitionService {
 		int timeBetweenPetition = 30;
 		int result = timeBetweenPetition;
 		for (Petition p : registeredPetitions.values()) {
-			if (p.getPlayerObjId() == playerObjId) {
+			if (p.getPlayerObjId() == playerObjId)
 				break;
-			}
 			result += timePerPetition;
 			result += timeBetweenPetition;
 		}
@@ -172,9 +161,8 @@ public class PetitionService {
 	}
 
 	public void onPlayerLogin(Player player) {
-		if (hasRegisteredPetition(player)) {
+		if (hasRegisteredPetition(player))
 			PacketSendUtility.sendPacket(player, new SM_PETITION(getPetition(player.getObjectId())));
-		}
 	}
 
 	@SuppressWarnings("synthetic-access")
@@ -182,4 +170,5 @@ public class PetitionService {
 
 		protected static final PetitionService instance = new PetitionService();
 	}
+
 }

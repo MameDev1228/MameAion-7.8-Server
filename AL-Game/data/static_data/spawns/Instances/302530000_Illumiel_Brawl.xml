@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Illumiel Brawl 6.x
+	Spawn By Encom
+ -->
+<spawns>
+    <spawn_map map_id="302530000">
+		<!-- =================================== -->
+		<!-- =================================== -->
+		<spawn npc_id="806922">
+            <spot h="56" z="79.787970" y="345.8205" x="279.129"/>
+        </spawn>
+        <spawn npc_id="806923">
+            <spot h="117" z="79.77518" y="172.1001" x="250.22841"/>
+        </spawn>
+		<!-- Flame Vent Elyos -->
+		<spawn npc_id="802192" respawn_time="30">
+			<spot x="199.08658" y="191.70087" z="80.602165" h="75"/>
+		</spawn>
+		<!-- Flame Vent Asmodians -->
+		<spawn npc_id="802193" respawn_time="30">
+			<spot x="330.02405" y="326.3248" z="80.602165" h="15"/>
+		</spawn>
+		<!-- IDBattleChange_Li_Tower -->
+		<spawn npc_id="656658">
+            <spot h="75" z="92.97283" y="284.0659" x="288.2854"/>
+        </spawn>
+		<!-- IDBattleChange_Da_Tower -->
+		<spawn npc_id="656659">
+            <spot h="15" z="92.96935" y="234.5528" x="241.33972"/>
+        </spawn>
+		<!-- Danuar Icone Elyos -->
+		<spawn npc_id="657297">
+		    <spot h="105" z="79.80884" y="339.3017" x="286.1450"/>
+            <spot h="45" z="79.787820" y="344.4474" x="280.1987"/>
+            <spot h="45" z="79.784170" y="338.5502" x="274.8452"/>
+			<spot h="106" z="79.80884" y="332.5965" x="279.8357"/>
+        </spawn>
+		<!-- Danuar Icone Asmodians -->
+		<spawn npc_id="657298">
+            <spot h="104" z="79.77502" y="173.7226" x="249.1541"/>
+            <spot h="105" z="79.77173" y="179.3627" x="254.5108"/>
+			<spot h="45" z="79.824120" y="178.9326" x="243.3068"/>
+            <spot h="45" z="79.824120" y="185.7773" x="249.5369"/>
+        </spawn>
+		<!-- Kunax Of Illusion -->
+		<spawn npc_id="656825">
+            <spot x="266.0000" y="257.0000" z="85.0000" h="46"/>
+        </spawn>
+		
+		<!-- =================================== -->
+		<!-- =================================== -->
+		<!-- IDBattleChange_Polymorph_Kn_NPC_Li_01 -->
+		<spawn npc_id="656668">
+            <spot z="79.71" y="355.8990" x="277.1083" entity_id="66"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Kn_NPC_Da_01 -->
+        <spawn npc_id="656671">
+            <spot z="79.71" y="162.5280" x="252.0301" entity_id="76"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Fi_NPC_Li_01 -->
+        <spawn npc_id="656674">
+            <spot z="79.71" y="351.4751" x="280.1351" entity_id="75"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Fi_NPC_Da_01 -->
+        <spawn npc_id="656677">
+            <spot z="79.71" y="167.1528" x="249.1336" entity_id="74"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Wi_NPC_Li_01 -->
+        <spawn npc_id="656680">
+            <spot z="79.70" y="338.5465" x="267.9632" entity_id="26"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Wi_NPC_Da_01 -->
+        <spawn npc_id="656683">
+            <spot z="79.71" y="179.8342" x="261.2326" entity_id="115"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Gu_NPC_Li_01 -->
+        <spawn npc_id="656686">
+            <spot z="79.70" y="341.1187" x="263.4949" entity_id="41"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Gu_NPC_Da_01 -->
+        <spawn npc_id="656689">
+            <spot z="79.71" y="177.1864" x="265.6922" entity_id="85"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Pr_NPC_Li_01 -->
+        <spawn npc_id="656692">
+            <spot z="79.71" y="358.2602" x="272.7672" entity_id="60"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Pr_NPC_Da_01 -->
+        <spawn npc_id="656695">
+            <spot z="79.71" y="160.2050" x="256.3768" entity_id="77"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Ch_NPC_Li_01 -->
+        <spawn npc_id="656698">
+            <spot z="79.71" y="345.5434" x="260.8859" entity_id="44"/>
+        </spawn>
+		<!-- IDBattleChange_Polymorph_Ch_NPC_Da_01 -->
+        <spawn npc_id="656701">
+            <spot z="79.71" y="172.7305" x="268.4916" entity_id="78"/>
+        </spawn>
+        <!-- Fire Core -->
+		<spawn npc_id="702387">
+			<spot x="197.39607" y="190.13951" z="79.913559" entity_id="143"/>
+		</spawn>
+		<!-- Fire Core -->
+		<spawn npc_id="702388">
+			<spot x="331.63974" y="327.95599" z="79.913559" entity_id="14"/>
+		</spawn>
+		<!-- Contaminated Ide Pool -->
+		<spawn npc_id="284448">
+		    <spot h="12" z="85.375" y="247.79318" x="243.23256"/>
+            <spot h="6" z="85.82912" y="252.47025" x="241.07697"/>
+            <spot h="2" z="85.375" y="257.28665" x="240.72087"/>
+            <spot h="114" z="85.36513" y="262.2774" x="241.88057"/>
+            <spot h="115" z="85.25" y="267.05127" x="243.03152"/>
+            <spot h="108" z="85.34454" y="271.51273" x="245.84462"/>
+            <spot h="105" z="85.375" y="275.31027" x="249.11748"/>
+            <spot h="100" z="85.375" y="278.80835" x="253.0155"/>
+            <spot h="97" z="85.375" y="281.1014" x="257.6967"/>
+            <spot h="94" z="85.375" y="282.2303" x="262.72296"/>
+            <spot h="85" z="85.375" y="282.56152" x="267.84854"/>
+            <spot h="84" z="85.375" y="281.96588" x="273.01788"/>
+            <spot h="70" z="85.375" y="269.8435" x="285.7909"/>
+            <spot h="69" z="85.375" y="265.58334" x="288.1492"/>
+            <spot h="63" z="85.375" y="260.7684" x="288.82465"/>
+            <spot h="58" z="85.375" y="255.89719" x="287.89166"/>
+            <spot h="55" z="85.375" y="251.04353" x="287.24957"/>
+            <spot h="51" z="85.346085" y="246.46259" x="285.37488"/>
+            <spot h="44" z="85.334145" y="242.6537" x="282.01593"/>
+            <spot h="42" z="85.375" y="239.50523" x="278.49268"/>
+            <spot h="39" z="85.375" y="237.09157" x="274.15826"/>
+            <spot h="34" z="85.375" y="235.58852" x="269.31808"/>
+            <spot h="32" z="85.375" y="235.12" x="264.24136"/>
+            <spot h="27" z="85.375" y="235.89561" x="259.22607"/>
+            <spot h="19" z="85.375" y="238.355" x="254.53525"/>
+		</spawn>
+    </spawn_map>
+</spawns>

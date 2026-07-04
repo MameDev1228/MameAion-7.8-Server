@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+<!--
+    Quest Haramel
+	Make By Encom
+ -->
+	<item_collecting id="61101" start_npc_ids="799522" end_npc_ids="799523" start_dialog_id="4762" start_dialog_id2="1011" action_item_ids="700833 700951"/>
+	<item_collecting id="71101" start_npc_ids="799522" end_npc_ids="799523" start_dialog_id="4762" start_dialog_id2="1011" action_item_ids="700833 700951"/>
+	
+	<report_to_many id="61102" start_npc_ids="799523" end_npc_ids="799524" start_dialog_id="4762">
+		<npc_infos npc_id="799524" var="0" quest_dialog="10002" close_dialog="1009"/>
+	</report_to_many>
+	<report_to_many id="71102" start_npc_ids="799523" end_npc_ids="799524" start_dialog_id="4762">
+		<npc_infos npc_id="799524" var="0" quest_dialog="10002" close_dialog="1009"/>
+	</report_to_many>
+</quest_scripts>

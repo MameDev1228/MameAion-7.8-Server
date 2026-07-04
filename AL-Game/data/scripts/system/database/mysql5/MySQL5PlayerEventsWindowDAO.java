@@ -15,20 +15,18 @@ import com.aionemu.commons.database.DB;
 import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.commons.database.IUStH;
 import com.aionemu.commons.database.ParamReadStH;
-import com.aionemu.gameserver.dao.MySQL5DAOUtils;
 import com.aionemu.gameserver.dao.PlayerEventsWindowDAO;
 import com.aionemu.gameserver.model.event_window.PlayerEventWindowEntry;
 import com.aionemu.gameserver.model.event_window.PlayerEventWindowList;
 import com.aionemu.gameserver.model.gameobjects.PersistentState;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 
-/**
- * @author Ranastic
- */
 public class MySQL5PlayerEventsWindowDAO extends PlayerEventsWindowDAO {
 
     private static final Logger log = LoggerFactory.getLogger(MySQL5PlayerEventsWindowDAO.class);
-    
+
+    public static final String DELETE_QUERY = "DELETE FROM `player_events_window`";
+
     @Override
     public PlayerEventWindowList load(Player player) {
         List<PlayerEventWindowEntry> eventWindow = new ArrayList<PlayerEventWindowEntry>();
@@ -47,13 +45,13 @@ public class MySQL5PlayerEventsWindowDAO extends PlayerEventsWindowDAO {
             rset.close();
             stmt.close();
         } catch (Exception e) {
-            log.error("Could not restore Event Window account: " +player.getObjectId() + " from DB: " + e.getMessage(), e);
+            //log.error("Could not restore Event Window account: " +player.getObjectId() + " from DB: " + e.getMessage(), e);
         } finally {
             DatabaseFactory.close(con);
         }
         return new PlayerEventWindowList(eventWindow);
     }
-    
+
     @Override
     public boolean store(int accountId, int eventId, Timestamp last_stamp, int elapsed) {
         Connection con = null;
@@ -67,7 +65,7 @@ public class MySQL5PlayerEventsWindowDAO extends PlayerEventsWindowDAO {
             stmt.execute();
             stmt.close();
         } catch (Exception e) {
-            log.error("Could not store event window for account " + accountId + " from DB: " + e.getMessage(), e);
+            //log.error("Could not store event window for account " + accountId + " from DB: " + e.getMessage(), e);
             return false;
         } finally {
             DatabaseFactory.close(con);
@@ -87,7 +85,7 @@ public class MySQL5PlayerEventsWindowDAO extends PlayerEventsWindowDAO {
             stmt.execute();
             stmt.close();
         } catch (Exception e) {
-            log.error("Can't insert into events window: " + e.getMessage());
+            //log.error("Can't insert into events window: " + e.getMessage());
         }
         finally {
             DatabaseFactory.close(con);
@@ -133,7 +131,7 @@ public class MySQL5PlayerEventsWindowDAO extends PlayerEventsWindowDAO {
             rs.next();
             return rs.getTimestamp("last_stamp");
         } catch (SQLException e) {
-            log.error("Can't get last received Stamp!" + e);
+            //log.error("Can't get last received Stamp!" + e);
             return new Timestamp(System.currentTimeMillis());
         } finally {
             DB.close(s);
@@ -150,7 +148,7 @@ public class MySQL5PlayerEventsWindowDAO extends PlayerEventsWindowDAO {
             rs.next();
             return rs.getInt("elapsed");
         } catch (SQLException e) {
-        	return 0;
+            return 0;
         } finally {
             DB.close(s);
         }
@@ -168,13 +166,13 @@ public class MySQL5PlayerEventsWindowDAO extends PlayerEventsWindowDAO {
             stmt.execute();
             stmt.close();
         } catch (Exception e) {
-            log.error("Error updating elapsed ", e);
+            //log.error("Error updating elapsed ", e);
         }
         finally {
             DatabaseFactory.close(con);
         }
     }
-    
+
     @Override
     public int getRewardRecivedCount(int accountId, int eventId) {
         PreparedStatement s = DB.prepareStatement("SELECT reward_recived_count FROM player_events_window WHERE account_id = ? AND event_id = ?");
@@ -185,28 +183,39 @@ public class MySQL5PlayerEventsWindowDAO extends PlayerEventsWindowDAO {
             rs.next();
             return rs.getInt("reward_recived_count");
         } catch (SQLException e) {
-        	return 0;
+            return 0;
         } finally {
             DB.close(s);
         }
     }
-    
+
     @Override
     public void setRewardRecivedCount(int accountId, int eventId, int rewardRecivedCount) {
-    	Connection con = null;
+        Connection con = null;
         try {
-        	con = DatabaseFactory.getConnection();
-        	PreparedStatement stmt = con.prepareStatement ("UPDATE player_events_window SET reward_recived_count = ?, elapsed = 0, last_stamp = now() WHERE account_id = ? AND event_id = ?");
-        	stmt.setInt(1, rewardRecivedCount);
-        	stmt.setInt(2, accountId);
-        	stmt.setInt(3, eventId);
-        	stmt.execute();
+            con = DatabaseFactory.getConnection();
+            PreparedStatement stmt = con.prepareStatement ("UPDATE player_events_window SET reward_recived_count = ?, elapsed = 0, last_stamp = now() WHERE account_id = ? AND event_id = ?");
+            stmt.setInt(1, rewardRecivedCount);
+            stmt.setInt(2, accountId);
+            stmt.setInt(3, eventId);
+            stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            log.error("Can't get reward recived count\n" + e);
+            //log.error("Can't get reward recived count\n" + e);
         } finally {
-        	DatabaseFactory.close(con);
+            DatabaseFactory.close(con);
         }
+    }
+
+    @Override
+    public boolean delete() {
+        return DB.insertUpdate(DELETE_QUERY, new IUStH() {
+            @Override
+            public void handleInsertUpdate(PreparedStatement ps) throws SQLException {
+                ps.execute();
+                ps.close();
+            }
+        });
     }
 
 
@@ -215,5 +224,5 @@ public class MySQL5PlayerEventsWindowDAO extends PlayerEventsWindowDAO {
      */
     public boolean supports(String databaseName, int majorVersion, int minorVersion) {
         return MySQL5DAOUtils.supports(databaseName, majorVersion, minorVersion);
-    }    
+    }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+<!--
+    Silentera Canyon 7.x
+	Make By Encom
+ -->
+	<monster_hunt id="62109" start_npc_ids="839955" end_npc_ids="839955" start_dialog_id="4762">
+		<monster var="1" npc_ids="656191 656192" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="62116" start_npc_ids="839955" end_npc_ids="839955" start_dialog_id="4762">
+		<monster var="1" npc_ids="656178 656179 656180 656181 656182 656183" end_var="10"/>
+		<monster var="1" npc_ids="656184 656185 656186 656202 656203 656204" end_var="10"/>
+		<monster var="1" npc_ids="656205 656206 656210 656211 656212 656214" end_var="10"/>
+		<monster var="1" npc_ids="656216 656217 656218 656219 656220 656221" end_var="10"/>
+		<monster var="1" npc_ids="656223 656225" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="62117" start_npc_ids="839955" end_npc_ids="839955" start_dialog_id="4762">
+		<monster var="1" npc_ids="656177 656196 656197 656199 656200" end_var="10"/>
+	</monster_hunt>
+	
+	<monster_hunt id="72109" start_npc_ids="839956" end_npc_ids="839956" start_dialog_id="4762">
+		<monster var="1" npc_ids="656191 656192" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="72116" start_npc_ids="839956" end_npc_ids="839956" start_dialog_id="4762">
+		<monster var="1" npc_ids="656178 656179 656180 656181 656182 656183" end_var="10"/>
+		<monster var="1" npc_ids="656184 656185 656186 656202 656203 656204" end_var="10"/>
+		<monster var="1" npc_ids="656205 656206 656210 656211 656212 656214" end_var="10"/>
+		<monster var="1" npc_ids="656216 656217 656218 656219 656220 656221" end_var="10"/>
+		<monster var="1" npc_ids="656223 656225" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="72117" start_npc_ids="839956" end_npc_ids="839956" start_dialog_id="4762">
+		<monster var="1" npc_ids="656177 656196 656197 656199 656200" end_var="10"/>
+	</monster_hunt>
+</quest_scripts>

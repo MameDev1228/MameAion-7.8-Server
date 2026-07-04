@@ -1,23 +1,21 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aionunique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-unique is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-unique is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aionemu.gameserver.network.aion.serverpackets;
 
-import java.util.Collection;
-import java.util.Collections;
+package com.aionemu.gameserver.network.aion.serverpackets;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -25,6 +23,9 @@ import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.network.aion.iteminfo.ItemInfoBlob;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * @author kosyachok
@@ -41,12 +42,10 @@ public class SM_WAREHOUSE_INFO extends AionServerPacket {
 		this.warehouseType = warehouseType;
 		this.expandLvl = expandLvl;
 		this.firstPacket = firstPacket;
-		if (items == null) {
+		if (items == null)
 			this.itemList = Collections.emptyList();
-		}
-		else {
+		else
 			this.itemList = items;
-		}
 		this.player = player;
 	}
 
@@ -57,9 +56,8 @@ public class SM_WAREHOUSE_INFO extends AionServerPacket {
 		writeC(expandLvl); // warehouse expand (0 - 9)
 		writeH(0);
 		writeH(itemList.size());
-		for (Item item : itemList) {
+		for (Item item : itemList)
 			writeItemInfo(item);
-		}
 	}
 
 	private void writeItemInfo(Item item) {
@@ -73,6 +71,6 @@ public class SM_WAREHOUSE_INFO extends AionServerPacket {
 		ItemInfoBlob itemInfoBlob = ItemInfoBlob.getFullBlob(player, item);
 		itemInfoBlob.writeMe(getBuf());
 
-		writeH((int) (item.getEquipmentSlot() & 0xFFFF));
+		writeH((int) (item.getEquipmentSlot() & 0xFFFF)); // FF FF equipment
 	}
 }

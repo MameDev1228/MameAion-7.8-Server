@@ -6,6 +6,8 @@ AL-Game/cache/
 AL-Game/config/mygs.properties
 AL-Game/log/
 AL-Game/target/
+AL-Game/config/network/*
+AL-Game/data/geo/*
 AL-Login/config/myls.properties
 AL-Login/log/
 AL-Login/target/

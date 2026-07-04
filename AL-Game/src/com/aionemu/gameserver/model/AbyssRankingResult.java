@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model;
 
@@ -26,19 +26,20 @@ public class AbyssRankingResult {
 	private int oldRankPos;
 	private int rankPos;
 	private int ap;
+	private int gp;
 	private int title;
 	private PlayerClass playerClass;
 	private int playerLevel;
 	private int playerId;
-	private Gender playerGender;
-	private int gp;
+
 	private String legionName;
-	private long cp;
+	private int cp;
 	private int legionId;
 	private int legionLevel;
 	private int legionMembers;
 
-	public AbyssRankingResult(String playerName, int playerAbyssRank, int playerId, int ap, int gp, int title, PlayerClass playerClass, Gender playerGender, int playerLevel, String legionName, int oldRankPos, int rankPos) {
+	public AbyssRankingResult(String playerName, int playerAbyssRank, int playerId, int ap, int gp,
+		int title, PlayerClass playerClass, int playerLevel, String legionName, int oldRankPos, int rankPos) {
 		this.playerName = playerName;
 		this.playerAbyssRank = playerAbyssRank;
 		this.playerId = playerId;
@@ -46,14 +47,13 @@ public class AbyssRankingResult {
 		this.gp = gp;
 		this.title = title;
 		this.playerClass = playerClass;
-		this.playerGender = playerGender;
 		this.playerLevel = playerLevel;
 		this.legionName = legionName;
 		this.oldRankPos = oldRankPos;
 		this.rankPos = rankPos;
 	}
 
-	public AbyssRankingResult(long cp, String legionName, int legionId, int legionLevel, int legionMembers, int oldRankPos, int rankPos) {
+	public AbyssRankingResult(int cp, String legionName, int legionId, int legionLevel, int legionMembers, int oldRankPos, int rankPos) {
 		this.oldRankPos = oldRankPos;
 		this.rankPos = rankPos;
 		this.cp = cp;
@@ -75,19 +75,24 @@ public class AbyssRankingResult {
 		return playerAbyssRank;
 	}
 
+	
 	/**
 	 * @return the oldRankPos
 	 */
 	public int getOldRankPos() {
 		return oldRankPos;
 	}
-
+	
 	public int getRankPos() {
 		return rankPos;
 	}
 
 	public int getPlayerAP() {
 		return ap;
+	}
+	
+	public int getPlayerGP() {
+		return gp;
 	}
 
 	public int getPlayerTitle() {
@@ -102,24 +107,16 @@ public class AbyssRankingResult {
 		return playerClass;
 	}
 
-	public Gender getGender() {
-		return playerGender;
-	}
-
 	public String getLegionName() {
 		return legionName;
 	}
 
-	public long getLegionCP() {
+	public int getLegionCP() {
 		return cp;
 	}
 
 	public int getLegionId() {
 		return legionId;
-	}
-
-	public int getPlayerGP() {
-		return gp;
 	}
 
 	public int getLegionLevel() {

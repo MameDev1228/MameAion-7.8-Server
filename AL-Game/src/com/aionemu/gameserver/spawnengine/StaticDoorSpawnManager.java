@@ -1,23 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.spawnengine;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.controllers.StaticObjectController;
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -32,6 +29,8 @@ import com.aionemu.gameserver.utils.idfactory.IDFactory;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.geo.GeoService;
 import com.aionemu.gameserver.world.knownlist.PlayerAwareKnownList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author MrPoke
@@ -46,18 +45,14 @@ public class StaticDoorSpawnManager {
 	 */
 	public static void spawnTemplate(int worldId, int instanceIndex) {
 		StaticDoorWorld staticDoorWorld = DataManager.STATICDOOR_DATA.getStaticDoorWorlds(worldId);
-		if (staticDoorWorld == null) {
+		if (staticDoorWorld == null)
 			return;
-		}
 		int counter = 0;
 		for (StaticDoorTemplate data : staticDoorWorld.getStaticDoors()) {
-			if (data.getDoorType() != DoorType.DOOR) {
-				// TODO: assign house doors to houses, so geo doors could be triggered by changing house settings;
-				// The same for abyss doors, they need to have owners.
+			if (data.getDoorType() != DoorType.DOOR)
 				continue;
-			}
 			SpawnTemplate spawn = new SpawnTemplate(new SpawnGroup2(worldId, 300001), data.getX(), data.getY(), data.getZ(), (byte) 0, 0, null, 0, 0);
-			spawn.setStaticId(data.getDoorId());
+			spawn.setEntityId(data.getDoorId());
 			int objectId = IDFactory.getInstance().nextId();
 			StaticDoor staticDoor = new StaticDoor(objectId, new StaticObjectController(), spawn, data, instanceIndex);
 			staticDoor.setKnownlist(new PlayerAwareKnownList(staticDoor));
@@ -67,9 +62,8 @@ public class StaticDoorSpawnManager {
 			}
 			counter++;
 		}
-		if (counter > 0) {
+		if (counter > 0)
 			log.info("Spawned static doors: " + worldId + " [" + instanceIndex + "] : " + counter);
-		}
 	}
 
 	/**
@@ -80,7 +74,8 @@ public class StaticDoorSpawnManager {
 	private static void bringIntoWorld(VisibleObject visibleObject, SpawnTemplate spawn, int instanceIndex) {
 		World world = World.getInstance();
 		world.storeObject(visibleObject);
-		world.setPosition(visibleObject, spawn.getWorldId(), instanceIndex, spawn.getX(), spawn.getY(), spawn.getZ(), spawn.getHeading());
+		world.setPosition(visibleObject, spawn.getWorldId(), instanceIndex, spawn.getX(), spawn.getY(), spawn.getZ(),
+			spawn.getHeading());
 		world.spawn(visibleObject);
 	}
 }

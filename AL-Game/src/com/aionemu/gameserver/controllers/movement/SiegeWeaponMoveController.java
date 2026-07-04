@@ -1,19 +1,3 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.controllers.movement;
 
 import com.aionemu.gameserver.ai2.AISubState;
@@ -24,9 +8,6 @@ import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 
-/**
- * @author xTz
- */
 public class SiegeWeaponMoveController extends SummonMoveController {
 
 	private float pointX;
@@ -38,10 +19,7 @@ public class SiegeWeaponMoveController extends SummonMoveController {
 	public SiegeWeaponMoveController(Summon owner) {
 		super(owner);
 	}
-
-	/**
-	 * @return if destination reached
-	 */
+	
 	@Override
 	public void moveToDestination() {
 		if (!owner.canPerformMove() || (owner.getAi2().getSubState() == AISubState.CAST)) {
@@ -71,13 +49,6 @@ public class SiegeWeaponMoveController extends SummonMoveController {
 		MoveTaskManager.getInstance().addCreature(owner);
 	}
 
-	/**
-	 * @param targetX
-	 * @param targetY
-	 * @param targetZ
-	 * @param offset
-	 * @return
-	 */
 	protected void moveToLocation(float targetX, float targetY, float targetZ, float offset) {
 		boolean directionChanged;
 		float ownerX = owner.getX();

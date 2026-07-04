@@ -1,23 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.ai2;
-
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import com.aionemu.commons.callbacks.metadata.ObjectCallback;
 import com.aionemu.gameserver.ai2.event.AIEventLog;
@@ -46,6 +43,9 @@ import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.world.WorldPosition;
 import com.google.common.base.Preconditions;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @author ATracer
  */
@@ -54,11 +54,16 @@ public abstract class AbstractAI implements AI2 {
 	private Creature owner;
 	private AIState currentState;
 	private AISubState currentSubState;
+
 	private final Lock thinkLock = new ReentrantLock();
+
 	private boolean logging = false;
+
 	protected int skillId;
 	protected int skillLevel;
+
 	private volatile AIEventLog eventLog;
+
 	private AI2Scenario scenario;
 
 	AbstractAI() {
@@ -126,8 +131,6 @@ public abstract class AbstractAI implements AI2 {
 				return StateEvents.DEAD_EVENTS.hasEvent(eventType);
 			case CREATED:
 				return StateEvents.CREATED_EVENTS.hasEvent(eventType);
-			default:
-				break;
 		}
 		switch (eventType) {
 			case DIALOG_START:
@@ -135,8 +138,6 @@ public abstract class AbstractAI implements AI2 {
 				return isNonFightingState();
 			case CREATURE_MOVED:
 				return getName().equals("trap") || currentState != AIState.FIGHT && isNonFightingState();
-			default:
-				break;
 		}
 		return true;
 	}
@@ -156,9 +157,8 @@ public abstract class AbstractAI implements AI2 {
 			AI2Logger.info(this, "Setting AI state to " + newState);
 			if (this.currentState == AIState.DIED && newState == AIState.FIGHT) {
 				StackTraceElement[] stack = new Throwable().getStackTrace();
-				for (StackTraceElement elem : stack) {
+				for (StackTraceElement elem : stack)
 					AI2Logger.info(this, elem.toString());
-				}
 			}
 		}
 		this.currentState = newState;
@@ -210,7 +210,7 @@ public abstract class AbstractAI implements AI2 {
 
 	/**
 	 * Will be hidden for all AI's below NpcAI2
-	 *
+	 * 
 	 * @return
 	 */
 	public Creature getOwner() {
@@ -311,7 +311,7 @@ public abstract class AbstractAI implements AI2 {
 	protected abstract void handleDialogFinish(Player player);
 
 	protected abstract void handleCustomEvent(int eventId, Object... args);
-
+	
 	public abstract boolean onPatternShout(ShoutEventType event, String pattern, int skillNumber);
 
 	@ObjectCallback(OnHandleAIGeneralEvent.class)
@@ -375,8 +375,6 @@ public abstract class AbstractAI implements AI2 {
 			case DROP_REGISTERED:
 				handleDropRegistered();
 				break;
-			default:
-				break;
 		}
 	}
 
@@ -399,18 +397,16 @@ public abstract class AbstractAI implements AI2 {
 	void handleCreatureEvent(AIEventType event, Creature creature) {
 		switch (event) {
 			case ATTACK:
-				if (DataManager.TRIBE_RELATIONS_DATA.isFriendlyRelation(getOwner().getTribe(), creature.getTribe())) {
+				if (DataManager.TRIBE_RELATIONS_DATA.isFriendlyRelation(getOwner().getTribe(), creature.getTribe()))
 					return;
-				}
 				handleAttack(creature);
 				logEvent(event);
 				break;
 			case CREATURE_NEEDS_SUPPORT:
 				if (!handleCreatureNeedsSupport(creature)) {
 					if (creature.getTarget() instanceof Creature) {
-						if (!handleCreatureNeedsSupport((Creature) creature.getTarget()) && !handleGuardAgainstAttacker(creature)) {
+						if (!handleCreatureNeedsSupport((Creature) creature.getTarget()) && !handleGuardAgainstAttacker(creature))
 							handleGuardAgainstAttacker((Creature) creature.getTarget());
-						}
 					}
 				}
 				logEvent(event);
@@ -447,8 +443,6 @@ public abstract class AbstractAI implements AI2 {
 				handleDialogFinish((Player) creature);
 				logEvent(event);
 				break;
-			default:
-				break;
 		}
 	}
 
@@ -465,15 +459,13 @@ public abstract class AbstractAI implements AI2 {
 				return isCanSpawnOnDaytimeChange();
 			case CAN_SHOUT:
 				return isMayShout();
-			default:
-				break;
 		}
 		return false;
 	}
 
 	/**
 	 * Poll concrete AI instance for the answer.
-	 *
+	 * 
 	 * @param question
 	 * @return null if there is no specific answer
 	 */
@@ -491,7 +483,8 @@ public abstract class AbstractAI implements AI2 {
 		AIState state = currentState;
 		switch (state) {
 			case FEAR:
-				return MathUtil.isNearCoordinates(getOwner(), owner.getMoveController().getTargetX2(), owner.getMoveController().getTargetY2(), owner.getMoveController().getTargetZ2(), 1);
+				return MathUtil.isNearCoordinates(getOwner(), owner.getMoveController().getTargetX2(), owner
+					.getMoveController().getTargetY2(), owner.getMoveController().getTargetZ2(), 1);
 			case FIGHT:
 				return SimpleAttackManager.isTargetInAttackRange((Npc) owner);
 			case RETURNING:
@@ -501,8 +494,6 @@ public abstract class AbstractAI implements AI2 {
 				return FollowEventHandler.isInRange(this, getOwner().getTarget());
 			case WALKING:
 				return currentSubState == AISubState.TALK || WalkManager.isArrivedAtPoint((NpcAI2) this);
-			default:
-				break;
 		}
 		return true;
 	}
@@ -533,15 +524,16 @@ public abstract class AbstractAI implements AI2 {
 	}
 
 	/**
-	 * Spawn object with staticId in the same world and instance as AI's owner
+	 * Spawn object with entityId in the same world and instance as AI's owner
 	 */
-	protected VisibleObject spawn(int npcId, float x, float y, float z, byte heading, int staticId) {
-		return spawn(owner.getWorldId(), npcId, x, y, z, heading, staticId, getPosition().getInstanceId());
+	protected VisibleObject spawn(int npcId, float x, float y, float z, byte heading, int entityId) {
+		return spawn(owner.getWorldId(), npcId, x, y, z, heading, entityId, getPosition().getInstanceId());
 	}
 
-	protected VisibleObject spawn(int worldId, int npcId, float x, float y, float z, byte heading, int staticId, int instanceId) {
+	protected VisibleObject spawn(int worldId, int npcId, float x, float y, float z, byte heading, int entityId,
+		int instanceId) {
 		SpawnTemplate template = SpawnEngine.addNewSingleTimeSpawn(worldId, npcId, x, y, z, heading);
-		template.setStaticId(staticId);
+		template.setEntityId(entityId);
 		return SpawnEngine.spawnObject(template, instanceId);
 	}
 
@@ -554,28 +546,28 @@ public abstract class AbstractAI implements AI2 {
 	public int modifyOwnerDamage(int damage) {
 		return damage;
 	}
-
+	
 	@Override
 	public void onIndividualNpcEvent(Creature npc) {
 	}
-
+	
 	@Override
 	public int modifyHealValue(int value) {
 		return value;
 	}
-
+	
 	@Override
 	public int modifyMaccuracy(int value) {
 		return value;
 	}
-
+	
+	@Override
+    public int modifySensoryRange(int value) {
+        return value;
+    }
+	
 	@Override
 	public ItemAttackType modifyAttackType(ItemAttackType type) {
 		return type;
-	}
-
-	@Override
-	public int modifyARange(int value) {
-		return value;
 	}
 }

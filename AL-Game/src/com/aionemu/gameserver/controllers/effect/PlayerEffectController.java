@@ -1,23 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.controllers.effect;
-
-import java.util.Collection;
-import java.util.Collections;
 
 import com.aionemu.gameserver.configs.main.CustomConfig;
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -32,6 +29,9 @@ import com.aionemu.gameserver.taskmanager.tasks.PacketBroadcaster.BroadcastMode;
 import com.aionemu.gameserver.taskmanager.tasks.TeamEffectUpdater;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * @author ATracer
  */
@@ -43,9 +43,8 @@ public class PlayerEffectController extends EffectController {
 
 	@Override
 	public void addEffect(Effect effect) {
-		if (checkDuelCondition(effect) && !effect.getIsForcedEffect()) {
+		if (checkDuelCondition(effect) && !effect.getIsForcedEffect())
 			return;
-		}
 
 		super.addEffect(effect);
 		updatePlayerIconsAndGroup(effect);
@@ -73,21 +72,21 @@ public class PlayerEffectController extends EffectController {
 			}
 		}
 	}
-
+	
 	@Override
 	public void updatePlayerEffectIcons() {
 		getOwner().addPacketBroadcastMask(BroadcastMode.UPDATE_PLAYER_EFFECT_ICONS);
 	}
-
+	
 	@Override
 	public void updatePlayerEffectIconsImpl() {
 		Collection<Effect> effects = getAbnormalEffectsToShow();
-		PacketSendUtility.sendPacket(getOwner(), new SM_ABNORMAL_STATE(effects, abnormals));
+		PacketSendUtility.sendPacket((Player) getOwner(), new SM_ABNORMAL_STATE(effects, abnormals));
 	}
 
 	/**
 	 * Effect of DEBUFF should not be added if duel ended (friendly unit)
-	 *
+	 * 
 	 * @param effect
 	 * @return
 	 */
@@ -111,27 +110,23 @@ public class PlayerEffectController extends EffectController {
 	public void addSavedEffect(int skillId, int skillLvl, int remainingTime, long endTime) {
 		SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skillId);
 
-		if (remainingTime <= 0) {
+		if (remainingTime <= 0)
 			return;
-		}
 		if (CustomConfig.ABYSSXFORM_LOGOUT && template.isDeityAvatar()) {
-
-			if (System.currentTimeMillis() >= endTime) {
+			
+			if (System.currentTimeMillis() >= endTime)
 				return;
-			}
-			else {
-				remainingTime = (int) (endTime - System.currentTimeMillis());
-			}
-		}
-
+			else
+				remainingTime = (int)(endTime - System.currentTimeMillis());
+		} 
+		
 		Effect effect = new Effect(getOwner(), getOwner(), template, skillLvl, remainingTime);
 		abnormalEffectMap.put(effect.getStack(), effect);
 		effect.addAllEffectToSucess();
 		effect.startEffect(true);
 
-		if (effect.getSkillTemplate().getTargetSlot() != SkillTargetSlot.NOSHOW) {
+		if (effect.getSkillTemplate().getTargetSlot() != SkillTargetSlot.NOSHOW)
 			PacketSendUtility.sendPacket(getOwner(), new SM_ABNORMAL_STATE(Collections.singletonList(effect), abnormals));
-		}
 
 	}
 
@@ -143,4 +138,5 @@ public class PlayerEffectController extends EffectController {
 			PacketSendUtility.sendPacket(player, new SM_PLAYER_STANCE(player, 1));
 		}
 	}
+
 }

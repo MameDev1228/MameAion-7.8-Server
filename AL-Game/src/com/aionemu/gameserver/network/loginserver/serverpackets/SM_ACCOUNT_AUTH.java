@@ -1,18 +1,18 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-emu is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-emu is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.loginserver.serverpackets;
 
@@ -20,8 +20,9 @@ import com.aionemu.gameserver.network.loginserver.LoginServerConnection;
 import com.aionemu.gameserver.network.loginserver.LsServerPacket;
 
 /**
- * In this packet Gameserver is asking if given account sessionKey is valid at Loginserver side. [if user that is authenticating on Gameserver is already authenticated on Loginserver]
- *
+ * In this packet Gameserver is asking if given account sessionKey is valid at Loginserver side. [if user that is
+ * authenticating on Gameserver is already authenticated on Loginserver]
+ * 
  * @author -Nemesiss-
  */
 public class SM_ACCOUNT_AUTH extends LsServerPacket {
@@ -42,12 +43,13 @@ public class SM_ACCOUNT_AUTH extends LsServerPacket {
 	 * playOk2 [part of session key]
 	 */
 	private final int playOk2;
+	
 
 	/**
 	 * Constructs new instance of <tt>SM_ACCOUNT_AUTH </tt> packet.
-	 *
+	 * 
 	 * @param accountId
-	 *            account identifier.
+	 *          account identifier.
 	 * @param loginOk
 	 * @param playOk1
 	 * @param playOk2

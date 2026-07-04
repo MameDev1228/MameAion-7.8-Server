@@ -1,25 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-emu is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-emu is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver;
-
-import java.util.Iterator;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.services.CronService;
 import com.aionemu.commons.utils.ExitCode;
@@ -27,13 +22,18 @@ import com.aionemu.commons.utils.concurrent.RunnableStatsManager;
 import com.aionemu.commons.utils.concurrent.RunnableStatsManager.SortBy;
 import com.aionemu.gameserver.configs.main.ShutdownConfig;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.network.loginserver.LoginServer;
 import com.aionemu.gameserver.services.PeriodicSaveService;
 import com.aionemu.gameserver.services.player.PlayerLeaveWorldService;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.gametime.GameTimeManager;
 import com.aionemu.gameserver.world.World;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Iterator;
+
+import static com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE.STR_SERVER_SHUTDOWN;
 
 /**
  * @author lord_rex
@@ -57,7 +57,6 @@ public class ShutdownHook extends Thread {
 	}
 
 	public static enum ShutdownMode {
-
 		NONE("terminating"),
 		SHUTDOWN("shutting down"),
 		RESTART("restarting");
@@ -76,14 +75,12 @@ public class ShutdownHook extends Thread {
 	private void sendShutdownMessage(int seconds) {
 		try {
 			Iterator<Player> onlinePlayers = World.getInstance().getPlayersIterator();
-			if (!onlinePlayers.hasNext()) {
+			if (!onlinePlayers.hasNext())
 				return;
-			}
 			while (onlinePlayers.hasNext()) {
 				Player player = onlinePlayers.next();
-				if (player != null && player.getClientConnection() != null) {
-					player.getClientConnection().sendPacket(SM_SYSTEM_MESSAGE.STR_SERVER_SHUTDOWN(String.valueOf(seconds)));
-				}
+				if (player != null && player.getClientConnection() != null)
+					player.getClientConnection().sendPacket(STR_SERVER_SHUTDOWN(String.valueOf(seconds)));
 			}
 		}
 		catch (Exception e) {
@@ -94,14 +91,12 @@ public class ShutdownHook extends Thread {
 	private void sendShutdownStatus(boolean status) {
 		try {
 			Iterator<Player> onlinePlayers = World.getInstance().getPlayersIterator();
-			if (!onlinePlayers.hasNext()) {
+			if (!onlinePlayers.hasNext())
 				return;
-			}
 			while (onlinePlayers.hasNext()) {
 				Player player = onlinePlayers.next();
-				if (player != null && player.getClientConnection() != null) {
+				if (player != null && player.getClientConnection() != null)
 					player.getController().setInShutdownProgress(status);
-				}
 			}
 		}
 		catch (Exception e) {
@@ -162,12 +157,10 @@ public class ShutdownHook extends Thread {
 		ThreadPoolManager.getInstance().shutdown();
 
 		// Do system exit.
-		if (mode == ShutdownMode.RESTART) {
+		if (mode == ShutdownMode.RESTART)
 			Runtime.getRuntime().halt(ExitCode.CODE_RESTART);
-		}
-		else {
+		else
 			Runtime.getRuntime().halt(ExitCode.CODE_NORMAL);
-		}
 
 		log.info("Runtime is " + mode.getText() + " now...");
 	}

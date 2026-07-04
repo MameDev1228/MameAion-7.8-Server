@@ -1,19 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-emu is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-emu is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package com.aionemu.gameserver.model.geometry;
 
 import com.aionemu.gameserver.model.templates.zone.Point2D;
@@ -30,20 +31,22 @@ public abstract class AbstractArea implements Area {
 	 * Minimal z of area
 	 */
 	private final float minZ;
+
 	/**
 	 * Maximal Z of area
 	 */
 	private final float maxZ;
-	private ZoneName zoneName;
-	private int worldId;
 
+	private ZoneName zoneName;
+	
+	private int worldId;
 	/**
 	 * Creates new AbstractArea with min and max z
-	 *
+	 * 
 	 * @param minZ
-	 *            min z
+	 *          min z
 	 * @param maxZ
-	 *            max z
+	 *          max z
 	 */
 	protected AbstractArea(ZoneName zoneName, int worldId, float minZ, float maxZ) {
 		if (minZ > maxZ) {
@@ -152,7 +155,6 @@ public abstract class AbstractArea implements Area {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public float getMinZ() {
 		return minZ;
 	}
@@ -160,16 +162,16 @@ public abstract class AbstractArea implements Area {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public float getMaxZ() {
 		return maxZ;
 	}
-
+	
 	@Override
 	public int getWorldId() {
 		return worldId;
 	}
-
+	
+	
 	/**
 	 * @return the zoneName
 	 */

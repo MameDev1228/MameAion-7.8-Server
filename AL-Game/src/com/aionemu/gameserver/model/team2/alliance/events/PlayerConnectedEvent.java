@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.team2.alliance.events;
 
@@ -33,37 +33,38 @@ import com.google.common.base.Predicate;
  */
 public class PlayerConnectedEvent extends AlwaysTrueTeamEvent implements Predicate<PlayerAllianceMember> {
 
-	private final PlayerAlliance alliance;
-	private final Player connected;
-	private PlayerAllianceMember connectedMember;
+    private final PlayerAlliance alliance;
+    private final Player connected;
+    private PlayerAllianceMember connectedMember;
 
-	public PlayerConnectedEvent(PlayerAlliance alliance, Player player) {
-		this.alliance = alliance;
-		this.connected = player;
-	}
+    public PlayerConnectedEvent(PlayerAlliance alliance, Player player) {
+        this.alliance = alliance;
+        this.connected = player;
+    }
 
-	@Override
-	public void handleEvent() {
-		alliance.removeMember(connected.getObjectId());
-		connectedMember = new PlayerAllianceMember(connected);
-		alliance.addMember(connectedMember);
+    @Override
+    public void handleEvent() {
+        alliance.removeMember(connected.getObjectId());
+        connectedMember = new PlayerAllianceMember(connected);
+        alliance.addMember(connectedMember);
 
-		PacketSendUtility.sendPacket(connected, new SM_ALLIANCE_INFO(alliance));
-		PacketSendUtility.sendPacket(connected, new SM_ALLIANCE_MEMBER_INFO(connectedMember, PlayerAllianceEvent.RECONNECT));
-		PacketSendUtility.sendPacket(connected, new SM_SHOW_BRAND(0, 0));
+        PacketSendUtility.sendPacket(connected, new SM_ALLIANCE_INFO(alliance));
+        PacketSendUtility
+                .sendPacket(connected, new SM_ALLIANCE_MEMBER_INFO(connectedMember, PlayerAllianceEvent.RECONNECT));
+        PacketSendUtility.sendPacket(connected, new SM_SHOW_BRAND(0, 0));
 
-		alliance.apply(this);
-	}
+        alliance.apply(this);
+    }
 
-	@Override
-	public boolean apply(PlayerAllianceMember member) {
-		Player player = member.getObject();
-		if (!connected.getObjectId().equals(player.getObjectId())) {
-			PacketSendUtility.sendPacket(player, new SM_ALLIANCE_MEMBER_INFO(connectedMember, PlayerAllianceEvent.RECONNECT));
-			PacketSendUtility.sendPacket(player, new SM_INSTANCE_INFO(connected, false, alliance));
+    @Override
+    public boolean apply(PlayerAllianceMember member) {
+        Player player = member.getObject();
+        if (!connected.getObjectId().equals(player.getObjectId())) {
+            PacketSendUtility.sendPacket(player, new SM_ALLIANCE_MEMBER_INFO(connectedMember, PlayerAllianceEvent.RECONNECT));
+            PacketSendUtility.sendPacket(player, new SM_INSTANCE_INFO(connected, false, alliance));
 
-			PacketSendUtility.sendPacket(connected, new SM_ALLIANCE_MEMBER_INFO(member, PlayerAllianceEvent.RECONNECT));
-		}
-		return true;
-	}
+            PacketSendUtility.sendPacket(connected, new SM_ALLIANCE_MEMBER_INFO(member, PlayerAllianceEvent.RECONNECT));
+        }
+        return true;
+    }
 }

@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
@@ -43,15 +43,13 @@ public class CM_GROUP_DISTRIBUTION extends AionClientPacket {
 
 	@Override
 	protected void runImpl() {
-		if (amount < 2) {
+		if (amount < 2)
 			return;
-		}
 
 		Player player = getConnection().getActivePlayer();
 
-		if (!RestrictionsManager.canTrade(player)) {
+		if (!RestrictionsManager.canTrade(player))
 			return;
-		}
 
 		switch (partyType) {
 			case 1:

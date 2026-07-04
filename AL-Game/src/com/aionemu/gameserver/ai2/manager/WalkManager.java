@@ -1,22 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.ai2.manager;
-
-import java.util.List;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.ai2.AIState;
@@ -30,10 +28,11 @@ import com.aionemu.gameserver.geoEngine.math.Vector3f;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.templates.walker.RouteStep;
 import com.aionemu.gameserver.model.templates.walker.WalkerTemplate;
-import com.aionemu.gameserver.services.debug.StatAuditService;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.geo.GeoService;
+
+import java.util.List;
 
 /**
  * @author ATracer
@@ -48,25 +47,10 @@ public class WalkManager {
 	public static boolean startWalking(NpcAI2 npcAI) {
 		npcAI.setStateIfNot(AIState.WALKING);
 		Npc owner = npcAI.getOwner();
-		StatAuditService.getInstance().aiWalk(owner, "startWalking", "walkerId=" + owner.getSpawn().getWalkerId() + " randomWalk=" + owner.getSpawn().getRandomWalk());
 		WalkerTemplate template = DataManager.WALKER_DATA.getWalkerTemplate(owner.getSpawn().getWalkerId());
 		if (template != null) {
-			npcAI.setSubStateIfNot(AISubState.WALK_PATH);
-			startRouteWalking(npcAI, owner, template);
-		}
-		else {
-			return startRandomWalking(npcAI, owner);
-		}
-		return true;
-	}
-
-	public static boolean startRouteWalking(NpcAI2 npcAI, WalkerTemplate template) {
-		npcAI.setStateIfNot(AIState.WALKING);
-		Npc owner = npcAI.getOwner();
-
-		if (template != null) {
-			npcAI.setSubStateIfNot(AISubState.WALK_PATH);
-			startRouteWalking(npcAI, owner, template);
+				npcAI.setSubStateIfNot(AISubState.WALK_PATH);
+				startRouteWalking(npcAI, owner, template);
 		}
 		else {
 			return startRandomWalking(npcAI, owner);
@@ -80,21 +64,17 @@ public class WalkManager {
 	 */
 	private static boolean startRandomWalking(NpcAI2 npcAI, Npc owner) {
 		if (!AIConfig.ACTIVE_NPC_MOVEMENT) {
-			StatAuditService.getInstance().aiWalk(owner, "randomWalkSkip", "ACTIVE_NPC_MOVEMENT=false");
 			return false;
 		}
 		int randomWalkNr = owner.getSpawn().getRandomWalk();
 		if (randomWalkNr == 0) {
-			StatAuditService.getInstance().aiWalk(owner, "randomWalkSkip", "randomWalk=0");
 			return false;
 		}
 		if (npcAI.setSubStateIfNot(AISubState.WALK_RANDOM)) {
-			StatAuditService.getInstance().aiWalk(owner, "randomWalkStart", "range=" + randomWalkNr);
 			EmoteManager.emoteStartWalking(npcAI.getOwner());
 			chooseNextRandomPoint(npcAI);
 			return true;
 		}
-		StatAuditService.getInstance().aiWalk(owner, "randomWalkSkip", "subStateAlready=" + npcAI.getSubState());
 		return false;
 	}
 
@@ -104,12 +84,9 @@ public class WalkManager {
 	 * @param template
 	 */
 	protected static void startRouteWalking(NpcAI2 npcAI, Npc owner, WalkerTemplate template) {
-		if (!AIConfig.ACTIVE_NPC_MOVEMENT) {
-			StatAuditService.getInstance().aiWalk(owner, "routeWalkSkip", "ACTIVE_NPC_MOVEMENT=false");
+		if (!AIConfig.ACTIVE_NPC_MOVEMENT)
 			return;
-		}
 		List<RouteStep> route = template.getRouteSteps();
-		StatAuditService.getInstance().aiWalk(owner, "routeWalkStart", "routeSteps=" + (route != null ? route.size() : 0));
 		int currentPoint = owner.getMoveController().getCurrentPoint();
 		RouteStep nextStep = findNextRoutStep(owner, route);
 		owner.getMoveController().setCurrentRoute(route);
@@ -149,12 +126,10 @@ public class WalkManager {
 
 		if (owner.getWalkerGroup() != null) {
 			// always choose the 1st step, not the last which is close enough
-			if (owner.getWalkerGroup().getGroupStep() < 2) {
+			if (owner.getWalkerGroup().getGroupStep() < 2)
 				nextStep = route.get(0);
-			}
-			else {
+			else
 				nextStep = route.get(owner.getWalkerGroup().getGroupStep() - 1);
-			}
 		}
 		else {
 			for (RouteStep step : route) {
@@ -176,7 +151,8 @@ public class WalkManager {
 	 */
 	protected static RouteStep findNextRouteStepAfterPause(Npc owner, List<RouteStep> route, int currentPoint) {
 		RouteStep nextStep = route.get(currentPoint);
-		double stepDist = MathUtil.getDistance(owner.getX(), owner.getY(), owner.getZ(), nextStep.getX(), nextStep.getY(), nextStep.getZ());
+		double stepDist = MathUtil.getDistance(owner.getX(), owner.getY(), owner.getZ(), nextStep.getX(), nextStep.getY(),
+			nextStep.getZ());
 		if (stepDist < 1) {
 			nextStep = nextStep.getNextStep();
 		}
@@ -185,7 +161,7 @@ public class WalkManager {
 
 	/**
 	 * Is this npc will walk. Currently all monsters will walk and those npc wich has walk routes
-	 *
+	 * 
 	 * @param npcAI
 	 * @return
 	 */
@@ -274,14 +250,16 @@ public class WalkManager {
 			public void run() {
 				if (npcAI.isInState(AIState.WALKING)) {
 					if (distToSpawn > walkRange) {
-						owner.getMoveController().moveToPoint(owner.getSpawn().getX(), owner.getSpawn().getY(), owner.getSpawn().getZ());
+						owner.getMoveController().moveToPoint(owner.getSpawn().getX(), owner.getSpawn().getY(),
+							owner.getSpawn().getZ());
 					}
 					else {
 						int nextX = Rnd.nextInt(walkRange * 2) - walkRange;
 						int nextY = Rnd.nextInt(walkRange * 2) - walkRange;
 						if (GeoDataConfig.GEO_ENABLE && GeoDataConfig.GEO_NPC_MOVE) {
 							byte flags = (byte) (CollisionIntention.PHYSICAL.getId() | CollisionIntention.DOOR.getId() | CollisionIntention.WALK.getId());
-							Vector3f loc = GeoService.getInstance().getClosestCollision(owner, owner.getX() + nextX, owner.getY() + nextY, owner.getZ(), true, flags);
+							Vector3f loc = GeoService.getInstance().getClosestCollision(owner, owner.getX() + nextX,
+								owner.getY() + nextY, owner.getZ(), true, flags);
 							owner.getMoveController().moveToPoint(loc.x, loc.y, loc.z);
 						}
 						else {
@@ -311,4 +289,5 @@ public class WalkManager {
 	public static boolean isArrivedAtPoint(NpcAI2 npcAI) {
 		return npcAI.getOwner().getMoveController().isReachedPoint();
 	}
+
 }

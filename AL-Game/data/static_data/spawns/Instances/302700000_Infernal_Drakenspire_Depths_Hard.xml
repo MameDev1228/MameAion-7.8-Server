@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	[Infernal] Drakenspire Depths [Hard] 7.x
+	Spawn By Encom
+ -->
+<spawns>
+	<spawn_map map_id="302700000">
+		<!-- Berserk Lava Protector -->
+		<spawn npc_id="858672">
+			<spot x="531.24225" y="212.30411" z="1681.8224" h="60"/>
+		</spawn>
+		<!-- Berserk Heatvent Protector -->
+		<spawn npc_id="858673">
+			<spot x="531.19354" y="151.98532" z="1681.8224" h="60"/>
+		</spawn>
+		<!-- Berserk Orissan -->
+		<spawn npc_id="858889">
+			<spot x="812.0000" y="568.0000" z="1701.0000" h="93"/>
+		</spawn>
+		<!-- Berserk Beritra -->
+		<spawn npc_id="858975">
+            <spot x="152.0000" y="518.0000" z="1749.0000" h="1"/>
+        </spawn>
+		
+		<!-- Temporary Door -->
+		<spawn npc_id="700545">
+			<spot x="635.84393" y="905.07196" z="1600.7059" entity_id="332"/>
+		</spawn>
+		<!-- Temporary Door -->
+		<spawn npc_id="700546">
+			<spot x="809.19507" y="598.84186" z="1701.2881" entity_id="522"/>
+		</spawn>
+		<!-- Temporary Door -->
+		<spawn npc_id="731580">
+		    <spot x="592.41193" y="181.30370" z="1683.2340" entity_id="603"/>
+		</spawn>
+		<!-- Twin's Firewall -->
+		<spawn npc_id="656170">
+            <spot x="560.49615" y="152.52223" z="1683.7301" h="60"/>
+			<spot x="559.82780" y="212.08003" z="1683.7301" h="60"/>
+        </spawn>
+		<spawn npc_id="702697">
+			<spot x="152.12000" y="518.65002" z="1749.6200" entity_id="82"/>
+			<spot x="151.98242" y="518.67438" z="1749.6335" entity_id="383"/>
+		</spawn>
+		<spawn npc_id="702699">
+			<spot x="152.21579" y="518.59967" z="1749.6138" entity_id="538"/>
+		</spawn>
+		<!-- Fx Portal -->
+		<spawn npc_id="731581">
+			<spot x="578.5473" y="819.26752" z="1609.4229" entity_id="84"/>
+			<spot x="707.3374" y="876.80182" z="1603.6915" entity_id="398"/>
+			<spot x="694.0066" y="935.96960" z="1618.0875" entity_id="399"/>
+			<spot x="570.6967" y="877.50848" z="1599.8043" entity_id="401"/>
+			<spot x="690.4874" y="822.40784" z="1609.5748" entity_id="405"/>
+			<spot x="572.9444" y="940.03577" z="1620.0454" entity_id="407"/>
+		</spawn>
+	</spawn_map>
+</spawns>

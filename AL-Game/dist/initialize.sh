@@ -1,6 +1,6 @@
 echo Initializing java patch...
 
-JAVA_HOME=/home/user_name/jdk1.7.0_XX
+JAVA_HOME=/home/user_name/jdk1.6.0_XX
 export JAVA_HOME
 PATH=$PATH:$JAVA_HOME/bin
 export PATH

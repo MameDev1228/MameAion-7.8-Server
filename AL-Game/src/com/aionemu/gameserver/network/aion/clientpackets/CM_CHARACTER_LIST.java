@@ -1,69 +1,45 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
+import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.configs.administration.AdminConfig;
+import com.aionemu.gameserver.configs.main.EventsConfig;
+import com.aionemu.gameserver.dao.AccountDAO;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_ACCOUNT_ACCESS_PROPERTIES;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_CHARACTER_LIST;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_UNK_14F;
+import com.aionemu.gameserver.network.aion.serverpackets.*;
+import com.aionemu.gameserver.network.aion.serverpackets.unk_60.*;
 
-/**
- * In this packets aion client is requesting character list.
- *
- * @author -Nemesiss-
- */
-public class CM_CHARACTER_LIST extends AionClientPacket {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-	/**
-	 * PlayOk2 - we dont care...
-	 */
-	private int playOk2;
-
-	/**
-	 * Constructs new instance of <tt>CM_CHARACTER_LIST </tt> packet.
-	 *
-	 * @param opcode
-	 */
+public class CM_CHARACTER_LIST extends AionClientPacket
+{
+	private static Logger log = LoggerFactory.getLogger(CM_CHARACTER_LIST.class);
+	
+	private int accountId;
+	
 	public CM_CHARACTER_LIST(int opcode, State state, State... restStates) {
 		super(opcode, state, restStates);
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
 	protected void readImpl() {
-		playOk2 = readD();
+		accountId = readD();
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
 	protected void runImpl() {
-		// NA Server sends SM_CHARACTER_LIST 2 times first with 0 and then with 2
 		boolean isGM = (getConnection()).getAccount().getAccessLevel() >= AdminConfig.GM_PANEL;
-		sendPacket(new SM_ACCOUNT_ACCESS_PROPERTIES(isGM));
-		sendPacket(new SM_ACCOUNT_ACCESS_PROPERTIES(isGM));
-		sendPacket(new SM_ACCOUNT_ACCESS_PROPERTIES(isGM));
-		sendPacket(new SM_UNK_14F());
-		sendPacket(new SM_CHARACTER_LIST(0, playOk2)); // Clean Character_List (0)
-		sendPacket(new SM_CHARACTER_LIST(2, playOk2)); // Send Character_List (2)
+		sendPacket(new SM_ACCOUNT_PROPERTIES(isGM));
+		sendPacket(new SM_CHARACTER_LIST(0, accountId));
+		sendPacket(new SM_CHARACTER_LIST(2, accountId));
+		if (EventsConfig.ENABLE_CASH_BUFF_PACKET) {
+			sendPacket(new SM_CASH_BUFF(2));
+		}
+		if (EventsConfig.ENABLE_ACCOUNT_BENEFIT_PACKETS) {
+			sendPacket(new SM_ACCOUNT_PROPERTIES(isGM));
+			log.info("Jumping Count: " + DAOManager.getDAO(AccountDAO.class).getJumpingCountOnAccount(getConnection().getAccount().getId()));
+			sendPacket(new SM_ACCOUNT_TYPE(getConnection().getAccount()));
+		}
 	}
 }

@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.ai2.event;
 
@@ -20,7 +20,6 @@ package com.aionemu.gameserver.ai2.event;
  * @author ATracer
  */
 public enum AIEventType {
-
 	ACTIVATE,
 	DEACTIVATE,
 	FREEZE,
@@ -28,7 +27,7 @@ public enum AIEventType {
 	/**
 	 * Creature is being attacked (internal)
 	 */
-	ATTACK,
+	ATTACK, 
 	/**
 	 * Creature's attack part is complete (internal)
 	 */
@@ -38,11 +37,17 @@ public enum AIEventType {
 	 */
 	ATTACK_FINISH,
 	/**
-	 * Some neighbour creature is being attacked (broadcast)
+	 * Some neighbor creature is being attacked (broadcast)
 	 */
 	CREATURE_NEEDS_SUPPORT,
+	
+	/**
+	 * Creature is attacking (broadcast)
+	 */
+
 	MOVE_VALIDATE,
 	MOVE_ARRIVED,
+
 	CREATURE_SEE,
 	CREATURE_NOT_SEE,
 	CREATURE_MOVED,
@@ -51,15 +56,19 @@ public enum AIEventType {
 	RESPAWNED,
 	DESPAWNED,
 	DIED,
+
 	TARGET_REACHED,
 	TARGET_TOOFAR,
 	TARGET_GIVEUP,
 	TARGET_CHANGED,
 	FOLLOW_ME,
 	STOP_FOLLOW_ME,
+
 	NOT_AT_HOME,
 	BACK_HOME,
+
 	DIALOG_START,
 	DIALOG_FINISH,
+
 	DROP_REGISTERED
 }

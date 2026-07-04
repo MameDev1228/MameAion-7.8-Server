@@ -1,13 +1,5 @@
 package mysql5;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.aionemu.commons.database.DB;
 import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.commons.database.IUStH;
@@ -17,10 +9,14 @@ import com.aionemu.gameserver.dao.PlayerSkillSkinListDAO;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.skinskill.SkillSkin;
 import com.aionemu.gameserver.model.skinskill.SkillSkinList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * @author Ghostfur (Aion-Unique)
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class MySQL5PlayerSkillSkinListDAO extends PlayerSkillSkinListDAO {
 
     private static final Logger log = LoggerFactory.getLogger(MySQL5PlayerTitleListDAO.class);
@@ -62,6 +58,7 @@ public class MySQL5PlayerSkillSkinListDAO extends PlayerSkillSkinListDAO {
             stmt.setInt(2, entry.getId());
             stmt.setInt(3, entry.getExpireTime());
             stmt.setInt(4, entry.getIsActive());
+            // GameServer.log.info("1: " + entry.getId() + " 2: " + entry.getExpireTime() + " 3: " + entry.getIsActive());
             stmt.execute();
             stmt.close();
         } catch (Exception e) {
@@ -97,6 +94,15 @@ public class MySQL5PlayerSkillSkinListDAO extends PlayerSkillSkinListDAO {
         });
     }
 
+
+    @Override
+    public boolean supports(String databaseName, int majorVersion, int minorVersion) {
+        return MySQL5DAOUtils.supports(databaseName, majorVersion, minorVersion);
+    }
+
+    /* (non-Javadoc)
+     * @see com.aionemu.gameserver.dao.PlayerTitleListDAO#removeTitle(int, int)
+     */
     @Override
     public boolean removeSkillSkin(int playerId, int skinId) {
         Connection con = null;
@@ -115,11 +121,4 @@ public class MySQL5PlayerSkillSkinListDAO extends PlayerSkillSkinListDAO {
         }
         return true;
     }
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public boolean supports(String databaseName, int majorVersion, int minorVersion) {
-		return MySQL5DAOUtils.supports(databaseName, majorVersion, minorVersion);
-	}    
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Regatus Headquarters
+	Spawn By Encom
+ -->
+<spawns>
+	<spawn_map map_id="302560000">
+	    <!-- Regatus Headquarters Warrior
+		A Drakan Warrior of the troop that is accompanying Regatus Headquarters -->
+		<spawn npc_id="657434">
+		    <spot h="72" z="228.8593" y="156.7392" x="181.11777"/>
+            <spot h="50" z="228.95985" y="148.96323" x="178.98372"/>
+		</spawn>
+		<!-- Regatus Headquarters Assassin
+		A Drakan Assassin of the troop that is accompanying Regatus Headquarters -->
+		<spawn npc_id="657435">
+			<spot h="98" z="228.90392" y="159.30667" x="173.88525"/>
+		</spawn>
+		<!-- Regatus Headquarters Mage
+		A Drakan Mage of the troop that is accompanying Regatus Headquarters -->
+		<spawn npc_id="657436">
+			<spot h="59" z="228.90442" y="152.7236" x="181.21808"/>
+		</spawn>
+		<!-- Regatus Headquarters Priest
+		A Drakan Priest of the troop that is accompanying Regatus Headquarters -->
+		<spawn npc_id="657437">
+            <spot h="84" z="228.86853" y="159.24806" x="178.30634"/>
+		</spawn>
+		<!-- Headquarters Captain Geshir
+		The captain of the bodyguards protecting the Regatus headquarters and also the Drakan Captain -->
+		<spawn npc_id="657438">
+			<spot h="13" z="230.54869" y="148.9929" x="170.11125"/>
+		</spawn>
+		
+		<!-- Fighting Girl
+		<Unknown Girl>
+		An unknown girl who is fighting the Regatus Drakan at Regatus Headquarters -->
+		<spawn npc_id="807000">
+			<spot h="68" z="228.92343" y="153.87286" x="176.44847"/>
+		</spawn>
+	</spawn_map>
+</spawns>

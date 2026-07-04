@@ -1,23 +1,4 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.gameobjects.player.collection;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -26,6 +7,11 @@ import com.aionemu.gameserver.model.stats.calc.functions.IStatFunction;
 import com.aionemu.gameserver.model.stats.calc.functions.StatAddFunction;
 import com.aionemu.gameserver.model.stats.calc.functions.StatFunction;
 import com.aionemu.gameserver.model.templates.collection.CollectionTemplate;
+import com.aionemu.gameserver.model.templates.monster_core.MonsterCoreTemplate;
+import com.aionemu.gameserver.model.templates.stats.ModifiersTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerCollectionEntry implements StatOwner {
 
@@ -46,6 +32,8 @@ public class PlayerCollectionEntry implements StatOwner {
     private boolean item14;
     private int step;
     private boolean complete = false;
+
+    //stats function
     private CollectionTemplate ct;
     private List<IStatFunction> functions = new ArrayList<IStatFunction>();
 
@@ -66,7 +54,7 @@ public class PlayerCollectionEntry implements StatOwner {
         this.item13 = item13;
         this.item14 = item14;
         this.step = step;
-        ct = DataManager.COLLECTION_TEMPLATE_DATA.getTemplate(this.id);
+        this.ct = DataManager.COLLECTION_TEMPLATE_DATA.getTemplate(this.id);
     }
 
     public int getId() {
@@ -195,61 +183,48 @@ public class PlayerCollectionEntry implements StatOwner {
 
     public void update(int index) {
         switch (index) {
-            case 0: {
+            case 0:
                 setItem1(true);
                 break;
-            }
-            case 1: {
+            case 1:
                 setItem2(true);
                 break;
-            }
-            case 2: {
+            case 2:
                 setItem3(true);
                 break;
-            }
-            case 3: {
+            case 3:
                 setItem4(true);
                 break;
-            }
-            case 4: {
+            case 4:
                 setItem5(true);
                 break;
-            }
-            case 5: {
+            case 5:
                 setItem6(true);
                 break;
-            }
-            case 6: {
+            case 6:
                 setItem7(true);
                 break;
-            }
-            case 7: {
+            case 7:
                 setItem8(true);
                 break;
-            }
-            case 8: {
+            case 8:
                 setItem9(true);
                 break;
-            }
-            case 9: {
+            case 9:
                 setItem10(true);
                 break;
-            }
-            case 10: {
+            case 10:
                 setItem11(true);
                 break;
-            }
-            case 11: {
+            case 11:
                 setItem12(true);
                 break;
-            }
-            case 12: {
+            case 12:
                 setItem13(true);
                 break;
-            }
-            case 13: {
+            case 13:
                 setItem14(true);
-            }
+                break;
         }
     }
 
@@ -261,10 +236,11 @@ public class PlayerCollectionEntry implements StatOwner {
         this.complete = complete;
     }
 
+    //stats function
     public void apply(Player player) {
-        if (ct.getModifiers() != null) {
-            for (StatFunction modifiers : ct.getModifiers().getModifiers()) {
-                this.functions.add(new StatAddFunction(modifiers.getName(), modifiers.getValue(), modifiers.isBonus()));
+        if(this.ct.getModifiers() != null) {
+            for (StatFunction modifiers : this.ct.getModifiers().getModifiers()) {
+                functions.add(new StatAddFunction(modifiers.getName(), modifiers.getValue(), modifiers.isBonus()));
                 player.getGameStats().addEffect(this, functions);
             }
         }

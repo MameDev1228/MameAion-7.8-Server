@@ -1,28 +1,4 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package mysql5;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.DB;
 import com.aionemu.commons.database.DatabaseFactory;
@@ -30,17 +6,18 @@ import com.aionemu.commons.database.IUStH;
 import com.aionemu.gameserver.dao.MySQL5DAOUtils;
 import com.aionemu.gameserver.dao.PlayerAppearanceDAO;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerAppearance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * @author SoulKeeper, AEJTester, srx47
- */
-public class MySQL5PlayerAppearanceDAO extends PlayerAppearanceDAO {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+public class MySQL5PlayerAppearanceDAO extends PlayerAppearanceDAO
+{
 	private static final Logger log = LoggerFactory.getLogger(PlayerAppearanceDAO.class);
-
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
 	public PlayerAppearance load(final int playerId) {
 		Connection con = null;
@@ -116,25 +93,25 @@ public class MySQL5PlayerAppearanceDAO extends PlayerAppearanceDAO {
 			}
 			resultSet.close();
 			statement.close();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Could not restore PlayerAppearance data for player " + playerId + " from DB: " + e.getMessage(), e);
 			return null;
-		}
-		finally {
+		} finally {
 			DatabaseFactory.close(con);
 		}
 		return pa;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
 	public boolean store(final int id, final PlayerAppearance pa) {
-
-		return DB.insertUpdate("REPLACE INTO player_appearance (" + "player_id, voice, skin_rgb, hair_rgb, eye_rgb, lip_rgb, face, hair, deco, tattoo, face_contour, expression, pupil_shape, remove_mane, right_eye_rgb, eye_lash_shape," + "jaw_line, forehead, eye_height, eye_space, eye_width, eye_size, eye_shape, eye_angle, brow_height, brow_angle, brow_shape, nose, nose_bridge, nose_width, nose_tip," + "cheek, lip_height, mouth_size, lip_size, smile, lip_shape, jaw_height, chin_jut, ear_shape, head_size, neck, neck_length, shoulder_size, torso, chest, waist, hips," + "arm_thickness, hand_size, leg_thickness, facial_rate, foot_size, arm_length, leg_length, shoulders, face_shape, pupil_size, upper_torso, fore_arm_thickness, hand_span," + "calf_thickness, height)" + " VALUES " + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" + ")", new IUStH() {
-
+		return DB.insertUpdate("REPLACE INTO player_appearance ("
+		+ "player_id, voice, skin_rgb, hair_rgb, eye_rgb, lip_rgb, face, hair, deco, tattoo, face_contour, expression, pupil_shape, remove_mane, right_eye_rgb, eye_lash_shape,"
+		+ "jaw_line, forehead, eye_height, eye_space, eye_width, eye_size, eye_shape, eye_angle, brow_height, brow_angle, brow_shape, nose, nose_bridge, nose_width, nose_tip,"
+		+ "cheek, lip_height, mouth_size, lip_size, smile, lip_shape, jaw_height, chin_jut, ear_shape, head_size, neck, neck_length, shoulder_size, torso, chest, waist, hips,"
+		+ "arm_thickness, hand_size, leg_thickness, facial_rate, foot_size, arm_length, leg_length, shoulders, face_shape, pupil_size, upper_torso, fore_arm_thickness, hand_span,"
+		+ "calf_thickness, height)" + " VALUES "
+		+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
+		+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" + ")", new IUStH() {
 			@Override
 			public void handleInsertUpdate(PreparedStatement ps) throws SQLException {
 				log.debug("[DAO: MySQL5PlayerAppearanceDAO] storing appereance " + id);
@@ -205,10 +182,7 @@ public class MySQL5PlayerAppearanceDAO extends PlayerAppearanceDAO {
 			}
 		});
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
 	public boolean supports(String s, int i, int i1) {
 		return MySQL5DAOUtils.supports(s, i, i1);

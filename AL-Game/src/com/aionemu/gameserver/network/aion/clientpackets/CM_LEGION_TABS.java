@@ -1,25 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
-
-import java.util.Collection;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.team.legion.LegionHistory;
@@ -27,6 +22,10 @@ import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_TABS;
 import com.aionemu.gameserver.utils.PacketSendUtility;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Collection;
 
 /**
  * @author Simple, xTz
@@ -34,6 +33,7 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 public class CM_LEGION_TABS extends AionClientPacket {
 
 	private static final Logger log = LoggerFactory.getLogger(CM_LEGION_TABS.class);
+
 	private int page;
 	private int tab;
 
@@ -50,15 +50,14 @@ public class CM_LEGION_TABS extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player activePlayer = getConnection().getActivePlayer();
-
-		if (activePlayer.getLegion() != null) {
-
+		
+		if(activePlayer.getLegion() != null) {
+			
 			/**
 			 * Max page is 16 for legion history
 			 */
-			if (page > 16) {
+			if (page > 16)
 				return;
-			}
 
 			switch (tab) {
 				/**
@@ -70,23 +69,20 @@ public class CM_LEGION_TABS extends AionClientPacket {
 					/**
 					 * If history size is less than page*8 return
 					 */
-					if (history.size() < page * 8) {
+					if (history.size() < page * 8)
 						return;
-					}
-					if (!history.isEmpty()) {
+					if (!history.isEmpty())
 						PacketSendUtility.sendPacket(activePlayer, new SM_LEGION_TABS(history, page, tab));
-					}
 					break;
 				/**
 				 * Reward Tab
 				 */
 				case 1:
-					// TODO Reward Tab Page
+					//TODO Reward Tab Page
 					break;
 			}
 		}
-		else {
-			log.warn("Player " + activePlayer.getName() + " was requested null legion");
-		}
+		else
+			log.warn("Player "+activePlayer.getName()+" was requested null legion");
 	}
 }

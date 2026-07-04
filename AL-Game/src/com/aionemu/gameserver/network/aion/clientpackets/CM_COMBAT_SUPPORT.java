@@ -1,70 +1,72 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.team2.group.PlayerGroupService;
+import com.aionemu.gameserver.model.team2.alliance.PlayerAllianceService;
+import com.aionemu.gameserver.network.aion.AionClientPacket;
+import com.aionemu.gameserver.network.aion.AionConnection.State;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.network.aion.AionClientPacket;
-import com.aionemu.gameserver.network.aion.AionConnection.State;
-import com.aionemu.gameserver.services.combat.CombatSupportService;
-import com.aionemu.gameserver.services.packet.PacketAuditService;
+/****/
+/** Author Wnkrz (Encom)
+/****/
 
-/**
- * 7.x Combat Support packet.
- *
- * Variable-length 7.8 payload parser. The actual behavior is implemented in
- * CombatSupportService so this packet no longer silently discards the client
- * intent.
- */
-public class CM_COMBAT_SUPPORT extends AionClientPacket {
-
-	private static final Logger log = LoggerFactory.getLogger(CM_COMBAT_SUPPORT.class);
-
-	private int action;
-	private final List<Integer> payload = new ArrayList<Integer>();
-
-	public CM_COMBAT_SUPPORT(int opcode, State state, State... restStates) {
-		super(opcode, state, restStates);
-	}
-
-	@Override
-	protected void readImpl() {
-		payload.clear();
-		action = getRemainingBytes() > 0 ? readC() : 0;
-		while (getRemainingBytes() >= 4) {
-			payload.add(readD());
-		}
-		if (getRemainingBytes() > 0) {
-			readB(getRemainingBytes());
-		}
-	}
-
-	@Override
-	protected void runImpl() {
-		Player player = getConnection().getActivePlayer();
-		if (player == null) {
-			return;
-		}
-		PacketAuditService.getInstance().logAction(getPacketName(), getOpcode(), player, action, payload, "combat_support_client_request");
-		CombatSupportService.getInstance().handlePacket(player, action, payload);
-	}
+public class CM_COMBAT_SUPPORT extends AionClientPacket
+{
+    int active;
+    int time;
+    int exp;
+    int kinah;
+    int item;
+    int ap;
+    int gp;
+    int unk1;
+    int unk2;
+	
+    public CM_COMBAT_SUPPORT(int opcode, State state, State... restStates) {
+        super(opcode, state, restStates);
+    }
+	
+    @Override
+    protected void readImpl() {
+        this.active = readC();
+        this.time = readD();
+        this.exp = readD();
+        this.kinah = readD();
+        this.unk1 = readD();
+        this.unk2 = readD();
+        this.item = readD();
+        this.ap = readD();
+        this.gp = readD();
+    }
+	
+    @Override
+    protected void runImpl() {
+        Player player = getConnection().getActivePlayer();
+        if (this.active == 1) {
+            player.setCombatSupport(true);
+			PlayerGroupService.removePlayer(player);
+			PlayerAllianceService.removePlayer(player);
+        } else {
+            player.setCombatSupport(false);
+        }
+    }
 }

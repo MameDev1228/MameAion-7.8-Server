@@ -1,441 +1,373 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <player_stats_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../stats.xsd">
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="9">
-        <stats_template maxHp="576" maxMp="1152" evasion="142" block="142" parry="142" main_hand_attack="18" main_hand_accuracy="242" main_hand_crit_rate="1" magic_accuracy="128" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="10">
-        <stats_template maxHp="628" maxMp="1257" evasion="155" block="155" parry="155" main_hand_attack="18" main_hand_accuracy="250" main_hand_crit_rate="1" magic_accuracy="142" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="11">
-        <stats_template maxHp="681" maxMp="1362" evasion="167" block="167" parry="167" main_hand_attack="18" main_hand_accuracy="258" main_hand_crit_rate="1" magic_accuracy="156" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="12">
-        <stats_template maxHp="737" maxMp="1468" evasion="179" block="179" parry="179" main_hand_attack="18" main_hand_accuracy="266" main_hand_crit_rate="1" magic_accuracy="171" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="13">
-        <stats_template maxHp="794" maxMp="1573" evasion="192" block="192" parry="192" main_hand_attack="18" main_hand_accuracy="274" main_hand_crit_rate="1" magic_accuracy="185" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="14">
-        <stats_template maxHp="853" maxMp="1678" evasion="204" block="204" parry="204" main_hand_attack="18" main_hand_accuracy="282" main_hand_crit_rate="1" magic_accuracy="199" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="15">
-        <stats_template maxHp="915" maxMp="1783" evasion="217" block="217" parry="217" main_hand_attack="18" main_hand_accuracy="290" main_hand_crit_rate="1" magic_accuracy="213" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="16">
-        <stats_template maxHp="977" maxMp="1888" evasion="229" block="229" parry="229" main_hand_attack="18" main_hand_accuracy="298" main_hand_crit_rate="1" magic_accuracy="228" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="17">
-        <stats_template maxHp="1042" maxMp="1994" evasion="241" block="241" parry="241" main_hand_attack="18" main_hand_accuracy="306" main_hand_crit_rate="1" magic_accuracy="242" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="18">
-        <stats_template maxHp="1109" maxMp="2099" evasion="254" block="254" parry="254" main_hand_attack="18" main_hand_accuracy="314" main_hand_crit_rate="1" magic_accuracy="256" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="19">
-        <stats_template maxHp="1177" maxMp="2204" evasion="266" block="266" parry="266" main_hand_attack="18" main_hand_accuracy="322" main_hand_crit_rate="1" magic_accuracy="270" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="20">
-        <stats_template maxHp="1248" maxMp="2310" evasion="279" block="279" parry="279" main_hand_attack="18" main_hand_accuracy="330" main_hand_crit_rate="1" magic_accuracy="285" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="21">
-        <stats_template maxHp="1320" maxMp="2415" evasion="291" block="291" parry="291" main_hand_attack="18" main_hand_accuracy="338" main_hand_crit_rate="1" magic_accuracy="299" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="22">
-        <stats_template maxHp="1394" maxMp="2520" evasion="303" block="303" parry="303" main_hand_attack="18" main_hand_accuracy="346" main_hand_crit_rate="1" magic_accuracy="313" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="23">
-        <stats_template maxHp="1469" maxMp="2625" evasion="316" block="316" parry="316" main_hand_attack="18" main_hand_accuracy="354" main_hand_crit_rate="1" magic_accuracy="327" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="24">
-        <stats_template maxHp="1547" maxMp="2731" evasion="328" block="328" parry="328" main_hand_attack="18" main_hand_accuracy="362" main_hand_crit_rate="1" magic_accuracy="342" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="25">
-        <stats_template maxHp="1627" maxMp="2836" evasion="341" block="341" parry="341" main_hand_attack="18" main_hand_accuracy="370" main_hand_crit_rate="1" magic_accuracy="356" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="26">
-        <stats_template maxHp="1708" maxMp="2942" evasion="353" block="353" parry="353" main_hand_attack="18" main_hand_accuracy="378" main_hand_crit_rate="1" magic_accuracy="370" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="27">
-        <stats_template maxHp="1791" maxMp="3047" evasion="365" block="365" parry="365" main_hand_attack="18" main_hand_accuracy="386" main_hand_crit_rate="1" magic_accuracy="384" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="28">
-        <stats_template maxHp="1876" maxMp="3152" evasion="378" block="378" parry="378" main_hand_attack="18" main_hand_accuracy="394" main_hand_crit_rate="1" magic_accuracy="399" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="29">
-        <stats_template maxHp="1963" maxMp="3258" evasion="390" block="390" parry="390" main_hand_attack="18" main_hand_accuracy="402" main_hand_crit_rate="1" magic_accuracy="413" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="30">
-        <stats_template maxHp="2052" maxMp="3363" evasion="403" block="403" parry="403" main_hand_attack="18" main_hand_accuracy="410" main_hand_crit_rate="1" magic_accuracy="427" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="31">
-        <stats_template maxHp="2142" maxMp="3469" evasion="415" block="415" parry="415" main_hand_attack="18" main_hand_accuracy="418" main_hand_crit_rate="1" magic_accuracy="441" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="32">
-        <stats_template maxHp="2234" maxMp="3574" evasion="427" block="427" parry="427" main_hand_attack="18" main_hand_accuracy="426" main_hand_crit_rate="1" magic_accuracy="456" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="33">
-        <stats_template maxHp="2329" maxMp="3680" evasion="440" block="440" parry="440" main_hand_attack="18" main_hand_accuracy="434" main_hand_crit_rate="1" magic_accuracy="470" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="34">
-        <stats_template maxHp="2425" maxMp="3785" evasion="452" block="452" parry="452" main_hand_attack="18" main_hand_accuracy="442" main_hand_crit_rate="1" magic_accuracy="484" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="35">
-        <stats_template maxHp="2523" maxMp="3891" evasion="465" block="465" parry="465" main_hand_attack="18" main_hand_accuracy="450" main_hand_crit_rate="1" magic_accuracy="498" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="36">
-        <stats_template maxHp="2622" maxMp="3996" evasion="477" block="477" parry="477" main_hand_attack="18" main_hand_accuracy="458" main_hand_crit_rate="1" magic_accuracy="513" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="37">
-        <stats_template maxHp="2724" maxMp="4102" evasion="489" block="489" parry="489" main_hand_attack="18" main_hand_accuracy="466" main_hand_crit_rate="1" magic_accuracy="527" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="38">
-        <stats_template maxHp="2827" maxMp="4207" evasion="502" block="502" parry="502" main_hand_attack="18" main_hand_accuracy="474" main_hand_crit_rate="1" magic_accuracy="541" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="39">
-        <stats_template maxHp="2932" maxMp="4313" evasion="514" block="514" parry="514" main_hand_attack="18" main_hand_accuracy="482" main_hand_crit_rate="1" magic_accuracy="555" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="40">
-        <stats_template maxHp="3040" maxMp="4419" evasion="527" block="527" parry="527" main_hand_attack="18" main_hand_accuracy="490" main_hand_crit_rate="1" magic_accuracy="570" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="41">
-        <stats_template maxHp="3148" maxMp="4524" evasion="539" block="539" parry="539" main_hand_attack="18" main_hand_accuracy="498" main_hand_crit_rate="1" magic_accuracy="584" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="42">
-        <stats_template maxHp="3259" maxMp="4630" evasion="551" block="551" parry="551" main_hand_attack="18" main_hand_accuracy="506" main_hand_crit_rate="1" magic_accuracy="598" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="43">
-        <stats_template maxHp="3372" maxMp="4735" evasion="564" block="564" parry="564" main_hand_attack="18" main_hand_accuracy="514" main_hand_crit_rate="1" magic_accuracy="612" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="44">
-        <stats_template maxHp="3486" maxMp="4841" evasion="576" block="576" parry="576" main_hand_attack="18" main_hand_accuracy="522" main_hand_crit_rate="1" magic_accuracy="627" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="45">
-        <stats_template maxHp="3603" maxMp="4947" evasion="589" block="589" parry="589" main_hand_attack="18" main_hand_accuracy="530" main_hand_crit_rate="1" magic_accuracy="641" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="46">
-        <stats_template maxHp="3721" maxMp="5052" evasion="601" block="601" parry="601" main_hand_attack="18" main_hand_accuracy="538" main_hand_crit_rate="1" magic_accuracy="655" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="47">
-        <stats_template maxHp="3841" maxMp="5158" evasion="613" block="613" parry="613" main_hand_attack="18" main_hand_accuracy="546" main_hand_crit_rate="1" magic_accuracy="669" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="48">
-        <stats_template maxHp="3962" maxMp="5264" evasion="626" block="626" parry="626" main_hand_attack="18" main_hand_accuracy="554" main_hand_crit_rate="1" magic_accuracy="684" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="49">
-        <stats_template maxHp="4086" maxMp="5370" evasion="638" block="638" parry="638" main_hand_attack="18" main_hand_accuracy="562" main_hand_crit_rate="1" magic_accuracy="698" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="50">
-        <stats_template maxHp="4212" maxMp="5475" evasion="651" block="651" parry="651" main_hand_attack="18" main_hand_accuracy="570" main_hand_crit_rate="1" magic_accuracy="712" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="51">
-        <stats_template maxHp="4339" maxMp="5581" evasion="663" block="663" parry="663" main_hand_attack="18" main_hand_accuracy="578" main_hand_crit_rate="1" magic_accuracy="726" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="52">
-        <stats_template maxHp="4468" maxMp="5687" evasion="675" block="675" parry="675" main_hand_attack="18" main_hand_accuracy="586" main_hand_crit_rate="1" magic_accuracy="741" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="53">
-        <stats_template maxHp="4599" maxMp="5793" evasion="688" block="688" parry="688" main_hand_attack="18" main_hand_accuracy="594" main_hand_crit_rate="1" magic_accuracy="755" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="54">
-        <stats_template maxHp="4732" maxMp="5898" evasion="700" block="700" parry="700" main_hand_attack="18" main_hand_accuracy="602" main_hand_crit_rate="1" magic_accuracy="769" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="55">
-        <stats_template maxHp="4867" maxMp="6004" evasion="713" block="713" parry="713" main_hand_attack="18" main_hand_accuracy="610" main_hand_crit_rate="1" magic_accuracy="783" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="56">
-        <stats_template maxHp="5003" maxMp="6110" evasion="725" block="725" parry="725" main_hand_attack="18" main_hand_accuracy="618" main_hand_crit_rate="1" magic_accuracy="798" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="57">
-        <stats_template maxHp="5141" maxMp="6216" evasion="737" block="737" parry="737" main_hand_attack="18" main_hand_accuracy="626" main_hand_crit_rate="1" magic_accuracy="812" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="58">
-        <stats_template maxHp="5282" maxMp="6322" evasion="750" block="750" parry="750" main_hand_attack="18" main_hand_accuracy="634" main_hand_crit_rate="1" magic_accuracy="826" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="59">
-        <stats_template maxHp="5424" maxMp="6428" evasion="762" block="762" parry="762" main_hand_attack="18" main_hand_accuracy="642" main_hand_crit_rate="1" magic_accuracy="840" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="60">
-        <stats_template maxHp="5568" maxMp="6534" evasion="775" block="775" parry="775" main_hand_attack="18" main_hand_accuracy="650" main_hand_crit_rate="1" magic_accuracy="855" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="61">
-        <stats_template maxHp="5713" maxMp="6639" evasion="787" block="787" parry="787" main_hand_attack="18" main_hand_accuracy="658" main_hand_crit_rate="1" magic_accuracy="869" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="62">
-        <stats_template maxHp="5861" maxMp="6745" evasion="799" block="799" parry="799" main_hand_attack="18" main_hand_accuracy="666" main_hand_crit_rate="1" magic_accuracy="883" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="63">
-        <stats_template maxHp="6010" maxMp="6851" evasion="812" block="812" parry="812" main_hand_attack="18" main_hand_accuracy="674" main_hand_crit_rate="1" magic_accuracy="897" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="64">
-        <stats_template maxHp="6161" maxMp="6957" evasion="824" block="824" parry="824" main_hand_attack="18" main_hand_accuracy="682" main_hand_crit_rate="1" magic_accuracy="912" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By ginho1 07/2013 at NA Retail -->
-    <player_stats class="CLERIC" level="65">
-        <stats_template maxHp="6315" maxMp="7063" evasion="837" block="837" parry="837" main_hand_attack="18" main_hand_accuracy="690" main_hand_crit_rate="1" magic_accuracy="926" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By Falke_34 07/2016 at NA Retail -->
-    <player_stats class="CLERIC" level="66">
-        <stats_template maxHp="6424" maxMp="7232" evasion="849" block="849" parry="849" main_hand_attack="18" main_hand_accuracy="698" main_hand_crit_rate="1" magic_accuracy="941" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By Falke_34 07/2016 at NA Retail -->
-    <player_stats class="CLERIC" level="67">
-        <stats_template maxHp="6626" maxMp="7338" evasion="861" block="861" parry="861" main_hand_attack="18" main_hand_accuracy="706" main_hand_crit_rate="1" magic_accuracy="955" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By Falke_34 08/2016 at EU Retail -->
-    <player_stats class="CLERIC" level="68">
-        <stats_template maxHp="6785" maxMp="7444" evasion="874" block="874" parry="874" main_hand_attack="18" main_hand_accuracy="714" main_hand_crit_rate="1" magic_accuracy="969" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By Falke_34 01/2017 at EU Retail -->
-    <player_stats class="CLERIC" level="69">
-        <stats_template maxHp="6945" maxMp="7550" evasion="886" block="886" parry="886" main_hand_attack="18" main_hand_accuracy="722" main_hand_crit_rate="1" magic_accuracy="983" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By Falke_34 01/2017 at EU Retail -->
-    <player_stats class="CLERIC" level="70">
-        <stats_template maxHp="7108" maxMp="7656" evasion="899" block="899" parry="899" main_hand_attack="18" main_hand_accuracy="730" main_hand_crit_rate="1" magic_accuracy="998" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 08/2016 *** -->
-    <player_stats class="CLERIC" level="71">
-        <stats_template maxHp="7274" maxMp="7762" evasion="910" block="910" parry="910" main_hand_attack="18" main_hand_accuracy="738" main_hand_crit_rate="1" magic_accuracy="1011" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 08/2016 *** -->
-    <player_stats class="CLERIC" level="72">
-        <stats_template maxHp="7441" maxMp="7868" evasion="922" block="922" parry="922" main_hand_attack="18" main_hand_accuracy="746" main_hand_crit_rate="1" magic_accuracy="1025" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 08/2016 *** -->
-    <player_stats class="CLERIC" level="73">
-        <stats_template maxHp="7610" maxMp="7974" evasion="934" block="934" parry="934" main_hand_attack="18" main_hand_accuracy="754" main_hand_crit_rate="1" magic_accuracy="1039" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 08/2016 *** -->
-    <player_stats class="CLERIC" level="74">
-        <stats_template maxHp="7781" maxMp="8080" evasion="946" block="946" parry="946" main_hand_attack="18" main_hand_accuracy="762" main_hand_crit_rate="1" magic_accuracy="1053" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 08/2016 *** -->
-    <player_stats class="CLERIC" level="75">
-        <stats_template maxHp="7954" maxMp="8186" evasion="958" block="958" parry="958" main_hand_attack="18" main_hand_accuracy="770" main_hand_crit_rate="1" magic_accuracy="1067" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 09/2018 *** -->
-    <player_stats class="CLERIC" level="76">
-        <stats_template maxHp="8129" maxMp="8292" evasion="970" block="970" parry="970" main_hand_attack="18" main_hand_accuracy="778" main_hand_crit_rate="1" magic_accuracy="1081" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 09/2018 *** -->
-    <player_stats class="CLERIC" level="77">
-        <stats_template maxHp="8306" maxMp="8398" evasion="982" block="982" parry="982" main_hand_attack="18" main_hand_accuracy="786" main_hand_crit_rate="1" magic_accuracy="1095" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 09/2018 *** -->
-    <player_stats class="CLERIC" level="78">
-        <stats_template maxHp="8485" maxMp="8504" evasion="994" block="994" parry="994" main_hand_attack="18" main_hand_accuracy="794" main_hand_crit_rate="1" magic_accuracy="1109" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 09/2018 *** -->
-    <player_stats class="CLERIC" level="79">
-        <stats_template maxHp="8666" maxMp="8610" evasion="1006" block="1006" parry="1006" main_hand_attack="18" main_hand_accuracy="802" main_hand_crit_rate="1" magic_accuracy="1123" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 09/2018 *** -->
-    <player_stats class="CLERIC" level="80">
-        <stats_template maxHp="8849" maxMp="8716" evasion="1018" block="1018" parry="1018" main_hand_attack="18" main_hand_accuracy="810" main_hand_crit_rate="1" magic_accuracy="1137" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
-    <!-- Checked By *** NONE *** generated by PhpParser 09/2018 *** -->
-    <player_stats class="CLERIC" level="81">
-        <stats_template maxHp="9034" maxMp="8822" evasion="1030" block="1030" parry="1030" main_hand_attack="18" main_hand_accuracy="818" main_hand_crit_rate="1" magic_accuracy="1151" crit_spell="50" strike_resist="90" spell_resist="50" power="105" health="110" agility="90" accuracy="90" knowledge="105" will="110" pvp_attack="0" pvp_defense="0" pve_attack="0" pve_defense="0">
-            <speeds walk="1.5" run="6" fly="9"/>
-        </stats_template>
-    </player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="9">
+		<stats_template maxHp="3396" maxMp="5248" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="483" block="636" parry="733" main_hand_attack="18" main_hand_accuracy="422" main_hand_crit_rate="1" magic_accuracy="336" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="10">
+		<stats_template maxHp="3141" maxMp="6073" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="498" block="651" parry="748" main_hand_attack="18" main_hand_accuracy="437" main_hand_crit_rate="1" magic_accuracy="351" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="11">
+		<stats_template maxHp="3253" maxMp="6419" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="513" block="666" parry="763" main_hand_attack="18" main_hand_accuracy="452" main_hand_crit_rate="1" magic_accuracy="366" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="12">
+		<stats_template maxHp="3369" maxMp="6766" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="528" block="681" parry="778" main_hand_attack="18" main_hand_accuracy="467" main_hand_crit_rate="1" magic_accuracy="381" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="13">
+		<stats_template maxHp="3488" maxMp="7113" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="543" block="696" parry="793" main_hand_attack="18" main_hand_accuracy="482" main_hand_crit_rate="1" magic_accuracy="396" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="14">
+		<stats_template maxHp="3613" maxMp="7460" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="558" block="711" parry="808" main_hand_attack="18" main_hand_accuracy="497" main_hand_crit_rate="1" magic_accuracy="411" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="15">
+		<stats_template maxHp="3740" maxMp="7806" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="573" block="726" parry="823" main_hand_attack="18" main_hand_accuracy="512" main_hand_crit_rate="1" magic_accuracy="426" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="16">
+		<stats_template maxHp="3872" maxMp="8153" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="588" block="741" parry="838" main_hand_attack="18" main_hand_accuracy="527" main_hand_crit_rate="1" magic_accuracy="441" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="17">
+		<stats_template maxHp="4008" maxMp="8500" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="603" block="756" parry="853" main_hand_attack="18" main_hand_accuracy="542" main_hand_crit_rate="1" magic_accuracy="456" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="18">
+		<stats_template maxHp="4144" maxMp="8847" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="618" block="756" parry="868" main_hand_attack="18" main_hand_accuracy="567" main_hand_crit_rate="1" magic_accuracy="471" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="19">
+		<stats_template maxHp="4289" maxMp="9194" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="633" block="786" parry="883" main_hand_attack="18" main_hand_accuracy="572" main_hand_crit_rate="1" magic_accuracy="486" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="20">
+		<stats_template maxHp="4437" maxMp="9541" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="648" block="801" parry="898" main_hand_attack="18" main_hand_accuracy="587" main_hand_crit_rate="1" magic_accuracy="501" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="21">
+		<stats_template maxHp="4585" maxMp="9888" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="663" block="816" parry="913" main_hand_attack="18" main_hand_accuracy="602" main_hand_crit_rate="1" magic_accuracy="516" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="22">
+		<stats_template maxHp="4733" maxMp="10235" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="678" block="831" parry="928" main_hand_attack="18" main_hand_accuracy="617" main_hand_crit_rate="1" magic_accuracy="531" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="23">
+		<stats_template maxHp="4881" maxMp="10582" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="693" block="846" parry="943" main_hand_attack="18" main_hand_accuracy="632" main_hand_crit_rate="1" magic_accuracy="546" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="24">
+		<stats_template maxHp="5029" maxMp="10929" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="708" block="861" parry="958" main_hand_attack="18" main_hand_accuracy="647" main_hand_crit_rate="1" magic_accuracy="561" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="25">
+		<stats_template maxHp="5177" maxMp="11276" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="723" block="876" parry="973" main_hand_attack="18" main_hand_accuracy="662" main_hand_crit_rate="1" magic_accuracy="576" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="26">
+		<stats_template maxHp="5325" maxMp="11623" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="738" block="891" parry="988" main_hand_attack="18" main_hand_accuracy="677" main_hand_crit_rate="1" magic_accuracy="591" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="27">
+		<stats_template maxHp="5473" maxMp="11970" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="753" block="906" parry="1003" main_hand_attack="18" main_hand_accuracy="692" main_hand_crit_rate="1" magic_accuracy="606" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="28">
+		<stats_template maxHp="5621" maxMp="12317" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="768" block="921" parry="1018" main_hand_attack="18" main_hand_accuracy="707" main_hand_crit_rate="1" magic_accuracy="621" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="29">
+		<stats_template maxHp="5769" maxMp="12664" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="783" block="936" parry="1033" main_hand_attack="18" main_hand_accuracy="722" main_hand_crit_rate="1" magic_accuracy="636" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="30">
+		<stats_template maxHp="5917" maxMp="13011" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="798" block="951" parry="1048" main_hand_attack="18" main_hand_accuracy="737" main_hand_crit_rate="1" magic_accuracy="651" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="31">
+		<stats_template maxHp="6065" maxMp="13358" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="813" block="966" parry="1063" main_hand_attack="18" main_hand_accuracy="752" main_hand_crit_rate="1" magic_accuracy="666" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="32">
+		<stats_template maxHp="6213" maxMp="13705" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="828" block="981" parry="1078" main_hand_attack="18" main_hand_accuracy="767" main_hand_crit_rate="1" magic_accuracy="681" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="33">
+		<stats_template maxHp="6361" maxMp="14052" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="843" block="996" parry="1093" main_hand_attack="18" main_hand_accuracy="782" main_hand_crit_rate="1" magic_accuracy="696" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="34">
+		<stats_template maxHp="6509" maxMp="14399" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="858" block="1011" parry="1108" main_hand_attack="18" main_hand_accuracy="797" main_hand_crit_rate="1" magic_accuracy="711" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="35">
+		<stats_template maxHp="6657" maxMp="14746" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="873" block="1026" parry="1123" main_hand_attack="18" main_hand_accuracy="812" main_hand_crit_rate="1" magic_accuracy="726" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="36">
+		<stats_template maxHp="6805" maxMp="15093" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="903" block="1041" parry="1138" main_hand_attack="18" main_hand_accuracy="827" main_hand_crit_rate="1" magic_accuracy="741" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="37">
+		<stats_template maxHp="6953" maxMp="15440" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="918" block="1056" parry="1153" main_hand_attack="18" main_hand_accuracy="842" main_hand_crit_rate="1" magic_accuracy="756" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="38">
+		<stats_template maxHp="7101" maxMp="15787" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="933" block="1071" parry="1168" main_hand_attack="18" main_hand_accuracy="857" main_hand_crit_rate="1" magic_accuracy="771" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="39">
+		<stats_template maxHp="7249" maxMp="16134" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="948" block="1086" parry="1183" main_hand_attack="18" main_hand_accuracy="872" main_hand_crit_rate="1" magic_accuracy="786" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="40">
+		<stats_template maxHp="7397" maxMp="16481" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="963" block="1101" parry="1198" main_hand_attack="18" main_hand_accuracy="887" main_hand_crit_rate="1" magic_accuracy="801" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="41">
+		<stats_template maxHp="7545" maxMp="16828" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="978" block="1116" parry="1213" main_hand_attack="18" main_hand_accuracy="902" main_hand_crit_rate="1" magic_accuracy="816" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="42">
+		<stats_template maxHp="7693" maxMp="17175" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="993" block="1131" parry="1228" main_hand_attack="18" main_hand_accuracy="917" main_hand_crit_rate="1" magic_accuracy="831" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="43">
+		<stats_template maxHp="7841" maxMp="17522" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1008" block="1146" parry="1243" main_hand_attack="18" main_hand_accuracy="932" main_hand_crit_rate="1" magic_accuracy="846" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="44">
+		<stats_template maxHp="7989" maxMp="17869" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1023" block="1161" parry="1258" main_hand_attack="18" main_hand_accuracy="947" main_hand_crit_rate="1" magic_accuracy="861" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="45">
+		<stats_template maxHp="8137" maxMp="18216" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1038" block="1176" parry="1273" main_hand_attack="18" main_hand_accuracy="962" main_hand_crit_rate="1" magic_accuracy="876" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="46">
+		<stats_template maxHp="8285" maxMp="18563" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1053" block="1191" parry="1288" main_hand_attack="18" main_hand_accuracy="977" main_hand_crit_rate="1" magic_accuracy="891" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="47">
+		<stats_template maxHp="8433" maxMp="18910" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1068" block="1206" parry="1303" main_hand_attack="18" main_hand_accuracy="992" main_hand_crit_rate="1" magic_accuracy="906" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="48">
+		<stats_template maxHp="8581" maxMp="19257" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1083" block="1221" parry="1318" main_hand_attack="18" main_hand_accuracy="1007" main_hand_crit_rate="1" magic_accuracy="921" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="49">
+		<stats_template maxHp="8729" maxMp="19604" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1098" block="1236" parry="1333" main_hand_attack="18" main_hand_accuracy="1022" main_hand_crit_rate="1" magic_accuracy="936" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="50">
+		<stats_template maxHp="8877" maxMp="19951" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1113" block="1251" parry="1348" main_hand_attack="18" main_hand_accuracy="1037" main_hand_crit_rate="1" magic_accuracy="951" crit_spell="50"/>
+	</player_stats>
+    <!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="51">
+		<stats_template maxHp="9025" maxMp="20298" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1128" block="1266" parry="1363" main_hand_attack="18" main_hand_accuracy="1052" main_hand_crit_rate="1" magic_accuracy="966" crit_spell="50"/>
+	</player_stats>
+    <!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="52">
+		<stats_template maxHp="9173" maxMp="20645" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1143" block="1281" parry="1378" main_hand_attack="18" main_hand_accuracy="1067" main_hand_crit_rate="1" magic_accuracy="981" crit_spell="50"/>
+	</player_stats>
+    <!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="53">
+		<stats_template maxHp="9321" maxMp="20992" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1158" block="1296" parry="1393" main_hand_attack="18" main_hand_accuracy="1082" main_hand_crit_rate="1" magic_accuracy="996" crit_spell="50"/>
+	</player_stats>
+    <!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="54">
+		<stats_template maxHp="9469" maxMp="21339" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1173" block="1311" parry="1408" main_hand_attack="18" main_hand_accuracy="1097" main_hand_crit_rate="1" magic_accuracy="1011" crit_spell="50"/>
+	</player_stats>
+    <!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="55">
+		<stats_template maxHp="9617" maxMp="21686" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1188" block="1326" parry="1423" main_hand_attack="18" main_hand_accuracy="1112" main_hand_crit_rate="1" magic_accuracy="1026" crit_spell="50"/>
+	</player_stats>
+    <!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="56">
+		<stats_template maxHp="9765" maxMp="22033" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1203" block="1341" parry="1438" main_hand_attack="18" main_hand_accuracy="1127" main_hand_crit_rate="1" magic_accuracy="1041" crit_spell="50"/>
+	</player_stats>
+    <!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="57">
+		<stats_template maxHp="9913" maxMp="22380" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1218" block="1356" parry="1453" main_hand_attack="18" main_hand_accuracy="1142" main_hand_crit_rate="1" magic_accuracy="1056" crit_spell="50"/>
+	</player_stats>
+    <!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="58">
+		<stats_template maxHp="10061" maxMp="22727" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1233" block="1371" parry="1468" main_hand_attack="18" main_hand_accuracy="1157" main_hand_crit_rate="1" magic_accuracy="1071" crit_spell="50"/>
+	</player_stats>
+    <!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="59">
+		<stats_template maxHp="10209" maxMp="23074" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1248" block="1386" parry="1483" main_hand_attack="18" main_hand_accuracy="1172" main_hand_crit_rate="1" magic_accuracy="1086" crit_spell="50"/>
+	</player_stats>
+    <!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="60">
+		<stats_template maxHp="10357" maxMp="23421" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1263" block="1401" parry="1498" main_hand_attack="18" main_hand_accuracy="1187" main_hand_crit_rate="1" magic_accuracy="1101" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="61">
+		<stats_template maxHp="10505" maxMp="23768" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1278" block="1416" parry="1513" main_hand_attack="18" main_hand_accuracy="1202" main_hand_crit_rate="1" magic_accuracy="1116" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="62">
+		<stats_template maxHp="10653" maxMp="24115" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1293" block="1431" parry="1528" main_hand_attack="18" main_hand_accuracy="1217" main_hand_crit_rate="1" magic_accuracy="1131" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="63">
+		<stats_template maxHp="10801" maxMp="24462" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1308" block="1446" parry="1543" main_hand_attack="18" main_hand_accuracy="1232" main_hand_crit_rate="1" magic_accuracy="1146" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="64">
+		<stats_template maxHp="10949" maxMp="24809" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1323" block="1461" parry="1558" main_hand_attack="18" main_hand_accuracy="1247" main_hand_crit_rate="1" magic_accuracy="1161" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="65">
+		<stats_template maxHp="11097" maxMp="25156" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1338" block="1476" parry="1573" main_hand_attack="18" main_hand_accuracy="1262" main_hand_crit_rate="1" magic_accuracy="1176" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="66">
+		<stats_template maxHp="11245" maxMp="25503" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1353" block="1491" parry="1588" main_hand_attack="18" main_hand_accuracy="1277" main_hand_crit_rate="1" magic_accuracy="1191" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="67">
+		<stats_template maxHp="11393" maxMp="25850" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1368" block="1506" parry="1603" main_hand_attack="18" main_hand_accuracy="1292" main_hand_crit_rate="1" magic_accuracy="1206" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="68">
+		<stats_template maxHp="11541" maxMp="26197" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1383" block="1521" parry="1618" main_hand_attack="18" main_hand_accuracy="1307" main_hand_crit_rate="1" magic_accuracy="1221" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="69">
+		<stats_template maxHp="11689" maxMp="26544" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1398" block="1536" parry="1633" main_hand_attack="18" main_hand_accuracy="1322" main_hand_crit_rate="1" magic_accuracy="1236" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="70">
+		<stats_template maxHp="11837" maxMp="26891" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1413" block="1551" parry="1648" main_hand_attack="18" main_hand_accuracy="1337" main_hand_crit_rate="1" magic_accuracy="1251" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="71">
+		<stats_template maxHp="11985" maxMp="27238" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1428" block="1566" parry="1663" main_hand_attack="18" main_hand_accuracy="1352" main_hand_crit_rate="1" magic_accuracy="1266" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="72">
+		<stats_template maxHp="12133" maxMp="27585" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1443" block="1581" parry="1678" main_hand_attack="18" main_hand_accuracy="1367" main_hand_crit_rate="1" magic_accuracy="1281" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="73">
+		<stats_template maxHp="12281" maxMp="27932" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1458" block="1596" parry="1693" main_hand_attack="18" main_hand_accuracy="1382" main_hand_crit_rate="1" magic_accuracy="1296" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="74">
+		<stats_template maxHp="12429" maxMp="28279" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1473" block="1611" parry="1708" main_hand_attack="18" main_hand_accuracy="1397" main_hand_crit_rate="1" magic_accuracy="1311" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="75">
+		<stats_template maxHp="12577" maxMp="28626" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1488" block="1626" parry="1723" main_hand_attack="18" main_hand_accuracy="1412" main_hand_crit_rate="1" magic_accuracy="1326" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="76">
+		<stats_template maxHp="12725" maxMp="28973" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1503" block="1641" parry="1738" main_hand_attack="18" main_hand_accuracy="1427" main_hand_crit_rate="1" magic_accuracy="1341" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="77">
+		<stats_template maxHp="12873" maxMp="29320" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1518" block="1656" parry="1753" main_hand_attack="18" main_hand_accuracy="1442" main_hand_crit_rate="1" magic_accuracy="1356" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="78">
+		<stats_template maxHp="13021" maxMp="29667" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1533" block="1671" parry="1768" main_hand_attack="18" main_hand_accuracy="1457" main_hand_crit_rate="1" magic_accuracy="1371" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="79">
+		<stats_template maxHp="13169" maxMp="30014" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1548" block="1686" parry="1783" main_hand_attack="18" main_hand_accuracy="1472" main_hand_crit_rate="1" magic_accuracy="1386" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="CLERIC" level="80">
+		<stats_template maxHp="13317" maxMp="30361" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1563" block="1701" parry="1798" main_hand_attack="18" main_hand_accuracy="1487" main_hand_crit_rate="1" magic_accuracy="1401" crit_spell="50"/>
+	</player_stats>
+	
+	<!--
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="81">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1039" block="1039" parry="1039" main_hand_attack="18" main_hand_accuracy="818" main_hand_crit_rate="1" magic_accuracy="1152" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="82">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1052" block="1052" parry="1052" main_hand_attack="18" main_hand_accuracy="826" main_hand_crit_rate="1" magic_accuracy="1166" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="83">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1065" block="1065" parry="1065" main_hand_attack="18" main_hand_accuracy="834" main_hand_crit_rate="1" magic_accuracy="1180" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="84">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1078" block="1078" parry="1078" main_hand_attack="18" main_hand_accuracy="842" main_hand_crit_rate="1" magic_accuracy="1194" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="85">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1091" block="1091" parry="1091" main_hand_attack="18" main_hand_accuracy="850" main_hand_crit_rate="1" magic_accuracy="1208" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="86">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1104" block="1104" parry="1104" main_hand_attack="18" main_hand_accuracy="858" main_hand_crit_rate="1" magic_accuracy="1222" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="87">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1117" block="1117" parry="1117" main_hand_attack="18" main_hand_accuracy="866" main_hand_crit_rate="1" magic_accuracy="1236" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="88">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1130" block="1130" parry="1130" main_hand_attack="18" main_hand_accuracy="874" main_hand_crit_rate="1" magic_accuracy="1250" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="89">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1143" block="1143" parry="1143" main_hand_attack="18" main_hand_accuracy="882" main_hand_crit_rate="1" magic_accuracy="1264" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="90">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1156" block="1156" parry="1156" main_hand_attack="18" main_hand_accuracy="890" main_hand_crit_rate="1" magic_accuracy="1278" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="91">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1169" block="1169" parry="1169" main_hand_attack="18" main_hand_accuracy="898" main_hand_crit_rate="1" magic_accuracy="1292" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="92">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1182" block="1182" parry="1182" main_hand_attack="18" main_hand_accuracy="906" main_hand_crit_rate="1" magic_accuracy="1306" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="93">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1195" block="1195" parry="1195" main_hand_attack="18" main_hand_accuracy="914" main_hand_crit_rate="1" magic_accuracy="1320" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="94">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1208" block="1208" parry="1208" main_hand_attack="18" main_hand_accuracy="922" main_hand_crit_rate="1" magic_accuracy="1334" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="95">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1221" block="1221" parry="1221" main_hand_attack="18" main_hand_accuracy="930" main_hand_crit_rate="1" magic_accuracy="1348" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="96">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1234" block="1234" parry="1234" main_hand_attack="18" main_hand_accuracy="938" main_hand_crit_rate="1" magic_accuracy="1362" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="97">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1247" block="1247" parry="1247" main_hand_attack="18" main_hand_accuracy="946" main_hand_crit_rate="1" magic_accuracy="1376" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="98">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1260" block="1260" parry="1260" main_hand_attack="18" main_hand_accuracy="954" main_hand_crit_rate="1" magic_accuracy="1390" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="99">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1273" block="1273" parry="1273" main_hand_attack="18" main_hand_accuracy="962" main_hand_crit_rate="1" magic_accuracy="1404" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="CLERIC" level="100">
+		<stats_template maxHp="7947" maxMp="8187" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1286" block="1286" parry="1286" main_hand_attack="18" main_hand_accuracy="970" main_hand_crit_rate="1" magic_accuracy="1418" crit_spell="50"/>
+	</player_stats> -->
 </player_stats_templates>

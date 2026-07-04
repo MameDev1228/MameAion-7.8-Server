@@ -1,24 +1,24 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-emu is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-emu is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model;
 
 /**
  * This class represents an announcement
- *
+ * 
  * @author Divinity
  */
 public class Announcement {
@@ -31,7 +31,7 @@ public class Announcement {
 
 	/**
 	 * Constructor without the ID of announcement
-	 *
+	 * 
 	 * @param announce
 	 * @param faction
 	 * @param chatType
@@ -41,9 +41,8 @@ public class Announcement {
 		this.announce = announce;
 
 		// Checking the right syntax
-		if (!faction.equalsIgnoreCase("ELYOS") && !faction.equalsIgnoreCase("ASMODIANS")) {
+		if (!faction.equalsIgnoreCase("ELYOS") && !faction.equalsIgnoreCase("ASMODIANS"))
 			faction = "ALL";
-		}
 
 		this.faction = faction;
 		this.chatType = chatType;
@@ -52,7 +51,7 @@ public class Announcement {
 
 	/**
 	 * Constructor with the ID of announcement
-	 *
+	 * 
 	 * @param id
 	 * @param announce
 	 * @param faction
@@ -64,9 +63,8 @@ public class Announcement {
 		this.announce = announce;
 
 		// Checking the right syntax
-		if (!faction.equalsIgnoreCase("ELYOS") && !faction.equalsIgnoreCase("ASMODIANS")) {
+		if (!faction.equalsIgnoreCase("ELYOS") && !faction.equalsIgnoreCase("ASMODIANS"))
 			faction = "ALL";
-		}
 
 		this.faction = faction;
 		this.chatType = chatType;
@@ -75,21 +73,19 @@ public class Announcement {
 
 	/**
 	 * Return the id of the announcement In case of the id doesn't exist, return -1
-	 *
+	 * 
 	 * @return int - Announcement's id
 	 */
 	public int getId() {
-		if (id != 0) {
+		if (id != 0)
 			return id;
-		}
-		else {
+		else
 			return -1;
-		}
 	}
 
 	/**
 	 * Return the announcement's text
-	 *
+	 * 
 	 * @return String - Announcement's text
 	 */
 	public String getAnnounce() {
@@ -98,7 +94,7 @@ public class Announcement {
 
 	/**
 	 * Return the announcement's faction in string mode : - ELYOS - ASMODIANS - ALL
-	 *
+	 * 
 	 * @return String - Announcement's faction
 	 */
 	public String getFaction() {
@@ -107,23 +103,21 @@ public class Announcement {
 
 	/**
 	 * Return the announcement's faction in Race enum mode : - Race.ELYOS - Race.ASMODIANS
-	 *
+	 * 
 	 * @return Race - Announcement's faction
 	 */
 	public Race getFactionEnum() {
-		if (faction.equalsIgnoreCase("ELYOS")) {
+		if (faction.equalsIgnoreCase("ELYOS"))
 			return Race.ELYOS;
-		}
-		else if (faction.equalsIgnoreCase("ASMODIANS")) {
+		else if (faction.equalsIgnoreCase("ASMODIANS"))
 			return Race.ASMODIANS;
-		}
 
 		return null;
 	}
 
 	/**
 	 * Return the chatType in String mode (for the insert in database)
-	 *
+	 * 
 	 * @return String - Announcement's chatType
 	 */
 	public String getType() {
@@ -132,33 +126,27 @@ public class Announcement {
 
 	/**
 	 * Return the chatType with the ChatType Enum
-	 *
+	 * 
 	 * @return ChatType - Announcement's chatType
 	 */
 	public ChatType getChatType() {
-		if (chatType.equalsIgnoreCase("Yellow")) {
-			return ChatType.YELLOW;
-		}
-		else if (chatType.equalsIgnoreCase("White")) {
+		if (chatType.equalsIgnoreCase("System"))
+			return ChatType.GOLDEN_YELLOW;
+		else if (chatType.equalsIgnoreCase("White"))
 			return ChatType.WHITE_CENTER;
-		}
-		else if (chatType.equalsIgnoreCase("Yellow")) {
+		else if (chatType.equalsIgnoreCase("Yellow"))
 			return ChatType.YELLOW_CENTER;
-		}
-		else if (chatType.equalsIgnoreCase("Shout")) {
+		else if (chatType.equalsIgnoreCase("Shout"))
 			return ChatType.SHOUT;
-		}
-		else if (chatType.equalsIgnoreCase("Orange")) {
+		else if (chatType.equalsIgnoreCase("Orange"))
 			return ChatType.GROUP_LEADER;
-		}
-		else {
+		else
 			return ChatType.BRIGHT_YELLOW_CENTER;
-		}
 	}
 
 	/**
 	 * Return the announcement's delay
-	 *
+	 * 
 	 * @return int - Announcement's delay
 	 */
 	public int getDelay() {

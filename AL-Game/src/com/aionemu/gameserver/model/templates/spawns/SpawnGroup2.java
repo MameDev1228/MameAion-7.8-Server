@@ -1,49 +1,30 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.templates.spawns;
+
+import com.aionemu.commons.taskmanager.AbstractLockManager;
+import com.aionemu.commons.utils.Rnd;
+import com.aionemu.gameserver.model.Race;
+import com.aionemu.gameserver.model.conquest.ConquestStateType;
+import com.aionemu.gameserver.model.dynamicrift.DynamicRiftStateType;
+import com.aionemu.gameserver.model.siege.SiegeModType;
+import com.aionemu.gameserver.model.siege.SiegeRace;
+import com.aionemu.gameserver.model.templates.spawns.basespawns.BaseSpawnTemplate;
+import com.aionemu.gameserver.model.templates.spawns.conquestspawns.ConquestSpawnTemplate;
+import com.aionemu.gameserver.model.templates.spawns.dynamicriftspawns.DynamicRiftSpawnTemplate;
+import com.aionemu.gameserver.model.templates.spawns.outpostspawns.OutpostSpawnTemplate;
+import com.aionemu.gameserver.model.templates.spawns.riftspawns.RiftSpawnTemplate;
+import com.aionemu.gameserver.model.templates.spawns.siegespawns.SiegeSpawnTemplate;
+import com.aionemu.gameserver.spawnengine.SpawnHandlerType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.aionemu.commons.taskmanager.AbstractLockManager;
-import com.aionemu.commons.utils.Rnd;
-import com.aionemu.gameserver.model.Race;
-import com.aionemu.gameserver.model.dynamicportal.DynamicPortalStateType;
-import com.aionemu.gameserver.model.siege.SiegeModType;
-import com.aionemu.gameserver.model.siege.SiegeRace;
-import com.aionemu.gameserver.model.templates.spawns.basespawns.BaseSpawnTemplate;
-import com.aionemu.gameserver.model.templates.spawns.dynamicportalspawns.DynamicPortalSpawnTemplate;
-import com.aionemu.gameserver.model.templates.spawns.riftspawns.RiftSpawnTemplate;
-import com.aionemu.gameserver.model.templates.spawns.siegespawns.SiegeSpawnTemplate;
-import com.aionemu.gameserver.model.templates.spawns.vortexspawns.VortexSpawnTemplate;
-import com.aionemu.gameserver.model.vortex.VortexStateType;
-import com.aionemu.gameserver.spawnengine.SpawnHandlerType;
-
-/**
- * @author xTz
- * @modified Rolandas
- */
-public class SpawnGroup2 extends AbstractLockManager {
-
+public class SpawnGroup2 extends AbstractLockManager
+{
 	private static final Logger log = LoggerFactory.getLogger(SpawnGroup2.class);
+	
 	private int worldId;
 	private int npcId;
 	private int pool;
@@ -53,7 +34,7 @@ public class SpawnGroup2 extends AbstractLockManager {
 	private SpawnHandlerType handlerType;
 	private List<SpawnTemplate> spots = new ArrayList<SpawnTemplate>();
 	private HashMap<Integer, HashMap<SpawnTemplate, Boolean>> poolUsedTemplates;
-
+	
 	public SpawnGroup2(int worldId, Spawn spawn) {
 		this.worldId = worldId;
 		initializing(spawn);
@@ -65,7 +46,7 @@ public class SpawnGroup2 extends AbstractLockManager {
 			spots.add(spawnTemplate);
 		}
 	}
-
+	
 	public SpawnGroup2(int worldId, Spawn spawn, int id, Race race) {
 		this.worldId = worldId;
 		initializing(spawn);
@@ -76,28 +57,18 @@ public class SpawnGroup2 extends AbstractLockManager {
 			spots.add(spawnTemplate);
 		}
 	}
-
-	public SpawnGroup2(int worldId, Spawn spawn, int id) {
+	
+	public SpawnGroup2(int worldId, Spawn spawn, int id, Race race, int miss) {
 		this.worldId = worldId;
 		initializing(spawn);
 		for (SpawnSpotTemplate template : spawn.getSpawnSpotTemplates()) {
-			RiftSpawnTemplate spawnTemplate = new RiftSpawnTemplate(this, template);
+			OutpostSpawnTemplate spawnTemplate = new OutpostSpawnTemplate(this, template);
 			spawnTemplate.setId(id);
+			spawnTemplate.setOutpostRace(race);
 			spots.add(spawnTemplate);
 		}
 	}
-
-	public SpawnGroup2(int worldId, Spawn spawn, int id, VortexStateType type) {
-		this.worldId = worldId;
-		initializing(spawn);
-		for (SpawnSpotTemplate template : spawn.getSpawnSpotTemplates()) {
-			VortexSpawnTemplate spawnTemplate = new VortexSpawnTemplate(this, template);
-			spawnTemplate.setId(id);
-			spawnTemplate.setStateType(type);
-			spots.add(spawnTemplate);
-		}
-	}
-
+	
 	public SpawnGroup2(int worldId, Spawn spawn, int siegeId, SiegeRace race, SiegeModType mod) {
 		this.worldId = worldId;
 		initializing(spawn);
@@ -109,83 +80,100 @@ public class SpawnGroup2 extends AbstractLockManager {
 			spots.add(spawnTemplate);
 		}
 	}
-
-	public SpawnGroup2(int worldId, Spawn spawn, int id, DynamicPortalStateType type) {
+	
+	public SpawnGroup2(int worldId, Spawn spawn, int id) {
 		this.worldId = worldId;
 		initializing(spawn);
 		for (SpawnSpotTemplate template : spawn.getSpawnSpotTemplates()) {
-			DynamicPortalSpawnTemplate spawnTemplate = new DynamicPortalSpawnTemplate(this, template);
+			RiftSpawnTemplate spawnTemplate = new RiftSpawnTemplate(this, template);
+			spawnTemplate.setId(id);
+			spots.add(spawnTemplate);
+		}
+	}
+	
+	public SpawnGroup2(int worldId, Spawn spawn, int id, ConquestStateType type) {
+		this.worldId = worldId;
+		initializing(spawn);
+		for (SpawnSpotTemplate template : spawn.getSpawnSpotTemplates()) {
+			ConquestSpawnTemplate spawnTemplate = new ConquestSpawnTemplate(this, template);
+			spawnTemplate.setId(id);
+			spawnTemplate.setOStateType(type);
+			spots.add(spawnTemplate);
+		}
+	}
+	
+	public SpawnGroup2(int worldId, Spawn spawn, int id, DynamicRiftStateType type) {
+		this.worldId = worldId;
+		initializing(spawn);
+		for (SpawnSpotTemplate template : spawn.getSpawnSpotTemplates()) {
+			DynamicRiftSpawnTemplate spawnTemplate = new DynamicRiftSpawnTemplate(this, template);
 			spawnTemplate.setId(id);
 			spawnTemplate.setDStateType(type);
 			spots.add(spawnTemplate);
 		}
 	}
-
-	private void initializing(Spawn spawn) {
-		temporarySpawn = spawn.getTemporarySpawn();
-		respawnTime = spawn.getRespawnTime();
+	
+    private void initializing(Spawn spawn) {
+        temporarySpawn = spawn.getTemporarySpawn();
+        respawnTime = spawn.getRespawnTime();
 		pool = spawn.getPool();
 		npcId = spawn.getNpcId();
 		handlerType = spawn.getSpawnHandlerType();
 		difficultId = spawn.getDifficultId();
-		poolUsedTemplates = new HashMap<Integer, HashMap<SpawnTemplate, Boolean>>();
+		if (hasPool()) {
+			poolUsedTemplates = new HashMap<Integer, HashMap<SpawnTemplate, Boolean>>();
+		}
 	}
-
+	
 	public SpawnGroup2(int worldId, int npcId) {
 		this.worldId = worldId;
 		this.npcId = npcId;
 	}
-
+	
 	public List<SpawnTemplate> getSpawnTemplates() {
 		return spots;
 	}
-
+	
 	public void addSpawnTemplate(SpawnTemplate spawnTemplate) {
-		super.writeLock();
-		try {
-			spots.add(spawnTemplate);
-		}
-		finally {
-			super.writeUnlock();
-		}
+		spots.add(spawnTemplate);
 	}
-
+	
 	public int getWorldId() {
 		return worldId;
 	}
-
+	
 	public int getNpcId() {
 		return npcId;
 	}
-
+	
 	public TemporarySpawn geTemporarySpawn() {
 		return temporarySpawn;
 	}
-
+	
 	public int getPool() {
 		return pool;
 	}
-
+	
 	public boolean hasPool() {
 		return pool > 0;
 	}
-
+	
 	public int getRespawnTime() {
 		return respawnTime;
 	}
-
+	
 	public void setRespawnTime(int respawnTime) {
 		this.respawnTime = respawnTime;
 	}
-
+	
 	public boolean isTemporarySpawn() {
 		return temporarySpawn != null;
 	}
-
+	
 	public SpawnHandlerType getHandlerType() {
 		return handlerType;
 	}
-
+	
 	public SpawnTemplate getRndTemplate(int instanceId) {
 		final List<SpawnTemplate> allTemplates = spots;
 		List<SpawnTemplate> templates = new ArrayList<SpawnTemplate>();
@@ -195,8 +183,7 @@ public class SpawnGroup2 extends AbstractLockManager {
 				if (!isTemplateUsed(instanceId, template)) {
 					templates.add(template);
 				}
-			}
-			if (templates.size() == 0) {
+			} if (templates.size() == 0) {
 				log.warn("Pool size more then spots, npcId: " + npcId + ", worldId: " + worldId);
 				return null;
 			}
@@ -208,7 +195,7 @@ public class SpawnGroup2 extends AbstractLockManager {
 		setTemplateUse(instanceId, spawnTemplate, true);
 		return spawnTemplate;
 	}
-
+	
 	public void setTemplateUse(int instanceId, SpawnTemplate template, boolean isUsed) {
 		super.writeLock();
 		try {
@@ -223,35 +210,27 @@ public class SpawnGroup2 extends AbstractLockManager {
 			super.writeUnlock();
 		}
 	}
-
+	
 	public boolean isTemplateUsed(int instanceId, SpawnTemplate template) {
 		super.readLock();
 		try {
 			HashMap<SpawnTemplate, Boolean> states = poolUsedTemplates.get(instanceId);
-			if (states == null) {
+			if (states == null)
 				return false;
-			}
 			Boolean state = states.get(template);
-			if (state == null) {
+			if (state == null)
 				return false;
-			}
 			return state;
 		}
 		finally {
 			super.readUnlock();
 		}
 	}
-
-	/**
-	 * Call it before each randomization to unset all template use.
-	 *
-	 * @param instanceId
-	 */
+	
 	public void resetTemplates(int instanceId) {
 		HashMap<SpawnTemplate, Boolean> states = poolUsedTemplates.get(instanceId);
-		if (states == null) {
+		if (states == null)
 			return;
-		}
 		super.writeLock();
 		try {
 			for (SpawnTemplate template : states.keySet()) {
@@ -262,8 +241,8 @@ public class SpawnGroup2 extends AbstractLockManager {
 			super.writeUnlock();
 		}
 	}
-
+	
 	public byte getDifficultId() {
-		return difficultId;
-	}
+        return difficultId;
+    }
 }

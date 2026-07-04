@@ -1,32 +1,30 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.items.storage;
 
-import java.util.List;
-import java.util.Queue;
-
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.questEngine.model.QuestStatus;
-import com.aionemu.gameserver.services.item.ItemPacketService.ItemAddType;
+import com.aionemu.gameserver.services.item.ItemPacketService;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemDeleteType;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
-
 import javolution.util.FastList;
+
+import java.util.List;
+import java.util.Queue;
 
 /**
  * @author ATracer
@@ -55,11 +53,6 @@ public class LegionStorageProxy extends Storage {
 	@Override
 	public boolean tryDecreaseKinah(long amount) {
 		return storage.tryDecreaseKinah(amount, actor);
-	}
-
-	@Override
-	public boolean tryDecreaseKinah(long amount, ItemUpdateType updateType) {
-		return storage.tryDecreaseKinah(amount, updateType, actor);
 	}
 
 	@Override
@@ -93,18 +86,8 @@ public class LegionStorageProxy extends Storage {
 	}
 
 	@Override
-	public long decreaseItemCount(Item item, long count, ItemUpdateType updateType, QuestStatus questStatus) {
-		throw new UnsupportedOperationException("Quests should not update LWH!");
-	}
-
-	@Override
 	public Item add(Item item) {
 		return storage.add(item, actor);
-	}
-
-	@Override
-	public Item add(Item item, ItemAddType addType) {
-		return storage.add(item, addType, actor);
 	}
 
 	@Override
@@ -128,11 +111,6 @@ public class LegionStorageProxy extends Storage {
 	}
 
 	@Override
-	public boolean decreaseByItemId(int itemId, long count, QuestStatus questStatus) {
-		throw new UnsupportedOperationException("Quests should not update LWH!");
-	}
-
-	@Override
 	public boolean decreaseByObjectId(int itemObjId, long count) {
 		return storage.decreaseByObjectId(itemObjId, count, actor);
 	}
@@ -140,11 +118,6 @@ public class LegionStorageProxy extends Storage {
 	@Override
 	public boolean decreaseByObjectId(int itemObjId, long count, ItemUpdateType updateType) {
 		return storage.decreaseByObjectId(itemObjId, count, updateType, actor);
-	}
-
-	@Override
-	public boolean decreaseByObjectId(int itemObjId, long count, QuestStatus questStatus) {
-		throw new UnsupportedOperationException("Quests should not update LWH!");
 	}
 
 	@Override
@@ -231,4 +204,5 @@ public class LegionStorageProxy extends Storage {
 	public void setOwner(Player player) {
 		throw new UnsupportedOperationException("LWH doesnt have owner");
 	}
+
 }

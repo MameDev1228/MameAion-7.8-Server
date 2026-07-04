@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc_drops>
+		<!-- Event LDF8 Rega Material -->
+		<npc_drop npc_id="820511">
+		        <drop_group name="" use_category="false">
+					<drop chance="15.0" item_id="186020051" max_amount="3" min_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		
+		<!-- Secrets Of The Ancients -->
+		<!-- Yanubis -->
+		<npc_drop npc_id="247233">
+		        <drop_group name="" use_category="false">
+					<drop chance="100.0" eachmember="true" item_id="186000479" max_amount="50" min_amount="50" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		
+		<!-- Pumpkin King Haunt -->
+		<!-- Halloween_Event_12_Live_70_Al -->
+		<npc_drop npc_id="249082">
+		        <drop_group name="" use_category="false">
+					<drop chance="100.0" eachmember="true" item_id="182007425" max_amount="2" min_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		
+		<!-- The Spookily Super Halloween -->
+		<!-- Awakened Pumpkin King -->
+		<npc_drop npc_id="248556">
+				<drop_group name="" use_category="false">
+					<drop chance="100.0" eachmember="true" item_id="182216245" max_amount="1" min_amount="1" no_reduce="true"/>
+				</drop_group>
+				<drop_group name="" use_category="false">
+					<drop chance="100.0" eachmember="true" item_id="188058252" max_amount="1" min_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- Awakened Pumpkin King -->
+		<npc_drop npc_id="248557">
+				<drop_group name="" use_category="false">
+					<drop chance="100.0" eachmember="true" item_id="182216245" max_amount="1" min_amount="1" no_reduce="true"/>
+				</drop_group>
+				<drop_group name="" use_category="false">
+					<drop chance="100.0" eachmember="true" item_id="188058252" max_amount="1" min_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		
+		<!-- Curse Of Aion -->
+		<!-- Witch_Flower_Treasurebox_Live -->
+		<npc_drop npc_id="835678">
+		        <drop_group name="" use_category="false">
+						<drop chance="100.0" eachmember="true" item_id="186000487" max_amount="50" min_amount="50" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- Witch_Flower_Treasurebox_Master -->
+		<npc_drop npc_id="835679">
+		        <drop_group name="" use_category="false">
+					<drop chance="100.0" eachmember="true" item_id="186000487" max_amount="20" min_amount="20" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		
+		<!-- Wishing Fountain Event 4.8 -->
+		<!-- Yellow Flower Of Magic -->
+		<npc_drop npc_id="702786">
+		        <drop_group name="" use_category="false">
+					<drop chance="100.0" eachmember="true" item_id="188053915" max_amount="1" min_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- Red Flower Of Magic -->
+		<npc_drop npc_id="702787">
+		        <drop_group name="" use_category="false">
+					<drop chance="100.0" eachmember="true" item_id="188053915" max_amount="1" min_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- Pure-White Flower Of Magic -->
+		<npc_drop npc_id="702788">
+		        <drop_group name="" use_category="false">
+					<drop chance="100.0" eachmember="true" item_id="188053915" max_amount="1" min_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		
+		<!-- THE HOPPENING EVENT -->
+		<!-- Bloodthirsty Vampidaru -->
+		<npc_drop npc_id="219655">
+                <drop_group name="" use_category="false">
+					<drop chance="2.0" item_id="188100143" max_amount="1" min_amount="1"/>
+					<drop chance="2.0" item_id="188100144" max_amount="1" min_amount="1"/>
+                </drop_group>
+        </npc_drop>
+		<!-- The Hoppening Treasure Chest -->
+		<npc_drop npc_id="702313">
+                <drop_group name="" use_category="false">
+					<drop chance="2.0" item_id="188100142" max_amount="1" min_amount="1"/>
+					<drop chance="2.0" item_id="188100145" max_amount="1" min_amount="1"/>
+                </drop_group>
+        </npc_drop>
+</npc_drops>

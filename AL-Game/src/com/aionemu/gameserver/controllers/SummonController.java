@@ -1,22 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.controllers;
-
-import org.apache.commons.lang.NullArgumentException;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.EmotionType;
@@ -38,10 +36,12 @@ import com.aionemu.gameserver.skillengine.model.Skill;
 import com.aionemu.gameserver.taskmanager.tasks.PlayerMoveTaskManager;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
+import org.apache.commons.lang.NullArgumentException;
 
 /**
  * @author ATracer
- * @author RotO (Attack-speed hack protection) modified by Sippolo
+ * @author RotO (Attack-speed hack protection)
+ * modified by Sippolo
  */
 public class SummonController extends CreatureController<Summon> {
 
@@ -52,14 +52,15 @@ public class SummonController extends CreatureController<Summon> {
 	@Override
 	public void notSee(VisibleObject object, boolean isOutOfRange) {
 		super.notSee(object, isOutOfRange);
-		if (getOwner().getMaster() == null) {
+		if (getOwner().getMaster() == null)
 			return;
-		}
 
 		if (object.getObjectId() == getOwner().getMaster().getObjectId()) {
 			SummonsService.release(getOwner(), UnsummonType.DISTANCE, isAttacked);
 		}
 	}
+
+
 
 	/**
 	 * Release summon
@@ -67,7 +68,7 @@ public class SummonController extends CreatureController<Summon> {
 	public void release(final UnsummonType unsummonType) {
 		SummonsService.release(getOwner(), unsummonType, isAttacked);
 	}
-
+	
 	@Override
 	public Summon getOwner() {
 		return (Summon) super.getOwner();
@@ -103,11 +104,11 @@ public class SummonController extends CreatureController<Summon> {
 
 	@Override
 	public void attackTarget(Creature target, int attackNo, int time, int type) {
+
 		Player master = getOwner().getMaster();
 
-		if (!RestrictionsManager.canAttack(master, target)) {
+		if (!RestrictionsManager.canAttack(master, target))
 			return;
-		}
 
 		int attackSpeed = getOwner().getGameStats().getAttackSpeed().getCurrent();
 		long milis = System.currentTimeMillis();
@@ -118,19 +119,18 @@ public class SummonController extends CreatureController<Summon> {
 			return;
 		}
 		lastAttackMilis = milis;
+		
 		super.attackTarget(target, attackNo, time, type);
 	}
 
 	@Override
 	public void onAttack(Creature creature, int skillId, TYPE type, int damage, boolean notifyAttack, LOG log) {
-		if (getOwner().getLifeStats().isAlreadyDead()) {
+		if (getOwner().getLifeStats().isAlreadyDead())
 			return;
-		}
 
 		// temp
-		if (getOwner().getMode() == SummonMode.RELEASE) {
+		if (getOwner().getMode() == SummonMode.RELEASE)
 			return;
-		}
 
 		super.onAttack(creature, skillId, type, damage, notifyAttack, log);
 		PacketSendUtility.broadcastPacket(getOwner(), new SM_ATTACK_STATUS(getOwner(), creature, TYPE.REGULAR, 0, damage, log));
@@ -139,9 +139,8 @@ public class SummonController extends CreatureController<Summon> {
 
 	@Override
 	public void onDie(final Creature lastAttacker) {
-		if (lastAttacker == null) {
+		if (lastAttacker == null)
 			throw new NullArgumentException("lastAttacker");
-		}
 		super.onDie(lastAttacker);
 		SummonsService.release(getOwner(), UnsummonType.UNSPECIFIED, isAttacked);
 		Summon owner = getOwner();
@@ -169,7 +168,8 @@ public class SummonController extends CreatureController<Summon> {
 		Skill skill = SkillEngine.getInstance().getSkill(creature, skillId, 1, target);
 		if (skill != null) {
 			// If skill succeeds, handle automatic release if expected
-			if (skill.useSkill() && skillId == releaseAfterSkill) {
+			if (skill.useSkill() && skillId == releaseAfterSkill)
+			{
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
 
 					@Override
@@ -184,9 +184,7 @@ public class SummonController extends CreatureController<Summon> {
 
 	/**
 	 * Handle automatic release if Ultra Skill demands it
-	 *
-	 * @param is
-	 *            the skill commanded by summoner, after which pet is automatically dismissed
+	 * @param is the skill commanded by summoner, after which pet is automatically dismissed
 	 */
 	public void setReleaseAfterSkill(int skillId) {
 		this.releaseAfterSkill = skillId;
@@ -199,7 +197,7 @@ public class SummonController extends CreatureController<Summon> {
 		getOwner().getObserveController().notifyMoveObservers();
 		PlayerMoveTaskManager.getInstance().addPlayer(getOwner());
 	}
-
+	
 	@Override
 	public void onStopMove() {
 		super.onStopMove();

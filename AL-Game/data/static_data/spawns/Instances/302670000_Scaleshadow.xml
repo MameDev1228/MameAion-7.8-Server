@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Scaleshadow
+	Spawn By Encom
+ -->
+<spawns>
+	<spawn_map map_id="302670000">
+		<!-- idf8_mission04_a_drakan_fi_80_an -->
+		<spawn npc_id="659222">
+			<spot h="0" z="353.5929" y="642.7112" x="547.1085"/>
+            <spot h="0" z="353.79153" y="647.5656" x="545.0249"/>
+            <spot h="69" z="355.1843" y="645.12085" x="573.3835"/>
+            <spot h="68" z="355.1843" y="665.48474" x="563.89233"/>
+            <spot h="64" z="355.1843" y="615.8672" x="581.87714"/>
+            <spot h="66" z="355.1843" y="639.00543" x="575.86426"/>
+            <spot h="76" z="353.6462" y="624.5337" x="555.3817"/>
+            <spot h="55" z="353.64432" y="618.0628" x="557.1087"/>
+            <spot h="47" z="353.77145" y="592.0427" x="561.51685"/>
+            <spot h="73" z="353.73383" y="599.4489" x="560.737"/>
+            <spot h="64" z="355.1843" y="609.89746" x="582.98627"/>
+            <spot h="61" z="355.1843" y="585.66724" x="585.0749"/>
+            <spot h="47" z="353.7006" y="566.3107" x="560.64246"/>
+            <spot h="70" z="353.7039" y="573.2663" x="561.2626"/>
+            <spot h="58" z="355.1843" y="555.5192" x="582.825"/>
+            <spot h="58" z="355.1843" y="578.708" x="584.96967"/>
+            <spot h="70" z="353.67896" y="547.6243" x="557.2802"/>
+            <spot h="46" z="353.6749" y="540.8655" x="555.45447"/>
+            <spot h="55" z="355.1843" y="547.7818" x="581.49066"/>
+            <spot h="55" z="355.1843" y="528.7339" x="576.3463"/>
+            <spot h="51" z="355.1843" y="519.06354" x="573.0874"/>
+            <spot h="51" z="355.1843" y="500.97733" x="564.3494"/>
+            <spot h="67" z="353.62408" y="523.46875" x="549.0631"/>
+            <spot h="40" z="353.8045" y="516.3023" x="546.34076"/>
+		</spawn>
+		<!-- idf8_mission04_b_drakan_fi_80_an -->
+		<spawn npc_id="659228">
+			<spot x="540.0000" y="522.0000" z="352.0000" h="52" walker_id="idf8_mission04_b_drakan_as_80_an"/>
+			<spot x="540.0000" y="522.0000" z="352.0000" h="52" walker_id="idf8_mission04_b_drakan_as_80_an"/>
+			<spot x="466.0000" y="568.0000" z="348.0000" h="26" walker_id="idf8_mission04_b_drakan_fi_80_an"/>
+			<spot x="466.0000" y="568.0000" z="348.0000" h="26" walker_id="idf8_mission04_b_drakan_fi_80_an"/>
+		</spawn>
+		<!-- idf8_mission04_b_drakan_as_80_an -->
+		<spawn npc_id="659229">
+            <spot h="37" z="352.83243" y="626.35474" x="533.89197"/>
+            <spot h="32" z="352.57672" y="602.5607" x="523.3724"/>
+            <spot h="30" z="352.8614" y="582.8899" x="541.8174"/>
+            <spot h="28" z="351.48596" y="566.2749" x="505.2527"/>
+			<spot x="540.0000" y="522.0000" z="352.0000" h="52" walker_id="idf8_mission04_b_drakan_as_80_an"/>
+			<spot x="540.0000" y="522.0000" z="352.0000" h="52" walker_id="idf8_mission04_b_drakan_as_80_an"/>
+			<spot x="466.0000" y="568.0000" z="348.0000" h="26" walker_id="idf8_mission04_b_drakan_fi_80_an"/>
+			<spot x="466.0000" y="568.0000" z="348.0000" h="26" walker_id="idf8_mission04_b_drakan_fi_80_an"/>
+		</spawn>
+		<!-- idf8_mission04_b_drakan_pr_80_an -->
+		<spawn npc_id="659230">
+			<spot x="540.0000" y="522.0000" z="352.0000" h="52" walker_id="idf8_mission04_b_drakan_as_80_an"/>
+			<spot x="540.0000" y="522.0000" z="352.0000" h="52" walker_id="idf8_mission04_b_drakan_as_80_an"/>
+			<spot x="466.0000" y="568.0000" z="348.0000" h="26" walker_id="idf8_mission04_b_drakan_fi_80_an"/>
+			<spot x="466.0000" y="568.0000" z="348.0000" h="26" walker_id="idf8_mission04_b_drakan_fi_80_an"/>
+		</spawn>
+		<!-- idf8_mission04_b_drakan_ra_80_an -->
+		<spawn npc_id="659231">
+			<spot h="9" z="352.88553" y="633.7364" x="525.5521"/>
+            <spot h="8" z="352.887" y="636.7184" x="524.26404"/>
+            <spot h="5" z="352.35614" y="611.72205" x="514.3194"/>
+            <spot h="5" z="352.36124" y="608.6543" x="515.25366"/>
+            <spot h="1" z="352.3838" y="590.06036" x="516.6108"/>
+            <spot h="1" z="352.3668" y="593.29816" x="516.31854"/>
+            <spot h="119" z="351.14752" y="576.49713" x="501.34503"/>
+            <spot h="118" z="351.16357" y="573.1718" x="501.20004"/>
+            <spot h="115" z="351.18076" y="558.0127" x="498.31622"/>
+            <spot h="115" z="351.19034" y="560.9992" x="499.2354"/>
+            <spot h="51" z="348.2193" y="559.02386" x="471.8261"/>
+            <spot h="51" z="348.2193" y="552.761" x="468.8683"/>
+		</spawn>
+		<!-- idf8_mission04_d_drakan_fi_80_an -->
+		<spawn npc_id="659240">
+			<spot x="436.0000" y="582.0000" z="346.0000" h="60" walker_id="idf8_mission04_d_drakan_fi_80_an"/>
+			<spot x="436.0000" y="582.0000" z="346.0000" h="60" walker_id="idf8_mission04_d_drakan_fi_80_an"/>
+			<spot x="436.0000" y="582.0000" z="346.0000" h="60" walker_id="idf8_mission04_d_drakan_fi_80_an"/>
+		</spawn>
+		<!-- idf8_mission04_a_drakan_pr_named_gossip -->
+		<spawn npc_id="660773">
+			<spot x="568.46808" y="655.55695" z="355.66696"/>
+		</spawn>
+		<!-- idf8_mission04_a_drakan_pr_keynamed_01 -->
+		<spawn npc_id="660774">
+			<spot h="65" z="355.05374" y="627.29755" x="578.01166"/>
+		</spawn>
+		<!-- idf8_mission04_a_drakan_pr_keynamed_02 -->
+		<spawn npc_id="660775">
+			<spot h="61" z="355.0489" y="597.881" x="582.9441"/>
+		</spawn>
+		<!-- idf8_mission04_a_drakan_pr_keynamed_03 -->
+		<spawn npc_id="660776">
+			<spot h="58" z="355.0518" y="567.97565" x="583.1431"/>
+		</spawn>
+		<!-- idf8_mission04_a_drakan_pr_keynamed_04 -->
+		<spawn npc_id="660777">
+			<spot h="54" z="355.05457" y="538.3767" x="578.1042"/>
+		</spawn>
+		<!-- idf8_mission04_a_drakan_pr_keynamed_05 -->
+		<spawn npc_id="660778">
+			<spot h="51" z="355.05228" y="510.3841" x="567.7835"/>
+		</spawn>
+		<!-- BIDF8_Mission04_4BReward_Named_002 -->
+		<spawn npc_id="858471">
+			<spot x="455.0000" y="582.0000" z="348.0000"/>
+		</spawn>
+		
+		<!-- IDF8_Mission_04_Exit -->
+		<spawn npc_id="731947">
+			<spot x="342.57587" y="560.9999" z="334.8341" h="43"/>
+		</spawn>
+		<!-- Benirung's In Prison -->
+		<spawn npc_id="820521">
+			<spot x="588.15045" y="598.19635" z="355.18457" h="62"/>
+		</spawn>
+		<!-- Prototype Robot In Prison -->
+		<spawn npc_id="820635">
+			<spot x="605.4568" y="599.6394" z="354.17197" h="62"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Stellaky_Sleep -->
+		<spawn npc_id="820656">
+			<spot x="603.74554" y="560.55725" z="354.57687"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Monan_Training -->
+		<spawn npc_id="820657">
+			<spot x="602.46106" y="532.75232" z="354.53635"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Donas_Book -->
+		<spawn npc_id="820658">
+			<spot x="589.77191" y="500.33624" z="354.42145"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Shugo_Dead_Body -->
+		<spawn npc_id="820659">
+			<spot x="604.42444" y="571.34808" z="354.50528"/>
+			<spot x="597.13995" y="571.93964" z="354.43427"/>
+			<spot x="599.87274" y="627.41797" z="354.4278"/>
+			<spot x="589.57629" y="635.80743" z="354.48181"/>
+			<spot x="608.23358" y="561.85181" z="354.41745"/>
+			<spot x="592.80908" y="625.53339" z="354.42383"/>
+			<spot x="602.35883" y="636.78528" z="354.45349"/>
+			<spot x="596.78027" y="637.74188" z="354.49179"/>
+			<spot x="603.52759" y="630.05212" z="354.47128"/>
+			<spot x="596.45392" y="561.19073" z="354.44559"/>
+			<spot x="608.91943" y="569.4248" z="354.52002"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Archon_Dead_Body -->
+		<spawn npc_id="820660">
+			<spot x="599.48077" y="538.25092" z="354.4357"/>
+			<spot x="592.40466" y="540.11426" z="354.45221"/>
+			<spot x="589.84277" y="529.53241" z="354.51846"/>
+			<spot x="596.96246" y="527.62463" z="354.40836"/>
+			<spot x="601.52063" y="528.18683" z="354.5224"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Guardian_Dead_Body -->
+		<spawn npc_id="820661">
+			<spot x="592.49908" y="503.02475" z="354.47656"/>
+			<spot x="582.38123" y="509.51199" z="354.47305"/>
+			<spot x="577.90485" y="499.58694" z="354.47885"/>
+			<spot x="589.35291" y="496.10046" z="354.40723"/>
+			<spot x="584.54572" y="496.49063" z="354.46362"/>
+			<spot x="589.01904" y="506.56363" z="354.50235"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Shugo_Secret_Box -->
+		<spawn npc_id="820662">
+			<spot x="604.18921" y="627.50671" z="354.49603"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Training_Scarecrow -->
+		<spawn npc_id="820663">
+			<spot x="604.0293" y="532.22363" z="354.40997"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Wing_Prison_Wall_01 -->
+		<spawn npc_id="703827">
+			<spot x="587.05042" y="567.46027" z="355.13647" entity_id="196"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Wing_Prison_Wall_02 -->
+		<spawn npc_id="703828">
+		    <spot x="569.00269" y="555.13800" z="354.34424" entity_id="126"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Wing_Prison_Wall_03 -->
+		<spawn npc_id="703829">
+		    <spot x="568.97406" y="610.38806" z="354.37442" entity_id="182"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Wing_Prison_Wall_04 -->
+		<spawn npc_id="703830">
+		    <spot x="571.22937" y="582.73303" z="354.37137" entity_id="71"/>
+		</spawn>
+		<!-- IDF8_Mission_04_Wing_Prison_Wall_05 -->
+		<spawn npc_id="703831">
+			<spot x="561.60712" y="528.52814" z="354.38333" entity_id="149"/>
+		</spawn>
+	</spawn_map>
+</spawns>

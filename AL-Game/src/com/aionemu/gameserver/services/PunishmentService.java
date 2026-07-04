@@ -1,23 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services;
-
-import java.util.Calendar;
-import java.util.concurrent.Future;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.configs.main.GSConfig;
@@ -34,14 +31,17 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.WorldMapType;
 
+import java.util.Calendar;
+import java.util.concurrent.Future;
+
 /**
  * @author lord_rex, Cura, nrg
  */
 public class PunishmentService {
-
+	
 	/**
 	 * This method will handle unbanning a character
-	 *
+	 * 
 	 * @param player
 	 * @param state
 	 * @param delayInMinutes
@@ -49,43 +49,42 @@ public class PunishmentService {
 	public static void unbanChar(int playerId) {
 		DAOManager.getDAO(PlayerPunishmentsDAO.class).unpunishPlayer(playerId, PunishmentType.CHARBAN);
 	}
-
+	
 	/**
 	 * This method will handle banning a character
-	 *
+	 * 
 	 * @param player
 	 * @param state
 	 * @param delayInMinutes
 	 */
 	public static void banChar(int playerId, int dayCount, String reason) {
 		DAOManager.getDAO(PlayerPunishmentsDAO.class).punishPlayer(playerId, PunishmentType.CHARBAN, calculateDuration(dayCount), reason);
-
-		// if player is online - kick him
+		
+		//if player is online - kick him
 		Player player = World.getInstance().findPlayer(playerId);
-		if (player != null) {
-			player.getClientConnection().close(new SM_QUIT_RESPONSE(), false);
-		}
+		if(player != null)
+		  player.getClientConnection().close(new SM_QUIT_RESPONSE(), false);
 	}
-
+	
 	/**
 	 * Calculates the timestamp when a given number of days is over
-	 *
+	 * 
 	 * @param dayCount
 	 * @return timeStamp
 	 */
 	public static long calculateDuration(int dayCount) {
-		if (dayCount == 0) {
+		if (dayCount == 0)
 			return Integer.MAX_VALUE; // int because client handles this with seconds timestamp in int
-		}
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, +dayCount);
 
-		return ((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000);
+		Calendar cal = Calendar.getInstance();
+		cal.add(5, dayCount);
+
+		return (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000;
 	}
 
 	/**
 	 * This method will handle moving or removing a player from prison
-	 *
+	 * 
 	 * @param player
 	 * @param state
 	 * @param delayInMinutes
@@ -97,12 +96,12 @@ public class PunishmentService {
 			if (delayInMinutes > 0) {
 				prisonTimer = delayInMinutes * 60000L;
 				schedulePrisonTask(player, prisonTimer);
-				PacketSendUtility.sendMessage(player, "You have been teleported to prison for a time of " + delayInMinutes + " minutes.\n If you disconnect the time stops and the timer of the prison'll see at your next login.");
+				PacketSendUtility.sendMessage(player, "You have been teleported to prison for a time of " + delayInMinutes
+					+ " minutes.\n If you disconnect the time stops and the timer of the prison'll see at your next login.");
 			}
-
-			if (GSConfig.ENABLE_CHAT_SERVER) {
+			
+			if (GSConfig.ENABLE_CHAT_SERVER)
 				ChatServer.getInstance().sendPlayerLogout(player);
-			}
 
 			player.setStartPrison(System.currentTimeMillis());
 			TeleportService2.teleportToPrison(player);
@@ -110,11 +109,10 @@ public class PunishmentService {
 		}
 		else {
 			PacketSendUtility.sendMessage(player, "You come out of prison.");
-
-			if (GSConfig.ENABLE_CHAT_SERVER) {
+			
+			if (GSConfig.ENABLE_CHAT_SERVER)
 				PacketSendUtility.sendMessage(player, "To use global chats again relog!");
-			}
-
+				
 			player.setPrisonTimer(0);
 
 			TeleportService2.moveToBindLocation(player, true);
@@ -125,7 +123,7 @@ public class PunishmentService {
 
 	/**
 	 * This method will stop the prison task
-	 *
+	 * 
 	 * @param playerObjId
 	 */
 	public static void stopPrisonTask(Player player, boolean save) {
@@ -133,9 +131,8 @@ public class PunishmentService {
 		if (prisonTask != null) {
 			if (save) {
 				long delay = player.getPrisonTimer();
-				if (delay < 0) {
+				if (delay < 0)
 					delay = 0;
-				}
 				player.setPrisonTimer(delay);
 			}
 			player.getController().cancelTask(TaskId.PRISON);
@@ -144,7 +141,7 @@ public class PunishmentService {
 
 	/**
 	 * This method will update the prison status
-	 *
+	 * 
 	 * @param player
 	 */
 	public static void updatePrisonStatus(final Player player) {
@@ -152,18 +149,17 @@ public class PunishmentService {
 			long prisonTimer = player.getPrisonTimer();
 			if (prisonTimer > 0) {
 				schedulePrisonTask(player, prisonTimer);
-				int timeInPrison = (int) (prisonTimer / 60000);
+				int timeInPrison = (int)(prisonTimer / 60000);
 
-				if (timeInPrison <= 0) {
+				if (timeInPrison <= 0)
 					timeInPrison = 1;
-				}
 
 				PacketSendUtility.sendMessage(player, "You are still in prison for " + timeInPrison + " minute" + (timeInPrison > 1 ? "s" : "") + ".");
 
 				player.setStartPrison(System.currentTimeMillis());
 			}
-
-			if (player.getWorldId() != WorldMapType.DF_PRISON.getId() && player.getWorldId() != WorldMapType.LF_PRISON.getId()) {
+			
+			if (player.getWorldId() != WorldMapType.DF_PRISON.getId() && player.getWorldId() != WorldMapType.DE_PRISON.getId()) {
 				PacketSendUtility.sendMessage(player, "You will be teleported to prison in one minute!");
 				ThreadPoolManager.getInstance().schedule(new Runnable() {
 
@@ -172,13 +168,13 @@ public class PunishmentService {
 						TeleportService2.teleportToPrison(player);
 					}
 				}, 60000);
-			}
+			}				
 		}
 	}
 
 	/**
 	 * This method will schedule a prison task
-	 *
+	 * 
 	 * @param player
 	 * @param prisonTimer
 	 */
@@ -195,7 +191,7 @@ public class PunishmentService {
 
 	/**
 	 * This method will handle can or cant gathering
-	 *
+	 * 
 	 * @param player
 	 * @param captchaCount
 	 * @param state
@@ -231,7 +227,7 @@ public class PunishmentService {
 
 	/**
 	 * This method will stop the gathering task
-	 *
+	 * 
 	 * @param player
 	 * @param save
 	 * @author Cura
@@ -242,9 +238,8 @@ public class PunishmentService {
 		if (gatherableTask != null) {
 			if (save) {
 				long delay = player.getGatherableTimer();
-				if (delay < 0) {
+				if (delay < 0)
 					delay = 0;
-				}
 				player.setGatherableTimer(delay);
 			}
 			player.getController().cancelTask(TaskId.GATHERABLE);
@@ -253,7 +248,7 @@ public class PunishmentService {
 
 	/**
 	 * This method will update the gathering status
-	 *
+	 * 
 	 * @param player
 	 * @author Cura
 	 */
@@ -270,7 +265,7 @@ public class PunishmentService {
 
 	/**
 	 * This method will schedule a gathering task
-	 *
+	 * 
 	 * @param player
 	 * @param gatherableTimer
 	 * @author Cura
@@ -288,11 +283,10 @@ public class PunishmentService {
 
 	/**
 	 * PunishmentType
-	 *
+	 * 
 	 * @author Cura
 	 */
 	public enum PunishmentType {
-
 		PRISON,
 		GATHER,
 		CHARBAN

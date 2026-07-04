@@ -1,18 +1,18 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-emu is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-emu is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
@@ -31,7 +31,7 @@ import com.aionemu.gameserver.services.player.PlayerService;
 
 /**
  * In this packets aion client is requesting deletion of character.
- *
+ * 
  * @author -Nemesiss-
  */
 public class CM_DELETE_CHARACTER extends AionClientPacket {
@@ -48,7 +48,7 @@ public class CM_DELETE_CHARACTER extends AionClientPacket {
 
 	/**
 	 * Constructs new instance of <tt>CM_DELETE_CHARACTER </tt> packet
-	 *
+	 * 
 	 * @param opcode
 	 */
 	public CM_DELETE_CHARACTER(int opcode, State state, State... restStates) {
@@ -69,23 +69,20 @@ public class CM_DELETE_CHARACTER extends AionClientPacket {
 	 */
 	@Override
 	protected void runImpl() {
-
 		AionConnection client = getConnection();
 		PlayerAccountData playerAccData = client.getAccount().getPlayerAccountData(chaOid);
-
 		if (playerAccData != null && !playerAccData.isLegionMember()) {
 			// passkey check
 			if (SecurityConfig.PASSKEY_ENABLE && !client.getAccount().getCharacterPasskey().isPass()) {
 				client.getAccount().getCharacterPasskey().setConnectType(ConnectType.DELETE);
 				client.getAccount().getCharacterPasskey().setObjectId(chaOid);
-				boolean isExistPasskey = DAOManager.getDAO(PlayerPasskeyDAO.class).existCheckPlayerPasskey(client.getAccount().getId());
+				boolean isExistPasskey = DAOManager.getDAO(PlayerPasskeyDAO.class).existCheckPlayerPasskey(
+					client.getAccount().getId());
 
-				if (!isExistPasskey) {
+				if (!isExistPasskey)
 					client.sendPacket(new SM_CHARACTER_SELECT(0));
-				}
-				else {
+				else
 					client.sendPacket(new SM_CHARACTER_SELECT(1));
-				}
 			}
 			else {
 				PlayerService.deletePlayer(playerAccData);

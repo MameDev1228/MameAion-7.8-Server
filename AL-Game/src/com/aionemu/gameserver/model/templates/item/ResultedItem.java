@@ -1,29 +1,28 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-lightning is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-lightning is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.templates.item;
-
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.Race;
+import org.slf4j.LoggerFactory;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author antness
@@ -31,8 +30,6 @@ import com.aionemu.gameserver.model.Race;
 @XmlType(name = "ResultedItem")
 public class ResultedItem {
 
-	@XmlAttribute(name = "name")
-	public String itemName;
 	@XmlAttribute(name = "id")
 	public int itemId;
 	@XmlAttribute(name = "count")
@@ -43,12 +40,9 @@ public class ResultedItem {
 	public int rndMax;
 	@XmlAttribute(name = "race")
 	public Race race = Race.PC_ALL;
+
 	@XmlAttribute(name = "player_class")
 	public PlayerClass playerClass = PlayerClass.ALL;
-
-	public String getItemName() {
-		return itemName;
-	}
 
 	public int getItemId() {
 		return itemId;

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+<!--
+    Quest Herelym Mine 6.x
+	Make By Encom
+ -->
+	<item_collecting id="16051" start_npc_ids="837436" end_npc_ids="836551" start_dialog_id="4762" start_dialog_id2="1011" action_item_ids="703645"/>
+	<item_collecting id="26051" start_npc_ids="837439" end_npc_ids="836565" start_dialog_id="4762" start_dialog_id2="1011" action_item_ids="703645"/>
+</quest_scripts>

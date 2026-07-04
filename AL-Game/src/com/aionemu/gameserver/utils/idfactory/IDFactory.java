@@ -1,39 +1,30 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-emu is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-emu is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.utils.idfactory;
+
+import com.aionemu.commons.database.dao.DAOManager;
+import com.aionemu.commons.utils.GenericValidator;
+import com.aionemu.gameserver.dao.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.concurrent.locks.ReentrantLock;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.aionemu.commons.database.dao.DAOManager;
-import com.aionemu.commons.utils.GenericValidator;
-import com.aionemu.gameserver.dao.GuideDAO;
-import com.aionemu.gameserver.dao.HousesDAO;
-import com.aionemu.gameserver.dao.InventoryDAO;
-import com.aionemu.gameserver.dao.LegionDAO;
-import com.aionemu.gameserver.dao.MailDAO;
-import com.aionemu.gameserver.dao.PlayerAchievementActionDAO;
-import com.aionemu.gameserver.dao.PlayerAchievementDAO;
-import com.aionemu.gameserver.dao.PlayerDAO;
-import com.aionemu.gameserver.dao.PlayerRegisteredItemsDAO;
 
 /**
  * This class is responsible for id generation for all Aion-Emu objects.<br>
@@ -50,10 +41,12 @@ public class IDFactory {
 	 * We are allowing BitSet to grow over time, so in the end it can be as big as {@link Integer#MAX_VALUE}
 	 */
 	private final BitSet idList;
+
 	/**
 	 * Synchronization of bitset
 	 */
 	private final ReentrantLock lock;
+
 	/**
 	 * Id that will be used as minimal on next id request
 	 */
@@ -64,8 +57,9 @@ public class IDFactory {
 	 *
 	 * @return next free id
 	 * @throws IDFactoryError
-	 *             if there is no free id's
+	 *           if there is no free id's
 	 */
+
 	private IDFactory() {
 		idList = new BitSet();
 		lock = new ReentrantLock();
@@ -122,9 +116,9 @@ public class IDFactory {
 	 * Locks given ids.
 	 *
 	 * @param ids
-	 *            ids to lock
+	 *          ids to lock
 	 * @throws IDFactoryError
-	 *             if some of the id's were locked before
+	 *           if some of the id's were locked before
 	 */
 	private void lockIds(int... ids) {
 		try {
@@ -146,9 +140,9 @@ public class IDFactory {
 	 * Locks given ids.
 	 *
 	 * @param ids
-	 *            ids to lock
+	 *          ids to lock
 	 * @throws IDFactoryError
-	 *             if some of the id's were locked before
+	 *           if some of the id's were locked before
 	 */
 	public void lockIds(Iterable<Integer> ids) {
 		try {
@@ -170,9 +164,9 @@ public class IDFactory {
 	 * Releases given id
 	 *
 	 * @param id
-	 *            id to release
+	 *          id to release
 	 * @throws IDFactoryError
-	 *             if id was not taken earlier
+	 *           if id was not taken earlier
 	 */
 	public void releaseId(int id) {
 		try {
@@ -191,14 +185,14 @@ public class IDFactory {
 		}
 	}
 
-	public void releaseIds(Collection<Integer> ids) {
-		if (GenericValidator.isBlankOrNull(ids)) {
+	public void releaseIds(Collection<Integer> ids){
+		if(GenericValidator.isBlankOrNull(ids)){
 			return;
 		}
 
 		try {
 			lock.lock();
-			for (Integer id : ids) {
+			for(Integer id : ids){
 				boolean status = idList.get(id);
 				if (!status) {
 					throw new IDFactoryError("ID " + id + " is not taken, can't release it.");
@@ -208,8 +202,7 @@ public class IDFactory {
 					nextMinId = id;
 				}
 			}
-		}
-		finally {
+		} finally {
 			lock.unlock();
 		}
 	}

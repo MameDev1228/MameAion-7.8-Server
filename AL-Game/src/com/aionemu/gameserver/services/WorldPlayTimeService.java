@@ -1,93 +1,120 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  */
 package com.aionemu.gameserver.services;
 
-import java.util.Map;
-import java.util.concurrent.Future;
-
 import com.aionemu.commons.network.util.ThreadPoolManager;
-import com.aionemu.gameserver.model.Race;
+
+import com.aionemu.gameserver.configs.main.CustomConfig;
+import com.aionemu.gameserver.model.*;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_WORLD_PLAYTIME;
+import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.services.teleport.TeleportService2;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
 import javolution.util.FastMap;
 
-public class WorldPlayTimeService {
+import java.util.Map;
+import java.util.concurrent.Future;
 
-    @SuppressWarnings("unused")
-	private Future<?> checkPlayTimeTask;
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	private final Map<Integer, Player> players = new FastMap();
+public class WorldPlayTimeService
+{
+    private Future<?> checkPlayTimeTask;
+    private final Map<Integer, Player> players = new FastMap<Integer, Player>();;
 
     public void onStart() {
-        this.checkWorldPlayTime();
+        checkWorldPlayTime();
     }
 
     public void onEnterWorld(Player player) {
         switch (player.getWorldId()) {
-            case 800030000: 
-            case 800040000: 
-            case 800050000: 
-            case 800060000: 
-            case 800070000: {
-                if (this.players.containsKey(player.getObjectId())) break;
-                this.players.put(player.getObjectId(), player);
-                break;
-            }
-            default: {
-                if (!this.players.containsKey(player.getObjectId())) break;
-                this.players.remove(player.getObjectId());
-            }
+            case 800030000: //Crimson Katalam.
+            case 800040000: //Crimson Danaria.
+            case 800050000: //Lakrum.
+            case 800060000: //Demaha.
+            case 800070000: //Underpass B1.
+                if (isTimelessWorld(player.getWorldId())) {
+                    ensureTimelessTime(player);
+                    PacketSendUtility.sendPacket(player, new SM_WORLD_PLAYTIME(player));
+                    players.remove(player.getObjectId());
+                    return;
+                }
+                if (!this.players.containsKey(player.getObjectId())) {
+                    this.players.put(player.getObjectId(), player);
+                }
+            break;
+            default:
+                if (this.players.containsKey(player.getObjectId())) {
+                    this.players.remove(player.getObjectId());
+                }
+            break;
         }
     }
 
     public void checkWorldPlayTime() {
-        this.checkPlayTimeTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable(){
-
+        checkPlayTimeTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                for (Player player : WorldPlayTimeService.this.players.values()) {
+                for (Player player : players.values()) {
+                    if (isTimelessWorld(player.getWorldId())) {
+                        ensureTimelessTime(player);
+                        PacketSendUtility.sendPacket(player, new SM_WORLD_PLAYTIME(player));
+                        continue;
+                    }
                     if (player.getCommonData().getWorldPlayTime() == 0) {
                         player.setWorldPlayTime(0);
                         PacketSendUtility.sendPacket(player, new SM_WORLD_PLAYTIME(player));
-                        PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1405813, new Object[0]));
+                        //There is not enough rift dimension hourglass time for enter.
+                        PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1405813));
                         if (player.getRace() == Race.ELYOS) {
-                            TeleportService2.teleportTo(player, 210050000, 1306.0f, 238.0f, 595.0f, (byte)17);
-                            continue;
+                            TeleportService2.teleportTo(player, 210050000, 1306.0f, 238.0f, 595.0f, (byte) 17);
+                        } else {
+                            TeleportService2.teleportTo(player, 220070000, 1788.0f, 2917.0f, 554.0f, (byte) 99);
                         }
-                        TeleportService2.teleportTo(player, 220070000, 1788.0f, 2917.0f, 554.0f, (byte)99);
-                        continue;
+                    } else {
+                        player.getCommonData().setWorldPlayTime(player.getCommonData().getWorldPlayTime() - 1);
+                        PacketSendUtility.sendPacket(player, new SM_WORLD_PLAYTIME(player));
                     }
-                    player.getCommonData().setWorldPlayTime(player.getCommonData().getWorldPlayTime() - 1);
-                    PacketSendUtility.sendPacket(player, new SM_WORLD_PLAYTIME(player));
                 }
             }
-        }, 60000, 60000);
+        }, 60 * 1000, 60 * 1000); //...1Min
     }
 
-	public static WorldPlayTimeService getInstance() {
-		return NewSingletonHolder.INSTANCE;
-	}
+    public static boolean isTimelessWorld(int worldId) {
+        if (!CustomConfig.MAME_WORLDPLAYTIME_TIMELESS) {
+            return false;
+        }
+        String worlds = CustomConfig.MAME_WORLDPLAYTIME_TIMELESS_WORLDS;
+        if (worlds == null || worlds.trim().isEmpty()) {
+            return false;
+        }
+        for (String token : worlds.split(",")) {
+            try {
+                if (Integer.parseInt(token.trim()) == worldId) {
+                    return true;
+                }
+            } catch (NumberFormatException ignored) {
+            }
+        }
+        return false;
+    }
 
-	private static class NewSingletonHolder {
+    public static void ensureTimelessTime(Player player) {
+        if (player == null || !isTimelessWorld(player.getWorldId())) {
+            return;
+        }
+        int minutes = Math.max(1, CustomConfig.MAME_WORLDPLAYTIME_DEFAULT_MINUTES);
+        if (player.getCommonData().getWorldPlayTime() < minutes) {
+            player.getCommonData().setWorldPlayTime(minutes);
+        }
+    }
 
-		private static final WorldPlayTimeService INSTANCE = new WorldPlayTimeService();
-	}    
+    public static WorldPlayTimeService getInstance() {
+        return SingletonHolder.instance;
+    }
+
+    @SuppressWarnings("synthetic-access")
+    private static class SingletonHolder {
+        protected static final WorldPlayTimeService instance = new WorldPlayTimeService();
+    }
 }

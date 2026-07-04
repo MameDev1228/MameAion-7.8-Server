@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+	Crucible Spire Reward
+	Made By Encom
+ -->
+<tower_reward_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="tower_reward_template.xsd">
+	<tower_reward_template floor="1" name="Floor 1" item_id="186020005" item_count="5" item_id2="190095007" item_count2="3" ap_count="0" gp_count="0" kinah_count="0" exp_count="40000000"/>
+	<tower_reward_template floor="2" name="Floor 2" item_id="186020005" item_count="5" item_id2="166024100" item_count2="3" ap_count="0" gp_count="0" kinah_count="2000000" exp_count="0"/>
+	<tower_reward_template floor="3" name="Floor 3" item_id="186020005" item_count="5" item_id2="188073438" item_count2="1" ap_count="10000" gp_count="0" kinah_count="0" exp_count="0"/>
+	<tower_reward_template floor="4" name="Floor 4" item_id="186020005" item_count="10" item_id2="188073439" item_count2="1" ap_count="0" gp_count="100" kinah_count="0" exp_count="0"/>
+	<tower_reward_template floor="5" name="Floor 5" item_id="186020005" item_count="10" item_id2="188058954" item_count2="3" ap_count="0" gp_count="0" kinah_count="0" exp_count="50000000"/>
+	<tower_reward_template floor="6" name="Floor 6" item_id="186020005" item_count="10" item_id2="188922000" item_count2="2" ap_count="0" gp_count="0" kinah_count="2200000" exp_count="0"/>
+	<tower_reward_template floor="7" name="Floor 7" item_id="186020005" item_count="20" item_id2="164010144" item_count2="50" ap_count="12000" gp_count="0" kinah_count="0" exp_count="0"/>
+	<tower_reward_template floor="8" name="Floor 8" item_id="186020005" item_count="20" item_id2="186020069" item_count2="3" ap_count="0" gp_count="0" kinah_count="2400000" exp_count="0"/>
+	<tower_reward_template floor="9" name="Floor 9" item_id="186020005" item_count="20" item_id2="188120084" item_count2="20" ap_count="0" gp_count="200" kinah_count="0" exp_count="60000000"/>
+	<tower_reward_template floor="10" name="Floor 10" item_id="186020005" item_count="40" item_id2="188120085" item_count2="20" ap_count="0" gp_count="0" kinah_count="2600000" exp_count="0"/>
+	<tower_reward_template floor="11" name="Floor 11" item_id="186020005" item_count="40" item_id2="188120086" item_count2="20" ap_count="14000" gp_count="0" kinah_count="0" exp_count="0"/>
+	<tower_reward_template floor="12" name="Floor 12" item_id="186020005" item_count="40" item_id2="166027000" item_count2="3" ap_count="0" gp_count="300" kinah_count="0" exp_count="0"/>
+	<tower_reward_template floor="13" name="Floor 13" item_id="186020005" item_count="80" item_id2="166025100" item_count2="3" ap_count="0" gp_count="0" kinah_count="0" exp_count="70000000"/>
+	<tower_reward_template floor="14" name="Floor 14" item_id="186020005" item_count="80" item_id2="162001083" item_count2="1" ap_count="0" gp_count="0" kinah_count="2800000" exp_count="0"/>
+	<tower_reward_template floor="15" name="Floor 15" item_id="186020005" item_count="80" item_id2="188072213" item_count2="1" ap_count="16000" gp_count="500" kinah_count="3000000" exp_count="80000000"/>
+</tower_reward_templates>

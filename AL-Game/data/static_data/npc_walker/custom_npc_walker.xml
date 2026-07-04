@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Custom Npc Walker
+	Made By Encom
+ -->
+<npc_walker xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="npc_walker.xsd">
+	<!-- KROMEDE'S TRIAL -->
+	<walker_template route_id="Shadow_Judge_Kaliga" pool="1">
+        <routestep step="1" z="216.88036" y="773.97797" x="670.08234"/>
+        <routestep step="2" z="216.26212" y="767.3803" x="662.47687" rest_time="2000"/>
+        <routestep step="3" z="216.26212" y="782.4112" x="662.4417" rest_time="2000"/>
+        <routestep step="4" z="216.23438" y="774.3127" x="659.0813" rest_time="7200000"/>
+	</walker_template>
+	
+	<!-- DRAKENSPIRE DEPTHS [HARD] -->
+	<walker_template route_id="Ice_Storm_2" pool="1">
+		<routestep step="1" x="808.7443" y="593.10815" z="1701.0449"/>
+        <routestep step="2" x="790.40894" y="555.8445" z="1701.0441"/>
+        <routestep step="3" x="824.9619" y="545.9976" z="1701.044"/>
+		<routestep step="4" x="827.814" y="583.42694" z="1701.0447"/>
+		<routestep step="5" x="791.1317" y="572.8654" z="1701.0444"/>
+		<routestep step="6" x="810.71924" y="542.8123" z="1701.044"/>
+		<routestep step="7" x="833.9437" y="566.6036" z="1701.0443"/>
+		<routestep step="8" x="798.2129" y="584.94116" z="1701.0446"/>
+		<routestep step="9" x="800.8675" y="543.67255" z="1701.044"/>
+		<routestep step="10" x="830.7392" y="574.5642" z="1701.0443"/>
+		<routestep step="11" x="800.8675" y="543.67255" z="1701.044"/>
+		<routestep step="12" x="798.2129" y="584.94116" z="1701.0446"/>
+		<routestep step="13" x="833.9437" y="566.6036" z="1701.0443"/>
+		<routestep step="14" x="810.71924" y="542.8123" z="1701.044"/>
+		<routestep step="15" x="791.1317" y="572.8654" z="1701.0444"/>
+		<routestep step="16" x="827.814" y="583.42694" z="1701.0447"/>
+		<routestep step="17" x="824.9619" y="545.9976" z="1701.044"/>
+		<routestep step="18" x="790.40894" y="555.8445" z="1701.0441"/>
+		<routestep step="19" x="808.7443" y="593.10815" z="1701.0449"/>
+	</walker_template>
+	
+	<!-- IDCATACOMBS_RUDRA -->
+	<walker_template route_id="Sacrificial_Soul_1" pool="1">
+        <routestep step="1" x="1383.6865" y="1403.3429" z="304.6748"/>
+        <routestep step="2" x="1412.6317" y="1441.4343" z="306.8665" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Sacrificial_Soul_2" pool="1">
+        <routestep step="1" x="1380.7174" y="1405.5841" z="304.49292"/>
+        <routestep step="2" x="1409.3911" y="1443.8901" z="306.8665" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Sacrificial_Soul_3" pool="1">
+        <routestep step="1" x="1377.3181" y="1408.0543" z="304.6748"/>
+        <routestep step="2" x="1406.9124" y="1447.4962" z="306.8665" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Root_Twister" pool="1">
+        <routestep step="1" x="829.6465" y="1348.1691" z="223.72089"/>
+        <routestep step="2" x="826.96356" y="1329.0874" z="223.72089"/>
+        <routestep step="3" x="837.7213" y="1316.4393" z="223.70316"/>
+        <routestep step="4" x="852.0152" y="1315.0452" z="223.71562"/>
+        <routestep step="5" x="862.4729" y="1298.1758" z="223.74057"/>
+	</walker_template>
+	<walker_template route_id="Sharp_Twister" pool="1">
+        <routestep step="1" x="867.794" y="1321.9572" z="223.73187"/>
+        <routestep step="2" x="858.5294" y="1304.5746" z="223.72748"/>
+        <routestep step="3" x="838.735" y="1298.6417" z="223.72089"/>
+        <routestep step="4" x="825.0338" y="1304.7396" z="223.72089"/>
+        <routestep step="5" x="815.172" y="1326.2812" z="223.72089"/>
+        <routestep step="6" x="831.16064" y="1349.5405" z="223.72089"/>
+		<routestep step="7" x="815.172" y="1326.2812" z="223.72089"/>
+		<routestep step="8" x="825.0338" y="1304.7396" z="223.72089"/>
+		<routestep step="9" x="838.735" y="1298.6417" z="223.72089"/>
+		<routestep step="10" x="858.5294" y="1304.5746" z="223.72748"/>
+		<routestep step="11" x="867.794" y="1321.9572" z="223.73187"/>
+	</walker_template>
+	
+	<!-- ESOTERRACE -->
+	<walker_template route_id="Dalia_Watcher_1" pool="1">
+        <routestep step="1" z="295.375" y="672.6402" x="1185.7328"/>
+        <routestep step="2" z="295.25" y="649.2408" x="1261.4418" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Dalia_Watcher_2" pool="1">
+        <routestep step="1" z="293.2601" y="604.0897" x="1201.964"/>
+        <routestep step="2" z="296.25" y="628.16675" x="1229.1559"/>
+        <routestep step="3" z="295.25" y="640.7153" x="1261.8223" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Dalia_Watcher_3" pool="1">
+        <routestep step="1" z="299.73923" y="697.08624" x="1219.7843"/>
+        <routestep step="2" z="295.25" y="654.1344" x="1263.3281" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="3002500003" pool="1">
+		<routestep step="1" x="1234.8602" y="654.7392" z="296.61374"/>
+        <routestep step="2" x="1222.1085" y="659.5231" z="297.52982"/>
+        <routestep step="3" x="1206.3536" y="665.44525" z="295.854"/>
+        <routestep step="4" x="1189.341" y="671.8406" z="295.375"/>
+        <routestep step="5" x="1172.8396" y="678.0437" z="295.37775"/>
+        <routestep step="6" x="1157.483" y="683.81586" z="295.78232"/>
+        <routestep step="7" x="1146.7781" y="687.83966" z="296.0"/>
+        <routestep step="8" x="1145.0303" y="701.7756" z="296.125"/>
+        <routestep step="9" x="1142.9789" y="718.1231" z="299.24106" rest_time="12000"/>
+	</walker_template>
+	
+	<!-- STELLIN DEVELOPMENT LAB -->
+	<walker_template route_id="Mutated_Daeva_L" pool="1">
+		<routestep step="1" x="211.6284" y="256.7201" z="570.5197"/>
+        <routestep step="2" x="226.4967" y="249.9892" z="570.5197"/>
+        <routestep step="3" x="227.3105" y="234.6688" z="567.9245"/>
+        <routestep step="4" x="227.3100" y="218.9415" z="567.9245"/>
+        <routestep step="5" x="227.3488" y="208.8341" z="581.6518"/>
+        <routestep step="6" x="227.3996" y="202.7691" z="581.2705" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Mutated_Daeva_R" pool="1">
+		<routestep step="1" x="211.2502" y="256.6303" z="570.5197"/>
+		<routestep step="2" x="196.5933" y="250.3668" z="570.5197"/>
+		<routestep step="3" x="195.5856" y="234.7094" z="568.7478"/>
+		<routestep step="4" x="195.6579" y="219.3213" z="568.7478"/>
+		<routestep step="5" x="195.7328" y="208.7391" z="581.6518"/>
+		<routestep step="6" x="195.5058" y="202.8015" z="581.2705" rest_time="7200000"/>
+	</walker_template>
+	
+	<!-- TALOC'S HOLLOW -->
+	<walker_template route_id="Hyas" pool="1">
+        <routestep step="1" z="1214.31" y="818.8117" x="204.04369"/>
+        <routestep step="2" z="1204.8474" y="797.0713" x="223.88887"/>
+        <routestep step="3" z="1194.1862" y="785.2865" x="247.74274" rest_time="3000"/>
+	</walker_template>
+	
+	<!-- PRIMETH'S FORGE -->
+	<walker_template route_id="Liberated_Primeth" pool="1">
+		<routestep step="1" z="694.6927" y="842.47100" x="789.35846"/>
+        <routestep step="2" z="697.6068" y="935.21765" x="789.60675" rest_time="5000"/>
+	</walker_template>
+	<walker_template route_id="Liberated_Primeth_2" pool="1">
+		<routestep step="1" z="624.48474" y="1089.4015" x="988.8367"/>
+        <routestep step="2" z="624.48474" y="1073.5261" x="1004.0849"/>
+        <routestep step="3" z="624.48474" y="1073.8434" x="1026.2565"/>
+        <routestep step="4" z="624.48474" y="1078.9937" x="1031.4452" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Atis_Rith" pool="1">
+		<routestep step="1" z="374.4916" y="1090.1398" x="1323.8112"/>
+        <routestep step="2" z="374.6559" y="1090.2369" x="1378.7455" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Berserking_Yastikan" pool="1">
+	    <routestep step="1" x="913.3103" y="711.4795" z="749.6943"/>
+		<routestep step="2" x="909.8502" y="721.9012" z="749.6943"/>
+		<routestep step="3" x="899.1667" y="726.1231" z="749.6943"/>
+		<routestep step="4" x="889.3234" y="720.2187" z="749.6943"/>
+		<routestep step="5" x="887.6647" y="709.4300" z="749.6943"/>
+		<routestep step="6" x="895.4135" y="700.6907" z="749.6943"/>
+		<routestep step="7" x="907.3233" y="701.6073" z="749.6943"/>
+		<routestep step="8" x="912.6748" y="708.9892" z="749.6943"/>
+		<routestep step="9" x="913.3103" y="711.4795" z="749.6943"/>
+	</walker_template>
+	
+	<!-- CONTAMINED UNDERPATH -->
+	<walker_template route_id="ContaminedUnderpath1" pool="1">
+		<routestep step="1" z="159.68855" y="272.78586" x="222.59251"/>
+        <routestep step="2" z="160.28148" y="226.60503" x="222.94719" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="ContaminedUnderpath2" pool="1">
+		<routestep step="1" z="159.68855" y="272.5278" x="225.25392"/>
+        <routestep step="2" z="160.28148" y="225.91023" x="225.345" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="ContaminedUnderpath3" pool="1">
+		<routestep step="1" z="159.68855" y="272.56705" x="227.00642"/>
+        <routestep step="2" z="160.28148" y="225.23596" x="227.29585" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="ContaminedUnderpath4" pool="1">
+		<routestep step="1" z="159.68855" y="272.8542" x="228.98677"/>
+        <routestep step="2" z="160.28148" y="224.08946" x="229.23856" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="ContaminedUnderpath5" pool="1">
+		<routestep step="1" z="159.68855" y="272.70547" x="231.91983"/>
+        <routestep step="2" z="160.28148" y="224.95782" x="231.85547" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="ContaminedUnderpath6" pool="1">
+		<routestep step="1" z="159.68855" y="272.8839" x="233.94566"/>
+        <routestep step="2" z="160.28148" y="225.80902" x="234.07625" rest_time="7200000"/>
+	</walker_template>
+	
+	<!-- [EVENT] IDEVENT_Def -->
+	<walker_template route_id="IDEVENT_Def_1" pool="1">
+		<routestep step="1" z="160.35287" y="278.53336" x="228.71658"/>
+        <routestep step="2" z="159.90181" y="247.81757" x="235.97253"/>
+        <routestep step="3" z="159.90181" y="247.23517" x="223.68568"/>
+        <routestep step="4" z="160.28148" y="235.74715" x="224.1791"/>
+        <routestep step="5" z="160.28148" y="236.0168" x="236.22736"/>
+        <routestep step="6" z="160.28148" y="227.26953" x="235.85536"/>
+        <routestep step="7" z="160.28148" y="226.97836" x="227.40076"/>
+        <routestep step="8" z="160.28148" y="215.43484" x="227.29868"/>
+        <routestep step="9" z="160.28148" y="215.40446" x="234.51546"/>
+        <routestep step="10" z="164.60033" y="185.57587" x="235.36935" rest_time="7200000"/>
+	</walker_template>
+	
+	<!-- SECRET MUNITION FACTORY -->
+	<walker_template route_id="MunitionFactory1" pool="1">
+		<routestep step="1" z="191.9408" y="229.32593" x="133.43279"/>
+        <routestep step="2" z="192.12093" y="259.25415" x="163.12567" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="MunitionFactory2" pool="1">
+		<routestep step="1" z="191.98645" y="289.5833" x="132.8395"/>
+        <routestep step="2" z="192.11478" y="259.54025" x="163.57658" rest_time="7200000"/>
+	</walker_template>
+	
+	<!-- THE VEILENTHRONE -->
+	<walker_template route_id="Wave_Drakan_1" pool="1">
+		<routestep step="1" z="709.97034" y="540.00305" x="765.48883"/>
+        <routestep step="2" z="709.97034" y="504.11252" x="762.9978" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Wave_Drakan_2" pool="1">
+		<routestep step="1" z="709.97034" y="540.0684" x="765.4439"/>
+        <routestep step="2" z="709.97034" y="501.85992" x="769.21625" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Wave_Drakan_3" pool="1">
+		<routestep step="1" z="709.97034" y="540.0684" x="765.4439"/>
+        <routestep step="2" z="709.97034" y="502.18765" x="774.0564" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Wave_Drakan_4" pool="1">
+		<routestep step="1" z="709.97034" y="458.5229" x="765.73553"/>
+        <routestep step="2" z="709.97034" y="494.15497" x="763.21484" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Wave_Drakan_5" pool="1">
+		<routestep step="1" z="709.97034" y="458.5229" x="765.73553"/>
+        <routestep step="2" z="709.97034" y="495.4742" x="769.4251" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Wave_Drakan_6" pool="1">
+		<routestep step="1" z="709.97034" y="458.5229" x="765.73553"/>
+        <routestep step="2" z="709.97034" y="496.34055" x="774.3665" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Ice_Storm" pool="1">
+		<routestep step="1" z="709.97034" y="450.52267" x="787.55865"/>
+        <routestep step="2" z="709.97034" y="480.1299" x="756.9989"/>
+        <routestep step="3" z="709.97034" y="496.03952" x="804.4792"/>
+        <routestep step="4" z="709.97034" y="515.0688" x="756.7156"/>
+        <routestep step="5" z="709.97034" y="538.5605" x="798.53186"/>
+        <routestep step="6" z="709.97034" y="536.5403" x="766.0379"/>
+        <routestep step="7" z="709.97034" y="516.0945" x="804.4161"/>
+        <routestep step="8" z="709.97034" y="499.7428" x="764.1586"/>
+        <routestep step="9" z="709.97034" y="474.25168" x="803.3297"/>
+        <routestep step="10" z="709.97034" y="466.7103" x="765.7214"/>
+		<routestep step="11" z="709.97034" y="474.25168" x="803.3297"/>
+		<routestep step="12" z="709.97034" y="499.7428" x="764.1586"/>
+		<routestep step="13" z="709.97034" y="516.0945" x="804.4161"/>
+		<routestep step="14" z="709.97034" y="536.5403" x="766.0379"/>
+		<routestep step="15" z="709.97034" y="538.5605" x="798.53186"/>
+		<routestep step="16" z="709.97034" y="515.0688" x="756.7156"/>
+		<routestep step="17" z="709.97034" y="496.03952" x="804.4792"/>
+		<routestep step="18" z="709.97034" y="480.1299" x="756.9989"/>
+		<routestep step="19" z="709.97034" y="450.52267" x="787.55865"/>
+	</walker_template>
+	
+	<!-- ILLUMIEL BRAWL -->
+	<walker_template route_id="IDBattleChange_Npc_Li_Fi_All_1" pool="1">
+		<routestep step="1" z="92.94253" y="281.92804" x="290.47214"/>
+        <routestep step="2" z="90.99666" y="276.50763" x="294.67813"/>
+        <routestep step="3" z="89.302864" y="269.72058" x="297.277"/>
+        <routestep step="4" z="89.27" y="258.73956" x="300.93774"/>
+        <routestep step="5" z="89.30521" y="247.4183" x="296.5568"/>
+		<routestep step="6" z="89.27" y="258.73956" x="300.93774"/>
+		<routestep step="7" z="89.302864" y="269.72058" x="297.277"/>
+		<routestep step="8" z="90.99666" y="276.50763" x="294.67813"/>
+		<routestep step="9" z="92.94253" y="281.92804" x="290.47214"/>
+	</walker_template>
+	<walker_template route_id="IDBattleChange_Npc_Li_Fi_All_2" pool="1">
+		<routestep step="1" z="92.987305" y="286.4835" x="285.6989"/>
+        <routestep step="2" z="90.583694" y="290.8331" x="279.7039"/>
+        <routestep step="3" z="89.31078" y="293.3263" x="269.5536"/>
+        <routestep step="4" z="89.303215" y="295.6315" x="260.67267"/>
+        <routestep step="5" z="89.30291" y="291.20197" x="252.08841"/>
+		<routestep step="6" z="89.303215" y="295.6315" x="260.67267"/>
+		<routestep step="7" z="89.31078" y="293.3263" x="269.5536"/>
+		<routestep step="8" z="90.583694" y="290.8331" x="279.7039"/>
+		<routestep step="9" z="92.987305" y="286.4835" x="285.6989"/>
+	</walker_template>
+	<walker_template route_id="IDBattleChange_Npc_Da_Fi_All_1" pool="1">
+		<routestep step="1" z="92.94253" y="232.13272" x="243.31937"/>
+        <routestep step="2" z="90.991875" y="228.05869" x="248.54784"/>
+        <routestep step="3" z="89.30287" y="225.569" x="257.0255"/>
+        <routestep step="4" z="89.30323" y="222.44592" x="268.11536"/>
+        <routestep step="5" z="89.3028" y="227.30276" x="275.8952"/>
+		<routestep step="6" z="89.30323" y="222.44592" x="268.11536"/>
+		<routestep step="7" z="89.30287" y="225.569" x="257.0255"/>
+		<routestep step="8" z="90.991875" y="228.05869" x="248.54784"/>
+		<routestep step="9" z="92.94253" y="232.13272" x="243.31937"/>
+	</walker_template>
+	<walker_template route_id="IDBattleChange_Npc_Da_Fi_All_2" pool="1">
+		<routestep step="1" z="92.95548" y="236.98947" x="238.85515"/>
+        <routestep step="2" z="90.83412" y="242.12363" x="234.40883"/>
+        <routestep step="3" z="89.29282" y="251.43568" x="231.39384"/>
+        <routestep step="4" z="89.225716" y="259.48944" x="227.92418"/>
+        <routestep step="5" z="89.29096" y="274.1293" x="233.73755"/>
+		<routestep step="6" z="89.225716" y="259.48944" x="227.92418"/>
+		<routestep step="7" z="89.29282" y="251.43568" x="231.39384"/>
+		<routestep step="8" z="90.83412" y="242.12363" x="234.40883"/>
+		<routestep step="9" z="92.95548" y="236.98947" x="238.85515"/>
+	</walker_template>
+	
+	<!-- STEEL RAKE FORTRESS -->
+	<walker_template route_id="Waderunerk_1" pool="1">
+		<routestep step="1" z="122.315834" y="563.48474" x="649.82043"/>
+        <routestep step="2" z="122.315834" y="564.348" x="642.6339"/>
+        <routestep step="3" z="122.315834" y="578.2197" x="636.5692" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Waderunerk_2" pool="1">
+		<routestep step="1" z="126.21693" y="540.1512" x="572.9022"/>
+        <routestep step="2" z="126.35416" y="534.3272" x="558.1708" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="302520001" pool="1">
+		<routestep step="1" z="126.21693" y="540.22504" x="572.87177"/>
+        <routestep step="2" z="126.07032" y="534.92334" x="563.9323" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="302520002" pool="1">
+		<routestep step="1" z="126.21693" y="540.22504" x="572.87177"/>
+        <routestep step="2" z="126.07009" y="538.35480" x="562.63196" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="302520003" pool="1">
+		<routestep step="1" z="126.21693" y="540.22504" x="572.87177"/>
+        <routestep step="2" z="126.06753" y="534.37274" x="565.1843" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="302520004" pool="1">
+		<routestep step="1" z="126.21693" y="540.22504" x="572.87177"/>
+        <routestep step="2" z="126.06619" y="539.77560" x="563.50037" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="302520005" pool="1">
+		<routestep step="1" z="126.21693" y="540.22504" x="572.87177"/>
+        <routestep step="2" z="126.06467" y="533.82104" x="566.36365" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="302520006" pool="1">
+		<routestep step="1" z="126.21693" y="540.22504" x="572.87177"/>
+        <routestep step="2" z="126.06232" y="541.06350" x="564.42834" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="302520007" pool="1">
+		<routestep step="1" z="126.21693" y="540.22504" x="572.87177"/>
+        <routestep step="2" z="126.06153" y="533.21810" x="567.65283" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="302520008" pool="1">
+		<routestep step="1" z="126.21693" y="540.22504" x="572.87177"/>
+        <routestep step="2" z="126.05836" y="542.38500" x="565.38074" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="302520009" pool="1">
+		<routestep step="1" z="126.21693" y="540.22504" x="572.87177"/>
+        <routestep step="2" z="126.05816" y="532.56934" x="569.04034" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="302520010" pool="1">
+		<routestep step="1" z="126.21693" y="540.22500" x="572.87177"/>
+        <routestep step="2" z="126.05424" y="543.75360" x="566.3667" rest_time="7200000"/>
+	</walker_template>
+	
+	<!-- STELLIN DEVELOPMENT LAB -->
+	<walker_template route_id="Lab_Boss_02_Summon_1" pool="1">
+		<routestep step="1" z="307.85776" y="309.83185" x="66.49284"/>
+        <routestep step="2" z="308.19064" y="267.0906" x="67.30728" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Lab_Boss_02_Summon_2" pool="1">
+		<routestep step="1" z="307.86514" y="309.86923" x="62.220467"/>
+        <routestep step="2" z="308.1943" y="266.87915" x="61.33655" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Lab_Boss_03_Summon_1" pool="1">
+		<routestep step="1" z="399.3179" y="314.54895" x="60.09302"/>
+        <routestep step="2" z="397.7336" y="314.79166" x="83.86899" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Lab_Boss_03_Summon_2" pool="1">
+		<routestep step="1" z="399.3210" y="346.08002" x="91.97359"/>
+        <routestep step="2" z="397.7474" y="325.98807" x="92.65382" rest_time="7200000"/>
+	</walker_template>
+	<walker_template route_id="Lab_Boss_03_Summon_3" pool="1">
+		<routestep step="1" z="399.3253" y="282.76978" x="92.80266"/>
+        <routestep step="2" z="397.7460" y="304.23145" x="92.25007" rest_time="7200000"/>
+	</walker_template>
+	
+	<!-- SCALESHADOW -->
+	<walker_template route_id="Benirung_Free" pool="1">
+        <routestep step="1" z="355.05392" y="597.9088" x="583.2361"/>
+        <routestep step="2" z="352.45813" y="592.00543" x="517.85333" rest_time="3000"/>
+	</walker_template>
+</npc_walker>

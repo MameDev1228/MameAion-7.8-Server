@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.world;
 
@@ -37,7 +37,6 @@ public class WorldMap3DInstance extends WorldMapInstance {
 		return regions.get(regionId);
 	}
 
-	@Override
 	protected void initMapRegions() {
 		int size = this.getParent().getWorldSize();
 		float maxZ = Math.round((float) size / regionSize) * regionSize;
@@ -61,14 +60,12 @@ public class WorldMap3DInstance extends WorldMapInstance {
 					for (int x2 = x - regionSize; x2 <= x + regionSize; x2 += regionSize) {
 						for (int y2 = y - regionSize; y2 <= y + regionSize; y2 += regionSize) {
 							for (int z2 = z - regionSize; z2 < z + regionSize; z2 += regionSize) {
-								if (x2 == x && y2 == y && z2 == z) {
+								if (x2 == x && y2 == y && z2 == z)
 									continue;
-								}
 								int neighbourId = RegionUtil.get3dRegionId(x2, y2, z2);
 								MapRegion neighbour = regions.get(neighbourId);
-								if (neighbour != null) {
+								if (neighbour != null)
 									mapRegion.addNeighbourRegion(neighbour);
-								}
 							}
 						}
 					}

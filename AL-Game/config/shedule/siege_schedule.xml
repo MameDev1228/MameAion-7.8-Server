@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Fortress
+	Made By Rinzler (Encom)
+ -->
+<siege_schedule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="siege_schedule.xsd">
+	<!-- ABYSS CORE -->
+	<!-- Divine Fortress -->
+	<fortress id="1011">
+		<siegeTime>0 0 21 ? * TUE,THU,SAT,SUN *</siegeTime>
+	</fortress>
+	
+	<!-- INGGISON -->
+	<!-- Temple Of Scales -->
+	<fortress id="2011">
+		<siegeTime>0 0 21 ? * TUE,THU,SAT,SUN *</siegeTime>
+	</fortress>
+	<!-- Altar Of Avarice -->
+	<fortress id="2021">
+		<siegeTime>0 0 21 ? * TUE,THU,SAT,SUN *</siegeTime>
+	</fortress>
+	
+	<!-- GELKMAROS -->
+	<!-- Vorgaltem Citadel -->
+	<fortress id="3011">
+		<siegeTime>0 0 21 ? * TUE,THU,SAT,SUN *</siegeTime>
+	</fortress>
+	<!-- Crimsom Temple -->
+	<fortress id="3021">
+		<siegeTime>0 0 21 ? * TUE,THU,SAT,SUN *</siegeTime>
+	</fortress>
+	
+	<!-- DEMAHA -->
+	<!-- 1st Altar -->
+	<fortress id="5021">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 2nd Altar -->
+	<fortress id="5022">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 3rd Altar -->
+	<fortress id="5023">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 4th Altar -->
+	<fortress id="5024">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 5th Altar -->
+	<fortress id="5025">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 6th Altar -->
+	<fortress id="5026">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 7th Altar -->
+	<fortress id="5027">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 8th Altar -->
+	<fortress id="5028">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 9th Altar -->
+	<fortress id="5029">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 10th Altar -->
+	<fortress id="5030">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 11th Altar -->
+	<fortress id="5031">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	<!-- 12th Altar -->
+	<fortress id="5032">
+	    <siegeTime>0 0 18,23 ? * * *</siegeTime>
+	</fortress>
+	
+	<!-- CRIMSON DANARIA -->
+    <!-- Silona Fortress -->
+    <fortress id="6011">
+        <siegeTime>0 0 21 ? * TUE,THU,SAT,SUN *</siegeTime>
+    </fortress>
+    <!-- Pradeth Fortress -->
+    <fortress id="6021">
+        <siegeTime>0 0 21 ? * TUE,THU,SAT,SUN *</siegeTime>
+    </fortress>
+</siege_schedule>

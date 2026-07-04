@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+	Decompose Stuff 7.x
+	Made By Wnkrz
+ -->
+<decompose_stuff_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="decompose_stuff_templates.xsd">
+    <decompose_stuff_template id="1" name="item_pve_a_40_49_a01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="2" name="item_pve_a_40_49_b01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="3" name="item_pve_a_40_49_c01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="4" name="item_pve_a_40_49_d01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="5" name="item_pve_a_40_49_e01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="6" name="item_pve_r_40_49_a01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="7" name="item_pve_r_40_49_b01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="8" name="item_pve_r_40_49_c01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="9" name="item_pve_r_40_49_d01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="10" name="item_pve_r_40_49_e01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="11" name="item_pve_f_40_49_a01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="12" name="item_pve_f_40_49_b01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="13" name="item_pve_f_40_49_c01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="14" name="item_pve_f_40_49_d01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="15" name="item_pve_f_40_49_e01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="16" name="item_pve_a_50_59_a01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="17" name="item_pve_a_50_59_b01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="18" name="item_pve_a_50_59_c01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="19" name="item_pve_a_50_59_d01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="20" name="item_pve_a_50_59_e01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="21" name="item_pve_r_50_59_a01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="22" name="item_pve_r_50_59_b01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="23" name="item_pve_r_50_59_c01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="24" name="item_pve_r_50_59_d01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="25" name="item_pve_r_50_59_e01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="26" name="item_pve_f_50_59_a01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="27" name="item_pve_f_50_59_b01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="28" name="item_pve_f_50_59_c01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="29" name="item_pve_f_50_59_d01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="30" name="item_pve_f_50_59_e01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="31" name="item_pve_a_60_69_a01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="32" name="item_pve_a_60_69_b01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="33" name="item_pve_a_60_69_c01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="34" name="item_pve_a_60_69_d01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="35" name="item_pve_a_60_69_e01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="36" name="item_pve_r_60_69_a01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="37" name="item_pve_r_60_69_b01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="38" name="item_pve_r_60_69_c01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="39" name="item_pve_r_60_69_d01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="40" name="item_pve_r_60_69_e01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="41" name="item_pve_f_60_69_a01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="42" name="item_pve_f_60_69_b01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="43" name="item_pve_f_60_69_c01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="44" name="item_pve_f_60_69_d01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="45" name="item_pve_f_60_69_e01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="46" name="item_pve_a_70_79_a01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="47" name="item_pve_a_70_79_b01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="48" name="item_pve_a_70_79_c01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="49" name="item_pve_a_70_79_d01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="50" name="item_pve_a_70_79_e01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="51" name="item_pve_r_70_79_a01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="52" name="item_pve_r_70_79_b01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="53" name="item_pve_r_70_79_c01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="54" name="item_pve_r_70_79_d01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="55" name="item_pve_r_70_79_e01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="56" name="item_pve_f_70_79_a01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="57" name="item_pve_f_70_79_b01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="58" name="item_pve_f_70_79_c01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="59" name="item_pve_f_70_79_d01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="60" name="item_pve_f_70_79_e01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="61" name="item_pve_a_80_a01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="62" name="item_pve_a_80_b01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="63" name="item_pve_a_80_c01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="64" name="item_pve_a_80_d01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="65" name="item_pve_a_80_e01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="66" name="item_pve_r_80_a01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="67" name="item_pve_r_80_b01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="68" name="item_pve_r_80_c01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="69" name="item_pve_r_80_d01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="70" name="item_pve_r_80_e01">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="71" name="item_pve_f_80_a01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="72" name="item_pve_f_80_b01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="73" name="item_pve_f_80_c01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="74" name="item_pve_f_80_d01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="75" name="item_pve_f_80_e01">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="76" name="item_pvp_a_70_79_a01">
+	    <decompse_item item_id="166033106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="77" name="item_pvp_a_70_79_b01">
+	    <decompse_item item_id="166033106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="78" name="item_pvp_a_70_79_c01">
+	    <decompse_item item_id="166033106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="79" name="item_pvp_a_70_79_d01">
+	    <decompse_item item_id="166033106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="80" name="item_pvp_a_70_79_e01">
+	    <decompse_item item_id="166033106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="81" name="item_pvp_r_70_79_a01">
+	    <decompse_item item_id="166033107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="82" name="item_pvp_r_70_79_b01">
+	    <decompse_item item_id="166033107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="83" name="item_pvp_r_70_79_c01">
+	    <decompse_item item_id="166033107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="84" name="item_pvp_r_70_79_d01">
+	    <decompse_item item_id="166033107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="85" name="item_pvp_r_70_79_e01">
+	    <decompse_item item_id="166033107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="86" name="item_pvp_f_70_79_a01">
+	    <decompse_item item_id="166033108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="87" name="item_pvp_f_70_79_b01">
+	    <decompse_item item_id="166033108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="88" name="item_pvp_f_70_79_c01">
+	    <decompse_item item_id="166033108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="89" name="item_pvp_f_70_79_d01">
+	    <decompse_item item_id="166033108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="90" name="item_pvp_f_70_79_e01">
+	    <decompse_item item_id="166033108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="91" name="item_pvp_a_80_a01">
+	    <decompse_item item_id="166033106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="92" name="item_pvp_a_80_b01">
+	    <decompse_item item_id="166033106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="93" name="item_pvp_a_80_c01">
+	    <decompse_item item_id="166033106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="94" name="item_pvp_a_80_d01">
+	    <decompse_item item_id="166033106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="95" name="item_pvp_a_80_e01">
+	    <decompse_item item_id="166033106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="96" name="item_pvp_r_80_a01">
+	    <decompse_item item_id="166033107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="97" name="item_pvp_r_80_b01">
+	    <decompse_item item_id="166033107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="98" name="item_pvp_r_80_c01">
+	    <decompse_item item_id="166033107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="99" name="item_pvp_r_80_d01">
+	    <decompse_item item_id="166033107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="100" name="item_pvp_r_80_e01">
+	    <decompse_item item_id="166033107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="101" name="item_pvp_f_80_a01">
+	    <decompse_item item_id="166033108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="102" name="item_pvp_f_80_b01">
+	    <decompse_item item_id="166033108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="103" name="item_pvp_f_80_c01">
+	    <decompse_item item_id="166033108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="104" name="item_pvp_f_80_d01">
+	    <decompse_item item_id="166033108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="105" name="item_pvp_f_80_e01">
+	    <decompse_item item_id="166033108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="106" name="item_pve_hard_f_80_a01">
+	    <decompse_item item_id="166027000"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="107" name="item_pve_hard_f_80_b01">
+	    <decompse_item item_id="166027000"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="108" name="item_pve_hard_f_80_c01">
+	    <decompse_item item_id="166027000"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="109" name="item_pve_hard_f_80_d01">
+	    <decompse_item item_id="166027000"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="110" name="item_pve_hard_f_80_e01">
+	    <decompse_item item_id="166027000"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="111" name="item_pve_starweapon5_wp_01">
+	    <decompse_item item_id="152080134"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="112" name="item_pve_starweapon5_sh_01">
+	    <decompse_item item_id="152080134"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="113" name="item_pve_starweapon5_wp_f_01">
+	    <decompse_item item_id="152080134"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="114" name="item_pve_starweapon5_sh_f_01">
+	    <decompse_item item_id="152080134"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="117" name="item_grind_a_80_a01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="118" name="item_grind_a_80_b01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="119" name="item_grind_a_80_c01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="120" name="item_grind_a_80_d01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="121" name="item_grind_a_80_e01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="122" name="item_grind_r_80_a01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="123" name="item_grind_r_80_b01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="124" name="item_grind_r_80_c01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="125" name="item_grind_r_80_d01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="126" name="item_grind_r_80_e01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="127" name="item_grind_f_80_a01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="128" name="item_grind_f_80_b01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="129" name="item_grind_f_80_c01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="130" name="item_grind_f_80_d01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="131" name="item_grind_f_80_e01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="132" name="item_grind_shop_a_80_a01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="133" name="item_grind_shop_a_80_b01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="134" name="item_grind_shop_a_80_c01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="135" name="item_grind_shop_a_80_d01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="136" name="item_grind_shop_a_80_e01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="137" name="item_grind_shop_r_80_a01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="138" name="item_grind_shop_r_80_b01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="139" name="item_grind_shop_r_80_c01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="140" name="item_grind_shop_r_80_d01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="141" name="item_grind_shop_r_80_e01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="142" name="item_grind_shop_f_80_a01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="143" name="item_grind_shop_f_80_b01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="144" name="item_grind_shop_f_80_c01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="145" name="item_grind_shop_f_80_d01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="146" name="item_grind_shop_f_80_e01">
+	    <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="147" name="item_purify_a_80_a01">
+	    <decompse_item item_id="166025100"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="148" name="item_purify_a_80_b01">
+	    <decompse_item item_id="166025100"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="149" name="item_purify_a_80_c01">
+	    <decompse_item item_id="166025100"/>
+    </decompose_stuff_template>
+	<decompose_stuff_template id="150" name="item_badge_80_a0_extract_a">
+	    <decompse_item item_id="188120134"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="151" name="item_T2_pve_f_80_01">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="152" name="item_T2_pve_f_80_02">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="153" name="item_T2_pve_f_80_03">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="154" name="item_T2_pve_f_80_04">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="155" name="item_T2_pve_f_80_05">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="156" name="item_T2_pve_f_80_06">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="157" name="item_T2_pve_f_80_07">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="158" name="item_T2_pve_f_80_08">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="159" name="item_T2_pve_f_80_09">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="160" name="item_T2_pve_f_80_10">
+	    <decompse_item item_id="166023106"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="161" name="item_T2_pve_f_80_11">
+	    <decompse_item item_id="166023107"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="162" name="item_T2_pve_f_80_12">
+	    <decompse_item item_id="166023108"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="163" name="item_event_f1_80_a01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="164" name="item_event_f1_80_b01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="165" name="item_event_f1_80_c01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="166" name="item_event_f1_80_d01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="167" name="item_event_f1_80_e01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="168" name="item_event_f2_80_a01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="169" name="item_event_f2_80_b01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="170" name="item_event_f2_80_c01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="171" name="item_event_f2_80_d01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="172" name="item_event_f2_80_e01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="173" name="event_item_grind_f_80_a01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="174" name="event_item_grind_f_80_b01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="175" name="event_item_grind_f_80_c01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="176" name="event_item_grind_f_80_d01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+    <decompose_stuff_template id="177" name="event_item_grind_f_80_e01">
+        <decompse_item item_id="166024102"/>
+	    <decompse_item item_id="166409000"/>
+		<decompse_item item_id="188120097"/>
+    </decompose_stuff_template>
+</decompose_stuff_templates>

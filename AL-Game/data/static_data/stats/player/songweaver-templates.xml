@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<player_stats_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../stats.xsd">
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="9">
+		<stats_template maxHp="2832" maxMp="5203" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="483" block="636" parry="733" main_hand_attack="16" main_hand_accuracy="422" main_hand_crit_rate="2" magic_accuracy="336" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="10">
+		<stats_template maxHp="2961" maxMp="5505" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="498" block="651" parry="748" main_hand_attack="16" main_hand_accuracy="437" main_hand_crit_rate="2" magic_accuracy="351" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="11">
+		<stats_template maxHp="3063" maxMp="5803" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="513" block="666" parry="763" main_hand_attack="16" main_hand_accuracy="452" main_hand_crit_rate="2" magic_accuracy="366" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="12">
+		<stats_template maxHp="3169" maxMp="6108" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="528" block="681" parry="776" main_hand_attack="16" main_hand_accuracy="467" main_hand_crit_rate="2" magic_accuracy="381" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="13">
+		<stats_template maxHp="3278" maxMp="6409" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="543" block="696" parry="793" main_hand_attack="16" main_hand_accuracy="482" main_hand_crit_rate="2" magic_accuracy="396" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="14">
+		<stats_template maxHp="3390" maxMp="6711" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="558" block="711" parry="808" main_hand_attack="16" main_hand_accuracy="497" main_hand_crit_rate="2" magic_accuracy="411" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="15">
+		<stats_template maxHp="6506" maxMp="7012" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="573" block="726" parry="823" main_hand_attack="16" main_hand_accuracy="512" main_hand_crit_rate="2" magic_accuracy="426" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="16">
+		<stats_template maxHp="3626" maxMp="7649" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="588" block="741" parry="838" main_hand_attack="16" main_hand_accuracy="527" main_hand_crit_rate="2" magic_accuracy="441" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="17">
+		<stats_template maxHp="3749" maxMp="7969" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="603" block="756" parry="853" main_hand_attack="16" main_hand_accuracy="542" main_hand_crit_rate="2" magic_accuracy="456" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="18">
+		<stats_template maxHp="3875" maxMp="8288" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="618" block="771" parry="868" main_hand_attack="16" main_hand_accuracy="557" main_hand_crit_rate="2" magic_accuracy="471" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="19">
+		<stats_template maxHp="4005" maxMp="8609" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="633" block="786" parry="883" main_hand_attack="16" main_hand_accuracy="572" main_hand_crit_rate="2" magic_accuracy="486" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="20">
+		<stats_template maxHp="4139" maxMp="8929" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="648" block="801" parry="898" main_hand_attack="16" main_hand_accuracy="587" main_hand_crit_rate="2" magic_accuracy="501" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="21">
+		<stats_template maxHp="4273" maxMp="9249" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="663" block="816" parry="913" main_hand_attack="16" main_hand_accuracy="602" main_hand_crit_rate="2" magic_accuracy="516" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="22">
+		<stats_template maxHp="4407" maxMp="9569" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="678" block="831" parry="928" main_hand_attack="16" main_hand_accuracy="617" main_hand_crit_rate="2" magic_accuracy="531" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="23">
+		<stats_template maxHp="4541" maxMp="9889" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="693" block="846" parry="943" main_hand_attack="16" main_hand_accuracy="632" main_hand_crit_rate="2" magic_accuracy="546" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="24">
+		<stats_template maxHp="4675" maxMp="10209" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="708" block="861" parry="958" main_hand_attack="16" main_hand_accuracy="647" main_hand_crit_rate="2" magic_accuracy="561" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="25">
+		<stats_template maxHp="4809" maxMp="10529" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="723" block="876" parry="973" main_hand_attack="16" main_hand_accuracy="662" main_hand_crit_rate="2" magic_accuracy="576" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="26">
+		<stats_template maxHp="4943" maxMp="10849" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="738" block="891" parry="988" main_hand_attack="16" main_hand_accuracy="677" main_hand_crit_rate="2" magic_accuracy="591" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="27">
+		<stats_template maxHp="5077" maxMp="11169" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="753" block="906" parry="1003" main_hand_attack="16" main_hand_accuracy="692" main_hand_crit_rate="2" magic_accuracy="606" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="28">
+		<stats_template maxHp="5211" maxMp="11489" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="768" block="921" parry="1018" main_hand_attack="16" main_hand_accuracy="707" main_hand_crit_rate="2" magic_accuracy="621" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="29">
+		<stats_template maxHp="5345" maxMp="11809" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="783" block="936" parry="1033" main_hand_attack="16" main_hand_accuracy="722" main_hand_crit_rate="2" magic_accuracy="636" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="30">
+		<stats_template maxHp="5479" maxMp="12129" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="798" block="951" parry="1048" main_hand_attack="16" main_hand_accuracy="737" main_hand_crit_rate="2" magic_accuracy="651" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="31">
+		<stats_template maxHp="5613" maxMp="12449" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="813" block="966" parry="1063" main_hand_attack="16" main_hand_accuracy="752" main_hand_crit_rate="2" magic_accuracy="666" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="32">
+		<stats_template maxHp="5747" maxMp="12769" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="828" block="981" parry="1078" main_hand_attack="16" main_hand_accuracy="767" main_hand_crit_rate="2" magic_accuracy="681" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="33">
+		<stats_template maxHp="5881" maxMp="13089" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="843" block="996" parry="1093" main_hand_attack="16" main_hand_accuracy="782" main_hand_crit_rate="2" magic_accuracy="696" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="34">
+		<stats_template maxHp="6015" maxMp="13409" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="858" block="1011" parry="1108" main_hand_attack="16" main_hand_accuracy="797" main_hand_crit_rate="2" magic_accuracy="711" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="35">
+		<stats_template maxHp="6149" maxMp="13729" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="873" block="1026" parry="1123" main_hand_attack="16" main_hand_accuracy="812" main_hand_crit_rate="2" magic_accuracy="726" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="36">
+		<stats_template maxHp="6283" maxMp="14049" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="888" block="1041" parry="1138" main_hand_attack="16" main_hand_accuracy="827" main_hand_crit_rate="2" magic_accuracy="741" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="37">
+		<stats_template maxHp="6417" maxMp="14369" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="903" block="1056" parry="1153" main_hand_attack="16" main_hand_accuracy="842" main_hand_crit_rate="2" magic_accuracy="756" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="38">
+		<stats_template maxHp="6551" maxMp="14689" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="918" block="1071" parry="1168" main_hand_attack="16" main_hand_accuracy="857" main_hand_crit_rate="2" magic_accuracy="771" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="39">
+		<stats_template maxHp="6685" maxMp="15009" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="933" block="1086" parry="1183" main_hand_attack="16" main_hand_accuracy="872" main_hand_crit_rate="2" magic_accuracy="786" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="40">
+		<stats_template maxHp="6819" maxMp="15329" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="948" block="1101" parry="1198" main_hand_attack="16" main_hand_accuracy="887" main_hand_crit_rate="2" magic_accuracy="801" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="41">
+		<stats_template maxHp="6953" maxMp="15649" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="963" block="1116" parry="1213" main_hand_attack="16" main_hand_accuracy="902" main_hand_crit_rate="2" magic_accuracy="816" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="42">
+		<stats_template maxHp="7087" maxMp="15969" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="978" block="1131" parry="1228" main_hand_attack="16" main_hand_accuracy="917" main_hand_crit_rate="2" magic_accuracy="831" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="43">
+		<stats_template maxHp="7221" maxMp="16289" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="993" block="1146" parry="1243" main_hand_attack="16" main_hand_accuracy="932" main_hand_crit_rate="2" magic_accuracy="846" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="44">
+		<stats_template maxHp="7355" maxMp="16609" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1008" block="1161" parry="1258" main_hand_attack="16" main_hand_accuracy="947" main_hand_crit_rate="2" magic_accuracy="861" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="45">
+		<stats_template maxHp="7489" maxMp="16929" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1023" block="1176" parry="1273" main_hand_attack="16" main_hand_accuracy="962" main_hand_crit_rate="2" magic_accuracy="876" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="46">
+		<stats_template maxHp="7623" maxMp="17249" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1038" block="1191" parry="1288" main_hand_attack="16" main_hand_accuracy="977" main_hand_crit_rate="2" magic_accuracy="891" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="47">
+		<stats_template maxHp="7757" maxMp="17569" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1053" block="1206" parry="1303" main_hand_attack="16" main_hand_accuracy="992" main_hand_crit_rate="2" magic_accuracy="906" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="48">
+		<stats_template maxHp="7891" maxMp="17889" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1068" block="1221" parry="1318" main_hand_attack="16" main_hand_accuracy="1007" main_hand_crit_rate="2" magic_accuracy="921" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="49">
+		<stats_template maxHp="8025" maxMp="18209" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1083" block="1236" parry="1333" main_hand_attack="16" main_hand_accuracy="1022" main_hand_crit_rate="2" magic_accuracy="936" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="50">
+		<stats_template maxHp="8159" maxMp="18529" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1098" block="1251" parry="1348" main_hand_attack="16" main_hand_accuracy="1037" main_hand_crit_rate="2" magic_accuracy="951" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="51">
+		<stats_template maxHp="8293" maxMp="18849" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1113" block="1266" parry="1363" main_hand_attack="16" main_hand_accuracy="1052" main_hand_crit_rate="2" magic_accuracy="966" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="52">
+		<stats_template maxHp="8427" maxMp="19169" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1128" block="1281" parry="1378" main_hand_attack="16" main_hand_accuracy="1067" main_hand_crit_rate="2" magic_accuracy="981" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="53">
+		<stats_template maxHp="8561" maxMp="19489" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1143" block="1296" parry="1393" main_hand_attack="16" main_hand_accuracy="1082" main_hand_crit_rate="2" magic_accuracy="996" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="54">
+		<stats_template maxHp="8695" maxMp="19809" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1158" block="1311" parry="1408" main_hand_attack="16" main_hand_accuracy="1097" main_hand_crit_rate="2" magic_accuracy="1011" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="55">
+		<stats_template maxHp="8829" maxMp="20129" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1173" block="1326" parry="1423" main_hand_attack="16" main_hand_accuracy="1112" main_hand_crit_rate="2" magic_accuracy="1026" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="56">
+		<stats_template maxHp="8963" maxMp="20449" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1188" block="1341" parry="1438" main_hand_attack="16" main_hand_accuracy="1127" main_hand_crit_rate="2" magic_accuracy="1041" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="57">
+		<stats_template maxHp="9097" maxMp="20769" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1203" block="1356" parry="1453" main_hand_attack="16" main_hand_accuracy="1142" main_hand_crit_rate="2" magic_accuracy="1056" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="58">
+		<stats_template maxHp="9231" maxMp="21089" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1218" block="1371" parry="1468" main_hand_attack="16" main_hand_accuracy="1157" main_hand_crit_rate="2" magic_accuracy="1071" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="59">
+		<stats_template maxHp="9365" maxMp="21409" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1233" block="1386" parry="1483" main_hand_attack="16" main_hand_accuracy="1172" main_hand_crit_rate="2" magic_accuracy="1086" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="60">
+		<stats_template maxHp="9499" maxMp="21729" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1248" block="1401" parry="1498" main_hand_attack="16" main_hand_accuracy="1187" main_hand_crit_rate="2" magic_accuracy="1101" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="61">
+		<stats_template maxHp="9633" maxMp="22049" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1263" block="1416" parry="1513" main_hand_attack="16" main_hand_accuracy="1202" main_hand_crit_rate="2" magic_accuracy="1116" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="62">
+		<stats_template maxHp="9767" maxMp="22369" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1278" block="1431" parry="1528" main_hand_attack="16" main_hand_accuracy="1217" main_hand_crit_rate="2" magic_accuracy="1131" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="63">
+		<stats_template maxHp="9901" maxMp="22689" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1293" block="1446" parry="1543" main_hand_attack="16" main_hand_accuracy="1232" main_hand_crit_rate="2" magic_accuracy="1146" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="64">
+		<stats_template maxHp="10035" maxMp="23009" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1308" block="1461" parry="1558" main_hand_attack="16" main_hand_accuracy="1247" main_hand_crit_rate="2" magic_accuracy="1161" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="65">
+		<stats_template maxHp="10169" maxMp="23329" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1323" block="1476" parry="1573" main_hand_attack="16" main_hand_accuracy="1262" main_hand_crit_rate="2" magic_accuracy="1176" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="66">
+		<stats_template maxHp="10303" maxMp="23649" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1338" block="1491" parry="1588" main_hand_attack="16" main_hand_accuracy="1277" main_hand_crit_rate="2" magic_accuracy="1191" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="67">
+		<stats_template maxHp="10437" maxMp="23969" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1353" block="1506" parry="1603" main_hand_attack="16" main_hand_accuracy="1292" main_hand_crit_rate="2" magic_accuracy="1206" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="68">
+		<stats_template maxHp="10571" maxMp="24289" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1368" block="1521" parry="1618" main_hand_attack="16" main_hand_accuracy="1307" main_hand_crit_rate="2" magic_accuracy="1221" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="69">
+		<stats_template maxHp="10705" maxMp="24609" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1383" block="1536" parry="1633" main_hand_attack="16" main_hand_accuracy="1322" main_hand_crit_rate="2" magic_accuracy="1236" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="70">
+		<stats_template maxHp="10839" maxMp="24929" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1398" block="1551" parry="1648" main_hand_attack="16" main_hand_accuracy="1337" main_hand_crit_rate="2" magic_accuracy="1251" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="71">
+		<stats_template maxHp="10973" maxMp="25249" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1413" block="1566" parry="1663" main_hand_attack="16" main_hand_accuracy="1352" main_hand_crit_rate="2" magic_accuracy="1266" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="72">
+		<stats_template maxHp="11107" maxMp="25569" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1428" block="1581" parry="1678" main_hand_attack="16" main_hand_accuracy="1367" main_hand_crit_rate="2" magic_accuracy="1281" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="73">
+		<stats_template maxHp="11241" maxMp="25889" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1443" block="1596" parry="1693" main_hand_attack="16" main_hand_accuracy="1382" main_hand_crit_rate="2" magic_accuracy="1296" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="74">
+		<stats_template maxHp="11375" maxMp="26209" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1458" block="1611" parry="1708" main_hand_attack="16" main_hand_accuracy="1397" main_hand_crit_rate="2" magic_accuracy="1311" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="75">
+		<stats_template maxHp="11509" maxMp="26529" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1473" block="1626" parry="1723" main_hand_attack="16" main_hand_accuracy="1412" main_hand_crit_rate="2" magic_accuracy="1326" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="76">
+		<stats_template maxHp="11643" maxMp="26849" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1488" block="1641" parry="1738" main_hand_attack="16" main_hand_accuracy="1427" main_hand_crit_rate="2" magic_accuracy="1341" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="77">
+		<stats_template maxHp="11777" maxMp="27169" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1503" block="1656" parry="1753" main_hand_attack="16" main_hand_accuracy="1442" main_hand_crit_rate="2" magic_accuracy="1356" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="78">
+		<stats_template maxHp="11911" maxMp="27489" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1518" block="1671" parry="1768" main_hand_attack="16" main_hand_accuracy="1457" main_hand_crit_rate="2" magic_accuracy="1371" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="79">
+		<stats_template maxHp="12045" maxMp="27809" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1533" block="1686" parry="1783" main_hand_attack="16" main_hand_accuracy="1472" main_hand_crit_rate="2" magic_accuracy="1386" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="SONGWEAVER" level="80">
+		<stats_template maxHp="12179" maxMp="28129" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1548" block="1701" parry="1798" main_hand_attack="16" main_hand_accuracy="1487" main_hand_crit_rate="2" magic_accuracy="1401" crit_spell="50"/>
+	</player_stats>
+	
+	<!--
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="81">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1062" block="1062" parry="1062" main_hand_attack="16" main_hand_accuracy="838" main_hand_crit_rate="2" magic_accuracy="1152" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="82">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1074" block="1074" parry="1074" main_hand_attack="16" main_hand_accuracy="846" main_hand_crit_rate="2" magic_accuracy="1166" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="83">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1086" block="1086" parry="1086" main_hand_attack="16" main_hand_accuracy="854" main_hand_crit_rate="2" magic_accuracy="1180" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="84">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1098" block="1098" parry="1098" main_hand_attack="16" main_hand_accuracy="862" main_hand_crit_rate="2" magic_accuracy="1194" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="85">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1110" block="1110" parry="1110" main_hand_attack="16" main_hand_accuracy="870" main_hand_crit_rate="2" magic_accuracy="1208" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="86">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1122" block="1122" parry="1122" main_hand_attack="16" main_hand_accuracy="878" main_hand_crit_rate="2" magic_accuracy="1222" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="87">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1134" block="1134" parry="1134" main_hand_attack="16" main_hand_accuracy="886" main_hand_crit_rate="2" magic_accuracy="1236" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="88">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1146" block="1146" parry="1146" main_hand_attack="16" main_hand_accuracy="894" main_hand_crit_rate="2" magic_accuracy="1250" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="89">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1158" block="1158" parry="1158" main_hand_attack="16" main_hand_accuracy="902" main_hand_crit_rate="2" magic_accuracy="1264" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="90">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1170" block="1170" parry="1170" main_hand_attack="16" main_hand_accuracy="910" main_hand_crit_rate="2" magic_accuracy="1278" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="91">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1182" block="1182" parry="1182" main_hand_attack="16" main_hand_accuracy="918" main_hand_crit_rate="2" magic_accuracy="1292" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="92">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1194" block="1194" parry="1194" main_hand_attack="16" main_hand_accuracy="926" main_hand_crit_rate="2" magic_accuracy="1306" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="93">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1206" block="1206" parry="1206" main_hand_attack="16" main_hand_accuracy="934" main_hand_crit_rate="2" magic_accuracy="1320" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="94">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1218" block="1218" parry="1218" main_hand_attack="16" main_hand_accuracy="942" main_hand_crit_rate="2" magic_accuracy="1334" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="95">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1230" block="1230" parry="1230" main_hand_attack="16" main_hand_accuracy="950" main_hand_crit_rate="2" magic_accuracy="1348" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="96">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1242" block="1242" parry="1242" main_hand_attack="16" main_hand_accuracy="958" main_hand_crit_rate="2" magic_accuracy="1362" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="97">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1254" block="1254" parry="1254" main_hand_attack="16" main_hand_accuracy="966" main_hand_crit_rate="2" magic_accuracy="1376" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="98">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1266" block="1266" parry="1266" main_hand_attack="16" main_hand_accuracy="974" main_hand_crit_rate="2" magic_accuracy="1390" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="99">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1278" block="1278" parry="1278" main_hand_attack="16" main_hand_accuracy="982" main_hand_crit_rate="2" magic_accuracy="1404" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="SONGWEAVER" level="100">
+		<stats_template maxHp="7915" maxMp="7591" power="95" health="95" agility="100" accuracy="100" knowledge="100" will="110" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1290" block="1290" parry="1290" main_hand_attack="16" main_hand_accuracy="990" main_hand_crit_rate="2" magic_accuracy="1418" crit_spell="50"/>
+	</player_stats> -->
+</player_stats_templates>

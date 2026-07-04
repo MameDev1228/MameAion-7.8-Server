@@ -1,28 +1,10 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.gameobjects.player.achievement;
 
-import com.aionemu.gameserver.model.gameobjects.player.achievement.AchievementAction;
-import com.aionemu.gameserver.model.gameobjects.player.achievement.AchievementState;
-import com.aionemu.gameserver.model.gameobjects.player.achievement.AchievementType;
 import com.aionemu.gameserver.utils.idfactory.IDFactory;
+import javolution.util.FastMap;
+
 import java.sql.Timestamp;
 import java.util.Map;
-import javolution.util.FastMap;
 
 public class PlayerAchievement {
 
@@ -58,11 +40,11 @@ public class PlayerAchievement {
     }
 
     public int getObjectId() {
-        return this.objectId;
+        return objectId;
     }
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(int id) {
@@ -70,7 +52,7 @@ public class PlayerAchievement {
     }
 
     public AchievementType getType() {
-        return this.type;
+        return type;
     }
 
     public void setStartDate(Timestamp startDate) {
@@ -86,7 +68,7 @@ public class PlayerAchievement {
     }
 
     public int getStep() {
-        return this.step;
+        return step;
     }
 
     public void setStep(int step) {
@@ -94,19 +76,18 @@ public class PlayerAchievement {
     }
 
     public Timestamp getStartDate() {
-        return this.startDate;
+        return startDate;
     }
 
     public Timestamp getEndateDate() {
-        return this.endateDate;
+        return endateDate;
     }
 
     public AchievementState getState() {
-        return this.state;
+        return state;
     }
 
     public void setState(AchievementState state) {
         this.state = state;
     }
 }
-

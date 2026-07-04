@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.drop;
 
@@ -35,8 +35,9 @@ public class DropItem {
 	private boolean isItemWonNotCollected = false;
 	private boolean isDistributeItem = false;
 	private int npcObj;
-	private int optionalSocket = 0;
 
+	private int optionalSocket = 0;
+	
 	public DropItem(Drop dropTemplate) {
 		this.dropTemplate = dropTemplate;
 		ItemTemplate template = dropTemplate.getItemTemplate();
@@ -47,7 +48,8 @@ public class DropItem {
 	}
 
 	/**
-	 * Regenerates item count upon each call // TODO input parameters - based on attacker stats // TODO more precise calculations (non-linear)
+	 * Regenerates item count upon each call // TODO input parameters - based on attacker stats // TODO more precise
+	 * calculations (non-linear)
 	 */
 	public void calculateCount() {
 		count = Rnd.get(dropTemplate.getMinAmount(), dropTemplate.getMaxAmount());
@@ -62,7 +64,7 @@ public class DropItem {
 
 	/**
 	 * @param index
-	 *            the index to set
+	 *          the index to set
 	 */
 	public void setIndex(int index) {
 		this.index = index;
@@ -98,7 +100,7 @@ public class DropItem {
 
 	/**
 	 * @param playerObjId
-	 *            the playerObjId to set
+	 *          the playerObjId to set
 	 */
 	public void setPlayerObjId(int playerObjId) {
 		this.playerObjId = playerObjId;
@@ -106,7 +108,7 @@ public class DropItem {
 
 	/**
 	 * @param isFreeForAll
-	 *            to set
+	 *          to set
 	 */
 	public void isFreeForAll(boolean isFreeForAll) {
 		this.isFreeForAll = isFreeForAll;
@@ -128,7 +130,7 @@ public class DropItem {
 
 	/**
 	 * @param highestValue
-	 *            to set
+	 *          to set
 	 */
 	public void setHighestValue(long highestValue) {
 		this.highestValue = highestValue;
@@ -136,7 +138,7 @@ public class DropItem {
 
 	/**
 	 * @param WinningPlayer
-	 *            to set
+	 *          to set
 	 */
 	public void setWinningPlayer(Player winningPlayer) {
 		this.winningPlayer = winningPlayer;
@@ -152,7 +154,7 @@ public class DropItem {
 
 	/**
 	 * @param isItemWonNotCollected
-	 *            to set
+	 *          to set
 	 */
 	public void isItemWonNotCollected(boolean isItemWonNotCollected) {
 		this.isItemWonNotCollected = isItemWonNotCollected;
@@ -167,7 +169,7 @@ public class DropItem {
 
 	/**
 	 * @param isDistributeItem
-	 *            to set
+	 *          to set
 	 */
 	public void isDistributeItem(boolean isDistributeItem) {
 		this.isDistributeItem = isDistributeItem;
@@ -187,8 +189,9 @@ public class DropItem {
 	public void setNpcObj(int npcObj) {
 		this.npcObj = npcObj;
 	}
-
+	
 	public int getOptionalSocket() {
 		return optionalSocket;
 	}
+
 }

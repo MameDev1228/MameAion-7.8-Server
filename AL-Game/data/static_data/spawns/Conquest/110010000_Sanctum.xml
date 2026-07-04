@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	The Shugo Emperor's Vault.
+ -->
+<spawns>
+    <spawn_map map_id="110010000">
+		<!-- [The Shugo Emperor's Vault 4.7.5] -->
+		<conquest_spawn id="5">
+			<conquest_type ostate="CONQUEST">
+				<!-- The Shugo Emperor's Vault -->
+				<spawn npc_id="832920">
+				    <spot x="1502.2665" y="1511.7048" z="565.9418" h="60"/>
+				</spawn>
+				<!-- Indinerk Jonakak -->
+				<spawn npc_id="832921">
+				    <spot x="1498.8264" y="1511.6183" z="565.9401" h="61"/>
+				</spawn>
+			</conquest_type>
+			<conquest_type ostate="PEACE">
+			</conquest_type>
+		</conquest_spawn>
+    </spawn_map>
+</spawns>

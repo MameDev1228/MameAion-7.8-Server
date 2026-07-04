@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Instance Summon
+	Made By Rinzler (Encom)
+ -->
+<summon_stats_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../stats.xsd">
+	<!-- ******************** -->
+	<!-- INSTANCE SUMMON -->
+	<!-- ******************** -->
+	<!-- HARAMEL -->
+	<summon_stats npc_id_light="799994" npc_id_dark="799995" level="10">
+		<stats_template maxHp="7500" pdefense="850" mresist="550" main_hand_attack="250" run_speed="9.6" main_hand_accuracy="950" main_hand_crit_rate="50" magic_accuracy="550" mcrit="18" parry="0" evasion="750"/>
+	</summon_stats>
+	<!-- INDRATU FORTRESS-BAKARMA FORTRESS -->
+	<summon_stats npc_id_light="799996" npc_id_dark="799997" level="61">
+		<stats_template maxHp="8700" pdefense="970" mresist="670" main_hand_attack="370" run_speed="9.6" main_hand_accuracy="1070" main_hand_crit_rate="50" magic_accuracy="670" mcrit="18" parry="0" evasion="870"/>
+	</summon_stats>
+	<!-- TALOC HOLLOW -->
+	<summon_stats npc_id_light="799500" npc_id_dark="799500" level="80">
+		<stats_template maxHp="11700" pdefense="1270" mresist="970" main_hand_attack="670" run_speed="9.6" main_hand_accuracy="1370" main_hand_crit_rate="50" magic_accuracy="970" mcrit="18" parry="0" evasion="1170"/>
+	</summon_stats>
+	<summon_stats npc_id_light="799501" npc_id_dark="799501" level="80">
+		<stats_template maxHp="11700" pdefense="1270" mresist="970" main_hand_attack="670" run_speed="9.6" main_hand_accuracy="1370" main_hand_crit_rate="50" magic_accuracy="970" mcrit="18" parry="0" evasion="1170"/>
+	</summon_stats>
+	<!-- SILENTERA CANYON -->
+	<summon_stats npc_id_light="799998" npc_id_dark="799999" level="80">
+		<stats_template maxHp="12600" pdefense="1360" mresist="1060" main_hand_attack="760" run_speed="9.6" main_hand_accuracy="1460" main_hand_crit_rate="50" magic_accuracy="1060" mcrit="18" parry="0" evasion="1260"/>
+	</summon_stats>
+</summon_stats_templates>

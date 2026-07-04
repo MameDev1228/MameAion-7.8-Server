@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+<!--
+    Quest The Veilbreakers
+	Make By Encom
+ -->
+	<!-- [일일] 굶주린 그란케르 처치 -->
+	<monster_hunt id="49801" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="655254 655061" end_var="10"/>
+	</monster_hunt>
+	<!-- [일일] 예민한 셀라투스 처치 -->
+	<monster_hunt id="49802" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="655259 655066" end_var="10"/>
+	</monster_hunt>
+	<!-- [일일] 신비 버섯 군락 우두머리 처치 -->
+	<monster_hunt id="49803" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="655135 655136" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 기록의 호수 우두머리 처치 -->
+	<monster_hunt id="49804" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="655137 655138" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 푸른 뿔 크로코닉 처치 -->
+	<monster_hunt id="49805" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="655072" end_var="10"/>
+	</monster_hunt>
+	<!-- [일일] 사나운 다르고르 처치 -->
+	<monster_hunt id="49806" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="655077" end_var="10"/>
+	</monster_hunt>
+	<!-- [일일] 나른한 해안가 우두머리 처치 -->
+	<monster_hunt id="49807" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="655127 655128" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 태고의 붉은 나무 숲 우두머리 처치 -->
+	<monster_hunt id="49808" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="655129 655130" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 엔도림 사원 우두머리 처치 -->
+	<monster_hunt id="49809" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="655131 655132" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 참혹한 해안가 우두머리 처치 -->
+	<monster_hunt id="49810" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="655133 655134" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 제128 기지 공격 -->
+	<monster_hunt id="49811" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="885751 885761" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 제129 기지 공격 -->
+	<monster_hunt id="49812" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="885766 885776" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 제127 기지 공격 -->
+	<monster_hunt id="49813" start_npc_ids="0" end_npc_ids="806901">
+		<monster var="1" npc_ids="885736 885746" end_var="1"/>
+	</monster_hunt>
+</quest_scripts>

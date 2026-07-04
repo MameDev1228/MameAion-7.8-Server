@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.utils3d;
 
@@ -24,9 +24,11 @@ import org.slf4j.LoggerFactory;
 public class Plane3D {
 
 	private static final double[] column = new double[] { 1, 1, 1 };
+
 	private Point3D p0;
 	private Point3D p1;
 	private Point3D p2;
+
 	private double a;
 	private double b;
 	private double c;
@@ -38,7 +40,8 @@ public class Plane3D {
 		this.p1 = p1;
 		this.p2 = p2;
 
-		Matrix3D equation = new Matrix3D(new double[][] { { p0.x, p0.y, p0.z }, { p1.x, p1.y, p1.z }, { p2.x, p2.y, p2.z } });
+		Matrix3D equation = new Matrix3D(
+			new double[][] { { p0.x, p0.y, p0.z }, { p1.x, p1.y, p1.z }, { p2.x, p2.y, p2.z } });
 
 		double D = equation.determinant();
 
@@ -72,7 +75,8 @@ public class Plane3D {
 	public Point3D intersection(Point3D la, Point3D lb) {
 		double[] v1 = new double[] { la.x - p0.x, la.y - p0.y, la.z - p0.z };
 
-		Matrix3D m1 = new Matrix3D(new double[][] { { la.x - lb.x, p1.x - p0.x, p2.x - p0.x }, { la.y - lb.y, p1.y - p0.y, p2.y - p0.y }, { la.z - lb.z, p1.z - p0.z, p2.z - p0.z } });
+		Matrix3D m1 = new Matrix3D(new double[][] { { la.x - lb.x, p1.x - p0.x, p2.x - p0.x },
+			{ la.y - lb.y, p1.y - p0.y, p2.y - p0.y }, { la.z - lb.z, p1.z - p0.z, p2.z - p0.z } });
 
 		double[] formula = null;
 		Point3D result = null;
@@ -86,7 +90,9 @@ public class Plane3D {
 			result.z = la.z + (lb.z - la.z) * formula[0];
 		}
 		catch (RuntimeException e) {
-			LoggerFactory.getLogger(getClass()).debug(m1 + "(determinant: " + m1.determinant() + ") * [ " + v1[0] + "," + v1[1] + "," + v1[0] + " ]: " + e.getMessage(), e);
+			LoggerFactory.getLogger(getClass()).debug(
+				m1 + "(determinant: " + m1.determinant() + ") * [ " + v1[0] + "," + v1[1] + "," + v1[0] + " ]: "
+					+ e.getMessage(), e);
 		}
 
 		return result;

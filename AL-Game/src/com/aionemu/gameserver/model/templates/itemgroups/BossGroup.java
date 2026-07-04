@@ -1,28 +1,29 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.templates.itemgroups;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.aionemu.gameserver.model.templates.rewards.IdReward;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Rolandas
@@ -30,18 +31,17 @@ import javax.xml.bind.annotation.XmlType;
  */
 
 /**
- * <p/>
+ * <p>
  * Java class for BossGroup complex type.
- * <p/>
+ * <p>
  * The following schema fragment specifies the expected content contained within this class.
- * <p/>
  * 
  * <pre>
  * &lt;complexType name="BossGroup">
  *   &lt;complexContent>
- *     &lt;extension base="{}BonusItemGroup">
+ *     &lt;extension base="{}ItemGroup">
  *       &lt;sequence>
- *         &lt;element name="item" type="{}ItemRaceEntry" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="item" type="{}IdReward" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -50,39 +50,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "BossGroup")
-public class BossGroup extends BonusItemGroup {
+public class BossGroup extends BonusItemGroup
+{
 
 	@XmlElement(name = "item")
-	protected List<ItemRaceEntry> items;
+  protected List<ItemRaceEntry> items;
 
 	/**
 	 * Gets the value of the item property.
-	 * <p/>
-	 * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is
-	 * not a <CODE>set</CODE> method for the item property.
-	 * <p/>
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to
+	 * the returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE> method for
+	 * the item property.
+	 * <p>
 	 * For example, to add a new item, do as follows:
-	 * <p/>
 	 * 
 	 * <pre>
 	 * getItems().add(newItem);
 	 * </pre>
-	 * <p/>
-	 * Objects of the following type(s) are allowed in the list {@link ItemRaceEntry }
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link IdReward }
 	 */
-	public List<ItemRaceEntry> getItems() {
+  public List<ItemRaceEntry> getItems()
+  {
 		if (items == null) {
 			items = new ArrayList<ItemRaceEntry>();
 		}
 		return this.items;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/* (non-Javadoc)
 	 * @see com.aionemu.gameserver.model.templates.itemgroups.ItemGroup#getRewards()
 	 */
 	@Override
 	public ItemRaceEntry[] getRewards() {
 		return getItems().toArray(new ItemRaceEntry[0]);
 	}
+
 }

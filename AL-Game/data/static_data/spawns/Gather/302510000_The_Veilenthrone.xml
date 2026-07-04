@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	The Veilenthrone 6.x
+	Spawn By Encom
+ -->
+<spawns>
+    <spawn_map map_id="302510000">
+	    <!-- Big Tree -->
+		<spawn npc_id="409260">
+			<spot h="90" z="157.61928" y="686.2664" x="483.65533"/>
+		</spawn>
+	</spawn_map>
+</spawns>

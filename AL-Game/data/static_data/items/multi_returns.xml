@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+	Multi Return
+	Made By Rinzler
+ -->
+<multi_returns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="multi_returns.xsd">
+	<!-- Elyos -->
+	<item id="6">
+        <loc world_id="110010000" desc="Sanctum"/>
+        <loc world_id="210040000" desc="Heiron"/>
+        <loc world_id="110070000" desc="Kaisinel Academy"/>
+        <loc world_id="700010000" desc="Oriel"/>
+        <loc world_id="210050000" desc="Inggison"/>
+    </item>
+	<item id="12">
+        <loc world_id="110010000" desc="Sanctum"/>
+        <loc world_id="210040000" desc="Heiron"/>
+        <loc world_id="110070000" desc="Kaisinel Academy"/>
+        <loc world_id="700010000" desc="Oriel"/>
+        <loc world_id="210050000" desc="Inggison"/>
+    </item>
+	<!-- Asmodians -->
+    <item id="7">
+        <loc world_id="120010000" desc="Pandaemonium"/>
+        <loc world_id="220040000" desc="Beluslan"/>
+        <loc world_id="120080000" desc="Marchutan Priory"/>
+        <loc world_id="710010000" desc="Pernon"/>
+        <loc world_id="220070000" desc="Gelkmaros"/>
+    </item>
+    <item id="13">
+        <loc world_id="120010000" desc="Pandaemonium"/>
+        <loc world_id="220040000" desc="Beluslan"/>
+        <loc world_id="120080000" desc="Marchutan Priory"/>
+        <loc world_id="710010000" desc="Pernon"/>
+        <loc world_id="220070000" desc="Gelkmaros"/>
+    </item>
+</multi_returns>

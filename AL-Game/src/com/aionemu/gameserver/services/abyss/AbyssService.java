@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services.abyss;
 
@@ -24,67 +24,47 @@ import com.aionemu.gameserver.utils.stats.AbyssRankEnum;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-/**
- * @author ATracer
- */
-public class AbyssService {
-
+public class AbyssService
+{
 	private static final int[] abyssMapList = {
-	////***////
-	210020000, // Elten
-	210040000, // Heiron
-	210050000, // Inggison
-	210060000, // Theobomos
-	210070000, // Cygnea
-	210090000, // Idian Depths.
-	210100000, // Iluma
-	220020000, // Morheim
-	220040000, // Beluslan
-	220050000, // Brusthonin
-	220070000, // Gelkmaros
-	220080000, // Enshar
-	220100000, // Idian Depths
-	220110000, // Norvsvold
-	400010000, // Reshanta
-	400020000, // Belus
-	400040000, // Aspida
-	400050000, // Atanatos
-	400060000, // Disillon
-	600010000, // Silentera Canyon
-	600090000, // Kaldor
-	600100000}; // Levinshor
-
-	/**
-	 * @param player
-	 */
+	210040000, //Heiron.
+	210050000, //Inggison.
+	220040000, //Beluslan.
+	220070000, //Gelkmaros.
+	400070000, //Abyss Core.
+	600010000, //Silentera Canyon.
+	600040000, //Tiamaranta's Eye.
+	800020000, //Kaldor.
+	800030000, //Crimson Katalam.
+	800040000, //Crimson Danaria.
+	800050000, //Lakrum.
+	800060000, //Demaha.
+	800070000}; //Silentera Canyon 7.7
+	
 	public static final boolean isOnPvpMap(Player player) {
-		for (int i : abyssMapList) {
+		for (int i: abyssMapList) {
 			if (i == player.getWorldId()) {
 				return true;
+			} else {
+				continue;
 			}
 		}
 		return false;
 	}
-
-	/**
-	 * @param victim
-	 */
+	
 	public static final void rankedKillAnnounce(final Player victim) {
-
 		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
-
 			@Override
 			public void visit(Player p) {
-				if (p != victim && victim.getWorldType() == p.getWorldType() && !p.isInInstance()) {
+				if (p != victim && victim.getWorldId() == p.getWorldId()) {
 					PacketSendUtility.sendPacket(p, SM_SYSTEM_MESSAGE.STR_ABYSS_ORDER_RANKER_DIE(victim, AbyssRankEnum.getRankDescriptionId(victim)));
 				}
 			}
 		});
 	}
-
+	
 	public static final void rankerSkillAnnounce(final Player player, final int nameId) {
 		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
-
 			@Override
 			public void visit(Player p) {
 				if (p != player && player.getWorldType() == p.getWorldType() && !p.isInInstance()) {

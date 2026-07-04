@@ -1,19 +1,20 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-emu is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-emu is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package com.aionemu.gameserver.network.aion.clientpackets;
 
 import com.aionemu.gameserver.configs.main.GSConfig;
@@ -27,7 +28,7 @@ import com.aionemu.gameserver.services.player.PlayerService;
 
 /**
  * In this packets aion client is asking if given nickname is ok/free?.
- *
+ * 
  * @author -Nemesiss-
  * @modified cura
  */
@@ -40,7 +41,7 @@ public class CM_CHECK_NICKNAME extends AionClientPacket {
 
 	/**
 	 * Constructs new instance of <tt>CM_CHECK_NICKNAME </tt> packet
-	 *
+	 * 
 	 * @param opcode
 	 */
 	public CM_CHECK_NICKNAME(int opcode, State state, State... restStates) {
@@ -63,12 +64,10 @@ public class CM_CHECK_NICKNAME extends AionClientPacket {
 		AionConnection client = getConnection();
 
 		if (!PlayerService.isFreeName(nick) || PlayerService.isOldName(nick)) {
-			if (GSConfig.CHARACTER_CREATION_MODE == 2) {
+			if (GSConfig.CHARACTER_CREATION_MODE == 2)
 				client.sendPacket(new SM_NICKNAME_CHECK_RESPONSE(SM_CREATE_CHARACTER.RESPONSE_NAME_RESERVED));
-			}
-			else {
+			else
 				client.sendPacket(new SM_NICKNAME_CHECK_RESPONSE(SM_CREATE_CHARACTER.RESPONSE_NAME_ALREADY_USED));
-			}
 		}
 		else if (!NameRestrictionService.isValidName(nick)) {
 			client.sendPacket(new SM_NICKNAME_CHECK_RESPONSE(SM_CREATE_CHARACTER.RESPONSE_INVALID_NAME));
@@ -76,8 +75,7 @@ public class CM_CHECK_NICKNAME extends AionClientPacket {
 		else if (NameRestrictionService.isForbiddenWord(nick)) {
 			client.sendPacket(new SM_CREATE_CHARACTER(null, SM_CREATE_CHARACTER.RESPONSE_FORBIDDEN_CHAR_NAME));
 		}
-		else {
-			client.sendPacket(new SM_NICKNAME_CHECK_RESPONSE(SM_CREATE_CHARACTER.RESPONSE_OK));
-		}
+		else
+			client.sendPacket(new SM_NICKNAME_CHECK_RESPONSE(0));
 	}
 }

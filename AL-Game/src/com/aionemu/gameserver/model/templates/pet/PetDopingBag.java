@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.templates.pet;
 
@@ -31,9 +31,8 @@ public class PetDopingBag {
 	}
 
 	public int getFoodItem() {
-		if (itemBag == null || itemBag.length < 1) {
+		if (itemBag == null || itemBag.length < 1)
 			return 0;
-		}
 		return itemBag[0];
 	}
 
@@ -42,19 +41,15 @@ public class PetDopingBag {
 	}
 
 	public int getDrinkItem() {
-		if (itemBag == null || itemBag.length < 2) {
+		if (itemBag == null || itemBag.length < 2)
 			return 0;
-		}
 		return itemBag[1];
 	}
 
 	/**
 	 * Adds or removes item to the bag
-	 *
-	 * @param itemId
-	 *            - item Id, or 0 to remove
-	 * @param slot
-	 *            - slot number; 0 for food, 1 for drink, the rest are for scrolls
+	 * @param itemId - item Id, or 0 to remove
+	 * @param slot - slot number; 0 for food, 1 for drink, the rest are for scrolls
 	 */
 	public void setItem(int itemId, int slot) {
 		if (itemBag == null) {
@@ -72,9 +67,8 @@ public class PetDopingBag {
 	}
 
 	public int[] getScrollsUsed() {
-		if (itemBag == null || itemBag.length < 3) {
+		if (itemBag == null || itemBag.length < 3)
 			return new int[0];
-		}
 		return Arrays.copyOfRange(itemBag, 2, itemBag.length);
 	}
 
@@ -84,4 +78,5 @@ public class PetDopingBag {
 	public boolean isDirty() {
 		return isDirty;
 	}
+
 }

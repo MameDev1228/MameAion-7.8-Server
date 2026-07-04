@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Genesis Arena 7.x
+	Spawn By Encom
+ -->
+<spawns>
+	<spawn_map map_id="320180000">
+		<!-- IDCustomize_L_Control_NPC_01 -->
+		<spawn npc_id="839669" respawn_time="295">
+			<spot h="0" z="52.10262" y="750.9366" x="88.24928"/>
+		</spawn>
+		<!-- IDCustomize_L_Control_NPC_02 -->
+		<spawn npc_id="839670" respawn_time="295">
+			<spot h="0" z="52.10262" y="745.9879" x="88.33984"/>
+		</spawn>
+		<!-- IDCustomize_L_Control_NPC_03 -->
+		<spawn npc_id="839671" respawn_time="295">
+			<spot h="0" z="52.10262" y="741.098" x="88.2987"/>
+		</spawn>
+		<!-- IDCustomize_L_Control_NPC_04 -->
+		<spawn npc_id="839672" respawn_time="295">
+			<spot h="59" z="52.10262" y="751.178" x="98.53537"/>
+		</spawn>
+		<!-- IDCustomize_L_Control_NPC_05 -->
+		<spawn npc_id="839673" respawn_time="295">
+			<spot h="60" z="52.10262" y="746.2147" x="98.47145"/>
+		</spawn>
+		<!-- IDCustomize_L_Control_NPC_06 -->
+		<spawn npc_id="839674" respawn_time="295">
+			<spot h="90" z="52.10262" y="756.1324" x="93.32929"/>
+		</spawn>
+		<!-- IDCustomize_L_Control_NPC_07 -->
+		<spawn npc_id="839675" respawn_time="295">
+			<spot h="89" z="52.665752" y="765.1863" x="92.0891"/>
+		</spawn>
+		<!-- IDCustomize_L_Control_NPC_08 -->
+		<spawn npc_id="839676" respawn_time="295">
+			<spot h="30" z="73.99832" y="240.3118" x="269.38846"/>
+            <spot h="89" z="74.00728" y="323.37103" x="269.1064"/>
+		</spawn>
+		<!-- IDCustomize_L_Control_NPC_11 -->
+		<spawn npc_id="839724" respawn_time="295">
+			<spot h="60" z="52.10262" y="741.2004" x="98.48827"/>
+		</spawn>
+		<!-- IDCustomize_L_Control_NPC_12 -->
+		<spawn npc_id="839730" respawn_time="295">
+			<spot h="77" z="52.10262" y="763.2908" x="113.97526"/>
+		</spawn>
+		
+		<!-- Transformation Seller -->
+		<spawn npc_id="839731" respawn_time="295">
+			<spot h="0" z="52.10262" y="758.3383" x="68.05704"/>
+		</spawn>
+		<!-- IDCustomize_Treasure_Box_01
+		<spawn npc_id="839727" respawn_time="295">
+			<spot h="71" z="52.10262" y="761.2552" x="116.04258"/>
+		</spawn> -->
+		<!-- IDCustomize_L_Pvp_Weapon_Seller -->
+		<spawn npc_id="839755" respawn_time="295">
+			<spot h="60" z="52.10262" y="764.7256" x="76.768394"/>
+		</spawn>
+		<!-- IDCustomize_L_Pvp_Armor_Seller -->
+		<spawn npc_id="839756" respawn_time="295">
+			<spot h="60" z="52.10262" y="752.179" x="76.66339"/>
+		</spawn>
+		<!-- IDCustomize_L_Pvp_Acc_Seller -->
+		<spawn npc_id="839757" respawn_time="295">
+			<spot h="0" z="52.10262" y="764.58154" x="68.02586"/>
+		</spawn>
+		<!-- IDCustomize_L_Pvp_Tucker_Seller -->
+		<spawn npc_id="839758" respawn_time="295">
+			<spot h="0" z="52.10262" y="751.9291" x="67.91565"/>
+		</spawn>
+		
+		<!-- IDCustomize_Move -->
+		<spawn npc_id="661337" respawn_time="295">
+            <spot h="89" z="52.10262" y="726.1696" x="88.32583"/>
+        </spawn>
+		<!-- IDCustomize_Attack -->
+        <spawn npc_id="661338" respawn_time="295">
+            <spot h="90" z="52.10262" y="726.2616" x="93.328094"/>
+        </spawn>
+		<!-- IDCustomize_Defense -->
+        <spawn npc_id="661339" respawn_time="295">
+            <spot h="90" z="52.10262" y="726.26245" x="98.29332"/>
+        </spawn>
+		<!-- -->
+		<spawn npc_id="839691" respawn_time="295">
+			<spot x="269.36877" y="314.29395" z="75.78965" entity_id="224"/>
+		</spawn>
+		<!-- Wall -->
+	    <spawn npc_id="807104">
+	        <spot x="92.85650" y="700.38788" z="60.479645" entity_id="211"/>
+			<spot x="92.22869" y="770.83923" z="60.479645" entity_id="201"/>
+        </spawn>
+	</spawn_map>
+</spawns>

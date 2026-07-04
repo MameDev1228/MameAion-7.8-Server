@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.stats.calc.functions;
 
@@ -55,28 +55,19 @@ public class StatFunctionProxy implements IStatFunction, Comparable<IStatFunctio
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-		if (getClass() != obj.getClass()) {
+		if (getClass() != obj.getClass())
 			return false;
-		}
 		StatFunctionProxy other = (StatFunctionProxy) obj;
 		if (owner == null) {
-			if (other.owner != null) {
+			if (other.owner != null)
 				return false;
-			}
 		}
-		else if (!owner.equals(other.owner)) {
+		else if (!owner.equals(other.owner))
 			return false;
-		}
-
-		// if (other.isBonus() != this.isBonus())
-		// return false;
-		// return other.getRandomNumber() == this.getRandomNumber();
 		return true;
 	}
 
@@ -101,11 +92,6 @@ public class StatFunctionProxy implements IStatFunction, Comparable<IStatFunctio
 	}
 
 	@Override
-	public int getRandomNumber() {
-		return proxiedFunction.getRandomNumber();
-	}
-
-	@Override
 	public int getPriority() {
 		return proxiedFunction.getPriority();
 	}
@@ -124,7 +110,7 @@ public class StatFunctionProxy implements IStatFunction, Comparable<IStatFunctio
 	public void apply(Stat2 stat) {
 		proxiedFunction.apply(stat);
 	}
-
+	
 	@Override
 	public boolean hasConditions() {
 		return proxiedFunction.hasConditions();
@@ -132,6 +118,7 @@ public class StatFunctionProxy implements IStatFunction, Comparable<IStatFunctio
 
 	@Override
 	public String toString() {
-		return "Proxy [name=" + proxiedFunction.getName() + ", bonus=" + isBonus() + ", value=" + getValue() + ", priority=" + getPriority() + ", owner=" + owner + "]";
+		return "Proxy [name=" + proxiedFunction.getName() + ", bonus=" + isBonus() + ", value=" + getValue()
+			+ ", priority=" + getPriority() + ", owner=" + owner + "]";
 	}
 }

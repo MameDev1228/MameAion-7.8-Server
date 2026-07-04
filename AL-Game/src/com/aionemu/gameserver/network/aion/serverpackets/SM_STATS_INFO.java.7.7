@@ -1,0 +1,219 @@
+package com.aionemu.gameserver.network.aion.serverpackets;
+
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
+import com.aionemu.gameserver.model.stats.container.PlayerGameStats;
+import com.aionemu.gameserver.model.stats.container.PlayerLifeStats;
+import com.aionemu.gameserver.model.stats.container.StatEnum;
+import com.aionemu.gameserver.model.templates.item.WeaponType;
+import com.aionemu.gameserver.network.aion.AionConnection;
+import com.aionemu.gameserver.network.aion.AionServerPacket;
+import com.aionemu.gameserver.utils.gametime.GameTimeManager;
+import com.aionemu.gameserver.utils.stats.enums.CRIT_SPELL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class SM_STATS_INFO extends AionServerPacket
+{
+	Logger log = LoggerFactory.getLogger(SM_STATS_INFO.class);
+	private Player player;
+	private PlayerGameStats pgs;
+	private PlayerLifeStats pls;
+	private PlayerCommonData pcd;
+	
+	public SM_STATS_INFO(Player player) {
+		this.player = player;
+		this.pcd = player.getCommonData();
+		this.pgs = player.getGameStats();
+		this.pls = player.getLifeStats();
+	}
+	
+	@Override
+	protected void writeImpl(AionConnection con) {
+		writeD(player.getObjectId());
+		writeD(GameTimeManager.getGameTime().getTime());
+		//Current Stats
+		writeH(pgs.getPower().getCurrent());
+		writeH(pgs.getHealth().getCurrent());
+		writeH(pgs.getAccuracy().getCurrent());
+		writeH(pgs.getAgility().getCurrent());
+		writeH(pgs.getKnowledge().getCurrent());
+		writeH(pgs.getWill().getCurrent());
+		writeH(pgs.getStat(StatEnum.WATER_RESISTANCE, 0).getCurrent());
+		writeH(pgs.getStat(StatEnum.WIND_RESISTANCE, 0).getCurrent());
+		writeH(pgs.getStat(StatEnum.EARTH_RESISTANCE, 0).getCurrent());
+		writeH(pgs.getStat(StatEnum.FIRE_RESISTANCE, 0).getCurrent());
+		writeH(pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_LIGHT, 0).getCurrent());
+		writeH(pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_DARK, 0).getCurrent());
+		writeH(player.getLevel());
+		writeH(0);
+		writeH(0);
+		writeH(0);
+		writeQ(pcd.getExpNeed());
+		writeQ(pcd.getExpRecoverable());
+		writeQ(pcd.getExpShown());
+		writeD(0);
+
+		writeD(pgs.getMaxHp().getCurrent());
+		writeD(pls.getCurrentHp());
+		writeD(pgs.getMaxMp().getCurrent());
+		writeD(pls.getCurrentMp());
+		writeH(pgs.getMaxDp().getCurrent());
+		writeH(pcd.getDp());
+		writeD(pgs.getFlyTime().getCurrent());// [max fly time]
+		writeD(pls.getCurrentFp());// [current fly time]
+		writeD(player.getFlyState());// [fly state]
+		writeD(pgs.getMainHandPAttack().getCurrent());
+		writeD(pgs.getOffHandPAttack().getCurrent());
+		writeD(0);
+        writeD(pgs.getMainHandMAttack().getCurrent());
+        writeD(pgs.getOffHandMAttack().getCurrent());
+		writeD(0); //unk
+		writeD(pgs.getMResist().getCurrent()); //magic resist
+		writeF(pgs.getAttackRange().getCurrent() / 1000);
+		writeD(pgs.getAttackSpeed().getCurrent());
+		writeD(pgs.getEvasion().getCurrent()); //eva
+		writeD(pgs.getParry().getCurrent()); //parry
+		writeD(pgs.getBlock().getCurrent()); //block
+		writeH(pgs.getPCritical().getCurrent());
+		writeH(pgs.getOffHandPCritical().getCurrent());
+		writeD(pgs.getPAccuracy().getCurrent()); //accu
+		writeD(pgs.getOffHandPAccuracy().getCurrent());
+		writeH(1); //unk
+		writeH(0); //unk
+		writeD(pgs.getMAccuracy().getCurrent()); //magic accu
+		writeH(pgs.getMCritical().getCurrent()); //crit spell current
+		writeH(0); //crit spell offhand
+		writeF(pgs.getReverseStat(StatEnum.BOOST_CASTING_TIME, 1000).getCurrent() / 1000f);
+		writeH(0);//unk
+		writeH(17); //unk class id ??
+		writeD(pgs.getPhysicPowerBoost().getCurrent()); //current physic atttak 6.0 ??
+		writeD(pgs.getPhysicPowerBoostResist().getCurrent()); //current physic def 6.0//Ok
+		writeD(pgs.getMagicPowerBoost().getCurrent()); //current magic atttak 6.0 //ok
+		writeD(pgs.getMagicPowerBoostResist().getCurrent()); //current magic def 6.0//ok
+		writeD(pgs.getPvpPowerBoost().getCurrent()); //pvp damage
+        writeD(pgs.getPvpPowerBoostResist().getCurrent()); //pvp def
+        writeD(pgs.getPvePowerBoost().getCurrent()); //pve damage
+        writeD(pgs.getPvePowerBoostResist().getCurrent()); //pve def
+		writeD(pgs.getMDef().getCurrent());
+
+		writeH(pgs.getStat(StatEnum.HEAL_BOOST, 0).getCurrent()); //unk (amelioration des soin sur aion kr = 107) //
+		writeH(0); //unk
+		writeD(0); //unk
+		writeD(107); //unk 107
+
+		writeH(180); //0xb4 //7.2 valeur caché fuck
+		writeH(50); //50 ?  crit spell ?
+		writeH(pgs.getPhysicDamageBoost().getCurrent()); //7.2 Physic Damage Boost
+		writeH(pgs.getMagicDamageBoost().getCurrent()); //7.2 Magic Damage Boost
+
+
+		writeD((27 + (player.getInventory().size() * 9)));
+		writeD(player.getInventory().size());
+		writeQ(0); //unk
+
+		writeD(pcd.getPlayerClass().getClassId()); //ok
+		writeH(player.getPlayerSettings().getDisplay());
+		writeH(player.getPlayerSettings().getDeny());
+
+		writeD(1); //unk 7.2
+		writeQ(pcd.getCurrentReposteEnergy());
+		writeQ(pcd.getMaxReposteEnergy());
+
+		writeQ(0);
+		writeQ(0);
+
+		writeQ(pcd.getBerdinStar()); //Berdin's Favor.
+		writeQ(0);
+		writeQ(pcd.getAbyssFavor()); //Abyss Favor.
+		writeQ(0);
+		writeQ(0);
+		writeQ(0);
+
+
+		//Base stat
+		//writeH(25);
+		writeH(1); //7.7
+		writeH(2); //7.7
+		writeH(3); //7.7
+		writeH(4); //7.7
+		writeH(5); //7.7
+		writeH(6); //7.7
+		writeH(7); //7.7
+		writeH(8); //7.7
+		writeH(9); //7.7
+		writeH(10); //7.7
+		writeH(11); //7.7
+		//attak
+		writeH(12); //7.7 ether
+		writeH(13); //7.7 fear
+		writeH(14); //7.7 stun
+		writeH(15); //7.7 stumble
+		writeH(16); //7.7 para
+		writeH(17); //7.7 stagger
+		writeH(18); //7.7 bind
+		writeH(19); //7.7 root
+		writeH(20); //7.7 sleep
+		writeH(21); //7.7 blind
+		writeH(22); //7.7 snare
+		writeH(23); //7.7 silence
+		writeH(24); //7.7
+
+		writeH(pgs.getPower().getBase());
+		writeH(pgs.getHealth().getBase());
+		writeH(pgs.getAccuracy().getBase());
+		writeH(pgs.getAgility().getBase());
+		writeH(pgs.getKnowledge().getBase());
+		writeH(pgs.getWill().getBase());
+		writeH(pgs.getStat(StatEnum.WATER_RESISTANCE, 0).getBase());
+		writeH(pgs.getStat(StatEnum.WIND_RESISTANCE, 0).getBase());
+		writeH(pgs.getStat(StatEnum.EARTH_RESISTANCE, 0).getBase());
+		writeH(pgs.getStat(StatEnum.FIRE_RESISTANCE, 0).getBase());
+		writeH(pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_LIGHT, 0).getBase());
+		writeH(pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_DARK, 0).getBase());
+		writeD(pgs.getMaxHp().getBase());
+		writeD(pgs.getMaxMp().getBase());
+		writeD(pgs.getMaxDp().getBase());
+		writeD(pgs.getFlyTime().getBase());
+		writeD(pgs.getMainHandPAttack().getBase());
+		writeD(pgs.getOffHandPAttack().getBase());
+        writeD(pgs.getMainHandMAttack().getBase());
+        writeD(pgs.getOffHandMAttack().getBase());
+
+		writeD(0); //unk //0
+		writeD(0); //unk //0
+		writeD(0); //unk 7.5 //6039
+		writeH(0); //unk 7.5 //0
+		writeH(0); //unk 7.5 //16752
+
+		writeD(pgs.getMResist().getBase()); //unk
+		writeF(pgs.getAttackRange().getBase() / 1000);
+		writeD(pgs.getEvasion().getBase()); //evasion
+
+		writeD(pgs.getParry().getBase()); //base parry
+		writeD(pgs.getBlock().getBase()); //base block
+		writeH(pgs.getPCritical().getBase());
+		writeH(pgs.getOffHandPCritical().getBase());
+
+		writeH(pgs.getMCritical().getBase());
+		writeH(pgs.getMCritical().getBase()); //off hand
+
+		writeD(pgs.getPAccuracy().getBase()); //base accu
+		writeD(pgs.getOffHandPAccuracy().getBase());
+
+		writeD(1); //unk
+		writeD(pgs.getMAccuracy().getBase()); //base Maccu
+		writeD(0);
+		writeD(pgs.getPhysicPowerBoost().getBase()); //base physic attak 6.0
+		writeD(pgs.getPhysicPowerBoostResist().getBase()); //base physic def 6.0
+		writeD(pgs.getMagicPowerBoost().getBase()); //base magic attak 6.0
+		writeD(pgs.getMagicPowerBoostResist().getBase()); //base magic def 6.0
+
+		writeD(0);
+		writeD(pgs.getMDef().getBase());
+		writeH(0);
+		writeH(0); //50 ?  crit spell ?
+		writeH(pgs.getPhysicDamageBoostResist().getBase()); //7.2 Physic Damage Boost Resist
+		writeH(pgs.getMagicDamageBoostResist().getBase()); //7.2 Magic Damage Boost Resist
+	}
+}

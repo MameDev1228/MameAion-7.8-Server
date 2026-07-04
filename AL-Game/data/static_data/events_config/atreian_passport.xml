@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Atreian Passport 7.x
+	Made By Encom
+ -->
+<atreian_passport_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="atreian_passport.xsd">
+    <atreian_passport_template id="11" name="Bmpack_attend_01_PCbasic" type="PC_BASIC">
+        <stamp_reward item_id="188072105" count="1" stamp="0"/>
+        <stamp_reward item_id="164002355" count="3" stamp="1"/>
+        <stamp_reward item_id="190095146" count="3" stamp="2"/>
+        <stamp_reward item_id="162005023" count="15" stamp="3"/>
+        <stamp_reward item_id="188074591" count="1" stamp="4"/>
+        <stamp_reward item_id="188071169" count="1" stamp="5"/>
+        <stamp_reward item_id="188071295" count="1" stamp="6"/>
+    </atreian_passport_template>
+</atreian_passport_templates>

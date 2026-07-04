@@ -1,23 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package ai;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.ai2.AI2Actions;
@@ -41,15 +38,43 @@ import com.aionemu.gameserver.services.teleport.TeleportService2;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.WorldType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * @author ATracer
- */
+import java.util.concurrent.atomic.AtomicBoolean;
+
+/****/
+/** Author Rinzler (Encom)
+/****/
+
 @AIName("resurrect")
-public class ResurrectAI2 extends NpcAI2 {
-
+public class ResurrectAI2 extends NpcAI2
+{
+	private AtomicBoolean startedEvent = new AtomicBoolean(false);
 	private static Logger log = LoggerFactory.getLogger(ResurrectAI2.class);
-
+	
+	@Override
+    protected void handleCreatureSee(Creature creature) {
+        checkDistance(this, creature);
+    }
+	
+	@Override
+	protected void handleCreatureMoved(Creature creature) {
+		checkDistance(this, creature);
+	}
+	
+	private void checkDistance(NpcAI2 ai, Creature creature) {
+        if (creature instanceof Player && !creature.getLifeStats().isAlreadyDead()) {
+			final Player player = (Player) creature;
+			if (MathUtil.isIn3dRange(getOwner(), creature, 20)) {
+				if (startedEvent.compareAndSet(false, true)) {
+					//You can bind here by clicking the Obelisk.
+					PacketSendUtility.npcSendPacketTime(getOwner(), SM_SYSTEM_MESSAGE.STR_NOTIFY_RESURRECT_POINT, 0);
+				}
+			}
+        }
+    }
+	
 	@Override
 	protected void handleDialogStart(Player player) {
 		BindPointTemplate bindPointTemplate = DataManager.BIND_POINT_DATA.getBindPointTemplate(getNpcId());
@@ -57,52 +82,41 @@ public class ResurrectAI2 extends NpcAI2 {
 		if (bindPointTemplate == null) {
 			log.info("There is no bind point template for npc: " + getNpcId());
 			return;
-		}
-
-		if (player.getBindPoint() != null && player.getBindPoint().getMapId() == getPosition().getMapId() && MathUtil.getDistance(player.getBindPoint().getX(), player.getBindPoint().getY(), player.getBindPoint().getZ(), getPosition().getX(), getPosition().getY(), getPosition().getZ()) < 20) {
+		} if (player.getBindPoint() != null && player.getBindPoint().getMapId() == getPosition().getMapId() && MathUtil.getDistance(player.getBindPoint().getX(), player.getBindPoint().getY(), player.getBindPoint().getZ(), getPosition().getX(), getPosition().getY(), getPosition().getZ()) < 20) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ALREADY_REGISTER_THIS_RESURRECT_POINT);
 			return;
 		}
-
 		WorldType worldType = player.getWorldType();
 		if (!CustomConfig.ENABLE_CROSS_FACTION_BINDING && !getTribe().equals(TribeClass.FIELD_OBJECT_ALL)) {
 			if ((!getRace().equals(Race.NONE) && !getRace().equals(race)) || (race.equals(Race.ASMODIANS) && getTribe().equals(TribeClass.FIELD_OBJECT_LIGHT)) || (race.equals(Race.ELYOS) && getTribe().equals(TribeClass.FIELD_OBJECT_DARK))) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_BINDSTONE_CANNOT_FOR_INVALID_RIGHT(player.getCommonData().getOppositeRace().toString()));
 				return;
 			}
-		}
-		if (worldType == WorldType.PRISON) {
+		} if (worldType == WorldType.PRISON) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_CANNOT_REGISTER_RESURRECT_POINT_FAR_FROM_NPC);
 			return;
-		}
-		switch (player.getWorldId()) {
-			case 600090000: // Kaldor.
-			case 600100000: // Levinshor.
-				newBind(player, bindPointTemplate);
-				break;
+		} switch (player.getWorldId()) {
+			case 800050000: //Lakrum.
+			case 800060000: //Demaha.
+			    newBind(player, bindPointTemplate);
+			break;
 		}
 		bindHere(player, bindPointTemplate);
 	}
-
+	
 	private void bindHere(Player player, final BindPointTemplate bindPointTemplate) {
-
 		String price = Integer.toString(bindPointTemplate.getPrice());
 		AI2Actions.addRequest(this, player, SM_QUESTION_WINDOW.STR_ASK_REGISTER_RESURRECT_POINT, 0, new AI2Request() {
-
 			@Override
 			public void acceptRequest(Creature requester, Player responder) {
-				// check if this both creatures are in same world
 				if (responder.getWorldId() == requester.getWorldId()) {
-					// check enough kinah
 					if (responder.getInventory().getKinah() < bindPointTemplate.getPrice()) {
 						PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_CANNOT_REGISTER_RESURRECT_POINT_NOT_ENOUGH_FEE);
 						return;
-					}
-					else if (MathUtil.getDistance(requester, responder) > 10) {
+					} else if (MathUtil.getDistance(requester, responder) > 10) {
 						PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_CANNOT_REGISTER_RESURRECT_POINT_FAR_FROM_NPC);
 						return;
 					}
-
 					BindPointPosition old = responder.getBindPoint();
 					BindPointPosition bpp = new BindPointPosition(requester.getWorldId(), responder.getX(), responder.getY(), responder.getZ(), responder.getHeading());
 					bpp.setPersistentState(old == null ? PersistentState.NEW : PersistentState.UPDATE_REQUIRED);
@@ -111,29 +125,26 @@ public class ResurrectAI2 extends NpcAI2 {
 						responder.getInventory().decreaseKinah(bindPointTemplate.getPrice());
 						TeleportService2.sendSetBindPoint(responder);
 						PacketSendUtility.broadcastPacket(responder, new SM_LEVEL_UPDATE(responder.getObjectId(), 2, responder.getCommonData().getLevel()), true);
-						PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_DEATH_REGISTER_RESURRECT_POINT("")); // TODO
+						PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_DEATH_REGISTER_RESURRECT_POINT(""));
 						old = null;
-					}
-					else {
-						responder.setBindPoint(old);
-					}
+					} else {
+					   responder.setBindPoint(old);
+				    }
 				}
 			}
 		}, price);
 	}
-
+	
 	private void newBind(Player player, final BindPointTemplate bindPointTemplate) {
 		String price = Integer.toString(bindPointTemplate.getPrice());
 		AI2Actions.addRequest(this, player, SM_QUESTION_WINDOW.STR_ASK_REGISTER_RESURRECT_POINT, 0, new AI2Request() {
-
 			@Override
 			public void acceptRequest(Creature requester, Player responder) {
 				if (responder.getWorldId() == requester.getWorldId()) {
 					if (responder.getInventory().getKinah() < bindPointTemplate.getPrice()) {
 						PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_CANNOT_REGISTER_RESURRECT_POINT_NOT_ENOUGH_FEE);
 						return;
-					}
-					else if (MathUtil.getDistance(requester, responder) > 15) {
+					} else if (MathUtil.getDistance(requester, responder) > 15) {
 						PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_CANNOT_REGISTER_RESURRECT_POINT_FAR_FROM_NPC);
 						return;
 					}
@@ -147,12 +158,16 @@ public class ResurrectAI2 extends NpcAI2 {
 						PacketSendUtility.broadcastPacket(responder, new SM_LEVEL_UPDATE(responder.getObjectId(), 2, responder.getCommonData().getLevel()), true);
 						PacketSendUtility.sendPacket(responder, SM_SYSTEM_MESSAGE.STR_DEATH_REGISTER_RESURRECT_POINT(""));
 						old = null;
-					}
-					else {
-						responder.setBindPoint(old);
-					}
+					} else {
+					   responder.setBindPoint(old);
+				    }
 				}
 			}
 		}, price);
+	}
+	
+	@Override
+	public boolean isMoveSupported() {
+		return false;
 	}
 }

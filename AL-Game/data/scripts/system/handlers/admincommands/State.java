@@ -1,24 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package admincommands;
-
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
@@ -27,6 +23,10 @@ import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_PLAYER_INFO;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
+
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Rolandas
@@ -41,12 +41,10 @@ public class State extends AdminCommand {
 	static final Map<Integer, TestState> testStateLookup = new HashMap<Integer, TestState>();
 
 	static {
-		for (CreatureState s : EnumSet.allOf(CreatureState.class)) {
+		for (CreatureState s : EnumSet.allOf(CreatureState.class))
 			creatureStateLookup.put(s.getId(), s);
-		}
-		for (TestState t : EnumSet.allOf(TestState.class)) {
+		for (TestState t : EnumSet.allOf(TestState.class))
 			testStateLookup.put(t.id, t);
-		}
 	}
 
 	@Override
@@ -76,12 +74,12 @@ public class State extends AdminCommand {
 				return;
 			}
 
-			if (creature.equals(admin)) {
-				PacketSendUtility.sendMessage(admin, "Your state is : " + creature.getState() + "\n" + getStateDescription((short) admin.getState()));
-			}
-			else {
-				PacketSendUtility.sendMessage(admin, "Creature state is : " + creature.getState() + "\n" + getStateDescription((short) creature.getState()));
-			}
+			if (creature.equals(admin))
+				PacketSendUtility.sendMessage(admin, "Your state is : " + creature.getState() + "\n"
+					+ getStateDescription((short) admin.getState()));
+			else
+				PacketSendUtility.sendMessage(admin, "Creature state is : " + creature.getState() + "\n"
+					+ getStateDescription((short) creature.getState()));
 		}
 		else if (params[0].equals("set") || params[0].equals("unset")) {
 			if (params.length != 2) {
@@ -114,18 +112,17 @@ public class State extends AdminCommand {
 			PacketSendUtility.sendMessage(admin, "New state : " + newState);
 			creature.setState(newState);
 
-			if (target.equals(admin)) {
+			if (target.equals(admin))
 				PacketSendUtility.sendPacket(admin, new SM_PLAYER_INFO(admin, false));
-			}
 
 			admin.clearKnownlist();
 			admin.updateKnownlist();
 
-			PacketSendUtility.sendMessage(admin, "State changed to : " + creature.getState() + "\n" + getStateDescription((short) creature.getState()));
+			PacketSendUtility.sendMessage(admin, "State changed to : " + creature.getState() + "\n"
+				+ getStateDescription((short) creature.getState()));
 		}
-		else {
+		else
 			PacketSendUtility.sendMessage(admin, "syntax //state <show | set | unset>");
-		}
 	}
 
 	@Override
@@ -155,16 +152,14 @@ public class State extends AdminCommand {
 				sb.append("),\n");
 			}
 		}
-		if (sb.lastIndexOf(",\n") == sb.length() - 2) {
+		if (sb.lastIndexOf(",\n") == sb.length() - 2)
 			sb.setLength(sb.length() - 2);
-		}
 
 		sb.append("\n}");
 		return sb.toString();
 	}
 
 	public enum TestState {
-
 		BIT01(1 << 0, "bit 1"),
 		BIT02(1 << 1, "bit 2"),
 		BIT03(1 << 2, "bit 3"),
@@ -190,4 +185,5 @@ public class State extends AdminCommand {
 			display = s;
 		}
 	}
+
 }

@@ -1,32 +1,45 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package com.aionemu.gameserver.network.aion.serverpackets;
 
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
-/**
- * @author Alcapwnd
- */
-public class SM_AFTER_TIME_CHECK extends AionServerPacket {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * @author Ranastic (Encom)
+ */
+
+public class SM_AFTER_TIME_CHECK extends AionServerPacket
+{
+	private int unk;
+	
+	private static final Logger log = LoggerFactory.getLogger(SM_AFTER_TIME_CHECK.class);
+	
+	public SM_AFTER_TIME_CHECK(int unk) {
+		this.unk = unk;
+	}
+	
 	@Override
-	protected void writeImpl(AionConnection con) {
-		writeH(1);
+    protected void writeImpl(AionConnection con) {
+		writeH(unk);
 		writeD(0);
 	}
 }

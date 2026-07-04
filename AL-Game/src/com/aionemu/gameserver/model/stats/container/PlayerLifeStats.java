@@ -1,23 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.stats.container;
-
-import java.util.concurrent.Future;
-import java.util.concurrent.locks.ReentrantLock;
 
 import com.aionemu.gameserver.configs.administration.AdminConfig;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -31,6 +28,9 @@ import com.aionemu.gameserver.taskmanager.tasks.PacketBroadcaster.BroadcastMode;
 import com.aionemu.gameserver.taskmanager.tasks.TeamEffectUpdater;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
+import java.util.concurrent.Future;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @author ATracer, sphinx
  */
@@ -38,6 +38,7 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 
 	protected int currentFp;
 	private final ReentrantLock fpLock = new ReentrantLock();
+
 	private Future<?> flyRestoreTask;
 	private Future<?> flyReduceTask;
 
@@ -90,28 +91,24 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 
 	@Override
 	public void synchronizeWithMaxStats() {
-		if (isAlreadyDead()) {
+		if (isAlreadyDead())
 			return;
-		}
 
 		super.synchronizeWithMaxStats();
 		int maxFp = getMaxFp();
-		if (currentFp != maxFp) {
+		if (currentFp != maxFp)
 			currentFp = maxFp;
-		}
 	}
 
 	@Override
 	public void updateCurrentStats() {
 		super.updateCurrentStats();
 
-		if (getMaxFp() < currentFp) {
+		if (getMaxFp() < currentFp)
 			currentFp = getMaxFp();
-		}
 
-		if (!owner.isFlying() && !owner.isInSprintMode()) {
+		if (!owner.isFlying() && !owner.isInSprintMode())
 			triggerFpRestore();
-		}
 	}
 
 	public void sendHpPacketUpdate() {
@@ -152,7 +149,7 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 
 	/**
 	 * This method is called whenever caller wants to restore creatures's FP
-	 *
+	 * 
 	 * @param value
 	 * @return
 	 */
@@ -160,7 +157,6 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 	public int increaseFp(TYPE type, int value) {
 		return this.increaseFp(type, value, 0, LOG.REGULAR);
 	}
-
 	public int increaseFp(TYPE type, int value, int skillId, LOG log) {
 		fpLock.lock();
 
@@ -187,7 +183,7 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 
 	/**
 	 * This method is called whenever caller wants to reduce creatures's MP
-	 *
+	 * 
 	 * @param value
 	 * @return
 	 */
@@ -196,9 +192,8 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 		try {
 			int newFp = this.currentFp - value;
 
-			if (newFp < 0) {
+			if (newFp < 0)
 				newFp = 0;
-			}
 
 			this.currentFp = newFp;
 		}
@@ -216,9 +211,8 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 		try {
 			int newFp = value;
 
-			if (newFp < 0) {
+			if (newFp < 0)
 				newFp = 0;
-			}
 
 			this.currentFp = newFp;
 		}
@@ -243,26 +237,20 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 	}
 
 	public void sendFpPacketUpdateImpl() {
-		if (owner == null) {
+		if (owner == null)
 			return;
-		}
 
 		PacketSendUtility.sendPacket(owner, new SM_FLY_TIME(currentFp, getMaxFp()));
 	}
 
-	/**
-	 * this method should be used only on FlyTimeRestoreService
-	 */
 	public void restoreFp() {
-		// how much fly time restoring per 1 second.
-		increaseFp(TYPE.NATURAL_FP, 1);
+		increaseFp(TYPE.AUTO_HEAL_FP, 30); //...Sec
 	}
 
-	public void specialrestoreFp() {
-		if (owner.getGameStats().getStat(StatEnum.REGEN_FP, 0).getCurrent() != 0) {
-			increaseFp(TYPE.NATURAL_FP, owner.getGameStats().getStat(StatEnum.REGEN_FP, 0).getCurrent() / 3);
-		}
-	}
+    public void specialrestoreFp() {
+        if (owner.getGameStats().getStat(StatEnum.REGEN_FP, 0).getCurrent() != 0)
+            increaseFp(TYPE.AUTO_HEAL_FP, owner.getGameStats().getStat(StatEnum.REGEN_FP, 0).getCurrent() / 3);
+    }
 
 	public void triggerFpRestore() {
 		cancelFpReduce();
@@ -303,7 +291,8 @@ public class PlayerLifeStats extends CreatureLifeStats<Player> {
 		cancelFpRestore();
 		restoreLock.lock();
 		try {
-			if (flyReduceTask == null && !alreadyDead && owner.getAccessLevel() < AdminConfig.GM_FLIGHT_UNLIMITED && !owner.isUnderNoFPConsum()) {
+			if (flyReduceTask == null && !alreadyDead && owner.getAccessLevel() < AdminConfig.GM_FLIGHT_UNLIMITED
+				&& !owner.isUnderNoFPConsum()) {
 				this.flyReduceTask = LifeStatsRestoreService.getInstance().scheduleFpReduceTask(this, costFp);
 			}
 		}

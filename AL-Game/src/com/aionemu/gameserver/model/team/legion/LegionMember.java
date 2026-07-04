@@ -1,26 +1,26 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.team.legion;
+
 
 /**
  * @author Simple
  */
 public class LegionMember {
-
 	private int objectId = 0;
 	protected Legion legion = null;
 	protected String nickname = "";
@@ -52,7 +52,7 @@ public class LegionMember {
 
 	/**
 	 * @param legion
-	 *            the legion to set
+	 *          the legion to set
 	 */
 	public void setLegion(Legion legion) {
 		this.legion = legion;
@@ -67,7 +67,7 @@ public class LegionMember {
 
 	/**
 	 * @param rank
-	 *            the rank to set
+	 *          the rank to set
 	 */
 	public void setRank(LegionRank rank) {
 		this.rank = rank;
@@ -86,7 +86,7 @@ public class LegionMember {
 
 	/**
 	 * @param nickname
-	 *            the nickname to set
+	 *          the nickname to set
 	 */
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
@@ -101,7 +101,7 @@ public class LegionMember {
 
 	/**
 	 * @param selfIntro
-	 *            the selfIntro to set
+	 *          the selfIntro to set
 	 */
 	public void setSelfIntro(String selfIntro) {
 		this.selfIntro = selfIntro;
@@ -120,15 +120,14 @@ public class LegionMember {
 	public int getChallengeScore() {
 		return challengeScore;
 	}
-
+	
 	/**
-	 * @param challengeScore
-	 *            the challengeScore to set
+	 * @param challengeScore the challengeScore to set
 	 */
 	public void setChallengeScore(int challengeScore) {
 		this.challengeScore = challengeScore;
 	}
-
+	
 	/**
 	 * @param amount
 	 */
@@ -138,7 +137,7 @@ public class LegionMember {
 
 	/**
 	 * @param objectId
-	 *            the objectId to set
+	 *          the objectId to set
 	 */
 	public void setObjectId(int objectId) {
 		this.objectId = objectId;
@@ -153,7 +152,8 @@ public class LegionMember {
 
 	public boolean hasRights(LegionPermissionsMask permissions) {
 		int legionarPermission = 0;
-		switch (this.getRank()) {
+		switch (this.getRank())
+		{
 			case BRIGADE_GENERAL:
 				return true;
 			case DEPUTY:

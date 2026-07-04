@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.siege;
 
@@ -25,12 +25,11 @@ import com.aionemu.gameserver.services.ShieldService;
 import com.aionemu.gameserver.services.SiegeService;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
 import com.aionemu.gameserver.world.zone.handler.ZoneHandler;
-
 import javolution.util.FastMap;
 
 /**
  * Shields have material ID 11 in geo.
- *
+ * 
  * @author Rolandas
  */
 public class SiegeShield implements ZoneHandler {
@@ -50,9 +49,8 @@ public class SiegeShield implements ZoneHandler {
 
 	@Override
 	public void onEnterZone(Creature creature, ZoneInstance zone) {
-		if (!(creature instanceof Player)) {
+		if (!(creature instanceof Player))
 			return;
-		}
 		Player player = (Player) creature;
 		if (isEnabled || siegeLocationId == 0) {
 			FortressLocation loc = SiegeService.getInstance().getFortress(siegeLocationId);
@@ -96,4 +94,5 @@ public class SiegeShield implements ZoneHandler {
 	public String toString() {
 		return "LocId=" + siegeLocationId + "; Name=" + geometry.getName() + "; Bounds=" + geometry.getWorldBound();
 	}
+
 }

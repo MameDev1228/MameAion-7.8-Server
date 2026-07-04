@@ -1,37 +1,29 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services.player;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.commons.services.CronService;
 import com.aionemu.commons.utils.Rnd;
+import com.aionemu.gameserver.configs.main.LunaConfig;
 import com.aionemu.gameserver.dao.PlayerLunaShopDAO;
 import com.aionemu.gameserver.dao.PlayerWardrobeDAO;
 import com.aionemu.gameserver.dataholders.DataManager;
-import com.aionemu.gameserver.model.DescriptionId;
+import com.aionemu.gameserver.model.*;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.PersistentState;
 import com.aionemu.gameserver.model.gameobjects.player.LunaBuffBonus;
@@ -40,12 +32,13 @@ import com.aionemu.gameserver.model.gameobjects.player.PlayerLunaShop;
 import com.aionemu.gameserver.model.items.storage.Storage;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.luna.LunaConsumeRewardsTemplate;
+import com.aionemu.gameserver.model.templates.luna.LunaDicesReward;
 import com.aionemu.gameserver.model.templates.recipe.LunaComponent;
 import com.aionemu.gameserver.model.templates.recipe.LunaComponentElement;
 import com.aionemu.gameserver.model.templates.recipe.LunaTemplate;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_LUNA_INSTANCE_BUFF;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_LUNA_SYSTEM;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_LUNA_SYSTEM_INFO;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_QUNA_INSTANCE_BUFF;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_LUNA_SHOP;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_LUNA_SHOP_LIST;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.instance.InstanceService;
 import com.aionemu.gameserver.services.item.ItemPacketService;
@@ -57,770 +50,700 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
-
 import javolution.util.FastList;
 
-public class LunaShopService {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-	private static final int COST_CRAFT_BOX = 2;
-	private static final int COST_BUY_WARDROBE_REPLACE = 10;
-	private static final int COST_WARDROBE_RESKIN = 15;
-	private static final int COST_LUNA_BUFF = 20;
-	private static final int COST_MUNIRUNERK_CHEST = 19;
-	private static final int COST_TAKI_UNDERPATH = 89;
-	private static final int COST_TAKI_FACTORY = 59;
+import java.util.*;
 
+/**
+ * @author Ranastic
+ */
+
+public class LunaShopService
+{
 	private Logger log = LoggerFactory.getLogger(LunaShopService.class);
 	PlayerWardrobeDAO wDAO = DAOManager.getDAO(PlayerWardrobeDAO.class);
+	private boolean freeBoxCraft = true;
 	private boolean dailyGenerated = true;
-//	private boolean specialGenerated = true;
-	private boolean reciveBonus = false;
+	private boolean specialGenerated = true;
 	private List<Integer> DailyCraft = new ArrayList<Integer>();
-	private List<Integer> SpecialCraft = new ArrayList<Integer>();
-//	private List<Integer> armors = new ArrayList<Integer>();
-//	private List<Integer> pants = new ArrayList<Integer>();
-//	private List<Integer> shoes = new ArrayList<Integer>();
-//	private List<Integer> gloves = new ArrayList<Integer>();
-//	private List<Integer> shoulders = new ArrayList<Integer>();
-//	private List<Integer> weapons = new ArrayList<Integer>();
-
+	private List<Integer> SpecialElyosCraft = new ArrayList<Integer>();
+	private List<Integer> SpecialAsmoCraft = new ArrayList<Integer>();
+	private List<Integer> armors = new ArrayList<Integer>();
+	private List<Integer> pants = new ArrayList<Integer>();
+	private List<Integer> shoes = new ArrayList<Integer>();
+	private List<Integer> gloves = new ArrayList<Integer>();
+	private List<Integer> shoulders = new ArrayList<Integer>();
+	private List<Integer> weapons = new ArrayList<Integer>();
+	
 	public void init() {
-		log.info("[LunaSystem] Luna Reset");
-		String daily = "0 0 9 1/1 * ? *";
-//		String weekly = "0 0 9 ? * WED *";
+		log.info("Luna Reset");
+		String daily = "0 0 9 ? * * *";
+		String weekly = "0 0 9 ? * WED *";
 		if (DailyCraft.size() == 0) {
 			generateDailyCraft();
 		}
-//		if (SpecialCraft.size() == 0) {
-//			generateSpecialCraft();
-//		}
+
+		generateSpecialCraft();
 
 		CronService.getInstance().schedule(new Runnable() {
-
-			@Override
 			public void run() {
 				dailyGenerated = false;
 				generateDailyCraft();
-				resetFreeLuna();
 			}
 		}, daily);
-
-//		CronService.getInstance().schedule(new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				specialGenerated = false;
-//				generateSpecialCraft();
-//			}
-//		}, weekly);
+		CronService.getInstance().schedule(new Runnable() {
+			public void run() {
+				specialGenerated = false;
+				generateSpecialCraft();
+			}
+		}, weekly);
 	}
+	
+	public void generateSpecialCraft() {
+		SpecialElyosCraft.clear();
+		SpecialAsmoCraft.clear();
 
-//	public void generateSpecialCraft() {
-//		if (SpecialCraft.size() > 0) {
-//			SpecialCraft.clear();
-//		}
-//		armors.add(10029);
-//		armors.add(10031);
-//		armors.add(10033);
-//		armors.add(10035);
-//		pants.add(10037);
-//		pants.add(10039);
-//		pants.add(10041);
-//		pants.add(10043);
-//		shoes.add(10061);
-//		shoes.add(10063);
-//		shoes.add(10065);
-//		shoes.add(10067);
-//		gloves.add(10053);
-//		gloves.add(10055);
-//		gloves.add(10057);
-//		gloves.add(10059);
-//		shoulders.add(10045);
-//		shoulders.add(10047);
-//		shoulders.add(10049);
-//		shoulders.add(10051);
-//		weapons.add(10021);
-//		weapons.add(10017);
-//		weapons.add(10025);
-//		weapons.add(10005);
-//		weapons.add(10011);
-//		weapons.add(10023);
-//		weapons.add(10003);
-//		weapons.add(10007);
-//		weapons.add(10019);
-//		weapons.add(10013);
-//		weapons.add(10027);
-//		weapons.add(10009);
-//		weapons.add(10015);
-//		weapons.add(10001);
-//		int rnd = Rnd.get(1, 6);
-//		switch (rnd) {
-//			case 1:
-//				SpecialCraft.addAll(weapons);
-//				break;
-//			case 2:
-//				SpecialCraft.addAll(armors);
-//				break;
-//			case 3:
-//				SpecialCraft.addAll(pants);
-//				break;
-//			case 4:
-//				SpecialCraft.addAll(shoes);
-//				break;
-//			case 5:
-//				SpecialCraft.addAll(gloves);
-//				break;
-//			case 6:
-//				SpecialCraft.addAll(shoulders);
-//				break;
-//		}
-//		if (!specialGenerated) {
-//			updateSpecialCraft();
-//		}
-//	}
-
+		FastList<LunaTemplate> elyos = DataManager.LUNA_DATA.getLunaTemplatesElyos();
+		FastList<LunaTemplate> asmo = DataManager.LUNA_DATA.getLunaTemplatesAsmo();
+		Random rand = new Random();
+		for (int i = 0; i < 6; i++) {
+			int randomIndex = rand.nextInt(elyos.size());
+			LunaTemplate randomElement = elyos.get(randomIndex);
+			SpecialElyosCraft.add(randomElement.getId());
+		}
+		for (int i = 0; i < 6; i++) {
+			int randomIndex = rand.nextInt(asmo.size());
+			LunaTemplate randomElement = asmo.get(randomIndex);
+			SpecialElyosCraft.add(randomElement.getId());
+		}
+		 if (!specialGenerated) {
+			updateSpecialCraft();
+		}
+	}
+	
 	public void resetFreeLuna() {
 		DAOManager.getDAO(PlayerLunaShopDAO.class).delete();
 		updateFreeLuna();
 	}
-
+	
 	public void sendSpecialCraft(Player player) {
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(2, 0, SpecialCraft));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(SpecialElyosCraft, SpecialAsmoCraft));
 	}
-
-//	private void updateSpecialCraft() {
-//		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
-//
-//			@Override
-//			public void visit(Player player) {
-//				PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(2, 0, SpecialCraft));
-//			}
-//		});
-//	}
-
+	
+	private void updateSpecialCraft() {
+		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
+			@Override
+			public void visit(Player player) {
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(SpecialElyosCraft, SpecialAsmoCraft));
+			}
+		});
+	}
+	
 	private void updateFreeLuna() {
 		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
-
 			@Override
 			public void visit(Player player) {
 				PlayerLunaShop pls = new PlayerLunaShop(true, true, true);
 				pls.setPersistentState(PersistentState.UPDATE_REQUIRED);
 				player.setPlayerLunaShop(pls);
-				DAOManager.getDAO(PlayerLunaShopDAO.class).store(player);
+				DAOManager.getDAO(PlayerLunaShopDAO.class).add(player.getObjectId(), pls.isFreeUnderpath(), pls.isFreeFactory(), pls.isFreeChest());
 			}
 		});
 	}
-
+	
 	public void generateDailyCraft() {
 		if (DailyCraft.size() > 0) {
 			dailyGenerated = false;
 			DailyCraft.clear();
 		}
-		FastList<LunaTemplate> templates = DataManager.LUNA_DATA != null ? DataManager.LUNA_DATA.getLunaTemplatesAny() : null;
-		if (templates == null || templates.isEmpty()) {
-			log.warn("[LunaSystem] No Luna craft templates loaded; daily craft list is empty.");
-			return;
-		}
+
+		FastList<LunaTemplate> test = DataManager.LUNA_DATA.getLunaTemplatesDaly();
 		Random rand = new Random();
-		int count = Math.min(5, templates.size());
-		for (int i = 0; i < count; i++) {
-			LunaTemplate randomElement = templates.get(rand.nextInt(templates.size()));
-			if (randomElement != null) {
-				DailyCraft.add(randomElement.getId());
-			}
+		for (int i = 0; i < 5; i++) {
+			int randomIndex = rand.nextInt(test.size());
+			LunaTemplate randomElement = test.get(randomIndex);
+			DailyCraft.add(randomElement.getId());
 		}
+
 		if (!dailyGenerated) {
 			updateDailyCraft();
 		}
 	}
-
-
+	
 	public void sendDailyCraft(Player player) {
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(2, 1, DailyCraft));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(DailyCraft));
 	}
-
+	
 	private void updateDailyCraft() {
 		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
-
 			@Override
 			public void visit(Player player) {
-				PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(2, 1, DailyCraft));
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(DailyCraft));
 				dailyGenerated = true;
 			}
 		});
 	}
-
+	
 	public void lunaPointController(Player player, int point) {
 		player.setLunaAccount(point);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(0, player.getLunaAccount()));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
 	}
-
+	
 	public void muniKeysController(Player player, int keys) {
 		player.setMuniKeys(keys);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(4));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(4));
 	}
 
-	public void onLogin(Player player) {
-		if (player == null) {
-			return;
-		}
-		ensureLunaShop(player);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(7));
-		sendSpecialCraft(player);
-		sendDailyCraft(player);
-		for (int i = 0; i < 9; i++) {
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(8, i, 0));
-		}
-		updateLunaInfo(player);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(5));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(4, player.getMuniKeys()));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(9, 0));
+	public void sendLunaPrice(Player player) {
 		if (!player.getPlayerLunaShop().isFreeUnderpath()) {
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(1, 1, 45));
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(1, 4, 45));
+		} if (!player.getPlayerLunaShop().isFreeFactory()) {
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(1, 4, 45));
+		} if(!player.getPlayerLunaShop().isFreeChest()) {
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(1, 1, 1));
 		}
-		if (!player.getPlayerLunaShop().isFreeFactory()) {
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(1, 1, 47));
-		}
-		if (!player.getPlayerLunaShop().isFreeChest()) {
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(1, 1, 1));
-		}
-	}
 
-
-	public void specialDesign(Player player, int recipeId) {
-		if (player == null || recipeId <= 0) {
-			return;
+		if(player.isLunaGoldenDice()) {
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(1, 7, 74));
+		} else {
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(1, 7, 72));
 		}
-		LunaTemplate recipe = DataManager.LUNA_DATA != null ? DataManager.LUNA_DATA.getLunaTemplateById(recipeId) : null;
-		if (recipe == null) {
-			log.warn("[LunaSystem] Missing Luna recipe {} requested by {}", recipeId, player.getName());
-			return;
-		}
-		int productId = recipe.getProductid();
-		int quantity = recipe.getQuantity();
-		ItemTemplate item = DataManager.ITEM_DATA.getItemTemplate(productId);
-		if (item == null || quantity <= 0) {
-			log.warn("[LunaSystem] Invalid Luna recipe " + recipeId + " product=" + productId + " qty=" + quantity);
-			return;
-		}
-		if (!hasRecipeMaterials(player, recipe)) {
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(2, item, 1));
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(3, productId, quantity, false));
-			return;
-		}
-		boolean isSuccess = isSuccess(player, recipeId);
-		consumeRecipeMaterials(player, recipe);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(2, item, isSuccess ? 0 : 1));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(3, productId, quantity, isSuccess));
-		if (isSuccess) {
-			ItemService.addItem(player, productId, quantity);
-		}
-	}
-
-
-	public void craftBox(Player player) {
-		if (player == null) {
-			return;
-		}
-		ensureLunaShop(player);
-		int itemId = 188055460;
-		if (player.getPlayerLunaShop().isFreeChest()) {
-			player.getPlayerLunaShop().setFreeChest(false);
-		}
-		else if (!spendLunaAndTrack(player, COST_CRAFT_BOX)) {
-			return;
-		}
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(5));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(3, itemId, 1, true));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(1, 1, 1));
-		ItemService.addItem(player, itemId, 1);
-	}
-
-
-	private boolean isSuccess(Player player, int recipeId) {
-		LunaTemplate recipe = DataManager.LUNA_DATA != null ? DataManager.LUNA_DATA.getLunaTemplateById(recipeId) : null;
-		if (recipe == null) {
-			return false;
-		}
-		float rate = recipe.getRate();
-		return rate >= 100 || (rate > 0 && Rnd.get(1, 100) <= rate);
-	}
-
-
-	public void buyMaterials(Player player, int itemId, long count) {
-		if (player == null || itemId <= 0 || count <= 0 || count > 1000000L) {
-			return;
-		}
-		ItemTemplate itemTemplate = DataManager.ITEM_DATA.getItemTemplate(itemId);
-		if (itemTemplate == null || itemTemplate.getLunaPrice() <= 0) {
-			return;
-		}
-		long price = count * itemTemplate.getLunaPrice();
-		if (price <= 0 || !spendLunaAndTrack(player, price)) {
-			return;
-		}
-		ItemService.addItem(player, itemId, count);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(4, player.getMuniKeys()));
-	}
-
-
-	public void dorinerkWardrobeLoad(Player player) {
-		int size = DAOManager.getDAO(PlayerWardrobeDAO.class).getItemSize(player.getObjectId());
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(8, player.getWardrobeSlot(), size));
-	}
-
-	public void dorinerkWardrobeAct(Player player, int applySlot, int itemObjId) {
-		if (player == null || applySlot < 0 || applySlot >= player.getWardrobeSlot()) {
-			return;
-		}
-		Item sourceItem = player.getInventory().getItemByObjId(itemObjId);
-		if (sourceItem == null) {
-			return;
-		}
-		int itemId = sourceItem.getItemId();
-		int itemOnDB = DAOManager.getDAO(PlayerWardrobeDAO.class).getWardrobeItemBySlot(player.getObjectId(), applySlot);
-		if (itemOnDB != 0) {
-			if (!spendLunaAndTrack(player, COST_BUY_WARDROBE_REPLACE)) {
-				return;
-			}
-			DAOManager.getDAO(PlayerWardrobeDAO.class).delete(player.getObjectId(), itemOnDB);
-		}
-		player.getWardrobe().addItem(player, itemId, applySlot, 0);
-		player.getInventory().decreaseByObjectId(itemObjId, 1);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(10, 0x00, applySlot, itemId, 1));
-	}
-
-
-	public void dorinerkWardrobeModifyAppearance(Player player, int applySlot, int itemObjId) {
-		if (player == null || applySlot < 0 || applySlot >= player.getWardrobeSlot()) {
-			return;
-		}
-		int itemId = DAOManager.getDAO(PlayerWardrobeDAO.class).getWardrobeItemBySlot(player.getObjectId(), applySlot);
-		if (itemId == 0) {
-			return;
-		}
-		int reskinCount = DAOManager.getDAO(PlayerWardrobeDAO.class).getReskinCountBySlot(player.getObjectId(), applySlot);
-		ItemTemplate it = DataManager.ITEM_DATA.getItemTemplate(itemId);
-		Storage inventory = player.getInventory();
-		Item keepItem = inventory.getItemByObjId(itemObjId);
-		if (it == null || keepItem == null) {
-			return;
-		}
-		if (reskinCount != 0 && !spendLunaAndTrack(player, COST_WARDROBE_RESKIN)) {
-			return;
-		}
-		DAOManager.getDAO(PlayerWardrobeDAO.class).setReskinCountBySlot(player.getObjectId(), applySlot, reskinCount + 1);
-		keepItem.setItemSkinTemplate(it);
-		if (!keepItem.getItemTemplate().isItemDyePermitted()) {
-			keepItem.setItemColor(0);
-		}
-		keepItem.setLunaReskin(true);
-		ItemPacketService.updateItemAfterInfoChange(player, keepItem, ItemUpdateType.STATS_CHANGE);
-		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_CHANGE_ITEM_SKIN_SUCCEED(new DescriptionId(keepItem.getItemTemplate().getNameId())));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(11, applySlot));
-	}
-
-
-	public void dorinerkWardrobeExtendSlots(Player player) {
-		if (player == null) {
-			return;
-		}
-		int currentSlot = player.getWardrobeSlot();
-		int nextSlot = currentSlot + 1;
-		int price = wardrobePrice(nextSlot);
-		if (price <= 0 || !spendLunaAndTrack(player, price)) {
-			return;
-		}
-		int size = DAOManager.getDAO(PlayerWardrobeDAO.class).getItemSize(player.getObjectId());
-		player.setWardrobeSlot(nextSlot);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(9, player.getWardrobeSlot(), size));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(5, player.getLunaAccount()));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(4, player.getMuniKeys()));
-	}
-
-
-	public void takiAdventure(Player player, int indun_id) {
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(14, indun_id));
-	}
-
-	public void takiAdventureTeleport(Player player, int indun_unk, int indun_id) {
-		if (player == null) {
-			return;
-		}
-		ensureLunaShop(player);
-		if (indun_id == 1) {
-			boolean free = player.getPlayerLunaShop().isFreeUnderpath();
-			if (!free && !spendLunaAndTrack(player, COST_TAKI_UNDERPATH)) {
-				return;
-			}
-			WorldMapInstance contaminatedUnderpath = InstanceService.getNextAvailableInstance(301630000);
-			if (contaminatedUnderpath == null) {
-				return;
-			}
-			InstanceService.registerPlayerWithInstance(contaminatedUnderpath, player);
-			TeleportService2.teleportTo(player, 301630000, contaminatedUnderpath.getInstanceId(), 230f, 169f, 164f, (byte) 60);
-			if (free) {
-				player.getPlayerLunaShop().setLunaShopByObjId(player.getObjectId());
-				player.getPlayerLunaShop().setFreeUnderpath(false);
-			}
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(1, 1, 45));
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(0, 0));
-		}
-		else if (indun_id == 2) {
-			boolean free = player.getPlayerLunaShop().isFreeFactory();
-			if (!free && !spendLunaAndTrack(player, COST_TAKI_FACTORY)) {
-				return;
-			}
-			WorldMapInstance secretMunitionsFactory = InstanceService.getNextAvailableInstance(301640000);
-			if (secretMunitionsFactory == null) {
-				return;
-			}
-			InstanceService.registerPlayerWithInstance(secretMunitionsFactory, player);
-			TeleportService2.teleportTo(player, 301640000, secretMunitionsFactory.getInstanceId(), 400.3279f, 290.5061f, 198.64015f, (byte) 60);
-			if (free) {
-				player.getPlayerLunaShop().setLunaShopByObjId(player.getObjectId());
-				player.getPlayerLunaShop().setFreeFactory(false);
-			}
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(1, 1, 47));
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(0, 0));
-		}
-	}
-
-
-	public void teleport(Player player, int action, int teleportId) {
-		switch (action) {
-			case 6:
-				PacketSendUtility.sendMessage(player, "teleportId : " + teleportId);
-				PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(6));
-				break;
-			case 7:
-				PacketSendUtility.sendMessage(player, "teleportId : " + teleportId);
-				PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(7));
-				break;
-		}
-	}
-
-	public void munirunerksTreasureChamber(final Player player) {
-		if (player == null) {
-			return;
-		}
-		HashMap<Integer, Long> hm = new HashMap<Integer, Long>();
-		hm.put(188054633, 1L);
-		hm.put(188054634, 1L);
-		hm.put(166030013, 1L);
-		hm.put(166020003, 1L);
-		hm.put(188054122, 1L);
-		hm.put(188055183, 1L);
-		hm.put(188054287, 1L);
-		hm.put(188054462, 1L);
-		hm.put(188052639, 1L);
-		hm.put(169405339, 10L);
-		hm.put(164000076, 10L);
-		hm.put(164000134, 10L);
-		hm.put(166000196, 3L);
-		hm.put(186000242, 2L);
-		hm.put(186000051, 2L);
-		hm.put(188055168, 10L);
-		hm.put(188054283, 30L);
-		hm.put(188054463, 1L);
-		hm.put(188053002, 1L);
-		hm.put(188100335, 2000L);
-		hm.put(164000073, 10L);
-		hm.put(160002497, 1L);
-		hm.put(160002499, 1L);
-		if (player.getMuniKeys() > 0) {
-			player.setMuniKeys(player.getMuniKeys() - 1);
-		}
-		else {
-			if (!spendLunaAndTrack(player, COST_MUNIRUNERK_CHEST)) {
-				return;
-			}
-		}
-		final HashMap<Integer, Long> mt = new HashMap<Integer, Long>();
-		Object[] keys = hm.keySet().toArray();
-		Random rnd = new Random();
-		while (mt.size() < 3 && mt.size() < hm.size()) {
-			Integer key = (Integer) keys[rnd.nextInt(keys.length)];
-			mt.put(key, hm.get(key));
-		}
-		ThreadPoolManager.getInstance().schedule(new Runnable() {
-
-			@Override
-			public void run() {
-				for (Map.Entry<Integer, Long> e : mt.entrySet()) {
-					ItemTemplate t = DataManager.ITEM_DATA.getItemTemplate(e.getKey());
-					if (t == null) {
-						continue;
-					}
-					ItemService.addItem(player, e.getKey(), e.getValue());
-					if (e.getValue() == 1) {
-						PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_REWARD_GOTCHA_ITEM(t.getNameId()));
-					}
-					else if (e.getValue() > 1) {
-						PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_REWARD_GOTCHA_ITEM_MULTI(e.getValue(), t.getNameId()));
-					}
-				}
-				PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(mt));
-			}
-		}, 1);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(5));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(4, player.getMuniKeys()));
-		updateLunaInfo(player);
-	}
-
-
-	public void onLogout(Player player) {
-		PlayerLunaShop pls = player.getPlayerLunaShop();
-		pls.setPersistentState(PersistentState.UPDATE_REQUIRED);
-		DAOManager.getDAO(PlayerLunaShopDAO.class).store(player);
-	}
-
-	private int wardrobePrice(int WardrobeSlot) { // Done
-		switch (WardrobeSlot) {
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-				return 69;
-			case 5:
-			case 6:
-			case 7:
-			case 8:
-				return 99;
-		}
-		return 0;
 	}
 	
-	public void diceGame(Player player) {
-		if (player == null) {
-			return;
-		}
-		int diceTry = player.getLunaDiceGameTry();
-		int price = lunaDicePrice(diceTry);
-		if (!spendLunaAndTrack(player, price)) {
-			return;
-		}
-		int random = Rnd.get(1, 1000);
-		if (random >= 100 && random <= 400) {
-			player.setLunaDiceGame(1, false);
-		}
-		else if (random >= 450 && random <= 749) {
-			player.setLunaDiceGame(2, false);
-		}
-		else if (random >= 750 && random <= 849) {
-			player.setLunaDiceGame(3, false);
-		}
-		else if (random >= 850 && random <= 900) {
-			player.setLunaDiceGame(4, false);
-		}
-		else {
-			player.setLunaDiceGame(5, false);
-		}
-		player.setLunaDiceGameTry(player.getLunaDiceGameTry() + 1);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(1, 1, diceTry < 1 ? 78 : 79));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(15));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(5));
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(4, player.getMuniKeys()));
-	}
-
-	
-	public void diceGameReward(Player player) {
-		if (player == null || player.getLunaDiceGame() <= 0) {
-			return;
-		}
-		int itemId = 162001014;
-		long count = Math.max(1, player.getLunaDiceGame());
-		ItemService.addItem(player, itemId, count);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(16, itemId, count));
-		player.setLunaDiceGame(0, true);
-		player.setLunaDiceGameTry(0);
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(1, 1, 78));
-	}
-
-	
-	public int lunaDicePrice(int diceTry) { // Done
-		switch (diceTry) {
-			case 0:
-				return 20;
-			case 1:
-				return 22;
-			case 2:
-				return 24;
-			case 3:
-				return 26;
-			case 4:
-			case 5:
-				return 30;
-			case 6:
-				return 32;
-			case 7:
-				return 36;
-			case 8:
-			case 9:
-				return 38;
-			case 10:
-				return 40;
-			default:
-				return 40;
-		}
-	}
-
-    public void sendLunaInstanceBuff(Player player, int buffId) {
-        PacketSendUtility.sendPacket(player, new SM_LUNA_INSTANCE_BUFF(buffId, false));
-    }
-
-    public void buyLunaBuff(Player player, int buffId) {
-        if (player == null || buffId <= 0) {
-            return;
-        }
-        if (DataManager.LUNA_BUFF_DATA == null || DataManager.LUNA_BUFF_DATA.getLunaBuffId(buffId) == null) {
-            return;
-        }
-        if (!spendLunaAndTrack(player, COST_LUNA_BUFF)) {
-            return;
-        }
-        player.setLunaBuffBonus(new LunaBuffBonus(buffId));
-        player.getLunaBuffBonus().applyEffect(player);
-        PacketSendUtility.sendPacket(player, new SM_LUNA_INSTANCE_BUFF(buffId, true));
-        PacketSendUtility.playerSendPacketTime(player, SM_SYSTEM_MESSAGE.STR_MSG_INSTANCE_QUNABUFF_SUCCEEDED, 3000);
-    }
-
-
-	private void applyLunaConsumeReward(Player player) {
-		if (player == null) {
-			return;
-		}
-		int consumePoint = player.getLunaConsumePoint();
-		int count = 0;
-		if (consumePoint >= 1000) {
-			count = 7;
-		}
-		else if (consumePoint >= 500) {
-			count = 6;
-		}
-		else if (consumePoint >= 300) {
-			count = 5;
-		}
-		else if (consumePoint >= 150) {
-			count = 4;
-		}
-		else if (consumePoint >= 100) {
-			count = 3;
-		}
-		else if (consumePoint >= 50) {
-			count = 2;
-		}
-		else if (consumePoint >= 25) {
-			count = 1;
-		}
-		if (count <= 0 || count <= player.getLunaConsumeCount()) {
-			return;
-		}
-		for (int milestone = player.getLunaConsumeCount() + 1; milestone <= count; milestone++) {
-			if (milestone == 3 || milestone == 4) {
-				muniKeysController(player, player.getMuniKeys() + 1);
-			}
-			else if (milestone == 5 || milestone == 6) {
-				muniKeysController(player, player.getMuniKeys() + 2);
-			}
-			else if (milestone == 7) {
-				muniKeysController(player, player.getMuniKeys() + 3);
-			}
-			LunaConsumeRewardsTemplate reward = DataManager.LUNA_CONSUME_REWARDS_DATA != null ? DataManager.LUNA_CONSUME_REWARDS_DATA.getLunaConsumeRewardsId(milestone) : null;
-			if (reward != null && DataManager.ITEM_DATA.getItemTemplate(reward.getCreateItemId()) != null) {
-				ItemService.addItem(player, reward.getCreateItemId(), reward.getCreateItemCount());
-			}
-		}
-		player.setLunaConsumeCount(count);
-	}
-
-	private boolean hasRecipeMaterials(Player player, LunaTemplate recipe) {
-		if (recipe.getLunaComponent() == null) {
-			return true;
-		}
-		for (LunaComponent lc : recipe.getLunaComponent()) {
-			if (lc == null || lc.getComponents() == null) {
-				continue;
-			}
-			for (LunaComponentElement component : lc.getComponents()) {
-				if (component == null || player.getInventory().getItemCountByItemId(component.getItemid()) < component.getQuantity()) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-
-	private void consumeRecipeMaterials(Player player, LunaTemplate recipe) {
-		if (recipe.getLunaComponent() == null) {
-			return;
-		}
-		for (LunaComponent lc : recipe.getLunaComponent()) {
-			if (lc == null || lc.getComponents() == null) {
-				continue;
-			}
-			for (LunaComponentElement component : lc.getComponents()) {
-				if (component != null) {
-					player.getInventory().decreaseByItemId(component.getItemid(), component.getQuantity());
-				}
-			}
-		}
-	}
-
-	private void ensureLunaShop(Player player) {
+	public void onLogin(Player player) {
 		if (player.getPlayerLunaShop() == null) {
 			PlayerLunaShop pls = new PlayerLunaShop(true, true, true);
 			pls.setPersistentState(PersistentState.UPDATE_REQUIRED);
 			player.setPlayerLunaShop(pls);
 			DAOManager.getDAO(PlayerLunaShopDAO.class).add(player.getObjectId(), pls.isFreeUnderpath(), pls.isFreeFactory(), pls.isFreeChest());
 		}
-	}
+		sendLunaPrice(player);
+		sendSpecialCraft(player);
+		sendDailyCraft(player);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(5));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(4, player.getMuniKeys()));
 
-	public boolean spendLunaForSystem(Player player, long price) {
-		return spendLunaAndTrack(player, price);
-	}
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(8, 0, LunaConfig.LUNA_DICE, "Luna Dice"));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(8, 1, LunaConfig.LUNA_DICE_1, "Luna Dice"));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(8, 2, LunaConfig.LUNA_DICE_2, "Luna Dice"));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(8, 3, LunaConfig.LUNA_DICE_3, "Luna Dice"));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(8, 4, LunaConfig.LUNA_DICE_4, "Luna Dice"));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(8, 5, LunaConfig.LUNA_DICE_5, "Luna Dice"));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(8, 6, LunaConfig.LUNA_DICE_6, "Luna Dice"));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(8, 7, LunaConfig.LUNA_DICE_7, "Luna Dice"));
 
-	private boolean spendLunaAndTrack(Player player, long price) {
-		if (!spendLuna(player, price)) {
-			return false;
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(9));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(6));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(7));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(3));
+	}
+	
+	public void specialDesign(Player player, int recipeId) {
+		LunaTemplate recipe = DataManager.LUNA_DATA.getLunaTemplateById(recipeId);
+		int product_id = recipe.getProductid();
+		int quantity = recipe.getQuantity();
+		boolean isSuccess = isSuccess(player, recipeId);
+		if (isSuccess) {
+			for (LunaComponent lc : recipe.getLunaComponent()) {
+				for (LunaComponentElement a : lc.getComponents()) {
+					if (!player.getInventory().decreaseByItemId(a.getItemid(), a.getQuantity())) {
+						PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(product_id, quantity, true));
+						PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(2, product_id, 0));
+						return;
+					}
+				}
+			}
+			ItemService.addItem(player, product_id, quantity);
+		} else {
+			for (LunaComponent lc : recipe.getLunaComponent()) {
+				for (LunaComponentElement a : lc.getComponents()) {
+					if (!player.getInventory().decreaseByItemId(a.getItemid(), a.getQuantity())) {
+						PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(product_id, quantity, false));
+						PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(2, product_id, 1));
+						return;
+					}
+				}
+			}
 		}
-		addLunaConsumePoint(player, price);
-		return true;
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(product_id, quantity, isSuccess));
 	}
-
-	private void addLunaConsumePoint(Player player, long price) {
-		if (price <= 0 || player == null) {
+	
+	public void craftBox(Player player) {
+		int itemId = 188055460;
+		ItemTemplate item = DataManager.ITEM_DATA.getItemTemplate(itemId);
+		if (player.getPlayerLunaShop().isFreeChest()) {
+			player.getPlayerLunaShop().setFreeChest(false);
+		} else {
+			player.setLunaAccount(player.getLunaAccount() - 16);
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0));
+		}
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(5));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(itemId, 1, true));
+		sendLunaPrice(player);
+		ItemService.addItem(player, itemId, 1);
+	}
+	
+	private boolean isSuccess(Player player, int recipeId) {
+		LunaTemplate recipe = DataManager.LUNA_DATA.getLunaTemplateById(recipeId);
+		boolean result = false;
+		float random = Rnd.get(1, 100);
+		if (recipe.getRate() == 100) {
+			result = true;
+		} else if (recipe.getRate() < 100) {
+			if (random <= recipe.getRate()) {
+				result = true;
+			} else {
+				result = false;
+			}
+		}
+		return result;
+	}
+	
+	public void buyMaterials(Player player, int itemId, long count) {
+		ItemTemplate itemTemplate = DataManager.ITEM_DATA.getItemTemplate(itemId);
+		int lunaPrice = itemTemplate.getLunaPrice();
+		long price = count * lunaPrice;
+		ItemService.addItem(player, itemId, count);
+		player.setLunaAccount(player.getLunaAccount() - price);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(4, player.getMuniKeys()));
+	}
+	
+	public void dorinerkWardrobeLoad(Player player) {
+		int size = DAOManager.getDAO(PlayerWardrobeDAO.class).getItemSize(player.getObjectId());
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(8, player.getWardrobeSlot(), size));
+	}
+	
+	public void dorinerkWardrobeAct(Player player, int applySlot, int itemObjId) {
+		int itemId = player.getInventory().getItemByObjId(itemObjId).getItemId();
+		int itemOnDB = DAOManager.getDAO(PlayerWardrobeDAO.class).getWardrobeItemBySlot(player.getObjectId(), applySlot);
+		if (itemOnDB != 0) {
+			DAOManager.getDAO(PlayerWardrobeDAO.class).delete(player.getObjectId(), itemOnDB);
+			player.setLunaAccount(player.getLunaAccount() - 80);
+			player.getWardrobe().addItem(player, itemId, applySlot, 0);
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+		} else {
+			player.getWardrobe().addItem(player, itemId, applySlot, 0);
+		}
+		player.getInventory().decreaseByObjectId(itemObjId, 1);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(10, 0x00, applySlot, itemId, 1));
+	}
+	
+	public void dorinerkWardrobeModifyAppearance(Player player, int applySlot, int itemObjId) {
+		int itemId = DAOManager.getDAO(PlayerWardrobeDAO.class).getWardrobeItemBySlot(player.getObjectId(), applySlot);
+		int reskinCount = DAOManager.getDAO(PlayerWardrobeDAO.class).getReskinCountBySlot(player.getObjectId(), applySlot);
+		ItemTemplate it = DataManager.ITEM_DATA.getItemTemplate(itemId);
+		Storage inventory = player.getInventory();
+		Item keepItem = inventory.getItemByObjId(itemObjId);
+		if (reskinCount != 0) {
+			DAOManager.getDAO(PlayerWardrobeDAO.class).setReskinCountBySlot(player.getObjectId(), applySlot, reskinCount+1);
+			player.setLunaAccount(player.getLunaAccount() - 96);
+			keepItem.setItemSkinTemplate(it);
+			if (!keepItem.getItemTemplate().isItemDyePermitted()) {
+				keepItem.setItemColor(0);
+			}
+			keepItem.setLunaReskin(true);
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+		} else {
+			DAOManager.getDAO(PlayerWardrobeDAO.class).setReskinCountBySlot(player.getObjectId(), applySlot, reskinCount+1);
+			keepItem.setItemSkinTemplate(it);
+			if (!keepItem.getItemTemplate().isItemDyePermitted()) {
+				keepItem.setItemColor(0);
+			}
+			keepItem.setLunaReskin(true);
+		}
+		ItemPacketService.updateItemAfterInfoChange(player, keepItem, ItemUpdateType.STATS_CHANGE);
+		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_CHANGE_ITEM_SKIN_SUCCEED(new DescriptionId(keepItem.getItemTemplate().getNameId())));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(11, applySlot));
+	}
+	
+	public void dorinerkWardrobeExtendSlots(Player player) {
+		int currentSlot = player.getWardrobeSlot();
+		int size = DAOManager.getDAO(PlayerWardrobeDAO.class).getItemSize(player.getObjectId());
+		player.setWardrobeSlot(currentSlot + 1);
+		player.setLunaAccount(player.getLunaAccount() - 80);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(8, player.getWardrobeSlot(), size));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+	}
+	
+	public void takiAdventure(Player player, int indun_id) {
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(14, indun_id));
+	}
+	
+	public void takiAdventureTeleport(Player player, int indun_unk, int indun_id) {
+        if (player.getLevel() < 10) {
+            PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_CANT_INSTANCE_ENTER_LEVEL);
+            return;
+        } if (indun_id == 1) {
+			if (player.getPlayerLunaShop().isFreeUnderpath()) {
+				WorldMapInstance contaminatedUnderpath = InstanceService.getNextAvailableInstance(301630000);
+				InstanceService.registerPlayerWithInstance(contaminatedUnderpath, player);
+				TeleportService2.teleportTo(player, 301630000, contaminatedUnderpath.getInstanceId(), 230f, 169f, 164f, (byte) 60);
+				player.getPlayerLunaShop().setFreeUnderpath(false);
+				player.getPlayerLunaShop().setLunaShopByObjId(player.getObjectId());
+			} else {
+				if (player.getLunaAccount() < 89) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+					return;
+				} else {
+					WorldMapInstance contaminatedUnderpath = InstanceService.getNextAvailableInstance(301630000);
+					InstanceService.registerPlayerWithInstance(contaminatedUnderpath, player);
+					TeleportService2.teleportTo(player, 301630000, contaminatedUnderpath.getInstanceId(), 230f, 169f, 164f, (byte) 60);
+					player.setLunaAccount(player.getLunaAccount() - 89);
+				}
+			}
+		} if (indun_id == 2) {
+			if (player.getPlayerLunaShop().isFreeFactory()) {
+				WorldMapInstance secretMunitionsFactory = InstanceService.getNextAvailableInstance(301640000);
+				InstanceService.registerPlayerWithInstance(secretMunitionsFactory, player);
+				TeleportService2.teleportTo(player, 301640000, secretMunitionsFactory.getInstanceId(), 400.3279f, 290.5061f, 198.64015f, (byte) 60);
+				player.getPlayerLunaShop().setFreeFactory(false);
+				player.getPlayerLunaShop().setLunaShopByObjId(player.getObjectId());
+			} else {
+				if (player.getLunaAccount() < 59) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+					return;
+				} else {
+					WorldMapInstance secretMunitionsFactory = InstanceService.getNextAvailableInstance(301640000);
+					InstanceService.registerPlayerWithInstance(secretMunitionsFactory, player);
+					TeleportService2.teleportTo(player, 301640000, secretMunitionsFactory.getInstanceId(), 400.3279f, 290.5061f, 198.64015f, (byte) 60);
+					player.setLunaAccount(player.getLunaAccount() - 59);
+				}
+			}
+		}
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+		sendLunaPrice(player);
+	}
+	
+	public void teleport(Player player, int action, int teleportId) {
+		switch (action) {
+			case 6:
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(6));
+			break;
+			case 7:
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(7));
+			break;
+		}
+	}
+	
+	public void siegeTeleport(Player player, int action, int siegeId) {
+		switch (siegeId) {
+			case 1011: //Divine Fortress.
+				if (player.getLunaAccount() < 80) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+					return;
+				}
+				player.setLunaAccount(player.getLunaAccount() - 80);
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action));
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+				TeleportService2.teleportTo(player, 400070000, 1524.0000f, 1559.0000f, 2309.0000f, (byte) 0);
+			break;
+			case 1512: //Fern Overlook.
+				if (player.getLunaAccount() < 40) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+					return;
+				}
+				player.setLunaAccount(player.getLunaAccount() - 40);
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action));
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+				TeleportService2.teleportTo(player, 800050000, 1050.0000f, 551.0000f, 304.0000f, (byte) 90);
+			break;
+			case 1513: //Breath Of Memory.
+				if (player.getLunaAccount() < 40) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+					return;
+				}
+				player.setLunaAccount(player.getLunaAccount() - 40);
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action));
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+				TeleportService2.teleportTo(player, 800050000, 740.0000f, 814.0000f, 332.0000f, (byte) 86);
+			break;
+			case 1515: //East Bank.
+				if (player.getLunaAccount() < 40) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+					return;
+				}
+				player.setLunaAccount(player.getLunaAccount() - 40);
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action));
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+				TeleportService2.teleportTo(player, 800050000, 1084.0000f, 2763.0000f, 231.0000f, (byte) 81);
+			break;
+			case 1516: //Bark Giant.
+				if (player.getLunaAccount() < 40) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+					return;
+				}
+				player.setLunaAccount(player.getLunaAccount() - 40);
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action));
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+				TeleportService2.teleportTo(player, 800050000, 545.0000f, 2186.0000f, 284.0000f, (byte) 28);
+			break;
+			case 1517: //Shipwreck Cut.
+				if (player.getLunaAccount() < 40) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+					return;
+				}
+				player.setLunaAccount(player.getLunaAccount() - 40);
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action));
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+				TeleportService2.teleportTo(player, 800050000, 2779.0000f, 1461.0000f, 197.0000f, (byte) 59);
+			break;
+			case 1518: //Temple Walk.
+				if (player.getLunaAccount() < 40) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+					return;
+				}
+				player.setLunaAccount(player.getLunaAccount() - 40);
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action));
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+				TeleportService2.teleportTo(player, 800050000, 1930.0000f, 1492.0000f, 215.0000f, (byte) 73);
+			break;
+			case 1521: //Lakrum.
+				if (player.getLunaAccount() < 40) {
+					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+					return;
+				}
+				player.setLunaAccount(player.getLunaAccount() - 40);
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action));
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+				TeleportService2.teleportTo(player, 800050000, 2045.0000f, 2009.0000f, 1503.0000f, (byte) 28);
+			break;
+		}
+	}
+	
+	
+	public void lunaRevive(Player player) {
+		if (player.getLunaAccount() < 4) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+            return;
+		}
+		player.setLunaAccount(player.getLunaAccount() - 4);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+		PlayerReviveService.lunaRevive(player);
+	}
+	
+	public void buyLunaBuff(Player player, int buffId) {
+		if (player.getLunaAccount() < 20) {
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
+            return;
+		}
+		player.setLunaAccount(player.getLunaAccount() - 20);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+		player.setLunaBuffBonus(new LunaBuffBonus(buffId));
+		player.getLunaBuffBonus().applyEffect(player);
+		PacketSendUtility.sendPacket(player, new SM_QUNA_INSTANCE_BUFF(buffId, true));
+		//You've purchased Lunamin's Cheer buff.
+		PacketSendUtility.playerSendPacketTime(player, SM_SYSTEM_MESSAGE.STR_MSG_INSTANCE_QUNABUFF_SUCCEEDED, 3000);
+	}
+	
+	public void sendLunaInstanceBuff(Player player, int buffId) {
+		PacketSendUtility.sendPacket(player, new SM_QUNA_INSTANCE_BUFF(buffId, false));
+	}
+	
+	public void munirunerksTreasureChamber(final Player player) {
+		HashMap<Integer, Long> hm = new HashMap<Integer, Long>();
+		hm.put(169020003, (long) 250); //Shard.
+		hm.put(166401000, (long) 150); //Manastone Fastener.
+		hm.put(188070569, (long) 1); //Level 40 Manastone Bundle.
+		hm.put(188070570, (long) 1); //Level 60 Manastone Bundle.
+		hm.put(166023100, (long) 2); //Ancient PvE Enchantment Stone.
+		hm.put(166023101, (long) 2); //Legendary PvE Enchantment Stone.
+		hm.put(166023102, (long) 2); //Ultimate PvE Enchantment Stone.
+		hm.put(166033100, (long) 2); //Ancient PvP Enchantment Stone.
+		hm.put(166033101, (long) 2); //Legendary PvP Enchantment Stone.
+		hm.put(166033102, (long) 2); //Ultimate PvP Enchantment Stone.
+		hm.put(188071302, (long) 1); //Bronze Cubicle Bundle.
+		hm.put(188071303, (long) 1); //Silver Cubicle Bundle.
+		hm.put(188071304, (long) 1); //Gold Cubicle Bundle.
+		hm.put(188071305, (long) 1); //Platinum Cubicle Bundle.
+		hm.put(190099000, (long) 3); //Transformation Scroll.
+		hm.put(162001062, (long) 5); //Berdin's Lucky Star.
+		hm.put(162001069, (long) 5); //Abyssal Star.
+		hm.put(162005004, (long) 5); //Lesser Recovery Serum.
+		hm.put(162005005, (long) 5); //Greater Recovery Serum.
+		hm.put(162005006, (long) 5); //Major Recovery Serum.
+		hm.put(162005007, (long) 5); //Superior Recovery Serum.
+		hm.put(162005008, (long) 5); //Superior Wind Serum.
+		hm.put(164010028, (long) 5); //Stellium.
+		if (player.getMuniKeys() > 0) {
+			player.setMuniKeys(player.getMuniKeys() - 1);
+		} else {
+			player.setLunaAccount(player.getLunaAccount() - 40);
+			player.setLunaConsumePoint(player.getLunaConsumePoint() + 40);
+		} if (player.getLunaConsumePoint() == 200) {
+			player.setLunaConsumeCount(1);
+			LunaConsumeRewardsTemplate lt = DataManager.LUNA_CONSUME_REWARDS_DATA.getLunaConsumeRewardsId(player.getLunaConsumeCount());
+			ItemService.addItem(player, lt.getCreateItemId1(), lt.getCreateItemCount1());
+		} else if (player.getLunaConsumePoint() == 400) {
+			player.setLunaConsumeCount(2);
+			LunaConsumeRewardsTemplate lt = DataManager.LUNA_CONSUME_REWARDS_DATA.getLunaConsumeRewardsId(player.getLunaConsumeCount());
+			ItemService.addItem(player, lt.getCreateItemId1(), lt.getCreateItemCount1());
+		} else if (player.getLunaConsumePoint() == 800) {
+			player.setLunaConsumeCount(3);
+			LunaConsumeRewardsTemplate lt = DataManager.LUNA_CONSUME_REWARDS_DATA.getLunaConsumeRewardsId(player.getLunaConsumeCount());
+			player.setMuniKeys(player.getMuniKeys() + 1);
+		} else if (player.getLunaConsumePoint() == 1200) {
+			player.setLunaConsumeCount(4);
+			LunaConsumeRewardsTemplate lt = DataManager.LUNA_CONSUME_REWARDS_DATA.getLunaConsumeRewardsId(player.getLunaConsumeCount());
+			player.setMuniKeys(player.getMuniKeys() + 1);
+		} else if (player.getLunaConsumePoint() == 2400) {
+			player.setLunaConsumeCount(5);
+			LunaConsumeRewardsTemplate lt = DataManager.LUNA_CONSUME_REWARDS_DATA.getLunaConsumeRewardsId(player.getLunaConsumeCount());
+			player.setMuniKeys(player.getMuniKeys() + 1);
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(4, player.getMuniKeys()));
+		} else if (player.getLunaConsumePoint() == 4000) {
+			player.setLunaConsumeCount(6);
+			LunaConsumeRewardsTemplate lt = DataManager.LUNA_CONSUME_REWARDS_DATA.getLunaConsumeRewardsId(player.getLunaConsumeCount());
+			ItemService.addItem(player, lt.getCreateItemId1(), lt.getCreateItemCount1());
+			player.setMuniKeys(player.getMuniKeys() + 1);
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(4, player.getMuniKeys()));
+		} else if (player.getLunaConsumePoint() == 8000) {
+			player.setLunaConsumeCount(7);
+			LunaConsumeRewardsTemplate lt = DataManager.LUNA_CONSUME_REWARDS_DATA.getLunaConsumeRewardsId(player.getLunaConsumeCount());
+			ItemService.addItem(player, lt.getCreateItemId1(), lt.getCreateItemCount1());
+			player.setMuniKeys(player.getMuniKeys() + 1);
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(4, player.getMuniKeys()));
+		}
+		final HashMap<Integer, Long> mt = new HashMap<Integer, Long>();
+		for (int i=0;i<3;i++) {
+			Object[] crunchifyKeys = hm.keySet().toArray();
+			Object key = crunchifyKeys[new Random().nextInt(crunchifyKeys.length)];
+			mt.put((int)key, (long)hm.get(key));
+		}
+		ThreadPoolManager.getInstance().schedule(new Runnable() {
+			@Override
+			public void run() {
+				for (Map.Entry<Integer, Long> e : mt.entrySet()) {
+					ItemService.addItem(player, (int)e.getKey(), (long)e.getValue());
+					ItemTemplate t = DataManager.ITEM_DATA.getItemTemplate((int)e.getKey());
+					if (e.getValue() == 1) {
+						PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_REWARD_GOTCHA_ITEM(t.getNameId()));
+					} else if (e.getValue() > 1) {
+						PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_REWARD_GOTCHA_ITEM_MULTI(e.getValue(), t.getNameId()));
+					}
+				}
+				PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(mt));
+			}
+		}, 1);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(5));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(4, player.getMuniKeys()));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0, player.getLunaAccount()));
+	}
+	
+	public void lunaDices(Player player, int action) {
+		int rndSuccess = Rnd.get(1, 100);
+		int price = 0;
+		if (player.isLunaGoldenDice()) {
+			price = 200;
+		} else {
+			price = 20;
+		}
+		if (!LunaConfig.ENABLE_LUNA_DICE) {
+			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1404432, new Object[0]));
+			return;
+		} if ((player.getLunaAccount() < price)) {
+			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1403481, new Object[0]));
 			return;
 		}
-		long total = (long) player.getLunaConsumePoint() + price;
-		player.setLunaConsumePoint((int) Math.min(Integer.MAX_VALUE, total));
-		applyLunaConsumeReward(player);
-	}
-
-	private boolean spendLuna(Player player, long price) {
-		if (price <= 0) {
-			return true;
+		player.getPlayerAccount().setLuna(player.getLunaAccount() - price);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP_LIST(0));
+		int dice = player.getLunaDiceCount();
+		boolean isDiceFinish = false;
+		int diceReward = 0;
+		switch (player.getLunaDiceCount()) {
+			case 0:
+				if (rndSuccess <= LunaConfig.LUNA_DICE_RATE_1) {
+					player.setLunaDiceCount(dice + 1);
+					diceReward = LunaConfig.LUNA_DICE_1;
+				} else {
+					diceReward = LunaConfig.LUNA_DICE;
+				}
+			break;
+			case 1:
+				if (rndSuccess <= LunaConfig.LUNA_DICE_RATE_2) {
+					player.setLunaDiceCount(dice + 1);
+					diceReward = LunaConfig.LUNA_DICE_2;
+				} else {
+					diceReward = LunaConfig.LUNA_DICE_1;
+				}
+			break;
+			case 2:
+				if (rndSuccess <= LunaConfig.LUNA_DICE_RATE_3) {
+					player.setLunaDiceCount(dice + 1);
+					diceReward = LunaConfig.LUNA_DICE_3;
+				} else {
+					diceReward = LunaConfig.LUNA_DICE_2;
+				}
+			break;
+			case 3:
+				if (rndSuccess <= LunaConfig.LUNA_DICE_RATE_4) {
+					player.setLunaDiceCount(dice + 1);
+					diceReward = LunaConfig.LUNA_DICE_4;
+				} else {
+					diceReward = LunaConfig.LUNA_DICE_3;
+				}
+			break;
+			case 4:
+				if (rndSuccess <= LunaConfig.LUNA_DICE_RATE_5) {
+					player.setLunaDiceCount(dice + 1);
+					diceReward = LunaConfig.LUNA_DICE_5;
+					player.setLunaGoldenDice(true);
+				} else {
+					diceReward = LunaConfig.LUNA_DICE_4;
+				}
+			break;
+			case 5:
+				if (rndSuccess <= LunaConfig.LUNA_DICE_RATE_6) {
+					int rndGolden = Rnd.get(1, 10);
+					if (rndGolden > 2) {
+						player.setLunaDiceCount(dice + 1);
+						diceReward = LunaConfig.LUNA_DICE_6;
+						isDiceFinish = true;
+					} else {
+						player.setLunaDiceCount(dice + 2);
+						diceReward = LunaConfig.LUNA_DICE_7;
+						isDiceFinish = true;
+					}
+				} else {
+					diceReward = LunaConfig.LUNA_DICE_5_FAIL;
+					isDiceFinish = true;
+				}
+			break;
 		}
-		if (player.getLunaAccount() < price) {
-			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_LUNA_NOT_ENOUGH_LUNA);
-			updateLunaInfo(player);
-			return false;
+		player.setLunaDiceReward(diceReward);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action, player, player.isLunaGoldenDice(), isDiceFinish));
+		sendLunaPrice(player);
+	}
+
+	public void lunaDiceReward(Player player, int action) {
+		int diceItemId1 = 0;
+		int diceItemCount1 = 0;
+		if (DataManager.LUNA_DICE_DATA.getId(player.getLunaDiceReward()).getReward() == null) {
+			return;
 		}
-		player.setLunaAccount((int) (player.getLunaAccount() - price));
-		updateLunaInfo(player);
-		return true;
-	}
+		int randomIndex = Rnd.get(1, DataManager.LUNA_DICE_DATA.getId(player.getLunaDiceReward()).getReward().size() - 1);
+		LunaDicesReward reward = DataManager.LUNA_DICE_DATA.getId(player.getLunaDiceReward()).getReward().get(randomIndex);
+		diceItemId1 = reward.getItemid();
+		diceItemCount1 = reward.getQuantity();
 
-	private void updateLunaInfo(Player player) {
-		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(0, player.getLunaAccount()));
+		player.setLunaDiceCount(0);
+		player.setLunaDiceReward(0);
+		player.setLunaGoldenDice(false);
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action, player, player.isLunaGoldenDice(), true));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SHOP(action, 1, diceItemId1, diceItemCount1));
+		ItemService.addItem(player, diceItemId1, diceItemCount1);
+		sendLunaPrice(player);
 	}
-
+	
 	public static LunaShopService getInstance() {
-		return NewSingletonHolder.INSTANCE;
+		return SingletonHolder.instance;
 	}
-
-	private static class NewSingletonHolder {
-
-		private static final LunaShopService INSTANCE = new LunaShopService();
+	
+	private static class SingletonHolder {
+		protected static final LunaShopService instance = new LunaShopService();
 	}
 }

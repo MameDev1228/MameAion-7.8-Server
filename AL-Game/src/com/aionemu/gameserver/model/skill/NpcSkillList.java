@@ -1,30 +1,30 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.skill;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.templates.npcskill.NpcSkillTemplate;
 import com.aionemu.gameserver.model.templates.npcskill.NpcSkillTemplates;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author ATracer
@@ -92,7 +92,9 @@ public class NpcSkillList implements SkillList<Npc> {
 	}
 
 	public NpcSkillEntry getRandomSkill() {
-		return skills.get(Rnd.get(0, skills.size() - 1));
+		if (skills == null || skills.size() == 0)
+			return null;
+		return skills.size() == 1 ? skills.get(0) : skills.get(Rnd.get(0, skills.size() - 1));
 	}
 
 	private SkillEntry getSkill(int skillId) {
@@ -103,11 +105,10 @@ public class NpcSkillList implements SkillList<Npc> {
 		}
 		return null;
 	}
-
+	
 	public NpcSkillEntry getUseInSpawnedSkill() {
-		if (this.skills == null) {
+		if(this.skills == null)
 			return null;
-		}
 		Iterator<NpcSkillEntry> iter = skills.iterator();
 		while (iter.hasNext()) {
 			NpcSkillEntry next = iter.next();
@@ -117,5 +118,11 @@ public class NpcSkillList implements SkillList<Npc> {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public boolean addLinkedSkill(Npc creature, int skillId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

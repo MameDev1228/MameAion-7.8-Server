@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-emu is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-emu is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
@@ -26,12 +26,11 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_FRIEND_RESPONSE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_QUESTION_WINDOW;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.SocialService;
-import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 
 /**
  * Received when a user tries to add someone as his friend
- *
+ * 
  * @author Ben
  */
 public class CM_FRIEND_ADD extends AionClientPacket {
@@ -62,7 +61,8 @@ public class CM_FRIEND_ADD extends AionClientPacket {
 
 		if (targetName.equalsIgnoreCase(activePlayer.getName())) {
 			// Adding self to friend list not allowed - Its blocked by the client by default, so no need to send an error
-		} // if offline
+		}
+		// if offline
 		else if (targetPlayer == null) {
 			sendPacket(new SM_FRIEND_RESPONSE(targetName, SM_FRIEND_RESPONSE.TARGET_OFFLINE));
 		}
@@ -98,7 +98,6 @@ public class CM_FRIEND_ADD extends AionClientPacket {
 					}
 					else {
 						SocialService.makeFriends((Player) requester, responder);
-						sendPacket(new SM_SYSTEM_MESSAGE(1300885, responder.getName()));
 					}
 
 				}
@@ -106,13 +105,12 @@ public class CM_FRIEND_ADD extends AionClientPacket {
 				@Override
 				public void denyRequest(Creature requester, Player responder) {
 					sendPacket(new SM_FRIEND_RESPONSE(targetName, SM_FRIEND_RESPONSE.TARGET_DENIED));
-					sendPacket(new SM_SYSTEM_MESSAGE(1300886, responder.getName()));
-					PacketSendUtility.sendPacket(responder, new SM_SYSTEM_MESSAGE(1401517, requester.getName()));
 
 				}
 			};
 
-			boolean requested = targetPlayer.getResponseRequester().putRequest(SM_QUESTION_WINDOW.STR_BUDDYLIST_ADD_BUDDY_REQUEST, responseHandler);
+			boolean requested = targetPlayer.getResponseRequester().putRequest(
+				SM_QUESTION_WINDOW.STR_BUDDYLIST_ADD_BUDDY_REQUEST, responseHandler);
 			// If the player is busy and could not be asked
 			if (!requested) {
 				sendPacket(SM_SYSTEM_MESSAGE.STR_BUDDYLIST_BUSY);
@@ -127,4 +125,5 @@ public class CM_FRIEND_ADD extends AionClientPacket {
 			}
 		}
 	}
+
 }

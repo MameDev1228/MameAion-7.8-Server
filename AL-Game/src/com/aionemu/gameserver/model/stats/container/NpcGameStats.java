@@ -1,24 +1,23 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-emu is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-emu is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.stats.container;
 
 import com.aionemu.commons.utils.Rnd;
 import com.aionemu.gameserver.ai2.AI2Logger;
-import com.aionemu.gameserver.ai2.AISubState;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.SummonedObject;
@@ -30,11 +29,8 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_EMOTION;
 import com.aionemu.gameserver.taskmanager.tasks.PacketBroadcaster.BroadcastMode;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
-/**
- * @author xavier
- */
-public class NpcGameStats extends CreatureGameStats<Npc> {
-
+public class NpcGameStats extends CreatureGameStats<Npc>
+{
 	int currentRunSpeed = 0;
 	private long lastAttackTime = 0;
 	private long lastAttackedTime = 0;
@@ -42,13 +38,12 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 	private long lastSkillTime = 0;
 	private long fightStartingTime = 0;
 	private int cachedState;
-	private AISubState cachedSubState;
 	private Stat2 cachedSpeedStat;
 	private long lastGeoZUpdate;
 	private long lastChangeTarget = 0;
 	private int pAccuracy = 0;
 	private int mRes = 0;
-
+    
 	public NpcGameStats(Npc owner) {
 		super(owner);
 	}
@@ -57,7 +52,7 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 	protected void onStatsChange() {
 		checkSpeedStats();
 	}
-
+	
 	private void checkSpeedStats() {
 		Stat2 oldSpeed = cachedSpeedStat;
 		cachedSpeedStat = null;
@@ -82,101 +77,99 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 	public Stat2 getAttackSpeed() {
 		return getStat(StatEnum.ATTACK_SPEED, owner.getObjectTemplate().getAttackDelay());
 	}
-
-	@Override
-	public Stat2 getStrikeResist() {
-		return getStat(StatEnum.PHYSICAL_CRITICAL_RESIST, 0);
-	}
-
-	@Override
-	public Stat2 getStrikeFort() {
-		return getStat(StatEnum.PHYSICAL_CRITICAL_DAMAGE_REDUCE, 0);
-	}
-
-	@Override
-	public Stat2 getSpellResist() {
-		return getStat(StatEnum.MAGICAL_CRITICAL_RESIST, 0);
-	}
-
-	@Override
-	public Stat2 getSpellFort() {
-		return getStat(StatEnum.MAGICAL_CRITICAL_DAMAGE_REDUCE, 0);
-	}
-
-	@Override
-	public Stat2 getBCastingTime() {
-		return getStat(StatEnum.BOOST_CASTING_TIME, 1000);
-	}
-
-	@Override
+    public Stat2 getBCastingTime() {
+        return getStat(StatEnum.BOOST_CASTING_TIME, 1000);
+    }
 	public Stat2 getConcentration() {
-		return getStat(StatEnum.CONCENTRATION, 0);
-	}
-
-	@Override
+        return getStat(StatEnum.CONCENTRATION, 0);
+    }
 	public Stat2 getRootResistance() {
-		return getStat(StatEnum.ROOT_RESISTANCE, 0);
-	}
-
-	@Override
+        return getStat(StatEnum.ROOT_RESISTANCE, 0);
+    }
 	public Stat2 getSnareResistance() {
-		return getStat(StatEnum.SNARE_RESISTANCE, 0);
-	}
-
-	@Override
+        return getStat(StatEnum.SNARE_RESISTANCE, 0);
+    }
 	public Stat2 getBindResistance() {
-		return getStat(StatEnum.BIND_RESISTANCE, 0);
-	}
-
-	@Override
+        return getStat(StatEnum.BIND_RESISTANCE, 0);
+    }
 	public Stat2 getFearResistance() {
-		return getStat(StatEnum.FEAR_RESISTANCE, 0);
-	}
-
-	@Override
+        return getStat(StatEnum.FEAR_RESISTANCE, 0);
+    }
 	public Stat2 getSleepResistance() {
-		return getStat(StatEnum.SLEEP_RESISTANCE, 0);
+        return getStat(StatEnum.SLEEP_RESISTANCE, 0);
+    }
+	public Stat2 getAllSpeed() {
+		return getStat(StatEnum.ALLSPEED, 7500);
 	}
 
 	@Override
-	public Stat2 getAllSpeed() {
-		int base = 7500; // TODO current value
-		return getStat(StatEnum.ALLSPEED, base);
+	public Stat2 getPhysicPowerBoost() {
+		return getStat(StatEnum.PHYSICAL_POWER_BOOST, 0);
+	}
+	@Override
+	public Stat2 getPhysicPowerBoostResist() {
+		return getStat(StatEnum.PHYSICAL_POWER_BOOST_RESIST, 0);
+	}
+	@Override
+	public Stat2 getPhysicDamageBoost() {
+		return getStat(StatEnum.PHYSICAL_DAMAGE_BOOST, 0);
+	}
+	@Override
+	public Stat2 getPhysicDamageBoostResist() {
+		return getStat(StatEnum.PHYSICAL_DAMAGE_BOOST_RESIST, 0);
+	}
+	@Override
+	public Stat2 getPvePowerBoost() {
+	 	return getStat(StatEnum.PVE_POWER_BOOST, 0);
+	}
+	@Override
+	public Stat2 getPvePowerBoostResist() {
+		return getStat(StatEnum.PVE_POWER_BOOST_RESIST, 0);
+	}
+	@Override
+	public Stat2 getPvpPowerBoost() {
+		return getStat(StatEnum.PVP_POWER_BOOST, 0);
+	}
+	@Override
+	public Stat2 getPvpPowerBoostResist() {
+		return getStat(StatEnum.PVP_POWER_BOOST_RESIST, 0);
+	}
+	@Override
+	public Stat2 getMagicPowerBoost() {
+		return getStat(StatEnum.MAGICAL_POWER_BOOST, 0);
+	}
+	@Override
+	public Stat2 getMagicPowerBoostResist() {
+		return getStat(StatEnum.MAGICAL_POWER_BOOST_RESIST, 0);
+	}
+	@Override
+	public Stat2 getMagicDamageBoost() {
+		return getStat(StatEnum.MAGICAL_DAMAGE_BOOST, 0);
+	}
+	@Override
+	public Stat2 getMagicDamageBoostResist() {
+		return getStat(StatEnum.MAGICAL_DAMAGE_BOOST_RESIST, 0);
+	}
+	@Override
+	public Stat2 getHealBoost() {
+		return getStat(StatEnum.HEAL_BOOST, 107);
 	}
 
 	@Override
 	public Stat2 getMovementSpeed() {
 		int currentState = owner.getState();
-		AISubState currentSubState = owner.getAi2().getSubState();
 		Stat2 cachedSpeed = cachedSpeedStat;
-		if (cachedSpeed != null && cachedState == currentState && cachedSubState == currentSubState) {
+		if (cachedSpeed != null && cachedState == currentState) {
 			return cachedSpeed;
 		}
 		Stat2 newSpeedStat = null;
 		if (owner.isFlying()) {
 			newSpeedStat = getStat(StatEnum.FLY_SPEED, Math.round(owner.getObjectTemplate().getStatsTemplate().getRunSpeed() * 1.3f * 1000));
-		}
-		else if (owner.isInState(CreatureState.WEAPON_EQUIPPED)) {
-			float speed = 0;
-			if (owner.getWalkerGroup() != null) {
-				speed = owner.getObjectTemplate().getStatsTemplate().getGroupRunSpeedFight();
-			}
-			else {
-				speed = owner.getObjectTemplate().getStatsTemplate().getRunSpeedFight();
-			}
-			newSpeedStat = getStat(StatEnum.SPEED, Math.round(speed * 1000));
-		}
-		else if (owner.isInState(CreatureState.WALKING)) {
-			float speed = 0;
-			if (owner.getWalkerGroup() != null && owner.getAi2().getSubState() == AISubState.WALK_PATH) {
-				speed = owner.getObjectTemplate().getStatsTemplate().getGroupWalkSpeed();
-			}
-			else {
-				speed = owner.getObjectTemplate().getStatsTemplate().getWalkSpeed();
-			}
-			newSpeedStat = getStat(StatEnum.SPEED, Math.round(speed * 1000));
-		}
-		else {
+		} else if (owner.isInState(CreatureState.WEAPON_EQUIPPED)) {
+			newSpeedStat = getStat(StatEnum.SPEED, Math.round(owner.getObjectTemplate().getStatsTemplate().getRunSpeedFight() * 1000));
+		} else if (owner.isInState(CreatureState.WALKING)) {
+			newSpeedStat = getStat(StatEnum.SPEED, Math.round(owner.getObjectTemplate().getStatsTemplate().getWalkSpeed() * 1000));
+		} else {
 			newSpeedStat = getStat(StatEnum.SPEED, Math.round(owner.getObjectTemplate().getStatsTemplate().getRunSpeed() * 1000));
 		}
 		cachedState = currentState;
@@ -191,12 +184,12 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 
 	@Override
 	public Stat2 getPDef() {
-		return getStat(StatEnum.PHYSICAL_DEFENSE, owner.getObjectTemplate().getStatsTemplate().getPdef());
+		return getStat(StatEnum.PHYSICAL_POWER_BOOST_RESIST, owner.getObjectTemplate().getStatsTemplate().getPdef());
 	}
 
 	@Override
 	public Stat2 getMDef() {
-		return getStat(StatEnum.MAGICAL_DEFEND, 0);
+		return getStat(StatEnum.MAGICAL_POWER_BOOST_RESIST, 0);
 	}
 
 	@Override
@@ -263,16 +256,16 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 
 	@Override
 	public Stat2 getMainHandPAttack() {
-		return getStat(StatEnum.PHYSICAL_ATTACK, owner.getObjectTemplate().getStatsTemplate().getMainHandAttack());
+		return getStat(StatEnum.PHYSICAL_POWER_BOOST, owner.getObjectTemplate().getStatsTemplate().getMainHandAttack());
 	}
-
+	
 	@Override
-	public Stat2 getMainHandPCritical() {
+	public Stat2 getPCritical() {
 		return getStat(StatEnum.PHYSICAL_CRITICAL, 10);
 	}
 
 	@Override
-	public Stat2 getMainHandPAccuracy() {
+	public Stat2 getPAccuracy() {
 		if (pAccuracy == 0) {
 			calcStats();
 		}
@@ -281,17 +274,17 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 
 	@Override
 	public Stat2 getMAttack() {
-		return getStat(StatEnum.MAGICAL_ATTACK, 100);
+		return getStat(StatEnum.MAGICAL_POWER_BOOST, 100);
 	}
-
+	
 	@Override
 	public Stat2 getMainHandMAttack() {
-		return getStat(StatEnum.MAGICAL_ATTACK, owner.getObjectTemplate().getStatsTemplate().getPower());
+		return getStat(StatEnum.MAGICAL_POWER_BOOST, owner.getObjectTemplate().getStatsTemplate().getPower());
 	}
 
 	@Override
 	public Stat2 getOffHandMAttack() {
-		return getStat(StatEnum.MAGICAL_ATTACK, owner.getObjectTemplate().getStatsTemplate().getPower());
+		return getStat(StatEnum.MAGICAL_POWER_BOOST, 0);
 	}
 
 	@Override
@@ -303,12 +296,10 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 	public Stat2 getMAccuracy() {
 		if (pAccuracy == 0) {
 			calcStats();
-		}
-		// Trap's MAccuracy is being calculated into TrapGameStats and is related to master's MAccuracy
-		if (owner instanceof SummonedObject) {
+		} if (owner instanceof SummonedObject) {
 			return getStat(StatEnum.MAGICAL_ACCURACY, pAccuracy);
 		}
-		return getMainHandPAccuracy();
+		return getPAccuracy();
 	}
 
 	@Override
@@ -347,13 +338,13 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 		return nextAttackTime - System.currentTimeMillis() > 50;
 	}
 
-	public void setFightStartingTime() {
-		this.fightStartingTime = System.currentTimeMillis();
-	}
+    public void setFightStartingTime() {
+        this.fightStartingTime = System.currentTimeMillis();
+    }
 
-	public long getFightStartingTime() {
-		return this.fightStartingTime;
-	}
+    public long getFightStartingTime() {
+        return this.fightStartingTime;
+    }
 
 	public void setNextAttackTime(long nextAttackTime) {
 		this.nextAttackTime = nextAttackTime;
@@ -366,9 +357,8 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 		long attackDelay = System.currentTimeMillis() - lastAttackTime;
 		int attackSpeed = getAttackSpeed().getCurrent();
 		if (attackSpeed == 0) {
-			attackSpeed = 2000;
-		}
-		if (owner.getAi2().isLogging()) {
+			attackSpeed = 1400;
+		} if (owner.getAi2().isLogging()) {
 			AI2Logger.info(owner.getAi2(), "adelay = " + attackDelay + " aspeed = " + attackSpeed);
 		}
 		int nextAttack = 0;
@@ -377,18 +367,20 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 		}
 		return nextAttack;
 	}
-
+	
 	/**
 	 * @return next possible skill time depending on time
 	 */
+	
 	public void renewLastSkillTime() {
 		this.lastSkillTime = System.currentTimeMillis();
 	}
 
-	// not used at the moment
-	/*
-	 * public void renewLastSkilledTime() { this.lastSkilledTime = System.currentTimeMillis(); }
-	 */
+        //not used at the moment
+	/*public void renewLastSkilledTime() {
+		this.lastSkilledTime = System.currentTimeMillis();
+	}*/
+	
 	public void renewLastChangeTargetTime() {
 		this.lastChangeTarget = System.currentTimeMillis();
 	}
@@ -397,21 +389,21 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 		return Math.round((System.currentTimeMillis() - lastSkillTime) / 1000f);
 	}
 
-	// not used at the moment
-	/*
-	 * public int getLastSkilledTimeDelta() { return Math.round((System.currentTimeMillis() - lastSkilledTime) / 1000f); }
-	 */
+        //not used at the moment
+	/*public int getLastSkilledTimeDelta() {
+		return Math.round((System.currentTimeMillis() - lastSkilledTime) / 1000f);
+	}*/
+	
 	public int getLastChangeTargetTimeDelta() {
 		return Math.round((System.currentTimeMillis() - lastChangeTarget) / 1000f);
 	}
 
-	// only use skills after a minimum cooldown of 3 to 9 seconds
-	// TODO: Check wether this is a suitable time or not
+        //only use skills after a minimum cooldown of 3 to 9 seconds
+        //TODO: Check wether this is a suitable time or not
 	public boolean canUseNextSkill() {
 		if (getLastSkillTimeDelta() >= 6 + Rnd.get(-3, 3)) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -424,10 +416,9 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 	public final long getLastGeoZUpdate() {
 		return lastGeoZUpdate;
 	}
-
+	
 	/**
-	 * @param lastGeoZUpdate
-	 *            the lastGeoZUpdate to set
+	 * @param lastGeoZUpdate the lastGeoZUpdate to set
 	 */
 	public void setLastGeoZUpdate(long lastGeoZUpdate) {
 		this.lastGeoZUpdate = lastGeoZUpdate;
@@ -436,70 +427,20 @@ public class NpcGameStats extends CreatureGameStats<Npc> {
 	private void calcStats() {
 		int lvl = owner.getLevel();
 		double accuracy = lvl * (33.6f - (0.16 * lvl)) + 5;
-
-		NpcRating npcRating = owner.getObjectTemplate().getRating();
-		/**
-		 * switch (owner.getObjectTemplate().getRating()) Potentially dangerous use, u need to check the return value *
-		 */
-		if (npcRating != null) {
-			switch (npcRating) {
+        NpcRating npcRating = owner.getObjectTemplate().getRating();
+        if (npcRating != null) {
+            switch (npcRating) {
 				case JUNK:
-					accuracy *= 1.00f;
-					break;
+                    accuracy *= 0.5f;
+                break;
 				case NORMAL:
-					accuracy *= 1.05f;
-					break;
+                    accuracy *= 1.0f;
+                break;
 				case ELITE:
-					accuracy *= 1.15f;
-					break;
-				case HERO:
-					accuracy *= 1.25f;
-					break;
-				case LEGENDARY:
-					accuracy *= 1.35f;
-					break;
-				default:
-					break;
-			}
-		}
-
-		/**
-		 * mb need default value for accuracy multiplication ??? *
-		 */
+                    accuracy *= 1.5f;
+                break;
+            }
+        }
 		this.pAccuracy = Math.round(owner.getAi2().modifyMaccuracy((int) accuracy));
-		/**
-		 * (int)Math.round(some) No need cast Math.round return value it is always (int) *
-		 */
-	}
-
-	@Override
-	public Stat2 getPvpAttack() {
-		return null;
-	}
-
-	@Override
-	public Stat2 getPvpDeff() {
-		return null;
-	}
-
-	// new 7.x
-	@Override
-	public Stat2 getPVPAttack() {
-		return getStat(StatEnum.PVP_ATTACK, 0);
-	}
-
-	@Override
-	public Stat2 getPVPDefense() {
-		return getStat(StatEnum.PVP_DEFENSE, 0);
-	}
-
-	@Override
-	public Stat2 getPVEAttack() {
-		return getStat(StatEnum.PVE_ATTACK, 0);
-	}
-
-	@Override
-	public Stat2 getPVEDefense() {
-		return getStat(StatEnum.PVE_DEFENSE, 0);
 	}
 }

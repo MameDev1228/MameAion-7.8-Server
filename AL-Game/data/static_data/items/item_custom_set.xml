@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="utf-8"?>
+<item_custom_sets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="item_custom_set.xsd">
+	<item_custom_set id="1" name="test_set1" custom_enchant_value="1">
+		<mana_stone>167000226</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="2" name="test_set2" custom_enchant_value="5">
+		<mana_stone>167000226</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="3" name="test_set3" custom_enchant_value="10">
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167020024</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="4" name="test_set4" custom_enchant_value="15">
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167020024</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="5" name="test_set5" custom_enchant_value="20">
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167020024</mana_stone>
+		<mana_stone>167020024</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="6" name="comeback_highdeva_set1" custom_enchant_value="10">
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000775</mana_stone>
+		<mana_stone>167000775</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="7" name="comeback_highdeva_set2" custom_enchant_value="10">
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000773</mana_stone>
+		<mana_stone>167000773</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="8" name="evolution_set1" custom_enchant_value="5"/>
+	<item_custom_set id="9" name="growth_sector_phy_set1" custom_enchant_value="5">
+		<mana_stone>167000454</mana_stone>
+		<mana_stone>167000454</mana_stone>
+		<mana_stone>167000454</mana_stone>
+		<mana_stone>167000454</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="10" name="growth_sector_mag_set1" custom_enchant_value="5">
+		<mana_stone>167000487</mana_stone>
+		<mana_stone>167000487</mana_stone>
+		<mana_stone>167000487</mana_stone>
+		<mana_stone>167000487</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="11" name="growth_sector_phy_set2" custom_enchant_value="5">
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="12" name="growth_sector_mag_set2" custom_enchant_value="5">
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="13" name="growth_sector_legend_set1" custom_enchant_value="5"/>
+	<item_custom_set id="14" name="growth_sector_unique_set1" custom_enchant_value="8"/>
+	<item_custom_set id="15" name="event_mystery_set1" custom_enchant_value="10"/>
+	<item_custom_set id="16" name="test_set6" custom_enchant_value="3"/>
+	<item_custom_set id="17" name="test_set7" custom_enchant_value="5"/>
+	<item_custom_set id="18" name="event_wing_set1" custom_enchant_value="3"/>
+	<item_custom_set id="19" name="event_wing_set2" custom_enchant_value="10"/>
+	<item_custom_set id="20" name="quest_mission_lv10_phy_set1" custom_enchant_value="10">
+		<mana_stone>167000230</mana_stone>
+		<mana_stone>167000230</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="21" name="quest_mission_lv10_mag_set1" custom_enchant_value="10">
+		<mana_stone>167000231</mana_stone>
+		<mana_stone>167000231</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="22" name="event_wing_set3" custom_enchant_value="5"/>
+	<item_custom_set id="23" name="starweapon3_set1" custom_enchant_value="5"/>
+	<item_custom_set id="24" name="jumping_phy_set_65a" custom_enchant_value="15">
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="25" name="jumping_mag_set_65a" custom_enchant_value="15">
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="26" name="jumping_phy_set_45a" custom_enchant_value="15">
+		<mana_stone>167000454</mana_stone>
+		<mana_stone>167000454</mana_stone>
+		<mana_stone>167000454</mana_stone>
+		<mana_stone>167000454</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="27" name="jumping_mag_set_45a" custom_enchant_value="15">
+		<mana_stone>167000487</mana_stone>
+		<mana_stone>167000487</mana_stone>
+		<mana_stone>167000487</mana_stone>
+		<mana_stone>167000487</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="28" name="comeback_phy_set_70a" custom_enchant_value="15">
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="29" name="comeback_mag_set_70a" custom_enchant_value="15">
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="30" name="growup_bm_phy_set_72a" custom_enchant_value="15">
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="31" name="growup_bm_mag_set_72a" custom_enchant_value="15">
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="32" name="growup_1st_phy_set_55a" custom_enchant_value="10">
+		<mana_stone>167000454</mana_stone>
+		<mana_stone>167000454</mana_stone>
+		<mana_stone>167000454</mana_stone>
+		<mana_stone>167000454</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="33" name="growup_1st_mag_set_55a" custom_enchant_value="10">
+		<mana_stone>167000487</mana_stone>
+		<mana_stone>167000487</mana_stone>
+		<mana_stone>167000487</mana_stone>
+		<mana_stone>167000487</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="34" name="growup_2nd_phy_set_68a" custom_enchant_value="10">
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="35" name="growup_2nd_mag_set_68a" custom_enchant_value="10">
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+		<mana_stone>167000770</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="36" name="growup_sp_1st_phy_set_30a" custom_enchant_value="10">
+		<mana_stone>167000230</mana_stone>
+		<mana_stone>167000230</mana_stone>
+		<mana_stone>167000230</mana_stone>
+		<mana_stone>167000230</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="37" name="growup_sp_1st_mag_set_30a" custom_enchant_value="10">
+		<mana_stone>167000231</mana_stone>
+		<mana_stone>167000231</mana_stone>
+		<mana_stone>167000231</mana_stone>
+		<mana_stone>167000231</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="38" name="mystery_live_wi_set_75a" custom_enchant_value="15">
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="39" name="mystery_live_el_set_75a" custom_enchant_value="15">
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="40" name="mystery_live_ba_set_75a" custom_enchant_value="15">
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="41" name="mystery_live_as_set_75a" custom_enchant_value="15">
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="42" name="mystery_live_ra_set_75a" custom_enchant_value="15">
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="43" name="mystery_live_gu_set_75a" custom_enchant_value="15">
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="44" name="mystery_live_pr_set_75a" custom_enchant_value="15">
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="45" name="mystery_live_ch_set_75a" custom_enchant_value="15">
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="46" name="mystery_live_ri_set_75a" custom_enchant_value="15">
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="47" name="mystery_live_fi_set_75a" custom_enchant_value="15">
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="48" name="mystery_live_kn_set_75a" custom_enchant_value="15">
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="49" name="mystery_live_wi_set_75b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="50" name="mystery_live_el_set_75b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="51" name="mystery_live_ba_set_75b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="52" name="mystery_live_as_set_75b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="53" name="mystery_live_ra_set_75b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="54" name="mystery_live_gu_set_75b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="55" name="mystery_live_pr_set_75b" custom_enchant_value="15">
+		<mana_stone>167010315</mana_stone>
+		<mana_stone>167010315</mana_stone>
+		<mana_stone>167010315</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="56" name="mystery_live_ch_set_75b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="57" name="mystery_live_ri_set_75b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="58" name="mystery_live_fi_set_75b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="59" name="mystery_live_kn_set_75b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="60" name="mystery_master_phy_set_55a" custom_enchant_value="10">
+		<mana_stone>167000749</mana_stone>
+		<mana_stone>167000749</mana_stone>
+		<mana_stone>167000749</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="61" name="mystery_master_mag_set_55a" custom_enchant_value="10">
+		<mana_stone>167000705</mana_stone>
+		<mana_stone>167000705</mana_stone>
+		<mana_stone>167000705</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="62" name="event_master_n_e1_55f" custom_enchant_value="15"/>
+	<item_custom_set id="63" name="event_live_n_m3_ideternity02_new_75a" custom_enchant_value="15"/>
+	<item_custom_set id="64" name="witch_flower_live_phy_set_75a" custom_enchant_value="15">
+		<mana_stone>167010274</mana_stone>
+		<mana_stone>167010274</mana_stone>
+		<mana_stone>167010274</mana_stone>
+		<mana_stone>167010274</mana_stone>
+		<mana_stone>167010274</mana_stone>
+		<mana_stone>167010274</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="65" name="witch_flower_live_mag_set_75a" custom_enchant_value="15">
+		<mana_stone>167010278</mana_stone>
+		<mana_stone>167010278</mana_stone>
+		<mana_stone>167010278</mana_stone>
+		<mana_stone>167010278</mana_stone>
+		<mana_stone>167010278</mana_stone>
+		<mana_stone>167010278</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="66" name="witch_flower_master_phy_set_55a" custom_enchant_value="15">
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="67" name="witch_flower_master_mag_set_55a" custom_enchant_value="15">
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="68" name="mystery_live_phy_set_80a" custom_enchant_value="15">
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+		<mana_stone>167010310</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="69" name="mystery_live_phy_set_80b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="70" name="mystery_live_mag_set_80a" custom_enchant_value="15">
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+		<mana_stone>167010314</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="71" name="mystery_live_mag_set_80b" custom_enchant_value="15">
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+		<mana_stone>167010313</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="72" name="mystery_live_mag_set_80c" custom_enchant_value="15">
+		<mana_stone>167010315</mana_stone>
+		<mana_stone>167010315</mana_stone>
+		<mana_stone>167010315</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="73" name="mystery_live_wing_set_75a" custom_enchant_value="15"/>
+	<item_custom_set id="74" name="event_avatarserver_set1" custom_enchant_value="15"/>
+	<item_custom_set id="75" name="event_17pc_phy_set_55a" custom_enchant_value="15">
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+		<mana_stone>167000518</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="76" name="event_17pc_mag_set_55a" custom_enchant_value="15">
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+		<mana_stone>167000519</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="77" name="scoin_equip_70a" custom_enchant_value="5"/>
+	<item_custom_set id="78" name="idevent_s5_live_m5_80a" custom_enchant_value="15"/>
+	<item_custom_set id="79" name="idevent_s5_master_e1_55f" custom_enchant_value="15"/>
+	<item_custom_set id="80" name="test_set08" custom_enchant_value="10" custom_authorize_value="10">
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="81" name="test_set09" custom_enchant_value="7" custom_authorize_value="7">
+		<mana_stone>167000231</mana_stone>
+		<mana_stone>167000231</mana_stone>
+		<mana_stone>167000231</mana_stone>
+		<mana_stone>167000231</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="82" name="test_set10" custom_enchant_value="15" custom_authorize_value="15">
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+		<mana_stone>167000226</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="83" name="test_set11" custom_authorize_value="7"/>
+	<item_custom_set id="84" name="test_set12" custom_authorize_value="3"/>
+	<item_custom_set id="85" name="common_15_enchant_set" custom_enchant_value="15"/>
+	<item_custom_set id="86" name="common_04_authorize_set" custom_authorize_value="4"/>
+	<item_custom_set id="87" name="common_10_enchant_set" custom_enchant_value="10"/>
+	<item_custom_set id="88" name="common_5_enchant_set" custom_enchant_value="5"/>
+	<item_custom_set id="89" name="common_10_authorize_set" custom_authorize_value="10"/>
+	<item_custom_set id="90" name="common_07_authorize_set" custom_authorize_value="7"/>
+	<item_custom_set id="91" name="common_18_enchant_set" custom_enchant_value="18"/>
+	<item_custom_set id="92" name="common_15_authorize_set" custom_authorize_value="15"/>
+	<item_custom_set id="93" name="common_7_enchant_set" custom_enchant_value="7"/>
+	<item_custom_set id="94" name="common_5_authorize_set" custom_authorize_value="5"/>
+	<item_custom_set id="95" name="common_14_enchant_set" custom_enchant_value="14"/>
+	<item_custom_set id="96" name="common_14_authorize_set" custom_authorize_value="14"/>
+	<item_custom_set id="97" name="world_s8_9_authorize_set" custom_authorize_value="9"/>
+	<item_custom_set id="98" name="world_15_authorize_set" custom_enchant_value="15"/>
+	<item_custom_set id="99" name="world_3_authorize_set" custom_authorize_value="3"/>
+	<item_custom_set id="100" name="stigma_enchant_8" custom_authorize_value="8"/>
+	<item_custom_set id="101" name="stigma_enchant_9" custom_authorize_value="9"/>
+	<item_custom_set id="102" name="stigma_enchant_10" custom_authorize_value="10"/>
+	<item_custom_set id="103" name="stigma_enchant_12" custom_authorize_value="12"/>
+	<item_custom_set id="104" name="starweapon5_enchant_5" custom_authorize_value="5"/>
+	<item_custom_set id="105" name="cash_gacha_weapon_enchant_10" custom_authorize_value="10"/>
+	<item_custom_set id="106" name="cash_strating_enchant_15_phy_critical" custom_enchant_value="15">
+		<mana_stone>167075349</mana_stone>
+		<mana_stone>167075349</mana_stone>
+		<mana_stone>167075349</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="107" name="cash_strating_enchant_15_phy_power" custom_enchant_value="15">
+		<mana_stone>167075345</mana_stone>
+		<mana_stone>167075345</mana_stone>
+		<mana_stone>167075345</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="108" name="cash_strating_enchant_15_mag_critical" custom_enchant_value="15">
+		<mana_stone>167075350</mana_stone>
+		<mana_stone>167075350</mana_stone>
+		<mana_stone>167075350</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="109" name="cash_strating_enchant_15_mag_power" custom_enchant_value="15">
+		<mana_stone>167075347</mana_stone>
+		<mana_stone>167075347</mana_stone>
+		<mana_stone>167075347</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="110" name="ldf5_equip_enchant_3" custom_authorize_value="3"/>
+	<item_custom_set id="111" name="ldf5_equip_enchant_5" custom_authorize_value="5"/>
+	<item_custom_set id="112" name="ldf5_equip_enchant_7" custom_authorize_value="7"/>
+	<item_custom_set id="113" name="ldf5_equip_enchant_10" custom_authorize_value="10"/>
+	<item_custom_set id="114" name="PC_ldf5_equip_enchant_10_phy_critical" custom_enchant_value="10">
+		<mana_stone>167075300</mana_stone>
+		<mana_stone>167075304</mana_stone>
+		<mana_stone>167075342</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="115" name="PC_ldf5_equip_enchant_10_phy_power" custom_enchant_value="10">
+		<mana_stone>167075300</mana_stone>
+		<mana_stone>167075301</mana_stone>
+		<mana_stone>167075342</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="116" name="PC_ldf5_equip_enchant_10_mag_critical" custom_enchant_value="10">
+		<mana_stone>167075302</mana_stone>
+		<mana_stone>167075305</mana_stone>
+		<mana_stone>167075342</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="117" name="PC_ldf5_equip_enchant_10_mag_Heal" custom_enchant_value="10">
+		<mana_stone>167075302</mana_stone>
+		<mana_stone>167075299</mana_stone>
+		<mana_stone>167075342</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="118" name="PC_ldf5_equip_enchant_10_phy_Heal" custom_enchant_value="10">
+		<mana_stone>167075300</mana_stone>
+		<mana_stone>167075299</mana_stone>
+		<mana_stone>167075342</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="119" name="PC_ldf5_equip_enchant_10_p_p" custom_enchant_value="10">
+		<mana_stone>167075345</mana_stone>
+		<mana_stone>167075345</mana_stone>
+		<mana_stone>167075345</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="120" name="PC_ldf5_equip_enchant_10_p_c" custom_enchant_value="10">
+		<mana_stone>167075349</mana_stone>
+		<mana_stone>167075349</mana_stone>
+		<mana_stone>167075349</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="121" name="PC_ldf5_equip_enchant_10_m_c" custom_enchant_value="10">
+		<mana_stone>167075350</mana_stone>
+		<mana_stone>167075350</mana_stone>
+		<mana_stone>167075350</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="122" name="PC_ldf5_equip_enchant_10_m_p" custom_enchant_value="10">
+		<mana_stone>167075347</mana_stone>
+		<mana_stone>167075347</mana_stone>
+		<mana_stone>167075347</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="123" name="PC_ldf5_equip_enchant_10_m_h" custom_enchant_value="10">
+		<mana_stone>167075299</mana_stone>
+		<mana_stone>167075299</mana_stone>
+		<mana_stone>167075299</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="124" name="cash_raid_pve_f2_80a_enchant_15" custom_enchant_value="15"/>
+	<item_custom_set id="125" name="PC_enchant_10_phy_critical_pve" custom_enchant_value="10">
+		<mana_stone>167075364</mana_stone>
+		<mana_stone>167075364</mana_stone>
+		<mana_stone>167075364</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="126" name="PC_enchant_10_phy_power_pve" custom_enchant_value="10">
+		<mana_stone>167075360</mana_stone>
+		<mana_stone>167075360</mana_stone>
+		<mana_stone>167075360</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="127" name="PC_enchant_10_mag_critical_pve" custom_enchant_value="10">
+		<mana_stone>167075365</mana_stone>
+		<mana_stone>167075365</mana_stone>
+		<mana_stone>167075365</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="128" name="PC_enchant_10_mag_power_pve" custom_enchant_value="10">
+		<mana_stone>167075362</mana_stone>
+		<mana_stone>167075362</mana_stone>
+		<mana_stone>167075362</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="129" name="PC_enchant_10_phy_critical_pvp" custom_authorize_value="10">
+		<mana_stone>167075364</mana_stone>
+		<mana_stone>167075364</mana_stone>
+		<mana_stone>167075364</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="130" name="PC_enchant_10_phy_power_pvp" custom_authorize_value="10">
+		<mana_stone>167075360</mana_stone>
+		<mana_stone>167075360</mana_stone>
+		<mana_stone>167075360</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="131" name="PC_enchant_10_mag_critical_pvp" custom_authorize_value="10">
+		<mana_stone>167075365</mana_stone>
+		<mana_stone>167075365</mana_stone>
+		<mana_stone>167075365</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="132" name="PC_enchant_10_mag_power_pvp" custom_authorize_value="10">
+		<mana_stone>167075362</mana_stone>
+		<mana_stone>167075362</mana_stone>
+		<mana_stone>167075362</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="133" name="PC_enchant_10_phy_critical_pve_e" custom_enchant_value="10"/>
+	<item_custom_set id="134" name="PC_enchant_10_phy_power_pve_e" custom_enchant_value="10"/>
+	<item_custom_set id="135" name="PC_enchant_10_mag_critical_pve_e" custom_enchant_value="10"/>
+	<item_custom_set id="136" name="PC_enchant_10_mag_power_pve_e" custom_enchant_value="10"/>
+	<item_custom_set id="137" name="PC_enchant_10_phy_critical_pvp_e" custom_authorize_value="10"/>
+	<item_custom_set id="138" name="PC_enchant_10_phy_power_pvp_e" custom_authorize_value="10"/>
+	<item_custom_set id="139" name="PC_enchant_10_mag_critical_pvp_e" custom_authorize_value="10"/>
+	<item_custom_set id="140" name="PC_enchant_10_mag_power_pvp_e" custom_authorize_value="10"/>
+	<item_custom_set id="141" name="event_enchant_10_phy_critical" custom_enchant_value="10">
+		<mana_stone>167075349</mana_stone>
+		<mana_stone>167075349</mana_stone>
+		<mana_stone>167075349</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="142" name="event_enchant_10_phy_power" custom_enchant_value="10">
+		<mana_stone>167075345</mana_stone>
+		<mana_stone>167075345</mana_stone>
+		<mana_stone>167075345</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="143" name="event_enchant_10_mag_critical" custom_enchant_value="10">
+		<mana_stone>167075350</mana_stone>
+		<mana_stone>167075350</mana_stone>
+		<mana_stone>167075350</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="144" name="event_enchant_10_mag_power" custom_enchant_value="10">
+		<mana_stone>167075347</mana_stone>
+		<mana_stone>167075347</mana_stone>
+		<mana_stone>167075347</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="145" name="PC_enchant_15_phy_critical_pve" custom_authorize_value="15">
+		<mana_stone>167075364</mana_stone>
+		<mana_stone>167075364</mana_stone>
+		<mana_stone>167075364</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="146" name="PC_enchant_15_phy_power_pve" custom_authorize_value="15">
+		<mana_stone>167075360</mana_stone>
+		<mana_stone>167075360</mana_stone>
+		<mana_stone>167075360</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="147" name="PC_enchant_15_mag_critical_pve" custom_authorize_value="15">
+		<mana_stone>167075365</mana_stone>
+		<mana_stone>167075365</mana_stone>
+		<mana_stone>167075365</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="148" name="PC_enchant_15_mag_power_pve" custom_authorize_value="15">
+		<mana_stone>167075362</mana_stone>
+		<mana_stone>167075362</mana_stone>
+		<mana_stone>167075362</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="149" name="PC_enchant_15_heal_power_pve" custom_authorize_value="15">
+		<mana_stone>167075359</mana_stone>
+		<mana_stone>167075359</mana_stone>
+		<mana_stone>167075359</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="150" name="PC_enchant_15_phy_critical_pvp" custom_authorize_value="15">
+		<mana_stone>167075364</mana_stone>
+		<mana_stone>167075364</mana_stone>
+		<mana_stone>167075364</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="151" name="PC_enchant_15_phy_power_pvp" custom_authorize_value="15">
+		<mana_stone>167075360</mana_stone>
+		<mana_stone>167075360</mana_stone>
+		<mana_stone>167075360</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="152" name="PC_enchant_15_mag_critical_pvp" custom_authorize_value="15">
+		<mana_stone>167075365</mana_stone>
+		<mana_stone>167075365</mana_stone>
+		<mana_stone>167075365</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="153" name="PC_enchant_15_mag_power_pvp" custom_authorize_value="15">
+		<mana_stone>167075362</mana_stone>
+		<mana_stone>167075362</mana_stone>
+		<mana_stone>167075362</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="154" name="PC_enchant_15_heal_power_pvp" custom_authorize_value="15">
+		<mana_stone>167075359</mana_stone>
+		<mana_stone>167075359</mana_stone>
+		<mana_stone>167075359</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="155" name="stigma_enchant_15" custom_enchant_value="15"/>
+	<item_custom_set id="156" name="vision_equip_enchant_15" custom_enchant_value="15"/>
+	<item_custom_set id="157" name="ldf5_equip_enchant_15" custom_enchant_value="15"/>
+	<item_custom_set id="158" name="cash_another_enchant_15_phy_critical" custom_authorize_value="15">
+		<mana_stone>167075364</mana_stone>
+		<mana_stone>167075364</mana_stone>
+		<mana_stone>167075364</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="159" name="cash_another_enchant_15_phy_power" custom_authorize_value="15">
+		<mana_stone>167075360</mana_stone>
+		<mana_stone>167075360</mana_stone>
+		<mana_stone>167075360</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="160" name="cash_another_enchant_15_mag_critical" custom_authorize_value="15">
+		<mana_stone>167075365</mana_stone>
+		<mana_stone>167075365</mana_stone>
+		<mana_stone>167075365</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="161" name="cash_another_enchant_15_mag_power" custom_authorize_value="15">
+		<mana_stone>167075362</mana_stone>
+		<mana_stone>167075362</mana_stone>
+		<mana_stone>167075362</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="162" name="stigma_enchant_5" custom_enchant_value="5"/>
+	<item_custom_set id="163" name="stigma_enchant_7" custom_enchant_value="7"/>
+	<item_custom_set id="164" name="odina_rune_enchant_3" custom_enchant_value="3"/>
+	<item_custom_set id="166" name="infinity_equip_enchant_1" custom_enchant_value="1"/>
+	<item_custom_set id="167" name="infinity_equip_enchant_2" custom_enchant_value="2"/>
+	<item_custom_set id="168" name="infinity_equip_enchant_3" custom_enchant_value="3"/>
+	<item_custom_set id="169" name="infinity_equip_enchant_4" custom_enchant_value="4"/>
+	<item_custom_set id="170" name="infinity_equip_enchant_5" custom_enchant_value="5"/>
+	<item_custom_set id="171" name="infinity_equip_enchant_6" custom_enchant_value="6"/>
+	<item_custom_set id="172" name="infinity_equip_enchant_7" custom_enchant_value="7"/>
+	<item_custom_set id="173" name="infinity_equip_enchant_8" custom_enchant_value="8"/>
+	<item_custom_set id="174" name="craft_pve_enchant_7" custom_enchant_value="7"/>
+	<item_custom_set id="175" name="craft_pvp_enchant_7" custom_enchant_value="7"/>
+	<item_custom_set id="176" name="event_choice_5_phy_power" custom_authorize_value="5">
+		<mana_stone>167075345</mana_stone>
+		<mana_stone>167075345</mana_stone>
+		<mana_stone>167075345</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="177" name="event_choice_5_phy_power" custom_authorize_value="5">
+		<mana_stone>167075347</mana_stone>
+		<mana_stone>167075347</mana_stone>
+		<mana_stone>167075347</mana_stone>
+	</item_custom_set>
+	<item_custom_set id="178" name="event_choice_phy_power" custom_enchant_value="0"/>
+	<item_custom_set id="179" name="event_choice_mag_power" custom_enchant_value="0"/>
+</item_custom_sets>

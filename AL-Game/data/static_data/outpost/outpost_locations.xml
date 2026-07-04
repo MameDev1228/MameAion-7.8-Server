@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	"Outpost"
+	Made By Encom
+ -->
+<outpost_locations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="outpost_locations.xsd">
+	<!-- [LAKRUM] -->
+	<outpost_location id="121" world="800050000" name="Meadow Gate"/>
+	<outpost_location id="122" world="800050000" name="Fern Overlook"/>
+	<outpost_location id="123" world="800050000" name="Breath Of Memory"/>
+	<outpost_location id="124" world="800050000" name="Gloom Barrow"/>
+	<outpost_location id="125" world="800050000" name="East Bank"/>
+	<outpost_location id="126" world="800050000" name="Bark Giant"/>
+	<outpost_location id="127" world="800050000" name="Shipwreck Cut"/>
+	<outpost_location id="128" world="800050000" name="Temple Walk"/>
+	<outpost_location id="129" world="800050000" name="Anvil Heart"/>
+</outpost_locations>

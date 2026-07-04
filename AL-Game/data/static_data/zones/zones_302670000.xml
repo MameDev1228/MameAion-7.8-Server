@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zones>
+	<zone mapid="302670000" name="INANNA_HOLDING_CELL_302670000" area_type="POLYGON" zone_type="SUB" priority="16" flags="0">
+		<points bottom="345.954987" top="395.954987">
+            <point x="576.323486" y="647.158813"/>
+            <point x="600.796448" y="659.272888"/>
+            <point x="590.994690" y="677.775024"/>
+            <point x="567.541809" y="665.979980"/>
+		</points>
+	</zone>
+	<zone mapid="302670000" name="HOLDING_CELL_2_302670000" area_type="POLYGON" zone_type="SUB" priority="16" flags="0">
+		<points bottom="345.954987" top="395.954987">
+            <point x="587.110962" y="618.635742"/>
+            <point x="610.258545" y="625.201355"/>
+            <point x="603.396667" y="643.734314"/>
+            <point x="581.903809" y="637.995972"/>
+		</points>
+	</zone>
+	<zone mapid="302670000" name="SCALESHADOW_WEAPONS_LAB_302670000" area_type="POLYGON" zone_type="SUB" priority="16" flags="0">
+		<points bottom="345.954987" top="395.954987">
+            <point x="587.637878" y="587.611267"/>
+            <point x="611.653870" y="589.570251"/>
+            <point x="609.892334" y="611.729004"/>
+            <point x="587.081116" y="610.209473"/>
+		</points>
+	</zone>
+	<zone mapid="302670000" name="HOLDING_CELL_4_302670000" area_type="POLYGON" zone_type="SUB" priority="16" flags="0">
+		<points bottom="345.954987" top="395.954987">
+            <point x="586.770447" y="555.387634"/>
+            <point x="612.693481" y="554.406555"/>
+            <point x="613.291687" y="577.019714"/>
+            <point x="590.437500" y="577.355408"/>
+		</points>
+	</zone>
+	<zone mapid="302670000" name="HOLDING_CELL_5_302670000" area_type="POLYGON" zone_type="SUB" priority="16" flags="0">
+		<points bottom="345.954987" top="395.954987">
+            <point x="576.396790" y="527.277039"/>
+            <point x="600.785034" y="520.728760"/>
+            <point x="606.093994" y="541.667786"/>
+            <point x="581.691956" y="549.017578"/>
+		</points>
+	</zone>
+	<zone mapid="302670000" name="HOLDING_CELL_6_302670000" area_type="POLYGON" zone_type="SUB" priority="16" flags="0">
+		<points bottom="345.954987" top="395.954987">
+            <point x="567.870605" y="497.384583"/>
+            <point x="591.565979" y="487.977356"/>
+            <point x="599.810913" y="508.175537"/>
+            <point x="577.010986" y="517.738708"/>
+		</points>
+	</zone>
+	<zone mapid="302670000" name="HOLDING_CELL_ENTRANCE_302670000" area_type="POLYGON" zone_type="SUB" priority="16" flags="0">
+		<points bottom="345.954987" top="395.954987">
+            <point x="535.804321" y="503.861206"/>
+            <point x="570.057983" y="490.095459"/>
+            <point x="590.041931" y="568.410828"/>
+            <point x="587.717834" y="617.379578"/>
+            <point x="565.489197" y="676.740112"/>
+            <point x="539.835083" y="667.275085"/>
+            <point x="552.080688" y="617.525452"/>
+            <point x="555.273804" y="571.310486"/>
+		</points>
+	</zone>
+	<zone mapid="302670000" name="MOURNFUL_BRIDGE_302670000" area_type="POLYGON" zone_type="SUB" priority="16" flags="0">
+		<points bottom="345.954987" top="395.954987">
+            <point x="462.598114" y="529.746887"/>
+            <point x="536.060425" y="502.111603"/>
+            <point x="555.342102" y="568.754822"/>
+            <point x="553.307861" y="617.560791"/>
+            <point x="540.942993" y="667.885925"/>
+            <point x="461.208710" y="628.941528"/>
+            <point x="475.204834" y="602.591003"/>
+            <point x="476.204681" y="569.492310"/>
+		</points>
+	</zone>
+	<zone mapid="302670000" name="SCALESHADOW_GATE_302670000" area_type="POLYGON" zone_type="SUB" priority="16" flags="0">
+		<points bottom="345.954987" top="395.954987">
+            <point x="439.898773" y="536.751343"/>
+            <point x="462.266418" y="528.997498"/>
+            <point x="476.411346" y="568.844177"/>
+            <point x="475.391663" y="602.678345"/>
+            <point x="460.931976" y="630.289307"/>
+            <point x="444.063446" y="614.424622"/>
+            <point x="451.903046" y="589.133240"/>
+            <point x="451.891602" y="576.066040"/>
+		</points>
+	</zone>
+	<zone mapid="302670000" name="SCALESHADOW_CORRIDOR_302670000" area_type="POLYGON" zone_type="SUB" priority="16" flags="0">
+		<points bottom="345.954987" top="395.954987">
+            <point x="407.029236" y="571.653381"/>
+            <point x="452.412292" y="572.767395"/>
+            <point x="452.412323" y="593.372070"/>
+            <point x="406.688965" y="592.723877"/>
+		</points>
+	</zone>
+	<zone mapid="302670000" name="SCALESHADOW_CAVE_302670000" area_type="POLYGON" zone_type="SUB" priority="15" flags="0">
+		<points bottom="306.749939" top="406.749939">
+            <point x="299.886658" y="538.911987"/>
+            <point x="410.759766" y="534.785889"/>
+            <point x="408.325165" y="640.727600"/>
+            <point x="298.253052" y="638.753357"/>
+		</points>
+	</zone>
+</zones>

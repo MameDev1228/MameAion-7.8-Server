@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Siege Shield
+	Made By Encom
+ -->
+<shields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="siege_shields.xsd">
+    <!-- Reshanta -->
+	<shield id="1011" map="400070000" name="DIVINE_FORTRESS" radius="86.0">
+		<center x="1526.6611" y="1563.0392" z="2332.4578"/>
+	</shield>
+</shields>

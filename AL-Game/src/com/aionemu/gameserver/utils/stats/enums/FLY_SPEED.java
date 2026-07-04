@@ -1,26 +1,23 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.utils.stats.enums;
 
-/**
- * @author ATracer
- */
-public enum FLY_SPEED {
-
+public enum FLY_SPEED
+{
 	WARRIOR(9),
 	GLADIATOR(9),
 	TEMPLAR(9),
@@ -33,19 +30,19 @@ public enum FLY_SPEED {
 	PRIEST(9),
 	CLERIC(9),
 	CHANTER(9),
-	ENGINEER(9),
-	RIDER(9),
-	GUNNER(9),
-	ARTIST(9),
-	PAINTER(9),
-	BARD(9);
-
+	TECHNIST(9),
+	GUNSLINGER(9),
+	MUSE(9),
+	SONGWEAVER(9),
+	AETHERTECH(9),
+	VANDAL(9);
+	
 	private int value;
-
+	
 	private FLY_SPEED(int value) {
 		this.value = value;
 	}
-
+	
 	public int getValue() {
 		return value;
 	}

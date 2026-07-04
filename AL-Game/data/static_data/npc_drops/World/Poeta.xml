@@ -1,0 +1,1058 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc_drops>
+        <!-- POETA -->
+		<npc_drop npc_id="651843">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651844">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651845">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651846">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651847">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651848">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651849">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651850">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651851">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651852">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651853">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651854">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651855">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651856">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651857">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651858">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651859">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651860">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651861">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651862">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651863">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651864">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651867">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651868">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651869">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651870">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651871">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651872">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651873">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651874">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651875">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651876">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651877">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651878">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651879">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651880">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651881">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651885">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651886">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651887">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651888">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651889">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651891">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651892">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651893">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651894">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651895">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651896">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651897">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651898">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651899">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651900">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651901">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651902">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651903">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651904">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651905">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651906">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651907">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651910">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651911">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+		<npc_drop npc_id="651912">
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005004" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="JUNK">
+			            <drop chance="9.0" item_id="182010000" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010001" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010002" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010003" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010004" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="182010005" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+				</drop_group>
+		</npc_drop>
+</npc_drops>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Daishunerk's Game Of Fate
+ -->
+<luna_dices_items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="luna_dice.xsd">
+    <luna_dices_item id="10" name="luna_dice_gotcha_C_01" group_name="luna_dice_gotcha_C_01" reward_total="1">
+	    <dicereward item_id="152080111" quantity="3"/>
+		<dicereward item_id="152080002" quantity="25"/>
+		<dicereward item_id="166033106" quantity="1"/>
+		<dicereward item_id="166023106" quantity="1"/>
+		<dicereward item_id="169020003" quantity="500"/>
+		<dicereward item_id="160020029" quantity="5"/>
+		<dicereward item_id="160020028" quantity="5"/>
+		<dicereward item_id="162005023" quantity="25"/>
+		<dicereward item_id="162005025" quantity="5"/>
+	</luna_dices_item>
+	<luna_dices_item id="11" name="luna_dice_gotcha_C_02" group_name="luna_dice_gotcha_C_02" reward_total="2">
+	    <dicereward item_id="152080111" quantity="3"/>
+		<dicereward item_id="152080002" quantity="25"/>
+		<dicereward item_id="166033106" quantity="1"/>
+		<dicereward item_id="166023106" quantity="1"/>
+		<dicereward item_id="169020003" quantity="500"/>
+		<dicereward item_id="160020029" quantity="5"/>
+		<dicereward item_id="160020028" quantity="5"/>
+		<dicereward item_id="162005023" quantity="25"/>
+		<dicereward item_id="162005025" quantity="5"/>
+	</luna_dices_item>
+	<luna_dices_item id="12" name="luna_dice_gotcha_C_03" group_name="luna_dice_gotcha_C_03" reward_total="3">
+	    <dicereward item_id="152080111" quantity="3"/>
+		<dicereward item_id="152080002" quantity="25"/>
+		<dicereward item_id="166033106" quantity="1"/>
+		<dicereward item_id="166023106" quantity="1"/>
+		<dicereward item_id="169020003" quantity="500"/>
+		<dicereward item_id="160020029" quantity="5"/>
+		<dicereward item_id="160020028" quantity="5"/>
+		<dicereward item_id="162005023" quantity="25"/>
+		<dicereward item_id="162005025" quantity="5"/>
+	</luna_dices_item>
+	<luna_dices_item id="13" name="luna_dice_gotcha_B_01" group_name="luna_dice_gotcha_B_01" reward_total="1">
+	    <dicereward item_id="190095172" quantity="1"/>
+		<dicereward item_id="190095147" quantity="5"/>
+		<dicereward item_id="188073036" quantity="1"/>
+		<dicereward item_id="188073133" quantity="1"/>
+		<dicereward item_id="166033107" quantity="1"/>
+		<dicereward item_id="166023107" quantity="1"/>
+		<dicereward item_id="166033106" quantity="3"/>
+		<dicereward item_id="166023106" quantity="3"/>
+		<dicereward item_id="166070000" quantity="1"/>
+		<dicereward item_id="188073132" quantity="2"/>
+		<dicereward item_id="164012058" quantity="1"/>
+		<dicereward item_id="190099001" quantity="100"/>
+		<dicereward item_id="160020029" quantity="15"/>
+		<dicereward item_id="160020028" quantity="15"/>
+		<dicereward item_id="162005023" quantity="50"/>
+		<dicereward item_id="162005025" quantity="10"/>
+	</luna_dices_item>
+	<luna_dices_item id="14" name="luna_dice_gotcha_B_02" group_name="luna_dice_gotcha_B_02" reward_total="2">
+	    <dicereward item_id="190095172" quantity="1"/>
+		<dicereward item_id="190095147" quantity="5"/>
+		<dicereward item_id="188073036" quantity="1"/>
+		<dicereward item_id="188073133" quantity="1"/>
+		<dicereward item_id="166033107" quantity="1"/>
+		<dicereward item_id="166023107" quantity="1"/>
+		<dicereward item_id="166033106" quantity="3"/>
+		<dicereward item_id="166023106" quantity="3"/>
+		<dicereward item_id="166070000" quantity="1"/>
+		<dicereward item_id="188073132" quantity="2"/>
+		<dicereward item_id="164012058" quantity="1"/>
+		<dicereward item_id="190099001" quantity="100"/>
+		<dicereward item_id="160020029" quantity="15"/>
+		<dicereward item_id="160020028" quantity="15"/>
+		<dicereward item_id="162005023" quantity="50"/>
+		<dicereward item_id="162005025" quantity="10"/>
+	</luna_dices_item>
+	<luna_dices_item id="15" name="luna_dice_gotcha_A_01" group_name="luna_dice_gotcha_A_01" reward_total="1">
+	    <dicereward item_id="188071414" quantity="1"/>
+		<dicereward item_id="188073135" quantity="1"/>
+		<dicereward item_id="190095172" quantity="1"/>
+		<dicereward item_id="188073368" quantity="1"/>
+		<dicereward item_id="188072144" quantity="1"/>
+		<dicereward item_id="188071958" quantity="1"/>
+		<dicereward item_id="190080055" quantity="2"/>
+		<dicereward item_id="188073170" quantity="2"/>
+		<dicereward item_id="188073170" quantity="2"/>
+		<dicereward item_id="190200000" quantity="50"/>
+		<dicereward item_id="166070000" quantity="3"/>
+		<dicereward item_id="190095147" quantity="10"/>
+		<dicereward item_id="188073036" quantity="1"/>
+		<dicereward item_id="190099001" quantity="200"/>
+		<dicereward item_id="160020029" quantity="50"/>
+		<dicereward item_id="160020028" quantity="50"/>
+		<dicereward item_id="162005023" quantity="150"/>
+		<dicereward item_id="162005025" quantity="50"/>
+	</luna_dices_item>
+	<luna_dices_item id="16" name="luna_dice_gotcha_AA_01" group_name="luna_dice_gotcha_AA_01" reward_total="1">
+	    <dicereward item_id="188071414" quantity="1"/>
+		<dicereward item_id="188073135" quantity="1"/>
+		<dicereward item_id="190095172" quantity="1"/>
+		<dicereward item_id="188073368" quantity="1"/>
+		<dicereward item_id="188072144" quantity="1"/>
+		<dicereward item_id="188071958" quantity="1"/>
+		<dicereward item_id="190080055" quantity="2"/>
+		<dicereward item_id="188073170" quantity="2"/>
+		<dicereward item_id="188073170" quantity="2"/>
+		<dicereward item_id="190200000" quantity="50"/>
+		<dicereward item_id="166070000" quantity="3"/>
+		<dicereward item_id="190095147" quantity="10"/>
+		<dicereward item_id="188073036" quantity="1"/>
+		<dicereward item_id="190099001" quantity="200"/>
+		<dicereward item_id="160020029" quantity="50"/>
+		<dicereward item_id="160020028" quantity="50"/>
+		<dicereward item_id="162005023" quantity="150"/>
+		<dicereward item_id="162005025" quantity="50"/>
+	</luna_dices_item>
+	<luna_dices_item id="17" name="luna_dice_gotcha_S_01" group_name="luna_dice_gotcha_S_01" reward_total="1">
+	    <dicereward item_id="188072207" quantity="1"/>
+		<dicereward item_id="188072208" quantity="1"/>
+		<dicereward item_id="188072209" quantity="1"/>
+		<dicereward item_id="190095173" quantity="1"/>
+		<dicereward item_id="188072359" quantity="1"/>
+		<dicereward item_id="188071414" quantity="1"/>
+		<dicereward item_id="188070377" quantity="1"/>
+		<dicereward item_id="190200005" quantity="25"/>
+		<dicereward item_id="190200000" quantity="100"/>
+		<dicereward item_id="188073368" quantity="1"/>
+		<dicereward item_id="188074516" quantity="1"/>
+		<dicereward item_id="188071958" quantity="2"/>
+		<dicereward item_id="188073136" quantity="3"/>
+		<dicereward item_id="190095172" quantity="1"/>
+		<dicereward item_id="166070000" quantity="5"/>
+		<dicereward item_id="190095147" quantity="20"/>
+	</luna_dices_item>
+	<luna_dices_item id="18" name="luna_dice_gotcha_SS_01" group_name="luna_dice_gotcha_SS_01" reward_total="1">
+	    <dicereward item_id="188073209" quantity="1"/>
+		<dicereward item_id="188072207" quantity="1"/>
+		<dicereward item_id="188072208" quantity="1"/>
+		<dicereward item_id="188072209" quantity="1"/>
+		<dicereward item_id="190095173" quantity="1"/>
+		<dicereward item_id="188072359" quantity="1"/>
+		<dicereward item_id="188071414" quantity="3"/>
+		<dicereward item_id="188070377" quantity="1"/>
+		<dicereward item_id="188074517" quantity="2"/>
+		<dicereward item_id="190200005" quantity="50"/>
+		<dicereward item_id="188073368" quantity="2"/>
+		<dicereward item_id="188074516" quantity="1"/>
+		<dicereward item_id="188071958" quantity="3"/>
+		<dicereward item_id="188073136" quantity="5"/>
+		<dicereward item_id="190095147" quantity="20"/>
+	</luna_dices_item>
+</luna_dices_items>

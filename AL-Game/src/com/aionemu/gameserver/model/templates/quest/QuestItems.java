@@ -1,19 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package com.aionemu.gameserver.model.templates.quest;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -31,23 +32,24 @@ public class QuestItems {
 	@XmlAttribute(name = "item_id")
 	protected Integer itemId;
 	@XmlAttribute
-	protected long count = 1L;
+	protected Integer count;
 
 	/**
 	 * Constructor used by unmarshaller
 	 */
 	public QuestItems() {
-		this.count = 1L;
+		this.count = 1;
 	}
 
-	public QuestItems(int itemId, long count) {
+	public QuestItems(int itemId, int count) {
+		super();
 		this.itemId = itemId;
 		this.count = count;
 	}
 
 	/**
 	 * Gets the value of the itemId property.
-	 *
+	 * 
 	 * @return possible object is {@link Integer }
 	 */
 	public Integer getItemId() {
@@ -56,10 +58,11 @@ public class QuestItems {
 
 	/**
 	 * Gets the value of the count property.
-	 *
+	 * 
 	 * @return possible object is {@link Integer }
 	 */
-	public long getCount() {
+	public Integer getCount() {
 		return count;
 	}
+
 }

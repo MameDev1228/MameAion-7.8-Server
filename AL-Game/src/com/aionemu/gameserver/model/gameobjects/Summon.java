@@ -1,22 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.gameobjects;
-
-import java.util.concurrent.Future;
 
 import com.aionemu.gameserver.ai2.AI2Engine;
 import com.aionemu.gameserver.controllers.CreatureController;
@@ -37,6 +35,8 @@ import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.model.templates.stats.SummonStatsTemplate;
 import com.aionemu.gameserver.world.WorldPosition;
 
+import java.util.concurrent.Future;
+
 /**
  * @author ATracer
  */
@@ -44,8 +44,8 @@ public class Summon extends Creature {
 
 	private Player master;
 	private SummonMode mode = SummonMode.GUARD;
-	private byte level;
-	private int liveTime;
+	private int level;
+	private int liveTime = 0;
 	private Future<?> releaseTask;
 
 	/**
@@ -56,14 +56,14 @@ public class Summon extends Creature {
 	 * @param position
 	 * @param level
 	 */
-	public Summon(int objId, CreatureController<? extends Creature> controller, SpawnTemplate spawnTemplate, NpcTemplate objectTemplate, byte level, int time) {
+	public Summon(int objId, CreatureController<? extends Creature> controller, SpawnTemplate spawnTemplate, NpcTemplate objectTemplate, int level, int time) {
 		super(objId, controller, spawnTemplate, objectTemplate, new WorldPosition(spawnTemplate.getWorldId()));
 		controller.setOwner(this);
 		String ai = objectTemplate.getAi();
 		AI2Engine.getInstance().setupAI(ai, this);
-		moveController = ai.equals("siege_weapon") ? new SiegeWeaponMoveController(this) : new SummonMoveController(this);
+		moveController = (ai.equals("siege_weapon") ? new SiegeWeaponMoveController(this) : new SummonMoveController(this));
 		this.level = level;
-		this.liveTime = time;
+		liveTime = time;
 		SummonStatsTemplate statsTemplate = DataManager.SUMMON_STATS_DATA.getSummonTemplate(objectTemplate.getTemplateId(), level);
 		setGameStats(new SummonGameStats(this, statsTemplate));
 		setLifeStats(new SummonLifeStats(this));
@@ -86,7 +86,7 @@ public class Summon extends Creature {
 
 	/**
 	 * @param master
-	 *            the master to set
+	 *          the master to set
 	 */
 	public void setMaster(Player master) {
 		this.master = master;
@@ -101,8 +101,13 @@ public class Summon extends Creature {
 	 * @return the level
 	 */
 	@Override
-	public byte getLevel() {
+	public int getLevel() {
 		return level;
+	}
+
+	@Override
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	@Override
@@ -140,7 +145,7 @@ public class Summon extends Creature {
 
 	/**
 	 * @param mode
-	 *            the mode to set
+	 *          the mode to set
 	 */
 	public void setMode(SummonMode mode) {
 		this.mode = mode;
@@ -163,22 +168,29 @@ public class Summon extends Creature {
 
 	@Override
 	public TribeClass getTribe() {
-		if (master == null) {
+		if (master == null)
 			return ((NpcTemplate) objectTemplate).getTribe();
-		}
 		return master.getTribe();
 	}
 
 	@Override
+	public final boolean isAggroFrom(Npc npc) {
+		if (getMaster() == null)
+			return false;
+
+		return getMaster().isAggroFrom(npc);
+	}
+	
+	@Override
 	public SummonMoveController getMoveController() {
 		return (SummonMoveController) super.getMoveController();
 	}
-
+	
 	@Override
 	public Creature getActingCreature() {
 		return getMaster() == null ? this : getMaster();
 	}
-
+	
 	@Override
 	public Race getRace() {
 		return getMaster() != null ? getMaster().getRace() : Race.NONE;
@@ -190,10 +202,9 @@ public class Summon extends Creature {
 	public int getLiveTime() {
 		return liveTime;
 	}
-
+	
 	/**
-	 * @param liveTime
-	 *            in sec.
+	 * @param liveTime in sec.
 	 */
 	public void setLiveTime(int liveTime) {
 		this.liveTime = liveTime;
@@ -204,8 +215,7 @@ public class Summon extends Creature {
 	}
 
 	public void cancelReleaseTask() {
-		if (releaseTask != null && !releaseTask.isDone()) {
+		if (releaseTask != null && !releaseTask.isDone())
 			releaseTask.cancel(true);
-		}
 	}
 }

@@ -1,38 +1,34 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.skillengine.properties;
 
-import java.util.List;
-
-import org.apache.commons.lang.math.FloatRange;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.aionemu.gameserver.model.actions.PlayerMode;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Summon;
 import com.aionemu.gameserver.model.gameobjects.Trap;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.templates.zone.ZoneType;
 import com.aionemu.gameserver.skillengine.model.Skill;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PositionUtil;
-import com.aionemu.gameserver.world.zone.ZoneInstance;
+import org.apache.commons.lang.math.FloatRange;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * @author ATracer
@@ -49,10 +45,8 @@ public class TargetRangeProperty {
 	public static final boolean set(final Skill skill, Properties properties) {
 
 		TargetRangeAttribute value = properties.getTargetType();
-		int distanceToTarget = properties.getTargetDistance();
+		int distance = properties.getTargetDistance();
 		int maxcount = properties.getTargetMaxCount();
-		int effectiveRange = properties.getEffectiveRange();
-		int altitude = properties.getEffectiveAltitude() != 0 ? properties.getEffectiveAltitude() : 1;
 
 		final List<Creature> effectedList = skill.getEffectedList();
 		skill.setTargetRangeAttribute(value);
@@ -69,76 +63,49 @@ public class TargetRangeProperty {
 
 				// Create a sorted map of the objects in knownlist
 				// and filter them properly
-				for (VisibleObject nextCreature : firstTarget.getKnownList().getKnownObjects().values()) {
-					if (!(nextCreature instanceof Creature)) {
-						continue;
-					}
-					if (((Creature) nextCreature).getLifeStats() == null) {
-						continue;
-					}
-					if (((Creature) nextCreature).getLifeStats().isAlreadyDead()) {
-						continue;
-					}
-
-					// if (nextCreature instanceof Kisk && isInsideDisablePvpZone((Creature) nextCreature))
-					// continue;
-					if (Math.abs(firstTarget.getZ() - nextCreature.getZ()) > altitude || ((nextCreature instanceof Player) && ((Player) nextCreature).isInPlayerMode(PlayerMode.WINDSTREAM))) {
-						continue;
-					}
-
-					// TODO this is a temporary hack for traps
-					if (skill.getEffector() instanceof Trap && ((Trap) skill.getEffector()).getCreator() == nextCreature) {
-						continue;
-					}
-
-					// Players in blinking state must not be counted
-					if ((nextCreature instanceof Player) && (((Player) nextCreature).isProtectionActive())) {
-						continue;
-					}
-
-					if (skill.isPointSkill()) {
-						if (MathUtil.isIn3dRange(skill.getX(), skill.getY(), skill.getZ(), nextCreature.getX(), nextCreature.getY(), nextCreature.getZ(), distanceToTarget + 1)) {
-							skill.getEffectedList().add((Creature) nextCreature);
-						}
-					}
-					if (properties.getEffectiveAngle() > 0) {
-						// Fire Storm; only positive angles
-						float angle = properties.getEffectiveAngle() / 2f;
-						FloatRange range = new FloatRange(angle - 180, -angle);
-						if (range.containsFloat(PositionUtil.getAngleToTarget(skill.getEffector(), nextCreature))) {
-							continue;
-						}
-						if (!MathUtil.isIn3dRange(skill.getEffector(), nextCreature, effectiveRange)) {
-							continue;
-						}
-						if (!skill.shouldAffectTarget(nextCreature)) {
-							continue;
-						}
-						skill.getEffectedList().add((Creature) nextCreature);
-					}
-					else if (properties.getEffectiveDist() > 0) {
-						// Lightning bolt
-						if (MathUtil.isInsideAttackCylinder(skill.getEffector(), nextCreature, distanceToTarget, properties.getEffectiveDist(), properties.getDirection()) || MathUtil.isIn3dRange(firstTarget, nextCreature, effectiveRange + firstTarget.getObjectTemplate().getBoundRadius().getCollision())) {
-							if (!skill.shouldAffectTarget(nextCreature)) {
-								continue;
+				for (VisibleObject nextCreature : firstTarget.getKnownList().getKnownObjects().values())
+					if (((nextCreature instanceof Creature)) && (firstTarget != nextCreature) && (((Creature) nextCreature).getLifeStats() != null)
+						&& (!((Creature) nextCreature).getLifeStats().isAlreadyDead()) && ((!(skill.getEffector() instanceof Trap)) || (((Trap) skill.getEffector()).getCreator() != nextCreature))
+						&& ((!(nextCreature instanceof Player)) || (!((Player) nextCreature).isProtectionActive()))) {
+						if (skill.isPointSkill()) {
+							if (MathUtil.isIn3dRange(skill.getX(), skill.getY(), skill.getZ(), nextCreature.getX(), nextCreature.getY(), nextCreature.getZ(), distance + 1)) {
+								skill.getEffectedList().add((Creature) nextCreature);
 							}
-							skill.getEffectedList().add((Creature) nextCreature);
+						}
+						else if (properties.getEffectiveWidth() > 0) {
+							if (MathUtil.isInsideAttackCylinder(firstTarget, nextCreature, distance, properties.getEffectiveWidth(), !properties.isBackDirection())) {
+								if (skill.shouldAffectTarget(nextCreature)) {
+									skill.getEffectedList().add((Creature) nextCreature);
+								}
+							}
+						}
+						else if (properties.getEffectiveAngle() > 0) {
+							float angle = properties.getEffectiveAngle() / 2.0F;
+							if (properties.isBackDirection()) {
+								angle = 180.0F - angle;
+							}
+							FloatRange range = new FloatRange(angle, 360.0F - angle);
+							if (range.containsFloat(PositionUtil.getAngleToTarget(firstTarget, nextCreature))) {
+								if (MathUtil.isIn3dRange(firstTarget, nextCreature, distance + firstTarget.getObjectTemplate().getBoundRadius().getCollision())) {
+									if (skill.shouldAffectTarget(nextCreature)) {
+										skill.getEffectedList().add((Creature) nextCreature);
+									}
+								}
+								else
+									;
+							}
+						}
+						else if (MathUtil.isIn3dRange(firstTarget, nextCreature, distance + firstTarget.getObjectTemplate().getBoundRadius().getCollision())) {
+							if (skill.shouldAffectTarget(nextCreature)) {
+								skill.getEffectedList().add((Creature) nextCreature);
+							}
 						}
 					}
-					else if (MathUtil.isIn3dRange(firstTarget, nextCreature, effectiveRange + firstTarget.getObjectTemplate().getBoundRadius().getCollision())) {
-						if (!skill.shouldAffectTarget(nextCreature)) {
-							continue;
-						}
-						skill.getEffectedList().add((Creature) nextCreature);
-					}
-				}
-
 				break;
 			case PARTY:
 				// fix for Bodyguard(417)
-				if (maxcount == 1) {
+				if (maxcount == 1)
 					break;
-				}
 				int partyCount = 0;
 				if (skill.getEffector() instanceof Player) {
 					Player effector = (Player) skill.getEffector();
@@ -146,13 +113,11 @@ public class TargetRangeProperty {
 					if (effector.isInAlliance2()) {
 						effectedList.clear();
 						for (Player player : effector.getPlayerAllianceGroup2().getMembers()) {
-							if (partyCount >= 6 || partyCount >= maxcount) {
+							if (partyCount >= 6 || partyCount >= maxcount)
 								break;
-							}
-							if (!player.isOnline()) {
+							if (!player.isOnline())
 								continue;
-							}
-							if (MathUtil.isIn3dRange(effector, player, effectiveRange + 1)) {
+							if (MathUtil.isIn3dRange(effector, player, distance + 1)) {
 								effectedList.add(player);
 								partyCount++;
 							}
@@ -161,11 +126,10 @@ public class TargetRangeProperty {
 					else if (effector.isInGroup2()) {
 						effectedList.clear();
 						for (Player member : effector.getPlayerGroup2().getMembers()) {
-							if (partyCount >= maxcount) {
+							if (partyCount >= maxcount)
 								break;
-							}
 							// TODO: here value +4 till better move controller developed
-							if (member != null && MathUtil.isIn3dRange(effector, member, effectiveRange + 1)) {
+							if (member != null && MathUtil.isIn3dRange(effector, member, distance + 1)) {
 								effectedList.add(member);
 								partyCount++;
 							}
@@ -180,36 +144,30 @@ public class TargetRangeProperty {
 						effectedList.clear();
 						// TODO may be alliance group ?
 						for (Player player : effector.getPlayerAlliance2().getMembers()) {
-							if (!player.isOnline()) {
+							if (!player.isOnline())
 								continue;
-							}
-							if (player.getLifeStats().isAlreadyDead()) {
+							if (player.getLifeStats().isAlreadyDead())
 								continue;
-							}
-							if (MathUtil.isIn3dRange(effector, player, distanceToTarget + 1)) {
+							if (MathUtil.isIn3dRange(effector, player, distance + 1)) {
 								effectedList.add(player);
 								Summon aMemberSummon = player.getSummon();
-								if (aMemberSummon != null) {
+								if (aMemberSummon != null)
 									effectedList.add(aMemberSummon);
-								}
 							}
 						}
 					}
 					else if (effector.isInGroup2()) {
 						effectedList.clear();
 						for (Player member : effector.getPlayerGroup2().getMembers()) {
-							if (!member.isOnline()) {
+							if (!member.isOnline())
 								continue;
-							}
-							if (member.getLifeStats().isAlreadyDead()) {
+							if (member.getLifeStats().isAlreadyDead())
 								continue;
-							}
-							if (MathUtil.isIn3dRange(effector, member, distanceToTarget + 1)) {
+							if (MathUtil.isIn3dRange(effector, member, distance + 1)) {
 								effectedList.add(member);
 								Summon aMemberSummon = member.getSummon();
-								if (aMemberSummon != null) {
+								if (aMemberSummon != null)
 									effectedList.add(aMemberSummon);
-								}
 							}
 						}
 					}
@@ -217,39 +175,24 @@ public class TargetRangeProperty {
 				break;
 			case POINT:
 				for (VisibleObject nextCreature : skill.getEffector().getKnownList().getKnownObjects().values()) {
-					if (!(nextCreature instanceof Creature)) {
+					if (!(nextCreature instanceof Creature))
 						continue;
-					}
-					if (((Creature) nextCreature).getLifeStats().isAlreadyDead()) {
+					if (((Creature) nextCreature).getLifeStats().isAlreadyDead())
 						continue;
-					}
 
-					// if (nextCreature instanceof Kisk && isInsideDisablePvpZone((Creature) nextCreature))
-					// continue;
 					// Players in blinking state must not be counted
-					if ((nextCreature instanceof Player) && (((Player) nextCreature).isProtectionActive())) {
+					if ((nextCreature instanceof Player) && (((Player) nextCreature).isProtectionActive()))
 						continue;
-					}
 
-					if (MathUtil.getDistance(skill.getX(), skill.getY(), skill.getZ(), nextCreature.getX(), nextCreature.getY(), nextCreature.getZ()) <= distanceToTarget + 1) {
+					if (MathUtil.getDistance(skill.getX(), skill.getY(), skill.getZ(), nextCreature.getX(), nextCreature.getY(), nextCreature.getZ()) <= distance + 1) {
 						effectedList.add((Creature) nextCreature);
 					}
 				}
 			case NONE:
 				break;
 
-			// TODO other enum values
+		// TODO other enum values
 		}
 		return true;
-	}
-
-	@SuppressWarnings("unused")
-	private static final boolean isInsideDisablePvpZone(Creature creature) {
-		for (ZoneInstance zone : creature.getPosition().getMapRegion().getZones(creature)) {
-			if (creature.isInsideZoneType(ZoneType.PVP) && zone.getZoneTemplate().getFlags() == 0) {
-				return true;
-			}
-		}
-		return false;
 	}
 }

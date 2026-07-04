@@ -1,22 +1,4 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
-
-import java.io.IOException;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
@@ -25,6 +7,8 @@ import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.spawnengine.SpawnEngine;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
+
+import java.io.IOException;
 
 /**
  * @author Luno
@@ -39,11 +23,6 @@ public class SpawnNpc extends AdminCommand {
 	public void execute(Player admin, String... params) {
 		if (params.length < 1) {
 			PacketSendUtility.sendMessage(admin, "syntax //spawn <template_id> <respawn_time> (0 for temp)");
-			return;
-		}
-
-		if (admin.isInInstance()) {
-			PacketSendUtility.sendMessage(admin, "You cannot spawn here, you are in instance.");
 			return;
 		}
 
@@ -71,7 +50,6 @@ public class SpawnNpc extends AdminCommand {
 
 		if (visibleObject == null) {
 			PacketSendUtility.sendMessage(admin, "Spawn id " + templateId + " was not found!");
-			return;
 		}
 		else if (respawnTime > 0) {
 			try {

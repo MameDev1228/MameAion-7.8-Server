@@ -1,25 +1,24 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.items.storage;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.questEngine.model.QuestStatus;
-import com.aionemu.gameserver.services.item.ItemPacketService.ItemAddType;
+import com.aionemu.gameserver.services.item.ItemPacketService;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemDeleteType;
 import com.aionemu.gameserver.services.item.ItemPacketService.ItemUpdateType;
 
@@ -42,11 +41,9 @@ public class PlayerStorage extends Storage {
 		this.actor = actor;
 	}
 
-	@Override
 	public void onLoadHandler(Item item) {
-		if (item.isEquipped()) {
+		if (item.isEquipped())
 			actor.getEquipment().onLoadHandler(item);
-		}
 		else {
 			super.onLoadHandler(item);
 		}
@@ -65,11 +62,6 @@ public class PlayerStorage extends Storage {
 	@Override
 	public boolean tryDecreaseKinah(long amount) {
 		return tryDecreaseKinah(amount, actor);
-	}
-
-	@Override
-	public boolean tryDecreaseKinah(long amount, ItemUpdateType updateType) {
-		return tryDecreaseKinah(amount, updateType, actor);
 	}
 
 	@Override
@@ -103,20 +95,10 @@ public class PlayerStorage extends Storage {
 	}
 
 	@Override
-	public long decreaseItemCount(Item item, long count, ItemUpdateType updateType, QuestStatus questStatus) {
-		return decreaseItemCount(item, count, updateType, questStatus, actor);
-	}
-
-	@Override
 	public Item add(Item item) {
 		return add(item, actor);
 	}
-
-	@Override
-	public Item add(Item item, ItemAddType addType) {
-		return add(item, addType, actor);
-	}
-
+	
 	@Override
 	public Item put(Item item) {
 		return put(item, actor);
@@ -138,18 +120,8 @@ public class PlayerStorage extends Storage {
 	}
 
 	@Override
-	public boolean decreaseByItemId(int itemId, long count, QuestStatus questStatus) {
-		return decreaseByItemId(itemId, count, questStatus, actor);
-	}
-
-	@Override
 	public boolean decreaseByObjectId(int itemObjId, long count) {
 		return decreaseByObjectId(itemObjId, count, actor);
-	}
-
-	@Override
-	public boolean decreaseByObjectId(int itemObjId, long count, QuestStatus questStatus) {
-		return decreaseByObjectId(itemObjId, count, questStatus, actor);
 	}
 
 	@Override

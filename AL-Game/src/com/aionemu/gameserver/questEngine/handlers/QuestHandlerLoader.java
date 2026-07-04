@@ -1,29 +1,28 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-unique is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-unique is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.questEngine.handlers;
-
-import java.lang.reflect.Modifier;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.scripting.classlistener.ClassListener;
 import com.aionemu.commons.utils.ClassUtils;
 import com.aionemu.gameserver.questEngine.QuestEngine;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.Modifier;
 
 /**
  * @author MrPoke
@@ -39,20 +38,17 @@ public class QuestHandlerLoader implements ClassListener {
 	@Override
 	public void postLoad(Class<?>[] classes) {
 		for (Class<?> c : classes) {
-			if (logger.isDebugEnabled()) {
+			if (logger.isDebugEnabled())
 				logger.debug("Load class " + c.getName());
-			}
 
-			if (!isValidClass(c)) {
+			if (!isValidClass(c))
 				continue;
-			}
 
 			if (ClassUtils.isSubclass(c, QuestHandler.class)) {
 				try {
 					Class<? extends QuestHandler> tmp = (Class<? extends QuestHandler>) c;
-					if (tmp != null) {
+					if (tmp != null)
 						QuestEngine.getInstance().addQuestHandler(tmp.newInstance());
-					}
 				}
 				catch (Exception e) {
 					throw new RuntimeException("Failed to load quest handler class: " + c.getName(), e);
@@ -63,12 +59,10 @@ public class QuestHandlerLoader implements ClassListener {
 
 	@Override
 	public void preUnload(Class<?>[] classes) {
-		if (logger.isDebugEnabled()) {
-			for (Class<?> c : classes) // debug messages
-			{
+		if (logger.isDebugEnabled())
+			for (Class<?> c : classes)
+				// debug messages
 				logger.debug("Unload class " + c.getName());
-			}
-		}
 
 		QuestEngine.getInstance().clear();
 	}
@@ -76,13 +70,11 @@ public class QuestHandlerLoader implements ClassListener {
 	public boolean isValidClass(Class<?> clazz) {
 		final int modifiers = clazz.getModifiers();
 
-		if (Modifier.isAbstract(modifiers) || Modifier.isInterface(modifiers)) {
+		if (Modifier.isAbstract(modifiers) || Modifier.isInterface(modifiers))
 			return false;
-		}
 
-		if (!Modifier.isPublic(modifiers)) {
+		if (!Modifier.isPublic(modifiers))
 			return false;
-		}
 
 		return true;
 	}

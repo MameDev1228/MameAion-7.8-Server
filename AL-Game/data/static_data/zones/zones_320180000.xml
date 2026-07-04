@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zones>
+	<zone mapid="320180000" name="CUSTOMIZE_LOBBY_320180000" area_type="POLYGON" zone_type="SUB" priority="5" flags="0">
+        <points bottom="26.837669" top="176.837677">
+            <point x="32.000000" y="672.000000"/>
+			<point x="160.000000" y="672.000000"/>
+			<point x="160.000000" y="800.000000"/>
+			<point x="32.000000" y="800.000000"/>
+        </points>
+    </zone>
+	<zone mapid="320180000" name="CUSTOMIZE_ARENA_320180000" area_type="POLYGON" zone_type="PVP" flags="64">
+        <points bottom="28.565277" top="178.565277">
+            <point x="211.902023" y="215.139954"/>
+			<point x="339.902039" y="215.139954"/>
+			<point x="339.902039" y="343.139954"/>
+			<point x="211.902023" y="343.139954"/>
+        </points>
+    </zone>
+</zones>

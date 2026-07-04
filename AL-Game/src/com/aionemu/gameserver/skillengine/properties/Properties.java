@@ -1,30 +1,29 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.skillengine.properties;
 
-import java.util.List;
+import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.skillengine.model.Skill;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
-
-import com.aionemu.gameserver.model.gameobjects.Creature;
-import com.aionemu.gameserver.skillengine.model.Skill;
+import java.util.List;
 
 /**
  * @author ATracer
@@ -35,34 +34,46 @@ public class Properties {
 
 	@XmlAttribute(name = "first_target", required = true)
 	protected FirstTargetAttribute firstTarget;
+
 	@XmlAttribute(name = "first_target_range", required = true)
 	protected int firstTargetRange;
+
 	@XmlAttribute(name = "awr")
 	protected boolean addWeaponRange;
+
 	@XmlAttribute(name = "target_relation", required = true)
 	protected TargetRelationAttribute targetRelation;
+
 	@XmlAttribute(name = "target_type", required = true)
 	protected TargetRangeAttribute targetType;
+
 	@XmlAttribute(name = "target_distance")
 	protected int targetDistance;
+
 	@XmlAttribute(name = "target_maxcount")
 	protected int targetMaxCount;
+
 	@XmlAttribute(name = "target_status")
 	private List<String> targetStatus;
+
 	@XmlAttribute(name = "revision_distance")
 	protected int revisionDistance;
-	@XmlAttribute(name = "effective_range")
-	private int effectiveRange;
-	@XmlAttribute(name = "effective_altitude")
-	private int effectiveAltitude;
+
+	@XmlAttribute(name = "effective_width")
+	private int effectiveWidth;
+
 	@XmlAttribute(name = "effective_angle")
 	private int effectiveAngle;
-	@XmlAttribute(name = "effective_dist")
-	private int effectiveDist;
+
 	@XmlAttribute(name = "direction")
-	protected AreaDirections direction = AreaDirections.NONE;
+	protected int direction;
+
 	@XmlAttribute(name = "target_species")
-	protected TargetSpeciesAttribute targetSpecies = TargetSpeciesAttribute.ALL;
+	protected TargetSpeciesAttribute targetSpecies;
+
+	public Properties() {
+		targetSpecies = TargetSpeciesAttribute.ALL;
+	}
 
 	/**
 	 * @param skill
@@ -98,10 +109,8 @@ public class Properties {
 				return false;
 			}
 		}
-		if (targetSpecies != TargetSpeciesAttribute.ALL) {
-			if (!TargetSpeciesProperty.set(skill, this)) {
-				return false;
-			}
+		if (targetSpecies != TargetSpeciesAttribute.ALL && !TargetSpeciesProperty.set(skill, this)) {
+			return false;
 		}
 		return true;
 	}
@@ -139,10 +148,8 @@ public class Properties {
 				return false;
 			}
 		}
-		if (targetSpecies != TargetSpeciesAttribute.ALL) {
-			if (!TargetSpeciesProperty.set(skill, this)) {
-				return false;
-			}
+		if (targetSpecies != TargetSpeciesAttribute.ALL && !TargetSpeciesProperty.set(skill, this)) {
+			return false;
 		}
 		return true;
 	}
@@ -183,24 +190,16 @@ public class Properties {
 		return revisionDistance;
 	}
 
-	public int getEffectiveRange() {
-		return effectiveRange;
-	}
-
-	public int getEffectiveAltitude() {
-		return effectiveAltitude;
-	}
-
-	public int getEffectiveDist() {
-		return effectiveDist;
+	public int getEffectiveWidth() {
+		return effectiveWidth;
 	}
 
 	public int getEffectiveAngle() {
 		return effectiveAngle;
 	}
 
-	public AreaDirections getDirection() {
-		return direction;
+	public boolean isBackDirection() {
+		return direction == 1;
 	}
 
 	public TargetSpeciesAttribute getTargetSpecies() {
@@ -208,7 +207,6 @@ public class Properties {
 	}
 
 	public enum CastState {
-
 		CAST_START(true),
 		CAST_END(false);
 

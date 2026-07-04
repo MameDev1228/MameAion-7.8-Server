@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Serial + Legion Guard
+	Made By Encom
+ -->
+<serial_guards xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="serial_guard.xsd">
+	<!-- Serial Guard -->
+	<guard_rank_restriction rank_num="1">
+		<guard_penalty_attr stat="PVP_POWER_BOOST_RESIST" func="ADD" value="100"/>
+	</guard_rank_restriction>
+	<guard_rank_restriction rank_num="2">
+		<guard_penalty_attr stat="PVP_POWER_BOOST_RESIST" func="ADD" value="200"/>
+	</guard_rank_restriction>
+	<guard_rank_restriction rank_num="3">
+		<guard_penalty_attr stat="PVP_POWER_BOOST_RESIST" func="ADD" value="300"/>
+	</guard_rank_restriction>
+	<!-- Legion Guard -->
+	<guard_type_restriction type_num="1">
+		<guard_penalty_attr stat="PVP_POWER_BOOST_RESIST" func="ADD" value="300"/>
+	</guard_type_restriction>
+</serial_guards>

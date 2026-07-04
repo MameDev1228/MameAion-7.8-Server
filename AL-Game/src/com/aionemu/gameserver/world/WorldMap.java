@@ -1,49 +1,50 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-emu is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-emu is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.world;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-
+import com.aionemu.gameserver.instance.InstanceEngine;
+import com.aionemu.gameserver.instance.handlers.InstanceHandler;
 import com.aionemu.gameserver.model.templates.world.WorldMapTemplate;
 import com.aionemu.gameserver.world.handlers.WorldHandler;
 import com.aionemu.gameserver.world.zone.ZoneAttributes;
 
 import javolution.util.FastMap;
 
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * This object is representing one in-game map and can have instances.
- *
+ * 
  * @author -Nemesiss-
  */
 public class WorldMap {
 
 	private WorldMapTemplate worldMapTemplate;
+	
 	private WorldHandler worldHandler;
+
 	private AtomicInteger nextInstanceId = new AtomicInteger(0);
 	/**
 	 * List of instances.
 	 */
 	private Map<Integer, WorldMapInstance> instances = new FastMap<Integer, WorldMapInstance>().shared();
-	/**
-	 * World to which belongs this WorldMap
-	 */
+
+	/** World to which belongs this WorldMap */
 	private World world;
 	private int worldOptions;
 
@@ -51,9 +52,14 @@ public class WorldMap {
 		this.world = world;
 		this.worldMapTemplate = worldMapTemplate;
 		this.worldOptions = worldMapTemplate.getFlags();
-        this.worldHandler = WorldEngine.getInstance().getNewInstanceHandler(worldMapTemplate.getMapId());
-        this.worldHandler.onWorldCreate(this);
-		for (int i = 1; i <= getInstanceCount(); i++) {
+		this.worldHandler = WorldEngine.getInstance().getNewInstanceHandler(worldMapTemplate.getMapId());
+		this.worldHandler.onWorldCreate(this);
+		if (worldMapTemplate.getTwinCount() != 0) {
+			for (int i = 1; i <= worldMapTemplate.getTwinCount(); i++) {
+				int nextId = getNextInstanceId();
+				addInstance(nextId, WorldMapInstanceFactory.createWorldMapInstance(this, nextId));
+			}
+		} else {
 			int nextId = getNextInstanceId();
 			addInstance(nextId, WorldMapInstanceFactory.createWorldMapInstance(this, nextId));
 		}
@@ -132,24 +138,20 @@ public class WorldMap {
 	}
 
 	public boolean hasOverridenOption(ZoneAttributes option) {
-		if ((worldMapTemplate.getFlags() & option.getId()) == 0) {
+		if ((worldMapTemplate.getFlags() & option.getId()) == 0)
 			return (worldOptions & option.getId()) != 0;
-		}
 		return (worldOptions & option.getId()) == 0;
 	}
 
 	public int getInstanceCount() {
 		int twinCount = worldMapTemplate.getTwinCount();
-		if (twinCount == 0 && !worldMapTemplate.isInstance()) {
-			twinCount = 1;
-		}
-		twinCount += worldMapTemplate.getBeginnerTwinCount();
-		return twinCount;
+		return twinCount > 0 ? twinCount : 1;
 	}
 
 	/**
-	 * Return a WorldMapInstance - depends on map configuration one map may have twins instances to balance player. This method will return WorldMapInstance by server chose.
-	 *
+	 * Return a WorldMapInstance - depends on map configuration one map may have twins instances to balance player. This
+	 * method will return WorldMapInstance by server chose.
+	 * 
 	 * @return WorldMapInstance.
 	 */
 	public WorldMapInstance getMainWorldMapInstance() {
@@ -159,18 +161,15 @@ public class WorldMap {
 
 	/**
 	 * This method return WorldMapInstance by specified instanceId
-	 *
+	 * 
 	 * @param instanceId
 	 * @return WorldMapInstance
 	 */
 	public WorldMapInstance getWorldMapInstanceById(int instanceId) {
-		// instanceId is a count, some code still uses 0 for the default instance
-		if (instanceId == 0) {
-			instanceId = 1;
-		}
-		if (!isInstanceType()) {
-			if (instanceId > getInstanceCount()) {
-				throw new IllegalArgumentException("WorldMapInstance " + getMapId() + " has lower instances count than " + instanceId);
+		if (worldMapTemplate.getTwinCount() != 0) {
+			if (instanceId > worldMapTemplate.getTwinCount()) {
+				throw new IllegalArgumentException("WorldMapInstance " + getMapId()
+					+ " has lower instances count than " + instanceId);
 			}
 		}
 		return getWorldMapInstance(instanceId);
@@ -178,42 +177,39 @@ public class WorldMap {
 
 	/**
 	 * Returns WorldMapInstance by instanceId.
-	 *
+	 * 
 	 * @param instanceId
 	 * @return WorldMapInstance/
 	 */
 	private WorldMapInstance getWorldMapInstance(int instanceId) {
 		// instanceId is a count, some code still uses 0 for the default instance
-		if (instanceId == 0) {
+		if (instanceId == 0)
 			instanceId = 1;
-		}
 		return instances.get(instanceId);
 	}
 
 	/**
 	 * Remove WorldMapInstance by instanceId.
-	 *
+	 * 
 	 * @param instanceId
 	 */
 	public void removeWorldMapInstance(int instanceId) {
 		// instanceId is a count, some code still uses 0 for the default instance
-		if (instanceId == 0) {
+		if (instanceId == 0)
 			instanceId = 1;
-		}
 		instances.remove(instanceId);
 	}
 
 	/**
 	 * Add instance to map
-	 *
+	 * 
 	 * @param instanceId
 	 * @param instance
 	 */
 	public void addInstance(int instanceId, WorldMapInstance instance) {
 		// instanceId is a count, some code still uses 0 for the default instance
-		if (instanceId == 0) {
+		if (instanceId == 0)
 			instanceId = 1;
-		}
 		instances.put(instanceId, instance);
 	}
 
@@ -237,7 +233,7 @@ public class WorldMap {
 
 	/**
 	 * Whether this world map is instance type
-	 *
+	 * 
 	 * @return
 	 */
 	public boolean isInstanceType() {
@@ -258,15 +254,19 @@ public class WorldMap {
 		return instances.keySet();
 	}
 
-    public Collection<WorldMapInstance> getInstances() {
-        return instances.values();
-    }
+	public Collection<WorldMapInstance> getInstances() {
+		return instances.values();
+	}
 
-    public WorldHandler getWorldHandler() {
-        return worldHandler;
-    }
+	public WorldDropType getWorldDropType() {
+		return worldMapTemplate.getWorldDropType();
+	}
 
-    public void setWorldHandler(WorldHandler worldHandler) {
-        this.worldHandler = worldHandler;
-    }
+	public WorldHandler getWorldHandler() {
+		return worldHandler;
+	}
+
+	public void setWorldHandler(WorldHandler worldHandler) {
+		this.worldHandler = worldHandler;
+	}
 }

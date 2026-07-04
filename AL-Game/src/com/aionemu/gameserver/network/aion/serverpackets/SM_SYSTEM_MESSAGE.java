@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.serverpackets;
 
@@ -23,29 +23,8 @@ import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.network.aion.SystemMessageId;
 
-/**
- * System message packet.
- *
- * @author -Nemesiss-
- * @author EvilSpirit
- * @author Luno :D
- * @author Avol!
- * @author Simple :)
- * @author Sarynth
- */
-public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
-
-    private static DescriptionId calculateNameId(int id) {
-		return new DescriptionId(id * 2 + 1);
-	}
-
-
-	/**
-	 * Skin Animation
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_COSTUME_SKILL_ALREADY_HAS_COSTUME = new SM_SYSTEM_MESSAGE(1403683);
-
-
+public class SM_SYSTEM_MESSAGE extends AionServerPacket
+{
 	/**
 	 * You inflicted %num1 damage on %0.
 	 */
@@ -58,18 +37,6 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_COMBAT_MY_CRITICAL(int num1, String value0) {
 		return new SM_SYSTEM_MESSAGE(1200001, num1, value0);
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_REIDENTIFY_CANCELED(final int nameId) {
-		return new SM_SYSTEM_MESSAGE(1401638, new Object[] { new DescriptionId(nameId) });
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_IDENTIFY_SUCCEED(final int nameId) {
-		return new SM_SYSTEM_MESSAGE(1401626, new Object[] { new DescriptionId(nameId) });
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_REIDENTIFY_SUCCEED(final int nameId) {
-		return new SM_SYSTEM_MESSAGE(1401639, new Object[] { new DescriptionId(nameId) });
 	}
 
 	/**
@@ -153,198 +120,247 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are bleeding.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_BLEED_BEGIN = new SM_SYSTEM_MESSAGE(1200214);
+
 	/**
 	 * You are no longer bleeding.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_BLEED_END = new SM_SYSTEM_MESSAGE(1200215);
+
 	/**
 	 * You cannot see.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_BLIND_BEGIN = new SM_SYSTEM_MESSAGE(1200216);
+
 	/**
 	 * You can see again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_BLIND_END = new SM_SYSTEM_MESSAGE(1200217);
+
 	/**
 	 * You are charmed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_CHARM_BEGIN = new SM_SYSTEM_MESSAGE(1200218);
+
 	/**
 	 * You are no longer charmed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_CHARM_END = new SM_SYSTEM_MESSAGE(1200219);
+
 	/**
 	 * You are confused.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_CONFUSE_BEGIN = new SM_SYSTEM_MESSAGE(1200220);
+
 	/**
 	 * You are no longer confused.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_CONFUSE_END = new SM_SYSTEM_MESSAGE(1200221);
+
 	/**
 	 * A defense wall has been created to convert received damage into HP.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_CONVERT_HEAL_BEGIN = new SM_SYSTEM_MESSAGE(1200222);
+
 	/**
 	 * The defense wall that converts received damage into HP has expired.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_CONVERT_HEAL_END = new SM_SYSTEM_MESSAGE(1200223);
+
 	/**
 	 * A defense wall that absorbs damage has been created.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SHIELD_MAGIC_BEGIN = new SM_SYSTEM_MESSAGE(1200224);
+
 	/**
 	 * The defense wall that absorbs damage has expired.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SHIELD_MAGIC_END = new SM_SYSTEM_MESSAGE(1200225);
+
 	/**
 	 * You are cursed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_CURSE_BEGIN = new SM_SYSTEM_MESSAGE(1200226);
+
 	/**
 	 * You are no longer cursed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_CURSE_END = new SM_SYSTEM_MESSAGE(1200227);
+
 	/**
 	 * You are diseased.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_DISEASE_BEGIN = new SM_SYSTEM_MESSAGE(1200228);
+
 	/**
 	 * You recovered from the disease.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_DISEASE_END = new SM_SYSTEM_MESSAGE(1200229);
+
 	/**
 	 * You are struck by fear.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_FEAR_BEGIN = new SM_SYSTEM_MESSAGE(1200230);
+
 	/**
 	 * You recovered from your fear.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_FEAR_END = new SM_SYSTEM_MESSAGE(1200231);
+
 	/**
 	 * You are invisible.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_INVISIBLE_BEGIN = new SM_SYSTEM_MESSAGE(1200232);
+
 	/**
 	 * You are no longer invisible.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_INVISIBLE_END = new SM_SYSTEM_MESSAGE(1200233);
+
 	/**
 	 * You are paralyzed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_PARALYZE_BEGIN = new SM_SYSTEM_MESSAGE(1200234);
+
 	/**
 	 * You are no longer paralyzed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_PARALYZE_END = new SM_SYSTEM_MESSAGE(1200235);
+
 	/**
 	 * You are petrified.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_PETRIFICATION_BEGIN = new SM_SYSTEM_MESSAGE(1200236);
+
 	/**
 	 * You are no longer petrified.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_PETRIFICATION_END = new SM_SYSTEM_MESSAGE(1200237);
+
 	/**
 	 * You are poisoned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_POISON_BEGIN = new SM_SYSTEM_MESSAGE(1200238);
+
 	/**
 	 * You are no longer poisoned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_POISON_END = new SM_SYSTEM_MESSAGE(1200239);
+
 	/**
 	 * You are immobilized.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_ROOT_BEGIN = new SM_SYSTEM_MESSAGE(1200240);
+
 	/**
 	 * You are no longer immobilized.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_ROOT_END = new SM_SYSTEM_MESSAGE(1200241);
+
 	/**
 	 * You fell asleep.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SLEEP_BEGIN = new SM_SYSTEM_MESSAGE(1200242);
+
 	/**
 	 * You woke up.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SLEEP_END = new SM_SYSTEM_MESSAGE(1200243);
+
 	/**
 	 * You have been stunned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_STUN_BEGIN = new SM_SYSTEM_MESSAGE(1200244);
+
 	/**
 	 * You are no longer stunned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_STUN_END = new SM_SYSTEM_MESSAGE(1200245);
+
 	/**
 	 * You are silenced.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SILENCE_BEGIN = new SM_SYSTEM_MESSAGE(1200246);
+
 	/**
 	 * You are no longer silenced.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SILENCE_END = new SM_SYSTEM_MESSAGE(1200247);
+
 	/**
 	 * You are snared in mid-air.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_OPEN_AERIAL_BEGIN = new SM_SYSTEM_MESSAGE(1200248);
+
 	/**
 	 * You are released from the Aerial Snare.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_OPEN_AERIAL_END = new SM_SYSTEM_MESSAGE(1200249);
+
 	/**
 	 * Your movement speed has decreased.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SNARE_BEGIN = new SM_SYSTEM_MESSAGE(1200250);
+
 	/**
 	 * You have normal movement speed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SNARE_END = new SM_SYSTEM_MESSAGE(1200251);
+
 	/**
 	 * Your attack speed is decreased.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SLOW_BEGIN = new SM_SYSTEM_MESSAGE(1200252);
+
 	/**
 	 * You have normal attack speed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SLOW_END = new SM_SYSTEM_MESSAGE(1200253);
+
 	/**
 	 * You are spinning from shock.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SPIN_BEGIN = new SM_SYSTEM_MESSAGE(1200254);
+
 	/**
 	 * You are no longer in shock.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_SPIN_END = new SM_SYSTEM_MESSAGE(1200255);
+
 	/**
 	 * You fell down from shock.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_STUMBLE_BEGIN = new SM_SYSTEM_MESSAGE(1200256);
+
 	/**
 	 * You are no longer in shock.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_STUMBLE_END = new SM_SYSTEM_MESSAGE(1200257);
+
 	/**
 	 * You are stunned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_STAGGER_BEGIN = new SM_SYSTEM_MESSAGE(1200258);
+
 	/**
 	 * You are no longer stunned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_STAGGER_END = new SM_SYSTEM_MESSAGE(1200259);
+
 	/**
 	 * You are bound.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_BIND_BEGIN = new SM_SYSTEM_MESSAGE(1200260);
+
 	/**
 	 * You are no longer bound.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_BIND_END = new SM_SYSTEM_MESSAGE(1200261);
+
 	/**
 	 * You are being pulled.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_EFFECT_PULLED_BEGIN = new SM_SYSTEM_MESSAGE(1200262);
+
 	/**
 	 * You are no longer being pulled.
 	 */
@@ -433,51 +449,62 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Stun_ME_TO_SELF(String skillname) {
 		return new SM_SYSTEM_MESSAGE(1200288, skillname);
 	}
-
+	
 	/**
 	 * You can see again
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Blind_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200289);
+
 	/**
 	 * You are no longer confused.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Confuse_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200290);
+
 	/**
 	 * You are no longer diseased.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Disease_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200291);
+
 	/**
 	 * You recovered from your fear.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Fear_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200292);
+
 	/**
 	 * You are no longer paralyzed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Paralyze_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200293);
+
 	/**
 	 * You are no longer immobilized.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Root_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200294);
+
 	/**
 	 * You are no longer silenced.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Silence_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200295);
+
 	/**
 	 * You woke up.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Sleep_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200296);
+
 	/**
 	 * You have stopped spinning.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Spin_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200297);
+
 	/**
 	 * You are no longer staggering.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Stagger_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200298);
+
 	/**
 	 * You are no longer shocked.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Stumble_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200299);
+
 	/**
 	 * You are no longer stunned.
 	 */
@@ -592,34 +619,42 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are no longer bound
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Bind_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200316);
+
 	/**
 	 * You are no longer bleeding.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Bleed_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200317);
+
 	/**
 	 * You are released from the cursed state.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Curse_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200318);
+
 	/**
 	 * You are able to fly again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_NoFly_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200319);
+
 	/**
 	 * You are released from the Aerial Snare.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_OpenAerial_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200320);
+
 	/**
 	 * You are no longer petrified.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Petrification_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200321);
+
 	/**
 	 * You are no longer poisoned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Poison_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200322);
+
 	/**
 	 * Your attack speed is restored to normal.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Slow_END_ME_TO_SELF = new SM_SYSTEM_MESSAGE(1200323);
+
 	/**
 	 * Your movement speed is restored to normal.
 	 */
@@ -2519,46 +2554,57 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You can see again
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Blind_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200595);
+
 	/**
 	 * You are no longer confused.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Confuse_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200596);
+
 	/**
 	 * You are no longer diseased.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Disease_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200597);
+
 	/**
 	 * You recovered from your fear.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Fear_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200598);
+
 	/**
 	 * You are no longer paralyzed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Paralyze_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200599);
+
 	/**
 	 * You are no longer immobilized.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Root_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200600);
+
 	/**
 	 * You are no longer silenced.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Silence_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200601);
+
 	/**
 	 * You woke up.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Sleep_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200602);
+
 	/**
 	 * You have stopped spinning.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Spin_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200603);
+
 	/**
 	 * You are no longer staggering.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Stagger_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200604);
+
 	/**
 	 * You are no longer shocked.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Stumble_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200605);
+
 	/**
 	 * You are no longer stunned.
 	 */
@@ -2673,34 +2719,42 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are no longer bound
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Bind_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200622);
+
 	/**
 	 * You are no longer bleeding.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Bleed_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200623);
+
 	/**
 	 * You are released from the cursed state.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Curse_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200624);
+
 	/**
 	 * You are able to fly again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_NoFly_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200625);
+
 	/**
 	 * You are released from the Aerial Snare.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_OpenAerial_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200626);
+
 	/**
 	 * You are no longer petrified.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Petrification_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200627);
+
 	/**
 	 * You are no longer poisoned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Poison_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200628);
+
 	/**
 	 * Your attack speed is restored to normal.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Slow_END_A_TO_ME = new SM_SYSTEM_MESSAGE(1200629);
+
 	/**
 	 * Your movement speed is restored to normal.
 	 */
@@ -6028,82 +6082,102 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You can see again
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Blind_END_ME = new SM_SYSTEM_MESSAGE(1201105);
+
 	/**
 	 * You are no longer confused.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Confuse_END_ME = new SM_SYSTEM_MESSAGE(1201106);
+
 	/**
 	 * You are no longer diseased.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Disease_END_ME = new SM_SYSTEM_MESSAGE(1201107);
+
 	/**
 	 * You recovered from your fear.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Fear_END_ME = new SM_SYSTEM_MESSAGE(1201108);
+
 	/**
 	 * You are no longer paralyzed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Paralyze_END_ME = new SM_SYSTEM_MESSAGE(1201109);
+
 	/**
 	 * You are no longer immobilized.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Root_END_ME = new SM_SYSTEM_MESSAGE(1201110);
+
 	/**
 	 * You are no longer silenced.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Silence_END_ME = new SM_SYSTEM_MESSAGE(1201111);
+
 	/**
 	 * You woke up.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Sleep_END_ME = new SM_SYSTEM_MESSAGE(1201112);
+
 	/**
 	 * You have stopped spinning.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Spin_END_ME = new SM_SYSTEM_MESSAGE(1201113);
+
 	/**
 	 * You are no longer staggering.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Stagger_END_ME = new SM_SYSTEM_MESSAGE(1201114);
+
 	/**
 	 * You are no longer shocked.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Stumble_END_ME = new SM_SYSTEM_MESSAGE(1201115);
+
 	/**
 	 * You are no longer stunned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Stun_END_ME = new SM_SYSTEM_MESSAGE(1201116);
+
 	/**
 	 * You are no longer bound.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Bind_END_ME = new SM_SYSTEM_MESSAGE(1201117);
+
 	/**
 	 * You are no longer bleeding.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Bleed_END_ME = new SM_SYSTEM_MESSAGE(1201118);
+
 	/**
 	 * You recovered from the cursed state.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Curse_END_ME = new SM_SYSTEM_MESSAGE(1201119);
+
 	/**
 	 * You are able to fly again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_NoFly_END_ME = new SM_SYSTEM_MESSAGE(1201120);
+
 	/**
 	 * You are released from the Aerial Snare.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_OpenAerial_END_ME = new SM_SYSTEM_MESSAGE(1201121);
+
 	/**
 	 * You are no longer petrified.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Petrification_END_ME = new SM_SYSTEM_MESSAGE(1201122);
+
 	/**
 	 * You are no longer poisoned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Poison_END_ME = new SM_SYSTEM_MESSAGE(1201123);
+
 	/**
 	 * Your attack speed is restored to normal.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUCC_Slow_END_ME = new SM_SYSTEM_MESSAGE(1201124);
+
 	/**
 	 * Your movement speed is restored to normal.
 	 */
@@ -7495,74 +7569,127 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		return new SM_SYSTEM_MESSAGE(1260222, skilltarget, skillcaster);
 	}
 
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_TARGETCHANNELLING_ME_TO_B(String skillname) {
+		return new SM_SYSTEM_MESSAGE(1405075, skillname);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_SKILLATKDRAIN_ME_TO_B(String skilltarget, String skillname) {
+		return new SM_SYSTEM_MESSAGE(1405076, skilltarget, skillname);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_SKILLATKDRAIN_INTERVAL_TO_B(int num0, String skilltarget, String skillname) {
+		return new SM_SYSTEM_MESSAGE(1405077, num0, skilltarget, skillname);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_SKILLATKDRAIN_INTERVAL_TO_ME(int num0, String skillname) {
+		return new SM_SYSTEM_MESSAGE(1405078, num0, skillname);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_SUMMONCHANNELLINGAREA_ME_TO_SELF(String skillname) {
+		return new SM_SYSTEM_MESSAGE(1405079, skillname);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_HEALANDFIREONZEROHP_INTERVAL_HEAL_TO_ME(String skillname) {
+		return new SM_SYSTEM_MESSAGE(1405080, skillname);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_ONETIMEGETBOOSTEDDAMAGE_ME_TO_B(String skilltarget, String skillname) {
+		return new SM_SYSTEM_MESSAGE(1405094, skilltarget, skillname);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_ONETIMEGETBOOSTEDDAMAGE_A_TO_ME(String skillname) {
+		return new SM_SYSTEM_MESSAGE(1405095, skillname);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_SKILL_SUCC_HEALANDFIREONZEROHP_ME_TO_SELF(String skillname) {
+		return new SM_SYSTEM_MESSAGE(1405096, skillname);
+	}
+
 	/**
 	 * The weapon has been changed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CHANGE_WEAPON = new SM_SYSTEM_MESSAGE(1300000);
+
 	/**
 	 * You can use it after registering it on the Quickbar.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NEED_TO_REGIST_SHORTCUT = new SM_SYSTEM_MESSAGE(1300001);
+
 	/**
 	 * You do not have much flight time left. Please land on a secure place.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WARNING_FLY = new SM_SYSTEM_MESSAGE(1300002);
+
 	/**
 	 * Warning! You do not have much flight time left.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WARNING_FLY_Notice = new SM_SYSTEM_MESSAGE(1300003);
+
 	/**
 	 * You suffered damage as you have submerged deep in the water. Please get out of the water.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WARNING_Swim = new SM_SYSTEM_MESSAGE(1300004);
+
 	/**
 	 * Warning! You suffered damage as you have submerged deep in the water.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WARNING_Swim_Notice = new SM_SYSTEM_MESSAGE(1300005);
+
 	/**
 	 * No target has been selected.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NO_TARGET = new SM_SYSTEM_MESSAGE(1300006);
+
 	/**
 	 * Invalid target. You can only use this on objects.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_INVALID_TARGET_OBJECT_ONLY = new SM_SYSTEM_MESSAGE(1300007);
+
 	/**
 	 * Invalid target. You can only use this on NPCs.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_INVALID_TARGET_NPC_ONLY = new SM_SYSTEM_MESSAGE(1300008);
+
 	/**
 	 * Invalid target. You can only use this only on other players.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_INVALID_TARGET_PC_ONLY = new SM_SYSTEM_MESSAGE(1300009);
+
 	/**
 	 * Invalid target. You can only use this on spirits.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_INVALID_TARGET_PET_ONLY = new SM_SYSTEM_MESSAGE(1300010);
+
 	/**
 	 * Invalid target. You can only use this on group members.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_INVALID_TARGET_PARTY_ONLY = new SM_SYSTEM_MESSAGE(1300011);
+
 	/**
 	 * You can only use this on living targets.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_TARGET_IS_NOT_ALIVE = new SM_SYSTEM_MESSAGE(1300012);
+
 	/**
 	 * Invalid target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_TARGET_IS_NOT_VALID = new SM_SYSTEM_MESSAGE(1300013);
+
 	/**
 	 * You do not have enough health to use that skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NOT_ENOUGH_HP = new SM_SYSTEM_MESSAGE(1300014);
+
 	/**
 	 * You do not have enough mana to use that skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NOT_ENOUGH_MP = new SM_SYSTEM_MESSAGE(1300015);
+
 	/**
 	 * You do not have enough DP to use that skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NOT_ENOUGH_DP = new SM_SYSTEM_MESSAGE(1300016);
+
 	/**
 	 * You cannot learn the design because your skill level is not high enough.
 	 */
@@ -7591,18 +7718,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are not ready to use that skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NOT_READY = new SM_SYSTEM_MESSAGE(1300021);
+
 	/**
 	 * You are too far from the target to use that skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_TOO_FAR = new SM_SYSTEM_MESSAGE(1300022);
+
 	/**
 	 * The skill was cancelled.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANCELED = new SM_SYSTEM_MESSAGE(1300023);
+
 	/**
 	 * You have failed to use the skill because the target disappeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_TARGET_LOST = new SM_SYSTEM_MESSAGE(1300024);
+
 	/**
 	 * You are using too many skills simultaneously.
 	 */
@@ -7619,30 +7750,37 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You can use the skill only during combat.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_CAST_NOT_IN_COMBAT_MODE = new SM_SYSTEM_MESSAGE(1300027);
+
 	/**
 	 * That skill does not exist.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_CAST_NO_SUCH_SKILL = new SM_SYSTEM_MESSAGE(1300028);
+
 	/**
 	 * The skill has failed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_FAILED = new SM_SYSTEM_MESSAGE(1300029);
+
 	/**
 	 * You cannot use that because there is an obstacle in the way.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_OBSTACLE = new SM_SYSTEM_MESSAGE(1300030);
+
 	/**
 	 * You do not have a proper target for that skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_FIND_VALID_TARGET = new SM_SYSTEM_MESSAGE(1300031);
+
 	/**
 	 * The target is too far away.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ATTACK_TOO_FAR_FROM_TARGET = new SM_SYSTEM_MESSAGE(1300032);
+
 	/**
 	 * You cannot attack as there is an obstacle in the way.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ATTACK_OBSTACLE_EXIST = new SM_SYSTEM_MESSAGE(1300033);
+
 	/**
 	 * You cannot attack.
 	 */
@@ -7659,6 +7797,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * A survey has arrived. Click the icon to open the survey window.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GMPOLL_GOT_POLL = new SM_SYSTEM_MESSAGE(1300036);
+
 	/**
 	 * There is no remaining survey to take part in.
 	 */
@@ -7689,18 +7828,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot remove the equipped item because the inventory is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UI_INVENTORY_FULL = new SM_SYSTEM_MESSAGE(1300042);
+
 	/**
 	 * You left the group.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_SECEDE = new SM_SYSTEM_MESSAGE(1300043);
+
 	/**
 	 * A dead person cannot be invited to a group.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UI_PARTY_DEAD = new SM_SYSTEM_MESSAGE(1300044);
+
 	/**
 	 * You cannot check the information on characters of another race.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ASK_PCINFO_OTHER_RACE = new SM_SYSTEM_MESSAGE(1300045);
+
 	/**
 	 * That person is not logged on.
 	 */
@@ -7797,38 +7940,47 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have not learned the skill to equip this weapon.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NO_WEAPON_MASTERY_SKILL = new SM_SYSTEM_MESSAGE(1300060);
+
 	/**
 	 * You have not learned the skill to equip this armor.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NO_ARMOR_MASTERY_SKILL = new SM_SYSTEM_MESSAGE(1300061);
+
 	/**
 	 * You cannot cast spells while silenced.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_CAST_MAGIC_SKILL_WHILE_SILENCED = new SM_SYSTEM_MESSAGE(1300062);
+
 	/**
 	 * You cannot use physical skills while in a state of fear or restraint.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_CAST_PHYSICAL_SKILL_IN_FEAR = new SM_SYSTEM_MESSAGE(1300063);
+
 	/**
 	 * You cannot use the skill while in an Altered State.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_CAST_IN_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1300064);
+
 	/**
 	 * Your actions are limited while in an Altered State.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_ACT_WHILE_IN_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1300065);
+
 	/**
 	 * You cannot attack while in an Altered State.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_ATTACK_WHILE_IN_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1300066);
+
 	/**
 	 * You cannot gather while in an Altered State.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_GATHER_WHILE_IN_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1300067);
+
 	/**
 	 * You cannot use the item while in an Altered State.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_USE_ITEM_WHILE_IN_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1300068);
+
 	/**
 	 * You cannot equip the item while in an Altered State.
 	 */
@@ -7852,54 +8004,67 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You already have a spirit following you.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUMMON_ALREADY_HAVE_A_FOLLOWER = new SM_SYSTEM_MESSAGE(1300072);
+
 	/**
 	 * As the spirit is too far, your summon has been forcibly canceled.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUMMON_UNSUMMON_BY_TOO_DISTANCE = new SM_SYSTEM_MESSAGE(1300073);
+
 	/**
 	 * You are too far from the spirit is to issue an order.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUMMON_CANT_ORDER_BY_TOO_DISTANCE = new SM_SYSTEM_MESSAGE(1300074);
+
 	/**
 	 * You have not learned the Advanced Dual-Wielding skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NO_WEAPON_DUEL_SKILL = new SM_SYSTEM_MESSAGE(1300075);
+
 	/**
 	 * The target cannot be charmed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_ENSLAVE_TARGET_CANT_BE_ENSLAVED = new SM_SYSTEM_MESSAGE(1300076);
+
 	/**
 	 * You have failed to charm the target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_ENSLAVE_FAILED_TO_ENSLAVE = new SM_SYSTEM_MESSAGE(1300077);
+
 	/**
 	 * You have charmed the target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_ENSLAVE_SUCCEDED_TO_ENSLAVE = new SM_SYSTEM_MESSAGE(1300078);
+
 	/**
 	 * You have no dead pets.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ENSLAVE_RESURRECT_PET_DONT_HAVE_DEAD_STONE = new SM_SYSTEM_MESSAGE(1300079);
+
 	/**
 	 * You do not have enough Kinah to resurrect the Charm Stone.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ENSLAVE_RESURRECT_PET_NOT_ENOUGH_MONEY = new SM_SYSTEM_MESSAGE(1300080);
+
 	/**
 	 * You are too far from the NPC to resurrect it.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ENSLAVE_RESURRECT_PET_TOO_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300081);
+
 	/**
 	 * You have resurrected the pet.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ENSLAVE_RESURRECT_PET_SUCCEEDED = new SM_SYSTEM_MESSAGE(1300082);
+
 	/**
 	 * Please try again after you have closed other dialog boxes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ENSLAVE_RESURRECT_PET_RETRY_WHEN_CLOSE_OTHER_QUESTION_WND = new SM_SYSTEM_MESSAGE(1300083);
+
 	/**
 	 * You cannot transfer XP.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ENSLAVE_GIVE_EXP_TO_PET_DONT_HAVE_PET = new SM_SYSTEM_MESSAGE(1300084);
+
 	/**
 	 * The amount of XP you have transferred to the spirit is not enough.
 	 */
@@ -7916,14 +8081,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * There is no target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUMMON_NO_TARGET = new SM_SYSTEM_MESSAGE(1300087);
+
 	/**
 	 * Invalid target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_SUMMON_IS_NOT_VALID = new SM_SYSTEM_MESSAGE(1300088);
+
 	/**
 	 * You cannot use this on enemies.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_INVALID_TARGET_NOTENEMY_ONLY = new SM_SYSTEM_MESSAGE(1300089);
+
 	/**
 	 * You can only use this on enemies.
 	 */
@@ -8006,6 +8174,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot find the user you have challenged to a duel.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_DUEL_LOST_REQUEST_DUEL_PARTNER = new SM_SYSTEM_MESSAGE(1300102);
+
 	/**
 	 * You are not ready to start a duel.
 	 */
@@ -8022,106 +8191,132 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot use that on your target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_CAST_TO_CURRENT_TARGET = new SM_SYSTEM_MESSAGE(1300105);
+
 	/**
 	 * You can use it only when you are in Counterattack mode.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_CAST_IN_NONE_COUNTER_STATUS = new SM_SYSTEM_MESSAGE(1300106);
+
 	/**
 	 * This skill can only be used as part of a Chain Skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_CAST_IN_NONE_CHAINSKILL_STATUS = new SM_SYSTEM_MESSAGE(1300107);
+
 	/**
 	 * You can only cast that on a group member who is using a Special Attack.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_CAST_ONLY_TO_MY_PARTY_CASTING_ULTRASKILL = new SM_SYSTEM_MESSAGE(1300108);
+
 	/**
 	 * You interrupted the target's skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_TARGET_SKILL_CANCELED = new SM_SYSTEM_MESSAGE(1300109);
+
 	/**
 	 * You must be equipped with a shield to use this skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NEED_SHIELD = new SM_SYSTEM_MESSAGE(1300110);
+
 	/**
 	 * You must be equipped with an Off-hand Weapon to use the skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NEED_DUAL_WEAPON = new SM_SYSTEM_MESSAGE(1300111);
+
 	/**
 	 * This skill can only be used from the rear of your opponent.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_USE_TO_TARGETS_BACK_ONLY = new SM_SYSTEM_MESSAGE(1300112);
+
 	/**
 	 * You can use this skill only while flying.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_RESTRICTION_FLY_ONLY = new SM_SYSTEM_MESSAGE(1300113);
+
 	/**
 	 * You cannot use a skill while you are flying.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_RESTRICTION_NO_FLY = new SM_SYSTEM_MESSAGE(1300114);
+
 	/**
 	 * The attacker or the target is in a different area.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ATTACK_INVALID_POSITION = new SM_SYSTEM_MESSAGE(1300115);
+
 	/**
 	 * Invalid target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ATTACK_IMPROPER_TARGET = new SM_SYSTEM_MESSAGE(1300116);
+
 	/**
 	 * You cannot equip the shield as you have not learned the Equip Shield skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_NO_SHIELD_MASTERY_SKILL = new SM_SYSTEM_MESSAGE(1300117);
+
 	/**
 	 * You cannot attack in your current stance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_ATTACK_WHILE_IN_CURRENT_STANCE = new SM_SYSTEM_MESSAGE(1300118);
+
 	/**
 	 * You cannot gather in your current stance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_GATHER_WHILE_IN_CURRENT_STANCE = new SM_SYSTEM_MESSAGE(1300119);
+
 	/**
 	 * You cannot use that item in your current stance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_USE_ITEM_WHILE_IN_CURRENT_STANCE = new SM_SYSTEM_MESSAGE(1300120);
+
 	/**
 	 * You cannot change your equipment in your current stance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_EQUIP_ITEM_WHILE_IN_CURRENT_STANCE = new SM_SYSTEM_MESSAGE(1300121);
+
 	/**
 	 * You cannot craft in your current stance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_COMBINE_WHILE_IN_CURRENT_STANCE = new SM_SYSTEM_MESSAGE(1300122);
+
 	/**
 	 * You cannot use that skill in your current stance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_CAST_IN_CURRENT_STANCE = new SM_SYSTEM_MESSAGE(1300123);
+
 	/**
 	 * You cannot change mode in your current stance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_CHANGE_MODE__WHILE_IN_CURRENT_STANCE = new SM_SYSTEM_MESSAGE(1300124);
+
 	/**
 	 * You are too close to the target to use that skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_TOO_CLOSE = new SM_SYSTEM_MESSAGE(1300125);
+
 	/**
 	 * You cannot use the magic passage while flying.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_USE_GROUPGATE_WHEN_FLYING = new SM_SYSTEM_MESSAGE(1300126);
+
 	/**
 	 * You can only use that when you have a spirit.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_USE_THIS_SKILL_WITHOUT_A_PET = new SM_SYSTEM_MESSAGE(1300127);
+
 	/**
 	 * You can only use it when your spirit is in attack mode.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_USE_THIS_SKILL_WHEN_PET_IS_NOT_ATTACK_MODE = new SM_SYSTEM_MESSAGE(1300128);
+
 	/**
 	 * You use the skill on yourself instead of the currently selected target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_AUTO_CHANGE_TARGET_TO_MY = new SM_SYSTEM_MESSAGE(1300129);
+
 	/**
 	 * Your spirit has no skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_USE_THIS_SKILL_TO_A_PET_THAT_HAS_NO_ULTRASKILL = new SM_SYSTEM_MESSAGE(1300130);
+
 	/**
 	 * You cannot use this skill during combat.
 	 */
@@ -8194,34 +8389,32 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot learn this skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILLLEARNBOOK_CANT_USE_NO_SKILL = new SM_SYSTEM_MESSAGE(1300141);
+
 	/**
 	 * You have already learned this skill.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILLLEARNBOOK_CANT_USE_ALREADY_HAS_SKILL = new SM_SYSTEM_MESSAGE(1300142);
+
 	/**
 	 * You cannot use that item here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_USE_ITEM_IN_CURRENT_POSITION = new SM_SYSTEM_MESSAGE(1300143);
 
 	/**
-	 * You have cancelled using the item.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_ITEM_CANCELED(DescriptionId id) {
-		return new SM_SYSTEM_MESSAGE(1300427, id);
-	}
-
-	/**
 	 * You cannot craft here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_COMBINE_CAN_NOT_COMBINE_IN_CURRENT_POSITION = new SM_SYSTEM_MESSAGE(1300144);
+
 	/**
 	 * You cannot gather here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_GATHER_IN_CURRENT_POSTION = new SM_SYSTEM_MESSAGE(1300145);
+
 	/**
 	 * You cannot use the skill here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CANT_CAST_IN_CURRENT_POSTION = new SM_SYSTEM_MESSAGE(1300146);
+
 	/**
 	 * You cannot take off in your current stance.
 	 */
@@ -8238,18 +8431,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot use this skill while transformed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_CAST_IN_SHAPECHANGE = new SM_SYSTEM_MESSAGE(1300149);
+
 	/**
 	 * You have no right to use the selected Magic Passage.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_USE_GROUPGATE_NO_RIGHT = new SM_SYSTEM_MESSAGE(1300150);
+
 	/**
 	 * This skill can only be used in the Abyss.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_CAST_IN_NOT_ABYSS_WORLD = new SM_SYSTEM_MESSAGE(1300151);
+
 	/**
 	 * You cannot invite any more group members.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_CANT_ADD_NEW_MEMBER = new SM_SYSTEM_MESSAGE(1300152);
+
 	/**
 	 * Only the group leader can transfer authority to another person.
 	 */
@@ -8266,22 +8463,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have become the new group leader.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_YOU_BECOME_NEW_LEADER = new SM_SYSTEM_MESSAGE(1300155);
+
 	/**
 	 * Only the group leader can change the item distribution method.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ONLY_LEADER_CAN_CHANGE_LOOTING = new SM_SYSTEM_MESSAGE(1300156);
+
 	/**
 	 * The item distribution method of the group has been changed to Manual.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_LOOTING_CHANGED_TO_MANUAL = new SM_SYSTEM_MESSAGE(1300157);
+
 	/**
 	 * The item distribution method of the group has been changed to Auto.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_LOOTING_CHANGED_TO_AUTO = new SM_SYSTEM_MESSAGE(1300158);
+
 	/**
 	 * The user you invited to the group is currently offline.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_NO_USER_TO_INVITE = new SM_SYSTEM_MESSAGE(1300159);
+
 	/**
 	 * Only group leader can invite.
 	 */
@@ -8298,22 +8500,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot invite yourself to a group.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_CAN_NOT_INVITE_SELF = new SM_SYSTEM_MESSAGE(1300162);
+
 	/**
 	 * You cannot issue an invitation while you are dead.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_CANT_INVITE_WHEN_DEAD = new SM_SYSTEM_MESSAGE(1300163);
+
 	/**
 	 * The selected group member is currently offline.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_OFFLINE_MEMBER = new SM_SYSTEM_MESSAGE(1300164);
+
 	/**
 	 * Only the group leader can kick a member out.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ONLY_LEADER_CAN_BANISH = new SM_SYSTEM_MESSAGE(1300165);
+
 	/**
 	 * You have been kicked out of the group.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_YOU_ARE_BANISHED = new SM_SYSTEM_MESSAGE(1300166);
+
 	/**
 	 * The group has been disbanded.
 	 */
@@ -8344,6 +8551,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are not in any group.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_YOU_ARE_NOT_PARTY_MEMBER = new SM_SYSTEM_MESSAGE(1300171);
+
 	/**
 	 * You are not a group member.
 	 */
@@ -8388,14 +8596,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The rare item distribution method of the group has been changed to Free-for-All.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_RARE_LOOTING_CHANGED_TO_MANUAL = new SM_SYSTEM_MESSAGE(1300178);
+
 	/**
 	 * The rare item distribution method of the group has been changed to Auto.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_RARE_LOOTING_CHANGED_TO_AUTO = new SM_SYSTEM_MESSAGE(1300179);
+
 	/**
 	 * The rare item distribution method of the group has been changed to Dice Roll.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_RARE_LOOTING_CHANGED_TO_DICE = new SM_SYSTEM_MESSAGE(1300180);
+
 	/**
 	 * A group member cannot be kicked out before the completion of loot distribution.
 	 */
@@ -8412,14 +8623,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You can roll the dice once more if the rolled number is less than 100.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ITEM_DICE_AGAIN = new SM_SYSTEM_MESSAGE(1300183);
+
 	/**
 	 * The item distribution method of the group has been changed to Free-for-All.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_LOOTING_CHANGED_TO_FREEFORALL = new SM_SYSTEM_MESSAGE(1300184);
+
 	/**
 	 * The item distribution method of the group has been changed to Round-robin.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_LOOTING_CHANGED_TO_ROUNDROBIN = new SM_SYSTEM_MESSAGE(1300185);
+
 	/**
 	 * The item distribution method of the group has been changed to Group Leader.
 	 */
@@ -8490,10 +8704,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot invite any more as the alliance is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ALLIANCE_CANT_ADD_NEW_MEMBER = new SM_SYSTEM_MESSAGE(1300196);
+
 	/**
 	 * Only the group leader can leave the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ALLIANCE_ONLY_PARTY_LEADER_CAN_LEAVE_ALLIANCE = new SM_SYSTEM_MESSAGE(1300197);
+
 	/**
 	 * Your group is not part of an alliance.
 	 */
@@ -8510,6 +8726,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Your group has left the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ALLIANCE_MY_PARTY_LEAVE_ALLIANCE = new SM_SYSTEM_MESSAGE(1300200);
+
 	/**
 	 * The alliance has been disbanded.
 	 */
@@ -8547,6 +8764,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The item distribution method of the alliance has been changed to Free-for-All.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ALLIANCE_LOOTING_CHANGED_TO_FREE = new SM_SYSTEM_MESSAGE(1300206);
+
 	/**
 	 * The item distribution method of the alliance has been changed to Auto.
 	 */
@@ -8636,6 +8854,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The request cannot be processed, as there are already too many requests pending approval by the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ALLIANCE_TOO_MANY_VOTE = new SM_SYSTEM_MESSAGE(1300220);
+
 	/**
 	 * You are not a member of an alliance.
 	 */
@@ -8652,46 +8871,57 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Only the alliance captain can change the item distribution method.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ALLIANCE_ONLY_LEADER_CAN_CHANGE_LOOTING = new SM_SYSTEM_MESSAGE(1300223);
+
 	/**
 	 * The item distribution method of the alliance has been changed to Free-for-All.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ALLIANCE_LOOTING_CHANGED_TO_FREEFORALL = new SM_SYSTEM_MESSAGE(1300224);
+
 	/**
 	 * The item distribution method of the alliance has been changed to Round-robin.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ALLIANCE_LOOTING_CHANGED_TO_ROUNDROBIN = new SM_SYSTEM_MESSAGE(1300225);
+
 	/**
 	 * The item distribution method of the alliance has been changed to Captain.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ALLIANCE_LOOTING_CHANGED_TO_LEADERONLY = new SM_SYSTEM_MESSAGE(1300226);
+
 	/**
 	 * You cannot invite the selected player as he or she is too busy.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_INVITE_OTHER_IS_BUSY = new SM_SYSTEM_MESSAGE(1300227);
+
 	/**
 	 * That name is invalid. Please try another.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CREATE_INVALID_GUILD_NAME = new SM_SYSTEM_MESSAGE(1300228);
+
 	/**
 	 * You are too far from the NPC to create a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CREATE_TOO_FAR_FROM_CREATOR_NPC = new SM_SYSTEM_MESSAGE(1300229);
+
 	/**
 	 * Please try again after you have closed other dialog boxes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CREATE_RETRY_WHEN_CLOSE_OTHER_QUESTION_WND = new SM_SYSTEM_MESSAGE(1300230);
+
 	/**
 	 * You do not have enough Kinah to create a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CREATE_NOT_ENOUGH_MONEY = new SM_SYSTEM_MESSAGE(1300231);
+
 	/**
 	 * You cannot create a Legion as you are already a member of another Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CREATE_ALREADY_BELONGS_TO_GUILD = new SM_SYSTEM_MESSAGE(1300232);
+
 	/**
 	 * That name is invalid. Please try another..
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CREATE_SAME_GUILD_EXIST = new SM_SYSTEM_MESSAGE(1300233);
+
 	/**
 	 * You cannot create a new Legion as the grace period between creating Legions has not expired.
 	 */
@@ -8708,14 +8938,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot leave your Legion during a war.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_LEAVE_CANT_LEAVE_WHILE_WAR = new SM_SYSTEM_MESSAGE(1300236);
+
 	/**
 	 * You cannot leave your Legion while using the Legion Warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_LEAVE_CANT_LEAVE_GUILD_WHILE_USING_WAREHOUSE = new SM_SYSTEM_MESSAGE(1300237);
+
 	/**
 	 * You cannot leave your Legion unless you transfer Brigade General authority to someone else.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_LEAVE_MASTER_CANT_LEAVE_BEFORE_CHANGE_MASTER = new SM_SYSTEM_MESSAGE(1300238);
+
 	/**
 	 * You are not a member of a Legion.
 	 */
@@ -8739,14 +8972,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are not a member of a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_BANISH_I_AM_NOT_BELONG_TO_GUILD = new SM_SYSTEM_MESSAGE(1300242);
+
 	/**
 	 * You cannot kick yourself out from a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_BANISH_CANT_BANISH_SELF = new SM_SYSTEM_MESSAGE(1300243);
+
 	/**
 	 * You do not have the authority to kick out a Legion member.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_BANISH_DONT_HAVE_RIGHT_TO_BANISH = new SM_SYSTEM_MESSAGE(1300244);
+
 	/**
 	 * You cannot kick a Legion member out during a war.
 	 */
@@ -8777,22 +9013,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot kick out the Legion Brigade General.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_BANISH_CAN_BANISH_MASTER = new SM_SYSTEM_MESSAGE(1300249);
+
 	/**
 	 * You cannot issue a Legion invitation while you are dead.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_CANT_INVITE_WHEN_DEAD = new SM_SYSTEM_MESSAGE(1300250);
+
 	/**
 	 * You are not a member of a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_I_AM_NOT_BELONG_TO_GUILD = new SM_SYSTEM_MESSAGE(1300251);
+
 	/**
 	 * You have no authority to invite others to the Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_DONT_HAVE_RIGHT_TO_INVITE = new SM_SYSTEM_MESSAGE(1300252);
+
 	/**
 	 * There is no user to invite to your Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_NO_USER_TO_INVITE = new SM_SYSTEM_MESSAGE(1300253);
+
 	/**
 	 * You cannot invite yourself to a Legion.
 	 */
@@ -8842,14 +9083,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are not a member of a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_MEMBER_RANK_I_AM_NOT_BELONG_TO_GUILD = new SM_SYSTEM_MESSAGE(1300261);
+
 	/**
 	 * You cannot change the ranks of Legion members because you are not the Legion Brigade General.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_MEMBER_RANK_DONT_HAVE_RIGHT = new SM_SYSTEM_MESSAGE(1300262);
+
 	/**
 	 * The Legion Brigade General cannot change its own rank.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_MEMBER_RANK_ERROR_SELF = new SM_SYSTEM_MESSAGE(1300263);
+
 	/**
 	 * There is no one to change rank.
 	 */
@@ -8887,10 +9131,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You do not have the authority to change the Legion Brigade General.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_MASTER_DONT_HAVE_RIGHT = new SM_SYSTEM_MESSAGE(1300269);
+
 	/**
 	 * You cannot transfer your Brigade General authority to an offline user.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_MASTER_NO_SUCH_USER = new SM_SYSTEM_MESSAGE(1300270);
+
 	/**
 	 * You are already the Legion Brigade General.
 	 */
@@ -8914,42 +9160,52 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot join the alliance because you are not the Legion Brigade General.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_JOIN_CLAN_DONT_HAVE_RIGHT = new SM_SYSTEM_MESSAGE(1300274);
+
 	/**
 	 * You cannot leave the alliance because you are not the Legion Brigade General.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_LEAVE_CLAN_DONT_HAVE_RIGHT = new SM_SYSTEM_MESSAGE(1300275);
+
 	/**
 	 * You do not have the authority to modify the Legion Announcement.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WRITE_NOTICE_DONT_HAVE_RIGHT = new SM_SYSTEM_MESSAGE(1300276);
+
 	/**
 	 * The Legion Announcement has been modified.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WRITE_NOTICE_DONE = new SM_SYSTEM_MESSAGE(1300277);
+
 	/**
 	 * You must be a Legion member to use the Legion warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_NO_GUILD_TO_DEPOSIT = new SM_SYSTEM_MESSAGE(1300278);
+
 	/**
 	 * You cannot use the Legion warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANT_USE_GUILD_STORAGE = new SM_SYSTEM_MESSAGE(1300279);
+
 	/**
 	 * Another Legion member is using the warehouse. Please try again later.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WAREHOUSE_IN_USE = new SM_SYSTEM_MESSAGE(1300280);
+
 	/**
 	 * You are not a member of a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WRITE_INTRO_NOT_BELONG_TO_GUILD = new SM_SYSTEM_MESSAGE(1300281);
+
 	/**
 	 * Your Character Information has been modified.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WRITE_INTRO_DONE = new SM_SYSTEM_MESSAGE(1300282);
+
 	/**
 	 * You have no authority to change the Legion authority settings.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_RIGHT_DONT_HAVE_RIGHT = new SM_SYSTEM_MESSAGE(1300283);
+
 	/**
 	 * The Legion authority has been modified.
 	 */
@@ -8966,62 +9222,77 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You do not have enough Kinah for cancellation.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CREATE_NOT_ENOUGH_MONEY_1 = new SM_SYSTEM_MESSAGE(1300286);
+
 	/**
 	 * There is no room in the Legion for more members.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_CAN_NOT_JOIN_TO_GUILD_BY_SIZE_LIMIT = new SM_SYSTEM_MESSAGE(1300287);
+
 	/**
 	 * You cannot join the Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_CAN_NOT_JOIN_TO_GUILD = new SM_SYSTEM_MESSAGE(1300288);
+
 	/**
 	 * You cannot join the Legion as the player who invited you is dead.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_CAN_NOT_JOIN_TO_GUILD_INVITOR_IS_DEAD = new SM_SYSTEM_MESSAGE(1300289);
+
 	/**
 	 * Currently, the selected player cannot be invited to join your Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_CANT_INVITE_WHEN_HE_IS_QUESTION_ASKED = new SM_SYSTEM_MESSAGE(1300290);
+
 	/**
 	 * The target is not valid. Please select a player.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_INCORRECT_TARGET = new SM_SYSTEM_MESSAGE(1300291);
+
 	/**
 	 * This authority cannot be granted to the rank.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_RIGHT_CANT_GIVE_RIGHT = new SM_SYSTEM_MESSAGE(1300292);
+
 	/**
 	 * You are not a member of a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_I_AM_NOT_BELONG_TO_GUILD = new SM_SYSTEM_MESSAGE(1300293);
+
 	/**
 	 * You are not a member of a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_STAYMODE_CANCEL_I_AM_NOT_BELONG_TO_GUILD = new SM_SYSTEM_MESSAGE(1300294);
+
 	/**
 	 * Please try again after you have closed other dialog boxes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_STAYMODE_CANCEL_RETRY_WHEN_CLOSE_OTHER_QUESTION_WND = new SM_SYSTEM_MESSAGE(1300295);
+
 	/**
 	 * You are too far from the NPC to cancel the Legion disbanding.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_STAYMODE_CANCEL_TOO_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300296);
+
 	/**
 	 * You cannot disband the Legion during a war.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_CANT_DISPERSE_WHILE_WAR = new SM_SYSTEM_MESSAGE(1300297);
+
 	/**
 	 * You cannot disband your Legion while you are using the Legion warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_CANT_DISPERSE_GUILD_WHILE_USING_WAREHOUSE = new SM_SYSTEM_MESSAGE(1300298);
+
 	/**
 	 * You cannot disband a Legion that has a fortress or hideout.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_CANT_DISPERSE_GULILD_HAVING_HOUSE = new SM_SYSTEM_MESSAGE(1300299);
+
 	/**
 	 * You have no authority to disband the Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_ONLY_MASTER_CAN_DISPERSE = new SM_SYSTEM_MESSAGE(1300300);
+
 	/**
 	 * You are not a member of a Legion.
 	 */
@@ -9045,14 +9316,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have already requested to disband the Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_ALREADY_REQUESTED = new SM_SYSTEM_MESSAGE(1300304);
+
 	/**
 	 * You are too far from the NPC to disband the Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_TOO_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300305);
+
 	/**
 	 * You cannot delete a character that joined a Legion. Please try again after it has left the Legion or the Legion is disbanded.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_STAYMODE_CANCEL_1 = new SM_SYSTEM_MESSAGE(1300306);
+
 	/**
 	 * The Legion disbanding mode has been cancelled.
 	 */
@@ -9069,18 +9343,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Only the Legion Brigade General can cancel the disbanding mode.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_STAYMODE_CANCEL_ONLY_MASTER_CAN_CANCEL = new SM_SYSTEM_MESSAGE(1300309);
+
 	/**
 	 * The Legion is not waiting to be disbanded.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_DISPERSE_STAYMODE_CANCEL_YOUR_GUILD_IS_NOT_DISPERS_REQUESTED = new SM_SYSTEM_MESSAGE(1300310);
+
 	/**
 	 * You cannot invite members of other race.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_CAN_NOT_INVITE_OTHER_RACE = new SM_SYSTEM_MESSAGE(1300311);
+
 	/**
 	 * You are not a member of a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_MEMBER_NICKNAME_I_AM_NOT_BELONG_TO_GUILD = new SM_SYSTEM_MESSAGE(1300312);
+
 	/**
 	 * You have no authority to bestow a title.
 	 */
@@ -9099,24 +9377,20 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_LEVEL_DONT_HAVE_RIGHT = new SM_SYSTEM_MESSAGE(1300315);
 
 	/**
-	 * You need to complete the %0 legion task to level up the legion.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_GUILD_LEVEL_UP_CHALLENGE_TASK(int currentLevel) {
-		return new SM_SYSTEM_MESSAGE(904452, currentLevel);
-	}
-
-	/**
 	 * The Legion is already at the highest level.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_LEVEL_CANT_LEVEL_UP = new SM_SYSTEM_MESSAGE(1300316);
+
 	/**
 	 * You do not have enough Contribution Points.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_LEVEL_NOT_ENOUGH_POINT = new SM_SYSTEM_MESSAGE(1300317);
+
 	/**
 	 * Your Legion does not have enough members.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_LEVEL_NOT_ENOUGH_MEMBER = new SM_SYSTEM_MESSAGE(1300318);
+
 	/**
 	 * You do not have enough Kinah.
 	 */
@@ -9133,34 +9407,42 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Please try again after you have closed other input boxes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_LEVEL_RETRY_WHEN_CLOSE_OTHER_QUESTION_WND = new SM_SYSTEM_MESSAGE(1300321);
+
 	/**
 	 * You do not have the authority to use the Legion warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WAREHOUSE_NO_RIGHT = new SM_SYSTEM_MESSAGE(1300322);
+
 	/**
 	 * The Legion warehouse is now loading. Please try again later.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WAREHOUSE_IN_LOADING = new SM_SYSTEM_MESSAGE(1300323);
+
 	/**
 	 * Your Legion does not have enough funds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WAREHOUSE_NOT_ENOUGH_FUND = new SM_SYSTEM_MESSAGE(1300324);
+
 	/**
 	 * The target is busy and cannot be invited at the moment.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_OTHER_IS_BUSY = new SM_SYSTEM_MESSAGE(1300325);
+
 	/**
 	 * You are too far from the NPC to raise the Legion level.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_LEVEL_TOO_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300326);
+
 	/**
 	 * You are already a member of a Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_YOU_ARE_ALREADY_BELONGS_TO_GUILD = new SM_SYSTEM_MESSAGE(1300327);
+
 	/**
 	 * You cannot join another Legion while waiting for your Legion to be created.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_YOU_ARE_WAITING_FOR_GUILD_CREATE = new SM_SYSTEM_MESSAGE(1300328);
+
 	/**
 	 * The Legion you were to join no longer exists.
 	 */
@@ -9189,10 +9471,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot use the Legion warehouse during the disbandment waiting period.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WAREHOUSE_CANT_USE_WHILE_DISPERSE = new SM_SYSTEM_MESSAGE(1300333);
+
 	/**
 	 * Limited edition items are all sold out.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BUY_SELL_ITEM_SOLD_OUT = new SM_SYSTEM_MESSAGE(1300334);
+
 	/**
 	 * You cannot buy this item.
 	 */
@@ -9216,22 +9500,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are too away to trade.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BUY_SELL_TOO_FAR_TO_TRADE = new SM_SYSTEM_MESSAGE(1300338);
+
 	/**
 	 * You do not have enough Kinah to buy the item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BUY_SELL_NOT_ENOUGH_MONEY_TO_BUY_ITEM = new SM_SYSTEM_MESSAGE(1300339);
+
 	/**
 	 * You have bought the item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BUY_SELL_USER_BOUGHT_ITEMS = new SM_SYSTEM_MESSAGE(1300340);
+
 	/**
 	 * Sales complete.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BUY_SELL_USER_SELL_ITEMS = new SM_SYSTEM_MESSAGE(1300341);
+
 	/**
 	 * You cannot sell equipped items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BUY_SELL_CAN_NOT_SELL_EQUIPED_ITEM = new SM_SYSTEM_MESSAGE(1300342);
+
 	/**
 	 * The price of the item has changed. Please try buying it again after you have checked the changed price.
 	 */
@@ -9248,30 +9537,37 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot register any more items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BUY_SELL_FULL_BASKET = new SM_SYSTEM_MESSAGE(1300345);
+
 	/**
 	 * You are too far to have a conversation.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_DIALOG_TOO_FAR_TO_TALK = new SM_SYSTEM_MESSAGE(1300346);
+
 	/**
 	 * You are already trading with someone else.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_YOU_ARE_ALREADY_EXCHANGING = new SM_SYSTEM_MESSAGE(1300347);
+
 	/**
 	 * You cannot trade while you are invisible.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_CANT_EXCHANGE_WHILE_INVISIBLE = new SM_SYSTEM_MESSAGE(1300348);
+
 	/**
 	 * You cannot trade with an invisible player.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_CANT_EXCHANGE_WITH_INVISIBLE_USER = new SM_SYSTEM_MESSAGE(1300349);
+
 	/**
 	 * You cannot trade as you are overburdened with items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_TOO_HEAVY_TO_TRADE = new SM_SYSTEM_MESSAGE(1300350);
+
 	/**
 	 * You have no one to trade with.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_NO_ONE_TO_EXCHANGE = new SM_SYSTEM_MESSAGE(1300351);
+
 	/**
 	 * You are too far from the target to trade.
 	 */
@@ -9331,34 +9627,42 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The trade is complete.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_COMPLETE = new SM_SYSTEM_MESSAGE(1300361);
+
 	/**
 	 * The other player has pressed the Lock List button.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_OTHER_PRESSED_CHECK = new SM_SYSTEM_MESSAGE(1300362);
+
 	/**
 	 * The other player has pressed the Final Confirmation button.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_OTHER_PRESSED_OK = new SM_SYSTEM_MESSAGE(1300363);
+
 	/**
 	 * The trade has been cancelled.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_CANCELED = new SM_SYSTEM_MESSAGE(1300364);
+
 	/**
 	 * You cannot sell equipped items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_CANT_SELL_EQUIPPED_ITEM = new SM_SYSTEM_MESSAGE(1300365);
+
 	/**
 	 * You cannot trade any more as your inventory is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_FULL_INVENTORY = new SM_SYSTEM_MESSAGE(1300366);
+
 	/**
 	 * You cannot register any more items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_FULL_BASKET = new SM_SYSTEM_MESSAGE(1300367);
+
 	/**
 	 * This item cannot be registered.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_CAN_NOT_REGISTER_ITEM = new SM_SYSTEM_MESSAGE(1300368);
+
 	/**
 	 * This is not a tradable item.
 	 */
@@ -9367,8 +9671,8 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * You cannot use the selected item until you reach the %0 rank.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_CANNOT_USE_ITEM_INVALID_RANK(int value0) {
-		return new SM_SYSTEM_MESSAGE(1300370, new DescriptionId(value0));
+	public static SM_SYSTEM_MESSAGE STR_CANNOT_USE_ITEM_INVALID_RANK(int i) {
+		return new SM_SYSTEM_MESSAGE(1300370, new DescriptionId(i));
 	}
 
 	/**
@@ -9387,30 +9691,37 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Your race cannot use this item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_ITEM_INVALID_RACE = new SM_SYSTEM_MESSAGE(1300373);
+
 	/**
 	 * Your nationality prevents you from using this item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_ITEM_INVALID_NATION = new SM_SYSTEM_MESSAGE(1300374);
+
 	/**
 	 * This item cannot be used by your gender.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_ITEM_INVALID_GENDER = new SM_SYSTEM_MESSAGE(1300375);
+
 	/**
 	 * You are too overburdened to pick up any more items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TOO_HEAVY = new SM_SYSTEM_MESSAGE(1300376);
+
 	/**
 	 * Another player has the first chance to pick up this item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PICKUP_ITEM_FAILED_NOT_MY_ITEM = new SM_SYSTEM_MESSAGE(1300377);
+
 	/**
 	 * You are too far away to pick up the item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PICKUP_ITEM_FAILED_TOO_FAR = new SM_SYSTEM_MESSAGE(1300378);
+
 	/**
 	 * You cannot put down any more items at this place.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANT_DROP_THE_LOC = new SM_SYSTEM_MESSAGE(1300379);
+
 	/**
 	 * You cannot discard equipped items.
 	 */
@@ -9434,6 +9745,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot give equipped items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANT_GIVE_WORN = new SM_SYSTEM_MESSAGE(1300383);
+
 	/**
 	 * You are too overburdened to fight.
 	 */
@@ -9520,21 +9832,15 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
-	 * You cannot attack because you have no arrow.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_CANT_ATTACK_NO_ARROW = new SM_SYSTEM_MESSAGE(1300397);
-	/**
-	 * You must board the robot to use this skill.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_SKILL_NO_ROBOT = new SM_SYSTEM_MESSAGE(1301067);
-	/**
 	 * You do not have a weapon to modify the appearance of.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_CHANGE_WEAPON_SKIN__THERE_IS_NO_WEAPON = new SM_SYSTEM_MESSAGE(1300398);
+
 	/**
 	 * You cannot modify the appearance of the selected item as it is not a weapon.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_CHANGE_WEAPON_SKIN__SELECTED_ITEM_IS_NOT_WEAPON = new SM_SYSTEM_MESSAGE(1300399);
+
 	/**
 	 * You can only modify the appearance of the weapon to another of the same type.
 	 */
@@ -9565,6 +9871,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You need help from a Stigma Master to equip the Stigma Stone.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_STIGMA_TO_EQUIP_STONE_TALK_WITH_STIGMA_NPC = new SM_SYSTEM_MESSAGE(1300404);
+
 	/**
 	 * You need help from a Stigma Master to remove the Stigma Stone.
 	 */
@@ -9633,26 +9940,32 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * This Stigma Stone cannot be equipped.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_STIGMA_CANNOT_EQUIP_STONE = new SM_SYSTEM_MESSAGE(1300415);
+
 	/**
 	 * You are carrying too many items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WAREHOUSE_TOO_MANY_ITEMS_INVENTORY = new SM_SYSTEM_MESSAGE(1300416);
+
 	/**
 	 * There is no space in the warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WAREHOUSE_TOO_MANY_ITEMS_WAREHOUSE = new SM_SYSTEM_MESSAGE(1300417);
+
 	/**
 	 * You cannot store this in the warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WAREHOUSE_CANT_DEPOSIT_ITEM = new SM_SYSTEM_MESSAGE(1300418);
+
 	/**
 	 * You are too far from the NPC.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WAREHOUSE_TOO_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300419);
+
 	/**
 	 * Equipped items cannot be stored in the warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WAREHOUSE_DEPOSIT_EQUIPPED_ITEM = new SM_SYSTEM_MESSAGE(1300420);
+
 	/**
 	 * There is no space in the warehouse.
 	 */
@@ -9683,6 +9996,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * There are no dropped items nearby.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ITEM_NO_DROP_ITEM = new SM_SYSTEM_MESSAGE(1300425);
+
 	/**
 	 * You cannot use that item here.
 	 */
@@ -9691,16 +10005,20 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * You have cancelled using the item.
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_ITEM_CANCELED = new SM_SYSTEM_MESSAGE(1300427);
+	public static final SM_SYSTEM_MESSAGE STR_ITEM_CANCELED(DescriptionId id) {
+		return new SM_SYSTEM_MESSAGE(1300427, id);
+	}
 
 	/**
 	 * The other player is carrying too many items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_PARTNER_HAS_TOON_MANY_ITEMS_INVENTORY = new SM_SYSTEM_MESSAGE(1300428);
+
 	/**
 	 * There are too many items in the target's trade window. The total number of items will exceed the size of your inventory after trading.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXCHANGE_EXCHANGE_RESULT_WILL_BE_OVER_YOUR_INVENTORY_SIZE = new SM_SYSTEM_MESSAGE(1300429);
+
 	/**
 	 * Your cube cannot be further expanded.
 	 */
@@ -9783,14 +10101,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Your cube cannot be upgraded any further through quests.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXTEND_INVENTORY_CANT_EXTEND_MORE_BY_QUEST = new SM_SYSTEM_MESSAGE(1300442);
+
 	/**
 	 * You are too far away to view the inventory.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VIEW_OTHER_INVENTORY_TOO_FAR_FROM_TARGET = new SM_SYSTEM_MESSAGE(1300443);
+
 	/**
 	 * The Stigma Stone cannot be removed: All items currently equipped via the skills acquired through this Stigma Stone must be removed first.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_STIGMA_CANNT_UNEQUIP_STONE_FIRST_UNEQUIP_CURRENT_EQUIPPED_ITEM = new SM_SYSTEM_MESSAGE(1300444);
+
 	/**
 	 * Cannot find the item.
 	 */
@@ -9855,11 +10176,15 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		return new SM_SYSTEM_MESSAGE(1300454, new DescriptionId(nameId));
 	}
 
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_GRIND_LIMIT(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1405913, new DescriptionId(nameId));
+	}
+
 	/**
 	 * You have successfully enchanted %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_ENCHANT_ITEM_SUCCEED(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1300455, descriptionId);
+	public static SM_SYSTEM_MESSAGE STR_ENCHANT_ITEM_SUCCEED(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1300455, new DescriptionId(nameId));
 	}
 
 	/**
@@ -9870,17 +10195,18 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
-	 * You successfully enchanted %0 by +%num1.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ENCHANT_ITEM_SUCCEED_NEW(DescriptionId descriptionId, int value0) {
-		return new SM_SYSTEM_MESSAGE(1401681, descriptionId, value0);
-	}
-
-	/**
 	 * You have cancelled the enchanting of %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_ENCHANT_ITEM_CANCELED(int value0) {
-		return new SM_SYSTEM_MESSAGE(1300457, value0);
+	public static SM_SYSTEM_MESSAGE STR_ENCHANT_ITEM_CANCELED(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1300457, new DescriptionId(nameId));
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_GRIND_CANCEL(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1405911, new DescriptionId(nameId));
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_GRIND_FAIL(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1405912, descriptionId);
 	}
 
 	/**
@@ -9948,6 +10274,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are too far from the NPC to remove the manastone.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_REMOVE_ITEM_OPTION_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300467);
+
 	/**
 	 * Cannot find the item.
 	 */
@@ -9977,15 +10304,15 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * You do not have enough Kinah to remove the manastone from %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_REMOVE_ITEM_OPTION_NOT_ENOUGH_GOLD(long price) {
-		return new SM_SYSTEM_MESSAGE(1300472, price);
+	public static SM_SYSTEM_MESSAGE STR_REMOVE_ITEM_OPTION_NOT_ENOUGH_GOLD(String value0) {
+		return new SM_SYSTEM_MESSAGE(1300472, value0);
 	}
 
 	/**
 	 * You have removed the manastone from %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_REMOVE_ITEM_OPTION_SUCCEED(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1300473, descriptionId);
+	public static SM_SYSTEM_MESSAGE STR_REMOVE_ITEM_OPTION_SUCCEED(String value0) {
+		return new SM_SYSTEM_MESSAGE(1300473, value0);
 	}
 
 	/**
@@ -9999,10 +10326,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are too far from the NPC to modify the appearance of the item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHANGE_ITEM_SKIN_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300475);
+
 	/**
 	 * You must be at least level 20 before you can modify the appearance of items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHANGE_ITEM_SKIN_PC_LEVEL_LIMIT = new SM_SYSTEM_MESSAGE(1300476);
+
 	/**
 	 * Cannot find the item.
 	 */
@@ -10094,54 +10423,67 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You do not have a Power Shard equipped.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WEAPON_BOOST_NO_BOOSTER_EQUIPED = new SM_SYSTEM_MESSAGE(1300490);
+
 	/**
 	 * You activate the Power Shard.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WEAPON_BOOST_BOOST_MODE_STARTED = new SM_SYSTEM_MESSAGE(1300491);
+
 	/**
 	 * You deactivate the Power Shard.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WEAPON_BOOST_BOOST_MODE_ENDED = new SM_SYSTEM_MESSAGE(1300492);
+
 	/**
 	 * You cannot use the item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ITEM_IS_NOT_USABLE = new SM_SYSTEM_MESSAGE(1300493);
+
 	/**
 	 * You cannot use the item as its cooldown time has not expired yet.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ITEM_CANT_USE_UNTIL_DELAY_TIME = new SM_SYSTEM_MESSAGE(1300494);
+
 	/**
 	 * You must be next to a postbox and click it to use the post service.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MAIL_CLICK_POSTBOX_TO_USE = new SM_SYSTEM_MESSAGE(1300495);
+
 	/**
 	 * You cannot mail equipped items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MAIL_SEND_CAN_NOT_SEND_EQUIPPED_ITEM = new SM_SYSTEM_MESSAGE(1300496);
+
 	/**
 	 * You cannot mail items that are not tradable.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MAIL_SEND_ITEM_CAN_NOT_BE_EXCHANGED = new SM_SYSTEM_MESSAGE(1300497);
+
 	/**
 	 * You cannot mail items that you have already used.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MAIL_SEND_USED_ITEM = new SM_SYSTEM_MESSAGE(1300498);
+
 	/**
 	 * You cannot register any more items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MAIL_SEND_FULL_BASKET = new SM_SYSTEM_MESSAGE(1300499);
+
 	/**
 	 * The selected NPC cannot add ability to the item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_GIVE_ITEM_PROC_CANT_GIVE_PROC_BY_THIS_NPC = new SM_SYSTEM_MESSAGE(1300500);
+
 	/**
 	 * You are too far from the NPC to add abilities to the item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_GIVE_ITEM_PROC_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300501);
+
 	/**
 	 * Failed to find the target item to add the ability to.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GIVE_ITEM_PROC_NO_TARGET_ITEM = new SM_SYSTEM_MESSAGE(1300502);
+
 	/**
 	 * You cannot add an ability to equipped items.
 	 */
@@ -10212,14 +10554,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The item has not been dyed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ITEM_COLOR_REMOVE_ERROR_CANNOTREMOVE = new SM_SYSTEM_MESSAGE(1300513);
+
 	/**
 	 * The item cannot be found.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ITEM_COLOR_ERROR = new SM_SYSTEM_MESSAGE(1300514);
+
 	/**
 	 * You cannot dye equipped items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ITEM_COLOR_CANNOT_CHANGE_EQUIPPED_ITEM = new SM_SYSTEM_MESSAGE(1300515);
+
 	/**
 	 * The target is busy and cannot trade at the moment.
 	 */
@@ -10297,18 +10642,23 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Jeridises
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FACTION_ZERIDITH = new SM_SYSTEM_MESSAGE(1300527);
+
 	/**
 	 * The Brugons
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FACTION_BRUGON = new SM_SYSTEM_MESSAGE(1300528);
+
 	/**
 	 * The Timoris
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FACTION_TIMORITH = new SM_SYSTEM_MESSAGE(1300529);
+
+
 	/**
 	 * A connection cannot be established with the Petition Server. Please try again later.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PETITION_SERVER_DOWN = new SM_SYSTEM_MESSAGE(1300537);
+
 	/**
 	 * The petition is too short. A Support Petition must be at least 5 words in length.
 	 */
@@ -10426,10 +10776,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Failed to cancel the petition. Please try again later.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANCEL_PETITION_FAIL = new SM_SYSTEM_MESSAGE(1300555);
+
 	/**
 	 * The Support Petition is already being processed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANCEL_PETITION_FAIL_FORBIDDEN = new SM_SYSTEM_MESSAGE(1300556);
+
 	/**
 	 * Support Petitions cannot be submitted at the moment.
 	 */
@@ -10467,6 +10819,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are not in a consultation with the GM.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_NOT_IN_PETITION_CHAT = new SM_SYSTEM_MESSAGE(1300562);
+
 	/**
 	 * An error has occurred while transmitting the conversation log to the GM. Please try again later.
 	 */
@@ -10549,22 +10902,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Your race cannot receive this quest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_ACQUIRE_ERROR_RACE = new SM_SYSTEM_MESSAGE(1300575);
+
 	/**
 	 * Your nationality prevents you from receiving this quest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_ACQUIRE_ERROR_NATION = new SM_SYSTEM_MESSAGE(1300576);
+
 	/**
 	 * Only males can receive this quest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_ACQUIRE_ERROR_MAN_ONLY = new SM_SYSTEM_MESSAGE(1300577);
+
 	/**
 	 * Only females can receive this quest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_ACQUIRE_ERROR_WOMAN_ONLY = new SM_SYSTEM_MESSAGE(1300578);
+
 	/**
 	 * Your gender prevents you from receiving this quest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_ACQUIRE_ERROR_GENDER = new SM_SYSTEM_MESSAGE(1300579);
+
 	/**
 	 * Your class prevents you from receiving this quest.
 	 */
@@ -10684,6 +11042,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot receive a quest that you are already working on.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_ACQUIRE_ERROR_WORKING_QUEST = new SM_SYSTEM_MESSAGE(1300597);
+
 	/**
 	 * You cannot receive quests while you are dead.
 	 */
@@ -10733,14 +11092,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Please try destroying the quest item again after you have closed other dialog boxes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_GIVEUP_WHEN_DELETE_QUEST_ITEM_RETRY = new SM_SYSTEM_MESSAGE(1300605);
+
 	/**
 	 * No Quest selected
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_NO_QUEST = new SM_SYSTEM_MESSAGE(1300606);
+
 	/**
 	 * Quest Indicator
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUIEST_INDICATOR = new SM_SYSTEM_MESSAGE(1300607);
+
 	/**
 	 * Quest
 	 */
@@ -10834,6 +11196,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot learn this design.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_RECIPEITEM_CANT_USE_NO_RECIPE = new SM_SYSTEM_MESSAGE(1300621);
+
 	/**
 	 * You cannot receive any more quests.
 	 */
@@ -10890,6 +11253,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Nothing happened.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_NOTHING_HAPPEN = new SM_SYSTEM_MESSAGE(1300630);
+
 	/**
 	 * You cannot use teleport here.
 	 */
@@ -10977,10 +11341,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You may now chat again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CAN_CHAT_NOW = new SM_SYSTEM_MESSAGE(1300644);
+
 	/**
 	 * Please do not flood chat. Blocked for a short while.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GLOBAL_CHAT_DISABLED_FOR = new SM_SYSTEM_MESSAGE(1300645);
+
 	/**
 	 * You cannot create a general channel at your discretion.
 	 */
@@ -10990,73 +11356,89 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * %0 has already been sold.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_VENDOR_SOLD_OUT(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1300647, new DescriptionId(nameId));
-	}
+        return new SM_SYSTEM_MESSAGE(1300647, new DescriptionId(nameId));
+    }
 
 	/**
 	 * You do not have enough Kinah to pay the fee.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_NOT_ENOUGH_FEE = new SM_SYSTEM_MESSAGE(1300648);
+
 	/**
 	 * You cannot register any more items as there is no space available.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_FULL_ITEM = new SM_SYSTEM_MESSAGE(1300649);
+
 	/**
 	 * You cannot register items that have already been used.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_REGISTER_USED_ITEM = new SM_SYSTEM_MESSAGE(1300650);
+
 	/**
 	 * You cannot register equipped items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_REGISTER_EQUIPPED_ITEM = new SM_SYSTEM_MESSAGE(1300651);
+
 	/**
 	 * You cannot list an untradeable item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_REGISTER_CANNOT_BE_EXCHANGED = new SM_SYSTEM_MESSAGE(1300652);
+
 	/**
 	 * You cannot register any more items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_REGISTER_FULL_BASKET = new SM_SYSTEM_MESSAGE(1300653);
+
 	/**
 	 * You cannot continue trading as your inventory is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_FULL_INVENTORY = new SM_SYSTEM_MESSAGE(1300654);
+
 	/**
 	 * You cannot register this item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_CAN_NOT_REGISTER_ITEM = new SM_SYSTEM_MESSAGE(1300655);
+
 	/**
 	 * This item is already registered.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_ALREADY_REGISTERED = new SM_SYSTEM_MESSAGE(1300656);
+
 	/**
 	 * Items for Sale! The best value around!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_DEFAULT_ADVERTISE_MSG = new SM_SYSTEM_MESSAGE(1300657);
+
 	/**
 	 * You start doing business at your private store.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_START = new SM_SYSTEM_MESSAGE(1300658);
+
 	/**
 	 * You stop doing business at your private store.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_END = new SM_SYSTEM_MESSAGE(1300659);
+
 	/**
 	 * You cannot sell equipped items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_CAN_NOT_SELL_EQUIPED_ITEM = new SM_SYSTEM_MESSAGE(1300660);
+
 	/**
 	 * You cannot sell items that cannot be traded with other users.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_CANNOT_BE_EXCHANGED = new SM_SYSTEM_MESSAGE(1300661);
+
 	/**
 	 * You cannot sell used items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_CAN_NOT_SELL_USED_ITEM = new SM_SYSTEM_MESSAGE(1300662);
+
 	/**
 	 * You cannot open a private store while fighting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_DISABLED_IN_COMBAT_MODE = new SM_SYSTEM_MESSAGE(1300663);
+
 	/**
 	 * As you cannot open a private store while fighting, it will be closed automatically.
 	 */
@@ -11073,14 +11455,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot register any more items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_FULL_BASKET = new SM_SYSTEM_MESSAGE(1300666);
+
 	/**
 	 * You have not opened Quickbar No.2.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUICKBAR_NOT_OPEN_SECONDBAR = new SM_SYSTEM_MESSAGE(1300667);
+
 	/**
 	 * You have not opened Quickbar No.3.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUICKBAR_NOT_OPEN_THIRDBAR = new SM_SYSTEM_MESSAGE(1300668);
+
 	/**
 	 * As there is no registered bind point, you will resurrect in the city.
 	 */
@@ -11097,34 +11482,42 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Please try again after you have closed other dialog boxes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_ASK_RECOVER_EXPERIENCE_BY_OTHER_QUESTION = new SM_SYSTEM_MESSAGE(1300671);
+
 	/**
 	 * You do not have enough Kinah to recover your XP.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_RECOVER_EXPERIENCE_NOT_ENOUGH_FEE = new SM_SYSTEM_MESSAGE(1300672);
+
 	/**
 	 * You are too far from a healer to receive Soul Healing.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_RECOVER_EXPERIENCE_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300673);
+
 	/**
 	 * You received Soul Healing.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SUCCESS_RECOVER_EXPERIENCE = new SM_SYSTEM_MESSAGE(1300674);
+
 	/**
 	 * You are too far to change the PVP zone.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PVPZONE_CANNOT_MOVE_PVPZONE_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300675);
+
 	/**
 	 * You cannot change the PVP zone because you have no means to move.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PVPZONE_CANNOT_MOVE_PVPZONE_NPC_NOT_CORRECT = new SM_SYSTEM_MESSAGE(1300676);
+
 	/**
 	 * The target is invalid. Please select a player.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ASSISTKEY_INCORRECT_TARGET = new SM_SYSTEM_MESSAGE(1300677);
+
 	/**
 	 * The person you want to assist does not have a target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ASSISTKEY_NO_USER = new SM_SYSTEM_MESSAGE(1300678);
+
 	/**
 	 * The person you want to assist is too far from the target.
 	 */
@@ -11141,66 +11534,83 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The map is now loading.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WORLDMAP_INFO = new SM_SYSTEM_MESSAGE(1300681);
+
 	/**
 	 * You do not have any XP to recover.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_DONOT_HAVE_RECOVER_EXPERIENCE = new SM_SYSTEM_MESSAGE(1300682);
+	public static final SM_SYSTEM_MESSAGE STR_CANT_RECOVER_CONFIRM_FULL = new SM_SYSTEM_MESSAGE(1405263);
+
 	/**
 	 * You can respond to the survey only in this server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_POLL_ANSWER_IS_NOT_ORG_SERVER = new SM_SYSTEM_MESSAGE(1300683);
+
 	/**
 	 * There is no survey underway.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_FIND_POLL = new SM_SYSTEM_MESSAGE(1300684);
+
 	/**
 	 * You have already responded to this survey.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ALREADY_ANSWER_THIS_POLL = new SM_SYSTEM_MESSAGE(1300685);
+
 	/**
 	 * You do not have enough Kinah to register this location as a bind point.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_REGISTER_RESURRECT_POINT_NOT_ENOUGH_FEE = new SM_SYSTEM_MESSAGE(1300686);
+
 	/**
 	 * You cannot bind from here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_REGISTER_RESURRECT_POINT_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300687);
+
 	/**
 	 * You have already bound at this location.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ALREADY_REGISTER_THIS_RESURRECT_POINT = new SM_SYSTEM_MESSAGE(1300688);
+
 	/**
 	 * You do not have enough Kinah for teleport.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_MOVE_TO_AIRPORT_NOT_ENOUGH_FEE = new SM_SYSTEM_MESSAGE(1300689);
+
 	/**
 	 * You cannot use it as the required quest has not been completed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_MOVE_TO_AIRPORT_NEED_FINISH_QUEST = new SM_SYSTEM_MESSAGE(1300690);
+
 	/**
 	 * You cannot move to that destination.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_MOVE_TO_AIRPORT_NO_ROUTE = new SM_SYSTEM_MESSAGE(1300691);
+
 	/**
 	 * The NPC you selected does not have the ability to teleport you.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_MOVE_TO_AIRPORT_WRONG_NPC = new SM_SYSTEM_MESSAGE(1300692);
+
 	/**
 	 * You are too far from the NPC to teleport.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_MOVE_TO_AIRPORT_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300693);
+
 	/**
 	 * You can bind here by clicking the Obelisk.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_NOTIFY_RESURRECT_POINT = new SM_SYSTEM_MESSAGE(1300694);
+
 	/**
 	 * You are already experiencing the resurrection effect.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_OTHER_USER_USE_RESURRECT_SKILL_ALREADY = new SM_SYSTEM_MESSAGE(1300695);
+
 	/**
 	 * You cannot teleport to a bind point while flying.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_AIRPORT_WHEN_FLYING = new SM_SYSTEM_MESSAGE(1300696);
+
 	/**
 	 * The server is being shut down for an update.
 	 */
@@ -11217,78 +11627,97 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The account usage time has expired.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_KICK_TIME_EXPIRED = new SM_SYSTEM_MESSAGE(1300699);
+
 	/**
 	 * Another user has tried to log in.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_KICK_ANOTHER_USER_TRY_LOGIN = new SM_SYSTEM_MESSAGE(1300700);
+
 	/**
 	 * You do not have enough Kinah to use the artifact.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_ARTIFACT_NOT_ENOUGH_FEE = new SM_SYSTEM_MESSAGE(1300701);
+
 	/**
 	 * The Artifact cannot be used at this time.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_ARTIFACT_OUT_OF_ORDER = new SM_SYSTEM_MESSAGE(1300702);
+
 	/**
 	 * You have no authority to use the Artifact.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_ARTIFACT_HAVE_NO_AUTHORITY = new SM_SYSTEM_MESSAGE(1300703);
+
 	/**
 	 * You cannot use the Artifact from this place.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_ARTIFACT_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300704);
+
 	/**
 	 * This is not a usable Artifact.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_ARTIFACT_IS_NOT_ARTIFACT = new SM_SYSTEM_MESSAGE(1300705);
+
 	/**
 	 * You have no authority to go through the door.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_DOOR_HAVE_NO_AUTHORITY = new SM_SYSTEM_MESSAGE(1300706);
+
 	/**
 	 * You cannot use the door from here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_DOOR_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300707);
+
 	/**
 	 * Your quest tracker is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_IND_EXCESS = new SM_SYSTEM_MESSAGE(1300708);
+
 	/**
 	 * Macro canceled.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MACRO_MSG_CANCEL = new SM_SYSTEM_MESSAGE(1300709);
+
 	/**
 	 * Macro complete.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MACRO_MSG_END = new SM_SYSTEM_MESSAGE(1300710);
+
 	/**
 	 * Mail has arrived.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_RECEIVE_MAIL = new SM_SYSTEM_MESSAGE(1300711);
+
 	/**
 	 * All items are already confirmed. You cannot register any more items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EXCHANGE_ALREADY_READY = new SM_SYSTEM_MESSAGE(1300712);
+
 	/**
 	 * You cannot split items in the inventory during a trade.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INVENTORY_SPLIT_DURING_TRADE = new SM_SYSTEM_MESSAGE(1300713);
+
 	/**
 	 * You cannot open the private store on a moving object.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_DISABLED_IN_MOVING_OBJECT = new SM_SYSTEM_MESSAGE(1300714);
+
 	/**
 	 * This Rift is not usable.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_DIRECT_PORTAL_NO_PORTAL = new SM_SYSTEM_MESSAGE(1300715);
+
 	/**
 	 * You cannot use a Rift here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_DIRECT_PORTAL_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300716);
+
 	/**
 	 * You cannot use a Rift at your level.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_DIRECT_PORTAL_LEVEL_LIMIT = new SM_SYSTEM_MESSAGE(1300717);
+
 	/**
 	 * The Rift has already had the maximum number of people travel through it.
 	 */
@@ -11324,18 +11753,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You need a key to open the door.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_OPEN_DOOR_NEED_KEY_ITEM = new SM_SYSTEM_MESSAGE(1300723);
+
 	/**
 	 * Trade Broker
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_RETURN_MAIL_FROM = new SM_SYSTEM_MESSAGE(1300724);
+
 	/**
 	 * Your item has been returned as the sales period has ended.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_RETURN_MAIL_CONTENT = new SM_SYSTEM_MESSAGE(1300725);
+
 	/**
 	 * You have no authority to use it as you are not a member of the Conquering Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_DOOR_REPAIR_HAVE_NO_AUTHORITY = new SM_SYSTEM_MESSAGE(1300726);
+
 	/**
 	 * You cannot use that as the cooldown time has not expired yet.
 	 */
@@ -11359,34 +11792,42 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Moving to Area EE2.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TP_EE2_TP0_L_TOEE2 = new SM_SYSTEM_MESSAGE(1300730);
+
 	/**
 	 * Moving to Dungeon D3.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TP_EE2_TP0_L_TOD3_DUN = new SM_SYSTEM_MESSAGE(1300731);
+
 	/**
 	 * Moving to the Instanced Dungeon.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TP_EE2_TP0_L_TOINSTANT_DUN = new SM_SYSTEM_MESSAGE(1300732);
+
 	/**
 	 * Moving to Eltnen.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TP_LF1A_TP0_L_TOLF2 = new SM_SYSTEM_MESSAGE(1300733);
+
 	/**
 	 * Moving to Verteron.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TP_LF2_TP0_L_TOLF1A = new SM_SYSTEM_MESSAGE(1300734);
+
 	/**
 	 * You cannot use any items while flying.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FLYING_DISABLE_1 = new SM_SYSTEM_MESSAGE(1300735);
+
 	/**
 	 * You cannot use the skill while flying.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FLYING_DISABLE_2 = new SM_SYSTEM_MESSAGE(1300736);
+
 	/**
 	 * You have died.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_DEATH_MESSAGE_ME = new SM_SYSTEM_MESSAGE(1300737);
+
 	/**
 	 * You have resurrected.
 	 */
@@ -11410,10 +11851,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Use a skill to resurrect.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_RESURRECT_DIALOG__SKILL = new SM_SYSTEM_MESSAGE(1300741);
+
 	/**
 	 * Use an item to resurrect.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_RESURRECT_DIALOG__ITEM = new SM_SYSTEM_MESSAGE(1300742);
+
 	/**
 	 * Press "OK" to resurrect.
 	 */
@@ -11496,6 +11939,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot quit the game during the battle.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_QUIT = new SM_SYSTEM_MESSAGE(1300755);
+
 	/**
 	 * A one-way Rift into Elysea has appeared.
 	 */
@@ -11512,6 +11956,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Trade Failed
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TITLE_TRADE_FAIL = new SM_SYSTEM_MESSAGE(1300758);
+
 	/**
 	 * You do not have enough Kinah.
 	 */
@@ -11528,54 +11973,67 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * This item cannot be traded.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_EXCHANGE = new SM_SYSTEM_MESSAGE(1300761);
+
 	/**
 	 * You cannot trade as your inventory is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FULL_INVENTORY = new SM_SYSTEM_MESSAGE(1300762);
+
 	/**
 	 * You cannot register any more items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FULL_BASKET = new SM_SYSTEM_MESSAGE(1300763);
+
 	/**
 	 * You already have this limited possession item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_OWNED_LORE_ITEM = new SM_SYSTEM_MESSAGE(1300764);
+
 	/**
 	 * Confirm Registration
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_MSG_TITLE_REGISTER_OK = new SM_SYSTEM_MESSAGE(1300765);
+
 	/**
 	 * Registration Failed
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_MSG_TITLE_REGISTER_ERROR = new SM_SYSTEM_MESSAGE(1300766);
+
 	/**
 	 * You do not have enough Kinah to pay the fee.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_MSG_NOT_ENOUGH_FEE = new SM_SYSTEM_MESSAGE(1300767);
+
 	/**
 	 * You entered the PvP zone.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PVP_ZONE_ENTERED = new SM_SYSTEM_MESSAGE(1300768);
+
 	/**
 	 * You left the PvP zone.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PVP_ZONE_EXITED = new SM_SYSTEM_MESSAGE(1300769);
+
 	/**
 	 * Start Duel!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_DUEL_START = new SM_SYSTEM_MESSAGE(1300770);
+
 	/**
 	 * Stop Duel
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_DUEL_STOP = new SM_SYSTEM_MESSAGE(1300771);
+
 	/**
 	 * You cannot destroy equipped items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_DESTROY_EQUIP_ITEM = new SM_SYSTEM_MESSAGE(1300772);
+
 	/**
 	 * Permanently Acquired Title
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TITLE_PERMANENT = new SM_SYSTEM_MESSAGE(1300773);
+
 	/**
 	 * Temporarily Acquired Title
 	 */
@@ -11724,42 +12182,62 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Petitions are not accepted right now.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PETITION_STATUS_NO_IDLE = new SM_SYSTEM_MESSAGE(1300796);
+
 	/**
 	 * It is outside the petition submission hours.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PETITION_STATUS_NO_SUBMIT = new SM_SYSTEM_MESSAGE(1300797);
+
 	/**
 	 * You cannot open a private store while flying.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_DISABLED_IN_FLY_MODE = new SM_SYSTEM_MESSAGE(1300798);
+
+	/**
+	 * You cannot open a private store while hiding.
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_DISABLED_IN_HIDDEN_MODE = new SM_SYSTEM_MESSAGE(1401969);
+
+	/**
+	 * Your private store closed automatically because you are currently hiding.
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_CLOSED_FOR_HIDDEN_MODE = new SM_SYSTEM_MESSAGE(1401970);
+
 	/**
 	 * You cannot use this Kisk.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_REGISTER_BINDSTONE_HAVE_NO_AUTHORITY = new SM_SYSTEM_MESSAGE(1300799);
+
 	/**
 	 * You cannot use the Kisk here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_REGISTER_BINDSTONE_FAR_FROM_NPC = new SM_SYSTEM_MESSAGE(1300800);
+
 	/**
 	 * You cannot use the Kisk.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_REGISTER_BINDSTONE_NOT_BINDSTONE = new SM_SYSTEM_MESSAGE(1300801);
+
 	/**
 	 * The Kisk has been destroyed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BINDSTONE_IS_DESTROYED = new SM_SYSTEM_MESSAGE(1300802);
+
 	/**
 	 * The Kisk has been dismantled.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BINDSTONE_IS_REMOVED = new SM_SYSTEM_MESSAGE(1300803);
+
 	/**
 	 * You cannot install the Kisk as it is too close to an Artifact.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_BINDSTONE_ITEM_NOT_PROPER_AREA = new SM_SYSTEM_MESSAGE(1300804);
+
 	/**
 	 * You can only use the Kisk when the PvP is On.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_BINDSTONE_ITEM_NOT_PROPER_TIME = new SM_SYSTEM_MESSAGE(1300805);
+
 	/**
 	 * You cannot use a Kisk while flying.
 	 */
@@ -11790,10 +12268,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are now allowed to move.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_INGAME_BLOCK_DISABLE_NO_MOVE = new SM_SYSTEM_MESSAGE(1300810);
+
 	/**
 	 * You are now allowed to chat.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_INGAME_BLOCK_DISABLE_NO_CHAT = new SM_SYSTEM_MESSAGE(1300811);
+
 	/**
 	 * You now allowed to open a private store.
 	 */
@@ -11824,71 +12304,92 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Unknown Error
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_UNKNOWN = new SM_SYSTEM_MESSAGE(1300816);
+
 	/**
 	 * Database Error
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_DATABASE_FAIL = new SM_SYSTEM_MESSAGE(1300817);
+
 	/**
 	 * Please select the type of your petition.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PETITION_NO_SELECT = new SM_SYSTEM_MESSAGE(1300818);
+
 	/**
 	 * Please enter your petition.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PETITION_NO_INPUT = new SM_SYSTEM_MESSAGE(1300819);
+
 	/**
 	 * You are not allowed to evaluate the reply of a Support Petition.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PETITION_CANT_EVAL = new SM_SYSTEM_MESSAGE(1300820);
+
 	/**
 	 * There are unfinished replies.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GM_POLL_ANSWERS_NOT_COMPLETED = new SM_SYSTEM_MESSAGE(1300821);
+
 	/**
 	 * Abandon Selected Quest
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_ABANDON = new SM_SYSTEM_MESSAGE(1300822);
+
 	/**
 	 * Invalid target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_INVALID_TARGET = new SM_SYSTEM_MESSAGE(1300823);
+
 	/**
 	 * You cannot use this menu when you are dead.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_IN_DEAD_STATE = new SM_SYSTEM_MESSAGE(1300824);
+
 	/**
 	 * You cannot destroy items while you are a corpse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DEAD_BODY_CANT_DESTROY_ITEM = new SM_SYSTEM_MESSAGE(1300825);
+
 	/**
 	 * You cannot use certain chat functions while you are dead.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANT_CHAT_IN_DEAD_STATE = new SM_SYSTEM_MESSAGE(1300826);
+
 	/**
-	 * /CreateChannel [ChannelName] [OptionalPassword]: Creates a private channel. /JoinChannel [ChannelName] [Password]: Enters an existing private channel. Password required if one was set.
-	 * /LeaveChannel [ChannelNumber]: Leaves a private channel. /ChannelMemberInfo [ChannelNumber]: Shows who's in a channel. /ChannelInfo [ChannelNumber]: Shows information for a channel you are in.
-	 * /ChannelBanInfo [ChannelNumber]: Shows who is banned from a channel. /BanFromChannel [ChannelNumber] [CharacterName]: The channel owner can permanently remove a character from the channel.
-	 * /UnbanFromChannel [ChannelNumber] [CharacterName]: The channel owner can reinstate a banned character's access to a channel. /ChangeChannelLeader [ChannelNumber] [CharacterName]: The channel
-	 * owner makes another character the channel owner. /ChangeChannelPassword [ChannelNumber] [Password]: The channel owner can change the password. /ChannelHelp: Shows the commands available for
-	 * channels.
+	 * /CreateChannel [ChannelName] [OptionalPassword]: Creates a private channel.
+/JoinChannel [ChannelName] [Password]: Enters an existing private channel. Password required if one was set.
+/LeaveChannel [ChannelNumber]: Leaves a private channel.
+/ChannelMemberInfo [ChannelNumber]: Shows who's in a channel.
+/ChannelInfo [ChannelNumber]: Shows information for a channel you are in.
+/ChannelBanInfo [ChannelNumber]: Shows who is banned from a channel.
+/BanFromChannel [ChannelNumber] [CharacterName]: The channel owner can permanently remove a character from the channel.
+/UnbanFromChannel [ChannelNumber] [CharacterName]: The channel owner can reinstate a banned character's access to a channel.
+/ChangeChannelLeader [ChannelNumber] [CharacterName]: The channel owner makes another character the channel owner.
+/ChangeChannelPassword [ChannelNumber] [Password]: The channel owner can change the password.
+/ChannelHelp: Shows the commands available for channels.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CURRENT_STANCE_DOES_NOT_SUPPORTS = new SM_SYSTEM_MESSAGE(1300827);
+
 	/**
 	 * You are too close to attack.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TOO_CLOSE_TO_ATTACK = new SM_SYSTEM_MESSAGE(1300828);
+
 	/**
 	 * Someone is already looting that.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOOT_FAIL_ONLOOTING = new SM_SYSTEM_MESSAGE(1300829);
+
 	/**
 	 * You are too far from the target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOOT_FAIL_TOO_FAR = new SM_SYSTEM_MESSAGE(1300830);
+
 	/**
 	 * You do not have enough Kinah to expand the cube.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WAREHOUSE_EXPAND_NOT_ENOUGH_MONEY = new SM_SYSTEM_MESSAGE(1300831);
+
 	/**
 	 * Cannot find the emblem.bmp file in the Aion Game folder.
 	 */
@@ -11905,30 +12406,37 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You must pass the Expert promotion test in order to be promoted.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CRAFT_CANT_EXTEND_MONEY = new SM_SYSTEM_MESSAGE(1300834);
+
 	/**
 	 * Upload of the Legion emblem file to the server successful.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WARN_SUCCESS_UPLOAD_EMBLEM = new SM_SYSTEM_MESSAGE(1300835);
+
 	/**
 	 * Upload of the Legion emblem file to the server failed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WARN_FAILURE_UPLOAD_EMBLEM = new SM_SYSTEM_MESSAGE(1300836);
+
 	/**
 	 * Failed to read the Legion emblem file.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WARN_CORRUPT_EMBLEM_FILE = new SM_SYSTEM_MESSAGE(1300837);
+
 	/**
 	 * The size of the Legion emblem file is not 24bit 256X256.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_WARN_IMPROPER_SIZE_EMBLEM_FILE = new SM_SYSTEM_MESSAGE(1300838);
+
 	/**
 	 * Skill Penalty
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_PENALTY_TITLE = new SM_SYSTEM_MESSAGE(1300839);
+
 	/**
 	 * Reduces Evasion, Parry, and Block
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_PENALTY_ACTIVED_EFEND = new SM_SYSTEM_MESSAGE(1300840);
+
 	/**
 	 * Reduces Physical Defense and Magical Resistance
 	 */
@@ -11966,14 +12474,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot open or join any more private channels.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_CREATE_FAILED_MAXROOM = new SM_SYSTEM_MESSAGE(1300846);
+
 	/**
 	 * Incorrect password.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_CREATE_FAILED_WRONG_PASSWORD = new SM_SYSTEM_MESSAGE(1300847);
+
 	/**
 	 * You do not have enough DP for conversion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CONVERT_SKILL_NOT_ENOUGH_DP = new SM_SYSTEM_MESSAGE(1300848);
+
 	/**
 	 * You must have learned the skill to activate it.
 	 */
@@ -11990,10 +12501,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * That private channel does not exist.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_JOIN_FAIL_ROOM_NOT_FOUND = new SM_SYSTEM_MESSAGE(1300851);
+
 	/**
 	 * You cannot enter the private channel as it is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_JOIN_FAIL_TOO_MANY_ROOM = new SM_SYSTEM_MESSAGE(1300852);
+
 	/**
 	 * An expelled character cannot enter the same private channel again.
 	 */
@@ -12059,6 +12572,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have no authority.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_ADMIN_NO_AUTHORITY = new SM_SYSTEM_MESSAGE(1300862);
+
 	/**
 	 * Cannot find the character in this private channel.
 	 */
@@ -12096,6 +12610,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The name of that private channel is invalid.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_INVALID_CHANNEL_NAME = new SM_SYSTEM_MESSAGE(1300868);
+
 	/**
 	 * You have been kicked out.
 	 */
@@ -12112,6 +12627,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The channel has been set as public.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_PROPERTYCHANGE_TOPUBLIC = new SM_SYSTEM_MESSAGE(1300871);
+
 	/**
 	 * The channel has been set as private.
 	 */
@@ -12128,47 +12644,62 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are not participating in any channels.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_NO_JOINED_CHATROOM = new SM_SYSTEM_MESSAGE(1300874);
+
 	/**
-	 * /CreateChannel [ChannelName] [OptionalPassword]: Creates a private channel. /JoinChannel [ChannelName] [Password]: Enters an existing private channel. Password required if one was set.
-	 * /LeaveChannel [ChannelNumber]: Leaves a private channel. /ChannelMemberInfo [ChannelNumber]: Shows who's in a channel. /ChannelInfo [ChannelNumber]: Shows information for a channel you are in.
-	 * /ChannelBanInfo [ChannelNumber]: Shows who is banned from a channel. /BanFromChannel [ChannelNumber] [CharacterName]: The channel owner can permanently remove a character from the channel.
-	 * /UnbanFromChannel [ChannelNumber] [CharacterName]: The channel owner can reinstate a banned character's access to a channel. /ChangeChannelLeader [ChannelNumber] [CharacterName]: The channel
-	 * owner makes another character the channel owner. /ChangeChannelPassword [ChannelNumber] [Password]: The channel owner can change the password. /ChannelHelp: Shows the commands available for
-	 * channels.
+	 * /CreateChannel [ChannelName] [OptionalPassword]: Creates a private channel.
+/JoinChannel [ChannelName] [Password]: Enters an existing private channel. Password required if one was set.
+/LeaveChannel [ChannelNumber]: Leaves a private channel.
+/ChannelMemberInfo [ChannelNumber]: Shows who's in a channel.
+/ChannelInfo [ChannelNumber]: Shows information for a channel you are in.
+/ChannelBanInfo [ChannelNumber]: Shows who is banned from a channel.
+/BanFromChannel [ChannelNumber] [CharacterName]: The channel owner can permanently remove a character from the channel.
+/UnbanFromChannel [ChannelNumber] [CharacterName]: The channel owner can reinstate a banned character's access to a channel.
+/ChangeChannelLeader [ChannelNumber] [CharacterName]: The channel owner makes another character the channel owner.
+/ChangeChannelPassword [ChannelNumber] [Password]: The channel owner can change the password.
+/ChannelHelp: Shows the commands available for channels.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_HELP = new SM_SYSTEM_MESSAGE(1300875);
+
 	/**
 	 * You cannot learn a design written in an incomprehensible language.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CRAFTRECIPE_RACE_CHECK = new SM_SYSTEM_MESSAGE(1300876);
+
 	/**
 	 * An express courier has already arrived.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_POSTMAN_ALREADY_SUMMONED = new SM_SYSTEM_MESSAGE(1300877);
+
 	/**
 	 * Please wait for a while before you call for the courier again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_POSTMAN_UNABLE_IN_COOLTIME = new SM_SYSTEM_MESSAGE(1300878);
+
 	/**
 	 * You cannot call a courierwhile flying.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_POSTMAN_UNABLE_IN_FLIGHT = new SM_SYSTEM_MESSAGE(1300879);
+
 	/**
 	 * You cannot call a courier here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_POSTMAN_UNABLE_POSITION = new SM_SYSTEM_MESSAGE(1300880);
+
 	/**
 	 * That character does not exist.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BUDDYLIST_CHARACTER_NONEXISIT = new SM_SYSTEM_MESSAGE(1300881);
+
 	/**
 	 * That person is not logged on.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BUDDYLIST_NO_OFFLINE_CHARACTER = new SM_SYSTEM_MESSAGE(1300882);
+
 	/**
 	 * The character is already on your Friends List.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BUDDYLIST_ALREADY_IN_LIST = new SM_SYSTEM_MESSAGE(1300883);
+
 	/**
 	 * A blocked character cannot also be a Friend.
 	 */
@@ -12213,13 +12744,6 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
-	 * You rejected the friend request from %0.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_BUDDYLIST_REQUEST_REJECTED(String value0) {
-		return new SM_SYSTEM_MESSAGE(1401517, value0);
-	}
-
-	/**
 	 * You cannot block a character who is currently on your Friends List.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BLOCKLIST_NO_BUDDY = new SM_SYSTEM_MESSAGE(1300891);
@@ -12235,10 +12759,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * That character does not exist.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BLOCKLIST_CHARACTER_NONEXIST = new SM_SYSTEM_MESSAGE(1300893);
+
 	/**
 	 * That character is already blocked.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BLOCKLIST_ALREADY_BLOCKED = new SM_SYSTEM_MESSAGE(1300894);
+
 	/**
 	 * Enter the name of the character you want to block.
 	 */
@@ -12255,10 +12781,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The character is not blocked.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BLOCKLIST_NOT_IN_LIST = new SM_SYSTEM_MESSAGE(1300897);
+
 	/**
 	 * You must level up to raise your skill level.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CRAFT_INFO_MAXPOINT_UP = new SM_SYSTEM_MESSAGE(1300898);
+
 	/**
 	 * Express mail has arrived.
 	 */
@@ -12282,30 +12810,37 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have been disconnected from the server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_AUTH_CONNECTION_LOST = new SM_SYSTEM_MESSAGE(1300902);
+
 	/**
 	 * A private channel with the same name already exists.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_ROOM_EXISTS = new SM_SYSTEM_MESSAGE(1300903);
+
 	/**
 	 * That private channel already exists.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_CHANNEL_EXISTS = new SM_SYSTEM_MESSAGE(1300904);
+
 	/**
 	 * You have already joined the private channel.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_ALREADY_JOINED_CHANNEL = new SM_SYSTEM_MESSAGE(1300905);
+
 	/**
 	 * The character has been banned from this channel.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_ALREADY_BANNED_MEMBER = new SM_SYSTEM_MESSAGE(1300906);
+
 	/**
 	 * You cannot kick yourself out of the channel.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_CANNOT_BAN_SELF = new SM_SYSTEM_MESSAGE(1300907);
+
 	/**
 	 * You cannot nominate yourself as a room master.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_CANNOT_PROMOTE_SELF = new SM_SYSTEM_MESSAGE(1300908);
+
 	/**
 	 * The character is not on the Ban List.
 	 */
@@ -12329,10 +12864,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Your Block List is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BLOCKLIST_LIST_FULL = new SM_SYSTEM_MESSAGE(1300912);
+
 	/**
 	 * You cannot block yourself.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BLOCKLIST_CANNOT_BLOCK_SELF = new SM_SYSTEM_MESSAGE(1300913);
+
 	/**
 	 * You cannot use a Macro yet.
 	 */
@@ -12389,8 +12926,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static final SM_SYSTEM_MESSAGE STR_MACRO_MSG_CANNOT_FIND_SKILL = new SM_SYSTEM_MESSAGE(1300922);
 
 	/**
-	 * Your petition has been received.\nThe receipt number is %0.\nThere are %1 users on the waiting list, and the approximate waiting time is %2.\nYou have submitted %3 petitions today, and there
-	 * are %4 more petitions left. Thank you!
+	 * Your petition has been received.\nThe receipt number is %0.\nThere are %1 users on the waiting list, and the approximate waiting time is %2.\nYou have submitted %3 petitions today, and there are %4 more petitions left. Thank you!
 	 */
 	public static SM_SYSTEM_MESSAGE STR_PETITION_SUBMIT_MESSAGE() {
 		return new SM_SYSTEM_MESSAGE(1300923);
@@ -12400,22 +12936,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * There is a reply to your petition.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TOOLTIP_PETITION_MESSAGE_NOTICE = new SM_SYSTEM_MESSAGE(1300924);
+
 	/**
 	 * You are in a chat with the GM.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PETITION_CHAT_MESSAGE = new SM_SYSTEM_MESSAGE(1300925);
+
 	/**
 	 * Macro: Cannot find the item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MACRO_MSG_CANNOT_FIND_ITEM = new SM_SYSTEM_MESSAGE(1300926);
+
 	/**
 	 * You do not have enough Abyss Points.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NOT_ENOUGH_ABYSSPOINT = new SM_SYSTEM_MESSAGE(1300927);
+
 	/**
 	 * You cannot change the channel during a battle.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANT_CHANGE_CHANNEL_IN_COMBAT = new SM_SYSTEM_MESSAGE(1300928);
+
 	/**
 	 * You cannot change the channel now.
 	 */
@@ -12432,18 +12973,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Start Punishment
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAR_PUNISH_START_TIME = new SM_SYSTEM_MESSAGE(1300931);
+
 	/**
 	 * End Punishment
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAR_PUNISH_END_TIME = new SM_SYSTEM_MESSAGE(1300932);
+
 	/**
 	 * Macro: There is no item registered in the Quickbar.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MACRO_MSG_CANNOT_FIND_SHORTCUT = new SM_SYSTEM_MESSAGE(1300933);
+
 	/**
 	 * Macro: Cannot find the target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MACRO_MSG_CANNOT_FIND_TARGET = new SM_SYSTEM_MESSAGE(1300934);
+
 	/**
 	 * Macro: The sentence cannot be parsed.
 	 */
@@ -12474,22 +13019,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The channel name must be between 2 and 10 characters.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_CHANNELNAME_SIZE_LIMIT = new SM_SYSTEM_MESSAGE(1300939);
+
 	/**
 	 * You cannot resurrect the target due to its insufficient Abyss Points.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_RESURRECT_FAILED = new SM_SYSTEM_MESSAGE(1300940);
+
 	/**
 	 * You have too few Abyss points to continue the battle.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_RESURRECT = new SM_SYSTEM_MESSAGE(1300941);
+
 	/**
 	 * The same item is already registered.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_ALREAY_REGIST_ITEM = new SM_SYSTEM_MESSAGE(1300942);
+
 	/**
 	 * You cannot register items in the private store while equipped with Stigma.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_CANNOT_REGIST_DURING_STIGMA = new SM_SYSTEM_MESSAGE(1300943);
+
 	/**
 	 * You cannot register items as you are already selling other items.
 	 */
@@ -12520,18 +13070,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Starting the voice chatting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_VOICE_START_SUCCESS = new SM_SYSTEM_MESSAGE(1300948);
+
 	/**
 	 * Failed to start the voice chatting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_VOICE_START_FAILED = new SM_SYSTEM_MESSAGE(1300949);
+
 	/**
 	 * Ending the voice chatting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_VOICE_FINISH_SUCCESS = new SM_SYSTEM_MESSAGE(1300950);
+
 	/**
 	 * Failed to end the voice chatting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_VOICE_FINISH_FAILED = new SM_SYSTEM_MESSAGE(1300951);
+
 	/**
 	 * You cannot use private channels before you change your Class.
 	 */
@@ -12551,49 +13105,48 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		return new SM_SYSTEM_MESSAGE(1300954, value0);
 	}
 
+	public static final SM_SYSTEM_MESSAGE STR_MAIL_CASHITEM_BUY(int itemId) {
+		return new SM_SYSTEM_MESSAGE(1300956, "[item:" + itemId + "]");
+	}
+	public static final SM_SYSTEM_MESSAGE STR_MAIL_CASHITEM_GIFT(int itemId) {
+		return new SM_SYSTEM_MESSAGE(1300957, "[item:" + itemId + "]");
+	}
 	/**
 	 * The password for this private channel has been removed. You can now join the channel without entering the password.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_ROOM_PASSWORD_DELETED = new SM_SYSTEM_MESSAGE(1300955);
 
-	/**
-	 * Purchase Item\n%attachItemName you bought has arrived.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MAIL_CASHITEM_BUY(int itemId) {
-		return new SM_SYSTEM_MESSAGE(1300956, "[item:" + itemId + "]");
-	}
-
-	/**
-	 * Purchase Item\n%attachItemName you bought has arrived.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MAIL_CASHITEM_GIFT(int itemId) {
-		return new SM_SYSTEM_MESSAGE(1300957, "[item:" + itemId + "]");
-	}
 
 	/**
 	 * You can only send mails to other users of your race.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MAIL_MSG_DIFFERENT_RACE = new SM_SYSTEM_MESSAGE(1300958);
+
 	/**
 	 * You cannot fly in this area.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FLYING_FORBIDDEN_ZONE = new SM_SYSTEM_MESSAGE(1300959);
+
 	/**
 	 * You cannot fly in this area.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FLYING_FORBIDDEN_HERE = new SM_SYSTEM_MESSAGE(1300960);
+
 	/**
 	 * Flight cooldown time has not expired yet.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FLYING_TIME_NOT_READY = new SM_SYSTEM_MESSAGE(1300961);
+
 	/**
 	 * Your petition is being processed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PETITION_OPEN_MESSAGE = new SM_SYSTEM_MESSAGE(1300962);
+
 	/**
 	 * Some options are applied when the game is restarted.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_APPLY_OPTION_WHEN_RESTART = new SM_SYSTEM_MESSAGE(1300963);
+
 	/**
 	 * You cannot use special characters in channel name and password.
 	 */
@@ -12673,10 +13226,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * There is not enough room in the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_INVITE_FAILED_NOT_ENOUGH_SLOT = new SM_SYSTEM_MESSAGE(1300975);
+
 	/**
 	 * You have no authority in the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_RIGHT_NOT_HAVE = new SM_SYSTEM_MESSAGE(1300976);
+
 	/**
 	 * You have left the alliance.
 	 */
@@ -12747,10 +13302,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have failed to change the alliance group as another person is already trying to change it. Please try again later.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_GROUP_FAILED_ALREADY_CHANGED = new SM_SYSTEM_MESSAGE(1300987);
+
 	/**
 	 * You have failed to change the group because there was no group to change.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_GROUP_FAILED_ALREADY_LEAVE = new SM_SYSTEM_MESSAGE(1300988);
+
 	/**
 	 * Checking the readiness of the alliance.
 	 */
@@ -12767,26 +13324,32 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * All alliance members are ready.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CHECK_COMPLETE = new SM_SYSTEM_MESSAGE(1300991);
+
 	/**
 	 * Currently Absent:
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CHECK_OUT = new SM_SYSTEM_MESSAGE(1300992);
+
 	/**
 	 * Ready:
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CHECK_READY = new SM_SYSTEM_MESSAGE(1300993);
+
 	/**
 	 * Not Ready:
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CHECK_DENIED = new SM_SYSTEM_MESSAGE(1300994);
+
 	/**
 	 * You cancelled the request to check the readiness of the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CHECK_CANCEL = new SM_SYSTEM_MESSAGE(1300995);
+
 	/**
 	 * You cannot invite any more members to the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CANT_ADD_NEW_MEMBER = new SM_SYSTEM_MESSAGE(1300996);
+
 	/**
 	 * Only the alliance Captain can make another person the Captain.
 	 */
@@ -12803,22 +13366,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are now the alliance captain.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_YOU_BECOME_NEW_LEADER = new SM_SYSTEM_MESSAGE(1300999);
+
 	/**
 	 * Only the alliance captain can change the item distribution method.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_ONLY_LEADER_CAN_CHANGE_LOOTING = new SM_SYSTEM_MESSAGE(1301000);
+
 	/**
 	 * The item distribution method of the alliance has been changed to Manual.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_LOOTING_CHANGED_TO_MANUAL = new SM_SYSTEM_MESSAGE(1301001);
+
 	/**
 	 * The item distribution method of the alliance has been changed to Auto.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_LOOTING_CHANGED_TO_AUTO = new SM_SYSTEM_MESSAGE(1301002);
+
 	/**
 	 * There is no target to invite to the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_NO_USER_TO_INVITE = new SM_SYSTEM_MESSAGE(1301003);
+
 	/**
 	 * Only the alliance Captain and vice Captain can invite people to the alliance.
 	 */
@@ -12835,22 +13403,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot invite yourself to the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CAN_NOT_INVITE_SELF = new SM_SYSTEM_MESSAGE(1301006);
+
 	/**
 	 * You cannot issue invitations while you are dead.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CANT_INVITE_WHEN_DEAD = new SM_SYSTEM_MESSAGE(1301007);
+
 	/**
 	 * The selected alliance member is currently offline.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_OFFLINE_MEMBER = new SM_SYSTEM_MESSAGE(1301008);
+
 	/**
 	 * Only the alliance captain can kick out a member.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_ONLY_LEADER_CAN_BANISH = new SM_SYSTEM_MESSAGE(1301009);
+
 	/**
 	 * You have been kicked out of the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_YOU_ARE_BANISHED = new SM_SYSTEM_MESSAGE(1301010);
+
 	/**
 	 * The alliance has been disbanded.
 	 */
@@ -12881,6 +13454,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are not in an alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_YOU_ARE_NOT_FORCE_MEMBER = new SM_SYSTEM_MESSAGE(1301015);
+
 	/**
 	 * You are not an alliance member.
 	 */
@@ -12925,14 +13499,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The rare item distribution method of the alliance has been changed to Free-for-All.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_RARE_LOOTING_CHANGED_TO_MANUAL = new SM_SYSTEM_MESSAGE(1301022);
+
 	/**
 	 * The rare item distribution method of the alliance has been changed to Auto.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_RARE_LOOTING_CHANGED_TO_AUTO = new SM_SYSTEM_MESSAGE(1301023);
+
 	/**
 	 * The rare item distribution method of the alliance has been changed to Dice Roll.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_RARE_LOOTING_CHANGED_TO_DICE = new SM_SYSTEM_MESSAGE(1301024);
+
 	/**
 	 * An alliance member cannot be kicked out before the items have been distributed.
 	 */
@@ -12949,14 +13526,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You can roll the dice once more if the rolled number is less than 100.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_ITEM_DICE_AGAIN = new SM_SYSTEM_MESSAGE(1301027);
+
 	/**
 	 * The item distribution method of the alliance has been changed to Free-for-All.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_LOOTING_CHANGED_TO_FREEFORALL = new SM_SYSTEM_MESSAGE(1301028);
+
 	/**
 	 * The item distribution method of the alliance has been changed to Round-robin.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_LOOTING_CHANGED_TO_ROUNDROBIN = new SM_SYSTEM_MESSAGE(1301029);
+
 	/**
 	 * The item distribution method of the alliance has been changed to Captain.
 	 */
@@ -13022,7 +13602,13 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static SM_SYSTEM_MESSAGE STR_ABYSS_WIN_CASTLE(String value0, String value1) {
 		return new SM_SYSTEM_MESSAGE(1301039, value0, value1);
 	}
-
+	public static SM_SYSTEM_MESSAGE STR_ABYSS_WIN_CASTLE_GROUP(String value0, String value1) {
+		return new SM_SYSTEM_MESSAGE(1404542, value0, value1);
+	}
+	public static SM_SYSTEM_MESSAGE STR_ABYSS_LOSE_CASTLE_GROUP(String value0, String value1) {
+		return new SM_SYSTEM_MESSAGE(1404543, value0, value1);
+	}
+	
 	/**
 	 * %0 is now vulnerable.
 	 */
@@ -13041,14 +13627,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Dredgion has disgorged a horde of Balaur troopers.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_CARRIER_DROP_DRAGON = new SM_SYSTEM_MESSAGE(1301042);
+
 	/**
 	 * The Balaur Teleport Raiders appeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_WARP_DRAGON = new SM_SYSTEM_MESSAGE(1301043);
+
 	/**
 	 * A dredgion has appeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_CARRIER_SPAWN = new SM_SYSTEM_MESSAGE(1301044);
+
 	/**
 	 * Cannot find the target to use the item.
 	 */
@@ -13065,8 +13654,8 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The %0 item has been sold by the broker.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_VENDOR_REGISTER_SOLD_OUT(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1301047, new DescriptionId(nameId));
-	}
+        return new SM_SYSTEM_MESSAGE(1301047, new DescriptionId(nameId));
+    }
 
 	/**
 	 * %1 of the %0 killed the Aetheric Field Generator.
@@ -13086,14 +13675,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Castle Gate is under attack.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_DOOR_ATTACKED = new SM_SYSTEM_MESSAGE(1301050);
+
 	/**
 	 * The Castle Gate is in danger.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_DOOR_ATSTAKE = new SM_SYSTEM_MESSAGE(1301051);
+
 	/**
 	 * The Aetheric Field Generator is under attack.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_SHIELD_ATTACKED = new SM_SYSTEM_MESSAGE(1301052);
+
 	/**
 	 * The Gate Guardian Stone is under attack.
 	 */
@@ -13110,18 +13702,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Guardian General is under attack.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_BOSS_ATTACKED = new SM_SYSTEM_MESSAGE(1301055);
+
 	/**
 	 * You cannot start gliding as you are moving too slowly.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GLIDE_NOT_ENOUGH_SPEED_FOR_GLIDE = new SM_SYSTEM_MESSAGE(1301056);
+
 	/**
 	 * You cannot start gliding while in an Altered State.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GLIDE_CANNOT_GLIDE_ABNORMAL_STATUS = new SM_SYSTEM_MESSAGE(1301057);
+
 	/**
 	 * You cannot change to the combat mode while gliding.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GLIDE_CANNOT_GLIDE_COMBAT_MODE = new SM_SYSTEM_MESSAGE(1301058);
+
 	/**
 	 * You can glide when you become a Daeva.
 	 */
@@ -13169,6 +13765,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are currently unable to chat.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_DISABLED = new SM_SYSTEM_MESSAGE(1310000);
+
 	/**
 	 * You are unable to chat for 2 minutes as you interrupted the game play through unnecessary chatting.
 	 */
@@ -13197,14 +13794,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The NPC server is down. Please restore it soon.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_NPC_SERVER_DOWN = new SM_SYSTEM_MESSAGE(1310005);
+
 	/**
 	 * The connection with the cache server has been severed. Please restore it soon.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CACHE_SERVER_DOWN = new SM_SYSTEM_MESSAGE(1310006);
+
 	/**
 	 * The connection with the authorization server has been severed. Please restore it soon.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_AUTH_SERVER_DOWN = new SM_SYSTEM_MESSAGE(1310007);
+
 	/**
 	 * The connection with the ittem billing server has been severed. Please restore it soon.
 	 */
@@ -13221,10 +13821,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * This is an Assist Target Key. Use it after you have selected a target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ASSISTKEY_THIS_IS_ASSISTKEY = new SM_SYSTEM_MESSAGE(1310010);
+
 	/**
 	 * Please use the right NPC for your race to register items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_RACECHECK = new SM_SYSTEM_MESSAGE(1310011);
+
 	/**
 	 * You cannot chat while you are dead.
 	 */
@@ -13241,190 +13843,237 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * An error has occurred while restoring the login list on the Billing server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_KICK_BILLGATES_ERROR = new SM_SYSTEM_MESSAGE(1310014);
+
 	/**
 	 * A dual login error has occurred while trying to enter the world.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_KICK_DUAL_LOGIN_ON_ABOUT_TO_PLAY = new SM_SYSTEM_MESSAGE(1310015);
+
 	/**
 	 * Your account has been banned.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_KICK_BANNED = new SM_SYSTEM_MESSAGE(1310016);
+
 	/**
 	 * You have been disconnected from the server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_KICK_CHARACTER = new SM_SYSTEM_MESSAGE(1310017);
+
 	/**
 	 * Your World access time limit has been exceeded.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_KICK_ABOUT_TO_PLAY_TIMER_EXPIRED = new SM_SYSTEM_MESSAGE(1310018);
+
 	/**
 	 * The requested target no longer exists.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SEARCH_NOT_EXIST = new SM_SYSTEM_MESSAGE(1310019);
+
 	/**
 	 * The user you requested is currently offline.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SEARCH_DISCONNECT = new SM_SYSTEM_MESSAGE(1310020);
+
 	/**
 	 * Only Daevas can use that.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_USE_GROUPGATE_BEFORE_CHANGE_CLASS = new SM_SYSTEM_MESSAGE(1310021);
+
 	/**
 	 * You do not have enough credit left in the account.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_NOT_PAID = new SM_SYSTEM_MESSAGE(1310022);
+
 	/**
 	 * Invalid session info.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_INVALID_SESSION = new SM_SYSTEM_MESSAGE(1310023);
+
 	/**
 	 * The server list info in the server is incorrect.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_SERVERLIST_INCORRECT = new SM_SYSTEM_MESSAGE(1310024);
+
 	/**
 	 * Failed to create the character due to a World DB error.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_WORLD_DB_FAIL = new SM_SYSTEM_MESSAGE(1310025);
+
 	/**
 	 * You are disconnected from the game server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_WORLD_CONNECTION_LOST = new SM_SYSTEM_MESSAGE(1310026);
+
 	/**
 	 * Failed to connect to the game server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_WORLD_CONNECTION_FAIL = new SM_SYSTEM_MESSAGE(1310027);
+
 	/**
 	 * The client version is not compatible with the game server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_WORLD_VERSION_FAIL = new SM_SYSTEM_MESSAGE(1310028);
+
 	/**
 	 * Characters of different races exist in the same server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_WORLD_HAS_MULTIPLE_RACE = new SM_SYSTEM_MESSAGE(1310029);
+
 	/**
 	 * The NPC script version is not compatible with the game server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_NPC_SCRIPT_VERSION_FAIL = new SM_SYSTEM_MESSAGE(1310030);
+
 	/**
 	 * An unknown error has occurred while checking the game server version.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_UNKNOWN_VERSION_FAIL = new SM_SYSTEM_MESSAGE(1310031);
+
 	/**
 	 * Failed to delete the character.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_DEL_CHAR_FAIL = new SM_SYSTEM_MESSAGE(1310032);
+
 	/**
 	 * Cannot connect to the login server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_CONNECTION_FAIL = new SM_SYSTEM_MESSAGE(1310033);
+
 	/**
 	 * That character does not exist.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_CHAR_NOT_EXIST = new SM_SYSTEM_MESSAGE(1310034);
+
 	/**
 	 * That character is already set to be deleted.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_CHAR_ALREADY_DELETED = new SM_SYSTEM_MESSAGE(1310035);
+
 	/**
 	 * Failed to create the character.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_FAILED_TO_CREATE_CHAR = new SM_SYSTEM_MESSAGE(1310036);
+
 	/**
 	 * A character with that name already exists.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_CHARACTER_EXIST = new SM_SYSTEM_MESSAGE(1310037);
+
 	/**
 	 * You cannot create any more characters on this server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_NO_AVAILABLE_SLOT = new SM_SYSTEM_MESSAGE(1310038);
+
 	/**
 	 * Invalid server ID.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_INVALID_SERVERID = new SM_SYSTEM_MESSAGE(1310039);
+
 	/**
 	 * Too many users on the game server. You cannot access the game.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_TOO_MANY_USER = new SM_SYSTEM_MESSAGE(1310040);
+
 	/**
 	 * The game server memory is full. You cannot access the game.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_OUT_OF_MEMORY = new SM_SYSTEM_MESSAGE(1310041);
+
 	/**
 	 * The selected character is already playing on the selected server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_ALREADY_PLAYING = new SM_SYSTEM_MESSAGE(1310042);
+
 	/**
 	 * You cannot create any more characters on that account.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_MAX_CHAR_COUNT = new SM_SYSTEM_MESSAGE(1310043);
+
 	/**
 	 * Invalid character name.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_INVALID_NAME = new SM_SYSTEM_MESSAGE(1310044);
+
 	/**
 	 * Invalid character gender.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_INVALID_GENDER = new SM_SYSTEM_MESSAGE(1310045);
+
 	/**
 	 * Invalid character class.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_INVALID_CLASS = new SM_SYSTEM_MESSAGE(1310046);
+
 	/**
 	 * The game server is down.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_SERVER_DOWN = new SM_SYSTEM_MESSAGE(1310047);
+
 	/**
 	 * The Billing server is down.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_BILLGATES_DOWN = new SM_SYSTEM_MESSAGE(1310048);
+
 	/**
 	 * Internal game server error
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOGIN_ERROR_INTERNAL_SERVER_ERROR = new SM_SYSTEM_MESSAGE(1310049);
+
 	/**
 	 * You have been disconnected from the server by request of the PlayNC Homepage.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_L2AUTH_S_KICKED_BY_WEB = new SM_SYSTEM_MESSAGE(1310050);
+
 	/**
 	 * You are not old enough to play the game.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_L2AUTH_S_UNDER_AGE = new SM_SYSTEM_MESSAGE(1310051);
+
 	/**
 	 * Double login attempts have been detected.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_L2AUTH_S_KICKED_DOUBLE_LOGIN = new SM_SYSTEM_MESSAGE(1310052);
+
 	/**
 	 * You are already logged in.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_L2AUTH_S_ALREADY_PLAY_GAME = new SM_SYSTEM_MESSAGE(1310053);
+
 	/**
 	 * Sorry, the queue is full. Please try another server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_L2AUTH_S_LIMIT_EXCEED = new SM_SYSTEM_MESSAGE(1310054);
+
 	/**
 	 * The server is currently unavailable. Please try again later.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_L2AUTH_S_SEVER_CHECK = new SM_SYSTEM_MESSAGE(1310055);
+
 	/**
 	 * Please login to the game after you have changed your password.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_L2AUTH_S_MODIFY_PASSWORD = new SM_SYSTEM_MESSAGE(1310056);
+
 	/**
 	 * Either the usage period has expired or we are experiencing a temporary connection difficulty. For more information, please contact the administrators or our customer center.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_L2AUTH_S_NOT_PAID = new SM_SYSTEM_MESSAGE(1310057);
+
 	/**
 	 * You have used up your allocated time and there is no time left on this account.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_L2AUTH_S_NO_SPECIFICTIME = new SM_SYSTEM_MESSAGE(1310058);
+
 	/**
 	 * System error.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_L2AUTH_S_SYSTEM_ERROR = new SM_SYSTEM_MESSAGE(1310059);
+
 	/**
 	 * You cannot open a private store in the arena.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PvPZONE_CANNOT_OPEN_MARKET = new SM_SYSTEM_MESSAGE(1310060);
+
 	/**
 	 * You cannot continue unless you stop flying.
 	 */
@@ -13440,7 +14089,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * A one-way Rift into Asmodae has appeared.
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_DARK_SIDE_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1320001);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DARK_SIDE_DIRECT_PORTAL_OPEN_01 = new SM_SYSTEM_MESSAGE(1320001);
+
+	/**
+	 * A Volatile Rift has opened from Asmodae to Elysea.
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DARK_SIDE_DIRECT_PORTAL_OPEN_02 = new SM_SYSTEM_MESSAGE(1402875);
 
 	/**
 	 * %1 of %0 has captured the %2 Artifact.
@@ -13486,6 +14140,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are too far from the object to gather it.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_TOO_FAR_FROM_GATHER_SOURCE = new SM_SYSTEM_MESSAGE(1330002);
+
 	/**
 	 * You cannot gather as there are obstacles blocking the way.
 	 */
@@ -13501,26 +14156,30 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * Your %0 skill has been upgraded to %1 points.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_GATHER_SKILL_POINT_UP(String value0, String value1) {
-		return new SM_SYSTEM_MESSAGE(1330005, value0, value1);
+	public static SM_SYSTEM_MESSAGE STR_GATHER_SKILL_POINT_UP(String skillName, int newLevel) {
+		return new SM_SYSTEM_MESSAGE(1330005, skillName, newLevel);
 	}
 
 	/**
 	 * You do not have the basic gathering tools.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_NO_TOOL_1_BASIC = new SM_SYSTEM_MESSAGE(1330006);
+
 	/**
 	 * You do not have the harvesting tools.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_NO_TOOL_2_GATHER = new SM_SYSTEM_MESSAGE(1330007);
+
 	/**
 	 * You do not have the mining tools.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_NO_TOOL_3_MINING = new SM_SYSTEM_MESSAGE(1330008);
+
 	/**
 	 * You do not have the fishing tools.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_NO_TOOL_4_FISHING = new SM_SYSTEM_MESSAGE(1330009);
+
 	/**
 	 * You do not have the forestry tools.
 	 */
@@ -13635,54 +14294,67 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have stopped gathering.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_CANCEL_1_BASIC = new SM_SYSTEM_MESSAGE(1330026);
+
 	/**
 	 * You have stopped harvesting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_CANCEL_2_GATHER = new SM_SYSTEM_MESSAGE(1330027);
+
 	/**
 	 * You have stopped mining.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_CANCEL_3_MINING = new SM_SYSTEM_MESSAGE(1330028);
+
 	/**
 	 * You have stopped fishing.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_CANCEL_4_FISHING = new SM_SYSTEM_MESSAGE(1330029);
+
 	/**
 	 * You have stopped felling.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_CANCEL_5_FORESTRY = new SM_SYSTEM_MESSAGE(1330030);
+
 	/**
 	 * You must be equipped with the basic gathering tools.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_EQUIP_1_BASIC = new SM_SYSTEM_MESSAGE(1330031);
+
 	/**
 	 * You must be equipped with a hoe.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_EQUIP_2_GATHER = new SM_SYSTEM_MESSAGE(1330032);
+
 	/**
 	 * You must be equipped with a pick.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_EQUIP_3_MINING = new SM_SYSTEM_MESSAGE(1330033);
+
 	/**
 	 * You must be equipped with a fishing rod.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_EQUIP_4_FISHING = new SM_SYSTEM_MESSAGE(1330034);
+
 	/**
 	 * You must be equipped with an axe.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_EQUIP_5_FORESTRY = new SM_SYSTEM_MESSAGE(1330035);
+
 	/**
 	 * You must have at least one free space in your cube to gather.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_INVENTORY_IS_FULL = new SM_SYSTEM_MESSAGE(1330036);
+
 	/**
 	 * You must have at least one free space in your cube to craft.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_COMBINE_INVENTORY_IS_FULL = new SM_SYSTEM_MESSAGE(1330037);
+
 	/**
 	 * You cannot craft while in an altered state.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_COMBINE_CAN_NOT_COMBINE_WHILE_IN_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1330038);
+
 	/**
 	 * You are already crafting.
 	 */
@@ -13750,15 +14422,15 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * You have crafted %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_COMBINE_SUCCESS(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1330049, descriptionId);
+	public static SM_SYSTEM_MESSAGE STR_COMBINE_SUCCESS(String value0) {
+		return new SM_SYSTEM_MESSAGE(1330049, value0);
 	}
 
 	/**
 	 * You have failed to craft %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_COMBINE_FAIL(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1330050, descriptionId);
+	public static SM_SYSTEM_MESSAGE STR_COMBINE_FAIL(String value0) {
+		return new SM_SYSTEM_MESSAGE(1330050, value0);
 	}
 
 	/**
@@ -13791,22 +14463,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot start crafting as there are obstacles blocking the way.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CRAFT_OBSTACLE_EXIST = new SM_SYSTEM_MESSAGE(1330055);
+
 	/**
 	 * You cannot craft while in combat.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CRAFT_DISABLED_IN_COMBAT_MODE = new SM_SYSTEM_MESSAGE(1330056);
+
 	/**
 	 * As you cannot craft while in combat mode, it will be closed automatically.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CRAFT_CLOSED_FOR_COMBAT_MODE = new SM_SYSTEM_MESSAGE(1330057);
+
 	/**
 	 * You have gathered successfully.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHERING_SUCCESS_GETEXP = new SM_SYSTEM_MESSAGE(1330058);
+
 	/**
 	 * You have crafted successfully.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CRAFT_SUCCESS_GETEXP = new SM_SYSTEM_MESSAGE(1330059);
+
 	/**
 	 * You have already learned this design.
 	 */
@@ -13818,6 +14495,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static SM_SYSTEM_MESSAGE STR_CRAFT_RECIPE_LEARN(int value0, String name) {
 		return new SM_SYSTEM_MESSAGE(1330061, "[recipe_ex:" + value0 + ";" + name + "]");
 	}
+
 
 	/**
 	 * You cannot learn the design because you have not learned the %0 skill.
@@ -13842,6 +14520,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Only Daevas can craft it.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CRAFT_MSG_CAN_WORK_ONLY_DEVA = new SM_SYSTEM_MESSAGE(1330065);
+
 	/**
 	 * You are a Daeva now. Leave this resource for Humans to use.
 	 */
@@ -13865,30 +14544,37 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot be promoted any more.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_COMBINE_CBT_CAP = new SM_SYSTEM_MESSAGE(1330069);
+
 	/**
 	 * You cannot be promoted any more.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GATHER_CBT_CAP = new SM_SYSTEM_MESSAGE(1330070);
+
 	/**
 	 * You cannot gather while afflicted with an altered state.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_EXTRACT_GATHER_WHILE_IN_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1330071);
+
 	/**
 	 * You cannot gather while in the current stance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_EXTRACT_GATHER_WHILE_IN_CURRENT_STANCE = new SM_SYSTEM_MESSAGE(1330072);
+
 	/**
 	 * You cannot gather while in the current position.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_SKILL_CAN_NOT_EXTRACT_GATHER_IN_CURRENT_POSITION = new SM_SYSTEM_MESSAGE(1330073);
+
 	/**
 	 * Someone else is gathering that object.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXTRACT_GATHER_OCCUPIED_BY_OTHER = new SM_SYSTEM_MESSAGE(1330074);
+
 	/**
 	 * You are too far from the target to gather it.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXTRACT_GATHER_TOO_FAR_FROM_GATHER_SOURCE = new SM_SYSTEM_MESSAGE(1330075);
+
 	/**
 	 * You cannot gather because an obstacle is in the way.
 	 */
@@ -13897,40 +14583,44 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * You have started gathering %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_EXTRACT_GATHER_START_1_BASIC(String value0) {
-		return new SM_SYSTEM_MESSAGE(1330077, value0);
+	public static SM_SYSTEM_MESSAGE STR_EXTRACT_GATHER_START_1_BASIC(DescriptionId nameId) {
+		return new SM_SYSTEM_MESSAGE(1330077, nameId);
 	}
 
 	/**
 	 * You have gathered %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_EXTRACT_GATHER_SUCCESS_1_BASIC(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1330078, descriptionId);
+	public static SM_SYSTEM_MESSAGE STR_EXTRACT_GATHER_SUCCESS_1_BASIC(DescriptionId nameId) {
+		return new SM_SYSTEM_MESSAGE(1330078, nameId);
 	}
 
 	/**
 	 * You have failed to gather %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_EXTRACT_GATHER_FAIL_1_BASIC(String value0) {
-		return new SM_SYSTEM_MESSAGE(1330079, value0);
+	public static SM_SYSTEM_MESSAGE STR_EXTRACT_GATHER_FAIL_1_BASIC(DescriptionId nameId) {
+		return new SM_SYSTEM_MESSAGE(1330079, nameId);
 	}
 
 	/**
 	 * You have stopped gathering.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXTRACT_GATHER_CANCEL_1_BASIC = new SM_SYSTEM_MESSAGE(1330080);
+
 	/**
 	 * You cannot gather unless there is at least one free space in your cube.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXTRACT_GATHER_INVENTORY_IS_FULL = new SM_SYSTEM_MESSAGE(1330081);
+
 	/**
 	 * You have gained experience from gathering.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXTRACT_GATHERING_SUCCESS_GETEXP = new SM_SYSTEM_MESSAGE(1330082);
+
 	/**
 	 * You cannot use the item until its gathering timer expires.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EXTRACT_GATHERING_CANT_USE_UNTIL_DELAY_TIME = new SM_SYSTEM_MESSAGE(1330083);
+
 	/**
 	 * You have died.
 	 */
@@ -14105,30 +14795,37 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot close the Craft window while crafting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_CLOSE_MAKING_DIALOG_DURING_COMBINE = new SM_SYSTEM_MESSAGE(1390105);
+
 	/**
 	 * You cannot change target while crafting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_SELECT_TARGET_DURING_COMBINE = new SM_SYSTEM_MESSAGE(1390106);
+
 	/**
 	 * You cannot open a private store while fighting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_DISABLED_IN_EXCHANGE = new SM_SYSTEM_MESSAGE(1390107);
+
 	/**
 	 * Group members cannot organize an alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PARTY_MEMBER_CANT_ORGANIZE_FORCE = new SM_SYSTEM_MESSAGE(1390108);
+
 	/**
 	 * You cannot organize an alliance by inviting your own group members.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_ORGANIZE_FORCE_INVITED_PARTY_MEMBER = new SM_SYSTEM_MESSAGE(1390109);
+
 	/**
 	 * Please select a target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NEED_TARGET = new SM_SYSTEM_MESSAGE(1390110);
+
 	/**
 	 * Invalid name.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NOT_CORRECT_CHAR_NAME = new SM_SYSTEM_MESSAGE(1390111);
+
 	/**
 	 * The character name does not exist. Please check the recipient again.
 	 */
@@ -14220,22 +14917,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You did not set Your Note.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NOSET_TODAY_WORDS = new SM_SYSTEM_MESSAGE(1390125);
+
 	/**
 	 * Your Note has been cleared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CLEAR_TODAY_WORDS = new SM_SYSTEM_MESSAGE(1390126);
+
 	/**
 	 * You did not set the Legion Announcement.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NOSET_GUILD_NOTICE = new SM_SYSTEM_MESSAGE(1390127);
+
 	/**
 	 * Legion Announcement has been cleared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CLEAR_GUILD_NOTICE = new SM_SYSTEM_MESSAGE(1390128);
+
 	/**
 	 * You did not set the Self Intro.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NOSET_GUILD_MEMBER_INTRO = new SM_SYSTEM_MESSAGE(1390129);
+
 	/**
 	 * Your Self Intro has been cleared.
 	 */
@@ -14280,18 +14982,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have no authority to modify the Legion emblem.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_EMBLEM_DONT_HAVE_RIGHT = new SM_SYSTEM_MESSAGE(1390136);
+
 	/**
 	 * The Legion emblem has been changed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_EMBLEM = new SM_SYSTEM_MESSAGE(1390137);
+
 	/**
 	 * Please enter the name of the member to change the rank.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_MEMBER_RANK_NO_NAME = new SM_SYSTEM_MESSAGE(1390138);
+
 	/**
 	 * The rank to change is incorrect.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_MEMBER_RANK_INCORRECT_RIGHT = new SM_SYSTEM_MESSAGE(1390139);
+
 	/**
 	 * You cannot use a Rift while flying.
 	 */
@@ -14315,9 +15021,9 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are Tired, and the XP or item rewards gained are reduced to 50% of normal. Please log out and take a break for your health.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TIRED_REMAIN_PLAYTIME = new SM_SYSTEM_MESSAGE(1390143);
+
 	/**
-	 * You are Exhausted, and the XP or item rewards gained are reduced to 0%. Please log out and take a break for your health. It will be returned to normal when the accumulated logout time reaches 5
-	 * hours.
+	 * You are Exhausted, and the XP or item rewards gained are reduced to 0%. Please log out and take a break for your health. It will be returned to normal when the accumulated logout time reaches 5 hours.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PENALTY_REMAIN_PLAYTIME = new SM_SYSTEM_MESSAGE(1390144);
 
@@ -14339,22 +15045,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You do not have enough Kinah to pay the fee.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_SEND_MAIL_NOT_ENOUGH_FEE = new SM_SYSTEM_MESSAGE(1390147);
+
 	/**
 	 * You do not have the authority to use the Alert Chat.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NO_AUTHORITY = new SM_SYSTEM_MESSAGE(1390148);
+
 	/**
 	 * You do not have enough space in the inventory.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WAREHOUSE_FULL_INVENTORY = new SM_SYSTEM_MESSAGE(1390149);
+
 	/**
 	 * You cannot use items while crafting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_USE_ITEM_DURING_COMBINE = new SM_SYSTEM_MESSAGE(1390150);
+
 	/**
 	 * You cannot use the entrance to the enemy territory.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_TELEPORT_OPPOSITE_RACIAL = new SM_SYSTEM_MESSAGE(1390151);
+
 	/**
 	 * You must first complete the Abyss Entry Quest.
 	 */
@@ -14376,29 +15087,35 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * %1 of %0 uses %3 in %2.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_SKILL_ABYSS_SKILL_IS_FIRED(Player player, DescriptionId skill) {
-		return new SM_SYSTEM_MESSAGE(1390155, player.getRace().getRaceDescriptionId(), player.getName(), "%SubZone:" + player.getPosition().getMapId() + " " + player.getPosition().getX() + " " + player.getPosition().getY() + " " + player.getPosition().getZ(), skill);
+		return new SM_SYSTEM_MESSAGE(1390155, player.getRace().getRaceDescriptionId(), player.getName(),
+				"%SubZone:" + player.getPosition().getMapId() + " " + player.getPosition().getX() + " " + player.getPosition().getY() + " " + player.getPosition().getZ(), skill);
 	}
 
 	/**
 	 * You could not remove the skill effect as your Dispel skill level is too low.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NOT_ENOUGH_DISPELLEVEL = new SM_SYSTEM_MESSAGE(1390156);
+
 	/**
 	 * You could not remove all the skill effects as you do not have sufficient Dispel skill count.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NOT_ENOUGH_DISPELCOUNT = new SM_SYSTEM_MESSAGE(1390157);
+
 	/**
 	 * The Kisk you registered as a resurrection bind point has been destroyed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BINDSTONE_DESTROYED = new SM_SYSTEM_MESSAGE(1390158);
+
 	/**
 	 * You registered the current location as a resurrection bind point.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BINDSTONE_REGISTER = new SM_SYSTEM_MESSAGE(1390159);
+
 	/**
 	 * You can install only one Kisk at a time.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BINDSTONE_ALREADY_INSTALLED = new SM_SYSTEM_MESSAGE(1390160);
+
 	/**
 	 * You have already bound at this location.
 	 */
@@ -14434,54 +15151,67 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Kisk you registered is under attack.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_BINDSTONE_IS_ATTACKED = new SM_SYSTEM_MESSAGE(1390166);
+
 	/**
 	 * Items subjected to the group's quality item distribution have been changed to Superior rank or above.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PARTY_LOOTING_CHANGED_TO_RARE_QUALITY = new SM_SYSTEM_MESSAGE(1390167);
+
 	/**
 	 * Items subjected to the alliance's quality item distribution have been changed to Superior rank or above.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FORCE_LOOTING_CHANGED_TO_RARE_QUALITY = new SM_SYSTEM_MESSAGE(1390168);
+
 	/**
 	 * Items subjected to the group's quality item distribution have been changed to Heroic rank or above.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PARTY_LOOTING_CHANGED_TO_LEGEND_QUALITY = new SM_SYSTEM_MESSAGE(1390169);
+
 	/**
 	 * Items subjected to the alliance's quality item distribution have been changed to Heroic rank or above.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FORCE_LOOTING_CHANGED_TO_LEGEND_QUALITY = new SM_SYSTEM_MESSAGE(1390170);
+
 	/**
 	 * Items subjected to the group's quality item distribution have been changed to Fabled rank or above.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PARTY_LOOTING_CHANGED_TO_UNIQUE_QUALITY = new SM_SYSTEM_MESSAGE(1390171);
+
 	/**
 	 * Items subjected to the alliance's quality item distribution have been changed to Fabled rank or above.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FORCE_LOOTING_CHANGED_TO_UNIQUE_QUALITY = new SM_SYSTEM_MESSAGE(1390172);
+
 	/**
 	 * You cannot add any more on the quality item distribution list. Please try again later.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LOOTING_LIMIT_NUMBER = new SM_SYSTEM_MESSAGE(1390173);
+
 	/**
 	 * The group's quality item distribution rules have been changed to Normal.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PARTY_LOOTING_CHANGED_TO_DEFAULT = new SM_SYSTEM_MESSAGE(1390174);
+
 	/**
 	 * The alliance's quality item distribution rules have been changed to Normal.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FORCE_LOOTING_CHANGED_TO_DEFAULT = new SM_SYSTEM_MESSAGE(1390175);
+
 	/**
 	 * The group's quality item distribution rules have been changed to Dice Roll.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PARTY_LOOTING_CHANGED_TO_DICE = new SM_SYSTEM_MESSAGE(1390176);
+
 	/**
 	 * The alliance's quality item distribution rules have been changed to Dice Roll.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FORCE_LOOTING_CHANGED_TO_DICE = new SM_SYSTEM_MESSAGE(1390177);
+
 	/**
 	 * The group's quality item distribution rules have been changed to Bidding.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PARTY_LOOTING_CHANGED_TO_PAY = new SM_SYSTEM_MESSAGE(1390178);
+
 	/**
 	 * The alliance's quality item distribution rules have been changed to Bidding.
 	 */
@@ -14505,6 +15235,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot acquire the item because there is no space in the inventory.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DICE_INVEN_ERROR = new SM_SYSTEM_MESSAGE(1390182);
+
 	/**
 	 * The account was instantly settled.
 	 */
@@ -14610,18 +15341,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You can use it only after the cooldown time is over.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ARTIFACT_COOL_TIME = new SM_SYSTEM_MESSAGE(1390198);
+
 	/**
 	 * The Balaur have killed the Guardian General.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_DRAGON_BOSS_KILLED = new SM_SYSTEM_MESSAGE(1390199);
+
 	/**
 	 * The Balaur have destroyed the Castle Gate.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_DRAGON_DOOR_BROKEN = new SM_SYSTEM_MESSAGE(1390200);
+
 	/**
 	 * The Balaur have destroyed the Gate Guardian Stone.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ABYSS_DRAGON_REPAIR_BROKEN = new SM_SYSTEM_MESSAGE(1390201);
+
 	/**
 	 * The Balaur have killed the Aetheric Field Generator.
 	 */
@@ -14678,10 +15413,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Starts the auto-distribution of miscellaneous items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_JUNK_DISTRIBUTE_ON = new SM_SYSTEM_MESSAGE(1390210);
+
 	/**
 	 * Ends the auto-distribution of miscellaneous items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_JUNK_DISTRIBUTE_OF = new SM_SYSTEM_MESSAGE(1390211);
+
 	/**
 	 * You cannot disband your Legion while you have items or money left in the Legion warehouse.
 	 */
@@ -14752,6 +15489,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Items subjected to the group's quality item distribution have been changed to Common rank or above.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PARTY_LOOTING_CHANGED_TO_COMMON_QUALITY = new SM_SYSTEM_MESSAGE(1390222);
+
 	/**
 	 * Items subjected to the alliance's quality item distribution have been changed to Common rank or above.
 	 */
@@ -14768,14 +15506,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot connect to the game during the character reservation period.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_WORLD_CONNECTION_FAIL_BY_CHAR_RES = new SM_SYSTEM_MESSAGE(1390225);
+
 	/**
 	 * Everyone gave up the Dice Roll.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DICE_ALL_GIVEUP = new SM_SYSTEM_MESSAGE(1390226);
+
 	/**
 	 * Everyone gave up the Bidding.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PAY_ALL_GIVEUP = new SM_SYSTEM_MESSAGE(1390227);
+
 	/**
 	 * You gave up the Bidding.
 	 */
@@ -14805,14 +15546,15 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * Your Abyss Rank has changed to %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_ABYSS_CHANGE_RANK(String value0) {
-		return new SM_SYSTEM_MESSAGE(1390232, value0);
+	public static SM_SYSTEM_MESSAGE STR_ABYSS_CHANGE_RANK(DescriptionId rankDescId) {
+		return new SM_SYSTEM_MESSAGE(1390232, rankDescId);
 	}
 
 	/**
 	 * You cannot be promoted as your skill level is too low.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DONT_RANK_UP = new SM_SYSTEM_MESSAGE(1390233);
+
 	/**
 	 * An Expert cannot take on a Work Order.
 	 */
@@ -14821,9 +15563,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * Your Abyss Rank has been changed to %0. Check the changed ranking on the Abyss Ranking Window.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_ABYSS_CHANGE_RANK_THIS_WEEK(String value0) {
-		return new SM_SYSTEM_MESSAGE(1390235, value0);
-	}
+	public static SM_SYSTEM_MESSAGE STR_ABYSS_CHANGE_RANK_THIS_WEEK = new SM_SYSTEM_MESSAGE(1390235);
 
 	/**
 	 * You have learned the skill, %0 (Level - %1).
@@ -14836,18 +15576,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Only available to alliances.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_SPLIT_FORCE = new SM_SYSTEM_MESSAGE(1390237);
+
 	/**
 	 * Please enter the amount of Kinah to distribute.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ENTER_SPLIT_GOLD = new SM_SYSTEM_MESSAGE(1390238);
+
 	/**
 	 * You give up the Bidding as you do not have enough Kinah.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PAY_NOT_ENOUGH_MONEY = new SM_SYSTEM_MESSAGE(1390239);
+
 	/**
 	 * You cannot join the Legion as the player who invited you is no longer a member of the Legion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_INVITE_CAN_NOT_JOIN_TO_GUILD_INVITOR_IS_LEFT = new SM_SYSTEM_MESSAGE(1390240);
+
 	/**
 	 * You cannot kick out a Legion member of equal or higher rank.
 	 */
@@ -14925,22 +15669,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot be promoted anymore as you are an Expert.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DONT_RANK_UP_MASTER = new SM_SYSTEM_MESSAGE(1390252);
+
 	/**
 	 * You cannot be promoted anymore as you are at the highest rank.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DONT_RANK_UP_GATHERING = new SM_SYSTEM_MESSAGE(1390253);
+
 	/**
 	 * You have not acquired this quest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_OPEN_QUEST_LINK = new SM_SYSTEM_MESSAGE(1390254);
+
 	/**
 	 * Your skill level does not increase with low level crafting as you are an Expert.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DONT_GET_COMBINE_EXP = new SM_SYSTEM_MESSAGE(1390255);
+
 	/**
 	 * This area is only accessible to groups.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ENTER_ONLY_PARTY_DON = new SM_SYSTEM_MESSAGE(1390256);
+
 	/**
 	 * You do not have enough Medals.
 	 */
@@ -14978,14 +15727,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have joined the group.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ENTERED_PARTY = new SM_SYSTEM_MESSAGE(1390262);
+
 	/**
 	 * You have joined the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_ENTERED_FORCE = new SM_SYSTEM_MESSAGE(1390263);
+
 	/**
 	 * Please complete your current quest first.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_QUEST_ANOTHER_SINGLE_STEP_NOT_COMPLETED = new SM_SYSTEM_MESSAGE(1390264);
+
 	/**
 	 * You cannot join once it has started.
 	 */
@@ -15009,6 +15761,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You rolled the highest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GET_ITEM_PARTYNOTICE_DICE_WIN = new SM_SYSTEM_MESSAGE(1390268);
+
 	/**
 	 * Everyone passed on rolling the dice.
 	 */
@@ -15065,6 +15818,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You shout "%0".
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CMD_SHOUT_INPUT = new SM_SYSTEM_MESSAGE(1400004);
+
 	/**
 	 * You shout for help.
 	 */
@@ -15137,6 +15891,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Your group has joined the alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_ALLIANCE_MY_PARTY_ENTERED_ALLIANCE = new SM_SYSTEM_MESSAGE(1400015);
+
 	/**
 	 * You have joined a group belonging to an alliance.
 	 */
@@ -15184,7 +15939,8 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * %0 %1 %2 has died in %3.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_ABYSS_ORDER_RANKER_DIE(Player victim, DescriptionId rankDescId) {
-		return new SM_SYSTEM_MESSAGE(1400023, victim.getRace().getRaceDescriptionId(), rankDescId, victim.getName(), "%SubZone:" + victim.getPosition().getMapId() + " " + victim.getPosition().getX() + " " + victim.getPosition().getY() + " " + victim.getPosition().getZ());
+		return new SM_SYSTEM_MESSAGE(1400023, victim.getRace().getRaceDescriptionId(), rankDescId, victim.getName(), "%SubZone:" + victim.getPosition().getMapId() + " "
+				+ victim.getPosition().getX() + " " + victim.getPosition().getY() + " " + victim.getPosition().getZ());
 	}
 
 	/**
@@ -15239,8 +15995,8 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * You can enter %0 area now.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_CAN_ENTER_INSTANCE(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400031, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_CAN_ENTER_INSTANCE(int worldId) {
+		return new SM_SYSTEM_MESSAGE(1400031, worldId);
 	}
 
 	/**
@@ -15292,18 +16048,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Macro has been registered.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MACRO_MSG_REGIST = new SM_SYSTEM_MESSAGE(1400039);
+
 	/**
 	 * You cannot register any more Macro.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MACRO_MSG_CANNOT_REGIST = new SM_SYSTEM_MESSAGE(1400040);
+
 	/**
 	 * You cannot get any Abyss Point from the current target for a while.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_GET_AP_TARGET_LIMIT = new SM_SYSTEM_MESSAGE(1400041);
+
 	/**
 	 * As you are not currently a member of the group for the Instanced Zone, you will be leaving the zone shortly.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LEAVE_INSTANCE_NOT_PARTY = new SM_SYSTEM_MESSAGE(1400042);
+
 	/**
 	 * The zone has been reset. Once reset, you cannot enter the zone again until the reentry time expires. You can check the reentry time by typing '/CheckEntry'.
 	 */
@@ -15374,58 +16134,72 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * standing
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_STANDING = new SM_SYSTEM_MESSAGE(1400053);
+
 	/**
 	 * flying
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_PATH_FLYING = new SM_SYSTEM_MESSAGE(1400054);
+
 	/**
 	 * flying
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_FREE_FLYING = new SM_SYSTEM_MESSAGE(1400055);
+
 	/**
 	 * riding
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_RIDING = new SM_SYSTEM_MESSAGE(1400056);
+
 	/**
 	 * resting
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_SITTING = new SM_SYSTEM_MESSAGE(1400057);
+
 	/**
 	 * sitting
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_SITTING_ON_CHAIR = new SM_SYSTEM_MESSAGE(1400058);
+
 	/**
 	 * dead
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_DEAD = new SM_SYSTEM_MESSAGE(1400059);
+
 	/**
 	 * dead
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_FLY_DEAD = new SM_SYSTEM_MESSAGE(1400060);
+
 	/**
 	 * running a Private Store
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_PERSONAL_SHOP = new SM_SYSTEM_MESSAGE(1400061);
+
 	/**
 	 * looting
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_LOOTING = new SM_SYSTEM_MESSAGE(1400062);
+
 	/**
 	 * looting
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_FLY_LOOTING = new SM_SYSTEM_MESSAGE(1400063);
+
 	/**
 	 * in your current status
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_DEFAULT = new SM_SYSTEM_MESSAGE(1400064);
+
 	/**
 	 * You cannot register items of other races.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_OTHER_RACE = new SM_SYSTEM_MESSAGE(1400065);
+
 	/**
 	 * This account has been reported for not paying an internet caf? usage charge. If you believe this is an error, please contact customer support.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BLOCK_PC_ROOM_COMPLAIN2 = new SM_SYSTEM_MESSAGE(1400066);
+
 	/**
 	 * The Stigma is already equipped.
 	 */
@@ -15439,8 +16213,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
-	 * You entered into the Phase %num0 Restriction state because the auto hunting reports have accumulated. You can check the Restriction Phase and the Release Time by typing the '/Restriction'
-	 * command.
+	 * You entered into the Phase %num0 Restriction state because the auto hunting reports have accumulated. You can check the Restriction Phase and the Release Time by typing the '/Restriction' command.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_UPGRADE_LEVEL(int num0) {
 		return new SM_SYSTEM_MESSAGE(1400069, num0);
@@ -15454,32 +16227,28 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
-	 * You are currently at Phase 1 Restriction State, and will be released in %0 minutes. While not affecting your game play in anyway, a continued accumulation of reports will however raise the
-	 * Restriction Phase and will limit your gaining of XP and items.
+	 * You are currently at Phase 1 Restriction State, and will be released in %0 minutes. While not affecting your game play in anyway, a continued accumulation of reports will however raise the Restriction Phase and will limit your gaining of XP and items.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_INFO_1_LEVEL(String value0) {
 		return new SM_SYSTEM_MESSAGE(1400071, value0);
 	}
 
 	/**
-	 * You are currently in Phase 2 Restriction State, and will be downgraded to Phase 1 in %0 minutes. You now receive less XP, Kinah and Abyss Points, and the chance of successful gathering and
-	 * extraction has been decreased. You will face greater restrictions if reports continue to accumulate.
+	 * You are currently in Phase 2 Restriction State, and will be downgraded to Phase 1 in %0 minutes. You now receive less XP, Kinah and Abyss Points, and the chance of successful gathering and extraction has been decreased. You will face greater restrictions if reports continue to accumulate.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_INFO_2_LEVEL(String value0) {
 		return new SM_SYSTEM_MESSAGE(1400072, value0);
 	}
 
 	/**
-	 * You are currently in Phase 3 Restriction State and will be downgraded to Phase 2 in %0 minutes. You cannot acquire any loot, and you now receive less XP, Kinah and Abyss Points, and the chance
-	 * of successful gathering and extraction has been significantly decreased. You are banned from joining a Group or Alliance. You will face greater restrictions if reports continue to accumulate.
+	 * You are currently in Phase 3 Restriction State and will be downgraded to Phase 2 in %0 minutes. You cannot acquire any loot, and you now receive less XP, Kinah and Abyss Points, and the chance of successful gathering and extraction has been significantly decreased. You are banned from joining a Group or Alliance. You will face greater restrictions if reports continue to accumulate.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_INFO_3_LEVEL(String value0) {
 		return new SM_SYSTEM_MESSAGE(1400073, value0);
 	}
 
 	/**
-	 * You are currently at Phase 4 Restriction State and will be downgraded to Phase 3 in %0 minutes. You cannot acquire any loot, XP, Kinah, or Abyss Points, and are unable to gather or extract any
-	 * items. You are also banned from joining a Group or Alliance.
+	 * You are currently at Phase 4 Restriction State and will be downgraded to Phase 3 in %0 minutes. You cannot acquire any loot, XP, Kinah, or Abyss Points, and are unable to gather or extract any items. You are also banned from joining a Group or Alliance.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_INFO_4_LEVEL(String value0) {
 		return new SM_SYSTEM_MESSAGE(1400074, value0);
@@ -15489,34 +16258,47 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have consumed all equipped Power Shards.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAPON_BOOST_MODE_BURN_OUT = new SM_SYSTEM_MESSAGE(1400075);
+
+	/**
+	 * The shards were automatically deactivated because you don't have enough.
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_WEAPON_BOOST_CANNOT_USE_WARNING = new SM_SYSTEM_MESSAGE(1404770);
+
 	/**
 	 * You are in normal state.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_INFO_NORMAL = new SM_SYSTEM_MESSAGE(1400076);
+
 	/**
 	 * You cannot delete the letter because items or Kinah are attached.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MAIL_ITEM_DEL_DENIED = new SM_SYSTEM_MESSAGE(1400077);
+
 	/**
 	 * You cannot open a private store while trading.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_OPEN_STORE_DURING_CRAFTING = new SM_SYSTEM_MESSAGE(1400078);
+
 	/**
 	 * in combat
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ASF_COMBAT = new SM_SYSTEM_MESSAGE(1400079);
+
 	/**
 	 * moving
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ASF_MOVE_TYPE_WALK = new SM_SYSTEM_MESSAGE(1400080);
+
 	/**
 	 * using a skill
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ASF_CASTING_SKILL = new SM_SYSTEM_MESSAGE(1400081);
+
 	/**
 	 * gliding
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ASF_GLIDE = new SM_SYSTEM_MESSAGE(1400082);
+
 	/**
 	 * You returned to the normal state as you played fair for a certain period of time. Please continue to play the game in a proper manner.
 	 */
@@ -15533,6 +16315,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot send auto hunting reports right now.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_ACCUSE = new SM_SYSTEM_MESSAGE(1400085);
+
 	/**
 	 * You cannot report auto hunting in the current region.
 	 */
@@ -15549,10 +16332,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have already learned this emote.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_SOCIALACTION_ALREADY_HAS_SKILL = new SM_SYSTEM_MESSAGE(1400088);
+
 	/**
 	 * This item has not been appearance modified.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CHANGE_ITEM_SKIN_CANNOT_INVALID_ITEM = new SM_SYSTEM_MESSAGE(1400089);
+
 	/**
 	 * You cannot report as you have exceeded the number of auto hunting reports allowed.
 	 */
@@ -15569,18 +16354,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The selected user cannot be invited to a group or a force.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_CANT_BE_INVITED = new SM_SYSTEM_MESSAGE(1400092);
+
 	/**
 	 * You have been reported too many times, and cannot issue an invitation.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_CANT_INVITE_OTHER = new SM_SYSTEM_MESSAGE(1400093);
+
 	/**
 	 * You cannot join the group as you have been reported too many times for auto hunting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_CANT_JOIN_PARTY = new SM_SYSTEM_MESSAGE(1400094);
+
 	/**
 	 * You cannot join the Alliance as you have been reported too many times for auto hunting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_CANT_JOIN_FORCE = new SM_SYSTEM_MESSAGE(1400095);
+
 	/**
 	 * You cannot use the manastone on the selected item as the manastone level is too high.
 	 */
@@ -15639,42 +16428,52 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The gift has been delivered successfully.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_GIFT_SUCCESS = new SM_SYSTEM_MESSAGE(1400104);
+
 	/**
 	 * You have failed to purchase the item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_ERROR = new SM_SYSTEM_MESSAGE(1400105);
+
 	/**
 	 * You have chosen an invalid target to give the gift.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_NO_USER_TO_GIFT = new SM_SYSTEM_MESSAGE(1400106);
+
 	/**
 	 * The item is not on the list.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_INVALID_GOODS = new SM_SYSTEM_MESSAGE(1400107);
+
 	/**
 	 * You do not have enough Cash Points.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_NOT_ENOUGH_POINT = new SM_SYSTEM_MESSAGE(1400108);
+
 	/**
 	 * Your race cannot purchase the selected item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_INVALID_RACE = new SM_SYSTEM_MESSAGE(1400109);
+
 	/**
 	 * Your gender cannot purchase the selected item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_INVALID_GENDER = new SM_SYSTEM_MESSAGE(1400110);
+
 	/**
 	 * Your Class cannot purchase the selected item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_INVALID_CLASS = new SM_SYSTEM_MESSAGE(1400111);
+
 	/**
 	 * You already have the selected title.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_DUPLICATED_TITLE = new SM_SYSTEM_MESSAGE(1400112);
+
 	/**
 	 * You already have the selected emote.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_DUPLICATED_SOCIAL = new SM_SYSTEM_MESSAGE(1400113);
+
 	/**
 	 * You have purchased the cube expansion item.
 	 */
@@ -15710,22 +16509,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot remove a registered item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EXCHANGE_CANNOT_UNREGISTER_ITEM = new SM_SYSTEM_MESSAGE(1400119);
+
 	/**
 	 * You cannot register an amount of Kinah that is lower than the registered amount.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EXCHANGE_CANNOT_DECREASE_MONEY = new SM_SYSTEM_MESSAGE(1400120);
+
 	/**
 	 * The client's regional code is not compatible with the game server.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ERROR_WORLD_LOCAL_CODE_FAIL = new SM_SYSTEM_MESSAGE(1400121);
+
 	/**
 	 * You cannot get any PVP XP from the current target for a while.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_GET_PVP_EXP_TARGET_LIMIT = new SM_SYSTEM_MESSAGE(1400122);
+
 	/**
 	 * You cannot get any PVP XP for a while as you have gained too many PVP XP in too short a period of time.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_GET_PVP_EXP_TIMEBASE_LIMIT = new SM_SYSTEM_MESSAGE(1400123);
+
 	/**
 	 * You cannot register the target as your Friend as you have been blocked by the player.
 	 */
@@ -15756,18 +16560,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot invite the player to the force as the group leader of the player is in an Instanced Zone.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CANT_INVITE_WHEN_HE_IS_IN_INSTANCE = new SM_SYSTEM_MESSAGE(1400128);
+
 	/**
 	 * You cannot use the selected function in the current restriction phase.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_TARGET_IS_NOT_VALID = new SM_SYSTEM_MESSAGE(1400129);
+
 	/**
 	 * You cannot preview this item as it can only be used by the opposite sex,
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PREVIEW_INVALID_GENDER = new SM_SYSTEM_MESSAGE(1400130);
+
 	/**
 	 * You have item(s) left to settle at the Broker.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_VENDOR_ACCOUNT_IS_NOT_EMPTY = new SM_SYSTEM_MESSAGE(1400131);
+
 	/**
 	 * You cannot use a Rift until the curse is removed.
 	 */
@@ -15892,26 +16700,32 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Only the Legion Brigade General can change his Legion name.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EDIT_GUILD_NAME_ERROR_ONLY_MASTER_CAN_CHANGE_NAME = new SM_SYSTEM_MESSAGE(1400150);
+
 	/**
 	 * Invalid character name.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EDIT_CHAR_NAME_ERROR_WRONG_INPUT = new SM_SYSTEM_MESSAGE(1400151);
+
 	/**
 	 * Invalid Legion name.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EDIT_GUILD_NAME_ERROR_WRONG_INPUT = new SM_SYSTEM_MESSAGE(1400152);
+
 	/**
 	 * The character name is already in use. Enter another name.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EDIT_CHAR_NAME_ERROR_SAME_YOUR_NAME = new SM_SYSTEM_MESSAGE(1400153);
+
 	/**
 	 * The Legion name is already in use. Enter another name.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EDIT_GUILD_NAME_ERROR_SAME_YOUR_NAME = new SM_SYSTEM_MESSAGE(1400154);
+
 	/**
 	 * A character is using the name. Enter another name.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EDIT_CHAR_NAME_ALREADY_EXIST = new SM_SYSTEM_MESSAGE(1400155);
+
 	/**
 	 * A Legion is using the name. Enter another name.
 	 */
@@ -15942,34 +16756,42 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot change the Legion name while occupying the fortress or Artifact.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EDIT_GUILD_NAME_CANT_FOR_HAVING_HOUSE = new SM_SYSTEM_MESSAGE(1400160);
+
 	/**
 	 * You can neither talk with NPCs nor use any useful functions in your current Restriction Phase.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BOT_CANNOT_USE_NPC_UTILITY = new SM_SYSTEM_MESSAGE(1400161);
+
 	/**
 	 * You cannot trade with other characters in your current Restriction Phase.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BOT_CANNOT_USE_PC_TRADE = new SM_SYSTEM_MESSAGE(1400162);
+
 	/**
 	 * You are automatically excluded from the group because the auto hunting reports have accumulated to the limit.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_BANISHED_FROM_PARTY = new SM_SYSTEM_MESSAGE(1400163);
+
 	/**
 	 * You are automatically excluded from the force because the auto hunting reports have accumulated to the limit.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ACCUSE_BANISHED_FROM_FORCE = new SM_SYSTEM_MESSAGE(1400164);
+
 	/**
 	 * The Energy of Repose is ineffective in your current Restriction Phase.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BOT_CANNOT_RECEIVE_VITAL_BONUS = new SM_SYSTEM_MESSAGE(1400165);
+
 	/**
 	 * The selected user cannot do any trading at the moment.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_USE_PC_TRADE_TO_BOT = new SM_SYSTEM_MESSAGE(1400166);
+
 	/**
 	 * You cannot glide in this area.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NOGLIDE_AREA = new SM_SYSTEM_MESSAGE(1400167);
+
 	/**
 	 * You are forced to stop gliding because you've entered the no glide area.
 	 */
@@ -15986,26 +16808,32 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot change the name of the Legion during the disbanding mode.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_EDIT_GUILD_NAME_CANT_FOR_DISPERSING_GUILD = new SM_SYSTEM_MESSAGE(1400170);
+
 	/**
 	 * You cannot report auto hunting in the current region.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_ACCUSE_IN_THIS_ZONE = new SM_SYSTEM_MESSAGE(1400171);
+
 	/**
 	 * You have purchased the warehouse expansion item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INGAMESHOP_DUPLICATED_WAREHOUSE = new SM_SYSTEM_MESSAGE(1400172);
+
 	/**
 	 * Channel Host
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_CHANNEL_HOST = new SM_SYSTEM_MESSAGE(1400173);
+
 	/**
 	 * As your character name has changed, you are removed from all joined channels.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_CHANNEL_CHAR_NAME_CHANGED1 = new SM_SYSTEM_MESSAGE(1400174);
+
 	/**
 	 * As your character name has changed, you are removed from all joined channels. (including any participating private channels)
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_CHANNEL_CHAR_NAME_CHANGED2 = new SM_SYSTEM_MESSAGE(1400175);
+
 	/**
 	 * Group
 	 */
@@ -16067,6 +16895,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are not able to enter the Instanced Zone right now.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_INSTANCE_ENTER_STATE = new SM_SYSTEM_MESSAGE(1400185);
+
 	/**
 	 * You have failed to make an entry application.
 	 */
@@ -16118,6 +16947,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * That player is already being resurrected.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_OTHER_USER_USE_RESURRECTDEBUFF_SKILL_ALREADY = new SM_SYSTEM_MESSAGE(1400193);
+
 	/**
 	 * You have successfully made an entry application.
 	 */
@@ -16205,18 +17035,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot preview this item as it can only be used by the other race.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PREVIEW_INVALID_RACE = new SM_SYSTEM_MESSAGE(1400208);
+
 	/**
 	 * You cannot preview this item as you can't use this appearance modifying item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PREVIEW_INVALID_COSMETIC = new SM_SYSTEM_MESSAGE(1400209);
+
 	/**
 	 * You cannot preview this item as there is no appearance image.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PREVIEW_NO_EXIST_COSMETIC_DATA = new SM_SYSTEM_MESSAGE(1400210);
+
 	/**
 	 * There is no Greater Stigma slot available.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ENHANCED1_STIGMA_SLOT_IS_NOT_OPENED = new SM_SYSTEM_MESSAGE(1400211);
+
 	/**
 	 * You cannot use invite, leave or kick commands related to your group or force in this region.
 	 */
@@ -16254,14 +17088,16 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * It's a shame, but let's play together next time. Have a good time in Aion!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PARTY_MATCH_DECLINED = new SM_SYSTEM_MESSAGE(1400217);
+
 	/**
 	 * It's a shame, but let's play together next time. Have a good time in Aion!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FORCE_MATCH_DECLINED = new SM_SYSTEM_MESSAGE(1400218);
+
 	/**
-	 * You cannot enter as you do not have the required item.
+	 * You don't have the item needed for entry. Please check, and ask for access again.
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_CANT_ENTER_WITHOUT_ITEM = new SM_SYSTEM_MESSAGE(1400219);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_CANT_ENTER_WITHOUT_ITEM_TRY_LATER = new SM_SYSTEM_MESSAGE(1401056);
 
 	/**
 	 * %DURATIONTIME0 remaining.
@@ -16309,22 +17145,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Portside Defense Shield has been generated at the Ready Room 1.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LEFTWALL_CREATED_IDAB1_DREADGION = new SM_SYSTEM_MESSAGE(1400226);
+
 	/**
 	 * The Starboard Defense Shield has been generated at the Ready Room 2.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_RIGHTWALL_CREATED_IDAB1_DREADGION = new SM_SYSTEM_MESSAGE(1400227);
+
 	/**
 	 * A Portside Central Teleporter has been generated at the Escape Hatch.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LEFTTELEPORTER_CREATED_IDAB1_DREADGION = new SM_SYSTEM_MESSAGE(1400228);
+
 	/**
 	 * A Starboard Central Teleporter has been generated at the Secondary Escape Hatch.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_RIGHTTELEPORTER_CREATED_IDAB1_DREADGION = new SM_SYSTEM_MESSAGE(1400229);
+
 	/**
 	 * The Portside Door of Captain's Cabin has been destroyed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LEFTDOOR_DESTROYED_IDAB1_DREADGION = new SM_SYSTEM_MESSAGE(1400230);
+
 	/**
 	 * The Starboard Door of Captain's Cabin has been destroyed.
 	 */
@@ -16341,21 +17182,6 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Prepare for Battle!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_PREPARE_TIME = new SM_SYSTEM_MESSAGE(1400233);
-
-	/**
-	 * Prepare for combat! Enemies approaching!
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_Tames_Solo_A_Start = new SM_SYSTEM_MESSAGE(1402780);
-
-	/**
-	 * Prepare for combat! More enemies swarming in!
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDRaksha_solo_WaveMid = new SM_SYSTEM_MESSAGE(1402832);
-
-	/**
-	 * Only a few enemies left!
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDRaksha_solo_WaveLast01 = new SM_SYSTEM_MESSAGE(1402834);
 
 	/**
 	 * A Captain's Cabin Teleport Device that can be used for 3 minutes has been generated at the end of the Central Passage.
@@ -16379,8 +17205,8 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * You have gained %num1 points from %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_GET_SCORE(int num1, String value0) {
-		return new SM_SYSTEM_MESSAGE(1400237, num1, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_GET_SCORE(int score, int objectNameId) {
+		return new SM_SYSTEM_MESSAGE(1400237, new DescriptionId(objectNameId * 2 + 1), score);
 	}
 
 	/**
@@ -16420,10 +17246,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The protective magic ward of Balaur has been activated.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_START_IDABRE = new SM_SYSTEM_MESSAGE(1400243);
+
 	/**
 	 * All the treasure chests of Balaur have disappeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TREASUREBOX_DESPAWN_ALL = new SM_SYSTEM_MESSAGE(1400244);
+
 	/**
 	 * One treasure chest of Balaur has disappeared.
 	 */
@@ -16440,26 +17268,32 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot register because the limit of characters that can register on the Kisk has been reached.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_REGISTER_BINDSTONE_FULL = new SM_SYSTEM_MESSAGE(1400247);
+
 	/**
 	 * Grogget's Safe door is open and you can now access Grogget's Safe.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_IDSHULACKSHIP_OPEN_DOOR_01 = new SM_SYSTEM_MESSAGE(1400248);
+
 	/**
 	 * The Brig door is open and you can now access The Brig.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_IDSHULACKSHIP_OPEN_DOOR_02 = new SM_SYSTEM_MESSAGE(1400249);
+
 	/**
 	 * The Generator Chamber access door is open and you can now access the Drana Generator Chamber.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_IDSHULACKSHIP_OPEN_DOOR_03 = new SM_SYSTEM_MESSAGE(1400250);
+
 	/**
 	 * The Large Gun Deck door is open and you can now access the Large Gun Deck.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_IDSHULACKSHIP_OPEN_DOOR_04 = new SM_SYSTEM_MESSAGE(1400251);
+
 	/**
 	 * The infiltration route into Dredgion is open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDAB1_DREADGION = new SM_SYSTEM_MESSAGE(1400252);
+
 	/**
 	 * The Abyss Gate will operate for 5 minutes only.
 	 */
@@ -16483,18 +17317,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot gain any more Abyss Points because you reached the maximum Abyss Points you can get for your current level.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANNOT_GET_AP_LEVELBASE_LIMIT = new SM_SYSTEM_MESSAGE(1400256);
+
 	/**
 	 * You may only battle Tahabata Pyrelord within the given time limit.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_S_RANK_BATTLE_TIME = new SM_SYSTEM_MESSAGE(1400257);
+
 	/**
 	 * Tahabata Pyrelord has left the battle.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_S_RANK_BATTLE_END = new SM_SYSTEM_MESSAGE(1400258);
+
 	/**
 	 * You may only battle Lord of Flame Calindi within the given time limit.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_A_RANK_BATTLE_TIME = new SM_SYSTEM_MESSAGE(1400259);
+
 	/**
 	 * Lord of Flame Calindi has left the battle.
 	 */
@@ -16511,6 +17349,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Steel Beard Pirates have begun hiding the Key Boxes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_IDSHULACKSHIP_TIMER_START = new SM_SYSTEM_MESSAGE(1400262);
+
 	/**
 	 * All the Key Boxes have disappeared.
 	 */
@@ -16538,7 +17377,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * Only those at or under level %0 can use %1.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_CANNOT_USE_ITEM_TOO_HIGH_LEVEL(int value0, int value1) {
+	public static SM_SYSTEM_MESSAGE STR_CANNOT_USE_ITEM_TOO_HIGH_LEVEL(String value0, String value1) {
 		return new SM_SYSTEM_MESSAGE(1400267, value0, value1);
 	}
 
@@ -16553,6 +17392,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have recovered from poisoning and can extract again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CAPTCHA_RECOVERED = new SM_SYSTEM_MESSAGE(1400269);
+
 	/**
 	 * You chanted a spell to cleanse the poison from your body. You can now extract again.
 	 */
@@ -16581,10 +17421,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are able to extract.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CAPTCHA_NOT_RESTRICTED = new SM_SYSTEM_MESSAGE(1400274);
+
 	/**
-	 * A dimensional corridor that leads to the Indratu Fortress has appeared.
+	 * 드라칸 강습 지휘관 등장
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_PORTAL_OPEN_IDLF3_Castle_Indratoo = new SM_SYSTEM_MESSAGE(1400275);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Indratoo_PartyMatch_L = new SM_SYSTEM_MESSAGE(1404695);
+
 	/**
 	 * A dimensional corridor that leads to the Draupnir Cave has appeared.
 	 */
@@ -16601,6 +17443,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot fly while your pet is banned from flying.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANT_FLY_NOW_DUE_TO_NOFLY_FROM_PET = new SM_SYSTEM_MESSAGE(1400278);
+
 	/**
 	 * You cannot extract from equipped items.
 	 */
@@ -16636,10 +17479,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You must pass the Expert test in order to be promoted.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GATHER_CANT_EXTEND_MASTER = new SM_SYSTEM_MESSAGE(1400284);
+
 	/**
 	 * You must pass the Artisan test in order to be promoted.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CRAFT_CANT_EXTEND_HIGH_MASTER = new SM_SYSTEM_MESSAGE(1400285);
+
 	/**
 	 * You must pass the Master test in order to be promoted.
 	 */
@@ -16753,6 +17598,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Castle Gate is under attack.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_DOOR_ATTACKED = new SM_SYSTEM_MESSAGE(1400303);
+
 	/**
 	 * The Castle Gate is in danger.
 	 */
@@ -16769,6 +17615,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Balaur have destroyed the Castle Gate.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_DRAGON_DOOR_BROKEN = new SM_SYSTEM_MESSAGE(1400306);
+
 	/**
 	 * The Gate Guardian Stone is under attack.
 	 */
@@ -16785,14 +17632,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Balaur have destroyed the Gate Guardian Stone.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_DRAGON_REPAIR_BROKEN = new SM_SYSTEM_MESSAGE(1400309);
+
 	/**
 	 * The Balaur Dredgion has appeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_CARRIER_SPAWN = new SM_SYSTEM_MESSAGE(1400310);
+
 	/**
 	 * The Dredgion has dropped Balaur Troopers.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_CARRIER_DROP_DRAGON = new SM_SYSTEM_MESSAGE(1400311);
+
 	/**
 	 * The Balaur Dredgion has disappeared.
 	 */
@@ -16830,22 +17680,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Kaisinel's Agent Veille has appeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_LIGHTBOSS_SPAWN = new SM_SYSTEM_MESSAGE(1400317);
+
 	/**
 	 * Marchutan's Agent Mastarius has appeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_DARKBOSS_SPAWN = new SM_SYSTEM_MESSAGE(1400318);
+
 	/**
 	 * Kaisinel's Agent Veille has disappeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_LIGHTBOSS_DESPAWN = new SM_SYSTEM_MESSAGE(1400319);
+
 	/**
 	 * Marchutan's Agent Mastarius has disappeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_DARKBOSS_DESPAWN = new SM_SYSTEM_MESSAGE(1400320);
+
 	/**
 	 * Kaisinel's Agent Veille is under attack!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_LIGHTBOSS_ATTACKED = new SM_SYSTEM_MESSAGE(1400321);
+
 	/**
 	 * Marchutan's Agent Mastarius is under attack!
 	 */
@@ -16890,18 +17745,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Silentera Westgate, the entrance from Inggison to Silentera Canyon, has opened.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_LIGHTUNDERPASS_SPAWN = new SM_SYSTEM_MESSAGE(1400328);
+
 	/**
 	 * Silentera Eastgate, the entrance from Gelkmaros to Silentera Canyon, has opened.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_DARKUNDERPASS_SPAWN = new SM_SYSTEM_MESSAGE(1400329);
+
 	/**
 	 * Silentera Westgate, the entrance from Inggison to Silentera Canyon, has closed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_LIGHTUNDERPASS_DESPAWN = new SM_SYSTEM_MESSAGE(1400330);
+
 	/**
 	 * Silentera Eastgate, the entrance from Gelkmaros to Silentera Canyon, has closed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_DARKUNDERPASS_DESPAWN = new SM_SYSTEM_MESSAGE(1400331);
+
 	/**
 	 * You cannot extract because you do not have the item required for Essencetapping.
 	 */
@@ -16932,7 +17791,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * %1 has been combined with %0.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_COMPOUND_SUCCESS(int i, int j) {
-		return new SM_SYSTEM_MESSAGE(1400336, new DescriptionId(i), new DescriptionId(j));
+		return new SM_SYSTEM_MESSAGE(1400336,  new DescriptionId(i), new DescriptionId(j));
 	}
 
 	/**
@@ -17046,25 +17905,73 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
+	 * You have gained %num1 XP from %0 (Energy of Repose %num2 and Golden Vinna Scent %num3).
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP_VITAL_ABSOLUTEEXP_BONUS_DESC(DescriptionId value0, long num1, long num2, long num3) {
+		return new SM_SYSTEM_MESSAGE(1402617, value0, num1, num2, num3);
+	}
+
+	/**
+	 * You have gained %num1 XP from %0 (Energy of Repose %num2, Energy of Relief %num3, and Golden Vinna Scent %num4).
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP_VITAL_MAKEUP_ABSOLUTEEXP_BONUS(DescriptionId value0, long num1, long num2, long num3, long num4) {
+		return new SM_SYSTEM_MESSAGE(1402619, value0, num1, num2, num3, num4);
+	}
+
+	/**
+	 * You have gained %num1 XP from %0 (Golden Vinna Scent %num2).
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP_ABSOLUTEEXP_BONUS_DESC(DescriptionId value0, long num1, long num2) {
+		return new SM_SYSTEM_MESSAGE(1402616, value0, num1, num2);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP_VITAL_ABSOLUTEEXP_BONUS(String value0, long num1, long num2, long num3) {
+		return new SM_SYSTEM_MESSAGE(1402617, value0, num1, num2, num3);
+	}
+
+	/**
+	 * You have gained %num1 XP from %0 (Golden Vinna Scent %num2).
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP_ABSOLUTEEXP_BONUS(String value0, long num1, long num2) {
+		return new SM_SYSTEM_MESSAGE(1402616, value0, num1, num2);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP2_ABSOLUTEEXP_BONUS(String value0, long num1, long num2) {
+		return new SM_SYSTEM_MESSAGE(1402630, value0, num1, num2);
+	}
+
+	/**
+	 * You have gained %num0 XP (Golden Vinna Scent %num1).
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP2_ABSOLUTEEXP_BONUS(long num0, long num1) {
+		return new SM_SYSTEM_MESSAGE(1402630, num0, num1);
+	}
+
+	/**
 	 * You have selected more items than there are remaining.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LIMITED_SALE_CANT_SELECT_OVER_ITEMS = new SM_SYSTEM_MESSAGE(1400351);
+
 	/**
 	 * This item is no longer available.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LIMITED_SALE_CANT_SELECT_NO_ITEMS = new SM_SYSTEM_MESSAGE(1400352);
+
 	/**
 	 * You cannot purchase the item because you have exceeded the purchase limit.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LIMITED_BUYING_CANT_SELECT_NO_ITEMS = new SM_SYSTEM_MESSAGE(1400353);
+
 	/**
 	 * You have selected more than the purchase limit of the item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LIMITED_BUYING_CANT_SELECT_OVER_ITEMS = new SM_SYSTEM_MESSAGE(1400354);
+
 	/**
 	 * You cannot store this item in the Legion warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WAREHOUSE_CANT_LEGION_DEPOSIT = new SM_SYSTEM_MESSAGE(1400355);
+
 	/**
 	 * You cannot store this item in the account warehouse.
 	 */
@@ -17094,34 +18001,40 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * %WORLDNAME1 with a %num0 player limit is currently open.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_DUNGEON_OPENED_INFO(String worldname1, int num0) {
-		return new SM_SYSTEM_MESSAGE(1400360, worldname1, num0);
-	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_DUNGEON_OPENED_INFO(int playerMax, int world) {
+        return new SM_SYSTEM_MESSAGE(140036, playerMax, world);
+    }
 
 	/**
 	 * You can only enter after the Group Leader has created the instance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_DUNGEON_CANT_ENTER_NOT_OPENED = new SM_SYSTEM_MESSAGE(1400361);
+
 	/**
 	 * You can only use this item in a cube.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_REQUIRE_IN_INVENTORY = new SM_SYSTEM_MESSAGE(1400362);
+
 	/**
 	 * Your cube is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DECOMPRESS_INVENTORY_IS_FULL = new SM_SYSTEM_MESSAGE(1400363);
+
 	/**
 	 * You cannot combine different weapon types.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_COMPOUND_ERROR_DIFFERENT_TYPE = new SM_SYSTEM_MESSAGE(1400364);
+
 	/**
 	 * This item cannot be registered for comparison.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_COMPOUND_ERROR_NOT_COMPARABLE_ITEM = new SM_SYSTEM_MESSAGE(1400365);
+
 	/**
 	 * The Seal of Uniformity has been weakened.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTP_FANATIC_Die_Keynamed = new SM_SYSTEM_MESSAGE(1400366);
+
 	/**
 	 * You can now enter the Chamber of Unity.
 	 */
@@ -17199,42 +18112,52 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Optimize Fortress Battle function has been toggled on for smooth game play. Characters in the vicinity are displayed in simplified forms.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CHAR_HIDE_AUTO_ON = new SM_SYSTEM_MESSAGE(1400378);
+
 	/**
 	 * You are being blown away by the wind!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WindPathIN = new SM_SYSTEM_MESSAGE(1400379);
+
 	/**
 	 * Manadar's hidden trap has been tripped!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_BombDrakan_TargetMSG = new SM_SYSTEM_MESSAGE(1400380);
+
 	/**
 	 * The Subjugated Souls have been released!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_Spectre_Buff = new SM_SYSTEM_MESSAGE(1400381);
+
 	/**
 	 * Captain Lakhara is preparing his final strike!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_TombDrakan = new SM_SYSTEM_MESSAGE(1400382);
+
 	/**
 	 * Isbariya the Resolute is tapping into his true power!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_ArchPriest2_01 = new SM_SYSTEM_MESSAGE(1400383);
+
 	/**
 	 * The treasure chest vanished because you did not destroy the monsters within the time limit.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Core_Oops_Reward_Is_Gone = new SM_SYSTEM_MESSAGE(1400384);
+
 	/**
 	 * The wind is too strong--you can't break away!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WindPathNoOUT = new SM_SYSTEM_MESSAGE(1400385);
+
 	/**
 	 * Soulcaller's eyes glimmer!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_Summoner_Reflect = new SM_SYSTEM_MESSAGE(1400386);
+
 	/**
 	 * Soulcaller casts the Powerful Smite skill!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_Summoner_DeadlyCasting = new SM_SYSTEM_MESSAGE(1400387);
+
 	/**
 	 * Flarestorm is unleashing an unknown power.
 	 */
@@ -17263,22 +18186,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Your request has been registered on the Recruit Group Member List.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_MATCH_OFFER_PARTY_POSTED = new SM_SYSTEM_MESSAGE(1400392);
+
 	/**
 	 * Your request has been registered on the Apply For Group List.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_MATCH_SEEK_PARTY_POSTED = new SM_SYSTEM_MESSAGE(1400393);
+
 	/**
 	 * Your Find Group request was removed because it has not been updated.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_MATCH_POST_DELETED_TOO_OLD = new SM_SYSTEM_MESSAGE(1400394);
+
 	/**
 	 * Your Find Group request was removed because you have joined a Group or Alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_MATCH_POST_DELETED_ENTERED_PARTY = new SM_SYSTEM_MESSAGE(1400395);
+
 	/**
 	 * Your Find Group request was removed because your Group or Alliance is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_MATCH_POST_DELETED_PARTY_FULL = new SM_SYSTEM_MESSAGE(1400396);
+
 	/**
 	 * Your Find Group request was removed because the Group or Alliance disbanded.
 	 */
@@ -17349,102 +18277,127 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Matches meeting your search conditions have been found.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_MATCH_SEARCH_FOUND = new SM_SYSTEM_MESSAGE(1400407);
+
 	/**
 	 * 10 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_10 = new SM_SYSTEM_MESSAGE(1400408);
+
 	/**
 	 * 20 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_20 = new SM_SYSTEM_MESSAGE(1400409);
+
 	/**
 	 * 30 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_30 = new SM_SYSTEM_MESSAGE(1400410);
+
 	/**
 	 * 40 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_40 = new SM_SYSTEM_MESSAGE(1400411);
+
 	/**
 	 * 50 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_50 = new SM_SYSTEM_MESSAGE(1400412);
+
 	/**
 	 * 60 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_60 = new SM_SYSTEM_MESSAGE(1400413);
+
 	/**
 	 * 70 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_70 = new SM_SYSTEM_MESSAGE(1400414);
+
 	/**
 	 * 80 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_80 = new SM_SYSTEM_MESSAGE(1400415);
+
 	/**
 	 * 90 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_90 = new SM_SYSTEM_MESSAGE(1400416);
+
 	/**
 	 * 91 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_91 = new SM_SYSTEM_MESSAGE(1400417);
+
 	/**
 	 * 92 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_92 = new SM_SYSTEM_MESSAGE(1400418);
+
 	/**
 	 * 93 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_93 = new SM_SYSTEM_MESSAGE(1400419);
+
 	/**
 	 * 94 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_94 = new SM_SYSTEM_MESSAGE(1400420);
+
 	/**
 	 * 95 persons have gathered their power. The Empyrean Avatar has appeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_95 = new SM_SYSTEM_MESSAGE(1400421);
+
 	/**
 	 * 96 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_96 = new SM_SYSTEM_MESSAGE(1400422);
+
 	/**
 	 * 97 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_97 = new SM_SYSTEM_MESSAGE(1400423);
+
 	/**
 	 * 98 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_98 = new SM_SYSTEM_MESSAGE(1400424);
+
 	/**
 	 * 99 persons have gathered their power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_99 = new SM_SYSTEM_MESSAGE(1400425);
+
 	/**
 	 * 100 persons have gathered their power. You can now use the Empyrean Avatar.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_COUNT_100 = new SM_SYSTEM_MESSAGE(1400426);
+
 	/**
 	 * You have failed to use the Empyrean Avatar. You will need to gather power and summon it again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_DEATHBLOW_FAIL = new SM_SYSTEM_MESSAGE(1400427);
+
 	/**
 	 * The first Sphere of Mirage has been activated.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_BUFF_FIRST_OBJECT_ON = new SM_SYSTEM_MESSAGE(1400428);
+
 	/**
 	 * The second Sphere of Mirage has been activated. Kaisinel's Agent Veille prepares to cast the Empyrean Lord's blessing.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_BUFF_SECOND_OBJECT_ON = new SM_SYSTEM_MESSAGE(1400429);
+
 	/**
 	 * You may use the Sphere of Mirage again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_BUFF_CAN_USE_OBJECT = new SM_SYSTEM_MESSAGE(1400430);
+
 	/**
 	 * You need more people to activate the Sphere of Mirage.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_BUFF_CANT_USE_OBJECT_NOT_ENOUGH_MEMBER = new SM_SYSTEM_MESSAGE(1400431);
+
 	/**
 	 * You are marked as Unavailable. Please reset the setting in System Preferences to accept the invitation.
 	 */
@@ -17462,6 +18415,21 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_ENCHANT_ITEM_SUCCEEDED_20(String playerName, int nameId) {
 		return new SM_SYSTEM_MESSAGE(1402285, playerName, new DescriptionId(nameId));
+	}
+
+	/**
+	 * %0 has succeeded in enchanting %1 to level %2.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_ENCHANT_ITEM_SUCCEEDED_COMMON(String playerName, int nameId, int value0) {
+		return new SM_SYSTEM_MESSAGE(1402375, playerName, new DescriptionId(nameId), value0);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_MSG_ENCHANT_ITEM_SUCCEEDED_DESTRUCTION(String playerName, int nameId, int value0) {
+		return new SM_SYSTEM_MESSAGE(1406167, playerName, new DescriptionId(nameId), value0);
+	}
+
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_GRIND_SUCCEEDED(DescriptionId descriptionId, int value0) {
+		return new SM_SYSTEM_MESSAGE(1405910, descriptionId, value0);
 	}
 
 	/**
@@ -17508,22 +18476,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Devoted Anurati has appeared in the Great Chapel.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTP_FANATIC_DrakanNamed_SpawnMSG = new SM_SYSTEM_MESSAGE(1400442);
+
 	/**
 	 * Malicious Obscura exhausts the HP of nearby enemies!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Normal_Stalker_DrainHealth = new SM_SYSTEM_MESSAGE(1400443);
+
 	/**
 	 * Misguiding Obscura crouches!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Normal_Stalker_Sanctuary = new SM_SYSTEM_MESSAGE(1400444);
+
 	/**
 	 * Grave Slime is splitting in two!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Normal_Slime_Isolation = new SM_SYSTEM_MESSAGE(1400445);
+
 	/**
 	 * Thurzon the Undying stops its assault and begins reviving.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_BoneDrake_Sanctuary = new SM_SYSTEM_MESSAGE(1400446);
+
 	/**
 	 * Your Apply For Group List request was deleted because you have joined a Group or Alliance.
 	 */
@@ -17540,10 +18513,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are in normal state.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FATIGUE_INFO_0_LEVEL = new SM_SYSTEM_MESSAGE(1400449);
+
 	/**
 	 * A Level 1 Fatigue Penalty has been applied because you have played too long. Please log out and take a break.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FATIGUE_INFO_1_LEVEL = new SM_SYSTEM_MESSAGE(1400450);
+
 	/**
 	 * A Level 2 Fatigue Penalty has been applied because you have played too long. Please log out and take a break.
 	 */
@@ -17552,50 +18527,32 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * You have opened the %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_UNCOMPRESS_COMPRESSED_ITEM_SUCCEEDED(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1400452, new DescriptionId(nameId));
+	public static SM_SYSTEM_MESSAGE STR_UNCOMPRESS_COMPRESSED_ITEM_SUCCEEDED(String value0) {
+		return new SM_SYSTEM_MESSAGE(1400452, value0);
 	}
 
 	/**
 	 * You have stopped opening the %0 bundle.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_UNCOMPRESS_COMPRESSED_ITEM_CANCELED(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1400453, new DescriptionId(nameId));
+	public static SM_SYSTEM_MESSAGE STR_UNCOMPRESS_COMPRESSED_ITEM_CANCELED(String value0) {
+		return new SM_SYSTEM_MESSAGE(1400453, value0);
 	}
-
-    /**
-	 * Ride Restriction
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ATTACK_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401093);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401094);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_PERSONAL_SHOP_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401095);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_GATHER_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401096);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_COMBINE_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401097);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_RIDE_INVALID_LOCATION = new SM_SYSTEM_MESSAGE(1401099);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_SKILL_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401132);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_NORIDE_AREA_STOP = new SM_SYSTEM_MESSAGE(1401170);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_SELL_WHILE_IN_RIDE = new SM_SYSTEM_MESSAGE(1401210);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_RIDE = new SM_SYSTEM_MESSAGE(1401211);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_NORIDE_TIME_EXPIRE = new SM_SYSTEM_MESSAGE(1401220);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_UNRIDE_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1401254);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_RIDE_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1401255);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_UNRIDE_DESTROY_ITEM = new SM_SYSTEM_MESSAGE(1401426);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_RIDE_NEARBY_CEILING = new SM_SYSTEM_MESSAGE(1402950);
-	
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_ENCHANT_ITEM = new SM_SYSTEM_MESSAGE(1403363);
 
 	/**
 	 * The Divine Artifact has been activated!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_ArchPriest_Artifact_Light = new SM_SYSTEM_MESSAGE(1400454);
+
 	/**
 	 * The Magic Artifact has been activated!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_ArchPriest_Artifact_Dark = new SM_SYSTEM_MESSAGE(1400455);
+
 	/**
 	 * Isbariya taps into his power to cause a massive explosion!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_ArchPriest_Artifact_LightBoom = new SM_SYSTEM_MESSAGE(1400456);
+
 	/**
 	 * Isbariya releases his magical power!
 	 */
@@ -17612,18 +18569,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Isbariya the Resolute has boosted his attack power!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_ArchPriest_2phase = new SM_SYSTEM_MESSAGE(1400459);
+
 	/**
 	 * Isbariya the Resolute has boosted his recovery power!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_ArchPriest_3phase = new SM_SYSTEM_MESSAGE(1400460);
+
 	/**
 	 * Isbariya the Resolute unleashes an intense power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_ArchPriest_4phase = new SM_SYSTEM_MESSAGE(1400461);
+
 	/**
 	 * Isbariya the Resolute has summoned a Bodyguard Commissioned Officer.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_Boss_ArchPriest_5phase = new SM_SYSTEM_MESSAGE(1400462);
+
 	/**
 	 * Isbariya the Resolute inflicts a devastating curse.
 	 */
@@ -17640,30 +18601,37 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Warrior Monument has been destroyed. Ahbana the Wicked is on alert.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_NmdSpecter_Spawn = new SM_SYSTEM_MESSAGE(1400465);
+
 	/**
 	 * Macunbello's power is weakening.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_NmdLich_weakness1 = new SM_SYSTEM_MESSAGE(1400466);
+
 	/**
 	 * Macunbello's power has weakened.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_NmdLich_weakness2 = new SM_SYSTEM_MESSAGE(1400467);
+
 	/**
 	 * Macunbello has been crippled.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_NmdLich_weakness3 = new SM_SYSTEM_MESSAGE(1400468);
+
 	/**
 	 * Macunbello has left his sanctuary.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_NmdLich_Leave = new SM_SYSTEM_MESSAGE(1400469);
+
 	/**
 	 * Ahbana the Wicked has appeared in the Watcher's Nexus.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_NmdSpecter_Start = new SM_SYSTEM_MESSAGE(1400470);
+
 	/**
 	 * Hiding Lupukin has appeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCatacombs_NmdShulack_Rufukin = new SM_SYSTEM_MESSAGE(1400471);
+
 	/**
 	 * The Aetheric Field Activation Stone is under attack!
 	 */
@@ -17680,26 +18648,32 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Balaur have destroyed the Aetheric Field Activation Stone.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FIELDABYSS_DRAGON_SHIELD_BROKEN = new SM_SYSTEM_MESSAGE(1400474);
+
 	/**
 	 * The cocoons are wriggling--something's inside!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDELIM_COCOON_INFO = new SM_SYSTEM_MESSAGE(1400475);
+
 	/**
 	 * Cracks appear on the surface of Queen Mosqua's egg.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDELIM_EGG_BREAK = new SM_SYSTEM_MESSAGE(1400476);
+
 	/**
 	 * An ascending air current is rising from the spot where the egg was. You can fly vertically up by spreading your wings and riding the current.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDELIM_WIND_INFO = new SM_SYSTEM_MESSAGE(1400477);
+
 	/**
 	 * You are unable to obtain items at the current time.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_RESTRICTED_STATE_CANT_GET_ITEM = new SM_SYSTEM_MESSAGE(1400478);
+
 	/**
 	 * You are unable to obtain items at the current time, and cannot participate in the roll.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_RESTRICTED_STATE_CANT_THROW_DICE = new SM_SYSTEM_MESSAGE(1400479);
+
 	/**
 	 * The Seal Protector has fallen. The Rift Orb shines while the seal weakens.
 	 */
@@ -17735,230 +18709,287 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Water erupts from the geyser.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_JUMP_TRIGGER_ON_INFO = new SM_SYSTEM_MESSAGE(1400485);
+
 	/**
 	 * A gust of air bursts forth.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WINDBOX_TRIGGER_ON_INFO = new SM_SYSTEM_MESSAGE(1400486);
+
 	/**
 	 * Sematariux has cast defensive magic. You will be removed from Sematariux's Hideout in 2 hours.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_120M = new SM_SYSTEM_MESSAGE(1400487);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 1 hour and 30 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_90M = new SM_SYSTEM_MESSAGE(1400488);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 1 hour.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_60M = new SM_SYSTEM_MESSAGE(1400489);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 30 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_30M = new SM_SYSTEM_MESSAGE(1400490);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 15 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_15M = new SM_SYSTEM_MESSAGE(1400491);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 10 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_10M = new SM_SYSTEM_MESSAGE(1400492);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 5 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_5M = new SM_SYSTEM_MESSAGE(1400493);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 3 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_3M = new SM_SYSTEM_MESSAGE(1400494);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 2 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_2M = new SM_SYSTEM_MESSAGE(1400495);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 1 minute.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_1M = new SM_SYSTEM_MESSAGE(1400496);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 30 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_30S = new SM_SYSTEM_MESSAGE(1400497);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 15 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_15S = new SM_SYSTEM_MESSAGE(1400498);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 10 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_10S = new SM_SYSTEM_MESSAGE(1400499);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 5 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_5S = new SM_SYSTEM_MESSAGE(1400500);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 4 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_4S = new SM_SYSTEM_MESSAGE(1400501);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 3 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_3S = new SM_SYSTEM_MESSAGE(1400502);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 2 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_2S = new SM_SYSTEM_MESSAGE(1400503);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 1 second.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_1S = new SM_SYSTEM_MESSAGE(1400504);
+
 	/**
 	 * You have been forcibly removed from Sematariux's Hideout by Sematariux's defensive magic.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_OUT_TIMER_0S = new SM_SYSTEM_MESSAGE(1400505);
+
 	/**
 	 * Padmarashka has cast defensive magic. You will be removed from Padmarashka's Cave in 2 hours.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_120M = new SM_SYSTEM_MESSAGE(1400506);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 1 hour and 30 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_90M = new SM_SYSTEM_MESSAGE(1400507);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 1 hour.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_60M = new SM_SYSTEM_MESSAGE(1400508);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 30 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_30M = new SM_SYSTEM_MESSAGE(1400509);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 15 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_15M = new SM_SYSTEM_MESSAGE(1400510);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 10 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_10M = new SM_SYSTEM_MESSAGE(1400511);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 5 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_5M = new SM_SYSTEM_MESSAGE(1400512);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 3 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_3M = new SM_SYSTEM_MESSAGE(1400513);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 2 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_2M = new SM_SYSTEM_MESSAGE(1400514);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 1 minute.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_1M = new SM_SYSTEM_MESSAGE(1400515);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 30 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_30S = new SM_SYSTEM_MESSAGE(1400516);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 15 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_15S = new SM_SYSTEM_MESSAGE(1400517);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 10 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_10S = new SM_SYSTEM_MESSAGE(1400518);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 5 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_5S = new SM_SYSTEM_MESSAGE(1400519);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 4 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_4S = new SM_SYSTEM_MESSAGE(1400520);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 3 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_3S = new SM_SYSTEM_MESSAGE(1400521);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 2 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_2S = new SM_SYSTEM_MESSAGE(1400522);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 1 second.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_1S = new SM_SYSTEM_MESSAGE(1400523);
+
 	/**
 	 * You have been forcibly removed from Padmarashka's Cave by Padmarashka's defensive magic.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_OUT_TIMER_0S = new SM_SYSTEM_MESSAGE(1400524);
+
 	/**
 	 * Sematariux is about to lay eggs.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_LAY_EGG = new SM_SYSTEM_MESSAGE(1400525);
+
 	/**
 	 * Padmarashka is about to lay eggs.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_LAY_EGG = new SM_SYSTEM_MESSAGE(1400526);
+
 	/**
 	 * Lowly Daevas such as you would dare?
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_START_1 = new SM_SYSTEM_MESSAGE(1400527);
+
 	/**
 	 * You have leapt into certain death!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_START_1 = new SM_SYSTEM_MESSAGE(1400528);
+
 	/**
 	 * Kaisinel's Agent Veille has engaged in battle to defend Inggison.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_GODELITE_START_1 = new SM_SYSTEM_MESSAGE(1400529);
+
 	/**
 	 * Kaisinel's Agent Veille has engaged in battle to defend Inggison.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_GODELITE_START_2 = new SM_SYSTEM_MESSAGE(1400530);
+
 	/**
 	 * Kaisinel's Agent Veille has engaged in battle to defend Inggison.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_GODELITE_START_3 = new SM_SYSTEM_MESSAGE(1400531);
+
 	/**
 	 * Kaisinel's Agent Veille has engaged in battle to defend Inggison.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_GODELITE_START_4 = new SM_SYSTEM_MESSAGE(1400532);
+
 	/**
 	 * Marchutan's Agent Mastarius has engaged in battle to defend Gelkmaros.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_GODELITE_START_1 = new SM_SYSTEM_MESSAGE(1400533);
+
 	/**
 	 * Marchutan's Agent Mastarius has engaged in battle to defend Gelkmaros.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_GODELITE_START_2 = new SM_SYSTEM_MESSAGE(1400534);
+
 	/**
 	 * Marchutan's Agent Mastarius has engaged in battle to defend Gelkmaros.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_GODELITE_START_3 = new SM_SYSTEM_MESSAGE(1400535);
+
 	/**
 	 * Marchutan's Agent Mastarius has engaged in battle to defend Gelkmaros.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_GODELITE_START_4 = new SM_SYSTEM_MESSAGE(1400536);
+
 	/**
 	 * I grieve for I couldn't become a dragon!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_START_2 = new SM_SYSTEM_MESSAGE(1400537);
+
 	/**
 	 * I never cared much for the responsibility of breeding!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_START_3 = new SM_SYSTEM_MESSAGE(1400538);
+
 	/**
 	 * I laugh at you pathetic Daevas who think you can defeat me!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_START_4 = new SM_SYSTEM_MESSAGE(1400539);
+
 	/**
 	 * The responsibility of breeding is my will!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_START_2 = new SM_SYSTEM_MESSAGE(1400540);
+
 	/**
 	 * I must protect the eggs!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_START_3 = new SM_SYSTEM_MESSAGE(1400541);
+
 	/**
 	 * You will never see the light of day again!
 	 */
@@ -17975,10 +19006,21 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You must be in an Alliance to access this area.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ENTER_ONLY_FORCE_DON = new SM_SYSTEM_MESSAGE(1400544);
+
 	/**
-	 * You can advance to level 10 only after you have completed the class change quest.
+	 * You must be in an League to access this area.
 	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ENTER_ONLY_UNION_DON = new SM_SYSTEM_MESSAGE(1401251);
+
+	//You can advance to level 10 only after you have completed the class change quest.
 	public static final SM_SYSTEM_MESSAGE STR_LEVEL_LIMIT_QUEST_NOT_FINISHED1 = new SM_SYSTEM_MESSAGE(1400545);
+	//You’ve reached the level where you can join a legion.
+	//Use the legion search to find the legion you want.
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GUILD_CAN_JOIN_LEVEL = new SM_SYSTEM_MESSAGE(1403389);
+	//You can become a Daeva through the class change mission. Once you complete the mission, you will reach level 10, regardless of your EXP.
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CAN_QUEST_DEVA = new SM_SYSTEM_MESSAGE(1403390);
+	//You can become an Archdaeva through the class change mission. Once you complete the mission, you will reach level 66, regardless of your EXP.
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CAN_QUEST_HIGHDEVA = new SM_SYSTEM_MESSAGE(1403391);
 
 	/**
 	 * %0 is located at %1.
@@ -18115,6 +19157,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot invite anymore as the Alliance League is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_CANT_ADD_NEW_MEMBER = new SM_SYSTEM_MESSAGE(1400565);
+
 	/**
 	 * You have don't have permission to invite people to the League.
 	 */
@@ -18131,14 +19174,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot invite your own alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_CANT_INVITE_SELF = new SM_SYSTEM_MESSAGE(1400568);
+
 	/**
 	 * The player you invited to the Alliance League is currently offline.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_OFFLINE_MEMBER = new SM_SYSTEM_MESSAGE(1400569);
+
 	/**
 	 * You cannot use the Alliance League invitation function while you are dead.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_CANT_INVITE_WHEN_DEAD = new SM_SYSTEM_MESSAGE(1400570);
+
 	/**
 	 * You have left the Alliance League.
 	 */
@@ -18181,10 +19227,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Only the league leader can kick out an alliance from the Alliance League.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_ONLY_LEADER_CAN_BAN = new SM_SYSTEM_MESSAGE(1400577);
+
 	/**
 	 * You cannot remove your own Alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_CANT_BAN_SELF = new SM_SYSTEM_MESSAGE(1400578);
+
 	/**
 	 * The Alliance League has disbanded due to an insufficient number of alliances.
 	 */
@@ -18208,22 +19256,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are now the League leader.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_YOU_BECOME_NEW_LEADER = new SM_SYSTEM_MESSAGE(1400582);
+
 	/**
 	 * Only the league leader can transfer the league leader authority to an alliance captain.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_ONLY_LEADER_CAN_CHANGE_LEADER = new SM_SYSTEM_MESSAGE(1400583);
+
 	/**
 	 * You cannot transfer the league leadership to someone who isn't an alliance captain.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_ONLY_CAN_CHANGE_LEADER_TO_FORCE_LEADER = new SM_SYSTEM_MESSAGE(1400584);
+
 	/**
 	 * You cannot transfer leadership to yourself.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_CANT_CHANGE_LEADER_SELF = new SM_SYSTEM_MESSAGE(1400585);
+
 	/**
 	 * You cannot transfer the leadership to a player outside your League.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_CANT_CHANGE_LEADER_OTHER_UNION = new SM_SYSTEM_MESSAGE(1400586);
+
 	/**
 	 * You are now the League leader.
 	 */
@@ -18254,10 +19307,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot change it to an unclaimed alliance number.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_CANT_CHANGE_FORCE_NUMBER = new SM_SYSTEM_MESSAGE(1400591);
+
 	/**
 	 * You cannot change the league leader's alliance number.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_CANT_CHANGE_LEADER_NUMBER = new SM_SYSTEM_MESSAGE(1400592);
+
 	/**
 	 * Only the League leader can change the Alliance number.
 	 */
@@ -18274,6 +19329,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The bulkhead has been activated and the passage between the First Armory and Gravity Control has been sealed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_SHIELD_A_SPAWN_IDAB1_Dreadgion01 = new SM_SYSTEM_MESSAGE(1400595);
+
 	/**
 	 * The bulkhead has been activated and the passage between the Second Armory and Gravity Control has been sealed.
 	 */
@@ -18287,59 +19343,72 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
-	 * You are not in an Alliance League.
+	 * You are not in an League.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_YOU_ARE_NOT_UNION_MEMBER = new SM_SYSTEM_MESSAGE(1400601);
+
 	/**
-	 * The alliance captain is not part of the Alliance League.
+	 * The captain is not part of the League.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_UNION_ONLY_CAN_BAN_FORCE_LEADER = new SM_SYSTEM_MESSAGE(1400602);
+
 	/**
 	 * The selected target is already a member of another force league.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_UNION_ALREADY_MY_UNION(String value0) {
 		return new SM_SYSTEM_MESSAGE(1400603, value0);
 	}
+
 	/**
 	 * The bulkhead has been activated and the passage between the First Armory and Gravity Control has been sealed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_SHIELD_A_SPAWN_IDDreadgion02 = new SM_SYSTEM_MESSAGE(1400604);
+
 	/**
 	 * The bulkhead has been activated and the passage between the Second Armory and Gravity Control has been sealed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_SHIELD_B_SPAWN_IDDreadgion02 = new SM_SYSTEM_MESSAGE(1400605);
+
 	/**
 	 * Omega summons a creature.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_RaidShowTime_Phase1 = new SM_SYSTEM_MESSAGE(1400606);
+
 	/**
 	 * Omega summons a powerful creature.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_RaidShowTime_Phase2 = new SM_SYSTEM_MESSAGE(1400607);
+
 	/**
 	 * Omega summons a healing creature.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_RaidShowTime_Phase3 = new SM_SYSTEM_MESSAGE(1400608);
+
 	/**
 	 * Omega summons a creature that creates barriers.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_RaidShowTime_Phase4 = new SM_SYSTEM_MESSAGE(1400609);
+
 	/**
 	 * Attack of poison and paralysis begins.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_RaidShowTime_Phase1 = new SM_SYSTEM_MESSAGE(1400610);
+
 	/**
 	 * Attack that restricts physical and magical assaults begins.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_RaidShowTime_Phase2 = new SM_SYSTEM_MESSAGE(1400611);
+
 	/**
 	 * Ragnarok's acidic fluid appears.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_RaidShowTime_Phase3 = new SM_SYSTEM_MESSAGE(1400612);
+
 	/**
 	 * Powerful continuous attacks and reflections begin.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_RaidShowTime_Phase4 = new SM_SYSTEM_MESSAGE(1400613);
+
 	/**
 	 * You cannot invite someone who doesn't belong to an alliance to the league.
 	 */
@@ -18372,6 +19441,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static SM_SYSTEM_MESSAGE STR_MSG_TOYPET_FEED_FOOD_NOT_LOVEFLAVOR(String petName, int nameId) {
 		return new SM_SYSTEM_MESSAGE(1400618, petName, new DescriptionId(nameId));
 	}
+
 
 	/**
 	 * %0 is grateful and gives you a %1 as a present (Times remaining: %2/%3).
@@ -18431,47 +19501,8 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * An infiltration passage into the Chantra Dredgion has opened.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDDREADGION_02 = new SM_SYSTEM_MESSAGE(1400628);
-	/**
-	 * An infiltration passage into the Terath Dredgion has opened.
-	 */
+
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDDREADGION_03 = new SM_SYSTEM_MESSAGE(1401398);
-	/**
-	 * An infiltration passage into the Durga Dredgion has opened.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDDREADGION_04 = new SM_SYSTEM_MESSAGE(1401894);
-	/**
-	 * An infiltration passage into the Kamar Battlefield has opened.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDKAMAR = new SM_SYSTEM_MESSAGE(1401730);
-	/**
-	 * You can now participate in the Ophidan Bridge battle.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_OPHIDAN_WAR = new SM_SYSTEM_MESSAGE(1401947);
-
-	/**
-	 * The returned results have been applied to %0.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_REIDENTIFY_APPLY_YES(String value0) {
-		return new SM_SYSTEM_MESSAGE(1401910, value0);
-	}
-
-	/**
-	 * You aborted the action of applying returned results.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_REIDENTIFY_APPLY_NO = new SM_SYSTEM_MESSAGE(1401911);
-	/**
-	 * You can take part in the Runatorium Battle.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDLDF5_Fortress_Re = new SM_SYSTEM_MESSAGE(1402192);
-	/**
-	 * You may participate in the Iron Wall Warfront.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_BASTION_WAR = new SM_SYSTEM_MESSAGE(1402032);
-	/**
-	 * The Destroyer Kunax will stop focusing its target and return to its original position.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_FORTRESS_RE_RETURNTOSP = new SM_SYSTEM_MESSAGE(1402578);
-
 	/**
 	 * The opposition has abandoned the Chantra Dredgion infiltration mission. You will leave the Chantra Dredgion when the mission ends in %DURATIONTIME0.
 	 */
@@ -18479,42 +19510,52 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		return new SM_SYSTEM_MESSAGE(1400629, durationtime0);
 	}
 
+
 	/**
 	 * You can save one of the two Reians imprisoned in the cocoon.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDELIM_Cocoon_Yell = new SM_SYSTEM_MESSAGE(1400630);
+
 	/**
 	 * Supplies Storage teleport device has been created at Escape Hatch.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WAREHOUSETELEPORTER_CREATED_IDDREADGION_02_01 = new SM_SYSTEM_MESSAGE(1400631);
+
 	/**
 	 * Captain Zanata has appeared in the Captain's Cabin.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BOSS_SPAWN_IDDREADGION_02 = new SM_SYSTEM_MESSAGE(1400632);
+
 	/**
 	 * Officer Kamanya has appeared in Gravity Control.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BONUSNPC_SPAWN_IDDREADGION_02 = new SM_SYSTEM_MESSAGE(1400633);
+
 	/**
 	 * A treasure chest will appear if you defeat Ebonsoul within one minute.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Core_NmdC_Light_Die = new SM_SYSTEM_MESSAGE(1400634);
+
 	/**
 	 * A treasure chest will appear if you defeat Rukril within one minute.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Core_NmdC_Dark_Die = new SM_SYSTEM_MESSAGE(1400635);
+
 	/**
 	 * A treasure chest has appeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Core_NmdC_BoxSpawn = new SM_SYSTEM_MESSAGE(1400636);
+
 	/**
 	 * Yamennes opens the Spawn Gate and begins to summon his minions.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Core_NmdD_SummonStart = new SM_SYSTEM_MESSAGE(1400637);
+
 	/**
 	 * There is no space in the Pet Pouch.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WAREHOUSE_TOO_MANY_ITEMS_TOYPET_WAREHOUSE = new SM_SYSTEM_MESSAGE(1400638);
+
 	/**
 	 * Your Favorites list is full.
 	 */
@@ -18528,13 +19569,20 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
+	 * You have successfully entered the area, consuming one of your permitted entries.
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_DUNGEON_COUNT_USE = new SM_SYSTEM_MESSAGE(1402084);
+
+	/**
 	 * Supplies Storage teleport device has been created at the Secondary Escape Hatch.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WAREHOUSETELEPORTER_CREATED_IDDREADGION_02_02 = new SM_SYSTEM_MESSAGE(1400641);
+
 	/**
 	 * This is not a usable pet egg.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PET_NOT_PET_COUPON = new SM_SYSTEM_MESSAGE(1400642);
+
 	/**
 	 * That name is invalid. Please try another..
 	 */
@@ -18565,178 +19613,229 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot put this item in the Pet Pouch.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_WAREHOUSE_CANT_DEPOSIT_ITEM_TOYPET_WAREHOUSE = new SM_SYSTEM_MESSAGE(1400647);
+
 	/**
 	 * You cannot combine equipped items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_COMPOUND_ERROR_EQUIPED_ITEM = new SM_SYSTEM_MESSAGE(1400648);
+
 	/**
 	 * Life energy begins to course through your body.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BARD_BUFF_LIFE = new SM_SYSTEM_MESSAGE(1400649);
+
 	/**
 	 * You feel all your muscles becoming harder.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BARD_BUFF_PROTECTION = new SM_SYSTEM_MESSAGE(1400650);
+
 	/**
 	 * You already have the selected pet.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TOYPET_ALREADY_TAMED_PET = new SM_SYSTEM_MESSAGE(1400651);
+
 	/**
 	 * Captain's Cabin teleport device has been created at the end of the Central Passage.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BOSSTELEPORTER_CREATED_IDDREDAGION_02 = new SM_SYSTEM_MESSAGE(1400652);
+
 	/**
 	 * There is an object of great power nearby.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCROMEDE_SKILL = new SM_SYSTEM_MESSAGE(1400653);
+
 	/**
 	 * You can use a Silver Blade Rotan to destroy the rock door leading to the Temple Vault.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCROMEDE_DOOR = new SM_SYSTEM_MESSAGE(1400654);
+
 	/**
 	 * You have acquired the 'Cool Water' effect from the garden fountain.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCROMEDE_BUFF_01 = new SM_SYSTEM_MESSAGE(1400655);
+
 	/**
 	 * You have acquired the 'Sweet Fruit' effect from the fruit basket.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCROMEDE_BUFF_02 = new SM_SYSTEM_MESSAGE(1400656);
+
 	/**
 	 * You have acquired the 'Tasty Meat' effect from the Porgus Barbecue.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCROMEDE_BUFF_03 = new SM_SYSTEM_MESSAGE(1400657);
+
 	/**
 	 * You have acquired the 'Prophet's Blessing' effect from the Prophet's Tower.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCROMEDE_BUFF_04 = new SM_SYSTEM_MESSAGE(1400658);
+
 	/**
 	 * You sense a movement in Taloc's Roots. You won't be able to meet him unless you hurry.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDELIM_HYAS_SPAWN_INFO = new SM_SYSTEM_MESSAGE(1400659);
+
 	/**
 	 * Smoke is being discharged. Exposure to smoke will destroy Kinquid's Barrier.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDELIM_GAS_INFO = new SM_SYSTEM_MESSAGE(1400660);
+
+	/**
+	 * You must leave your group or alliance to enter %WORLDNAME0.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_DUNGEON_NEED_SOLO(String worldname0) {
+		return new SM_SYSTEM_MESSAGE(1403080, worldname0);
+	}
+
 	/**
 	 * Sematariux has died. You will be removed from Sematariux's Hideout in 30 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_30M = new SM_SYSTEM_MESSAGE(1400661);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 25 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_25M = new SM_SYSTEM_MESSAGE(1400662);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 20 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_20M = new SM_SYSTEM_MESSAGE(1400663);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 15 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_15M = new SM_SYSTEM_MESSAGE(1400664);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 10 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_10M = new SM_SYSTEM_MESSAGE(1400665);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 5 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_5M = new SM_SYSTEM_MESSAGE(1400666);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 4 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_4M = new SM_SYSTEM_MESSAGE(1400667);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 3 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_3M = new SM_SYSTEM_MESSAGE(1400668);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 2 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_2M = new SM_SYSTEM_MESSAGE(1400669);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 1 minute.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_1M = new SM_SYSTEM_MESSAGE(1400670);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 30 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_30S = new SM_SYSTEM_MESSAGE(1400671);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 15 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_15S = new SM_SYSTEM_MESSAGE(1400672);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 10 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_10S = new SM_SYSTEM_MESSAGE(1400673);
+
 	/**
 	 * You will be removed from Sematariux's Hideout in 5 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_KILLED_OUT_TIMER_5S = new SM_SYSTEM_MESSAGE(1400674);
+
 	/**
 	 * Padmarashka has died. You will be removed from Padmarashka's Cave in 30 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_30M = new SM_SYSTEM_MESSAGE(1400675);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 25 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_25M = new SM_SYSTEM_MESSAGE(1400676);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 20 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_20M = new SM_SYSTEM_MESSAGE(1400677);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 15 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_15M = new SM_SYSTEM_MESSAGE(1400678);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 10 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_10M = new SM_SYSTEM_MESSAGE(1400679);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 5 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_5M = new SM_SYSTEM_MESSAGE(1400680);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 4 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_4M = new SM_SYSTEM_MESSAGE(1400681);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 3 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_3M = new SM_SYSTEM_MESSAGE(1400682);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 2 minutes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_2M = new SM_SYSTEM_MESSAGE(1400683);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 1 minute.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_1M = new SM_SYSTEM_MESSAGE(1400684);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 30 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_30S = new SM_SYSTEM_MESSAGE(1400685);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 15 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_15S = new SM_SYSTEM_MESSAGE(1400686);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 10 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_10S = new SM_SYSTEM_MESSAGE(1400687);
+
 	/**
 	 * You will be removed from Padmarashka's Cave in 5 seconds.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_KILLED_OUT_TIMER_5S = new SM_SYSTEM_MESSAGE(1400688);
+
 	/**
 	 * The destruction of the Huge Aether Fragment has destabilized the artifact!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Core_Artifact_Die_01 = new SM_SYSTEM_MESSAGE(1400689);
+
 	/**
 	 * The destruction of the Huge Aether Fragment has put the artifact protector on alert!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Core_Artifact_Die_02 = new SM_SYSTEM_MESSAGE(1400690);
+
 	/**
 	 * The destruction of the Huge Aether Fragment has caused abnormality on the artifact. The artifact protector is furious!
 	 */
@@ -18753,10 +19852,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The pet has been renamed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TOYPET_NAME_CHANGED = new SM_SYSTEM_MESSAGE(1400693);
+
 	/**
 	 * You already have a pet of the same name. Please choose another name.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TOYPET_EXISTING_NAME = new SM_SYSTEM_MESSAGE(1400694);
+
 	/**
 	 * You cannot feed it right now.
 	 */
@@ -18787,10 +19888,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You are too far from your pet to feed it.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSGBOX_TOYPET_FEED_CANT_FEED_TOO_FAR = new SM_SYSTEM_MESSAGE(1400699);
+
 	/**
 	 * You cannot feed your pet while moving.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSGBOX_TOYPET_FEED_CANT_FEED_WHEN_MOVING = new SM_SYSTEM_MESSAGE(1400700);
+
 	/**
 	 * You have obtained an object with great power. For quick access, drag the item from your Cube to your Quickbar.
 	 */
@@ -18807,50 +19910,58 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have obtained a new item from the selected target.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GET_QUEST_ITEM = new SM_SYSTEM_MESSAGE(1400703);
+
 	/**
 	 * You must destroy the enemies of Taloc. It allows you to acquire objects with great power.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NOTICE_LOOT_SKILL_ITEM = new SM_SYSTEM_MESSAGE(1400704);
+
 	/**
 	 * You cannot kick yourself out of the channel.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_CANT_BAN_SELF = new SM_SYSTEM_MESSAGE(1400705);
+
 	/**
 	 * You cannot kick yourself out of the channel.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CANT_BAN_SELF = new SM_SYSTEM_MESSAGE(1400706);
+
 	/**
 	 * You cannot transfer leadership to yourself.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_PARTY_CANT_CHANGE_LEADER_SELF = new SM_SYSTEM_MESSAGE(1400707);
+
 	/**
 	 * You cannot transfer leadership to yourself.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CANT_CHANGE_LEADER_SELF = new SM_SYSTEM_MESSAGE(1400708);
+
 	/**
 	 * You cannot use it because the version of your package is too low.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NO_RIGHT_PACKAGE_VERSION = new SM_SYSTEM_MESSAGE(1400709);
+
 	/**
 	 * Items stored in the surrendered pet's bag have been returned to your cube.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TOYPET_RETURN_MASTER_ITEM = new SM_SYSTEM_MESSAGE(1400710);
 
 	/**
-	 * Your pet's time is up. %0 has gone.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_PET_ABANDON_EXPIRE_TIME_COMPLETE(String value0) {
-		return new SM_SYSTEM_MESSAGE(1401194, value0);
-	}
-
-	/**
-	 * You must defeat the protector within the time limit to wake Padmarashka from the Protective Slumber.
-	 */
+     * Your pet's time is up. %0 has gone.
+     */
+    public static SM_SYSTEM_MESSAGE STR_MSG_PET_ABANDON_EXPIRE_TIME_COMPLETE(String value0) {
+        return new SM_SYSTEM_MESSAGE(1401194, value0);
+    }
+    /**
+	* You must defeat the protector within the time limit to wake Padmarashka from the Protective Slumber.
+	*/
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_GUARDIAN_START = new SM_SYSTEM_MESSAGE(1400711);
+
 	/**
 	 * Padmarashka has summoned the protector once again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_GUARDIAN_FAIL = new SM_SYSTEM_MESSAGE(1400712);
+
 	/**
 	 * Hamerun has dropped a treasure chest.
 	 */
@@ -18881,62 +19992,77 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Cannot find the item to combine.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_COMPOUND_ITEM_NO_TARGET_ITEM = new SM_SYSTEM_MESSAGE(1400717);
+
 	/**
 	 * Cannot find the item to remove the combination from.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_DECOMPOUND_ITEM_NO_TARGET_ITEM = new SM_SYSTEM_MESSAGE(1400718);
+
 	/**
 	 * You cannot expel the alliance captain.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CANT_BANISH_LEADER = new SM_SYSTEM_MESSAGE(1400719);
+
 	/**
 	 * You cannot appoint yourself as an alliance vice captain.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CANT_PROMOTE_MANAGER_SELF = new SM_SYSTEM_MESSAGE(1400720);
+
 	/**
 	 * You are already appointed as an alliance vice captain.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CANT_PROMOTE_MANAGER_AGAIN = new SM_SYSTEM_MESSAGE(1400721);
+
 	/**
 	 * You cannot demote yourself to an alliance member.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CANT_DEMOTE_MANAGER_SELF = new SM_SYSTEM_MESSAGE(1400722);
+
 	/**
 	 * You cannot demote an alliance member.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FORCE_CANT_DEMOTE_MANAGER_AGAIN = new SM_SYSTEM_MESSAGE(1400723);
+
 	/**
 	 * Thunder Storm has appeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_SUMMON_THUNDER = new SM_SYSTEM_MESSAGE(1400724);
+
 	/**
 	 * Terra Blast has appeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_SUMMON_EARTH = new SM_SYSTEM_MESSAGE(1400725);
+
 	/**
 	 * Acid mist has covered some areas.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_SUMMON_POISON = new SM_SYSTEM_MESSAGE(1400726);
+
 	/**
 	 * Sematariux has awoken from the Protective Slumber.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_DRAMATA_AWAKENING = new SM_SYSTEM_MESSAGE(1400727);
+
 	/**
 	 * Padmarashka has awoken from the Protective Slumber.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_DRAMATA_AWAKENING = new SM_SYSTEM_MESSAGE(1400728);
+
 	/**
 	 * Yamennes's threat level has been reset!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Core_NmdD_ResetAggro = new SM_SYSTEM_MESSAGE(1400729);
+
 	/**
 	 * A summoned Lapilima is healing Yamennes!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Core_NmdD_Heal = new SM_SYSTEM_MESSAGE(1400730);
+
 	/**
 	 * Yamennes Blindsight has appeared!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Core_NmdD_Wakeup = new SM_SYSTEM_MESSAGE(1400731);
+
 	/**
 	 * Yamennes Painflare has appeared!
 	 */
@@ -18977,90 +20103,112 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Item couldn't be registered due to a change in the fees.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_CAN_NOT_REGISTER_ITEM_FEE_CHANGED = new SM_SYSTEM_MESSAGE(1400738);
+
 	/**
 	 * The first Sphere of Destiny has been activated.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_BUFF_FIRST_OBJECT_ON_DF = new SM_SYSTEM_MESSAGE(1400739);
+
 	/**
 	 * The second Sphere of Destiny has been activated. Marchutan's Agent Mastarius prepares to cast the Empyrean Lord's blessing.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_BUFF_SECOND_OBJECT_ON_DF = new SM_SYSTEM_MESSAGE(1400740);
+
 	/**
 	 * You may use the Sphere of Destiny again.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_BUFF_CAN_USE_OBJECT_DF = new SM_SYSTEM_MESSAGE(1400741);
+
 	/**
 	 * You need more people to activate the Sphere of Destiny.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_BUFF_CANT_USE_OBJECT_NOT_ENOUGH_MEMBER_DF = new SM_SYSTEM_MESSAGE(1400742);
+
 	/**
 	 * Such basic crafting doesn't affect your skill level, Master.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DONT_GET_COMBINE_EXP_GRAND_MASTER = new SM_SYSTEM_MESSAGE(1400743);
+
 	/**
 	 * You cannot modify equipped items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CHANGE_ITEM_SKIN_CANT_CHANGE_EQUIPED_ITEM_SKIN = new SM_SYSTEM_MESSAGE(1400744);
+
 	/**
 	 * You cannot preview an item that you cannot equip.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CHANGE_ITEM_SKIN_PREVIEW_INVALID_COSMETIC = new SM_SYSTEM_MESSAGE(1400745);
+
 	/**
 	 * High Elder Roamim's threat level has reset!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_Underpass_Nephilim_Raid_ResetAggro = new SM_SYSTEM_MESSAGE(1400746);
+
 	/**
 	 * High Elder Roamim is furious!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_Underpass_Nephilim_Raid_Rage = new SM_SYSTEM_MESSAGE(1400747);
+
 	/**
 	 * High Elder Roamim has summoned players.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_Underpass_Nephilim_Raid_Recall = new SM_SYSTEM_MESSAGE(1400748);
+
 	/**
 	 * You do not have the authority to make this decision.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PARTY_FORCE_NO_RIGHT_TO_DECIDE = new SM_SYSTEM_MESSAGE(1400749);
+
 	/**
 	 * You cannot buy an item you have registered yourself.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_VENDOR_CAN_NOT_BUY_MY_REGISTER_ITEM = new SM_SYSTEM_MESSAGE(1400750);
+
 	/**
 	 * Commander Bakarma has appeared at Beritra's Oracle.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BOSS_SPAWN_IDDF3_DRAGON = new SM_SYSTEM_MESSAGE(1400751);
+
 	/**
 	 * An object of great power waits in your cube. Transform into a mighty being with Taloc's Fruit.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_KASPAFRUIT_INFO = new SM_SYSTEM_MESSAGE(1400752);
+
 	/**
 	 * An object of great power waits in your cube. Launch a powerful aerial attack with Taloc's Tears.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_KASPATEAR_INFO = new SM_SYSTEM_MESSAGE(1400753);
+
 	/**
 	 * An object of great power waits in Shishir's carcass. Obtain it, then register it in the skill window.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_SHISHIR_INFO = new SM_SYSTEM_MESSAGE(1400754);
+
 	/**
 	 * An object of great power waits in Gellmar's carcass. Obtain it, then register it in the skill window.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GELMAR_INFO = new SM_SYSTEM_MESSAGE(1400755);
+
 	/**
 	 * An object of great power waits in Neith's carcass. Obtain it, then register it in the skill window.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_RAGOS_INFO = new SM_SYSTEM_MESSAGE(1400756);
+
 	/**
 	 * You must kill Afrane, Saraswati, Lakshmi, and Nimbarka to make Commander Bakarma appear.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BOSS_SPAWN_IDDF3_DRAGON_1 = new SM_SYSTEM_MESSAGE(1400757);
+
 	/**
 	 * You must kill 3 more Adjutants to make Commander Bakarma appear.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BOSS_SPAWN_IDDF3_DRAGON_2 = new SM_SYSTEM_MESSAGE(1400758);
+
 	/**
 	 * You must kill 2 more Adjutants to make Commander Bakarma appear.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_BOSS_SPAWN_IDDF3_DRAGON_3 = new SM_SYSTEM_MESSAGE(1400759);
+
 	/**
 	 * You must kill 1 more Adjutant to make Commander Bakarma appear.
 	 */
@@ -19164,86 +20312,107 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Tainted Inina is now open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_01 = new SM_SYSTEM_MESSAGE(1400775);
+
 	/**
-	 * You cannot open it because there are no users of levels 10 - 19.
+	 * You cannot open it because there are no users of levels 10 - 19. 
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_02 = new SM_SYSTEM_MESSAGE(1400776);
+
 	/**
 	 * You cannot open that without a Mentor.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_03 = new SM_SYSTEM_MESSAGE(1400777);
+
 	/**
 	 * Speak to the Kaidan Head Priest while disguised as a Draconute Guard to receive a Tribute Chest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_04 = new SM_SYSTEM_MESSAGE(1400778);
+
 	/**
 	 * The Tribute Chest can only be opened by someone disguised as a Drakan Envoy.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_05 = new SM_SYSTEM_MESSAGE(1400779);
+
 	/**
 	 * The Lepharist Revolutionary hideout is now open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_06 = new SM_SYSTEM_MESSAGE(1400780);
+
 	/**
-	 * You cannot open it because there are no users of levels 20 - 29.
+	 * You cannot open it because there are no users of levels 20 - 29. 
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_07 = new SM_SYSTEM_MESSAGE(1400781);
+
 	/**
 	 * You cannot open that without a Mentor.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_08 = new SM_SYSTEM_MESSAGE(1400782);
+
 	/**
 	 * The Asmodian hideout is now open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_09 = new SM_SYSTEM_MESSAGE(1400783);
+
 	/**
-	 * You cannot open it because there are no users of levels 30 - 39.
+	 * You cannot open it because there are no users of levels 30 - 39. 
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_10 = new SM_SYSTEM_MESSAGE(1400784);
+
 	/**
 	 * You cannot open that without a Mentor.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_11 = new SM_SYSTEM_MESSAGE(1400785);
+
 	/**
 	 * The Ward Orb is now open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_01 = new SM_SYSTEM_MESSAGE(1400786);
+
 	/**
-	 * You cannot open it because there are no users of levels 10 - 19.
+	 * You cannot open it because there are no users of levels 10 - 19. 
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_02 = new SM_SYSTEM_MESSAGE(1400787);
+
 	/**
 	 * You cannot open that without a Mentor.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_03 = new SM_SYSTEM_MESSAGE(1400788);
+
 	/**
 	 * Speak to the Mau High Priest while disguised as a Draconute Guard to receive a Tribute.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_04 = new SM_SYSTEM_MESSAGE(1400789);
+
 	/**
 	 * The Tribute Chest can only be opened by someone disguised as a High Rank Drakan Envoy.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_05 = new SM_SYSTEM_MESSAGE(1400790);
+
 	/**
 	 * The Ward Globe is now open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_06 = new SM_SYSTEM_MESSAGE(1400791);
+
 	/**
-	 * You cannot open it because there are no users of levels 20 - 29.
+	 * You cannot open it because there are no users of levels 20 - 29. 
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_07 = new SM_SYSTEM_MESSAGE(1400792);
+
 	/**
 	 * You cannot open that without a Mentor.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_08 = new SM_SYSTEM_MESSAGE(1400793);
+
 	/**
 	 * The Morheim Observatory Auxiliary Device is now open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_09 = new SM_SYSTEM_MESSAGE(1400794);
+
 	/**
-	 * You cannot open it because there are no users of levels 30 - 39.
+	 * You cannot open it because there are no users of levels 30 - 39. 
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_10 = new SM_SYSTEM_MESSAGE(1400795);
+
 	/**
 	 * You cannot open that without a Mentor.
 	 */
@@ -19252,33 +20421,37 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * %0 has been sealed.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_START_DONE(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400797, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_START_DONE(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400797, new DescriptionId(nameId));
 	}
 
 	/**
 	 * Canceled sealing %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_START_CANCEL(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400798, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_START_CANCEL(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400798, new DescriptionId(nameId));
 	}
 
 	/**
 	 * Are you sure you want to seal it?
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_CONFIRM_START = new SM_SYSTEM_MESSAGE(1400799);
+
 	/**
 	 * Are you sure you want to unseal it?
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_CONFIRM_UNSEAL = new SM_SYSTEM_MESSAGE(1400800);
+
 	/**
 	 * The seal will be removed immediately.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_CONFIRM_UNSEALINSTANT = new SM_SYSTEM_MESSAGE(1400801);
+
 	/**
 	 * Sealed Item
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_STATUS = new SM_SYSTEM_MESSAGE(1400802);
+
 	/**
 	 * Unseal Pending
 	 */
@@ -19301,12 +20474,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * %0 is now pending unsealing. This will take 7 days.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_STATUS_UNSEALWAIT_START(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400806, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_STATUS_UNSEALWAIT_START(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400806, new DescriptionId(nameId));
 	}
 
 	/**
-	 * %0 is now pending unsealing. This will take %DURATIONDAY1 days.
+	 * %0 is now pending unsealing. This will take  %DURATIONDAY1 days.
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_STATUS_UNSEALPROGRESS(String value0, String durationday1) {
 		return new SM_SYSTEM_MESSAGE(1400807, value0, durationday1);
@@ -19315,78 +20488,102 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * %0 is unsealed.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_STATUS_UNSEALDONE(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400808, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_STATUS_UNSEALDONE(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400808, new DescriptionId(nameId));
+	}
+
+	/**
+	 * You cannot trade, enhance, destroy, sell, extract, or soulbind sealed items, and it takes %0 days to unseal them completely.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_START(String value0) {
+		return new SM_SYSTEM_MESSAGE(1400809, value0);
 	}
 
 	/**
 	 * You cannot seal an item that is already sealed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_RESEAL = new SM_SYSTEM_MESSAGE(1400810);
+
 	/**
 	 * You cannot trade sealed items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_TRADE = new SM_SYSTEM_MESSAGE(1400811);
+
 	/**
 	 * You cannot sell sealed items in a private store.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_SHOP = new SM_SYSTEM_MESSAGE(1400812);
+
 	/**
 	 * You cannot sell sealed items at the Broker.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_AUCTION = new SM_SYSTEM_MESSAGE(1400813);
+
 	/**
 	 * You cannot mail sealed items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_MAIL = new SM_SYSTEM_MESSAGE(1400814);
+
 	/**
 	 * You cannot store sealed items in the account warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_ACCOUNT = new SM_SYSTEM_MESSAGE(1400815);
+
 	/**
 	 * You cannot store sealed items in the legion warehouse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_GUILD = new SM_SYSTEM_MESSAGE(1400816);
+
 	/**
 	 * You cannot enhance sealed items with enchantment stones.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_UP = new SM_SYSTEM_MESSAGE(1400817);
+
 	/**
 	 * You cannot enhance sealed items with manastones.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_UP_MSTONE = new SM_SYSTEM_MESSAGE(1400818);
+
 	/**
 	 * You cannot enhance sealed items with godstones.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_UP_GSTONE = new SM_SYSTEM_MESSAGE(1400819);
+
 	/**
 	 * You cannot modify the appearance of sealed items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_LOOKCHANGE = new SM_SYSTEM_MESSAGE(1400820);
+
 	/**
 	 * You cannot combine sealed items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_MERGE = new SM_SYSTEM_MESSAGE(1400821);
+
 	/**
 	 * You cannot destroy sealed items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_DESTROY = new SM_SYSTEM_MESSAGE(1400822);
+
 	/**
 	 * You cannot sell sealed items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_SELL = new SM_SYSTEM_MESSAGE(1400823);
+
 	/**
 	 * You cannot extract sealed items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_EXTRACT = new SM_SYSTEM_MESSAGE(1400824);
+
 	/**
 	 * You cannot remove manastones from sealed items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_REMOVE = new SM_SYSTEM_MESSAGE(1400825);
+
 	/**
 	 * You must unseal your items to complete that quest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_QUESTFINISH = new SM_SYSTEM_MESSAGE(1400826);
+
 	/**
 	 * You cannot stack sealed items.
 	 */
@@ -19395,29 +20592,29 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * You cannot use %0 while you are waiting for more than 3 items to be unsealed.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_MAXWAIT(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400828, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_MAXWAIT(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400828, new DescriptionId(nameId));
 	}
 
 	/**
 	 * Canceled unsealing %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_UNSEALCANCEL(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400829, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_UNSEALCANCEL(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400829, new DescriptionId(nameId));
 	}
 
 	/**
 	 * You cannot use %0 on an item that is pending unsealing.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_ALREADYUNSEAL(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400830, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_ALREADYUNSEAL(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400830, new DescriptionId(nameId));
 	}
 
 	/**
 	 * %0 is not a sealed item.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_NOTSEALED(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400831, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_NOTSEALED(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400831, new DescriptionId(nameId));
 	}
 
 	/**
@@ -19436,6 +20633,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Seal Obliterator has vanished.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_SCROLLDESTROY = new SM_SYSTEM_MESSAGE(1400834);
+
 	/**
 	 * You cannot use sealed consumable items.
 	 */
@@ -19452,26 +20650,32 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Group Leader Loot is not available when the group leader is a Mentor.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DONT_SELECT_LEADER_LOOTING_BY_MENTOR = new SM_SYSTEM_MESSAGE(1400837);
+
 	/**
 	 * You cannot be a Mentor because all the other Group Members are Mentors.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_BE_MENTOR_BY_LAST_MENTEE = new SM_SYSTEM_MESSAGE(1400838);
+
 	/**
 	 * Not available when the Group Leader is a Mentor.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LEADER_LOOTING_IS_UNAVAILABLE = new SM_SYSTEM_MESSAGE(1400839);
+
 	/**
 	 * You have stopped Mentoring because the lowest level group member must be at least 10 levels lower than you.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_BE_MENTOR_BY_LEVEL_LIMIT = new SM_SYSTEM_MESSAGE(1400840);
+
 	/**
 	 * You have stopped Mentoring because no group members need your help.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_MENTOR_PARTY_END_BY_LEAVE_ALL_MENTEE = new SM_SYSTEM_MESSAGE(1400841);
+
 	/**
 	 * The Mentor group has been converted to an alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_MENTOR_PARTY_END_BY_CONVERT_BY_FORCE = new SM_SYSTEM_MESSAGE(1400842);
+
 	/**
 	 * You cannot join the group/alliance because your character name is invalid.
 	 */
@@ -19480,15 +20684,15 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * You cannot seal %0.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_START_FAIL1(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400844, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_START_FAIL1(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400844, new DescriptionId(nameId));
 	}
 
 	/**
 	 * You cannot seal %0 while it is equipped.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_START_FAIL2(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400845, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_START_FAIL2(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400845, new DescriptionId(nameId));
 	}
 
 	/**
@@ -19499,34 +20703,40 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * %0 cannot break the combination.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_DICOMPOSITION(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400847, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_DICOMPOSITION(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400847, new DescriptionId(nameId));
 	}
 
 	/**
 	 * You can only Mentor a group member at least 10 levels below you.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_MENTOR_CANT_START_WITHOUT_MENTOR_TARGET = new SM_SYSTEM_MESSAGE(1400848);
+
 	/**
 	 * You can only be a Mentor when you're in a group.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_MENTOR_CANT_START_WHEN_NOT_IN_PARTY = new SM_SYSTEM_MESSAGE(1400849);
+
 	/**
 	 * You belong to a Mentor Group. Use the [/Recruit Mentor [your text here]] command to post a message to <Recruit Mentor Group>.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_REGISTER_NORMAL_PARTY_IN_MENTOR_PARTY = new SM_SYSTEM_MESSAGE(1400850);
+
 	/**
 	 * Because you belong to an Alliance, you cannot post a <Recruit Group> message. Use /RecruitAllianceMember and the <Recruit Alliance> window instead.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_REGISTER_NORMAL_PARTY_IN_FORCE = new SM_SYSTEM_MESSAGE(1400851);
+
 	/**
 	 * Your posting to the Find Group window was canceled because you already belong to a Group or Alliance.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_REGISTER_APPLY_IN_PARTY_OR_FORCE = new SM_SYSTEM_MESSAGE(1400852);
+
 	/**
 	 * You cannot combine items that are temporarily tradable.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_COMPOUND_ERROR_TEMPORARY_EXCHANGE_ITEM = new SM_SYSTEM_MESSAGE(1400853);
+
 	/**
 	 * You can receive the daily quest.
 	 */
@@ -19552,13 +20762,6 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	}
 
 	/**
-	 * Ihr könnt diese Quest in %DURATIONDAY0 ein weiteres Mal annehmen.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_QUEST_COOLTIME_START_LIMITED_DURATION(String value0) {
-		return new SM_SYSTEM_MESSAGE(1402676, value0);
-	}
-
-	/**
 	 * You cannot soul bind a sealed item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_CANT_SOUL_BIND = new SM_SYSTEM_MESSAGE(1400858);
@@ -19581,14 +20784,17 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * That doesn't work without a user of level 35-45.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_12 = new SM_SYSTEM_MESSAGE(1400861);
+
 	/**
 	 * That doesn't work without a Mentor.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Li_13 = new SM_SYSTEM_MESSAGE(1400862);
+
 	/**
 	 * That doesn't work without a user of level 25 - 35.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Da_12 = new SM_SYSTEM_MESSAGE(1400863);
+
 	/**
 	 * That doesn't work without a Mentor.
 	 */
@@ -19645,58 +20851,77 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot glide while you are transformed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GLIDE_CANNOT_GLIDE_POLYMORPH_STATUS = new SM_SYSTEM_MESSAGE(1400872);
+
+	/**
+	 * Transformation Mode.
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_POLYMORPH = new SM_SYSTEM_MESSAGE(1401212);
+
 	/**
 	 * You cannot fly while you are transformed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_FLY_CANNOT_FLY_POLYMORPH_STATUS = new SM_SYSTEM_MESSAGE(1400873);
+
 	/**
 	 * Pets cannot use this item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DOPING_PET_CANNOT_USE = new SM_SYSTEM_MESSAGE(1400874);
+
 	/**
 	 * You cannot list an unusable item.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DOPING_PET_MESSAGE02 = new SM_SYSTEM_MESSAGE(1400875);
+
 	/**
 	 * The pet will now automatically loot items on your behalf, except for items that require confirmation (such as Dice Roll items.)
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LOOTING_PET_MESSAGE01 = new SM_SYSTEM_MESSAGE(1400876);
+
 	/**
 	 * The pet can't pick up items that can be shared with other group members.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LOOTING_PET_MESSAGE02 = new SM_SYSTEM_MESSAGE(1400877);
+
 	/**
 	 * You cannot use the Pet Loot function when the group is using the Free-for-All loot setting.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LOOTING_PET_MESSAGE03 = new SM_SYSTEM_MESSAGE(1400878);
+
 	/**
 	 * Pet Auto-Buffing activated. Your pet automatically uses Buff Bag items to buff you as old buffs expire.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DOPING_PET_USE_START_MESSAGE = new SM_SYSTEM_MESSAGE(1400879);
+
 	/**
 	 * Stop Pet Auto-Buffing.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DOPING_PET_USE_STOP_MESSAGE = new SM_SYSTEM_MESSAGE(1400880);
+
 	/**
 	 * Deactivates the Pet Loot function.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LOOTING_PET_USE_STOP_MESSAGE = new SM_SYSTEM_MESSAGE(1400881);
+
 	/**
 	 * The pet can only eat food.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DOPING_PET_USE_CATEGORY_FOOD = new SM_SYSTEM_MESSAGE(1400882);
+
 	/**
 	 * The pet can only drink beverages.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DOPING_PET_USE_CATEGORY_DRINK = new SM_SYSTEM_MESSAGE(1400883);
+
 	/**
 	 * The pet can only use scrolls.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DOPING_PET_USE_CATEGORY_SCROLL = new SM_SYSTEM_MESSAGE(1400884);
+
 	/**
 	 * Your pet cannot pick up items that require your confirmation.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LOOTING_PET_ITEM_REMAIN = new SM_SYSTEM_MESSAGE(1400885);
+
 	/**
 	 * Your pet cannot pick up items that you must share with other Group Members.
 	 */
@@ -19712,7 +20937,6 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_CHARGE2_SUCCESS(DescriptionId descriptionId, int level) {
 		return new SM_SYSTEM_MESSAGE(1401335, descriptionId, level);
 	}
-
 	/**
 	 * You cannot condition %0.
 	 */
@@ -19731,10 +20955,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * All equipped items are already conditioned. You cannot condition them further.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_CHARGE_ALL_FAIL_ALREADY_CHARGED = new SM_SYSTEM_MESSAGE(1400890);
+
 	/**
 	 * The trade has been cancelled.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_CHARGE_CANCELED = new SM_SYSTEM_MESSAGE(1400891);
+
 	/**
 	 * Successfully conditioned equipped item(s).
 	 */
@@ -19758,22 +20984,27 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * None of the equipped items are conditionable.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_CHARGE_ALL_FAIL_NO_CHARGEABLE_EQUIPMENT = new SM_SYSTEM_MESSAGE(1400895);
+
 	/**
 	 * While the Pet Auto-Buffing is active, you cannot change the contents of the Buff Bag.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DOPING_PET_MESSAGE03 = new SM_SYSTEM_MESSAGE(1400896);
+
 	/**
 	 * Please log out of the game and take a break.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TIRED_REMAIN_PLAYTIME_CHINA_1 = new SM_SYSTEM_MESSAGE(1400897);
+
 	/**
 	 * Your in-game gains have been reduced to 50% of normal values. Please log out and taking a break.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TIRED_REMAIN_PLAYTIME_CHINA_2 = new SM_SYSTEM_MESSAGE(1400898);
+
 	/**
 	 * You can't acquire any quest while fatigued. Please take a break until your fatigue level decreases, and then resume play.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CANT_ACQUIRE_QUEST_FATIGUE = new SM_SYSTEM_MESSAGE(1400899);
+
 	/**
 	 * Quests can't be continued or completed while you are fatigued. Please log out and take a break until your fatigue level decreases.
 	 */
@@ -19782,8 +21013,8 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * %0 has been sealed by a GM. You cannot remove this seal.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_STATUS_GMSEAL_UNSEAL_IMPOSSIBLE(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400901, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_STATUS_GMSEAL_UNSEAL_IMPOSSIBLE(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400901, new DescriptionId(nameId));
 	}
 
 	/**
@@ -19835,30 +21066,37 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Outer Protective Wall is gone, and Weapon H is waking from its dormant state.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_HugenNM_00 = new SM_SYSTEM_MESSAGE(1400909);
+
 	/**
 	 * The Energy Generator is becoming unstable.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_HugenNM_01 = new SM_SYSTEM_MESSAGE(1400910);
+
 	/**
 	 * The Energy Generator has been destroyed and the power of the Protective Shield has been reduced.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_HugenNM_02 = new SM_SYSTEM_MESSAGE(1400911);
+
 	/**
 	 * The Energy Generator has been destroyed and the power of the Protective Shield has been greatly reduced.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_HugenNM_03 = new SM_SYSTEM_MESSAGE(1400912);
+
 	/**
 	 * The Energy Generator has been destroyed and the Protective Shield has disappeared.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_HugenNM_04 = new SM_SYSTEM_MESSAGE(1400913);
+
 	/**
 	 * You pet is sulky and can't feel better until you interact with it.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PET_CONDITION_CARE_END = new SM_SYSTEM_MESSAGE(1400914);
+
 	/**
 	 * You need the aid of a Mentor to open it.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DailyQuest_Ask_Mentor = new SM_SYSTEM_MESSAGE(1400915);
+
 	/**
 	 * You need the aid of a lower level Group Member to open it.
 	 */
@@ -19875,38 +21113,47 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The Bridge to the Drana Production Lab has been raised.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_01 = new SM_SYSTEM_MESSAGE(1400918);
+
 	/**
 	 * Defeat all Drana Production Lab Section Managers to open the Laboratory Yard door.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_02 = new SM_SYSTEM_MESSAGE(1400919);
+
 	/**
 	 * The door to the Laboratory Yard is now open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_03 = new SM_SYSTEM_MESSAGE(1400920);
+
 	/**
 	 * The door to the Laboratory Air Conditioning Room is now open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_04 = new SM_SYSTEM_MESSAGE(1400921);
+
 	/**
 	 * The Laboratory Air Conditioning Room Ventilator is now open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_05 = new SM_SYSTEM_MESSAGE(1400922);
+
 	/**
 	 * The Drana Production Lab walkway is now open.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_06 = new SM_SYSTEM_MESSAGE(1400923);
+
 	/**
 	 * The outer wall of the Bio Lab has collapsed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_07 = new SM_SYSTEM_MESSAGE(1400924);
+
 	/**
 	 * The Airship Weapon has appeared in your cube. Register it to the Skill Window to use it.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_Zone3_Morph_01 = new SM_SYSTEM_MESSAGE(1400925);
+
 	/**
 	 * The Recharger is filling your whole body with energy. It seems to be increasing!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_Doping_01 = new SM_SYSTEM_MESSAGE(1400926);
+
 	/**
 	 * The Shulack Drink is energizing you!
 	 */
@@ -19915,29 +21162,29 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * Round %0 begins!
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_START_ROUND_IDARENA(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400928, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_START_ROUND_IDARENA(int round) {
+		return new SM_SYSTEM_MESSAGE(1400928, round);
 	}
 
 	/**
-	 * You have eliminated all enemies in Round %0.
+	 * You have eliminated all enemies in Round %0. 
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_COMPLETE_ROUND_IDARENA(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400929, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_COMPLETE_ROUND_IDARENA(int round) {
+		return new SM_SYSTEM_MESSAGE(1400929, round);
 	}
 
 	/**
 	 * You have passed Stage %0!
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_COMPLETE_STAGE_IDARENA(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400930, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_COMPLETE_STAGE_IDARENA(int stage) {
+		return new SM_SYSTEM_MESSAGE(1400930, stage);
 	}
 
 	/**
 	 * You join Stage %0 Round %1!
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_JOIN_ROUND_IDARENA(String value0, String value1) {
-		return new SM_SYSTEM_MESSAGE(1400931, value0, value1);
+	public static SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_JOIN_ROUND_IDARENA(int stage, int round) {
+		return new SM_SYSTEM_MESSAGE(1400931, stage, round);
 	}
 
 	/**
@@ -19963,6 +21210,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You cannot use that because the wind has weakened.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WindPathOff = new SM_SYSTEM_MESSAGE(1400935);
+
 	/**
 	 * You cannot re-enter the Crucible until the cooldown time has expired.
 	 */
@@ -19993,6 +21241,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The item you bought has arrived.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_POSTMAN_NOTIFY_CASH = new SM_SYSTEM_MESSAGE(1400940);
+
 	/**
 	 * Your trading partner has reached the daily Private Store trading limit, so the trade cannot be completed.
 	 */
@@ -20056,6 +21305,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Your trading partner has reached the daily Trading limit, so the trade has been canceled.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DAY_CANNOT_PARTNER_TRADE_LIMIT = new SM_SYSTEM_MESSAGE(1400950);
+
 	/**
 	 * You have reached the daily Trading limit, so the trade cannot be completed.
 	 */
@@ -20100,18 +21350,22 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * The treasure chest has disappeared because you failed to destroy the monsters within the time limit.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDABRECORE_OOPS_REWARD_IS_GONE = new SM_SYSTEM_MESSAGE(1400957);
+
 	/**
 	 * The Dredgion Generator has been destroyed. Its Protector is coming soon!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_Zone2_Tower_01 = new SM_SYSTEM_MESSAGE(1400958);
+
 	/**
 	 * Cannot find the Supplements.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ITEM_ENCHANT_ASSISTANT_CANNOT_FIND = new SM_SYSTEM_MESSAGE(1400959);
+
 	/**
 	 * You cannot use sealed Supplements.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ITEM_ENCHANT_ASSISTANT_SEALED = new SM_SYSTEM_MESSAGE(1400960);
+
 	/**
 	 * You cannot use those Supplements.
 	 */
@@ -20120,8 +21374,8 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * %0 dropped out of training and left the Empyrean Crucible.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_FRIENDLY_LEAVE_IDARENA(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400962, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_FRIENDLY_LEAVE_IDARENA(String player) {
+		return new SM_SYSTEM_MESSAGE(1400962, player);
 	}
 
 	/**
@@ -20132,8 +21386,8 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	/**
 	 * %0 has reentered the Illusion Stadium.
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_FRIENDLY_MOVE_COMBATAREA_IDARENA(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400964, value0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_FRIENDLY_MOVE_COMBATAREA_IDARENA(String player) {
+		return new SM_SYSTEM_MESSAGE(1400964, player);
 	}
 
 	/**
@@ -20152,10 +21406,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have reached maximum Fatigue, and so can obtain only limited XP, AP, and items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FATIGUE_STATE_INFO_STATE_CHANGE = new SM_SYSTEM_MESSAGE(1400967);
+
 	/**
 	 * You are very Fatigued, and so can obtain only limited XP, AP, and items.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_FATIGUE_STATE_INFO = new SM_SYSTEM_MESSAGE(1400968);
+
 	/**
 	 * You feel refreshed, and your Fatigue is gone.
 	 */
@@ -20179,6 +21435,7 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Looted!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_PET_LOOTING_DIALOG = new SM_SYSTEM_MESSAGE(1400972);
+
 	/**
 	 * Buff the Master!
 	 */
@@ -20195,38 +21452,47 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * A Worthiness Ticket Box has appeared in the Illusion Stadium.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S1_ResurBox1_01 = new SM_SYSTEM_MESSAGE(1400975);
+
 	/**
 	 * A Worthiness Ticket Box has appeared in the Ready Room.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S3_ResurBox1_01 = new SM_SYSTEM_MESSAGE(1400976);
+
 	/**
 	 * A Worthiness Ticket Box has appeared in the Ready Room.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S6_ResurBox1_01 = new SM_SYSTEM_MESSAGE(1400977);
+
 	/**
 	 * You can earn an additional reward if you catch the Saam King.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S2_SAAM_CTRL_01 = new SM_SYSTEM_MESSAGE(1400978);
+
 	/**
 	 * King Saam will disappear in 30 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S2_Saam1_01 = new SM_SYSTEM_MESSAGE(1400979);
+
 	/**
 	 * King Saam will disappear in 10 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S2_Saam1_02 = new SM_SYSTEM_MESSAGE(1400980);
+
 	/**
 	 * King Saam will disappear in 5 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S2_Saam1_03 = new SM_SYSTEM_MESSAGE(1400981);
+
 	/**
 	 * The Drakies will appear soon!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S4_Draky_CTRL_01 = new SM_SYSTEM_MESSAGE(1400982);
+
 	/**
 	 * The Ornate Treasure Chest has appeared in the Illusion Stadium!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S7_BookBox_01 = new SM_SYSTEM_MESSAGE(1400983);
+
 	/**
 	 * Lightning Drakie has appeared!
 	 */
@@ -20243,162 +21509,192 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * Administrator Arminos has appeared!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S3_Elemeltal_CTRL_01 = new SM_SYSTEM_MESSAGE(1400986);
+
 	/**
 	 * Administrator Arminos has appeared!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S4_Draky_CTRL_00 = new SM_SYSTEM_MESSAGE(1400987);
+
 	/**
 	 * 3...
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S4_Draky_CTRL_02 = new SM_SYSTEM_MESSAGE(1400988);
+
 	/**
 	 * 2...
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S4_Draky_CTRL_03 = new SM_SYSTEM_MESSAGE(1400989);
+
 	/**
 	 * 1...
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S4_Draky_CTRL_04 = new SM_SYSTEM_MESSAGE(1400990);
+
 	/**
 	 * Administrator Arminos has appeared!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S6_Ghost_55_Ah_01 = new SM_SYSTEM_MESSAGE(1400991);
+
 	/**
 	 * Lightning Drakie has disappeared!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_S9_DuskDraky_55_Ah_02 = new SM_SYSTEM_MESSAGE(1400992);
+
 	/**
 	 * You must have a Mentor with you in order to complete this quest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DONT_KILL_COUNT_WITHOUT_MENTOR = new SM_SYSTEM_MESSAGE(1400993);
+
 	/**
 	 * You must be Mentoring someone in order to complete this quest.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DONT_KILL_COUNT_WITHOUT_MENTEE = new SM_SYSTEM_MESSAGE(1400994);
+
 	/**
 	 * Cannot find the location for the selected quest step.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_NEW_MAP_QUEST_CANT_FIND_NPC = new SM_SYSTEM_MESSAGE(1400995);
+
 	/**
 	 * The Surkana Supplier has overloaded.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_08 = new SM_SYSTEM_MESSAGE(1400996);
+
 	/**
 	 * The Surkana Steam Jet has generated an updraft.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_09 = new SM_SYSTEM_MESSAGE(1400997);
+
 	/**
 	 * Management Director Surama uses Collapsing Earth.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_10 = new SM_SYSTEM_MESSAGE(1400998);
+
 	/**
 	 * A large number of Balaur Troopers descend from the Dredgion.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_01 = new SM_SYSTEM_MESSAGE(1400999);
+
 	/**
 	 * Kamara explodes.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_02 = new SM_SYSTEM_MESSAGE(1401000);
+
 	/**
 	 * Norris's eyes turn red.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_03 = new SM_SYSTEM_MESSAGE(1401001);
+
 	/**
 	 * The eyes of King Consierd turn red.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_04 = new SM_SYSTEM_MESSAGE(1401002);
+
 	/**
 	 * The eyes of Takun the Terrible turn red.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_05 = new SM_SYSTEM_MESSAGE(1401003);
+
 	/**
 	 * The eyes of Gojira turn red.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_06 = new SM_SYSTEM_MESSAGE(1401004);
+
 	/**
 	 * The eyes of Andre turn red.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_07 = new SM_SYSTEM_MESSAGE(1401005);
+
 	/**
 	 * The eyes of Kamara turn red.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_08 = new SM_SYSTEM_MESSAGE(1401006);
+
 	/**
 	 * Unlimited Battle Temporary System Message
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_09 = new SM_SYSTEM_MESSAGE(1401007);
+
 	/**
 	 * Unlimited Battle Temporary System Message
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_10 = new SM_SYSTEM_MESSAGE(1401008);
+
 	/**
 	 * A Worthiness Ticket has appeared in your cube.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_ResurBox = new SM_SYSTEM_MESSAGE(1401009);
+
 	/**
 	 * Spirits will disappear in 30 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S3_Bonus_01 = new SM_SYSTEM_MESSAGE(1401010);
+
 	/**
 	 * Spirits will disappear in 10 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S3_Bonus_02 = new SM_SYSTEM_MESSAGE(1401011);
+
 	/**
 	 * Spirits will disappear in 5 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S3_Bonus_03 = new SM_SYSTEM_MESSAGE(1401012);
+
 	/**
 	 * Drakies will disappear in 30 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S4_Bonus_01 = new SM_SYSTEM_MESSAGE(1401013);
+
 	/**
 	 * Drakies will disappear in 10 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S4_Bonus_02 = new SM_SYSTEM_MESSAGE(1401014);
+
 	/**
 	 * Drakies will disappear in 5 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S4_Bonus_03 = new SM_SYSTEM_MESSAGE(1401015);
+
 	/**
 	 * Administrator Arminos will disappear in 30 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S6_Bonus_01 = new SM_SYSTEM_MESSAGE(1401016);
+
 	/**
 	 * Administrator Arminos will disappear in 10 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S6_Bonus_02 = new SM_SYSTEM_MESSAGE(1401017);
+
 	/**
 	 * Administrator Arminos will disappear in 5 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S6_Bonus_03 = new SM_SYSTEM_MESSAGE(1401018);
+
 	/**
 	 * Lightning Drakie will disappear in 30 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S9_Bonus_01 = new SM_SYSTEM_MESSAGE(1401019);
+
 	/**
 	 * Lightning Drakie will disappear in 10 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S9_Bonus_02 = new SM_SYSTEM_MESSAGE(1401020);
+
 	/**
 	 * Lightning Drakie will disappear in 5 seconds!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_S9_Bonus_03 = new SM_SYSTEM_MESSAGE(1401021);
+
 	/**
 	 * Because you belong to an Alliance, you cannot post a <Recruit Mentor Group> message. Use /RecruitAllianceMember and the <Recruit Alliance> window instead.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_REGISTER_MENTOR_PARTY_IN_FORCE = new SM_SYSTEM_MESSAGE(1401022);
-	/**
-	 * You can see Omega's Recharger. Certainly there would be no harm in trying it.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_Doping_01_AD = new SM_SYSTEM_MESSAGE(1401023);
-	/**
-	 * You can see the Energy Drink Can that Shulacks often drink. Certainly there would be no harm in trying it.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_Doping_02_AD = new SM_SYSTEM_MESSAGE(1401024);
+
 	/**
 	 * You failed to purchase the item. Please try again later.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CASH_PURCHASE_ERROR_FAILED_RECEIVING_PRODUCT = new SM_SYSTEM_MESSAGE(1401025);
+
 	/**
 	 * That item is invalid.
 	 */
@@ -20415,34 +21711,42 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * One of the Distribution Targets has reached the daily Trading limit, so the trade cannot be completed.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DAY_CANNOT_SHARE_TRADE_LIMIT = new SM_SYSTEM_MESSAGE(1401034);
+
 	/**
 	 * Dalia Charlands has vanished.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_11 = new SM_SYSTEM_MESSAGE(1401036);
+
 	/**
 	 * The Surkana Supplier has been broken.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF4Re_Drana_12 = new SM_SYSTEM_MESSAGE(1401037);
+
 	/**
 	 * System error. Please try again later.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CASH_PURCHASE_ERROR_SYSTEM_ERROR = new SM_SYSTEM_MESSAGE(1401038);
+
 	/**
 	 * Your cube is full.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CASH_PURCHASE_ERROR_NOT_ENOUGH_SPACE = new SM_SYSTEM_MESSAGE(1401039);
+
 	/**
 	 * You cannot summon a pet here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TOYPET_CANT_SUMMON_MOVING_STATE = new SM_SYSTEM_MESSAGE(1401040);
+
 	/**
 	 * You cannot fight a duel here.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DUEL_CANT_IN_THIS_ZONE = new SM_SYSTEM_MESSAGE(1401047);
+
 	/**
 	 * You have been disconnected from the Bid Withdrawal Server. Please try again later.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_ITEM_BILLING_SERVER_DOWN_SA2 = new SM_SYSTEM_MESSAGE(1401051);
+
 	/**
 	 * You can not verify Pet Status in the current state.
 	 */
@@ -20467,114 +21771,140 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		return new SM_SYSTEM_MESSAGE(1401055, value0, value1);
 	}
 
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_DUNGEON_OPENED_FOR_SELF(int worldId) {
+		return new SM_SYSTEM_MESSAGE(1400640, worldId);
+	}
+	
 	/**
 	 * NEW
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_NOTICE_BLANK = new SM_SYSTEM_MESSAGE(1401057);
 
 	/**
-	 * You have entered %WORLDNAME0. Your allies are barred from joining you.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_DUNGEON_OPENED_FOR_SELF(int worldId) {
-		return new SM_SYSTEM_MESSAGE(1400640, worldId);
-	}
-
-	/**
 	 * The time for group member recruitment has expired. You cannot recruit more group members.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_CANT_REINFORCE_MEMBER = new SM_SYSTEM_MESSAGE(1401058);
+
 	/**
 	 * You cannot use the commands Invite to Group or Invite to Legion right now.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_CANT_INVITE_PARTY_COMMAND = new SM_SYSTEM_MESSAGE(1401059);
+
 	/**
 	 * You cannot use the commands Assign Group Leader and Make Alliance Captain right now.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_CANT_CHANGE_LEADER_PARTY_COMMAND = new SM_SYSTEM_MESSAGE(1401060);
+
 	/**
 	 * You cannot use the commands Leave Group or Leave Alliance right now.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_CANT_QUIT_PARTY_COMMAND = new SM_SYSTEM_MESSAGE(1401061);
+
 	/**
-	 * You cannot use the commands Ban Group or Ban from Alliance right now.
+	 * You cannot use the commands Ban Group or  Ban from Alliance right now.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_CANT_BANISH_PARTY_COMMAND = new SM_SYSTEM_MESSAGE(1401062);
+
 	/**
 	 * You cannot use the commands Distribute Cash to Group or Distribute Cash to Alliance settings right now.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_CANT_LOOT_PARTY_COMMAND = new SM_SYSTEM_MESSAGE(1401063);
+
 	/**
 	 * You cannot change group or alliance members right now.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_CANT_ARRANGE_MEMBER_FORCE_COMMAND = new SM_SYSTEM_MESSAGE(1401064);
+
 	/**
 	 * Poppy is running from the Dukaki Cooks. Eliminate them and help Poppy to reach the refuge.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_Solo_SB1_START_BROADCAST = new SM_SYSTEM_MESSAGE(1401067);
+
 	/**
 	 * There are 5 Dukaki Cooks remaining.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_Solo_SB1_5Dead_BROADCAST = new SM_SYSTEM_MESSAGE(1401068);
+
 	/**
 	 * Careful! Poppy's health is very low.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_Solo_SB1_AllDead_BROADCAST = new SM_SYSTEM_MESSAGE(1401069);
+
 	/**
-	 * Poppy has almost reached the refuge. Just a little bit further!
+	 * Poppy has almost reached the refuge. Just a little bit further! 
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_Solo_SB1_HideNear_BROADCAST = new SM_SYSTEM_MESSAGE(1401070);
+
 	/**
-	 * Poppy has reached the refuge safely. A successful rescue!
+	 * Poppy has reached the refuge safely. A successful rescue! 
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_Solo_SB1_HideSucc_BROADCAST = new SM_SYSTEM_MESSAGE(1401071);
+
 	/**
 	 * You have eliminated all of the Dukaki Cooks and successfully rescued Poppy!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_Solo_SB1_Succ_BROADCAST = new SM_SYSTEM_MESSAGE(1401072);
+
 	/**
 	 * You already have a pet of this type.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TOYPET_CANT_USE_ALREADY_HAS_PET = new SM_SYSTEM_MESSAGE(1401073);
+
 	/**
 	 * You already have a pack pet with this functionality.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TOYPET_ALREADY_SAME_WAREHOUSE_PET = new SM_SYSTEM_MESSAGE(1401074);
+
 	/**
 	 * Poppy was captured by the Dukaki Cooks... and roasted whole!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_Solo_SB1_Failed_BROADCAST = new SM_SYSTEM_MESSAGE(1401075);
+
 	/**
 	 * The Dukaki Cooks attacked and wounded Poppy!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_Solo_SB1_LowHP_BROADCAST = new SM_SYSTEM_MESSAGE(1401082);
+
 	/**
 	 * Poppy was attacked by the Dukaki Cooks. They're planning to roast Poppy for dinner!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDArena_Solo_SB1_LowHP2_BROADCAST = new SM_SYSTEM_MESSAGE(1401083);
+
 	/**
 	 * Smash the Meat Barrel to lure and destroy the Starved Karnifs.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_IDArena_Solo_S4_System1 = new SM_SYSTEM_MESSAGE(1401084);
+
 	/**
 	 * Smash the Aether Barrel to lure and destroy the Thirsty Spirits.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_IDArena_Solo_S4_System2 = new SM_SYSTEM_MESSAGE(1401085);
+
 	/**
 	 * Stop Gomju from perpetrating a senseless massacre!
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_CHAT_IDArena_Solo_S4_System5 = new SM_SYSTEM_MESSAGE(1401086);
+
 	/**
 	 * You cannot use the commands /RecruitGroupMember or /RecruitAllianceMember right now.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_CANT_POST_PARTY_COMMAND = new SM_SYSTEM_MESSAGE(1401098);
+
 	/**
 	 * This emblem is already registered.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_GUILD_ALREADY_POSTED_THIS_EMBLEM = new SM_SYSTEM_MESSAGE(1401142);
+
 	/**
 	 * A Master cannot take Work Orders.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DONT_GET_COMBINETASK_MASTER = new SM_SYSTEM_MESSAGE(1401182);
+
+	/**
+	 * The target cannot be invited due to dungeon entry requirements.
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_PARTY_CANT_ADD_INSTANCE_MAX_MEMBER = new SM_SYSTEM_MESSAGE(1404119);
+
 	/**
 	 * UI Zone messages
 	 */
@@ -20594,10 +21924,12 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	 * You have already learned this emote.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_TOOLTIP_LEARNED_EMOTION = new SM_SYSTEM_MESSAGE(901713);
+
 	/**
 	 * You can only use this when you have a Plastic Surgery Ticket.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_EDIT_CHAR_ALL_CANT_NO_ITEM = new SM_SYSTEM_MESSAGE(901752);
+
 	/**
 	 * You can only use this when you have a Gender Switch Ticket.
 	 */
@@ -20622,678 +21954,328 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		return new SM_SYSTEM_MESSAGE(901285, num0);
 	}
 
+	public static SM_SYSTEM_MESSAGE STR_GUILD_CHANGE_LEVEL_DONE(int newLevel) {
+		return new SM_SYSTEM_MESSAGE(1300320, newLevel);
+	}
+
 	/**
 	 * You cannot use it because you belong to a different race.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MOVE_PORTAL_ERROR_INVALID_RACE = new SM_SYSTEM_MESSAGE(901354);
-	/**
-	 * Only the conquering Legion may enter.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MOVE_PORTAL_ERROR_INVALID_LEGION = new SM_SYSTEM_MESSAGE(904641);
+
 	/**
 	 * You are not authorized to examine the corpse.
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_LOOT_NO_RIGHT = new SM_SYSTEM_MESSAGE(901338);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_INS_OWN_SUCCESS = new SM_SYSTEM_MESSAGE(1401275);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_ENTER_NO_RIGHT2 = new SM_SYSTEM_MESSAGE(1401364);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_ENTER_HAVE_TO_RECREATE = new SM_SYSTEM_MESSAGE(1401365);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_TOO_FAR_TO_USE = new SM_SYSTEM_MESSAGE(1401297);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_IS_ONLY_FOR_OWNER_VALID = new SM_SYSTEM_MESSAGE(1401298);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_ALL_CANT_USE = new SM_SYSTEM_MESSAGE(1401296);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_ACHIEVE_USE_COUNT = new SM_SYSTEM_MESSAGE(1401295);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANNOT_USE_FLOWERPOT_COOLTIME = new SM_SYSTEM_MESSAGE(1401280);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ALREADY_OPEN_ANOTHER_STORAGE = new SM_SYSTEM_MESSAGE(1401282);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_CANT_USE_PER_DAY = new SM_SYSTEM_MESSAGE(1401260);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_OCCUPIED_BY_OTHER = new SM_SYSTEM_MESSAGE(1401256);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_USE_HOUSE_OBJECT_INVENTORY_IS_FULL = new SM_SYSTEM_MESSAGE(1401200);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_CANCEL_USE = new SM_SYSTEM_MESSAGE(1401258);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_ORDER_OPEN_DOOR = new SM_SYSTEM_MESSAGE(1401379);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_ORDER_CLOSE_DOOR_WITHOUT_FRIENDS = new SM_SYSTEM_MESSAGE(1401380);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_ORDER_CLOSE_DOOR_ALL = new SM_SYSTEM_MESSAGE(1401381);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_ORDER_OUT_WITHOUT_FRIENDS = new SM_SYSTEM_MESSAGE(1401382);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_ORDER_OUT_ALL = new SM_SYSTEM_MESSAGE(1401383);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_REQUEST_OUT = new SM_SYSTEM_MESSAGE(1401384);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CHANGE_OWNER = new SM_SYSTEM_MESSAGE(1401385);
+	public static final SM_SYSTEM_MESSAGE STR_HOUSING_TELEPORT_NEED_HOUSE = new SM_SYSTEM_MESSAGE(1401357);
+	public static final SM_SYSTEM_MESSAGE STR_HOUSING_ENTER_NEED_HOUSE = new SM_SYSTEM_MESSAGE(1401359);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_MODE_CANNOT_START = new SM_SYSTEM_MESSAGE(1401358);
+	public static final SM_SYSTEM_MESSAGE STR_HOUSING_TELEPORT_CANT_USE = new SM_SYSTEM_MESSAGE(1401244);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_BID_CANCEL = new SM_SYSTEM_MESSAGE(1401266);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_TIMEOUT = new SM_SYSTEM_MESSAGE(1401274);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_AUCTION_TIMEOUT = new SM_SYSTEM_MESSAGE(1401308);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_INS_CANT_OWN_MORE_HOUSE = new SM_SYSTEM_MESSAGE(1401276);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_EXCESS_ACCOUNT = new SM_SYSTEM_MESSAGE(1401497);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_MY_HOUSE = new SM_SYSTEM_MESSAGE(1401221);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_SUCC_BID_HOUSE = new SM_SYSTEM_MESSAGE(1401222);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_OTHER_HOUSE = new SM_SYSTEM_MESSAGE(1401223);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_GRACE_HOUSE = new SM_SYSTEM_MESSAGE(1401224);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OVERDUE = new SM_SYSTEM_MESSAGE(1401226);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_SEQUESTRATE = new SM_SYSTEM_MESSAGE(1401227);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_OVERDUE = new SM_SYSTEM_MESSAGE(1401349);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F2P_CASH_HOUSE_FEE_FREE = new SM_SYSTEM_MESSAGE(1401445);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_AUCTION_OVERDUE = new SM_SYSTEM_MESSAGE(1401317);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_SCRIPT_OVERFLOW = new SM_SYSTEM_MESSAGE(1401399);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_NO_RELATIONSHIP_RECENTLY = new SM_SYSTEM_MESSAGE(1401504);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_AUCTION_FAIL_ALREADY_REGISTED = new SM_SYSTEM_MESSAGE(1401372);
 
-	/**
-	 * The Legion was leveled up to %0.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_GUILD_EVENT_LEVELUP(int newLevel) {
-		return new SM_SYSTEM_MESSAGE(900700, newLevel);
-	}
-
-	/**
-	 * %0 disappears in 10 minutes because your Abyss Rank changed.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_UNEQUIP_RANKITEM_TIMER_10M(int value0) {
 		return new SM_SYSTEM_MESSAGE(1401327, new DescriptionId(value0));
 	}
 
-	/**
-	 * %0 disappears in 1 minute because your Abyss Rank changed.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_UNEQUIP_RANKITEM_TIMER_1M(int value0) {
 		return new SM_SYSTEM_MESSAGE(1401328, new DescriptionId(value0));
 	}
 
-	/**
-	 * %0 disappeared because your Abyss Rank changed.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_UNEQUIP_RANKITEM(int value0) {
 		return new SM_SYSTEM_MESSAGE(1401329, new DescriptionId(value0));
 	}
 
-	// Housing messages
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_INS_OWN_SUCCESS = new SM_SYSTEM_MESSAGE(1401275);
-	/**
-	 * You are not authorized to enter.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_ENTER_NO_RIGHT2 = new SM_SYSTEM_MESSAGE(1401364);
-	/**
-	 * You cannot enter the house until it sells.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_ENTER_HAVE_TO_RECREATE = new SM_SYSTEM_MESSAGE(1401365);
-
-	/**
-	 * You must equip %0 to use it.
-	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_CANT_USE_HOUSE_OBJECT_ITEM_EQUIP(DescriptionId id) {
 		return new SM_SYSTEM_MESSAGE(1401294, id);
 	}
 
-	/**
-	 * You cannot use it as you don't have enough %0.
-	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_CANT_USE_HOUSE_OBJECT_ITEM_CHECK(DescriptionId id) {
 		return new SM_SYSTEM_MESSAGE(1401199, id);
 	}
 
-	/**
-	 * You are too far away.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_TOO_FAR_TO_USE = new SM_SYSTEM_MESSAGE(1401297);
-	/**
-	 * Only the owner can use it.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_IS_ONLY_FOR_OWNER_VALID = new SM_SYSTEM_MESSAGE(1401298);
-	/**
-	 * It is unavailable.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_ALL_CANT_USE = new SM_SYSTEM_MESSAGE(1401296);
-	/**
-	 * You have reached the maximum usage count.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_ACHIEVE_USE_COUNT = new SM_SYSTEM_MESSAGE(1401295);
-	/**
-	 * The item's cooldown time has yet to expire.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANNOT_USE_FLOWERPOT_COOLTIME = new SM_SYSTEM_MESSAGE(1401280);
-	/**
-	 * Another cabinet is already open.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ALREADY_OPEN_ANOTHER_STORAGE = new SM_SYSTEM_MESSAGE(1401282);
-	/**
-	 * You can use it only once a day.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_CANT_USE_PER_DAY = new SM_SYSTEM_MESSAGE(1401260);
-
-	/**
-	 * You already have the %0% and cannot reuse %1.
-	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_CANNOT_USE_ALREADY_HAVE_REWARD_ITEM(int rewardNameId, int objectNameId) {
 		return new SM_SYSTEM_MESSAGE(1401396, new DescriptionId(rewardNameId), calculateNameId(objectNameId));
 	}
 
-	/**
-	 * It is already occupied.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_OCCUPIED_BY_OTHER = new SM_SYSTEM_MESSAGE(1401256);
-
-	/**
-	 * Using %0%.
-	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_USE(int objectNameId) {
 		return new SM_SYSTEM_MESSAGE(1401257, calculateNameId(objectNameId));
 	}
 
-	/**
-	 * %0 is worn out and useless.
-	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_DELETE_EXPIRE_TIME(int nameId) {
 		return new SM_SYSTEM_MESSAGE(1401261, calculateNameId(nameId));
 	}
 
-	/**
-	 * %0 is is no longer available.
-	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_DELETE_USE_COUNT(int nameId) {
 		return new SM_SYSTEM_MESSAGE(1401262, calculateNameId(nameId));
 	}
 
-	/**
-	 * You have acquired %1% from %0%.
-	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_REWARD_ITEM(int objectNameId, int rewardItemNameId) {
 		return new SM_SYSTEM_MESSAGE(1401263, calculateNameId(objectNameId), new DescriptionId(rewardItemNameId));
 	}
 
-	/**
-	 * You have removed the paint from %0.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_REMOVE_SUCCEED(int objectNameId) {
-		return new SM_SYSTEM_MESSAGE(1401435, calculateNameId(objectNameId));
-	}
-
-	/**
-	 * You can only paint decor that you own.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_ERROR_NOTOWNER = new SM_SYSTEM_MESSAGE(1401438);
-	/**
-	 * You cannot paint this decor.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_ERROR_CANNOTPAINT = new SM_SYSTEM_MESSAGE(1401439);
-	/**
-	 * This decor is yet to be painted.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_ERROR_CANNOTREMOVE = new SM_SYSTEM_MESSAGE(1401440);
-
-	/**
-	 * You have painted %0 with %1.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_SUCCEED(int objectNameId, int colorItemNameId) {
-		return new SM_SYSTEM_MESSAGE(1401436, calculateNameId(objectNameId), new DescriptionId(colorItemNameId));
-	}
-
-	/**
-	 * Your cube is full.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_USE_HOUSE_OBJECT_INVENTORY_IS_FULL = new SM_SYSTEM_MESSAGE(1401200);
-	/**
-	 * You freed the object.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_CANCEL_USE = new SM_SYSTEM_MESSAGE(1401258);
-
-	/**
-	 * You reached your %0 usage goal.
-	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_HOUSING_FLOWERPOT_GOAL(int nameId) {
 		return new SM_SYSTEM_MESSAGE(1401333, calculateNameId(nameId));
 	}
 
-	/**
-	 * Changed House Settings.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_ORDER_OPEN_DOOR = new SM_SYSTEM_MESSAGE(1401379);
-	/**
-	 * Changed House Settings.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_ORDER_CLOSE_DOOR_WITHOUT_FRIENDS = new SM_SYSTEM_MESSAGE(1401380);
-	/**
-	 * Changed House Settings.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_ORDER_CLOSE_DOOR_ALL = new SM_SYSTEM_MESSAGE(1401381);
-	/**
-	 * Only Friends and Legion Members remain.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_ORDER_OUT_WITHOUT_FRIENDS = new SM_SYSTEM_MESSAGE(1401382);
-	/**
-	 * All were kicked out.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_ORDER_OUT_ALL = new SM_SYSTEM_MESSAGE(1401383);
-	/**
-	 * You were evicted by the house's owner.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_REQUEST_OUT = new SM_SYSTEM_MESSAGE(1401384);
-	/**
-	 * The house's owner has changed.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CHANGE_OWNER = new SM_SYSTEM_MESSAGE(1401385);
-	/**
-	 * You need a house for that.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_HOUSING_TELEPORT_NEED_HOUSE = new SM_SYSTEM_MESSAGE(1401357);
-	/**
-	 * You need a studio to enter.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_HOUSING_ENTER_NEED_HOUSE = new SM_SYSTEM_MESSAGE(1401359);
-	/**
-	 * You cannot decorate in the current state.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_MODE_CANNOT_START = new SM_SYSTEM_MESSAGE(1401358);
-	/**
-	 * Only house owners and their friends may enter.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_HOUSING_TELEPORT_CANT_USE = new SM_SYSTEM_MESSAGE(1401244);
-	/**
-	 * You haven't had any interactions recently.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_NO_RELATIONSHIP_RECENTLY = new SM_SYSTEM_MESSAGE(1401504);
-
-	/**
-	 * %0 is gone.
-	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OBJECT_DELETE_USE_COUNT_FINAL(int nameId) {
 		return new SM_SYSTEM_MESSAGE(1401470, calculateNameId(nameId));
 	}
 
-	// House Bidding messages
-
-	/**
-	 * You made a bid for %addr0.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_BID_SUCCESS(int address) {
 		return new SM_SYSTEM_MESSAGE(1401265, address);
 	}
 
-	/**
-	 * You have been passed over in favor of a higher bid.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_BID_CANCEL = new SM_SYSTEM_MESSAGE(1401266);
-
-	/**
-	 * %addr0 is sold to you.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_BID_WIN(int address) {
 		return new SM_SYSTEM_MESSAGE(1401267, address);
 	}
 
-	/**
-	 * You listed %addr0 for auction.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_AUCTION_MY_HOUSE(int address) {
 		return new SM_SYSTEM_MESSAGE(1401268, address);
 	}
 
-	/**
-	 * You successfully auctioned %addr0.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_AUCTION_SUCCESS(int address) {
 		return new SM_SYSTEM_MESSAGE(1401269, address);
 	}
 
-	/**
-	 * Listed %addr0 was not auctioned.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_AUCTION_FAIL(int address) {
 		return new SM_SYSTEM_MESSAGE(1401270, address);
 	}
 
-	/**
-	 * Already listed. Please refresh your list.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_AUCTION_FAIL_ALREADY_REGISTED = new SM_SYSTEM_MESSAGE(1401372);
-	/**
-	 * You cannot make a bid now.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_TIMEOUT = new SM_SYSTEM_MESSAGE(1401274);
-	/**
-	 * You cannot register now.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_AUCTION_TIMEOUT = new SM_SYSTEM_MESSAGE(1401308);
-
-	/**
-	 * You must complete %quest0 first.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_OWN_NOT_COMPLETE_QUEST(int questId) {
 		return new SM_SYSTEM_MESSAGE(1401277, questId);
 	}
 
-	/**
-	 * You already have a house.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_INS_CANT_OWN_MORE_HOUSE = new SM_SYSTEM_MESSAGE(1401276);
-	/**
-	 * You cannot place this bid because the amount exceeds the bid limit.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_EXCESS_ACCOUNT = new SM_SYSTEM_MESSAGE(1401497);
-
-	/**
-	 * The home you have made an offer for has a new high bid of %num0 Kinah.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_PRICE_CHANGE(long kinah) {
 		return new SM_SYSTEM_MESSAGE(1401324, kinah);
 	}
 
-	/**
-	 * You cannot make a bid for your own house.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_MY_HOUSE = new SM_SYSTEM_MESSAGE(1401221);
-	/**
-	 * You can only bid on a house one time.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_SUCC_BID_HOUSE = new SM_SYSTEM_MESSAGE(1401222);
-	/**
-	 * You are currently the highest bidder for another house.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_OTHER_HOUSE = new SM_SYSTEM_MESSAGE(1401223);
-	/**
-	 * You may bid after the grace period ends on your other house.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_GRACE_HOUSE = new SM_SYSTEM_MESSAGE(1401224);
-
-	/**
-	 * You must be Level %0 or higher to bid on the house.
-	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_LOW_LEVEL(int minLevel) {
 		return new SM_SYSTEM_MESSAGE(1401225, minLevel);
 	}
-
+	
 	/**
-	 * Your housing payment is due. Please pay your maintenance costs.
+	 * Sarpan (Ancient Windstream Activator)
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_OVERDUE = new SM_SYSTEM_MESSAGE(1401226);
-	/**
-	 * Your house has been seized against your unpaid maintenance fees.
+	public static SM_SYSTEM_MESSAGE STR_MSG_LDF4a_windpath163_Ready = new SM_SYSTEM_MESSAGE(1401330);
+	public static SM_SYSTEM_MESSAGE STR_MSG_LDF4a_windpath163_Open = new SM_SYSTEM_MESSAGE(1401331);
+	public static SM_SYSTEM_MESSAGE STR_MSG_LDF4a_windpath163_Close = new SM_SYSTEM_MESSAGE(1401332);
+	
+	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_INVADE_DIRECT_PORTAL_LEVEL_LIMIT = new SM_SYSTEM_MESSAGE(1401448);
+	
+    /**
+	 * Dragon Lord Refuge 3.5
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_SEQUESTRATE = new SM_SYSTEM_MESSAGE(1401227);
-	/**
-	 * You cannot bid until you pay the maintenance fees on your house.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_BID_OVERDUE = new SM_SYSTEM_MESSAGE(1401349);
-	/**
-	 * There is no need to pay a maintenance fee for this house.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_F2P_CASH_HOUSE_FEE_FREE = new SM_SYSTEM_MESSAGE(1401445);
-	/**
-	 * You need to pay the maintenance fee to list it.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_CANT_AUCTION_OVERDUE = new SM_SYSTEM_MESSAGE(1401317);
-	/**
-	 * The script is too long to apply here.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_HOUSING_SCRIPT_OVERFLOW = new SM_SYSTEM_MESSAGE(1401399);
-	/**
-	 * Danaria 4.3
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_LDF5B_6021_OUT_DOOR_01_DESPAWN = new SM_SYSTEM_MESSAGE(1401690);
-	public static final SM_SYSTEM_MESSAGE STR_LDF5B_6021_OUT_DOOR_02_DESPAWN = new SM_SYSTEM_MESSAGE(1401691);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_DUNGEON_COUNT_USE = new SM_SYSTEM_MESSAGE(1402084);
-
-	/**
-	 * %0's Idian is fully charged.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_POLISH_SUCCEED(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1401650, new DescriptionId(nameId));
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_TIAMAT_2PHASE_START_LIGHT = new SM_SYSTEM_MESSAGE(1401531);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_TIAMAT_2PHASE_START_DARK = new SM_SYSTEM_MESSAGE(1401532);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_TIAMAT_2PHASE_CLOSE_CRACK = new SM_SYSTEM_MESSAGE(1401533);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_TIAMAT_2PHASE_CLOSE_RAGE = new SM_SYSTEM_MESSAGE(1401534);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_TIAMAT_2PHASE_CLOSE_GRAVITY = new SM_SYSTEM_MESSAGE(1401535);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_TIAMAT_2PHASE_CLOSE_CRYSTAL = new SM_SYSTEM_MESSAGE(1401536);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_TIAMAT_2PHASE_CLOSE_ALL = new SM_SYSTEM_MESSAGE(1401537);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_KAISINEL_2PHASE_DEADLYATK = new SM_SYSTEM_MESSAGE(1401538);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_MARCHUTAN_2PHASE_DEADLYATK = new SM_SYSTEM_MESSAGE(1401539);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_KAISINEL_2PHASE_GROGGY = new SM_SYSTEM_MESSAGE(1401540);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_MARCHUTAN_2PHASE_GROGGY = new SM_SYSTEM_MESSAGE(1401541);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_TIAMAT_DEADLYHOWLING = new SM_SYSTEM_MESSAGE(1401542);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTIAMAT_KALYNDI_SURKANA_SPAWN = new SM_SYSTEM_MESSAGE(1401543);
+	public static final SM_SYSTEM_MESSAGE IDTIAMAT_TIAMAT_COUNTDOWN_START = new SM_SYSTEM_MESSAGE(1401547);
+	public static final SM_SYSTEM_MESSAGE IDTIAMAT_TIAMAT_GOD_HP_LOWER_THAN_50p = new SM_SYSTEM_MESSAGE(1401548);
+	public static final SM_SYSTEM_MESSAGE IDTIAMAT_TIAMAT_GOD_HP_LOWER_THAN_15p = new SM_SYSTEM_MESSAGE(1401549);
+	public static final SM_SYSTEM_MESSAGE IDTIAMAT_TIAMAT_DRAKAN_BUFF_MSG = new SM_SYSTEM_MESSAGE(1401550);
+	public static final SM_SYSTEM_MESSAGE IDTIAMAT_TIAMAT_DRAKAN_ON_DIE = new SM_SYSTEM_MESSAGE(1401551);
+	public static final SM_SYSTEM_MESSAGE IDTIAMAT_TIAMAT_ANNOUNCE_DMG_SHRING = new SM_SYSTEM_MESSAGE(1401552);
+	public static final SM_SYSTEM_MESSAGE STR_IDTIAMAT_TIAMAT_WARNING_MSG = new SM_SYSTEM_MESSAGE(1401553);
+	public static final SM_SYSTEM_MESSAGE STR_IDTIAMAT_TIAMAT_SPAWN_BLACKHOLE = new SM_SYSTEM_MESSAGE(1401554);
+	public static final SM_SYSTEM_MESSAGE IDTIAMAT_TIAMAT_COUNTDOWN_OVER = new SM_SYSTEM_MESSAGE(1401563);
+	
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EMERGENCY_ESCAPE = new SM_SYSTEM_MESSAGE(1401663);
+	
+   /**
+	* Dredgion + Battlefield
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDDREADGION_04 = new SM_SYSTEM_MESSAGE(1401894);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDLDF5_Under_01_War = new SM_SYSTEM_MESSAGE(1401947);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDLDF5_Under_02_War = new SM_SYSTEM_MESSAGE(1403403);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDLDF5_Fortress_War = new SM_SYSTEM_MESSAGE(1403404);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Dreadgion_Start_L = new SM_SYSTEM_MESSAGE(1403804);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Dreadgion_Start_D = new SM_SYSTEM_MESSAGE(1403805);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDTM_Lobby01 = new SM_SYSTEM_MESSAGE(1403979);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDTM_Lobbyp_01 = new SM_SYSTEM_MESSAGE(1404384);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDTM_Lobbyp_02 = new SM_SYSTEM_MESSAGE(1404385);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDTM_LobbyE_01 = new SM_SYSTEM_MESSAGE(1404386);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDRun = new SM_SYSTEM_MESSAGE(1404465);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDBattle_Change = new SM_SYSTEM_MESSAGE(1404832);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDArena_pvp02 = new SM_SYSTEM_MESSAGE(1404587);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDArena_team01 = new SM_SYSTEM_MESSAGE(1404588);
+	
+	public static final SM_SYSTEM_MESSAGE STR_GUILD_LEVEL_UP_CHALLENGE_TASK(int currentLevel) {
+		return new SM_SYSTEM_MESSAGE(904452, currentLevel);
 	}
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_REIDENTIFY_CANNOT_REIDENTIFY(final int nameId) {
-		return new SM_SYSTEM_MESSAGE(1401636, new Object[] { new DescriptionId(nameId) });
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_REMOVE_SUCCEED(int objectNameId) {
+		return new SM_SYSTEM_MESSAGE(1401435, calculateNameId(objectNameId));
 	}
-
-	/**
-	 * You cannot socket %0 with Idian.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_CANNOT_POLISH_ITEM(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1401648, descriptionId);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_SUCCEED(int objectNameId, int colorItemNameId) {
+		return new SM_SYSTEM_MESSAGE(1401436, calculateNameId(objectNameId), new DescriptionId(colorItemNameId));
 	}
-
-	/**
-	 * You have gained %num0 Glory Points.
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_ERROR_NOTOWNER = new SM_SYSTEM_MESSAGE(1401438);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_ERROR_CANNOTPAINT = new SM_SYSTEM_MESSAGE(1401439);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_PAINT_ERROR_CANNOTREMOVE = new SM_SYSTEM_MESSAGE(1401440);
+	
+    /**
+	 * Glory Points 4.5
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_GLORY_POINT_GAIN(int num0) {
 		return new SM_SYSTEM_MESSAGE(1402081, num0);
 	}
-
-	/**
-	 * You lost personal %num0 Glory Points.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_GLORY_POINT_LOSE_PERSONAL(int num0) {
-		return new SM_SYSTEM_MESSAGE(1402209, num0);
+	public static SM_SYSTEM_MESSAGE STR_MSG_GLORY_POINT_LOSE_COMMON = new SM_SYSTEM_MESSAGE(1402082);
+	
+	public static SM_SYSTEM_MESSAGE STR_MSG_GLORY_POINT_LOSE_PERSONAL(String playerName, int num0) {
+		return new SM_SYSTEM_MESSAGE(1402209, playerName, num0);
 	}
-
-	/**
-	 * You loose %num0 Glory Points.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_GLORY_POINT_LOSE_COMMON(int num0) {
+	public static SM_SYSTEM_MESSAGE STR_MSG_GLORY_POINT_LOSE(int num0) {
 		return new SM_SYSTEM_MESSAGE(1402219, num0);
 	}
-
-	/**
-	 * Authorize System
+	
+    /**
+	 * Idian Enchant 4.3
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_CANCEL(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1402147, new Object[] { new DescriptionId(nameId) });
+	public static SM_SYSTEM_MESSAGE STR_MSG_POLISH_SUCCEED(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1401650, new DescriptionId(nameId));
 	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_SUCCEEDED(int nameId, int level) {
-		return new SM_SYSTEM_MESSAGE(1402148, new Object[] { new DescriptionId(nameId), level});
+	public static SM_SYSTEM_MESSAGE STR_MSG_POLISH_CANCELED(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1401653, new DescriptionId(nameId));
 	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_FAILED(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1402149, new Object[] { new DescriptionId(nameId) });
+	public static SM_SYSTEM_MESSAGE STR_MSG_CANNOT_POLISH_ITEM(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1401648, new DescriptionId(nameId));
 	}
-
-	public static SM_SYSTEM_MESSAGE STR_STR_MSG_ITEM_AUTHORIZE_FAILED_TSHIRT(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1402447, new Object[] { new DescriptionId(nameId) });
-	}
-
-	/**
-	 * Purification System
-	 */
-	public static SM_SYSTEM_MESSAGE STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT(DescriptionId nameId) {
-		return new SM_SYSTEM_MESSAGE(1402397, new Object[] { nameId });
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_ITEM_UPGRADE_MSG_UPGRADE_SUCCESS(DescriptionId nameId, DescriptionId nameId2) {
-		return new SM_SYSTEM_MESSAGE(1402579, new Object[] { nameId, nameId2 });
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT_NEED_AP = new SM_SYSTEM_MESSAGE(1402571);
-
-	public static final SM_SYSTEM_MESSAGE STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT_NEED_QINA = new SM_SYSTEM_MESSAGE(1402572);
-
-	/**
-	 * Atreian Passport
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_NEW_PASSPORT_AVAIBLE = new SM_SYSTEM_MESSAGE(1402601);
-
-	/**
-	 * Linkgate Foundry
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_01 = new SM_SYSTEM_MESSAGE(1402453);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_02 = new SM_SYSTEM_MESSAGE(1402454);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_03 = new SM_SYSTEM_MESSAGE(1402455);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_04 = new SM_SYSTEM_MESSAGE(1402456);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_05 = new SM_SYSTEM_MESSAGE(1402457);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_06 = new SM_SYSTEM_MESSAGE(1402458);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_07 = new SM_SYSTEM_MESSAGE(1402461);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4Re_01_DoorOpen_01 = new SM_SYSTEM_MESSAGE(1402440);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4Re_01_DoorOpen_02 = new SM_SYSTEM_MESSAGE(1402441);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4Re_01_DoorOpen_03 = new SM_SYSTEM_MESSAGE(1402442);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_secret_room_03 = new SM_SYSTEM_MESSAGE(1402603);
-
-	// new 4.8 stigma system start
-	/**
-	 * You acquired %2 %0 skill (Level %1) through your Linked Stigma combination.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_GET_HIDDEN_SKILL(DescriptionId descriptionId, int skilllvl) {
-		return new SM_SYSTEM_MESSAGE(1402891, descriptionId, skilllvl);
-	}
-
-	/**
-	 * You can no longer use the %2 %0 skill (Level %1) because your Linked Stigma combination has changed.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_DELETE_HIDDEN_SKILL(DescriptionId descriptionId, int skilllvl) {
-		return new SM_SYSTEM_MESSAGE(1402895, descriptionId, skilllvl);
-	}
-
-	/**
-	 * Stigma Enchant
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_ENCHANT_SUCCESS(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402930, descriptionId);
-	}
-	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_ENCHANT_FAIL(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402931, descriptionId);
-	}
-	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_ENCHANT_CANCEL(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402936, descriptionId);
-	}
+	public static final SM_SYSTEM_MESSAGE STR_MSG_POLISH_WRONG_LEVEL = new SM_SYSTEM_MESSAGE(1401649);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_POLISH_NEED_IDENTIFY = new SM_SYSTEM_MESSAGE(1401750);
 	
 	/**
-	 * The enchantment of %0 was successful and the boost level increased by %1 level(s).
+	 * Tempering
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_MATTER_ENCHANT_SUCCESS(DescriptionId descriptionId, int level) {
-		return new SM_SYSTEM_MESSAGE(1404544, descriptionId, level);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_CANCEL(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1402147, new DescriptionId(nameId));
 	}
-
-	/**
-	 * %0%'s hidden enchantment level has increased by 1 level
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_SUCCEEDED(int paramInt1, int paramInt2) {
+		return new SM_SYSTEM_MESSAGE(1402148, new DescriptionId(paramInt1), paramInt2);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_FAILED(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1402149, new DescriptionId(nameId));
+	}
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_STATUS_GOOD = new SM_SYSTEM_MESSAGE(1402150);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_STATUS_NORMAL = new SM_SYSTEM_MESSAGE(1402151);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_STATUS_DANGER = new SM_SYSTEM_MESSAGE(1402152);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_STATUS_LIMIT = new SM_SYSTEM_MESSAGE(1402153);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_SUCCEEDED_MAX = new SM_SYSTEM_MESSAGE(1402154);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_CANT_MORE_AUTHORIZE(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402155, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_FAILED_NO_PENALTY(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1403386, new DescriptionId(nameId));
+	}
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_CANT_AUTHORIZE_ITEM = new SM_SYSTEM_MESSAGE(1402156);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_LIMIT_AUTHORIZE_ITEM = new SM_SYSTEM_MESSAGE(1402157);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_CANT_RESET = new SM_SYSTEM_MESSAGE(1402158);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_RESET_CANCEL = new SM_SYSTEM_MESSAGE(1402159);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_RESET_COMPLETED = new SM_SYSTEM_MESSAGE(1402160);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_INVALID_STANCE = new SM_SYSTEM_MESSAGE(1402161);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_INVALID_ITEM = new SM_SYSTEM_MESSAGE(1402162);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_NEED_IDENTIFY = new SM_SYSTEM_MESSAGE(1402163);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_RESET_INVALID_STANCE = new SM_SYSTEM_MESSAGE(1402165);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_RESET_INVALID_ITEM = new SM_SYSTEM_MESSAGE(1402166);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_RESET_WRONG_LEVEL = new SM_SYSTEM_MESSAGE(1402168);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_RESET_WRONG_QUALITY = new SM_SYSTEM_MESSAGE(1402169);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_NEED_OPEN_PACK = new SM_SYSTEM_MESSAGE(1402170);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_AUTHORIZE_RESET_NEED_OPEN_PACK = new SM_SYSTEM_MESSAGE(1402171);
+	
+    /**
+	 * Live Party Concert Hall 4.3
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_ENCHANT_HIDDEN_SKILL(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402944, descriptionId);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1401775);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_OPEN_NOTICE = new SM_SYSTEM_MESSAGE(1401789);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_90M = new SM_SYSTEM_MESSAGE(1401776);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_60M = new SM_SYSTEM_MESSAGE(1401777);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_30M = new SM_SYSTEM_MESSAGE(1401778);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_15M = new SM_SYSTEM_MESSAGE(1401779);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_10M = new SM_SYSTEM_MESSAGE(1401780);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_5M = new SM_SYSTEM_MESSAGE(1401781);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_3M = new SM_SYSTEM_MESSAGE(1401782);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_2M = new SM_SYSTEM_MESSAGE(1401783);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_1M = new SM_SYSTEM_MESSAGE(1401784);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_30S = new SM_SYSTEM_MESSAGE(1401785);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_15S = new SM_SYSTEM_MESSAGE(1401786);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_10S = new SM_SYSTEM_MESSAGE(1401787);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EVENT_DIRECT_PORTAL_CLOSE_TIMER_5S = new SM_SYSTEM_MESSAGE(1401788);
+	
+    /**
+	 * You successfully enchanted %0 by + %num1.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_ENCHANT_ITEM_SUCCEED_NEW(DescriptionId descriptionId, int value0) {
+		return new SM_SYSTEM_MESSAGE(1401681, descriptionId, value0);
 	}
-	// new 4.8 stigma system end
-
-	/**
-	 * Agent Fight
+	
+    /**
+	 * %1 cannot be wrapped with %0.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_PACK_ITEM_WRONG_TARGET_ITEM_CATEGORY(int parentNameId, int targetNameId) {
+		return new SM_SYSTEM_MESSAGE(1402018, parentNameId, targetNameId);
+	}
+	
+    /**
+	 * [Agent's Fight] 4.7
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_GodElite = new SM_SYSTEM_MESSAGE(1402543);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_GodElite_time_01 = new SM_SYSTEM_MESSAGE(1402544);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_GodElite_time_02 = new SM_SYSTEM_MESSAGE(1402545);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_GodElite_time_03 = new SM_SYSTEM_MESSAGE(1402546);
-
-	/**
-	 * Amplification System
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_SUCCEED(DescriptionId nameId) {
-		return new SM_SYSTEM_MESSAGE(1402657, new Object[] { nameId });
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_ENCHANT_CANNOT_01(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402658, descriptionId);
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_ENCHANT_ITEM_SUCCEEDED_EXCEED(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402659, descriptionId);
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_CAN_EXCEED_ENCHANT_LEVEL(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402660, descriptionId);
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_ENCHANT_CANNOT_02(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402661, descriptionId);
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_SKILL_ENCHANT(DescriptionId num0, int num1, int num2) {
-		return new SM_SYSTEM_MESSAGE(1402662, num0, num2);
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_SKILL_DELETE(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402663, descriptionId);
-	}
-
-	/**
-	 * %1 cannot be wrapped with %0.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_PACK_ITEM_WRONG_TARGET_ITEM_CATEGORY(int parentNameId, int targetNameId) {
-		return new SM_SYSTEM_MESSAGE(1402018, new DescriptionId(parentNameId), new DescriptionId(targetNameId));
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_PACK_ITEM_NEED_IDENTIFY = new SM_SYSTEM_MESSAGE(1402030);
-
-	/**
-	 * Upgrade Arcade Game
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_GACHA_ITEM_CHECK = new SM_SYSTEM_MESSAGE(1402581, "[item:" + 186000389 + "]"); // frenzy_coins
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_GACHA_ITEM_REWARD(int itemId) {
-		return new SM_SYSTEM_MESSAGE(1402582, "[item:" + itemId + "]");
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_GACHA_ITEM_REWARD_MULTI(int itemId, int count) {
-		return new SM_SYSTEM_MESSAGE(1402583, "[item:" + itemId + "]", count);
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_GACHA_FEVERTIME_START = new SM_SYSTEM_MESSAGE(1402608);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_GACHA_TIME_END = new SM_SYSTEM_MESSAGE(14025858);
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_GACHA_FEVER_ITEM_REWARD(int itemId) {
-		return new SM_SYSTEM_MESSAGE(1403137, "[item:" + itemId + "]");
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_GACHA_FEVER_ITEM_REWARD_MULTI(int itemId, int count) {
-		return new SM_SYSTEM_MESSAGE(1403138, "[item:" + itemId + "]", count);
-	}
-
-	/**
-	 * [Abyss Logon] 4.9
-	 */
-
-	/**
-	 * Elyos Governor %0% has graced Atreia.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_RANK1_LIGHT_LOGON(String name) {
-		return new SM_SYSTEM_MESSAGE(1403134, name);
-	}
-
-	/**
-	 * Asmodian Governor %0% has graced Atreia.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_RANK1_DARK_LOGON(String name) {
-		return new SM_SYSTEM_MESSAGE(1403135, name);
-	}
-
-	/**
-	 * You can advance to level %0 only after you have completed the Transcendence quest.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_LEVEL_LIMIT_QUEST_NOT_FINISHED2(int level) {
-		return new SM_SYSTEM_MESSAGE(1403187, level);
-	}
-
-	/**
-	 * Gp Delete Daily
-	 */
-	/**
-	 * You loose %num0 Daily Glory Points.
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_GLORY_POINT_LOSE_COMMON = new SM_SYSTEM_MESSAGE(1402082);
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_GLORY_POINT_LOSE_PERSONAL(String name, int num0) {
-		return new SM_SYSTEM_MESSAGE(1402209, name, num0);
-	}
-
-	/**
-	 * Illuminary Obelisk
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_Hard_Door_Open = new SM_SYSTEM_MESSAGE(1402423);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_DEFENCE_01_ATTACKED = new SM_SYSTEM_MESSAGE(1402220);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_DEFENCE_02_ATTACKED = new SM_SYSTEM_MESSAGE(1402221);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_DEFENCE_03_ATTACKED = new SM_SYSTEM_MESSAGE(1402222);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_DEFENCE_04_ATTACKED = new SM_SYSTEM_MESSAGE(1402223);
-
-	/**
-	 * Dimensional Vortex 3.5
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_DARK_SIDE_INVADE_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1401446);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LIGHT_SIDE_INVADE_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1401447);
-	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_INVADE_DIRECT_PORTAL_LEVEL_LIMIT = new SM_SYSTEM_MESSAGE(1401448);
-	public static final SM_SYSTEM_MESSAGE STR_CANNOT_USE_INVADE_DIRECT_PORTAL_USE_COUNT_LIMIT = new SM_SYSTEM_MESSAGE(1401449);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER = new SM_SYSTEM_MESSAGE(1401450);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_COMPULSION_TELEPORT = new SM_SYSTEM_MESSAGE(1401451);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_COMPULSION_TELEPORT_NOT_FORCE = new SM_SYSTEM_MESSAGE(1401452);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE = new SM_SYSTEM_MESSAGE(1401453);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_OPEN_NOTICE = new SM_SYSTEM_MESSAGE(1401454);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_OUT_NOTICE = new SM_SYSTEM_MESSAGE(1401455);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_OUT_COMPULSION = new SM_SYSTEM_MESSAGE(1401474);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_DEFENSE_FORCE_OUT = new SM_SYSTEM_MESSAGE(1401476);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_90M = new SM_SYSTEM_MESSAGE(1401478);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_60M = new SM_SYSTEM_MESSAGE(1401479);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_30M = new SM_SYSTEM_MESSAGE(1401480);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_15M = new SM_SYSTEM_MESSAGE(1401481);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_10M = new SM_SYSTEM_MESSAGE(1401482);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_5M = new SM_SYSTEM_MESSAGE(1401483);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_3M = new SM_SYSTEM_MESSAGE(1401484);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_2M = new SM_SYSTEM_MESSAGE(1401485);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_1M = new SM_SYSTEM_MESSAGE(1401486);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_30S = new SM_SYSTEM_MESSAGE(1401487);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_15S = new SM_SYSTEM_MESSAGE(1401488);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_10S = new SM_SYSTEM_MESSAGE(1401489);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INVADE_DIRECT_PORTAL_CLOSE_TIMER_5S = new SM_SYSTEM_MESSAGE(1401490);
-	public static final SM_SYSTEM_MESSAGE STR_CHAT_INVADEPORTL_KEEPER_SYSTEM_MSG01 = new SM_SYSTEM_MESSAGE(1401493);
-	public static final SM_SYSTEM_MESSAGE STR_CHAT_INVADEPORTL_KEEPER_SYSTEM_MSG02 = new SM_SYSTEM_MESSAGE(1401494);
-	public static final SM_SYSTEM_MESSAGE STR_CHAT_INVADEPORTL_KEEPER_SYSTEM_MSG03 = new SM_SYSTEM_MESSAGE(1401495);
-
-	/**
-	 * You cannot open a private store while hiding
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_DISABLED_IN_HIDDEN_MODE = new SM_SYSTEM_MESSAGE(1401969);
-
-	/**
-	 * Your private store closed automatically because you are currently hiding
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_PERSONAL_SHOP_CLOSED_FOR_HIDDEN_MODE = new SM_SYSTEM_MESSAGE(1401970);
-
-	/**
-	 * Pets Buff 4.8
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_BUFF_PET_USE_START_MESSAGE = new SM_SYSTEM_MESSAGE(1402606);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_BUFF_PET_USE_STOP_MESSAGE = new SM_SYSTEM_MESSAGE(1402607);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_BUFF_PET_USE_STOP_MESSAGE_03 = new SM_SYSTEM_MESSAGE(1402672);
-
-	/**
-	 * Beritra Invasion 4.7
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_TimeAttack_Start = new SM_SYSTEM_MESSAGE(1402625);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GODELITE_TimeAttack_Fail = new SM_SYSTEM_MESSAGE(1402626);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Jusin_Hp50 = new SM_SYSTEM_MESSAGE(1401208);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Jusin_Hp10 = new SM_SYSTEM_MESSAGE(1401209);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Jusin_Reward = new SM_SYSTEM_MESSAGE(1401218);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Jusin_Spawned = new SM_SYSTEM_MESSAGE(1401219);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Jusin_OdSpawn = new SM_SYSTEM_MESSAGE(1401206);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Jusin_OdStart = new SM_SYSTEM_MESSAGE(1401207);
+	
+    /**
+	 * [Beritra Invasion] 4.7
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WORLDRAID_MESSAGE_01 = new SM_SYSTEM_MESSAGE(1402383);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WORLDRAID_MESSAGE_02 = new SM_SYSTEM_MESSAGE(1402384);
@@ -21307,69 +22289,70 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WORLDRAID_MESSAGE_DIE_06 = new SM_SYSTEM_MESSAGE(1402392);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WORLDRAID_INVADE_VRITRA = new SM_SYSTEM_MESSAGE(1402459);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WORLDRAID_INVADE_VRITRA_SPECIAL = new SM_SYSTEM_MESSAGE(1402460);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_ADVANCE_FNAMED_FAIL = new SM_SYSTEM_MESSAGE(1402539);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_ADVANCE_FNAMED_SPAWN = new SM_SYSTEM_MESSAGE(1402540);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_ADVANCE_FNAMED_SPAWN_ITEM = new SM_SYSTEM_MESSAGE(1402541);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_ADVANCE_SUMMON_NAMED_TIME = new SM_SYSTEM_MESSAGE(1402602);
-	private final int code;
-	private final Object[] params;
-	private boolean npcShout = false;
-	private int npcObjId = 0;
-	private int textColorId = 0x19;
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_Telepoter_Under_User = new SM_SYSTEM_MESSAGE(1402945);
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LIGHT_SIDE_LEGION_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1402877);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_DARK_SIDE_LEGION_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1402878);
-
-	/**
-	 * Hotspot Location 4.7
+	
+    /**
+	 * [Hotspot Location] 4.7
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOTSPOT_NOT_ENOUGH_COST = new SM_SYSTEM_MESSAGE(1402443);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOTSPOT_CANT_MOVE_THIS_STANCE = new SM_SYSTEM_MESSAGE(1402444);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOTSPOT_CANT_MOVE_NOW = new SM_SYSTEM_MESSAGE(1402445);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_HOTSPOT_CANCEL_MOVE = new SM_SYSTEM_MESSAGE(1402446);
-
-	/**
-	 * Mentor
+	
+    /**
+	 * [Levinshor Vocolith] 4.7
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_BE_MENTEE_BY_LEVEL_LIMIT = new SM_SYSTEM_MESSAGE(1402835);
-
-	/**
-	 * Bases
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_FNamed_Fail = new SM_SYSTEM_MESSAGE(1402539);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_FNamed_Spawn = new SM_SYSTEM_MESSAGE(1402540);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_FNamed_Spawn_Item = new SM_SYSTEM_MESSAGE(1402541);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_Summon_Named_Time = new SM_SYSTEM_MESSAGE(1402602);
+	
+    /**
+	 * [Berserk Anoha] 4.7/5.3
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v01 = new SM_SYSTEM_MESSAGE(1402506);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v02 = new SM_SYSTEM_MESSAGE(1402507);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v03 = new SM_SYSTEM_MESSAGE(1402508);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v04 = new SM_SYSTEM_MESSAGE(1402509);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v05 = new SM_SYSTEM_MESSAGE(1402510);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v06 = new SM_SYSTEM_MESSAGE(1402511);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v07 = new SM_SYSTEM_MESSAGE(1402512);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v08 = new SM_SYSTEM_MESSAGE(1402513);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v09 = new SM_SYSTEM_MESSAGE(1402514);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v10 = new SM_SYSTEM_MESSAGE(1402515);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v11 = new SM_SYSTEM_MESSAGE(1402516);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v12 = new SM_SYSTEM_MESSAGE(1402517);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v13 = new SM_SYSTEM_MESSAGE(1402518);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v01 = new SM_SYSTEM_MESSAGE(1402519);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v02 = new SM_SYSTEM_MESSAGE(1402520);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v03 = new SM_SYSTEM_MESSAGE(1402521);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v04 = new SM_SYSTEM_MESSAGE(1402522);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v05 = new SM_SYSTEM_MESSAGE(1402523);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v06 = new SM_SYSTEM_MESSAGE(1402524);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v07 = new SM_SYSTEM_MESSAGE(1402525);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v08 = new SM_SYSTEM_MESSAGE(1402526);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v09 = new SM_SYSTEM_MESSAGE(1402527);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v10 = new SM_SYSTEM_MESSAGE(1402528);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v11 = new SM_SYSTEM_MESSAGE(1402529);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v12 = new SM_SYSTEM_MESSAGE(1402530);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v13 = new SM_SYSTEM_MESSAGE(1402531);
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAK_RACE_BUFF_LIGHT_GAIN = new SM_SYSTEM_MESSAGE(1402588);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAK_RACE_BUFF_DARK_GAIN = new SM_SYSTEM_MESSAGE(1402592);
-
-	/**
-	 * Panesterra 4.7
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Named_Spawn = new SM_SYSTEM_MESSAGE(1402483);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Named_Spawn_Item = new SM_SYSTEM_MESSAGE(1402484);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Anoha_Spawn = new SM_SYSTEM_MESSAGE(1402503);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Anoha_Die = new SM_SYSTEM_MESSAGE(1402504);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Anoha_DeSpawn = new SM_SYSTEM_MESSAGE(1402505);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Named_Spawn_System = new SM_SYSTEM_MESSAGE(1402584);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Anoha_01 = new SM_SYSTEM_MESSAGE(1403715);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Anoha_02 = new SM_SYSTEM_MESSAGE(1403716);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Anoha_03 = new SM_SYSTEM_MESSAGE(1403717);
+	
+    /**
+	 * [Purifier Item] 4.7
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_REGISTER_ITEM_MSG_UPGRADE_ERROR = new SM_SYSTEM_MESSAGE(1402398);
+	public static final SM_SYSTEM_MESSAGE STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT_NO_IDENTIFY = new SM_SYSTEM_MESSAGE(1402421);
+	public static final SM_SYSTEM_MESSAGE STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT_NEED_AP = new SM_SYSTEM_MESSAGE(1402571);
+	public static final SM_SYSTEM_MESSAGE STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT_NEED_QINA = new SM_SYSTEM_MESSAGE(1402572);
+	public static SM_SYSTEM_MESSAGE STR_ITEM_UPGRADE_MSG_UPGRADE_SUCCESS(DescriptionId nameId, DescriptionId nameId2) {
+		return new SM_SYSTEM_MESSAGE(1402579, new Object[]{nameId, nameId2});
+	}
+	public static SM_SYSTEM_MESSAGE STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402397, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT_02(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1403043, descriptionId);
+	}
+	
+    /**
+	 * [Linkgate Foundry] 4.7
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4Re_01_DoorOpen_01 = new SM_SYSTEM_MESSAGE(1402440);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4Re_01_DoorOpen_02 = new SM_SYSTEM_MESSAGE(1402441);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4Re_01_DoorOpen_03 = new SM_SYSTEM_MESSAGE(1402442);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_01 = new SM_SYSTEM_MESSAGE(1402453);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_02 = new SM_SYSTEM_MESSAGE(1402454);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_03 = new SM_SYSTEM_MESSAGE(1402455);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_04 = new SM_SYSTEM_MESSAGE(1402456);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_05 = new SM_SYSTEM_MESSAGE(1402457);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_06 = new SM_SYSTEM_MESSAGE(1402458);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_Time_07 = new SM_SYSTEM_MESSAGE(1402461);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF4_Re_01_secret_room_03 = new SM_SYSTEM_MESSAGE(1402603);
+	
+    /**
+	 * [Panesterra] 4.7
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_Gab1_START01 = new SM_SYSTEM_MESSAGE(1402609);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_Gab1_START02 = new SM_SYSTEM_MESSAGE(1402610);
@@ -21415,9 +22398,330 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static final SM_SYSTEM_MESSAGE STR_MSG_SVS_DIRECT_PORTAL_CLOSE_TIMER_15S = new SM_SYSTEM_MESSAGE(1402416);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_SVS_DIRECT_PORTAL_CLOSE_TIMER_10S = new SM_SYSTEM_MESSAGE(1402417);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_SVS_DIRECT_PORTAL_CLOSE_TIMER_5S = new SM_SYSTEM_MESSAGE(1402418);
-
+	
+    /**
+	 * [Kaldor] 4.7
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_RuneElite = new SM_SYSTEM_MESSAGE(1402542);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Li_Center = new SM_SYSTEM_MESSAGE(1402462);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Li_Up = new SM_SYSTEM_MESSAGE(1402463);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Li_Down = new SM_SYSTEM_MESSAGE(1402464);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Da_Center = new SM_SYSTEM_MESSAGE(1402465);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Da_Up = new SM_SYSTEM_MESSAGE(1402466);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Da_Down = new SM_SYSTEM_MESSAGE(1402467);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Dr_Center = new SM_SYSTEM_MESSAGE(1402468);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Dr_Up = new SM_SYSTEM_MESSAGE(1402469);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Fortress_Dr_Down = new SM_SYSTEM_MESSAGE(1402470);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_BLDF5_Fortress_GuardianHead_65_Al_PD = new SM_SYSTEM_MESSAGE(1402574);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_BLDF5_Fortress_GuardianHead_65_Al_Son = new SM_SYSTEM_MESSAGE(1402575);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_BLDF5_Fortress_GuardianHead_65_Al_Soff = new SM_SYSTEM_MESSAGE(1402576);
+	
+    /**
+	 * [Wealhtheow's Keep] 4.7
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_7011_Mercenary_Chief_01_1_Item = new SM_SYSTEM_MESSAGE(1402492);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_7011_Mercenary_Chief_01_2_Item = new SM_SYSTEM_MESSAGE(1402493);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_7011_Mercenary_Chief_02_1_Item = new SM_SYSTEM_MESSAGE(1402494);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_7011_Mercenary_Chief_02_2_Item = new SM_SYSTEM_MESSAGE(1402495);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_7011_Mercenary_Chief_03_1_Item = new SM_SYSTEM_MESSAGE(1402496);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_7011_Mercenary_Chief_03_2_Item = new SM_SYSTEM_MESSAGE(1402497);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_7011_Mercenary_Chief_03_3_Item = new SM_SYSTEM_MESSAGE(1402498);
+	
+    /**
+	 * [Idgel Dome] 4.7
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDLDF5_Fortress_Re = new SM_SYSTEM_MESSAGE(1402192); 
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLdf5_fortress_re_ReturnToSp = new SM_SYSTEM_MESSAGE(1402578);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLdf5_fortress_re_Boss_AttackSTART = new SM_SYSTEM_MESSAGE(1402597);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLdf5_fortress_re_Boss_Spawn = new SM_SYSTEM_MESSAGE(1402598);
+	
+    /**
+	 * PC Bang Xp
+	 */
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP_PCBANG_VITAL_BONUS(String value0, long num1, long num2) {
+		return new SM_SYSTEM_MESSAGE(1402213, value0, num1, num2);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP_PCBANG_VITAL_MAKEUP_BONUS(String value0, long num1, long num2, long num3) {
+		return new SM_SYSTEM_MESSAGE(1402214, value0, num1, num2, num3);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_COMBAT_MY_EXP_GAIN_PCBANG_VITAL_BONUS(String value0, long num1) {
+		return new SM_SYSTEM_MESSAGE(1402215, value0, num1);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_COMBAT_MY_EXP_GAIN_PCBANG_VITAL_MAKEUP_BONUS(String value0, long num1, long num2) {
+		return new SM_SYSTEM_MESSAGE(1402216, value0, num1, num2);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP2_PCBANG_VITAL_BONUS(long num0, long num1) {
+		return new SM_SYSTEM_MESSAGE(1402217, num0, num1);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP2_PCBANG_VITAL_MAKEUP_BONUS(long num0, long num1, long num2) {
+		return new SM_SYSTEM_MESSAGE(1402218, num0, num1, num2);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP_PCBANG_VITAL_ABSOLUTEEXP_BONUS(String value0, long num1, long num2, long num3) {
+		return new SM_SYSTEM_MESSAGE(1402628, value0, num1, num2, num3);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP_PCBANG_VITAL_MAKEUP_ABSOLUTEEXP_BONUS(String value0, long num1, long num2, long num3, long num4) {
+		return new SM_SYSTEM_MESSAGE(1402629, value0, num1, num2, num3, num4);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP2_ABSOLUTEEXP_BONUS_DESC(DescriptionId value0, long num0, long num1) {
+		return new SM_SYSTEM_MESSAGE(1402630, value0, num0, num1);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP2_VITAL_ABSOLUTEEXP_BONUS(long num0, long num1, long num2) {
+		return new SM_SYSTEM_MESSAGE(1402631, num0, num1, num2);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP2_MAKEUP_ABSOLUTEEXP_BONUS(long num0, long num1, long num2) {
+		return new SM_SYSTEM_MESSAGE(1402632, num0, num1, num2);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP2_VITAL_MAKEUP_ABSOLUTEEXP_BONUS(long num0, long num1, long num2, long num3) {
+		return new SM_SYSTEM_MESSAGE(1402633, num0, num1, num2, num3);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP2_PCBANG_VITAL_ABSOLUTEEXP_BONUS(long num0, long num1, long num2) {
+		return new SM_SYSTEM_MESSAGE(1402634, num0, num1, num2);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_EXP2_PCBANG_VITAL_MAKEUP_ABSOLUTEEXP_BONUS(long num0, long num1, long num2, long num3) {
+		return new SM_SYSTEM_MESSAGE(1402635, num0, num1, num2, num3);
+	}
+	
+    /**
+	 * F2P
+	 */
+	public static SM_SYSTEM_MESSAGE STR_F2P_MSG_NOTICE_PACK_EXPIRE_TIME(String durationtime0, String value1) {
+		return new SM_SYSTEM_MESSAGE(1700040, durationtime0, value1);
+	}
+	public static SM_SYSTEM_MESSAGE STR_F2P_MSG_WARNING_PACK_EXPIRE_TIME(String durationtime0, String value1) {
+		return new SM_SYSTEM_MESSAGE(1700041, durationtime0, value1);
+	}
+	public static final SM_SYSTEM_MESSAGE STR_F2P_MSG_PACK_EXPIRED = new SM_SYSTEM_MESSAGE(1700042);
+	
+    /**
+	 * You have opened the %0.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_UNCOMPRESS_COMPRESSED_ITEM_SUCCEEDED(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400452, new DescriptionId(nameId));
+	}
+	
+    /**
+	 * You have stopped opening the %0 bundle.
+	 */
+	public static SM_SYSTEM_MESSAGE STR_UNCOMPRESS_COMPRESSED_ITEM_CANCELED(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1400453, new DescriptionId(nameId));
+	}
+	
+    /**
+	 * Ride Restriction
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ATTACK_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401093);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401094);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_PERSONAL_SHOP_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401095);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GATHER_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401096);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_COMBINE_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401097);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_RIDE_INVALID_LOCATION = new SM_SYSTEM_MESSAGE(1401099);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_SKILL_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1401132);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_NORIDE_AREA_STOP = new SM_SYSTEM_MESSAGE(1401170);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_RIDE_POLYMORPH_STATUS = new SM_SYSTEM_MESSAGE(1401190);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_SELL_WHILE_IN_RIDE = new SM_SYSTEM_MESSAGE(1401210);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_RIDE = new SM_SYSTEM_MESSAGE(1401211);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_NORIDE_TIME_EXPIRE = new SM_SYSTEM_MESSAGE(1401220);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_UNRIDE_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1401254);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_RIDE_ABNORMAL_STATE = new SM_SYSTEM_MESSAGE(1401255);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_UNRIDE_DESTROY_ITEM = new SM_SYSTEM_MESSAGE(1401426);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_RIDE_NEARBY_CEILING = new SM_SYSTEM_MESSAGE(1402950);
+	
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_ENCHANT_ITEM = new SM_SYSTEM_MESSAGE(1403363);
+	
 	/**
-	 * Transidium Annex
+	 * Atreian Passport 4.7
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_ATTEND_MSG_ATTEND_REWARD_GET = new SM_SYSTEM_MESSAGE(1402601);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ATTEND_REWARD_REMOVE_EXCESS(int value0) {
+		return new SM_SYSTEM_MESSAGE(1402627, new DescriptionId(value0));
+	}
+	
+	/**
+	 * Illusion Godstone 4.7
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_BREAK_PROC_REMAIN_START(String durationtime0, String value1) {
+		return new SM_SYSTEM_MESSAGE(1402536, durationtime0, value1);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_BREAK_PROC_REMAIN_MIN(String durationtime0, String value1) {
+		return new SM_SYSTEM_MESSAGE(1402537, durationtime0, value1);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_BREAK_PROC_REMAIN_SEC(String durationtime0, String value1) {
+		return new SM_SYSTEM_MESSAGE(1402538, durationtime0, value1);
+	}
+	
+	/**
+	 * Amplification Item 4.7.5.2
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_CANNOT_01(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402650, descriptionId);
+	}
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EXCEED_CANNOT_02 = new SM_SYSTEM_MESSAGE(1402651);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EXCEED_CANNOT_03 = new SM_SYSTEM_MESSAGE(1402652);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EXCEED_CANNOT_04 = new SM_SYSTEM_MESSAGE(1402653);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EXCEED_INVALID_STANCE = new SM_SYSTEM_MESSAGE(1402654);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EXCEED_NO_TARGET_ITEM(DescriptionId descriptionId) {
+	    return new SM_SYSTEM_MESSAGE(1402655, descriptionId);
+	}
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EXCEED_ALREADY = new SM_SYSTEM_MESSAGE(1402656);
+	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_SUCCEED(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402657, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_ENCHANT_CANNOT_01(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402658, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_ENCHANT_ITEM_SUCCEEDED_EXCEED(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402659, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_CAN_EXCEED_ENCHANT_LEVEL(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402660, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_ENCHANT_CANNOT_02(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402661, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_SKILL_ENCHANT(DescriptionId num0, int num1, int num2) {
+		return new SM_SYSTEM_MESSAGE(1402662, num0, num2);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_EXCEED_SKILL_DELETE(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402663, descriptionId);
+	}
+	
+	public static final SM_SYSTEM_MESSAGE STR_MSG_AB1_PCTank_NoItem = new SM_SYSTEM_MESSAGE(1402191);
+	
+	/**
+	 * [Chaos Rift] 4.8
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LIGHT_SIDE_CHAOS_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1402875);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DARK_SIDE_CHAOS_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1402876);
+	
+	/**
+	 * [Legion Rift] 4.8
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LIGHT_SIDE_LEGION_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1402877);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DARK_SIDE_LEGION_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1402878);
+	
+	/**
+	 * [Idian Depths] 4.8
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Telepoter_Under_User = new SM_SYSTEM_MESSAGE(1402945);
+	
+	/**
+	 * [Stigma] 4.8
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_STIGMA_OPEN_NORMAL_SLOT = new SM_SYSTEM_MESSAGE(1402933);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_STIGMA_OPEN_ENHANCED1_SLOT = new SM_SYSTEM_MESSAGE(1402934);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_STIGMA_OPEN_ENHANCED2_SLOT = new SM_SYSTEM_MESSAGE(1402935);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_STIGMA_OPEN_SLOT_BY_QUEST = new SM_SYSTEM_MESSAGE(1402942);
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_CANT_ENCHANT(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402896, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_GET_LINKED_SKILL(DescriptionId descriptionId, int skilllvl) {
+		return new SM_SYSTEM_MESSAGE(1402891, descriptionId, skilllvl);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_DELETE_LINKED_SKILL(DescriptionId descriptionId, int skilllvl) {
+		return new SM_SYSTEM_MESSAGE(1402895, descriptionId, skilllvl);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_ENCHANT_LINKED_SKILL(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402944, descriptionId);
+	}
+	
+	/**
+	 * [Stigma Enchant] 4.8
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_ENCHANT_SUCCESS(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402930, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_ENCHANT_FAIL(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402931, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_ENCHANT_CANCEL(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1402936, new DescriptionId(nameId));
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_ENCHANT_FAIL_NOT_ENCHANTED(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1403601, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_MATTER_ENCHANT_SUCCESS(DescriptionId descriptionId, int value0) {
+		return new SM_SYSTEM_MESSAGE(1404544, descriptionId, value0);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_MATTER_ENCHANT_FAIL(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1404545, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_MATTER_ENCHANT_FAIL2(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1404546, descriptionId);
+	}
+	
+	/**
+	 * [Quest Cooltime]
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_QUEST_COOLTIME_START_LIMITED_DURATION(String value0) {
+		return new SM_SYSTEM_MESSAGE(1402676, value0);
+	}
+	
+	/**
+	 * [Mentor]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_BE_MENTEE_BY_LEVEL_LIMIT = new SM_SYSTEM_MESSAGE(1402835);
+	
+	/**
+	 * [Seized Danuar Sanctuary]
+	 */
+    public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_Under_02_Door_01 = new SM_SYSTEM_MESSAGE(1401838);	 
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_Under_02_Door_02 = new SM_SYSTEM_MESSAGE(1401839);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_Under_02_NeedKey = new SM_SYSTEM_MESSAGE(1401928);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_Under_02_Canon = new SM_SYSTEM_MESSAGE(1401929);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5U2_NeedWeaponKey = new SM_SYSTEM_MESSAGE(1401932);
+	
+	/**
+	 * [The Hexway]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_Underpass_IDUnderpassRe_Open = new SM_SYSTEM_MESSAGE(1401605);
+	
+	/**
+	 * [The Eternal Bastion]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5B_TD_Tank = new SM_SYSTEM_MESSAGE(1401680);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5B_TD_DEFWeapon = new SM_SYSTEM_MESSAGE(1401679);
+	
+	/**
+	 * [Infernal/Illuminary Obelisk]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_Hard_Door_Open = new SM_SYSTEM_MESSAGE(1402423);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_OBJ_CHARGE_01 = new SM_SYSTEM_MESSAGE(1402194);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_OBJ_CHARGE_02 = new SM_SYSTEM_MESSAGE(1402195);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_OBJ_CHARGE_03 = new SM_SYSTEM_MESSAGE(1402196);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_OBJ_CHARGE_04 = new SM_SYSTEM_MESSAGE(1402197);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_OBJ_CHARGE_END = new SM_SYSTEM_MESSAGE(1402203);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_OBJ_FINAL_CHARGE_01 = new SM_SYSTEM_MESSAGE(1402198);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_OBJ_FINAL_CHARGE_02 = new SM_SYSTEM_MESSAGE(1402199);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_OBJ_FINAL_CHARGE_03 = new SM_SYSTEM_MESSAGE(1402200);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_OBJ_FINAL_CHARGE_04 = new SM_SYSTEM_MESSAGE(1402201);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_DEFENCE_01_ATTACKED = new SM_SYSTEM_MESSAGE(1402220);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_DEFENCE_02_ATTACKED = new SM_SYSTEM_MESSAGE(1402221);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_DEFENCE_03_ATTACKED = new SM_SYSTEM_MESSAGE(1402222);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_U3_DEFENCE_04_ATTACKED = new SM_SYSTEM_MESSAGE(1402223);
+	
+	/**
+	 * [Ophidan Bridge]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Wi_Start = new SM_SYSTEM_MESSAGE(1402848);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Wi_Point_01 = new SM_SYSTEM_MESSAGE(1402849);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Wi_Point_02 = new SM_SYSTEM_MESSAGE(1402850);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Wi_Point_03 = new SM_SYSTEM_MESSAGE(1402851);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Pr_Start = new SM_SYSTEM_MESSAGE(1402852);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Pr_Point_01 = new SM_SYSTEM_MESSAGE(1402853);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Pr_Point_02 = new SM_SYSTEM_MESSAGE(1402854);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Pr_Point_03 = new SM_SYSTEM_MESSAGE(1402855);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_As_Start = new SM_SYSTEM_MESSAGE(1402856);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_As_Point_01 = new SM_SYSTEM_MESSAGE(1402857);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_As_Point_02 = new SM_SYSTEM_MESSAGE(1402858);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_As_Point_03 = new SM_SYSTEM_MESSAGE(1402859);
+	
+	/**
+	 * [Abbey]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Telepoter_Arena_Clobby_User = new SM_SYSTEM_MESSAGE(1402673);
+	
+	/**
+	 * [Transidium Annex]
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GAB1_SUB_TANK_A_ATTACKED = new SM_SYSTEM_MESSAGE(1402258);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GAB1_SUB_TANK_B_ATTACKED = new SM_SYSTEM_MESSAGE(1402259);
@@ -21438,9 +22742,160 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GAB1_SUB_ALARM_08 = new SM_SYSTEM_MESSAGE(1402587);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GAB1_SUB_ALARM_11 = new SM_SYSTEM_MESSAGE(1402639);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GAB1_SUB_ALARM_12 = new SM_SYSTEM_MESSAGE(1402640);
-
+	
 	/**
-	 * Upper Abyss
+	 * [Oriel/Pernon]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HF_SpringAgrintAppear = new SM_SYSTEM_MESSAGE(1401246);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HF_SummerAgrintAppear = new SM_SYSTEM_MESSAGE(1401247);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HF_FallAgrintAppear = new SM_SYSTEM_MESSAGE(1401248);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HF_WinterAgrintAppear = new SM_SYSTEM_MESSAGE(1401249);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_HF_ShugoCaravanAppear = new SM_SYSTEM_MESSAGE(1401250);
+	
+	/**
+	 * [Escort Quest]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ESCORT_Start = new SM_SYSTEM_MESSAGE(1401164);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ESCORT_Distance_out = new SM_SYSTEM_MESSAGE(1401165);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ESCORT_Time_out = new SM_SYSTEM_MESSAGE(1401166);
+	
+	/**
+	 * [Base]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v01 = new SM_SYSTEM_MESSAGE(1402506);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v02 = new SM_SYSTEM_MESSAGE(1402507);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v03 = new SM_SYSTEM_MESSAGE(1402508);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v04 = new SM_SYSTEM_MESSAGE(1402509);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v05 = new SM_SYSTEM_MESSAGE(1402510);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v06 = new SM_SYSTEM_MESSAGE(1402511);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v07 = new SM_SYSTEM_MESSAGE(1402512);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v08 = new SM_SYSTEM_MESSAGE(1402513);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v09 = new SM_SYSTEM_MESSAGE(1402514);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v10 = new SM_SYSTEM_MESSAGE(1402515);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v11 = new SM_SYSTEM_MESSAGE(1402516);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v12 = new SM_SYSTEM_MESSAGE(1402517);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_chief_v13 = new SM_SYSTEM_MESSAGE(1402518);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v01 = new SM_SYSTEM_MESSAGE(1402519);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v02 = new SM_SYSTEM_MESSAGE(1402520);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v03 = new SM_SYSTEM_MESSAGE(1402521);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v04 = new SM_SYSTEM_MESSAGE(1402522);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v05 = new SM_SYSTEM_MESSAGE(1402523);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v06 = new SM_SYSTEM_MESSAGE(1402524);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v07 = new SM_SYSTEM_MESSAGE(1402525);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v08 = new SM_SYSTEM_MESSAGE(1402526);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v09 = new SM_SYSTEM_MESSAGE(1402527);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v10 = new SM_SYSTEM_MESSAGE(1402528);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v11 = new SM_SYSTEM_MESSAGE(1402529);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v12 = new SM_SYSTEM_MESSAGE(1402530);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4_Advance_killer_v13 = new SM_SYSTEM_MESSAGE(1402531);
+	
+	/**
+	 * [Kamar Battlfield 4.3]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDKamar = new SM_SYSTEM_MESSAGE(1401730); 
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDKamar_DrakanGeneral_Hit = new SM_SYSTEM_MESSAGE(1401845);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDKamar_LightGeneral_Hit = new SM_SYSTEM_MESSAGE(1401848);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDKamar_DarkGeneral_Hit = new SM_SYSTEM_MESSAGE(1401850);
+	
+	/**
+	 * [Iron Wall Warfront] 4.5
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDF5_TD_war = new SM_SYSTEM_MESSAGE(1402032); 
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Li_01 = new SM_SYSTEM_MESSAGE(1402089);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Li_02 = new SM_SYSTEM_MESSAGE(1402090);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Li_03 = new SM_SYSTEM_MESSAGE(1402091);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Li_04 = new SM_SYSTEM_MESSAGE(1402092);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Li_05 = new SM_SYSTEM_MESSAGE(1402093);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Li_06 = new SM_SYSTEM_MESSAGE(1402094);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Li_07 = new SM_SYSTEM_MESSAGE(1402095);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Li_08 = new SM_SYSTEM_MESSAGE(1402096);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Li_09 = new SM_SYSTEM_MESSAGE(1402097);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Li_10 = new SM_SYSTEM_MESSAGE(1402098);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Da_01 = new SM_SYSTEM_MESSAGE(1402099);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Da_02 = new SM_SYSTEM_MESSAGE(1402100);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Da_03 = new SM_SYSTEM_MESSAGE(1402101);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Da_04 = new SM_SYSTEM_MESSAGE(1402102);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Da_05 = new SM_SYSTEM_MESSAGE(1402103);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Da_06 = new SM_SYSTEM_MESSAGE(1402104);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Da_07 = new SM_SYSTEM_MESSAGE(1402105);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Da_08 = new SM_SYSTEM_MESSAGE(1402106);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Da_09 = new SM_SYSTEM_MESSAGE(1402107);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_TD_War_Officer_Da_10 = new SM_SYSTEM_MESSAGE(1402108);
+	
+	/**
+	 * [Protector/Conqueror + Siege Protector] 4.8
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_SLAYER_UP_1LEVEL = new SM_SYSTEM_MESSAGE(1402842);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_SLAYER_UP_2LEVEL = new SM_SYSTEM_MESSAGE(1402843);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_SLAYER_UP_3LEVEL = new SM_SYSTEM_MESSAGE(1402844);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GUARD_UP_1LEVEL = new SM_SYSTEM_MESSAGE(1402845);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GUARD_UP_2LEVEL = new SM_SYSTEM_MESSAGE(1402846);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GUARD_UP_3LEVEL = new SM_SYSTEM_MESSAGE(1402847);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GUARD_UP_LEGION = new SM_SYSTEM_MESSAGE(1402879);
+	
+	/**
+	 * [Zorshiv Dredgion]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Public_Quest_Accept = new SM_SYSTEM_MESSAGE(1401252);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Public_Quest_Reward = new SM_SYSTEM_MESSAGE(1401253);
+	
+   /**
+	* [Infernal] Danuar Reliquary 4.3/4.7/4.9.1
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_Under_Rune_User_Kill = new SM_SYSTEM_MESSAGE(1401893);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_Under_Rune_Boss_Reset_Nor = new SM_SYSTEM_MESSAGE(1403145);
+	
+   /**
+	* Cheering 4.8
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_BUFF_PET_USE_START_MESSAGE = new SM_SYSTEM_MESSAGE(1402606);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_BUFF_PET_USE_STOP_MESSAGE = new SM_SYSTEM_MESSAGE(1402607);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_BUFF_PET_USE_STOP_MESSAGE_03 = new SM_SYSTEM_MESSAGE(1402672);
+	
+   /**
+	* Base Buff
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAK_RACE_BUFF_LIGHT_GAIN = new SM_SYSTEM_MESSAGE(1402588);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAK_RACE_BUFF_LIGHT_GET_OUT_AREA = new SM_SYSTEM_MESSAGE(1402589);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAK_RACE_BUFF_LIGHT_MIST_OFF = new SM_SYSTEM_MESSAGE(1402590);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAK_RACE_BUFF_LIGHT_WARNING = new SM_SYSTEM_MESSAGE(1402591);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAK_RACE_BUFF_DARK_GAIN = new SM_SYSTEM_MESSAGE(1402592);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAK_RACE_BUFF_DARK_GET_OUT_AREA = new SM_SYSTEM_MESSAGE(1402593);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAK_RACE_BUFF_DARK_MIST_OFF = new SM_SYSTEM_MESSAGE(1402594);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_WEAK_RACE_BUFF_DARK_WARNING = new SM_SYSTEM_MESSAGE(1402595);
+	
+	/**
+	 * [Occupied] Rentus Base 4.8
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDYun_Rasta_Spawn_01 = new SM_SYSTEM_MESSAGE(1402775);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDYun_Rasta_Spawn_02 = new SM_SYSTEM_MESSAGE(1402776);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDYun_Rasta_SUCCEED_01 = new SM_SYSTEM_MESSAGE(1402883);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDYun_Kuhara_StatDown = new SM_SYSTEM_MESSAGE(1401101);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDYun_Kuhara_Barrel_Spawn = new SM_SYSTEM_MESSAGE(1401100);
+	
+	/**
+	 * Drakenspire Depths 4.8
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Twin_06 = new SM_SYSTEM_MESSAGE(1402687);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Immortal_01 = new SM_SYSTEM_MESSAGE(1402693);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Immortal_02 = new SM_SYSTEM_MESSAGE(1402694);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Immortal_03 = new SM_SYSTEM_MESSAGE(1402695);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Immortal_04 = new SM_SYSTEM_MESSAGE(1402696);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Immortal_05 = new SM_SYSTEM_MESSAGE(1402697);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Immortal_06 = new SM_SYSTEM_MESSAGE(1402698);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Immortal_07 = new SM_SYSTEM_MESSAGE(1402699);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Immortal_08 = new SM_SYSTEM_MESSAGE(1402700);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Immortal_09 = new SM_SYSTEM_MESSAGE(1402701);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Immortal_10 = new SM_SYSTEM_MESSAGE(1402702);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Vritra_Human_01 = new SM_SYSTEM_MESSAGE(1402716);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Vritra_Human_02 = new SM_SYSTEM_MESSAGE(1402717);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Vritra_Human_03 = new SM_SYSTEM_MESSAGE(1402718);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Vritra_Human_04 = new SM_SYSTEM_MESSAGE(1402719);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Vritra_Human_05 = new SM_SYSTEM_MESSAGE(1402720);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDSeal_Vritra_Dragon_01 = new SM_SYSTEM_MESSAGE(1402721);
+	
+	/**
+	 * [Krotan/Kysis/Miren] 4.9
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_Crotan_Named_Spawn = new SM_SYSTEM_MESSAGE(1403049);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_Crotan_Named_Spawn_In = new SM_SYSTEM_MESSAGE(1403142);
@@ -21463,206 +22918,142 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Spawn_dkisas = new SM_SYSTEM_MESSAGE(1403118);
 	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Despawn_dkisas = new SM_SYSTEM_MESSAGE(1403119);
 	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Die_dkisas = new SM_SYSTEM_MESSAGE(1403120);
-
+	//============================================================================================================//
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_BossNamed_SpawnAlarm_1221_05 = new SM_SYSTEM_MESSAGE(1404046);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_BossNamed_SpawnAlarm_1221_03 = new SM_SYSTEM_MESSAGE(1404047);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_BossNamed_SpawnAlarm_1221_01 = new SM_SYSTEM_MESSAGE(1404048);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_BossNamed_SpawnAlarm_1231_05 = new SM_SYSTEM_MESSAGE(1404049);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_BossNamed_SpawnAlarm_1231_03 = new SM_SYSTEM_MESSAGE(1404050);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_BossNamed_SpawnAlarm_1231_01 = new SM_SYSTEM_MESSAGE(1404051);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_BossNamed_SpawnAlarm_1241_05 = new SM_SYSTEM_MESSAGE(1404052);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_BossNamed_SpawnAlarm_1241_03 = new SM_SYSTEM_MESSAGE(1404053);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_BossNamed_SpawnAlarm_1241_01 = new SM_SYSTEM_MESSAGE(1404054);
+	
 	/**
-	 * Ereshkigal Invasion
+	 * [Ereshkigal Invasion] 4.9
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WORLDRAID_Ere_MESSAGE_01 = new SM_SYSTEM_MESSAGE(1403069);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WORLDRAID_Ere_MESSAGE_02 = new SM_SYSTEM_MESSAGE(1403070);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WORLDRAID_Ere_MESSAGE_03 = new SM_SYSTEM_MESSAGE(1403071);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WORLDRAID_Ere_MESSAGE_04 = new SM_SYSTEM_MESSAGE(1403072);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WORLDRAID_Ere_MESSAGE_DIE_01 = new SM_SYSTEM_MESSAGE(1403073);
-
+	
+	/**
+	 * [Abyss Landing] 4.9.1
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_Fortress_Entrance_In01 = new SM_SYSTEM_MESSAGE(1403044);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_Fortress_Entrance_In02 = new SM_SYSTEM_MESSAGE(1403045);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_Named_Spawn_Fail01 = new SM_SYSTEM_MESSAGE(1403046);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_Named_Spawn_Fail02 = new SM_SYSTEM_MESSAGE(1403047);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_Named_Spawn_Fail03 = new SM_SYSTEM_MESSAGE(1403048);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ABYSS_OP_LEVEL_UP_LIGHT = new SM_SYSTEM_MESSAGE(1403077);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ABYSS_OP_LEVEL_DOWN = new SM_SYSTEM_MESSAGE(1403078);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ABYSS_OP_LEVEL_UP_DARK = new SM_SYSTEM_MESSAGE(1403107);
+	
 	public static SM_SYSTEM_MESSAGE STR_MSG_BUILDUP_POINT_QUEST_GAIN(int value0) {
 		return new SM_SYSTEM_MESSAGE(1403172, value0);
 	}
-
 	public static SM_SYSTEM_MESSAGE STR_MSG_BUILDUP_NOTICE_CONTRIBUTE_USER_QUEST(String value0) {
 		return new SM_SYSTEM_MESSAGE(1403173, value0);
 	}
-
 	public static SM_SYSTEM_MESSAGE STR_MSG_BUILDUP_NOTICE_CONTRIBUTE_USER_OCCUPY(DescriptionId value0, DescriptionId value1) {
 		return new SM_SYSTEM_MESSAGE(1403174, value0, value1);
 	}
-
 	public static SM_SYSTEM_MESSAGE STR_MSG_BUILDUP_NOTICE_CONTRIBUTE_USER_KILL_NPC(DescriptionId value0, DescriptionId value1) {
 		return new SM_SYSTEM_MESSAGE(1403175, value0, value1);
 	}
-
 	public static SM_SYSTEM_MESSAGE STR_MSG_BUILDUP_NOTICE_CONTRIBUTE_USER_DESTROY(DescriptionId value0, DescriptionId value1) {
 		return new SM_SYSTEM_MESSAGE(1403176, value0, value1);
 	}
-
 	public static SM_SYSTEM_MESSAGE STR_MSG_BUILDUP_NOTICE_CONTRIBUTE_USER_OCCUPY_BASECAMP(DescriptionId value0, String value1) {
 		return new SM_SYSTEM_MESSAGE(1403186, value0, value1);
 	}
-
+	
 	/**
-	 * Stigma
+	 * [Conquest Offering] 4.9
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_STIGMA_OPEN_NORMAL_SLOT = new SM_SYSTEM_MESSAGE(1402933);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_STIGMA_OPEN_ENHANCED1_SLOT = new SM_SYSTEM_MESSAGE(1402934);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_STIGMA_OPEN_ENHANCED2_SLOT = new SM_SYSTEM_MESSAGE(1402935);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_STIGMA_OPEN_SLOT_BY_QUEST = new SM_SYSTEM_MESSAGE(1402942);
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_STIGMA_CANT_ENCHANT(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402896, descriptionId);
-	}
-
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_Rotation_Spawn = new SM_SYSTEM_MESSAGE(1402928);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_Rotation_Spawn = new SM_SYSTEM_MESSAGE(1402929);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_BF4_Rotation_Buff_NPC_01 = new SM_SYSTEM_MESSAGE(1402890);
+	
 	/**
-	 * Remove Soulbind
+	 * [Sealed Danuar Mysticarium] 4.9
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_CANNOT = new SM_SYSTEM_MESSAGE(1403324);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_WRONG_COMPOSITION = new SM_SYSTEM_MESSAGE(1403325);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_WRONG_EQUIPED = new SM_SYSTEM_MESSAGE(1403326);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_WRONG_SEAL = new SM_SYSTEM_MESSAGE(1403327);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_WRONG_NOT_SOULBIND = new SM_SYSTEM_MESSAGE(1403328);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_INVALID_STANCE = new SM_SYSTEM_MESSAGE(1403329);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_NO_TARGET_ITEM = new SM_SYSTEM_MESSAGE(1403330);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_NEED_IDENTIFY = new SM_SYSTEM_MESSAGE(1403331);
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_SUCCEED(final int nameId) {
-		return new SM_SYSTEM_MESSAGE(1403332, new Object[] { new DescriptionId(nameId) });
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CHARGE_ABSOLUTEEXPPOINT_50(int num0) {
-		return new SM_SYSTEM_MESSAGE(1403336, num0);
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ABSOLUTEEXP_BONUS_50_BOOST_ON(int num0) {
-		return new SM_SYSTEM_MESSAGE(1403399, num0);
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ABSOLUTEEXP_BONUS_50_BOOST_OFF(int num0) {
-		return new SM_SYSTEM_MESSAGE(1403400, num0);
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ABSOLUTEEXP_BONUS_50_END = new SM_SYSTEM_MESSAGE(1403401);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_PLUS_ABSOLUTEEXP_BONUS = new SM_SYSTEM_MESSAGE(1402615);
-
-	public static final SM_SYSTEM_MESSAGE STR_GET_EXP_ABSOLUTEEXP_BONUS(DescriptionId value0, long var1, long var2) {
-		return new SM_SYSTEM_MESSAGE(1402617, value0, var1, var2);
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_GET_EXP_VITAL_ABSOLUTEEXP_BONUS(DescriptionId value0, long var1, long var2, long var3) {
-		return new SM_SYSTEM_MESSAGE(1402617, value0, var1, var2, var3);
-	}
-
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_Mini_01_Item01 = new SM_SYSTEM_MESSAGE(1402987);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF5_Mini_01_Item02 = new SM_SYSTEM_MESSAGE(1402988);
+	
 	/**
-	 * Unbinding Item 5.0
+	 * [Infinity Shard] 4.3
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_SUCCEED(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1403332, descriptionId);
-	}
-
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDRuneWP_Charging = new SM_SYSTEM_MESSAGE(1401790);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDRuneWP_Charger1_Completed = new SM_SYSTEM_MESSAGE(1401791);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDRuneWP_Charger2_Completed = new SM_SYSTEM_MESSAGE(1401792);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDRuneWP_Charger3_Completed = new SM_SYSTEM_MESSAGE(1401793);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDRuneWP_Charger4_Completed = new SM_SYSTEM_MESSAGE(1401794);
+	
 	/**
-	 * You can take part in the battle on the Balaur Marching Route.
+	 * [Theobomos Lab] 4.9
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDLDF5_Under_02_War = new SM_SYSTEM_MESSAGE(1403403);
-
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Teo_T_TimeAttack_01 = new SM_SYSTEM_MESSAGE(1403033);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Teo_T_Boss_Skill_01 = new SM_SYSTEM_MESSAGE(1403027);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Teo_T_Boss_Skill_02 = new SM_SYSTEM_MESSAGE(1403036);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Teo_T_Boss_Skill_03 = new SM_SYSTEM_MESSAGE(1403037);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Teo_T_End_01 = new SM_SYSTEM_MESSAGE(1403034);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Teo_T_End_02 = new SM_SYSTEM_MESSAGE(1403042);
+	
 	/**
-	 * You can take part in the Runatorium Ruins Battle.
+	 * [R.v.R] 4.9
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDLDF5_Fortress_War = new SM_SYSTEM_MESSAGE(1403404);
-
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1403215);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DIRECT_PORTAL_OPEN_NOTICE = new SM_SYSTEM_MESSAGE(1403222);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DIRECT_PORTAL = new SM_SYSTEM_MESSAGE(1403223);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_L_WIN = new SM_SYSTEM_MESSAGE(1403224);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_D_WIN = new SM_SYSTEM_MESSAGE(1403225);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DIRECT_PORTAL_OUT_NOTICE = new SM_SYSTEM_MESSAGE(1403228);
+	public static final SM_SYSTEM_MESSAGE STR_CONFIRM_RVR_DIRECT_PORTAL_OUT = new SM_SYSTEM_MESSAGE(1403229);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_HEAL_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403248);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_HEAL_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403249);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_HEAL_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403250);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_KILL_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403251);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_KILL_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403252);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_KILL_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403253);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_HEAL_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403254);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_HEAL_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403255);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_HEAL_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403256);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_KILL_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403257);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_KILL_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403258);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_KILL_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403259);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403275);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403276);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403277);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_04 = new SM_SYSTEM_MESSAGE(1403278);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_05 = new SM_SYSTEM_MESSAGE(1403279);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_06 = new SM_SYSTEM_MESSAGE(1403280);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_CLOSING_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403281);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DIRECT_PORTAL_CLOSE_COMPULSION_TELEPORT = new SM_SYSTEM_MESSAGE(1403282);
+	
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LEGION_APPLICATION_DENIED = new SM_SYSTEM_MESSAGE(1403109); 
+    public static final SM_SYSTEM_MESSAGE STR_MSG_LEGION_APPLICATION_ACCEPTED = new SM_SYSTEM_MESSAGE(1403110); 
+    public static final SM_SYSTEM_MESSAGE STR_MSG_LEGION_JOIN_SERVER_CHANGE = new SM_SYSTEM_MESSAGE(1403111);
+	
 	/**
-	 * Reduction Level 5.1
+	 * [ArchDeva] 5.0
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_WRONG_SEAL = new SM_SYSTEM_MESSAGE(1403593);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_WRONG_PACK = new SM_SYSTEM_MESSAGE(1403594);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_INVALID_STANCE = new SM_SYSTEM_MESSAGE(1403595);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_NO_TARGET_ITEM = new SM_SYSTEM_MESSAGE(1403596);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_NEED_IDENTIFY = new SM_SYSTEM_MESSAGE(1403597);
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_CANNOT(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1403591, new DescriptionId(nameId));
+	public static SM_SYSTEM_MESSAGE STR_CANNOT_USE_ITEM_INVALID_HIGHDEVA(String value0) {
+		return new SM_SYSTEM_MESSAGE(1300896, value0);
 	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_WRONG_MAX(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1403592, new DescriptionId(nameId));
+	public static SM_SYSTEM_MESSAGE STR_MSG_ENCHANT_TYPE1_ENCHANT_FAIL(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1402674, descriptionId);
 	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_SUCCEED(int nameId, int count) {
-		return new SM_SYSTEM_MESSAGE(1403598, new DescriptionId(nameId), count);
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_FAIL(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1403599, new DescriptionId(nameId));
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_CANCEL(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1403600, new DescriptionId(nameId));
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_SUCCEED_MAX(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1403603, new DescriptionId(nameId));
-	}
-
+	
 	/**
-	 * %0 has been sealed.
+	 * [Drakenseer's Lair] 5.0
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_START_DONE(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1400797, new DescriptionId(nameId));
-	}
-
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF6_Dragon_Attack_Tower = new SM_SYSTEM_MESSAGE(1403378);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_NoticeFlyingArea = new SM_SYSTEM_MESSAGE(1401526);
+	
 	/**
-	 * Canceled sealing %0.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_START_CANCEL(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1400798, new DescriptionId(nameId));
-	}
-
-	/**
-	 * %0 is unsealed.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_STATUS_UNSEALDONE(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1400808, new DescriptionId(nameId));
-	}
-
-	/**
-	 * Canceled unsealing %0.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_UNSEALCANCEL(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1400829, new DescriptionId(nameId));
-	}
-
-	/**
-	 * You cannot trade, enhance, destroy, sell, extract, or soulbind sealed items, and it takes %0 days to unseal them completely.
-	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_START(String value0) {
-		return new SM_SYSTEM_MESSAGE(1400809, value0);
-	}
-
-	/**
-	 * Seal/Unseal
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_POLISH = new SM_SYSTEM_MESSAGE(1401659);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_IDENTIFY = new SM_SYSTEM_MESSAGE(1401660);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_AP_EXTRACTION = new SM_SYSTEM_MESSAGE(1401662);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_AUTHORIZE = new SM_SYSTEM_MESSAGE(1402164);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_AUTHORIZE_RESET = new SM_SYSTEM_MESSAGE(1402167);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_UP_TYPE_OPTION = new SM_SYSTEM_MESSAGE(1402246);
-
-	/**
-	 * Golden Arena/Crusible
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_OPEN_IDTM_Lobby01 = new SM_SYSTEM_MESSAGE(1403979);
-
-	/**
-	 * F2P
-	 */
-	public static SM_SYSTEM_MESSAGE STR_F2P_MSG_NOTICE_PACK_EXPIRE_TIME(String durationtime0, String value1) {
-		return new SM_SYSTEM_MESSAGE(1700040, durationtime0, value1);
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_F2P_MSG_WARNING_PACK_EXPIRE_TIME(String durationtime0, String value1) {
-		return new SM_SYSTEM_MESSAGE(1700041, durationtime0, value1);
-	}
-
-	public static final SM_SYSTEM_MESSAGE STR_F2P_MSG_PACK_EXPIRED = new SM_SYSTEM_MESSAGE(1700042);
-
-	/**
-	 * Warship Invasion
+	 * [Warship Invasion] 5.0
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_B_G2_Spawn = new SM_SYSTEM_MESSAGE(1403150);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_B2_G2_Spawn = new SM_SYSTEM_MESSAGE(1403151);
@@ -21721,64 +23112,32 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Event_G1_Po_Time_Start_01 = new SM_SYSTEM_MESSAGE(1403373);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_G1_Windpath_Off_01 = new SM_SYSTEM_MESSAGE(1403293);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_G1_Windpath_Off_01 = new SM_SYSTEM_MESSAGE(1403291);
-
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Windpath_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403288);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Windpath_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403289);
+	//=========================================================================================================//
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_B_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404080);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_B2_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404081);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_C_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404082);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_D_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404083);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_E_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404084);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_F_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404085);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_F2_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404086);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_G_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404087);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_H_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404088);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_I_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404089);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_B_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404090);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_B2_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404091);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_C_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404092);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_D_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404093);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_E_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404094);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_F_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404095);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_F2_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404096);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_G_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404097);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_H_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404098);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_I_G2_Spawn_Chat_MSG = new SM_SYSTEM_MESSAGE(1404099);
+	
 	/**
-	 * R.v.R
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DIRECT_PORTAL_OPEN = new SM_SYSTEM_MESSAGE(1403215);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DIRECT_PORTAL_OPEN_NOTICE = new SM_SYSTEM_MESSAGE(1403222);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DIRECT_PORTAL = new SM_SYSTEM_MESSAGE(1403223);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DIRECT_PORTAL_OUT_NOTICE = new SM_SYSTEM_MESSAGE(1403228);
-	public static final SM_SYSTEM_MESSAGE STR_CONFIRM_RVR_DIRECT_PORTAL_OUT = new SM_SYSTEM_MESSAGE(1403229);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_HEAL_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403248);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_HEAL_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403249);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_HEAL_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403250);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_KILL_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403251);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_KILL_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403252);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_LF3_BOSS_KILL_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403253);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_HEAL_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403254);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_HEAL_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403255);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_HEAL_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403256);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_KILL_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403257);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_KILL_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403258);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DF3_BOSS_KILL_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403259);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403275);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403276);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403277);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_04 = new SM_SYSTEM_MESSAGE(1403278);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_05 = new SM_SYSTEM_MESSAGE(1403279);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_TIMER_NOTICE_06 = new SM_SYSTEM_MESSAGE(1403280);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_CLOSING_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403281);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_RVR_DIRECT_PORTAL_CLOSE_COMPULSION_TELEPORT = new SM_SYSTEM_MESSAGE(1403282);
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LEGION_APPLICATION_DENIED = new SM_SYSTEM_MESSAGE(1403109);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LEGION_APPLICATION_ACCEPTED = new SM_SYSTEM_MESSAGE(1403110);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_LEGION_JOIN_SERVER_CHANGE = new SM_SYSTEM_MESSAGE(1403111);
-
-	/**
-	 * Drakenseer's Lair
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF6_Dragon_Attack_Tower = new SM_SYSTEM_MESSAGE(1403378);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_NoticeFlyingArea = new SM_SYSTEM_MESSAGE(1401526);
-
-	/**
-	 * Ophidan Bridge
-	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Wi_Start = new SM_SYSTEM_MESSAGE(1402848);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Wi_Point_01 = new SM_SYSTEM_MESSAGE(1402849);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Wi_Point_02 = new SM_SYSTEM_MESSAGE(1402850);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Wi_Point_03 = new SM_SYSTEM_MESSAGE(1402851);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Pr_Start = new SM_SYSTEM_MESSAGE(1402852);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Pr_Point_01 = new SM_SYSTEM_MESSAGE(1402853);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Pr_Point_02 = new SM_SYSTEM_MESSAGE(1402854);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_Pr_Point_03 = new SM_SYSTEM_MESSAGE(1402855);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_As_Start = new SM_SYSTEM_MESSAGE(1402856);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_As_Point_01 = new SM_SYSTEM_MESSAGE(1402857);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_As_Point_02 = new SM_SYSTEM_MESSAGE(1402858);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_U_01_RA_As_Point_03 = new SM_SYSTEM_MESSAGE(1402859);
-
-	/**
-	 * Archives Of Eternity
+	 * [Archives Of Eternity] 5.0
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_01_Shield = new SM_SYSTEM_MESSAGE(1403210);
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_01_Shield_Remove = new SM_SYSTEM_MESSAGE(1403211);
@@ -21810,35 +23169,44 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_01_Summon_Ctrl_03_Off = new SM_SYSTEM_MESSAGE(1403346);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_01_Summon_Ctrl_04_On = new SM_SYSTEM_MESSAGE(1403347);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_01_Summon_Ctrl_04_Off = new SM_SYSTEM_MESSAGE(1403348);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_Teleport_MSG_01 = new SM_SYSTEM_MESSAGE(1404408);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_Teleport_MSG_02 = new SM_SYSTEM_MESSAGE(1404409);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_Teleport_MSG_03 = new SM_SYSTEM_MESSAGE(1404410);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_Teleport_MSG_04 = new SM_SYSTEM_MESSAGE(1404412);
+	
+	/**
+	 * [Cradle Of Eternity] 5.1
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_01 = new SM_SYSTEM_MESSAGE(1403501);
+	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_02 = new SM_SYSTEM_MESSAGE(1403502);
+	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_03 = new SM_SYSTEM_MESSAGE(1403503);
+	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_04 = new SM_SYSTEM_MESSAGE(1403504); 
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_11 = new SM_SYSTEM_MESSAGE(1403511);
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_12 = new SM_SYSTEM_MESSAGE(1403512);
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_13 = new SM_SYSTEM_MESSAGE(1403513);
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_14 = new SM_SYSTEM_MESSAGE(1403514);
+	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_34 = new SM_SYSTEM_MESSAGE(1403547);
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_37 = new SM_SYSTEM_MESSAGE(1403589);
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_SYSTEM_MSG_41 = new SM_SYSTEM_MESSAGE(1403606);
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_Nepilim_Summon_MSG_01 = new SM_SYSTEM_MESSAGE(1403582);
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_Nepilim_Summon_MSG_02 = new SM_SYSTEM_MESSAGE(1403583);
 	public static final SM_SYSTEM_MESSAGE STR_IDEternity_02_Nepilim_Summon_MSG_03 = new SM_SYSTEM_MESSAGE(1403584);
-
+	
 	/**
-	 * HighDeva 5.0
+	 * [Ophidan Warpath] 5.1
 	 */
-	public static SM_SYSTEM_MESSAGE STR_CANNOT_USE_ITEM_INVALID_HIGHDEVA(String value0) {
-		return new SM_SYSTEM_MESSAGE(1300896, value0);
-	}
-
-	public static SM_SYSTEM_MESSAGE STR_MSG_ENCHANT_TYPE1_ENCHANT_FAIL(DescriptionId descriptionId) {
-		return new SM_SYSTEM_MESSAGE(1402674, descriptionId);
-	}
-
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_Under_02_war_Li_Da_Change = new SM_SYSTEM_MESSAGE(1403560);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_Under_02_war_Da_Li_Change = new SM_SYSTEM_MESSAGE(1403561);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF5_Under_02_war_neu_01 = new SM_SYSTEM_MESSAGE(1403586);
+	
 	/**
-	 * Estima 5.1
+	 * [Estima] 5.1
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_WARNING_EQUIP_ITEM_ENCHANT_CPSTONE = new SM_SYSTEM_MESSAGE(1403639);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CPSTONE_OPEN_SLOT = new SM_SYSTEM_MESSAGE(1403684);
-
+	
 	/**
-	 * Creativity Panel 5.1
+	 * [Creativity Panel] 5.1
 	 */
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GIVE_CP_ENCHANT = new SM_SYSTEM_MESSAGE(1403230);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GIVE_CP_ENCHANT_CANNOT = new SM_SYSTEM_MESSAGE(1403231);
@@ -21846,35 +23214,76 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GET_CP_LINK = new SM_SYSTEM_MESSAGE(1403233);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_CANNOT_USE_CP_UI_START_MENU = new SM_SYSTEM_MESSAGE(1403234);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_GET_CP = new SM_SYSTEM_MESSAGE(1403350);
-
+	
 	/**
-	 * Aura Of Growth
+	 * [Unbinding Item] 5.0
 	 */
-	public static final SM_SYSTEM_MESSAGE STR_MSG_CHARGE_EXP_POINT = new SM_SYSTEM_MESSAGE(1403189);
-
+	public static SM_SYSTEM_MESSAGE STR_MSG_REMOVE_SOULBIND_SUCCEED(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1403332, descriptionId);
+	}
+	
 	/**
-	 * Luna Shop
+	 * [Berdin's Star]
 	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_EXP_ABSOLUTEEXP_BONUS_50(long points) {
+		return new SM_SYSTEM_MESSAGE(1403335, points);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_CHARGE_ABSOLUTEEXPPOINT_50(int percent) {
+		return new SM_SYSTEM_MESSAGE(1403336, percent);
+	}
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ABSOLUTEEXP_BONUS_50_END = new SM_SYSTEM_MESSAGE(1403401);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_PLUS_ABSOLUTEEXP_BONUS = new SM_SYSTEM_MESSAGE(1402615);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ABSOLUTEEXP_BONUS_50_BOOST_ON(int percent, int boost) {
+		return new SM_SYSTEM_MESSAGE(1403399, percent, boost);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_ABSOLUTEEXP_BONUS_50_BOOST_OFF(int percent) {
+		return new SM_SYSTEM_MESSAGE(1403400, percent);
+	}
+	
+	/**
+	 * [Abyss Favor]
+	 */
+	public static SM_SYSTEM_MESSAGE STR_MSG_CHARGE_ABSOLUTEAPPOINT(int percent) {
+		return new SM_SYSTEM_MESSAGE(1404028, percent);
+	}
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ABSOLUTEAP_BONUS_END = new SM_SYSTEM_MESSAGE(1404031);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_PLUS_ABSOLUTEAP_BONUS = new SM_SYSTEM_MESSAGE(1404042);
+	public static SM_SYSTEM_MESSAGE STR_MSG_ABSOLUTEAP_BONUS_BOOST_ON(int percent, int boost) {
+		return new SM_SYSTEM_MESSAGE(1404029, percent, boost);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_ABSOLUTEAP_BONUS_BOOST_OFF(int percent) {
+		return new SM_SYSTEM_MESSAGE(1404030, percent);
+	}
+	
+	/**
+	 * [Siege Occupy Count] 4.9.1
+	 */
+	public static SM_SYSTEM_MESSAGE STR_ABYSS_OCCUPY_COUNT_MAX(int value0) {
+		return new SM_SYSTEM_MESSAGE(1402532, new DescriptionId(value0));
+	}
+	public static SM_SYSTEM_MESSAGE STR_ABYSS_OCCUPY_CHANGE_DRAGON(int value0) {
+		return new SM_SYSTEM_MESSAGE(1402533, new DescriptionId(value0));
+	}
+	
+   /**
+    * [Luna Shop] 5.1
+	*/
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LUNA_NOT_ENOUGH_LUNA = new SM_SYSTEM_MESSAGE(1403481);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_LUNA_REWARD_RESTRICTION_RIDE = new SM_SYSTEM_MESSAGE(1403487);
 	public static final SM_SYSTEM_MESSAGE STR_LUNA_CRAFT_MATERIAL_INVENTORY_IS_FULL = new SM_SYSTEM_MESSAGE(1403585);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_QUNABUFF_SUCCEEDED = new SM_SYSTEM_MESSAGE(1404718);
-
 	public static SM_SYSTEM_MESSAGE STR_MSG_LUNA_REWARD_GOTCHA_ITEM_MULTI(long value1, int nameId) {
 		return new SM_SYSTEM_MESSAGE(1403486, value1, new DescriptionId(nameId));
 	}
-
 	public static SM_SYSTEM_MESSAGE STR_MSG_LUNA_REWARD_GOTCHA_ITEM(int nameId) {
 		return new SM_SYSTEM_MESSAGE(1403485, new DescriptionId(nameId));
 	}
-
 	public static SM_SYSTEM_MESSAGE STR_MSG_GETLUNA(String playerName, int count) {
 		return new SM_SYSTEM_MESSAGE(1403973, playerName, count);
 	}
-
-	/**
-	 * Kroban Base 5.1
-	 */
+	
+   /**
+	* [Fallen Poeta] 5.1
+	*/
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF6_LF1_Start_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403414);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF6_LF1_Start_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403415);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF6_LF1_Start_NOTICE_03 = new SM_SYSTEM_MESSAGE(1403416);
@@ -21891,174 +23300,976 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF6_LF1_Success_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403444);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF6_LF1_Success_NOTICE_02 = new SM_SYSTEM_MESSAGE(1403445);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF6_LF1_AnuHelp_NOTICE_01 = new SM_SYSTEM_MESSAGE(1403456);
-
-	/**
-	 * Tower of Challenge
-	 */	
-	public static final SM_SYSTEM_MESSAGE STR_MSG_IDInfinity_02 = new SM_SYSTEM_MESSAGE(1404398);
+	
+   /**
+	* [Fissure Of Oblivion] 5.1
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTransform_SavePoint_01 = new SM_SYSTEM_MESSAGE(1403667);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTransform_SavePoint_02 = new SM_SYSTEM_MESSAGE(1403668);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTransform_SavePoint_03 = new SM_SYSTEM_MESSAGE(1403669);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTransform_Sys_MSG_01 = new SM_SYSTEM_MESSAGE(1403698);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTransform_Sys_MSG_02 = new SM_SYSTEM_MESSAGE(1403699);
 	
 	/**
-	 * MonsterBook
+	 * [Reduction Level] 5.1
 	 */
-	public static SM_SYSTEM_MESSAGE STR_MSG_MONSTER_ACHIEVEMENT_GET(int nameId) {
-		return new SM_SYSTEM_MESSAGE(1404072, new Object[] { new DescriptionId(nameId)});
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_WRONG_SEAL = new SM_SYSTEM_MESSAGE(1403593);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_WRONG_PACK = new SM_SYSTEM_MESSAGE(1403594);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_INVALID_STANCE = new SM_SYSTEM_MESSAGE(1403595);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_NO_TARGET_ITEM = new SM_SYSTEM_MESSAGE(1403596);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_NEED_IDENTIFY = new SM_SYSTEM_MESSAGE(1403597);
+	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_CANNOT(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1403591, new DescriptionId(nameId));
 	}
-	
-	public static SM_SYSTEM_MESSAGE STR_MSG_MONSTER_ACHIEVEMENT_COMPLETION(int level, int nameId) {
-		return new SM_SYSTEM_MESSAGE(1404073, level, new Object[] { new DescriptionId(nameId)});
+	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_WRONG_MAX(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1403592, new DescriptionId(nameId));
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_SUCCEED(int nameId, int count) {
+		return new SM_SYSTEM_MESSAGE(1403598, new DescriptionId(nameId), count);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_FAIL(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1403599, new DescriptionId(nameId));
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_CANCEL(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1403600, new DescriptionId(nameId));
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_EQUIPLEVEL_ADJ_SUCCEED_MAX(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1403603, new DescriptionId(nameId));
 	}
 	
 	/**
-	 * Through Aion's power you have received the following item: %0
+	 * [Aura Of Growth]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CHARGE_EXP_POINT = new SM_SYSTEM_MESSAGE(1403189);
+	public static SM_SYSTEM_MESSAGE STR_MSG_CHARGE_EXP_POINT_NORMAL(int percent) {
+		return new SM_SYSTEM_MESSAGE(1403374, percent);
+	}
+	
+   /**
+	* Aturam Sky Fortress
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_Doping_01_AD = new SM_SYSTEM_MESSAGE(1401023);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_Doping_02_AD = new SM_SYSTEM_MESSAGE(1401024);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_A_FOBJ_SanctuaryATK = new SM_SYSTEM_MESSAGE(1402751);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_A_Zone_Explain_01 = new SM_SYSTEM_MESSAGE(1402755);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDStation_B_Zone_Explain_01 = new SM_SYSTEM_MESSAGE(1402756);
+	
+	/**
+	 * [Seal/Unseal]
+	 */
+    public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_POLISH = new SM_SYSTEM_MESSAGE(1401659);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_IDENTIFY = new SM_SYSTEM_MESSAGE(1401660);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_AP_EXTRACTION = new SM_SYSTEM_MESSAGE(1401662);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_AUTHORIZE = new SM_SYSTEM_MESSAGE(1402164);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_AUTHORIZE_RESET = new SM_SYSTEM_MESSAGE(1402167);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEM_SEAL_WARNING_UP_TYPE_OPTION = new SM_SYSTEM_MESSAGE(1402246);
+	
+   /**
+	* Enraged Guardian 5.3
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_Named_Spawn_In_01 = new SM_SYSTEM_MESSAGE(1403756);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_Named_Spawn_In_02 = new SM_SYSTEM_MESSAGE(1403757);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Ab1_Named_Spawn_In_03 = new SM_SYSTEM_MESSAGE(1403758);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Spawn_01 = new SM_SYSTEM_MESSAGE(1403759);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Despawn_01 = new SM_SYSTEM_MESSAGE(1403760);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Die_01 = new SM_SYSTEM_MESSAGE(1403761);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Spawn_02 = new SM_SYSTEM_MESSAGE(1403762);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Despawn_02 = new SM_SYSTEM_MESSAGE(1403763);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Die_02 = new SM_SYSTEM_MESSAGE(1403764);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Spawn_03 = new SM_SYSTEM_MESSAGE(1403765);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Despawn_03 = new SM_SYSTEM_MESSAGE(1403766);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Die_03 = new SM_SYSTEM_MESSAGE(1403767);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Spawnmsg_01 = new SM_SYSTEM_MESSAGE(1403768);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Spawnmsg_02 = new SM_SYSTEM_MESSAGE(1403769);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_BossNamed_65_Al_Spawnmsg_03 = new SM_SYSTEM_MESSAGE(1403770);
+	
+   /**
+	* Battlefield Union 5.3
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_01_Spawn_Li = new SM_SYSTEM_MESSAGE(1403828);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_02_Spawn_Li = new SM_SYSTEM_MESSAGE(1403829);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_03_Spawn_Li = new SM_SYSTEM_MESSAGE(1403830);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_04_Spawn_Li = new SM_SYSTEM_MESSAGE(1403831);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_05_Spawn_Li = new SM_SYSTEM_MESSAGE(1403832);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_06_Spawn_Li = new SM_SYSTEM_MESSAGE(1403833);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_01_Spawn_Da = new SM_SYSTEM_MESSAGE(1403834);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_02_Spawn_Da = new SM_SYSTEM_MESSAGE(1403835);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_03_Spawn_Da = new SM_SYSTEM_MESSAGE(1403836);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_04_Spawn_Da = new SM_SYSTEM_MESSAGE(1403837);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_05_Spawn_Da = new SM_SYSTEM_MESSAGE(1403838);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_06_Spawn_Da = new SM_SYSTEM_MESSAGE(1403839);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_01_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403840);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_02_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403841);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_03_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403842);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_04_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403843);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_05_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403844);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_06_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403845);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_01_Die_Li = new SM_SYSTEM_MESSAGE(1403846);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_02_Die_Li = new SM_SYSTEM_MESSAGE(1403847);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_03_Die_Li = new SM_SYSTEM_MESSAGE(1403848);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_04_Die_Li = new SM_SYSTEM_MESSAGE(1403849);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_05_Die_Li = new SM_SYSTEM_MESSAGE(1403850);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_06_Die_Li = new SM_SYSTEM_MESSAGE(1403851);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_01_Die_Da = new SM_SYSTEM_MESSAGE(1403852);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_02_Die_Da = new SM_SYSTEM_MESSAGE(1403853);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_03_Die_Da = new SM_SYSTEM_MESSAGE(1403854);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_04_Die_Da = new SM_SYSTEM_MESSAGE(1403855);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_05_Die_Da = new SM_SYSTEM_MESSAGE(1403856);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_06_Die_Da = new SM_SYSTEM_MESSAGE(1403857);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_01_Die_Dr = new SM_SYSTEM_MESSAGE(1403858);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_02_Die_Dr = new SM_SYSTEM_MESSAGE(1403859);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_03_Die_Dr = new SM_SYSTEM_MESSAGE(1403860);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_04_Die_Dr = new SM_SYSTEM_MESSAGE(1403861);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_05_Die_Dr = new SM_SYSTEM_MESSAGE(1403862);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_commander_06_Die_Dr = new SM_SYSTEM_MESSAGE(1403863);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_01_Spawn_Li = new SM_SYSTEM_MESSAGE(1403864);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_02_Spawn_Li = new SM_SYSTEM_MESSAGE(1403865);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_03_Spawn_Li = new SM_SYSTEM_MESSAGE(1403866);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_04_Spawn_Li = new SM_SYSTEM_MESSAGE(1403867);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_05_Spawn_Li = new SM_SYSTEM_MESSAGE(1403868);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_06_Spawn_Li = new SM_SYSTEM_MESSAGE(1403869);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_01_Spawn_Da = new SM_SYSTEM_MESSAGE(1403870);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_02_Spawn_Da = new SM_SYSTEM_MESSAGE(1403871);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_03_Spawn_Da = new SM_SYSTEM_MESSAGE(1403872);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_04_Spawn_Da = new SM_SYSTEM_MESSAGE(1403873);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_05_Spawn_Da = new SM_SYSTEM_MESSAGE(1403874);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_06_Spawn_Da = new SM_SYSTEM_MESSAGE(1403875);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_01_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403876);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_02_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403877);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_03_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403878);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_04_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403879);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_05_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403880);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_06_Spawn_Dr = new SM_SYSTEM_MESSAGE(1403881);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_01_Die_Li = new SM_SYSTEM_MESSAGE(1403882);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_02_Die_Li = new SM_SYSTEM_MESSAGE(1403883);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_03_Die_Li = new SM_SYSTEM_MESSAGE(1403884);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_04_Die_Li = new SM_SYSTEM_MESSAGE(1403885);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_05_Die_Li = new SM_SYSTEM_MESSAGE(1403886);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_06_Die_Li = new SM_SYSTEM_MESSAGE(1403887);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_01_Die_Da = new SM_SYSTEM_MESSAGE(1403888);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_02_Die_Da = new SM_SYSTEM_MESSAGE(1403889);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_03_Die_Da = new SM_SYSTEM_MESSAGE(1403890);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_04_Die_Da = new SM_SYSTEM_MESSAGE(1403891);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_05_Die_Da = new SM_SYSTEM_MESSAGE(1403892);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_06_Die_Da = new SM_SYSTEM_MESSAGE(1403893);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_01_Die_Dr = new SM_SYSTEM_MESSAGE(1403894);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_02_Die_Dr = new SM_SYSTEM_MESSAGE(1403895);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_03_Die_Dr = new SM_SYSTEM_MESSAGE(1403896);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_04_Die_Dr = new SM_SYSTEM_MESSAGE(1403897);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_05_Die_Dr = new SM_SYSTEM_MESSAGE(1403898);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_commander_06_Die_Dr = new SM_SYSTEM_MESSAGE(1403899);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1231_Dkisas_Position_100th_01_Dr = new SM_SYSTEM_MESSAGE(1403908);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1231_Dkisas_Position_100th_02_Dr = new SM_SYSTEM_MESSAGE(1403909);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1231_Dkisas_Position_100th_03_Dr = new SM_SYSTEM_MESSAGE(1403910);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1231_Dkisas_Position_100th_04_Dr = new SM_SYSTEM_MESSAGE(1403911);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1231_Dkisas_Position_Spawn_01_Dr = new SM_SYSTEM_MESSAGE(1403943);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1231_Dkisas_Position_Spawn_02_Dr = new SM_SYSTEM_MESSAGE(1403944);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1231_Dkisas_Position_Spawn_03_Dr = new SM_SYSTEM_MESSAGE(1403945);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1231_Dkisas_Position_Spawn_04_Dr = new SM_SYSTEM_MESSAGE(1403946);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1221_Boss_hide_Dispel = new SM_SYSTEM_MESSAGE(1403962);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1231_Boss_hide_Dispel = new SM_SYSTEM_MESSAGE(1403963);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_1241_Boss_hide_Dispel = new SM_SYSTEM_MESSAGE(1403964);
+	
+   /**
+	* Shugo Negociator 5.3
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_War_Soon = new SM_SYSTEM_MESSAGE(1403729);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuL_01 = new SM_SYSTEM_MESSAGE(1403730);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuL_02 = new SM_SYSTEM_MESSAGE(1403731);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuL_03 = new SM_SYSTEM_MESSAGE(1403732);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuL_04 = new SM_SYSTEM_MESSAGE(1403733);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuL_05 = new SM_SYSTEM_MESSAGE(1403734);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuL_06 = new SM_SYSTEM_MESSAGE(1403735);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuD_01 = new SM_SYSTEM_MESSAGE(1403736);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuD_02 = new SM_SYSTEM_MESSAGE(1403737);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuD_03 = new SM_SYSTEM_MESSAGE(1403738);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuD_04 = new SM_SYSTEM_MESSAGE(1403739);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuD_05 = new SM_SYSTEM_MESSAGE(1403740);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuD_06 = new SM_SYSTEM_MESSAGE(1403741);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_Buff_01 = new SM_SYSTEM_MESSAGE(1403742);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_Buff_02 = new SM_SYSTEM_MESSAGE(1403743);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_Buff_03 = new SM_SYSTEM_MESSAGE(1403744);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_Buff_04 = new SM_SYSTEM_MESSAGE(1403745);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_Buff_05 = new SM_SYSTEM_MESSAGE(1403746);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_Buff_06 = new SM_SYSTEM_MESSAGE(1403747);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoSoldier_L_01 = new SM_SYSTEM_MESSAGE(1403750);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoSoldier_L_02 = new SM_SYSTEM_MESSAGE(1403751);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoSoldier_L_03 = new SM_SYSTEM_MESSAGE(1403752);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoSoldier_D_01 = new SM_SYSTEM_MESSAGE(1403753);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoSoldier_D_02 = new SM_SYSTEM_MESSAGE(1403754);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoSoldier_D_03 = new SM_SYSTEM_MESSAGE(1403755);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuDr_01 = new SM_SYSTEM_MESSAGE(1403806);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuDr_02 = new SM_SYSTEM_MESSAGE(1403807);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuDr_03 = new SM_SYSTEM_MESSAGE(1403808);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuDr_04 = new SM_SYSTEM_MESSAGE(1403809);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuDr_05 = new SM_SYSTEM_MESSAGE(1403810);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_OccuDr_06 = new SM_SYSTEM_MESSAGE(1403811);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_AtkDr_01 = new SM_SYSTEM_MESSAGE(1403812);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_AtkDr_02 = new SM_SYSTEM_MESSAGE(1403813);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_AtkDr_03 = new SM_SYSTEM_MESSAGE(1403814);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_AtkDr_04 = new SM_SYSTEM_MESSAGE(1403815);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_AtkDr_05 = new SM_SYSTEM_MESSAGE(1403816);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ShugoShip_AtkDr_06 = new SM_SYSTEM_MESSAGE(1403817);
+	
+   /**
+	* Ancient Machines 5.5
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Spawn_LF6_5minute_MSG = new SM_SYSTEM_MESSAGE(1404113);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Spawn_DF6_5minute_MSG = new SM_SYSTEM_MESSAGE(1404114);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Spawn_Start_MSG = new SM_SYSTEM_MESSAGE(1404115);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Spawn_End_MSG = new SM_SYSTEM_MESSAGE(1404116);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Warning_MSG = new SM_SYSTEM_MESSAGE(1404126);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_BossSpawn__MSG = new SM_SYSTEM_MESSAGE(1404127);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Spawn_LF6_Attack_MSG = new SM_SYSTEM_MESSAGE(1404161);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Spawn_DF6_Attack_MSG = new SM_SYSTEM_MESSAGE(1404162);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Spawn_Start_Dark_MSG = new SM_SYSTEM_MESSAGE(1404199);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_ST_BossSpawn_MSG = new SM_SYSTEM_MESSAGE(1404206);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_ST_Dark_BossSpawn_MSG = new SM_SYSTEM_MESSAGE(1404207);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Start_LF6 = new SM_SYSTEM_MESSAGE(1404241);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Start_DF6 = new SM_SYSTEM_MESSAGE(1404242);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_InvasionStart_Light = new SM_SYSTEM_MESSAGE(1404243);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_InvasionStart_Dark = new SM_SYSTEM_MESSAGE(1404244);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Sumatta01_Light = new SM_SYSTEM_MESSAGE(1404263);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_Sumatta01_Dark = new SM_SYSTEM_MESSAGE(1404264);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_SumKill01_Light = new SM_SYSTEM_MESSAGE(1404266);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_SumKill01_Dark = new SM_SYSTEM_MESSAGE(1404267);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_SumKill02_Dark = new SM_SYSTEM_MESSAGE(1404268);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_SumKill03_Dark = new SM_SYSTEM_MESSAGE(1404269);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_SumKill04_Dark = new SM_SYSTEM_MESSAGE(1404270);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_SumKill02_Light = new SM_SYSTEM_MESSAGE(1404271);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_SumKill03_Light = new SM_SYSTEM_MESSAGE(1404272);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_F6_Raid_SumKill04_Light = new SM_SYSTEM_MESSAGE(1404273);
+	
+   /**
+	* Upgrade Arcade
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GACHA_ITEM_CHECK = new SM_SYSTEM_MESSAGE(1402581, "[item:" + 186000389 + "]");
+	public static SM_SYSTEM_MESSAGE STR_MSG_GACHA_ITEM_REWARD(int itemId) {
+		return new SM_SYSTEM_MESSAGE(1402582, "[item:" + itemId + "]");
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_GACHA_ITEM_REWARD_MULTI(int itemId, int count) {
+		return new SM_SYSTEM_MESSAGE(1402583, "[item:" + itemId + "]", count);
+	}
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GACHA_FEVERTIME_START = new SM_SYSTEM_MESSAGE(1402608);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_GACHA_TIME_END = new SM_SYSTEM_MESSAGE(14025858);
+	public static SM_SYSTEM_MESSAGE STR_MSG_GACHA_FEVER_ITEM_REWARD(int itemId) {
+		return new SM_SYSTEM_MESSAGE(1403137, "[item:" + itemId + "]");
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_GACHA_FEVER_ITEM_REWARD_MULTI(int itemId, int count) {
+		return new SM_SYSTEM_MESSAGE(1403138, "[item:" + itemId + "]", count);
+	}
+	
+   /**
+	* [Evergale Canyon] 5.5
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_01 = new SM_SYSTEM_MESSAGE(1404164);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_02 = new SM_SYSTEM_MESSAGE(1404165);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_03 = new SM_SYSTEM_MESSAGE(1404166);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_04 = new SM_SYSTEM_MESSAGE(1404167);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_05 = new SM_SYSTEM_MESSAGE(1404168);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_06 = new SM_SYSTEM_MESSAGE(1404169);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_07 = new SM_SYSTEM_MESSAGE(1404170);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_08 = new SM_SYSTEM_MESSAGE(1404171);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_09 = new SM_SYSTEM_MESSAGE(1404193);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_10 = new SM_SYSTEM_MESSAGE(1404194);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_11 = new SM_SYSTEM_MESSAGE(1404195);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_tele_12 = new SM_SYSTEM_MESSAGE(1404196);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_pure_01 = new SM_SYSTEM_MESSAGE(1404175);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_pure_02 = new SM_SYSTEM_MESSAGE(1404176);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_pure_03 = new SM_SYSTEM_MESSAGE(1404177);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_pure_04 = new SM_SYSTEM_MESSAGE(1404178);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_pure_05 = new SM_SYSTEM_MESSAGE(1404179);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_pure_06 = new SM_SYSTEM_MESSAGE(1404180);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_pure_07 = new SM_SYSTEM_MESSAGE(1404181);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_pure_08 = new SM_SYSTEM_MESSAGE(1404182);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_pure_09 = new SM_SYSTEM_MESSAGE(1404183);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_pure_10 = new SM_SYSTEM_MESSAGE(1404184);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_War_people_04 = new SM_SYSTEM_MESSAGE(1404246);
+	
+   /**
+	* [Trials Of Eternity] 5.5
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone1_book_01 = new SM_SYSTEM_MESSAGE(1404076);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone2_book_01 = new SM_SYSTEM_MESSAGE(1404077);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone3_book_01 = new SM_SYSTEM_MESSAGE(1404078);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone4_book_01 = new SM_SYSTEM_MESSAGE(1404079);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone1_book_02 = new SM_SYSTEM_MESSAGE(1404100);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone2_book_02 = new SM_SYSTEM_MESSAGE(1404101);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone3_book_02 = new SM_SYSTEM_MESSAGE(1404102);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone4_book_02 = new SM_SYSTEM_MESSAGE(1404103);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone1_book_03 = new SM_SYSTEM_MESSAGE(1404104);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone2_book_03 = new SM_SYSTEM_MESSAGE(1404105);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone3_book_03 = new SM_SYSTEM_MESSAGE(1404106);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone4_book_03 = new SM_SYSTEM_MESSAGE(1404107);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_teleporter_1 = new SM_SYSTEM_MESSAGE(1404156);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_teleporter_2 = new SM_SYSTEM_MESSAGE(1404157);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_teleporter_3 = new SM_SYSTEM_MESSAGE(1404158);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_teleporter_4 = new SM_SYSTEM_MESSAGE(1404159);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_teleporter_5 = new SM_SYSTEM_MESSAGE(1404160);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_Dimension_01 = new SM_SYSTEM_MESSAGE(1404259);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_Dimension_02 = new SM_SYSTEM_MESSAGE(1404260);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_Dimension_03 = new SM_SYSTEM_MESSAGE(1404300);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_Dimension_04 = new SM_SYSTEM_MESSAGE(1404379);
+	
+   /**
+	* [Atreian Bestiary] 5.3
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_MONSTER_ACHIEVEMENT_GET = new SM_SYSTEM_MESSAGE(1404072);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_MONSTER_ACHIEVEMENT_COMPLETION = new SM_SYSTEM_MESSAGE(1404073);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_MONSTER_ACHIEVEMENT_COMPLETION2 = new SM_SYSTEM_MESSAGE(1404074);
+	
+	/**
+	 * [Minions 5.5]
+	 */
+	public static SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_RESULT_GROWTH(int exp) {
+		return new SM_SYSTEM_MESSAGE(1404367, exp);
+	}
+	public static SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_GET_FAMILIAR(int minionNameid) {
+		return new SM_SYSTEM_MESSAGE(1404316, new DescriptionId(minionNameid));
+	}
+	public static SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_DELETE_CONFIRM(String minionName) {
+		return new SM_SYSTEM_MESSAGE(1404341, minionName);
+	}
+	public static SM_SYSTEM_MESSAGE STR_FAMILIAR_EVOLVE_MSG_EVOLVE_RESULT(int minionNameid, int level) {
+		return new SM_SYSTEM_MESSAGE(1404350, new DescriptionId(minionNameid), level);
+	}
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANCEL_CONTRACT = new SM_SYSTEM_MESSAGE(1404323);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANNOT_CONTRACT_BY_MAXUNIT = new SM_SYSTEM_MESSAGE(1404322);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FENERGY_CHARGE = new SM_SYSTEM_MESSAGE(1404327);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FAIL_CHANGE_NAME_CONFIRM =  new SM_SYSTEM_MESSAGE(1404338);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FAIL_CHANGE_NAME_OVERLENGTH =  new SM_SYSTEM_MESSAGE(1404336);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FAIL_CHANGE_NAME_OVERLAB =  new SM_SYSTEM_MESSAGE(1404335);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FENERGY_CHARGE_FAIL_BY_GOLD =  new SM_SYSTEM_MESSAGE(1404359);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANNOT_USE_FSKILL_BY_LACK_FENERGY = new SM_SYSTEM_MESSAGE(1404326);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_GROWTH_MSG_NOTSELECT = new SM_SYSTEM_MESSAGE(1404345);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_GROWTH_MSG_NOGOLD = new SM_SYSTEM_MESSAGE(1404346);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_EVOLVE_MSG_LACK_ITEM = new SM_SYSTEM_MESSAGE(1404347);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_EVOLVE_MSG_NOGOLD = new SM_SYSTEM_MESSAGE(1404348);
+	public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_EVOLVE_MSG_NOEVOLVE = new SM_SYSTEM_MESSAGE(1404349);
+	
+	/**
+	 * [Holy Energy]
 	 */
 	public static SM_SYSTEM_MESSAGE STR_MSG_GET_HCOIN_07(int nameId) {
 		return new SM_SYSTEM_MESSAGE(1401496, new DescriptionId(nameId));
 	}
-
-    public static SM_SYSTEM_MESSAGE STR_FAME_CHANGE_LEVEL_DONE(DescriptionId descriptionId, int Level) {
-        return new SM_SYSTEM_MESSAGE(1405970, descriptionId, Level);
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_GET_FEXP(long value) {
-        return new SM_SYSTEM_MESSAGE(1405961, value);
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_OP_ODIAN_SUCCEEDED(DescriptionId descriptionId) {
-        return new SM_SYSTEM_MESSAGE(1405920, descriptionId);
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_OP_RUNE_SUCCEEDED(DescriptionId descriptionId) {
-        return new SM_SYSTEM_MESSAGE(1405921, descriptionId);
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_GRIND_CANT_STATUS(DescriptionId descriptionId) {
-        return new SM_SYSTEM_MESSAGE(1405906, descriptionId);
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_GRIND_SUCCEEDED(DescriptionId descriptionId, int value0) {
-        return new SM_SYSTEM_MESSAGE(1405910, descriptionId, value0);
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_GRIND_CANCEL(int nameId) {
-        return new SM_SYSTEM_MESSAGE(1405911, new DescriptionId(nameId));
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_GRIND_FAIL(DescriptionId descriptionId) {
-        return new SM_SYSTEM_MESSAGE(1405912, descriptionId);
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_GRIND_LIMIT(int nameId) {
-        return new SM_SYSTEM_MESSAGE(1405913, new DescriptionId(nameId));
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_OPTIONSLOT_SUCCEED(DescriptionId descriptionId) {
-        return new SM_SYSTEM_MESSAGE(1404666, descriptionId);
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_OPTIONSLOT_FAILED(DescriptionId descriptionId) {
-        return new SM_SYSTEM_MESSAGE(1404667, descriptionId);
-    }
-
-    public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_OPTIONSLOT_CANCELED(int nameId) {
-        return new SM_SYSTEM_MESSAGE(1404668, new DescriptionId(nameId));
-    }
-
+	
+   /**
+	* Iluma/Norsvold Artifact 5.8
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_Occupy_All_Start_MSG = new SM_SYSTEM_MESSAGE(1404553);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF6_Occupy_All_End_MSG = new SM_SYSTEM_MESSAGE(1404554);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_Occupy_All_Start_MSG = new SM_SYSTEM_MESSAGE(1404555);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF6_Occupy_All_End_MSG = new SM_SYSTEM_MESSAGE(1404556);
+	
+   /**
+	* Tiamaranta's Eye 5.8
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_TIAMATAVATAR_WAKEUP = new SM_SYSTEM_MESSAGE(1401467);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_TIAMATDOWN_USERKICK_MESSAGE = new SM_SYSTEM_MESSAGE(1401469);
+	
 	/**
-	 * Museum of Knowledge
+	 * [Magmatic Slot Expansion] 6.0
 	 */
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone1_book_01 = new SM_SYSTEM_MESSAGE(1404076);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone2_book_01 = new SM_SYSTEM_MESSAGE(1404077);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone3_book_01 = new SM_SYSTEM_MESSAGE(1404078);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone4_book_01 = new SM_SYSTEM_MESSAGE(1404079);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone1_book_02 = new SM_SYSTEM_MESSAGE(1404100);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone2_book_02 = new SM_SYSTEM_MESSAGE(1404101);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone3_book_02 = new SM_SYSTEM_MESSAGE(1404102);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone4_book_02 = new SM_SYSTEM_MESSAGE(1404103);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone1_book_03 = new SM_SYSTEM_MESSAGE(1404104);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone2_book_03 = new SM_SYSTEM_MESSAGE(1404105);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone3_book_03 = new SM_SYSTEM_MESSAGE(1404106);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_junk_ideternity03_zone4_book_03 = new SM_SYSTEM_MESSAGE(1404107);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_teleporter_1 = new SM_SYSTEM_MESSAGE(1404156);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_teleporter_2 = new SM_SYSTEM_MESSAGE(1404157);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_teleporter_3 = new SM_SYSTEM_MESSAGE(1404158);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_teleporter_4 = new SM_SYSTEM_MESSAGE(1404159);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_teleporter_5 = new SM_SYSTEM_MESSAGE(1404160);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_Dimension_01 = new SM_SYSTEM_MESSAGE(1404259);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_Dimension_02 = new SM_SYSTEM_MESSAGE(1404260);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_Dimension_03 = new SM_SYSTEM_MESSAGE(1404300);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_IDEternity_03_Dimension_04 = new SM_SYSTEM_MESSAGE(1404379);
-
+	public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_OPTIONSLOT_SUCCEED(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1404666, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_OPTIONSLOT_FAILED(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1404667, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GIVE_ITEM_OPTIONSLOT_CANCELED(int nameId) {
+		return new SM_SYSTEM_MESSAGE(1404668, new DescriptionId(nameId));
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_TSHIRT_SLOT_ENCHANT_SUCCEED(int count) {
+		return new SM_SYSTEM_MESSAGE(1404668, count);
+	}
+	
+   /**
+	* [Shugo King] 6.2
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF7_ShugoKing_Spawn = new SM_SYSTEM_MESSAGE(1404758);
+	
+   /**
+	* [Qubrinerk's Cubic Lab] 6.2
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Event_IDCubic_Entrance_01 = new SM_SYSTEM_MESSAGE(1404779);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Event_IDCubic_Entrance_02 = new SM_SYSTEM_MESSAGE(1404780);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_Entrance_01 = new SM_SYSTEM_MESSAGE(1404606);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_Entrance_02 = new SM_SYSTEM_MESSAGE(1404607);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_Entrance_03 = new SM_SYSTEM_MESSAGE(1404608);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_Entrance_04 = new SM_SYSTEM_MESSAGE(1404609);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_Entrance_05 = new SM_SYSTEM_MESSAGE(1404610);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_Entrance_06 = new SM_SYSTEM_MESSAGE(1404611);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_Entrance_07 = new SM_SYSTEM_MESSAGE(1404612);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_Entrance_08 = new SM_SYSTEM_MESSAGE(1404613);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_Entrance_09 = new SM_SYSTEM_MESSAGE(1404614);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_limit_01 = new SM_SYSTEM_MESSAGE(1404615);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_limit_02 = new SM_SYSTEM_MESSAGE(1404616);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_limit_03 = new SM_SYSTEM_MESSAGE(1404617);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_limit_04 = new SM_SYSTEM_MESSAGE(1404618);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_limit_05 = new SM_SYSTEM_MESSAGE(1404619);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_limit_06 = new SM_SYSTEM_MESSAGE(1404620);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_limit_07 = new SM_SYSTEM_MESSAGE(1404621);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_limit_08 = new SM_SYSTEM_MESSAGE(1404622);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_limit_09 = new SM_SYSTEM_MESSAGE(1404623);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_a_01 = new SM_SYSTEM_MESSAGE(1404624);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_a_02 = new SM_SYSTEM_MESSAGE(1404625);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_a_03 = new SM_SYSTEM_MESSAGE(1404626);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_a_04 = new SM_SYSTEM_MESSAGE(1404627);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_a_05 = new SM_SYSTEM_MESSAGE(1404628);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_a_06 = new SM_SYSTEM_MESSAGE(1404629);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_a_07 = new SM_SYSTEM_MESSAGE(1404630);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_a_08 = new SM_SYSTEM_MESSAGE(1404631);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_a_09 = new SM_SYSTEM_MESSAGE(1404632);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_b_01 = new SM_SYSTEM_MESSAGE(1404633);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_b_02 = new SM_SYSTEM_MESSAGE(1404634);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_b_03 = new SM_SYSTEM_MESSAGE(1404635);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_b_04 = new SM_SYSTEM_MESSAGE(1404636);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_b_05 = new SM_SYSTEM_MESSAGE(1404637);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_b_06 = new SM_SYSTEM_MESSAGE(1404638);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_b_07 = new SM_SYSTEM_MESSAGE(1404639);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_b_08 = new SM_SYSTEM_MESSAGE(1404640);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_b_09 = new SM_SYSTEM_MESSAGE(1404641);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_c_01 = new SM_SYSTEM_MESSAGE(1404642);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_c_02 = new SM_SYSTEM_MESSAGE(1404643);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_c_03 = new SM_SYSTEM_MESSAGE(1404644);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_c_04 = new SM_SYSTEM_MESSAGE(1404645);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_c_05 = new SM_SYSTEM_MESSAGE(1404646);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_c_06 = new SM_SYSTEM_MESSAGE(1404647);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_c_07 = new SM_SYSTEM_MESSAGE(1404648);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_c_08 = new SM_SYSTEM_MESSAGE(1404649);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDCubic_time_c_09 = new SM_SYSTEM_MESSAGE(1404650);
+	
 	/**
-	 * Minions
-	 */
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_GET_FAMILIAR = new SM_SYSTEM_MESSAGE(1404316);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANNOT_CONTRACT_COMBAT_MODE = new SM_SYSTEM_MESSAGE(1404317);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANNOT_CONTRACT_RIDE_MODE = new SM_SYSTEM_MESSAGE(1404318);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANNOT_CONTRACT_CURRENT_STATE = new SM_SYSTEM_MESSAGE(1404319);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANNOT_CONTRACT_CURRENT_POSITION = new SM_SYSTEM_MESSAGE(1404320);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANNOT_CONTRACT_CURRENT_MOTION = new SM_SYSTEM_MESSAGE(1404321);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANNOT_CONTRACT_BY_MAXUNIT = new SM_SYSTEM_MESSAGE(1404322);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANCEL_CONTRACT = new SM_SYSTEM_MESSAGE(1404323);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CALL_FAMILIAR = new SM_SYSTEM_MESSAGE(1404324);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_DISMISS_FAMILIAR = new SM_SYSTEM_MESSAGE(1404325);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_CANNOT_USE_FSKILL_BY_LACK_FENERGY = new SM_SYSTEM_MESSAGE(1404326);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FENERGY_CHARGE = new SM_SYSTEM_MESSAGE(1404327);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FENERGY_AUTOCHARGING = new SM_SYSTEM_MESSAGE(1404328);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FENERGY_AUTOCHARGING_NOTICE = new SM_SYSTEM_MESSAGE(1404329);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FENERGY_AUTOCHARGING_FAIL_BY_GOLD = new SM_SYSTEM_MESSAGE(1404330);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FENERGY_CHARGE_FAIL_BY_AUTOCHARGE = new SM_SYSTEM_MESSAGE(1404331);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FFUNCTION_END = new SM_SYSTEM_MESSAGE(1404332);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FFUNCTION_AUTOCONTINUE_NOTICE = new SM_SYSTEM_MESSAGE(1404333);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FFUNCTION_AUTOCONTINUE_FAIL_BY_GOLD = new SM_SYSTEM_MESSAGE(1404334);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FAIL_CHANGE_NAME_OVERLAB = new SM_SYSTEM_MESSAGE(1404335);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FAIL_CHANGE_NAME_OVERLENGTH = new SM_SYSTEM_MESSAGE(1404336);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FAIL_CHANGE_NAME_CALLING = new SM_SYSTEM_MESSAGE(1404337);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FAIL_CHANGE_NAME_CONFIRM = new SM_SYSTEM_MESSAGE(1404338);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_UNLOCK_CONFIRM = new SM_SYSTEM_MESSAGE(1404339);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FAIL_DELETE_CALLING = new SM_SYSTEM_MESSAGE(1404340);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_DELETE_CONFIRM = new SM_SYSTEM_MESSAGE(1404341);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FFUNCTION_USE_FAIL_BY_GOLD = new SM_SYSTEM_MESSAGE(1404342);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_GROWTH_MSG_OVERSELECT = new SM_SYSTEM_MESSAGE(1404343);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_GROWTH_MSG_OVERGROWTH = new SM_SYSTEM_MESSAGE(1404344);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_GROWTH_MSG_NOTSELECT = new SM_SYSTEM_MESSAGE(1404345);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_GROWTH_MSG_NOGOLD = new SM_SYSTEM_MESSAGE(1404346);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_EVOLVE_MSG_LACK_ITEM = new SM_SYSTEM_MESSAGE(1404347);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_EVOLVE_MSG_NOGOLD = new SM_SYSTEM_MESSAGE(1404348);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_EVOLVE_MSG_NOEVOLVE = new SM_SYSTEM_MESSAGE(1404349);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_EVOLVE_MSG_EVOLVE_RESULT = new SM_SYSTEM_MESSAGE(1404350);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_ENCHANT_EQUIPED = new SM_SYSTEM_MESSAGE(1403358);
-    public static final SM_SYSTEM_MESSAGE STR_FAMILIAR_MSG_FENERGY_CHARGE_FAIL_BY_GOLD = new SM_SYSTEM_MESSAGE(1404359);
-
+	* [Divine Fortress] 5.8
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Artifact_Weapon_Li = new SM_SYSTEM_MESSAGE(1404487);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Artifact_Weapon_Da = new SM_SYSTEM_MESSAGE(1404488);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Artifact_Weapon_Dr = new SM_SYSTEM_MESSAGE(1404489);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Outside_Help_Li = new SM_SYSTEM_MESSAGE(1404490);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Outside_Help_Da = new SM_SYSTEM_MESSAGE(1404491);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Final_Artifact_01 = new SM_SYSTEM_MESSAGE(1404492);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Final_Artifact_02 = new SM_SYSTEM_MESSAGE(1404493);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Inside_Help_Li = new SM_SYSTEM_MESSAGE(1404494);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Inside_Help_Da = new SM_SYSTEM_MESSAGE(1404495);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Tower_01 = new SM_SYSTEM_MESSAGE(1404496);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Tower_02 = new SM_SYSTEM_MESSAGE(1404497);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Tower_03 = new SM_SYSTEM_MESSAGE(1404498);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Tower_04 = new SM_SYSTEM_MESSAGE(1404499);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Tower_05 = new SM_SYSTEM_MESSAGE(1404500);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Tower_06 = new SM_SYSTEM_MESSAGE(1404501);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Boss_IceStorm = new SM_SYSTEM_MESSAGE(1404502);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Sim_Weapon_1 = new SM_SYSTEM_MESSAGE(1404503);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Page2_01 = new SM_SYSTEM_MESSAGE(1404521);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Page2_02 = new SM_SYSTEM_MESSAGE(1404522);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Final_Artifact_03 = new SM_SYSTEM_MESSAGE(1404523);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Final_Artifact_04 = new SM_SYSTEM_MESSAGE(1404538);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Final_Artifact_05 = new SM_SYSTEM_MESSAGE(1404539);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Final_Artifact_06 = new SM_SYSTEM_MESSAGE(1404540);
+	public static final SM_SYSTEM_MESSAGE STR_Ab1_Final_Artifact_07 = new SM_SYSTEM_MESSAGE(1404541);
+	
+   /**
+	* [Frozen Monolith] 5.8
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAb1_Heroes_Boss_MSG_01 = new SM_SYSTEM_MESSAGE(1404515);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAb1_Heroes_Boss_MSG_02 = new SM_SYSTEM_MESSAGE(1404516);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAb1_Heroes_Boss_MSG_03 = new SM_SYSTEM_MESSAGE(1404517);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAb1_Heroes_Boss_MSG_04 = new SM_SYSTEM_MESSAGE(1404518);
+	
 	/**
-	 * Katalam
+	 * [Skin Skill]
 	 */
-    public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Open_01 = new SM_SYSTEM_MESSAGE(1405283);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Open_02 = new SM_SYSTEM_MESSAGE(1405284);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Weapon_Box = new SM_SYSTEM_MESSAGE(1405807);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_WarBox_01 = new SM_SYSTEM_MESSAGE(1405811);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_WarBox_02 = new SM_SYSTEM_MESSAGE(1405812);
-    public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5b_MSG_01 = new SM_SYSTEM_MESSAGE(1405870);
-
-	public static final SM_SYSTEM_MESSAGE STR_POPUP_ADDFEXP_USE_ITEM_FULL = new SM_SYSTEM_MESSAGE(1405970);
-	public static final SM_SYSTEM_MESSAGE STR_REINVENT_MSG_NOT_ENOUGH_INVENTORY = new SM_SYSTEM_MESSAGE(1406236);
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEMCOLLECT_COMPLETE = new SM_SYSTEM_MESSAGE(1406236);
-
-	public static final SM_SYSTEM_MESSAGE STR_MSG_ACT_STATE_POLYMORPH = new SM_SYSTEM_MESSAGE(1401212);
+	public static SM_SYSTEM_MESSAGE STR_MSG_DELETE_COSTUME_SKILL_BY_TIMEOUT(String skillname) {
+		return new SM_SYSTEM_MESSAGE(1403682, skillname);
+	}
+	public static final SM_SYSTEM_MESSAGE STR_MSG_COSTUME_SKILL_ALREADY_HAS_COSTUME = new SM_SYSTEM_MESSAGE(1403683);
+	
+	/**
+	 * [Dredgion Defense Quest]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Dreadgion_Q_04 = new SM_SYSTEM_MESSAGE(1404679);
+	
+	/**
+	 * [Berserk Anomos 6.x]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_Event_LDF7_Raid_01 = new SM_SYSTEM_MESSAGE(1404883);
+	public static final SM_SYSTEM_MESSAGE STR_Event_LDF7_Raid_02 = new SM_SYSTEM_MESSAGE(1404884);
+	
+	/**
+	 * [Lunamin's Cheer Buff. 6.x]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_INSTANCE_QUNABUFF_SUCCEEDED = new SM_SYSTEM_MESSAGE(1404718);
+	
+	/**
+	 * [Pandora Agency 6.x]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_01 = new SM_SYSTEM_MESSAGE(1404845);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_02 = new SM_SYSTEM_MESSAGE(1404846);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_03 = new SM_SYSTEM_MESSAGE(1404847);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_04 = new SM_SYSTEM_MESSAGE(1404848);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Start = new SM_SYSTEM_MESSAGE(1404849);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_05 = new SM_SYSTEM_MESSAGE(1404850);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_06 = new SM_SYSTEM_MESSAGE(1404851);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_07 = new SM_SYSTEM_MESSAGE(1404852);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_08 = new SM_SYSTEM_MESSAGE(1404853);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_09 = new SM_SYSTEM_MESSAGE(1404854);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_10 = new SM_SYSTEM_MESSAGE(1404855);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_11 = new SM_SYSTEM_MESSAGE(1404856);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Time_12 = new SM_SYSTEM_MESSAGE(1404857);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_01 = new SM_SYSTEM_MESSAGE(1404858);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_02 = new SM_SYSTEM_MESSAGE(1404859);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_03 = new SM_SYSTEM_MESSAGE(1404860);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_04 = new SM_SYSTEM_MESSAGE(1404861);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_05 = new SM_SYSTEM_MESSAGE(1404862);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_06 = new SM_SYSTEM_MESSAGE(1404863);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_07 = new SM_SYSTEM_MESSAGE(1404864);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_08 = new SM_SYSTEM_MESSAGE(1404881);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_09 = new SM_SYSTEM_MESSAGE(1404902);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_10 = new SM_SYSTEM_MESSAGE(1404903);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_11 = new SM_SYSTEM_MESSAGE(1404904);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_12 = new SM_SYSTEM_MESSAGE(1404905);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_13 = new SM_SYSTEM_MESSAGE(1404906);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_14 = new SM_SYSTEM_MESSAGE(1404907);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_15 = new SM_SYSTEM_MESSAGE(1404908);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_16 = new SM_SYSTEM_MESSAGE(1404909);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_17 = new SM_SYSTEM_MESSAGE(1404910);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_18 = new SM_SYSTEM_MESSAGE(1404911);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_19 = new SM_SYSTEM_MESSAGE(1404912);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_20 = new SM_SYSTEM_MESSAGE(1404913);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_21 = new SM_SYSTEM_MESSAGE(1404914);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_22 = new SM_SYSTEM_MESSAGE(1404915);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_23 = new SM_SYSTEM_MESSAGE(1404916);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_24 = new SM_SYSTEM_MESSAGE(1404917);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_25 = new SM_SYSTEM_MESSAGE(1404918);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_26 = new SM_SYSTEM_MESSAGE(1404919);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_27 = new SM_SYSTEM_MESSAGE(1404920);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_28 = new SM_SYSTEM_MESSAGE(1404921);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_MSG_29 = new SM_SYSTEM_MESSAGE(1404939);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v01_Li = new SM_SYSTEM_MESSAGE(1404865);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v02_Li = new SM_SYSTEM_MESSAGE(1404866);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v03_Li = new SM_SYSTEM_MESSAGE(1404867);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v04_Li = new SM_SYSTEM_MESSAGE(1404868);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v05_Li = new SM_SYSTEM_MESSAGE(1404869);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v06_Li = new SM_SYSTEM_MESSAGE(1404870);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v07_Li = new SM_SYSTEM_MESSAGE(1404871);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v01_Da = new SM_SYSTEM_MESSAGE(1404872);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v02_Da = new SM_SYSTEM_MESSAGE(1404873);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v03_Da = new SM_SYSTEM_MESSAGE(1404874);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v04_Da = new SM_SYSTEM_MESSAGE(1404875);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v05_Da = new SM_SYSTEM_MESSAGE(1404876);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v06_Da = new SM_SYSTEM_MESSAGE(1404877);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_v07_Da = new SM_SYSTEM_MESSAGE(1404878);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_End_Li = new SM_SYSTEM_MESSAGE(1404879);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_End_Da = new SM_SYSTEM_MESSAGE(1404880);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_End = new SM_SYSTEM_MESSAGE(1404882);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_WaveStart = new SM_SYSTEM_MESSAGE(1404885);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Lv01_Li = new SM_SYSTEM_MESSAGE(1404886);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Lv02_Li = new SM_SYSTEM_MESSAGE(1404887);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Lv03_Li = new SM_SYSTEM_MESSAGE(1404888);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Lv04_Li = new SM_SYSTEM_MESSAGE(1404889);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Lv05_Li = new SM_SYSTEM_MESSAGE(1404890);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Lv01_Da = new SM_SYSTEM_MESSAGE(1404891);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Lv02_Da = new SM_SYSTEM_MESSAGE(1404892);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Lv03_Da = new SM_SYSTEM_MESSAGE(1404893);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Lv04_Da = new SM_SYSTEM_MESSAGE(1404894);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_Lv05_Da = new SM_SYSTEM_MESSAGE(1404895);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_LEnd_Li = new SM_SYSTEM_MESSAGE(1404896);
+	public static final SM_SYSTEM_MESSAGE STR_PandoraRaid_LEnd_Da = new SM_SYSTEM_MESSAGE(1404897);
+	
+	/**
+	 * [Steel Rake Fortress 6.x]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDWaterworld_09 = new SM_SYSTEM_MESSAGE(1404931);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDWaterworld_10 = new SM_SYSTEM_MESSAGE(1404932);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDWaterworld_11 = new SM_SYSTEM_MESSAGE(1404934);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDWaterworld_13 = new SM_SYSTEM_MESSAGE(1404936);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDWaterworld_14 = new SM_SYSTEM_MESSAGE(1404937);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDWaterworld_15 = new SM_SYSTEM_MESSAGE(1404938);
+	
+	/**
+	 * [The Veilenthrone 6.x]
+	 */
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF7_Ere_Weapon_start = new SM_SYSTEM_MESSAGE(1404836);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF7_Ere_Boss_Wave_01 = new SM_SYSTEM_MESSAGE(1404898);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF7_Ere_Boss_Magic_Square_01 = new SM_SYSTEM_MESSAGE(1404899);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF7_Ere_Boss_Magic_Square_02 = new SM_SYSTEM_MESSAGE(1404900);
+	
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Tames_Solo_C_Start = new SM_SYSTEM_MESSAGE(1402785);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Tames_Solo_A_Door_Condition = new SM_SYSTEM_MESSAGE(1402831);
+	
+   /**
+	* [Panel Transformation 6.x]
+	*/
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TRANSFORMATION_CONTRACT_FAIL = new SM_SYSTEM_MESSAGE(1404661);
 	public static final SM_SYSTEM_MESSAGE STR_MSG_TRANSFORMATION_CANT_CURRENT_STATE = new SM_SYSTEM_MESSAGE(1404653);
-
-	/**
-	 * Constructs new <tt>SM_SYSTEM_MESSAGE </tt> packet
-	 *
-	 * @param code
-	 *            operation code, take it from SM_SYSTEM_MESSAGE public static values
-	 * @param params
-	 */
+	
+   /**
+	* [Re-Tuning 6.x]
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_CANT_ENCHANT_IDENTIFY = new SM_SYSTEM_MESSAGE(1403355);
+	
+   /**
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_03_Skill_MSG_01 = new SM_SYSTEM_MESSAGE(1405035);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_03_Skill_MSG_02 = new SM_SYSTEM_MESSAGE(1405036);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_03_Skill_MSG_03 = new SM_SYSTEM_MESSAGE(1405037);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_04_Skill_MSG_01 = new SM_SYSTEM_MESSAGE(1405015);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_04_Skill_MSG_02 = new SM_SYSTEM_MESSAGE(1405016);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_04_Skill_MSG_03 = new SM_SYSTEM_MESSAGE(1405017);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_04_Skill_MSG_04 = new SM_SYSTEM_MESSAGE(1405018);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_04_Skill_MSG_06 = new SM_SYSTEM_MESSAGE(1405020);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_04_Skill_MSG_08 = new SM_SYSTEM_MESSAGE(1405022);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_MSG_08 = new SM_SYSTEM_MESSAGE(1405092);
+	
+   /**
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4b_Tatar_Summon_ParalyzeEye = new SM_SYSTEM_MESSAGE(1401204);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF4b_Tatar_Start_Tracking = new SM_SYSTEM_MESSAGE(1401205);
+	
+   /**
+	* [Crimson Katalam 7.x]
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_box01 = new SM_SYSTEM_MESSAGE(1405221);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_box02 = new SM_SYSTEM_MESSAGE(1405222);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_box03 = new SM_SYSTEM_MESSAGE(1405223);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_St_box01 = new SM_SYSTEM_MESSAGE(1405224);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_St_box02 = new SM_SYSTEM_MESSAGE(1405225);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_St_box03 = new SM_SYSTEM_MESSAGE(1405226);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_A = new SM_SYSTEM_MESSAGE(1405227);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_B = new SM_SYSTEM_MESSAGE(1405228);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_C = new SM_SYSTEM_MESSAGE(1405229);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_D = new SM_SYSTEM_MESSAGE(1405230);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_E = new SM_SYSTEM_MESSAGE(1405231);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_F = new SM_SYSTEM_MESSAGE(1405232);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_G = new SM_SYSTEM_MESSAGE(1405233);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_H = new SM_SYSTEM_MESSAGE(1405234);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_I = new SM_SYSTEM_MESSAGE(1405235);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_J = new SM_SYSTEM_MESSAGE(1405236);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_K = new SM_SYSTEM_MESSAGE(1405237);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v01 = new SM_SYSTEM_MESSAGE(1405238);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v02 = new SM_SYSTEM_MESSAGE(1405239);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v03 = new SM_SYSTEM_MESSAGE(1405240);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v04 = new SM_SYSTEM_MESSAGE(1405241);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v05 = new SM_SYSTEM_MESSAGE(1405242);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v06 = new SM_SYSTEM_MESSAGE(1405243);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v07 = new SM_SYSTEM_MESSAGE(1405244);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v08 = new SM_SYSTEM_MESSAGE(1405245);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v09 = new SM_SYSTEM_MESSAGE(1405246);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v10 = new SM_SYSTEM_MESSAGE(1405247);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v11 = new SM_SYSTEM_MESSAGE(1405248);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v12 = new SM_SYSTEM_MESSAGE(1405249);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v13 = new SM_SYSTEM_MESSAGE(1405250);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v14 = new SM_SYSTEM_MESSAGE(1405251);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v15 = new SM_SYSTEM_MESSAGE(1405252);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v16 = new SM_SYSTEM_MESSAGE(1405253);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v17 = new SM_SYSTEM_MESSAGE(1405254);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v18 = new SM_SYSTEM_MESSAGE(1405255);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v19 = new SM_SYSTEM_MESSAGE(1405256);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v20 = new SM_SYSTEM_MESSAGE(1405257);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v21 = new SM_SYSTEM_MESSAGE(1405258);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v22 = new SM_SYSTEM_MESSAGE(1405259);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v23 = new SM_SYSTEM_MESSAGE(1405260);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v24 = new SM_SYSTEM_MESSAGE(1405261);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_killer_v25 = new SM_SYSTEM_MESSAGE(1405262);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_A_on = new SM_SYSTEM_MESSAGE(1405272);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_B_on = new SM_SYSTEM_MESSAGE(1405273);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_C_on = new SM_SYSTEM_MESSAGE(1405274);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_D_on = new SM_SYSTEM_MESSAGE(1405275);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_E_on = new SM_SYSTEM_MESSAGE(1405276);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_F_on = new SM_SYSTEM_MESSAGE(1405277);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_G_on = new SM_SYSTEM_MESSAGE(1405278);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_H_on = new SM_SYSTEM_MESSAGE(1405279);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_I_on = new SM_SYSTEM_MESSAGE(1405280);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_J_on = new SM_SYSTEM_MESSAGE(1405281);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Nt_raid_K_on = new SM_SYSTEM_MESSAGE(1405282);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Open_01 = new SM_SYSTEM_MESSAGE(1405283);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_Open_02 = new SM_SYSTEM_MESSAGE(1405284);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv01 = new SM_SYSTEM_MESSAGE(1405285);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv01 = new SM_SYSTEM_MESSAGE(1405286);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv01 = new SM_SYSTEM_MESSAGE(1405287);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv02 = new SM_SYSTEM_MESSAGE(1405288);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv02 = new SM_SYSTEM_MESSAGE(1405289);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv02 = new SM_SYSTEM_MESSAGE(1405290);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv03 = new SM_SYSTEM_MESSAGE(1405291);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv03 = new SM_SYSTEM_MESSAGE(1405292);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv03 = new SM_SYSTEM_MESSAGE(1405293);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv04 = new SM_SYSTEM_MESSAGE(1405294);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv04 = new SM_SYSTEM_MESSAGE(1405295);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv04 = new SM_SYSTEM_MESSAGE(1405296);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv05 = new SM_SYSTEM_MESSAGE(1405297);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv05 = new SM_SYSTEM_MESSAGE(1405298);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv05 = new SM_SYSTEM_MESSAGE(1405299);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv06 = new SM_SYSTEM_MESSAGE(1405300);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv06 = new SM_SYSTEM_MESSAGE(1405301);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv06 = new SM_SYSTEM_MESSAGE(1405302);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv07 = new SM_SYSTEM_MESSAGE(1405303);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv07 = new SM_SYSTEM_MESSAGE(1405304);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv07 = new SM_SYSTEM_MESSAGE(1405305);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv08 = new SM_SYSTEM_MESSAGE(1405306);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv08 = new SM_SYSTEM_MESSAGE(1405307);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv08 = new SM_SYSTEM_MESSAGE(1405308);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv09 = new SM_SYSTEM_MESSAGE(1405309);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv09 = new SM_SYSTEM_MESSAGE(1405310);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv09 = new SM_SYSTEM_MESSAGE(1405311);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv10 = new SM_SYSTEM_MESSAGE(1405312);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv10 = new SM_SYSTEM_MESSAGE(1405313);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv10 = new SM_SYSTEM_MESSAGE(1405314);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv11 = new SM_SYSTEM_MESSAGE(1405315);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv11 = new SM_SYSTEM_MESSAGE(1405316);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv11 = new SM_SYSTEM_MESSAGE(1405317);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv12 = new SM_SYSTEM_MESSAGE(1405318);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv12 = new SM_SYSTEM_MESSAGE(1405319);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv12 = new SM_SYSTEM_MESSAGE(1405320);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv13 = new SM_SYSTEM_MESSAGE(1405321);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv13 = new SM_SYSTEM_MESSAGE(1405322);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv13 = new SM_SYSTEM_MESSAGE(1405323);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv14 = new SM_SYSTEM_MESSAGE(1405324);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv14 = new SM_SYSTEM_MESSAGE(1405325);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv14 = new SM_SYSTEM_MESSAGE(1405326);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv15 = new SM_SYSTEM_MESSAGE(1405327);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv15 = new SM_SYSTEM_MESSAGE(1405328);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv15 = new SM_SYSTEM_MESSAGE(1405329);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv16 = new SM_SYSTEM_MESSAGE(1405330);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv16 = new SM_SYSTEM_MESSAGE(1405331);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv16 = new SM_SYSTEM_MESSAGE(1405332);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv17 = new SM_SYSTEM_MESSAGE(1405333);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv17 = new SM_SYSTEM_MESSAGE(1405334);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv17 = new SM_SYSTEM_MESSAGE(1405335);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv18 = new SM_SYSTEM_MESSAGE(1405336);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv18 = new SM_SYSTEM_MESSAGE(1405337);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv18 = new SM_SYSTEM_MESSAGE(1405338);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv19 = new SM_SYSTEM_MESSAGE(1405339);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv19 = new SM_SYSTEM_MESSAGE(1405340);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv19 = new SM_SYSTEM_MESSAGE(1405341);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv20 = new SM_SYSTEM_MESSAGE(1405342);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv20 = new SM_SYSTEM_MESSAGE(1405343);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv20 = new SM_SYSTEM_MESSAGE(1405344);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv21 = new SM_SYSTEM_MESSAGE(1405345);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv21 = new SM_SYSTEM_MESSAGE(1405346);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv21 = new SM_SYSTEM_MESSAGE(1405347);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv22 = new SM_SYSTEM_MESSAGE(1405348);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv22 = new SM_SYSTEM_MESSAGE(1405349);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv22 = new SM_SYSTEM_MESSAGE(1405350);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv23 = new SM_SYSTEM_MESSAGE(1405351);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv23 = new SM_SYSTEM_MESSAGE(1405352);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv23 = new SM_SYSTEM_MESSAGE(1405353);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv24 = new SM_SYSTEM_MESSAGE(1405354);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv24 = new SM_SYSTEM_MESSAGE(1405355);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv24 = new SM_SYSTEM_MESSAGE(1405356);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_li_eliv25 = new SM_SYSTEM_MESSAGE(1405357);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_da_eliv25 = new SM_SYSTEM_MESSAGE(1405358);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_dr_eliv25 = new SM_SYSTEM_MESSAGE(1405359);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v01 = new SM_SYSTEM_MESSAGE(1405363);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v02 = new SM_SYSTEM_MESSAGE(1405367);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v03 = new SM_SYSTEM_MESSAGE(1405371);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v04 = new SM_SYSTEM_MESSAGE(1405375);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v05 = new SM_SYSTEM_MESSAGE(1405379);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v06 = new SM_SYSTEM_MESSAGE(1405383);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v07 = new SM_SYSTEM_MESSAGE(1405387);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v08 = new SM_SYSTEM_MESSAGE(1405391);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v09 = new SM_SYSTEM_MESSAGE(1405395);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v10 = new SM_SYSTEM_MESSAGE(1405399);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v11 = new SM_SYSTEM_MESSAGE(1405403);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v12 = new SM_SYSTEM_MESSAGE(1405407);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v13 = new SM_SYSTEM_MESSAGE(1405411);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v14 = new SM_SYSTEM_MESSAGE(1405415);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v15 = new SM_SYSTEM_MESSAGE(1405419);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v16 = new SM_SYSTEM_MESSAGE(1405423);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v17 = new SM_SYSTEM_MESSAGE(1405427);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v18 = new SM_SYSTEM_MESSAGE(1405431);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v19 = new SM_SYSTEM_MESSAGE(1405435);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v20 = new SM_SYSTEM_MESSAGE(1405439);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v21 = new SM_SYSTEM_MESSAGE(1405443);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v22 = new SM_SYSTEM_MESSAGE(1405447);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v23 = new SM_SYSTEM_MESSAGE(1405451);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v24 = new SM_SYSTEM_MESSAGE(1405455);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5a_up5_v25 = new SM_SYSTEM_MESSAGE(1405459);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5_Weapon_Box = new SM_SYSTEM_MESSAGE(1405807);
+	
+   /**
+	* [Minium Vault 7.x]
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDAbRe_Up3_urf_special07 = new SM_SYSTEM_MESSAGE(1405867);
+	
+   /**
+	* [Crimson Danaria 7.x]
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5b_MSG_01 = new SM_SYSTEM_MESSAGE(1405870);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5b_MSG_31 = new SM_SYSTEM_MESSAGE(1405947);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDTM_Lobby_01 = new SM_SYSTEM_MESSAGE(1403965);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLegion_Start_05 = new SM_SYSTEM_MESSAGE(1402867);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5b_MSG_34 = new SM_SYSTEM_MESSAGE(1405950);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF5b_MSG_38 = new SM_SYSTEM_MESSAGE(1405954);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Out_Door_01_Despawn = new SM_SYSTEM_MESSAGE(1401690);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Out_Door_02_Despawn = new SM_SYSTEM_MESSAGE(1401691);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_In_Door_01_Attack = new SM_SYSTEM_MESSAGE(1401692);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_In_Door_02_Attack = new SM_SYSTEM_MESSAGE(1401693);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Water_Bomber_01 = new SM_SYSTEM_MESSAGE(1401694);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Water_Bomber_02 = new SM_SYSTEM_MESSAGE(1401695);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Water_Bomber_03 = new SM_SYSTEM_MESSAGE(1401696);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Water_Bomber_04 = new SM_SYSTEM_MESSAGE(1401697);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Wall_01_Attacked = new SM_SYSTEM_MESSAGE(1401698);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Wall_01_Damaged = new SM_SYSTEM_MESSAGE(1401699);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Wall_01_Die = new SM_SYSTEM_MESSAGE(1401700);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Wall_02_Attacked = new SM_SYSTEM_MESSAGE(1401701);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Wall_02_Damaged = new SM_SYSTEM_MESSAGE(1401702);
+	public static final SM_SYSTEM_MESSAGE STR_LDF5b_6021_Wall_02_Die = new SM_SYSTEM_MESSAGE(1401703);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Fortress_MistOn_Alram = new SM_SYSTEM_MESSAGE(1405082);
+	
+   /**
+	* Primeth's Forge [Hard]
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_03_Skill_MSG_04 = new SM_SYSTEM_MESSAGE(1405038);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_03_Skill_MSG_05 = new SM_SYSTEM_MESSAGE(1405039);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_03_Skill_MSG_06 = new SM_SYSTEM_MESSAGE(1405040);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_03_Skill_MSG_07 = new SM_SYSTEM_MESSAGE(1405041);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_03_Skill_MSG_08 = new SM_SYSTEM_MESSAGE(1405042);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_03_Skill_MSG_09 = new SM_SYSTEM_MESSAGE(1405043);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDLDF8_Lab_Boss_03_Skill_MSG_10 = new SM_SYSTEM_MESSAGE(1405044);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_v70_HardMode_Instance_MSG_01 = new SM_SYSTEM_MESSAGE(1405108);
+	
+   /**
+	* Quest Gossip 7.x
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF1_Quest_Gossip_01 = new SM_SYSTEM_MESSAGE(1502043);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF3_Quest_Gossip_02 = new SM_SYSTEM_MESSAGE(1502047);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF3_Quest_Gossip_03 = new SM_SYSTEM_MESSAGE(1502048);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF4_Quest_Gossip_01 = new SM_SYSTEM_MESSAGE(1502049);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF4_Quest_Gossip_02 = new SM_SYSTEM_MESSAGE(1502050);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF4_Quest_Gossip_03 = new SM_SYSTEM_MESSAGE(1502051);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF4_Quest_Gossip_04 = new SM_SYSTEM_MESSAGE(1502052);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF4_Quest_Gossip_05 = new SM_SYSTEM_MESSAGE(1502053);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF4_Quest_Gossip_06 = new SM_SYSTEM_MESSAGE(1502054);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF4_Quest_Gossip_07 = new SM_SYSTEM_MESSAGE(1502055);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_LF4_Quest_Gossip_08 = new SM_SYSTEM_MESSAGE(1502056);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF3_Quest_Goossip_03 = new SM_SYSTEM_MESSAGE(1502028);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF3_Quest_Goossip_04 = new SM_SYSTEM_MESSAGE(1502029);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF3_Quest_Goossip_05 = new SM_SYSTEM_MESSAGE(1502030);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Goossip_01 = new SM_SYSTEM_MESSAGE(1501994);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Goossip_02 = new SM_SYSTEM_MESSAGE(1501995);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Goossip_03 = new SM_SYSTEM_MESSAGE(1501996);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Goossip_04 = new SM_SYSTEM_MESSAGE(1501997);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Goossip_05 = new SM_SYSTEM_MESSAGE(1501998);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Goossip_06 = new SM_SYSTEM_MESSAGE(1501999);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Goossip_07 = new SM_SYSTEM_MESSAGE(1502000);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Goossip_08 = new SM_SYSTEM_MESSAGE(1502001);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Goossip_09 = new SM_SYSTEM_MESSAGE(1502004);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Goossip_10 = new SM_SYSTEM_MESSAGE(1502005);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Gossip_11 = new SM_SYSTEM_MESSAGE(1502084);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF4_Quest_Gossip_12 = new SM_SYSTEM_MESSAGE(1502085);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF5_Quest_Gossip_01 = new SM_SYSTEM_MESSAGE(1502038);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_DF5_Quest_Gossip_41 = new SM_SYSTEM_MESSAGE(1501285);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_LDF7_L_001 = new SM_SYSTEM_MESSAGE(1806118);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_LDF7_D_001 = new SM_SYSTEM_MESSAGE(1806119);
+	public static final SM_SYSTEM_MESSAGE STR_GOSSHIP_LDF8_Mission_37 = new SM_SYSTEM_MESSAGE(1502585);
+	public static final SM_SYSTEM_MESSAGE STR_GOSSHIP_LDF8_Mission_38 = new SM_SYSTEM_MESSAGE(1502586);
+	public static final SM_SYSTEM_MESSAGE STR_GOSSHIP_LDF8_Mission_39 = new SM_SYSTEM_MESSAGE(1502587);
+	public static final SM_SYSTEM_MESSAGE STR_GOSSHIP_LDF8_Mission_40 = new SM_SYSTEM_MESSAGE(1502588);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q63000_02 = new SM_SYSTEM_MESSAGE(1806798);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q63010_01 = new SM_SYSTEM_MESSAGE(1806805);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q63010_02 = new SM_SYSTEM_MESSAGE(1806806);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q63010_03 = new SM_SYSTEM_MESSAGE(1806807);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q63015_01 = new SM_SYSTEM_MESSAGE(1806969);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q63015_02 = new SM_SYSTEM_MESSAGE(1806970);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q63015_03 = new SM_SYSTEM_MESSAGE(1806971);
+	public static final SM_SYSTEM_MESSAGE STR_GOSSHIP_v70_Cubic_01 = new SM_SYSTEM_MESSAGE(1502311);
+	public static final SM_SYSTEM_MESSAGE STR_GOSSHIP_v70_Cubic_02 = new SM_SYSTEM_MESSAGE(1502312);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q60622_01 = new SM_SYSTEM_MESSAGE(1806751);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q60623_01 = new SM_SYSTEM_MESSAGE(1806752);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q60624_01 = new SM_SYSTEM_MESSAGE(1806753);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q70622_01 = new SM_SYSTEM_MESSAGE(1806754);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q70623_01 = new SM_SYSTEM_MESSAGE(1806755);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_Q70624_01 = new SM_SYSTEM_MESSAGE(1806756);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_Q62830_Gossip_01 = new SM_SYSTEM_MESSAGE(1502498);
+	public static final SM_SYSTEM_MESSAGE STR_CHAT_Q72830_Gossip_01 = new SM_SYSTEM_MESSAGE(1502499);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_IDF7_Mine_Q16050_01 = new SM_SYSTEM_MESSAGE(1805828);
+	public static final SM_SYSTEM_MESSAGE STR_QUEST_SAY_IDF7_Mine_Q16052_01 = new SM_SYSTEM_MESSAGE(1805829);
+	
+   /**
+	* Fame Exp 7.x
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_CAN_NOT_BUY_FAME_LEVEL = new SM_SYSTEM_MESSAGE(1406131);
+	public static final SM_SYSTEM_MESSAGE STR_POPUP_ADDFEXP_USE_ITEM_FULL = new SM_SYSTEM_MESSAGE(1405970);
+	public static SM_SYSTEM_MESSAGE STR_FAME_CHANGE_LEVEL_DONE(DescriptionId value0, int value1) {
+		return new SM_SYSTEM_MESSAGE(1405970, value0, value1);
+	}
+	public static SM_SYSTEM_MESSAGE STR_GET_FEXP(long num0) {
+		return new SM_SYSTEM_MESSAGE(1405961, num0);
+	}
+	
+   /**
+	* Dredgion [Inggison & Gelkmaros] 7.x
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_Dreadgion_01 = new SM_SYSTEM_MESSAGE(1406029);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_Dreadgion_07 = new SM_SYSTEM_MESSAGE(1406035);
+	
+   /**
+	* Base [Inggison & Gelkmaros] 7.x
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_V01_02 = new SM_SYSTEM_MESSAGE(1406039);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_V02_02 = new SM_SYSTEM_MESSAGE(1406043);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_V03_02 = new SM_SYSTEM_MESSAGE(1406047);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_V04_02 = new SM_SYSTEM_MESSAGE(1406051);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_V05_02 = new SM_SYSTEM_MESSAGE(1406055);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_V01_04 = new SM_SYSTEM_MESSAGE(1406041);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_V02_04 = new SM_SYSTEM_MESSAGE(1406045);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_V03_04 = new SM_SYSTEM_MESSAGE(1406049);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_V04_04 = new SM_SYSTEM_MESSAGE(1406053);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LF4_V05_04 = new SM_SYSTEM_MESSAGE(1406057);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_V01_02 = new SM_SYSTEM_MESSAGE(1406068);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_V02_02 = new SM_SYSTEM_MESSAGE(1406072);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_V03_02 = new SM_SYSTEM_MESSAGE(1406076);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_V04_02 = new SM_SYSTEM_MESSAGE(1406080);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_V05_02 = new SM_SYSTEM_MESSAGE(1406084);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_V01_04 = new SM_SYSTEM_MESSAGE(1406070);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_V02_04 = new SM_SYSTEM_MESSAGE(1406074);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_V03_04 = new SM_SYSTEM_MESSAGE(1406078);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_V04_04 = new SM_SYSTEM_MESSAGE(1406082);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_DF4_V05_04 = new SM_SYSTEM_MESSAGE(1406086);
+	
+	public static final SM_SYSTEM_MESSAGE STR_MSG_LDF8_Camp_01 = new SM_SYSTEM_MESSAGE(1406000);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_Fortress_Lugbug_Request_NPC = new SM_SYSTEM_MESSAGE(1406124);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_ITEMCOLLECT_COMPLETE = new SM_SYSTEM_MESSAGE(1406236);
+	public static final SM_SYSTEM_MESSAGE STR_REINVENT_MSG_NOT_ENOUGH_INVENTORY = new SM_SYSTEM_MESSAGE(1406236);
+	
+	///Odian-Runes 7.x
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_OP_ODIAN_SUCCEEDED(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1405920, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_OP_RUNE_SUCCEEDED(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1405921, descriptionId);
+	}
+	public static SM_SYSTEM_MESSAGE STR_MSG_ITEM_ENCHANT_GRIND_CANT_STATUS(DescriptionId descriptionId) {
+		return new SM_SYSTEM_MESSAGE(1405906, descriptionId);
+	}
+	
+   /**
+	* Altar Of Ascension 7.x
+	*/
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF8_Dragon_Altar_MSG_01 = new SM_SYSTEM_MESSAGE(1405971);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF8_Dragon_Altar_MSG_02 = new SM_SYSTEM_MESSAGE(1405972);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF8_Dragon_Altar_MSG_03 = new SM_SYSTEM_MESSAGE(1405973);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF8_Dragon_Altar_MSG_04 = new SM_SYSTEM_MESSAGE(1405974);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF8_Dragon_Altar_MSG_05 = new SM_SYSTEM_MESSAGE(1405975);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF8_Dragon_Altar_MSG_06 = new SM_SYSTEM_MESSAGE(1405976);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF8_Dragon_Altar_MSG_07 = new SM_SYSTEM_MESSAGE(1405977);
+	public static final SM_SYSTEM_MESSAGE STR_MSG_IDF8_Dragon_Altar_MSG_10 = new SM_SYSTEM_MESSAGE(1405980);
+	
+	private final int code;
+	private final Object[] params;
+	private boolean npcShout = false;
+	private int npcObjId = 0;
+	private int textColorId = 26;
+	
+	private static DescriptionId calculateNameId(int id) {
+		return new DescriptionId(id * 2 + 1);
+	}
+	
 	public SM_SYSTEM_MESSAGE(int code, Object... params) {
 		this.code = code;
 		this.params = params;
 	}
-
+	
 	public SM_SYSTEM_MESSAGE(boolean npcShout, int code, int npcObjId, int textColorId, Object... params) {
 		this.npcShout = npcShout;
 		this.code = code;
@@ -22066,45 +24277,36 @@ public final class SM_SYSTEM_MESSAGE extends AionServerPacket {
 		this.textColorId = textColorId;
 		this.params = params;
 	}
-
+	
 	public SM_SYSTEM_MESSAGE(int code, Creature creature, Object... params) {
 		this.code = code;
 		this.npcObjId = creature.getObjectId();
 		this.params = params;
 	}
-
+	
 	public SM_SYSTEM_MESSAGE(SystemMessageId sm, Object... params) {
 		this.code = sm.getId();
 		this.params = params;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
 	protected void writeImpl(AionConnection con) {
 		writeC(textColorId);
-		writeC(0x00); // to do for shoots text encoding (unk dialect)
+		writeC(0x00);
 		writeD(npcObjId);
-
-		writeD(code); // msg id
-		writeC(params.length); // count
-
-		for (Object param : params) {
+		writeD(code);
+		writeC(params.length);
+	    for (Object param: params) {
 			if (param instanceof DescriptionId) {
 				writeH(0x24);
 				writeD(((DescriptionId) param).getValue());
-				writeH(0x00); // unk
-			}
-			else {
+				writeH(0x00);
+			} else {
 				writeS(String.valueOf(param));
 			}
-		}
-
-		if (npcShout) {
+		} if (npcShout) {
 			writeC(0x01);
-		}
-		else {
+		} else {
 			writeC(0x00);
 		}
 	}

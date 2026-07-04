@@ -1,19 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-emu is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-emu is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package com.aionemu.gameserver.model.geometry;
 
 import com.aionemu.gameserver.model.templates.zone.Point2D;
@@ -22,7 +23,7 @@ import com.aionemu.gameserver.world.zone.ZoneName;
 
 /**
  * This class implements cylinder area
- *
+ * 
  * @author SoulKeeper
  */
 public class CylinderArea extends AbstractArea {
@@ -31,10 +32,12 @@ public class CylinderArea extends AbstractArea {
 	 * Center of cylinder
 	 */
 	private final float centerX;
+
 	/**
 	 * Center of cylinder
 	 */
 	private final float centerY;
+
 	/**
 	 * Cylinder radius
 	 */
@@ -42,15 +45,15 @@ public class CylinderArea extends AbstractArea {
 
 	/**
 	 * Creates new cylinder with given radius
-	 *
+	 * 
 	 * @param center
-	 *            center of the circle
+	 *          center of the circle
 	 * @param radius
-	 *            radius of the circle
+	 *          radius of the circle
 	 * @param minZ
-	 *            min z
+	 *          min z
 	 * @param maxZ
-	 *            max z
+	 *          max z
 	 */
 	public CylinderArea(ZoneName zoneName, int worldId, Point2D center, float radius, float minZ, float maxZ) {
 		this(zoneName, worldId, center.getX(), center.getY(), radius, minZ, maxZ);
@@ -58,17 +61,17 @@ public class CylinderArea extends AbstractArea {
 
 	/**
 	 * Creates new cylider with given radius
-	 *
+	 * 
 	 * @param x
-	 *            center coord
+	 *          center coord
 	 * @param y
-	 *            center coord
+	 *          center coord
 	 * @param radius
-	 *            radius of the circle
+	 *          radius of the circle
 	 * @param minZ
-	 *            min z
+	 *          min z
 	 * @param maxZ
-	 *            max z
+	 *          max z
 	 */
 	public CylinderArea(ZoneName zoneName, int worldId, float x, float y, float radius, float minZ, float maxZ) {
 		super(zoneName, worldId, minZ, maxZ);
@@ -133,18 +136,16 @@ public class CylinderArea extends AbstractArea {
 			double magV = MathUtil.getDistance(centerX, centerY, x, y);
 			double pointX = centerX + vX / magV * radius;
 			double pointY = centerY + vY / magV * radius;
-			return new Point2D((float) pointX, (float) pointY);
+			return new Point2D((float)pointX, (float)pointY);
 		}
 	}
 
 	@Override
 	public boolean intersectsRectangle(RectangleArea area) {
-		if (area.getMinZ() > getMaxZ() || area.getMaxZ() < getMinZ()) {
+		if (area.getMinZ() > getMaxZ() || area.getMaxZ() < getMinZ())
 			return false;
-		}
-		if (area.getDistance2D(centerX, centerY) < radius) {
+		if (area.getDistance2D(centerX, centerY) < radius)
 			return true;
-		}
 		return false;
 	}
 }

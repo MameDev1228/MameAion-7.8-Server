@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.gameobjects;
 
@@ -21,13 +21,7 @@ import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.IExpirable;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.house.House;
-import com.aionemu.gameserver.model.templates.housing.AbstractHouseObject;
-import com.aionemu.gameserver.model.templates.housing.HouseType;
-import com.aionemu.gameserver.model.templates.housing.HousingCategory;
-import com.aionemu.gameserver.model.templates.housing.LimitType;
-import com.aionemu.gameserver.model.templates.housing.PlaceArea;
-import com.aionemu.gameserver.model.templates.housing.PlaceLocation;
-import com.aionemu.gameserver.model.templates.housing.PlaceableHouseObject;
+import com.aionemu.gameserver.model.templates.housing.*;
 import com.aionemu.gameserver.model.templates.item.ItemQuality;
 import com.aionemu.gameserver.spawnengine.SpawnEngine;
 import com.aionemu.gameserver.world.World;
@@ -47,6 +41,7 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 	private int visitorUsedCount = 0;
 	private Integer color = null;
 	private int colorExpireEnd;
+
 	private House ownerHouse;
 	// don't set it directly, ever!!! Use setPersistentState() method instead
 	private PersistentState persistentState = PersistentState.NEW;
@@ -65,18 +60,16 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 	public void setPersistentState(PersistentState persistentState) {
 		switch (persistentState) {
 			case DELETED:
-				if (this.persistentState == PersistentState.NEW) {
+				if (this.persistentState == PersistentState.NEW)
 					this.persistentState = PersistentState.NOACTION;
-				}
 				else if (this.persistentState != PersistentState.DELETED) {
 					this.persistentState = PersistentState.DELETED;
 					ownerHouse.getRegistry().setPersistentState(PersistentState.UPDATE_REQUIRED);
 				}
 				break;
 			case UPDATE_REQUIRED:
-				if (this.persistentState == PersistentState.NEW) {
+				if (this.persistentState == PersistentState.NEW)
 					break;
-				}
 			default:
 				if (this.persistentState != persistentState) {
 					this.persistentState = persistentState;
@@ -101,17 +94,15 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 
 	/**
 	 * Gets seconds left for the object use. If has no expiration return -1
-	 *
+	 * 
 	 * @return
 	 */
 	public int getUseSecondsLeft() {
-		if (expireEnd == 0) {
+		if (expireEnd == 0)
 			return -1;
-		}
 		int diff = expireEnd - (int) (System.currentTimeMillis() / 1000);
-		if (diff < 0) {
+		if (diff < 0)
 			return 0;
-		}
 		return diff;
 	}
 
@@ -125,7 +116,6 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 		return String.valueOf(objectTemplate.getNameId());
 	}
 
-	@Override
 	@SuppressWarnings("unchecked")
 	public T getObjectTemplate() {
 		return (T) objectTemplate;
@@ -140,9 +130,8 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 		if (this.x != x) {
 			this.x = x;
 			setPersistentState(PersistentState.UPDATE_REQUIRED);
-			if (position != null) {
+			if (position != null)
 				position.setXYZH(x, null, null, null);
-			}
 		}
 	}
 
@@ -155,9 +144,8 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 		if (this.y != y) {
 			this.y = y;
 			setPersistentState(PersistentState.UPDATE_REQUIRED);
-			if (position != null) {
+			if (position != null)
 				position.setXYZH(null, y, null, null);
-			}
 		}
 	}
 
@@ -170,9 +158,8 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 		if (this.z != z) {
 			this.z = z;
 			setPersistentState(PersistentState.UPDATE_REQUIRED);
-			if (position != null) {
+			if (position != null)
 				position.setXYZH(null, null, z, null);
-			}
 		}
 	}
 
@@ -185,9 +172,8 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 		if (this.heading != heading) {
 			this.heading = heading;
 			setPersistentState(PersistentState.UPDATE_REQUIRED);
-			if (position != null) {
+			if (position != null)
 				position.setXYZH(null, null, null, heading);
-			}
 		}
 	}
 
@@ -211,9 +197,8 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 	public int getPlacementLimit(boolean trial) {
 		LimitType limitType = ((PlaceableHouseObject) objectTemplate).getPlacementLimit();
 		HouseType size = HouseType.fromValue(ownerHouse.getBuilding().getSize());
-		if (trial) {
+		if (trial)
 			return limitType.getTrialObjectPlaceLimit(size);
-		}
 		return limitType.getObjectPlaceLimit(size);
 	}
 
@@ -283,9 +268,8 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 	}
 
 	public void spawn() {
-		if (!isSpawnedByPlayer()) {
+		if (!isSpawnedByPlayer())
 			return;
-		}
 		World w = World.getInstance();
 		if (position == null || !isSpawned()) {
 			position = w.createPosition(ownerHouse.getWorldId(), x, y, z, heading, ownerHouse.getInstanceId());
@@ -312,6 +296,7 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 	}
 
 	public void onDespawn() {
+
 	}
 
 	public Integer getColor() {
@@ -332,4 +317,5 @@ public abstract class HouseObject<T extends PlaceableHouseObject> extends Visibl
 	public void setColorExpireEnd(int colorExpireEnd) {
 		this.colorExpireEnd = colorExpireEnd;
 	}
+
 }

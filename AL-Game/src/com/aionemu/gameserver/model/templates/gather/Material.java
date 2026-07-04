@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.templates.gather;
 
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Material")
-public class Material implements Comparable<Material> {
+public class Material implements Comparable<Material>{
 
 	@XmlAttribute
 	protected String name;
@@ -39,7 +39,7 @@ public class Material implements Comparable<Material> {
 
 	/**
 	 * Gets the value of the name property.
-	 *
+	 * 
 	 * @return possible object is {@link String }
 	 */
 	public String getName() {
@@ -55,7 +55,7 @@ public class Material implements Comparable<Material> {
 
 	/**
 	 * Gets the value of the nameid property.
-	 *
+	 * 
 	 * @return possible object is {@link Integer }
 	 */
 	public int getNameid() {
@@ -64,7 +64,7 @@ public class Material implements Comparable<Material> {
 
 	/**
 	 * Gets the value of the rate property.
-	 *
+	 * 
 	 * @return possible object is {@link Integer }
 	 */
 	public int getRate() {
@@ -73,6 +73,7 @@ public class Material implements Comparable<Material> {
 
 	@Override
 	public int compareTo(Material o) {
-		return o.rate - rate;
+		return o.rate-rate;
 	}
+	
 }

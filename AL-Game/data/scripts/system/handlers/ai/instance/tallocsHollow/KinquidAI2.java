@@ -1,150 +1,143 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package ai.instance.tallocsHollow;
 
-import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import com.aionemu.gameserver.utils.ThreadPoolManager;
-import com.aionemu.commons.utils.Rnd;
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.model.gameobjects.Creature;
-import com.aionemu.gameserver.model.gameobjects.Npc;
-import com.aionemu.gameserver.skillengine.SkillEngine;
-
 import ai.AggressiveNpcAI2;
 
-/**
- * @author xTz
- */
-@AIName("kinquid")
-public class KinquidAI2 extends AggressiveNpcAI2 {
+import com.aionemu.commons.utils.Rnd;
+import com.aionemu.commons.network.util.ThreadPoolManager;
 
-	private AtomicBoolean isHome = new AtomicBoolean(true);
-	private Future<?> skillTask;
+import com.aionemu.gameserver.ai2.AIName;
+import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.skillengine.SkillEngine;
 
+import java.util.*;
+
+/****/
+/** Author Rinzler (Encom)
+/****/
+
+@AIName("Kinquid")
+public class KinquidAI2 extends AggressiveNpcAI2
+{
+	private boolean canThink = true;
+	private int curentPercent = 100;
+	private List<Integer> percents = new ArrayList<Integer>();
+	
 	@Override
-	protected void handleCreatureAggro(Creature creature) {
-		super.handleCreatureAggro(creature);
-		if (isHome.compareAndSet(true, false)) {
-			getPosition().getWorldMapInstance().getDoors().get(48).setOpen(false);
-			check();
-			cancelSkillTask();
-			startSkillTask();
-		}
+	public boolean canThink() {
+		return canThink;
 	}
-
+	
 	@Override
-	protected void handleBackHome() {
-		cancelSkillTask();
-		isHome.set(true);
-		getPosition().getWorldMapInstance().getDoors().get(48).setOpen(true);
-		super.handleBackHome();
-		despawnDestroyer();
+	public void handleAttack(Creature creature) {
+		super.handleAttack(creature);
+		getPosition().getWorldMapInstance().getDoors().get(48).setOpen(false);
+		checkPercentage(getLifeStats().getHpPercentage());
 	}
-
-	@Override
-	protected void handleDespawned() {
-		cancelSkillTask();
-		super.handleDespawned();
+	
+	private void addPercent() {
+		percents.clear();
+		Collections.addAll(percents, new Integer[]{95, 85, 75, 65, 55, 45, 35, 25, 15, 5});
 	}
-
-	@Override
-	protected void handleDied() {
-		cancelSkillTask();
-		super.handleDied();
-	}
-
-	private void cancelSkillTask() {
-		if (skillTask != null && !skillTask.isDone()) {
-			skillTask.cancel(true);
-		}
-	}
-
-	private void startSkillTask() {
-		skillTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
-
-			@Override
-			public void run() {
-				if (isAlreadyDead()) {
-					cancelSkillTask();
-				}
-				else {
-					SkillEngine.getInstance().getSkill(getOwner(), 19233, 60, getOwner()).useNoAnimationSkill();
-					ThreadPoolManager.getInstance().schedule(new Runnable() {
-
-						@Override
-						public void run() {
-							if (!isAlreadyDead() && getPosition().isSpawned()) {
-								SkillEngine.getInstance().getSkill(getOwner(), 19234, 60, getOwner()).useNoAnimationSkill();
-							}
+	
+	private synchronized void checkPercentage(int hpPercentage) {
+		curentPercent = hpPercentage;
+		for (Integer percent: percents) {
+			if (hpPercentage <= percent) {
+				switch (percent) {
+					case 95:
+					case 85:
+					case 75:
+					case 65:
+					case 55:
+					    scheduleSkill(18818, 0); //Kinquid's Thrust.
+						scheduleSkill(18820, 4000); //Kinquid's Bite.
+						scheduleSkill(18822, 8000); //Kinquid's Toxic Fang.
+					break;
+					case 45:
+					case 35:
+					case 25:
+					case 15:
+					case 5:
+					    scheduleSkill(18819, 4000); //Kinquid's Blast.
+						scheduleBuff(18817, 8000); //Thornbush Armour.
+					    switch (Rnd.get(1, 2)) {
+						    case 1:
+							    scheduleBuff(19233, 0); //Physical Barrier.
+							break;
+							case 2:
+							    scheduleBuff(19234, 0); //Magical Barrier.
+							break;
 						}
-					}, 3500);
+					break;
 				}
+				percents.remove(percent);
+				break;
 			}
-		}, 35000, 35000);
+		}
 	}
-
-	private void doSchedule() {
+	
+	private void scheduleSkill(final int skillId , int delay) {
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
-
 			@Override
 			public void run() {
-				check();
+				if (!isAlreadyDead()) {
+					SkillEngine.getInstance().getSkill(getOwner(), skillId, 60, getTarget()).useNoAnimationSkill();
+				}
 			}
-		}, 25000);
+		}, delay);
 	}
-
-	private void despawnDestroyer() {
-		Npc cleaveArmor = getPosition().getWorldMapInstance().getNpc(282008);
-		if (cleaveArmor != null) {
-			cleaveArmor.getController().onDelete();
-		}
-		Npc accessoryDestruction = getPosition().getWorldMapInstance().getNpc(282009);
-		if (accessoryDestruction != null) {
-			accessoryDestruction.getController().onDelete();
-		}
-	}
-
-	private void check() {
-		despawnDestroyer();
-		if (getPosition().isSpawned() && !isAlreadyDead() && !isHome.get()) {
-			int spawnId = 0;
-			switch (Rnd.get(1, 2)) {
-				case 1:
-					spawnId = 282008;
-					break;
-				case 2:
-					spawnId = 282009;
-					break;
+	
+	private void scheduleBuff(final int skillId , int delay) {
+		ThreadPoolManager.getInstance().schedule(new Runnable() {
+			@Override
+			public void run() {
+				if (!isAlreadyDead()) {
+					SkillEngine.getInstance().getSkill(getOwner(), skillId, 60, getOwner()).useNoAnimationSkill();
+				}
 			}
-
-			switch (Rnd.get(1, 3)) {
-				case 1:
-					spawn(spawnId, 266.70685f, 680.6733f, 1167.2369f, (byte) 0);
-					break;
-				case 2:
-					spawn(spawnId, 292.02466f, 719.7132f, 1169.3982f, (byte) 0);
-					break;
-				case 3:
-					spawn(spawnId, 263.4334f, 716.73004f, 1170.3693f, (byte) 0);
-					break;
-			}
-		}
-		doSchedule();
+		}, delay);
 	}
+	
+	@Override
+    protected void handleDespawned() {
+        super.handleDespawned();
+		percents.clear();
+    }
+	
+	@Override
+	protected void handleSpawned() {
+		super.handleSpawned();
+		addPercent();
+	}
+	
+	@Override
+    protected void handleBackHome() {
+        super.handleBackHome();
+		addPercent();
+		canThink = true;
+		curentPercent = 100;
+    }
+	
+	@Override
+    protected void handleDied() {
+        super.handleDied();
+		percents.clear();
+		getOwner().getEffectController().removeAllEffects();
+    }
 }

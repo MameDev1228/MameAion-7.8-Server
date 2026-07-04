@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quest_scripts>
+<!--
+    Quest Oriel
+	Make By Encom
+ -->
+	<!-- [Housing] Heart Of Rock -->
+	<report_to id="18801" start_npc_ids="830001" end_npc_ids="830005"/>
+	<!-- Taltaros' Proxy -->
+	<report_to id="18810" start_npc_ids="830034" end_npc_ids="830070"/>
+	<!-- Pink Is The Color -->
+	<item_collecting id="18812" start_npc_ids="830522"/>
+	<!-- Exquisite Shugo Reproduction -->
+	<item_collecting id="18813" start_npc_ids="830522"/>
+	<!-- Sprigg Up The House -->
+	<item_collecting id="18814" start_npc_ids="830522"/>
+	<!-- A Spirerinerk Original -->
+	<item_collecting id="18815" start_npc_ids="830522"/>
+	<!-- And The Leaves That Are Green -->
+	<item_collecting id="18816" start_npc_ids="830196"/>
+	<!-- Gauon's Fiery Flowers -->
+	<item_collecting id="18817" start_npc_ids="830196"/>
+	<!-- [Daily] Extract One, Pearl Two -->
+	<item_collecting id="18818" start_npc_ids="830208"/>
+	<!-- [Daily] It Came From The Sky -->
+	<item_collecting id="18819" start_npc_ids="830210"/>
+	<!-- [Daily] Gardener's Delight -->
+	<item_collecting id="18820" start_npc_ids="830203"/>
+	<!-- Decorative Letters -->
+	<item_collecting id="18822" start_npc_ids="830523"/>
+	<!-- Wall Letters -->
+	<item_collecting id="18823" start_npc_ids="830523"/>
+	<!-- Hanging Letters -->
+	<item_collecting id="18824" start_npc_ids="830523"/>
+	<!-- Painted Letters -->
+	<item_collecting id="18825" start_npc_ids="830523"/>
+	<!-- [Housing] Unlock The Future -->
+	<report_to id="18827" start_npc_ids="830069" end_npc_ids="810017 810018 810019 810020 810021"/>
+	<!-- [Housing] Furnishing The Emptiness -->
+	<report_to id="18829" start_npc_ids="810017 810018 810019 810020 810021" end_npc_ids="830584"/>
+	<!-- [Daily] Leafy Cutting -->
+	<item_order id="18833" start_item_id="182213202" end_npc_id="830655"/>
+	<!-- [Daily] Stem Cutting -->
+	<item_order id="18835" start_item_id="182213203" end_npc_id="830655"/>
+	<!-- [Daily] Eye Cutting -->
+	<item_order id="18837" start_item_id="182213204" end_npc_id="830655"/>
+	<!-- Leaves Of Four Seasons I -->
+	<item_collecting id="18840" start_npc_ids="830196"/>
+	<!-- Leaves Of Four Seasons II -->
+	<item_collecting id="18841" start_npc_ids="830196"/>
+	<!-- Leaves Of Four Seasons III -->
+	<item_collecting id="18842" start_npc_ids="830196"/>
+	<!-- Homeowners Anonymous -->
+	<report_to id="18843" start_npc_ids="830365" end_npc_ids="830194"/>
+	<!-- [Daily] Fertile Deal -->
+	<item_collecting id="18844" start_npc_ids="830192"/>
+</quest_scripts>

@@ -1,29 +1,29 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <www.aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.serverpackets;
-
-import java.util.Collection;
 
 import com.aionemu.gameserver.model.team.legion.LegionHistory;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 
+import java.util.Collection;
+
 /**
- * @author Simple, KID, xTz
+	 * @author Simple, KID, xTz
  */
 public class SM_LEGION_TABS extends AionServerPacket {
 
@@ -49,15 +49,13 @@ public class SM_LEGION_TABS extends AionServerPacket {
 		/**
 		 * If history size is less than page*8 return
 		 */
-		if (size < (page * 8)) {
+		if (size < (page * 8))
 			return;
-		}
 
 		// TODO: Formula's could use a refactor
 		int hisSize = size - (page * 8);
-		if (size > (page + 1) * 8) {
+		if(size > (page + 1) * 8)
 			hisSize = 8;
-		}
 
 		writeD(size);
 		writeD(page); // current page
@@ -75,11 +73,11 @@ public class SM_LEGION_TABS extends AionServerPacket {
 				writeD(0);
 			}
 			i++;
-			if (i >= (8 + (page * 8))) {
+			if (i >= (8 + (page * 8)))
 				break;
-			}
 		}
 		writeC(tabId);
 		writeC(0);
 	}
+
 }

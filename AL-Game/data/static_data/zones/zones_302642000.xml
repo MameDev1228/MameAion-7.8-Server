@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zones>
+	<zone mapid="302642000" name="INSIDE_THE_MINIUM_VAULT_302642000" area_type="POLYGON" zone_type="SUB" priority="20" flags="0">
+		<points bottom="150.000000" top="300.000000">
+            <point x="331.769989" y="63.570000"/>
+            <point x="331.769958" y="947.182312"/>
+            <point x="710.586792" y="947.182190"/>
+            <point x="710.586914" y="63.570019"/>
+		</points>
+	</zone>
+	<zone mapid="302642000" name="KROTAN_ASCENSION_CHAMBER_302642000" area_type="POLYGON" zone_type="SUB" priority="11" flags="0">
+		<points bottom="180.000000" top="260.000000">
+            <point x="458.480011" y="796.770020"/>
+            <point x="458.480011" y="915.249817"/>
+            <point x="598.161438" y="915.146851"/>
+            <point x="598.161438" y="796.872986"/>
+		</points>
+	</zone>
+	<zone mapid="302642000" name="SECRET_VAULT_302642000" area_type="POLYGON" zone_type="SUB" priority="9" flags="0">
+		<points bottom="170.000000" top="220.000000">
+            <point x="495.000000" y="694.000000"/>
+            <point x="504.000000" y="682.000000"/>
+            <point x="515.000000" y="678.000000"/>
+            <point x="542.000000" y="680.000000"/>
+            <point x="554.000000" y="694.000000"/>
+            <point x="559.000000" y="716.000000"/>
+            <point x="553.000000" y="735.000000"/>
+            <point x="532.000000" y="745.000000"/>
+            <point x="509.000000" y="740.000000"/>
+            <point x="494.000000" y="726.000000"/>
+            <point x="493.000000" y="711.000000"/>
+		</points>
+	</zone>
+	<zone mapid="302642000" name="VAULT_EVIL_302642000" area_type="POLYGON" zone_type="SUB" priority="10" flags="0">
+		<points bottom="170.000000" top="220.000000">
+            <point x="416.772675" y="174.296494"/>
+            <point x="369.929901" y="230.894272"/>
+            <point x="369.770386" y="684.739746"/>
+            <point x="423.755157" y="731.978394"/>
+            <point x="479.385864" y="732.073059"/>
+            <point x="492.450531" y="718.620972"/>
+            <point x="500.950104" y="695.156982"/>
+            <point x="451.334686" y="609.629272"/>
+            <point x="451.074829" y="232.152740"/>
+            <point x="493.727875" y="206.088974"/>
+            <point x="505.484009" y="183.996048"/>
+            <point x="493.557739" y="174.690765"/>
+		</points>
+	</zone>
+	<zone mapid="302642000" name="VAULT_BOSS_302642000" area_type="POLYGON" zone_type="SUB" priority="10" flags="0">
+		<points bottom="170.000000" top="220.000000">
+            <point x="556.624146" y="171.690765"/>
+            <point x="548.702698" y="184.627472"/>
+            <point x="559.097839" y="203.094757"/>
+            <point x="600.348389" y="228.788574"/>
+            <point x="600.407593" y="611.715454"/>
+            <point x="550.764587" y="694.537109"/>
+            <point x="558.776245" y="718.889648"/>
+            <point x="570.289185" y="731.239380"/>
+            <point x="625.397339" y="731.395142"/>
+            <point x="677.743530" y="681.200317"/>
+            <point x="678.220825" y="229.558197"/>
+            <point x="617.067993" y="171.693542"/>
+		</points>
+	</zone>
+	<zone mapid="302642000" name="VAULT_ENTRANCE_302642000" area_type="POLYGON" zone_type="SUB" priority="17" flags="0">
+		<points bottom="170.000000" top="270.000000">
+            <point x="491.500000" y="153.089996"/>
+            <point x="563.571167" y="154.481339"/>
+            <point x="561.901611" y="244.222534"/>
+            <point x="490.804321" y="244.361664"/>
+		</points>
+	</zone>
+	<zone mapid="302642000" name="VAULT_MINI_302642000" area_type="POLYGON" zone_type="SUB" priority="10" flags="0">
+		<points bottom="170.000000" top="220.000000">
+            <point x="481.611359" y="242.014877"/>
+            <point x="481.611359" y="632.683594"/>
+            <point x="509.985260" y="682.701660"/>
+            <point x="541.899963" y="682.709839"/>
+            <point x="570.478943" y="632.472046"/>
+            <point x="570.478943" y="241.950989"/>
+		</points>
+	</zone>
+	<zone mapid="302642000" name="KROTAN_ARTIFACT_CONTROL_ROOM_302642000" area_type="POLYGON" zone_type="SUB" priority="8" flags="0">
+		<points bottom="180.000000" top="230.000000">
+            <point x="502.609985" y="750.549988"/>
+            <point x="502.609985" y="798.302979"/>
+            <point x="553.379028" y="798.302979"/>
+            <point x="553.378967" y="750.549988"/>
+		</points>
+	</zone>
+</zones>

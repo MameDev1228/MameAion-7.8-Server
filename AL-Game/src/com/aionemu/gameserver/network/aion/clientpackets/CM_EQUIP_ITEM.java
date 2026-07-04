@@ -1,19 +1,3 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
 import com.aionemu.gameserver.model.TaskId;
@@ -27,65 +11,56 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_UPDATE_PLAYER_APPEAR
 import com.aionemu.gameserver.restrictions.RestrictionsManager;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-//I remove it later now its for testing because .info dont give infos in chat
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * @author Avol modified by ATracer
- */
-public class CM_EQUIP_ITEM extends AionClientPacket {
-
-	public long slotRead;
-	public int itemUniqueId;
-	public int action;
-
-	public CM_EQUIP_ITEM(int opcode, State state, State... restStates) {
-		super(opcode, state, restStates);
-	}
-
-	@Override
-	protected void readImpl() {
-		action = readC(); // 0/1 = equip/unequip
-		slotRead = readQ();
-		itemUniqueId = readD();
-	}
-
-	@Override
-	protected void runImpl() {
-
-		final Player activePlayer = getConnection().getActivePlayer();
+public class CM_EQUIP_ITEM extends AionClientPacket
+{
+    public long slotRead;
+    public int itemUniqueId;
+    public int action;
+	
+    private static final Logger log = LoggerFactory.getLogger(CM_EQUIP_ITEM.class);
+    public CM_EQUIP_ITEM(int opcode, State state, State... restStates) {
+        super(opcode, state, restStates);
+    }
+	
+    @Override
+    protected void readImpl() {
+        action = readC();
+        slotRead = readQ();
+        itemUniqueId = readD();
+    }
+	
+    @Override
+    protected void runImpl() {
+        final Player activePlayer = getConnection().getActivePlayer();
 		activePlayer.getController().cancelUseItem();
-
 		Equipment equipment = activePlayer.getEquipment();
 		Item resultItem = null;
-
+		//log.info("slot id : " + slotRead);
 		if (!RestrictionsManager.canChangeEquip(activePlayer)) {
 			return;
-		} 
-		if (activePlayer.getEffectController().isAbnormalState(AbnormalState.CANT_ATTACK_STATE)) {
+		} if (activePlayer.getEffectController().isAbnormalState(AbnormalState.CANT_ATTACK_STATE)) {
 			PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_SKILL_CAN_NOT_ACT_WHILE_IN_ABNORMAL_STATE);
 			return;
-		}
-
-		switch (action) {
+		} switch (action) {
 			case 0:
 				resultItem = equipment.equipItem(itemUniqueId, slotRead);
-				break;
+			break;
 			case 1:
 				resultItem = equipment.unEquipItem(itemUniqueId, slotRead);
-				break;
+			break;
 			case 2:
-				if (activePlayer.getController().hasTask(TaskId.ITEM_USE) && !activePlayer.getController().getTask(TaskId.ITEM_USE).isDone()) {
+				if (activePlayer.getController().hasScheduledTask(TaskId.ITEM_USE) && !activePlayer.getController().getTask(TaskId.ITEM_USE).isDone()) {
 					PacketSendUtility.sendPacket(activePlayer, SM_SYSTEM_MESSAGE.STR_CANT_EQUIP_ITEM_IN_ACTION);
 					return;
-				}
-				// checking for stance
-				if (activePlayer.getController().isUnderStance()) {
+				} if (activePlayer.getController().isUnderStance()) {
 					activePlayer.getController().stopStance();
 				}
 				equipment.switchHands();
-				break;
-		}
-		if (resultItem != null || action == 2) {
+			break;
+		} if (resultItem != null || action == 2) {
 			PacketSendUtility.broadcastPacket(activePlayer, new SM_UPDATE_PLAYER_APPEARANCE(activePlayer.getObjectId(), equipment.getEquippedForApparence()), true);
 		}
 	}

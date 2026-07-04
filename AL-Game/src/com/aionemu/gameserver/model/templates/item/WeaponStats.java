@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.templates.item;
 
@@ -45,6 +45,16 @@ public class WeaponStats {
 	protected int hitCount;
 	@XmlAttribute(name = "reduce_max")
 	protected int reduceMax;
+
+	//6.0
+	@XmlAttribute(name = "physical_power_boost")
+	protected int physicalPowerBoost;
+	@XmlAttribute(name = "physical_power_boost_resist")
+	protected int physicalPowerBoostResist;
+	@XmlAttribute(name = "magical_power_boost")
+	protected int magicalPowerBoost;
+	@XmlAttribute(name = "magical_power_boost_resist")
+	protected int magicalPowerBoostResist;
 
 	public final int getMinDamage() {
 		return minDamage;
@@ -92,5 +102,21 @@ public class WeaponStats {
 
 	public final int getReduceMax() {
 		return reduceMax;
+	}
+
+	public int getMagicalPowerBoost() {
+		return magicalPowerBoost;
+	}
+
+	public int getMagicalPowerBoostResist() {
+		return magicalPowerBoostResist;
+	}
+
+	public int getPhysicalPowerBoost() {
+		return physicalPowerBoost;
+	}
+
+	public int getPhysicalPowerBoostResist() {
+		return physicalPowerBoostResist;
 	}
 }

@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.ai2;
 
@@ -20,12 +20,10 @@ import com.aionemu.gameserver.ai2.handler.ActivateEventHandler;
 import com.aionemu.gameserver.ai2.handler.DiedEventHandler;
 import com.aionemu.gameserver.ai2.handler.ShoutEventHandler;
 import com.aionemu.gameserver.ai2.handler.SpawnEventHandler;
-import com.aionemu.gameserver.ai2.handler.ThinkEventHandler;
 import com.aionemu.gameserver.ai2.poll.AIAnswer;
 import com.aionemu.gameserver.ai2.poll.AIAnswers;
 import com.aionemu.gameserver.ai2.poll.AIQuestion;
 import com.aionemu.gameserver.ai2.poll.NpcAIPolls;
-import com.aionemu.gameserver.configs.administration.DeveloperConfig;
 import com.aionemu.gameserver.configs.main.AIConfig;
 import com.aionemu.gameserver.controllers.attack.AggroList;
 import com.aionemu.gameserver.controllers.effect.EffectController;
@@ -39,7 +37,6 @@ import com.aionemu.gameserver.model.skill.NpcSkillList;
 import com.aionemu.gameserver.model.stats.container.NpcLifeStats;
 import com.aionemu.gameserver.model.templates.npc.NpcTemplate;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
-import com.aionemu.gameserver.services.debug.StatAuditService;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.world.knownlist.KnownList;
 
@@ -48,7 +45,7 @@ import com.aionemu.gameserver.world.knownlist.KnownList;
  */
 @AIName("npc")
 public class NpcAI2 extends AITemplate {
-
+	
 	@Override
 	public Npc getOwner() {
 		return (Npc) super.getOwner();
@@ -85,7 +82,7 @@ public class NpcAI2 extends AITemplate {
 	protected AggroList getAggroList() {
 		return getOwner().getAggroList();
 	}
-
+	
 	protected NpcSkillList getSkillList() {
 		return getOwner().getSkillList();
 	}
@@ -108,19 +105,9 @@ public class NpcAI2 extends AITemplate {
 	protected int getCreatorId() {
 		return getOwner().getCreatorId();
 	}
-
+	
 	protected boolean isInRange(VisibleObject object, int range) {
 		return MathUtil.isIn3dRange(getOwner(), object, range);
-	}
-
-
-	@Override
-	public void think() {
-		if (!DeveloperConfig.AI_DEFAULT_THINK_ENABLE) {
-			return;
-		}
-		StatAuditService.getInstance().aiWalk(getOwner(), "think", "state=" + getState() + " subState=" + getSubState());
-		ThinkEventHandler.onThink(this);
 	}
 
 	@Override
@@ -145,9 +132,8 @@ public class NpcAI2 extends AITemplate {
 
 	@Override
 	protected void handleDespawned() {
-		if (poll(AIQuestion.CAN_SHOUT)) {
+		if (poll(AIQuestion.CAN_SHOUT))
 			ShoutEventHandler.onBeforeDespawn(this);
-		}
 		SpawnEventHandler.onDespawn(this);
 	}
 
@@ -158,18 +144,16 @@ public class NpcAI2 extends AITemplate {
 
 	@Override
 	protected void handleMoveArrived() {
-		if (!poll(AIQuestion.CAN_SHOUT) || getSpawnTemplate().getWalkerId() == null) {
+		if (!poll(AIQuestion.CAN_SHOUT) || getSpawnTemplate().getWalkerId() == null)
 			return;
-		}
 		ShoutEventHandler.onReachedWalkPoint(this);
 	}
 
 	@Override
 	protected void handleTargetChanged(Creature creature) {
 		super.handleMoveArrived();
-		if (!poll(AIQuestion.CAN_SHOUT)) {
+		if (!poll(AIQuestion.CAN_SHOUT))
 			return;
-		}
 		ShoutEventHandler.onSwitchedTarget(this, creature);
 	}
 
@@ -192,13 +176,13 @@ public class NpcAI2 extends AITemplate {
 	@Override
 	public boolean isMayShout() {
 		// temp fix, we shouldn't rely on it because of inheritance
-		if (AIConfig.SHOUTS_ENABLE) {
+		if (AIConfig.SHOUTS_ENABLE)
 			return getOwner().mayShout(0);
-		}
 		return false;
 	}
 
 	public boolean isMoveSupported() {
 		return getOwner().getGameStats().getMovementSpeedFloat() > 0 && !this.isInSubState(AISubState.FREEZE);
 	}
+
 }

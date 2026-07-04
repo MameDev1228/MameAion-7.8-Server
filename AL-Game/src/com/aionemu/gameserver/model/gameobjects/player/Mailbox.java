@@ -1,41 +1,33 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.gameobjects.player;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import com.aionemu.gameserver.model.gameobjects.Letter;
 import com.aionemu.gameserver.model.gameobjects.LetterType;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_MAIL_SERVICE;
 import com.aionemu.gameserver.services.mail.MailService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-
 import javolution.util.FastMap;
+
+import java.util.*;
 
 /**
  * @author kosyachok
- * @author Atracer
- * @author Antraxx
+ * @modified Atracer
  */
 public class Mailbox {
 
@@ -43,6 +35,7 @@ public class Mailbox {
 	private Map<Integer, Letter> reserveMail = new FastMap<Integer, Letter>().shared();
 	private Player owner;
 	public boolean isMailListUpdateRequired;
+
 	// 0x00 - closed
 	// 0x01 - regular
 	// 0x02 - express
@@ -56,17 +49,15 @@ public class Mailbox {
 	 * @param letter
 	 */
 	public void putLetterToMailbox(Letter letter) {
-		if (haveFreeSlots()) {
+		if (haveFreeSlots())
 			mails.put(letter.getObjectId(), letter);
-		}
-		else {
+		else
 			reserveMail.put(letter.getObjectId(), letter);
-		}
 	}
 
 	/**
 	 * Get all letters in mailbox (sorted according to time received)
-	 *
+	 * 
 	 * @return
 	 */
 	public Collection<Letter> getLetters() {
@@ -74,14 +65,14 @@ public class Mailbox {
 
 			@Override
 			public int compare(Letter o1, Letter o2) {
-				if (o1.getTimeStamp().getTime() > o2.getTimeStamp().getTime()) {
-					return -1;
-				}
-				if (o1.getTimeStamp().getTime() < o2.getTimeStamp().getTime()) {
+				if (o1.getTimeStamp().getTime() > o2.getTimeStamp().getTime())
 					return 1;
-				}
+				if (o1.getTimeStamp().getTime() < o2.getTimeStamp().getTime())
+					return -1;
+
 				return o1.getObjectId() > o2.getObjectId() ? 1 : -1;
 			}
+
 		});
 
 		for (Letter letter : mails.values()) {
@@ -92,24 +83,21 @@ public class Mailbox {
 
 	/**
 	 * Get system letters which senders start with the string specified and were received since the last player login
-	 *
+	 * 
 	 * @param substring
-	 *            must start with special characters: % or $$
+	 *          must start with special characters: % or $$
 	 * @return new list of letters
 	 */
 	public List<Letter> getNewSystemLetters(String substring) {
 		List<Letter> letters = new ArrayList<Letter>();
 		for (Letter letter : mails.values()) {
-			if (letter.getSenderName() == null || !letter.isUnread()) {
+			if (letter.getSenderName() == null || !letter.isUnread())
 				continue;
-			}
-			if (owner.getCommonData().getLastOnline().getTime() > letter.getTimeStamp().getTime()) {
+			if (owner.getCommonData().getLastOnline().getTime() > letter.getTimeStamp().getTime())
 				continue;
-			}
 			if (letter.getSenderName().startsWith("%") || letter.getSenderName().startsWith("$$")) {
-				if (letter.getSenderName().startsWith(substring)) {
+				if (letter.getSenderName().startsWith(substring))
 					letters.add(letter);
-				}
 			}
 		}
 		return letters;
@@ -117,7 +105,7 @@ public class Mailbox {
 
 	/**
 	 * Get letter with specified letter id
-	 *
+	 * 
 	 * @param letterObjId
 	 * @return
 	 */
@@ -127,14 +115,13 @@ public class Mailbox {
 
 	/**
 	 * Check whether mailbox contains empty letters
-	 *
+	 * 
 	 * @return
 	 */
 	public boolean haveUnread() {
 		for (Letter letter : mails.values()) {
-			if (letter.isUnread()) {
+			if (letter.isUnread())
 				return true;
-			}
 		}
 		return false;
 	}
@@ -142,18 +129,16 @@ public class Mailbox {
 	public final int getUnreadCount() {
 		int unreadCount = 0;
 		for (Letter letter : mails.values()) {
-			if (letter.isUnread()) {
+			if (letter.isUnread())
 				unreadCount++;
-			}
 		}
 		return unreadCount;
 	}
 
 	public boolean haveUnreadByType(LetterType letterType) {
 		for (Letter letter : mails.values()) {
-			if (letter.isUnread() && letter.getLetterType() == letterType) {
+			if (letter.isUnread() && letter.getLetterType() == letterType)
 				return true;
-			}
 		}
 		return false;
 	}
@@ -161,9 +146,8 @@ public class Mailbox {
 	public final int getUnreadCountByType(LetterType letterType) {
 		int count = 0;
 		for (Letter letter : mails.values()) {
-			if (letter.isUnread() && letter.getLetterType() == letterType) {
+			if (letter.isUnread() && letter.getLetterType() == letterType)
 				count++;
-			}
 		}
 		return count;
 	}
@@ -185,7 +169,7 @@ public class Mailbox {
 
 	/**
 	 * Current size of mailbox
-	 *
+	 * 
 	 * @return
 	 */
 	public int size() {
@@ -199,9 +183,8 @@ public class Mailbox {
 					mails.put(letter.getObjectId(), letter);
 					reserveMail.remove(letter.getObjectId());
 				}
-				else {
+				else
 					break;
-				}
 			}
 			MailService.getInstance().refreshMail(getOwner());
 		}
@@ -214,4 +197,5 @@ public class Mailbox {
 	public Player getOwner() {
 		return owner;
 	}
+
 }

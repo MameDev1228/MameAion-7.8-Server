@@ -1,0 +1,71 @@
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
+ *
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Encom is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package ai.instance.tallocsHollow;
+
+import com.aionemu.gameserver.ai2.AIName;
+import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.utils.ThreadPoolManager;
+
+import java.util.concurrent.Future;
+
+/****/
+/** Author Rinzler (Encom)
+/****/
+
+@AIName("Mosqua_Egg")
+public class Mosqua_EggAI2 extends NpcAI2
+{
+	private Future<?> mosquaEggTask;
+	
+	@Override
+	public void think() {
+	}
+	
+	@Override
+	protected void handleSpawned() {
+		super.handleSpawned();
+		supraklaw();
+	}
+	
+	private void supraklaw() {
+		mosquaEggTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
+			@Override
+			public void run() {
+				getOwner().getController().onDelete();
+				spawn(653452, getOwner().getX(), getOwner().getY(), getOwner().getZ(), (byte) getOwner().getHeading());
+			}
+		}, 10000, 60000);
+	}
+	
+	@Override
+	protected void handleDied() {
+		super.handleDied();
+		mosquaEggTask.cancel(true);
+		getOwner().getController().onDelete();
+	}
+	
+	@Override
+	protected void handleDespawned() {
+		super.handleDespawned();
+		mosquaEggTask.cancel(true);
+	}
+	
+	@Override
+	public boolean isMoveSupported() {
+		return false;
+	}
+}

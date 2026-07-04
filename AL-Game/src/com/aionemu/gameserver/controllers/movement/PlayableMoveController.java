@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.controllers.movement;
 
@@ -32,10 +32,12 @@ public abstract class PlayableMoveController<T extends Creature> extends Creatur
 
 	private boolean sendMovePacket = true;
 	private int movementHeading = -1;
+
 	public float vehicleX;
 	public float vehicleY;
 	public float vehicleZ;
 	public int vehicleSpeed;
+
 	public float vectorX;
 	public float vectorY;
 	public float vectorZ;
@@ -104,8 +106,10 @@ public abstract class PlayableMoveController<T extends Creature> extends Creatur
 		float newZ = (targetDestZ - z) * distFraction + z;
 
 		/*
-		 * if ((movementMask & MovementMask.MOUSE) == 0) { targetDestX = newX + vectorX; targetDestY = newY + vectorY; targetDestZ = newZ + vectorZ; }
+		 * if ((movementMask & MovementMask.MOUSE) == 0) { targetDestX = newX + vectorX; targetDestY = newY + vectorY;
+		 * targetDestZ = newZ + vectorZ; }
 		 */
+
 		World.getInstance().updatePosition(owner, newX, newY, newZ, heading, false);
 		updateLastMove();
 	}
@@ -132,25 +136,18 @@ public abstract class PlayableMoveController<T extends Creature> extends Creatur
 		float h = MathUtil.calculateAngleFrom(owner.getX(), owner.getY(), targetDestX, targetDestY);
 		if (h != 0) {
 			int value = (int) (((heading * 3) - h) / 45);
-			if (value < 0) {
+			if (value < 0)
 				value += 8;
-			}
 			if (movementHeading != value) {
 				movementHeading = value;
 			}
 		}
 	}
 
-	@Override
-	public void skillMovement() {
-		this.movementMask = MovementMask.IMMEDIATE;
-		PacketSendUtility.broadcastPacketAndReceive(owner, new SM_MOVE(owner));
-	}
-
 	public int getMovementHeading() {
-		if (!isInMove()) {
+		if (!isInMove())
 			return -1;
-		}
 		return movementHeading;
 	}
+
 }

@@ -1,27 +1,36 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * Copyright (c) 2009-2010 jMonkeyEngine
+ * All rights reserved.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * * Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ *
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
+ *   may be used to endorse or promote products derived from this software
+ *   without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.aionemu.gameserver.geoEngine.scene;
 
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.nio.ShortBuffer;
-import java.util.ArrayList;
+package com.aionemu.gameserver.geoEngine.scene;
 
 import com.aionemu.gameserver.geoEngine.bounding.BoundingBox;
 import com.aionemu.gameserver.geoEngine.bounding.BoundingVolume;
@@ -43,11 +52,13 @@ import com.aionemu.gameserver.geoEngine.utils.BufferUtils;
 import com.aionemu.gameserver.geoEngine.utils.IntMap;
 import com.aionemu.gameserver.geoEngine.utils.IntMap.Entry;
 
+import java.nio.*;
+import java.util.ArrayList;
+
 public class Mesh {
 
 	// TODO: Document this enum
 	public enum Mode {
-
 		Points,
 		Lines,
 		LineLoop,
@@ -59,23 +70,31 @@ public class Mesh {
 	}
 
 	// private static final int BUFFERS_SIZE = VertexBuffer.Type.BoneIndex.ordinal() + 1;
+
 	/**
 	 * The bounding volume that contains the mesh entirely. By default a BoundingBox (AABB).
 	 */
 	private BoundingVolume meshBound = new BoundingBox();
+
 	private CollisionData collisionTree = null;
+
 	// private EnumMap<VertexBuffer.Type, VertexBuffer> buffers = new EnumMap<Type,
 	// VertexBuffer>(VertexBuffer.Type.class);
 	// private VertexBuffer[] buffers = new VertexBuffer[BUFFERS_SIZE];
 	private IntMap<VertexBuffer> buffers = new IntMap<VertexBuffer>();
 	private float pointSize = 1;
 	private float lineWidth = 1;
+
 	private transient int vertexArrayID = -1;
+
 	private int vertCount = -1;
 	private int elementCount = -1;
 	private int maxNumWeights = -1; // only if using skeletal animation
+
 	private int[] modeStart;
+
 	private Mode mode = Mode.Triangles;
+
 	private short collisionFlags = -1;
 
 	public Mesh() {
@@ -125,21 +144,18 @@ public class Mesh {
 	/**
 	 * Locks the mesh so it cannot be modified anymore, thus optimizing its data.
 	 */
-	@SuppressWarnings("unchecked")
 	public void setStatic() {
 		for (Entry<VertexBuffer> entry : buffers) {
 			entry.getValue().setUsage(Usage.Static);
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public void setStreamed() {
 		for (Entry<VertexBuffer> entry : buffers) {
 			entry.getValue().setUsage(Usage.Stream);
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public void setInterleaved() {
 		ArrayList<VertexBuffer> vbs = new ArrayList<VertexBuffer>();
 		for (Entry<VertexBuffer> entry : buffers) {
@@ -235,9 +251,8 @@ public class Mesh {
 	}
 
 	public void updateCounts() {
-		if (getBuffer(Type.InterleavedData) != null) {
+		if (getBuffer(Type.InterleavedData) != null)
 			throw new IllegalStateException("Should update counts before interleave");
-		}
 
 		VertexBuffer pb = getBuffer(Type.Position);
 		VertexBuffer ib = getBuffer(Type.Index);
@@ -320,9 +335,8 @@ public class Mesh {
 	}
 
 	public void setId(int id) {
-		if (vertexArrayID != -1) {
+		if (vertexArrayID != -1)
 			throw new IllegalStateException("ID has already been set.");
-		}
 
 		vertexArrayID = id;
 	}
@@ -348,9 +362,8 @@ public class Mesh {
 	public void setBuffer(Type type, int components, FloatBuffer buf) {
 		VertexBuffer vb = buffers.get(type.ordinal());
 		if (vb == null) {
-			if (buf == null) {
+			if (buf == null)
 				return;
-			}
 
 			vb = new VertexBuffer(type);
 			vb.setupData(Usage.Dynamic, components, Format.Float, buf);
@@ -406,9 +419,8 @@ public class Mesh {
 	}
 
 	public void setBuffer(VertexBuffer vb) {
-		if (buffers.containsKey(vb.getBufferType().ordinal())) {
+		if (buffers.containsKey(vb.getBufferType().ordinal()))
 			throw new IllegalArgumentException("Buffer type already set: " + vb.getBufferType());
-		}
 
 		buffers.put(vb.getBufferType().ordinal(), vb);
 	}
@@ -427,27 +439,24 @@ public class Mesh {
 
 	public FloatBuffer getFloatBuffer(Type type) {
 		VertexBuffer vb = getBuffer(type);
-		if (vb == null) {
+		if (vb == null)
 			return null;
-		}
 
 		return (FloatBuffer) vb.getData();
 	}
 
 	public ShortBuffer getShortBuffer(Type type) {
 		VertexBuffer vb = getBuffer(type);
-		if (vb == null) {
+		if (vb == null)
 			return null;
-		}
 
 		return (ShortBuffer) vb.getData();
 	}
 
 	public IndexBuffer getIndexBuffer() {
 		VertexBuffer vb = getBuffer(Type.Index);
-		if (vb == null) {
+		if (vb == null)
 			return null;
-		}
 
 		Buffer buf = vb.getData();
 		if (buf instanceof ByteBuffer) {
@@ -466,17 +475,14 @@ public class Mesh {
 
 	public void scaleTextureCoordinates(Vector2f scaleFactor) {
 		VertexBuffer tc = getBuffer(Type.TexCoord);
-		if (tc == null) {
+		if (tc == null)
 			throw new IllegalStateException("The mesh has no texture coordinates");
-		}
 
-		if (tc.getFormat() != VertexBuffer.Format.Float) {
+		if (tc.getFormat() != VertexBuffer.Format.Float)
 			throw new UnsupportedOperationException("Only float texture coord format is supported");
-		}
 
-		if (tc.getNumComponents() != 2) {
+		if (tc.getNumComponents() != 2)
 			throw new UnsupportedOperationException("Only 2D texture coords are supported");
-		}
 
 		FloatBuffer fb = (FloatBuffer) tc.getData();
 		fb.clear();
@@ -493,9 +499,8 @@ public class Mesh {
 
 	public void updateBound() {
 		VertexBuffer posBuf = getBuffer(VertexBuffer.Type.Position);
-		if (meshBound == null) {
+		if (meshBound == null)
 			meshBound = new BoundingBox();
-		}
 		if (posBuf != null) {
 			meshBound.computeFromPoints((FloatBuffer) posBuf.getData());
 		}
@@ -520,12 +525,13 @@ public class Mesh {
 	public void setCollisionFlags(short collisionFlags) {
 		this.collisionFlags = collisionFlags;
 	}
-
+	
 	public byte getMaterialId() {
 		return (byte) (collisionFlags & 0xFF);
 	}
-
+	
 	public byte getIntentions() {
 		return (byte) (collisionFlags >> 8);
 	}
+
 }

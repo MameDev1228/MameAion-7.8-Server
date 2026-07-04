@@ -1,19 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package com.aionemu.gameserver.world.zone.handler;
 
 import com.aionemu.gameserver.controllers.observer.ActionObserver;
@@ -25,7 +26,6 @@ import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.templates.materials.MaterialSkill;
 import com.aionemu.gameserver.model.templates.materials.MaterialTemplate;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
-
 import javolution.util.FastMap;
 
 /**
@@ -34,6 +34,7 @@ import javolution.util.FastMap;
 public class MaterialZoneHandler implements ZoneHandler {
 
 	FastMap<Integer, IActor> observed = new FastMap<Integer, IActor>();
+
 	private Spatial geometry;
 	private MaterialTemplate template;
 	private boolean actOnEnter = false;
@@ -42,8 +43,9 @@ public class MaterialZoneHandler implements ZoneHandler {
 	public MaterialZoneHandler(Spatial geometry, MaterialTemplate template) {
 		this.geometry = geometry;
 		this.template = template;
-		String name = geometry.getName();
-		if (name.indexOf("FIRE_BOX") != -1 || name.indexOf("FIRE_SEMISPHERE") != -1 || name.indexOf("FIREPOT") != -1 || name.indexOf("FIRE_CYLINDER") != -1 || name.indexOf("FIRE_CONE") != -1 || name.startsWith("BU_H_CENTERHALL"))
+		String name = geometry.getName(); 
+		if (name.indexOf("FIRE_BOX") != -1 || name.indexOf("FIRE_SEMISPHERE") != -1 || name.indexOf("FIREPOT") != -1 ||
+			name.indexOf("FIRE_CYLINDER") != -1 || name.indexOf("FIRE_CONE") != -1 || name.startsWith("BU_H_CENTERHALL"))
 			actOnEnter = true;
 		if (name.startsWith("BU_AB_DARKSP"))
 			ownerRace = Race.ASMODIANS;
@@ -80,4 +82,5 @@ public class MaterialZoneHandler implements ZoneHandler {
 			actor.abort();
 		}
 	}
+
 }

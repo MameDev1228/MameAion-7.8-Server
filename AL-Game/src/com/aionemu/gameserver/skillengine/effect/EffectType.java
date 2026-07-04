@@ -1,41 +1,25 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.skillengine.effect;
 
-/**
- * @author kecimis
- */
-public enum EffectType {
-
+public enum EffectType
+{
+	ABSOLUTEAPPOINTHEALINSTANT,
+	ABSOLUTEEXPPOINTHEALINSTANT,
+	ABSOLUTEFAMEPOINTHEALINSTANT,
 	ABSOLUTESLOW,
 	ABSOLUTESNARE,
 	ABSOLUTESTATTOPCBUFF,
 	ABSOLUTESTATTOPCDEBUFF,
-	ABSOLUTEFAMEPOINTHEALINSTANT,
 	ACTIVATEENSLAVE,
+	ALWAYSHIT,
 	ALWAYSBLOCK,
 	ALWAYSDODGE,
 	ALWAYSPARRY,
 	ALWAYSRESIST,
+	ALWAYSNORESIST,
 	APBOOST,
 	ARMORMASTERY,
 	AURA,
 	BACKDASH,
-	FRONTDASH,
 	BIND,
 	BLEED,
 	BLIND,
@@ -95,6 +79,7 @@ public enum EffectType {
 	HEALCASTORONATTACKED,
 	HEALCASTORONTARGETDEAD,
 	HEALINSTANT,
+	HEALANDFIREONZEROHP,
 	HIDE,
 	HIPASS,
 	HOSTILEUP,
@@ -112,6 +97,7 @@ public enum EffectType {
 	NOREDUCESPELLATKINSTANT,
 	NORESURRECTPENALTY,
 	ONETIMEBOOSTHEAL,
+	ONETIMEGETBOOSTEDDAMAGE,
 	ONETIMEBOOSTSKILLATTACK,
 	ONETIMEBOOSTSKILLCRITICAL,
 	OPENAERIAL,
@@ -119,6 +105,7 @@ public enum EffectType {
 	PETORDERUNSUMMON,
 	PETORDERUSEULTRASKILL,
 	PETRIFICATION,
+	PETRIFICATION2,
 	POISON,
 	POLYMORPH,
 	PROCATKINSTANT,
@@ -150,6 +137,7 @@ public enum EffectType {
 	SIGNETBURST,
 	SILENCE,
 	SIMPLEROOT,
+	SKILLATKDRAIN,
 	SKILLATKDRAININSTANT,
 	SKILLATTACKINSTANT,
 	SKILLCOOLTIMERESET,
@@ -179,20 +167,20 @@ public enum EffectType {
 	SUMMONHOUSEGATE,
 	SUMMONSERVANT,
 	SUMMONSKILLAREA,
+	SUMMONCHANNELLINGAREA,
 	SUMMONTOTEM,
 	SUMMONTRAP,
+	SUMMONKISK,
 	SWITCHHOSTILE,
 	SWITCHHPMP,
-	TARGETTELEPORT,
 	TARGETCHANGE,
+	TARGETCHANNELLING,
+	TARGETTELEPORT,
 	WEAPONSTATBOOST,
 	WEAPONSTATUP,
 	WEAPONDUAL,
 	WEAPONMASTERY,
+	WORLDPLAYTIME,
 	XPBOOST,
-	XPHEALINSTANT,
-	STUNALWAYS,
-	DELAYEDSKILL2,
-	SILVERSTAR,
-	WORLDPLAYTIME
+	XPHEALINSTANT;
 }

@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.team2.alliance.events;
 
@@ -29,23 +29,23 @@ import com.google.common.base.Predicate;
  */
 public class ChangeAllianceLootRulesEvent extends AlwaysTrueTeamEvent implements Predicate<Player> {
 
-	private final PlayerAlliance alliance;
-	private final LootGroupRules lootGroupRules;
+    private final PlayerAlliance alliance;
+    private final LootGroupRules lootGroupRules;
 
-	public ChangeAllianceLootRulesEvent(PlayerAlliance alliance, LootGroupRules lootGroupRules) {
-		this.alliance = alliance;
-		this.lootGroupRules = lootGroupRules;
-	}
+    public ChangeAllianceLootRulesEvent(PlayerAlliance alliance, LootGroupRules lootGroupRules) {
+        this.alliance = alliance;
+        this.lootGroupRules = lootGroupRules;
+    }
 
-	@Override
-	public void handleEvent() {
-		alliance.setLootGroupRules(lootGroupRules);
-		alliance.applyOnMembers(this);
-	}
+    @Override
+    public void handleEvent() {
+        alliance.setLootGroupRules(lootGroupRules);
+        alliance.applyOnMembers(this);
+    }
 
-	@Override
-	public boolean apply(Player member) {
-		PacketSendUtility.sendPacket(member, new SM_ALLIANCE_INFO(alliance));
-		return true;
-	}
+    @Override
+    public boolean apply(Player member) {
+        PacketSendUtility.sendPacket(member, new SM_ALLIANCE_INFO(alliance));
+        return true;
+    }
 }

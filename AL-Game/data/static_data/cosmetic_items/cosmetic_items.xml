@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- parsed by phpTools from Aion Germany Group (Mariella) at 2021-01-22 15:41 -->
+<!--
+	Cosmetic Item
+	Made By Encom
+ -->
 <cosmetic_items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cosmetic_items.xsd">
-    <cosmetic_item type="hair_type" cosmetic_name="test_hair_type_li_m_01a" id="1" race="ELYOS" gender_permitted="MALE"/>
+	<cosmetic_item type="hair_type" cosmetic_name="test_hair_type_li_m_01a" id="1" race="ELYOS" gender_permitted="MALE"/>
     <cosmetic_item type="hair_type" cosmetic_name="test_hair_type_li_m_02a" id="2" race="ELYOS" gender_permitted="MALE"/>
     <cosmetic_item type="hair_type" cosmetic_name="cash_hair_type_li_m_01a" id="0" race="ELYOS" gender_permitted="MALE"/>
     <cosmetic_item type="hair_type" cosmetic_name="cash_hair_type_li_m_02a" id="1" race="ELYOS" gender_permitted="MALE"/>

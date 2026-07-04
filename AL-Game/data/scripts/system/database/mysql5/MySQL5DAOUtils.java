@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of aion-emu <aion-emu.com>.
  *
  * aion-emu is free software: you can redistribute it and/or modify
@@ -8,17 +8,15 @@
  *
  * aion-emu is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
+ * along with aion-emu. If not, see <http://www.gnu.org/licenses/>.
  */
 package mysql5;
 
 /**
- * DAO utils for MySQL5
- * 
  * @author SoulKeeper
  */
 public class MySQL5DAOUtils {
@@ -32,18 +30,14 @@ public class MySQL5DAOUtils {
 	 * Returns true only if DB supports MySQL5
 	 * 
 	 * @param db
-	 *            database name
+	 *          database name
 	 * @param majorVersion
-	 *            major version
+	 *          major version
 	 * @param minorVersion
-	 *            minor version, ignored
+	 *          minor version, ignored
 	 * @return supports or not
 	 */
 	public static boolean supports(String db, int majorVersion, int minorVersion) {
-		if (db == null) {
-			return false;
-		}
-		String databaseName = db.toLowerCase(java.util.Locale.ROOT);
-		return (databaseName.contains("mysql") || databaseName.contains("mariadb")) && majorVersion >= 5;
+		return MYSQL_DB_NAME.equalsIgnoreCase(db) && majorVersion >= 5;
 	}
 }

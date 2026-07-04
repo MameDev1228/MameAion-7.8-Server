@@ -1,44 +1,45 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * This file is part of aion-lightning <aion-lightning.org>.
+ * 
+ * aion-lightning is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * aion-lightning is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.utils.collections.cachemap;
+
+import org.slf4j.Logger;
 
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-
 /**
  * Base class for {@link WeakCacheMap} and {@link SoftCacheMap}
- *
+ * 
+ * @author Luno
  * @param <K>
  * @param <V>
- * @author Luno
  */
 abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
 
 	private final Logger log;
+
 	protected final String cacheName;
 	protected final String valueName;
-	/**
-	 * Map storing references to cached objects
-	 */
+
+	/** Map storing references to cached objects */
 	protected final Map<K, Reference<V>> cacheMap = new HashMap<K, Reference<V>>();
+
 	protected final ReferenceQueue<V> refQueue = new ReferenceQueue<V>();
 
 	/**
@@ -51,44 +52,36 @@ abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
 		this.log = log;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public void put(K key, V value) {
 		cleanQueue();
 
-		if (cacheMap.containsKey(key)) {
+		if (cacheMap.containsKey(key))
 			throw new IllegalArgumentException("Key: " + key + " already exists in map");
-		}
 
 		Reference<V> entry = newReference(key, value, refQueue);
 
 		cacheMap.put(key, entry);
 
-		if (log.isDebugEnabled()) {
+		if (log.isDebugEnabled())
 			log.debug(cacheName + " : added " + valueName + " for key: " + key);
-		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public V get(K key) {
 		cleanQueue();
 
 		Reference<V> reference = cacheMap.get(key);
 
-		if (reference == null) {
+		if (reference == null)
 			return null;
-		}
 
 		V res = reference.get();
 
-		if (res != null && log.isDebugEnabled()) {
+		if (res != null && log.isDebugEnabled())
 			log.debug(cacheName + " : obtained " + valueName + " for key: " + key);
-		}
 
 		return res;
 	}

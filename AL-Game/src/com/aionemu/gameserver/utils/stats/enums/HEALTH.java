@@ -1,51 +1,48 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.utils.stats.enums;
 
-/**
- * @author ATracer
- */
-public enum HEALTH {
-
+public enum HEALTH
+{
 	WARRIOR(110),
-	GLADIATOR(115),
-	TEMPLAR(100),
+	GLADIATOR(110),
+	TEMPLAR(110),
 	SCOUT(100),
 	ASSASSIN(100),
-	RANGER(90),
+	RANGER(100),
 	MAGE(90),
 	SORCERER(90),
 	SPIRIT_MASTER(90),
 	PRIEST(95),
-	CLERIC(110),
-	CHANTER(105),
-	ENGINEER(100),
-	RIDER(90),
-	GUNNER(100),
-	ARTIST(90),
-	PAINTER(100),
-	BARD(95);
-
+	CLERIC(95),
+	CHANTER(95),
+	TECHNIST(100),
+	GUNSLINGER(100),
+	MUSE(95),
+	SONGWEAVER(95),
+	AETHERTECH(100),
+	VANDAL(95);
+	
 	private int value;
-
+	
 	private HEALTH(int value) {
 		this.value = value;
 	}
-
+	
 	public int getValue() {
 		return value;
 	}

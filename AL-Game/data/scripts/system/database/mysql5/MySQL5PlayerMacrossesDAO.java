@@ -1,30 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-unique is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-unique is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-unique. If not, see <http://www.gnu.org/licenses/>.
  */
 package mysql5;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.DB;
 import com.aionemu.commons.database.DatabaseFactory;
@@ -32,6 +22,15 @@ import com.aionemu.commons.database.IUStH;
 import com.aionemu.gameserver.dao.MySQL5DAOUtils;
 import com.aionemu.gameserver.dao.PlayerMacrossesDAO;
 import com.aionemu.gameserver.model.gameobjects.player.MacroList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Aquanox
@@ -46,11 +45,11 @@ public class MySQL5PlayerMacrossesDAO extends PlayerMacrossesDAO {
 
 	/**
 	 * Add a macro information into database
-	 *
+	 * 
 	 * @param playerId
-	 *            player object id
+	 *          player object id
 	 * @param macro
-	 *            macro contents.
+	 *          macro contents.
 	 */
 	@Override
 	public void addMacro(final int playerId, final int macroPosition, final String macro) {
@@ -82,9 +81,7 @@ public class MySQL5PlayerMacrossesDAO extends PlayerMacrossesDAO {
 		});
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public void deleteMacro(final int playerId, final int macroPosition) {
 		DB.insertUpdate(DELETE_QUERY, new IUStH() {
@@ -99,9 +96,7 @@ public class MySQL5PlayerMacrossesDAO extends PlayerMacrossesDAO {
 		});
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public MacroList restoreMacrosses(final int playerId) {
 		final Map<Integer, String> macrosses = new HashMap<Integer, String>();
@@ -129,9 +124,7 @@ public class MySQL5PlayerMacrossesDAO extends PlayerMacrossesDAO {
 		return new MacroList(macrosses);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public boolean supports(String databaseName, int majorVersion, int minorVersion) {
 		return MySQL5DAOUtils.supports(databaseName, majorVersion, minorVersion);

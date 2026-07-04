@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zones>
+	<zone mapid="302690000" name="ESTATE_PARTY_ROOM_302690000" area_type="POLYGON" zone_type="SUB" priority="20" flags="0">
+		<points bottom="159.214493" top="209.214493">
+            <point x="622.100098" y="503.250305"/>
+            <point x="622.962952" y="422.838684"/>
+            <point x="688.237915" y="423.092255"/>
+            <point x="689.082458" y="504.912750"/>
+		</points>
+	</zone>
+	<zone mapid="302690000" name="CELESTIAL_FLOWER_GARDEN_302690000" area_type="POLYGON" zone_type="SUB" priority="19" flags="0">
+		<points bottom="163.028931" top="213.028931">
+            <point x="504.196930" y="356.468262"/>
+            <point x="503.456635" y="610.570496"/>
+            <point x="624.535461" y="609.501343"/>
+            <point x="625.908508" y="354.472687"/>
+		</points>
+	</zone>
+	<zone mapid="302690000" name="COASTAL_CLIFF_PATHWAY_302690000" area_type="POLYGON" zone_type="SUB" priority="18" flags="0">
+		<points bottom="164.033768" top="214.033768">
+            <point x="495.523956" y="597.568726"/>
+            <point x="617.439026" y="600.583130"/>
+            <point x="615.263672" y="696.394653"/>
+            <point x="495.146667" y="686.490906"/>
+		</points>
+	</zone>
+	<zone mapid="302690000" name="COASTAL_CLIFF_302690000" area_type="POLYGON" zone_type="SUB" priority="17" flags="0">
+		<points bottom="163.128937" top="213.128937">
+            <point x="489.002197" y="675.919922"/>
+            <point x="479.242981" y="785.946106"/>
+            <point x="610.810913" y="806.480591"/>
+            <point x="598.451965" y="685.640869"/>
+		</points>
+	</zone>
+</zones>

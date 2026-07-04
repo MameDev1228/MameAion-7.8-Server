@@ -1,19 +1,3 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.geoEngine;
 
 import java.io.File;
@@ -40,16 +24,14 @@ import com.aionemu.gameserver.geoEngine.collision.CollisionIntention;
 import com.aionemu.gameserver.geoEngine.math.Matrix3f;
 import com.aionemu.gameserver.geoEngine.math.Vector3f;
 import com.aionemu.gameserver.geoEngine.models.GeoMap;
-import com.aionemu.gameserver.geoEngine.scene.Geometry;
-import com.aionemu.gameserver.geoEngine.scene.Mesh;
-import com.aionemu.gameserver.geoEngine.scene.Node;
-import com.aionemu.gameserver.geoEngine.scene.Spatial;
-import com.aionemu.gameserver.geoEngine.scene.VertexBuffer;
+import com.aionemu.gameserver.geoEngine.scene.*;
 import com.aionemu.gameserver.geoEngine.scene.mesh.DoorGeometry;
 import com.aionemu.gameserver.model.templates.materials.MaterialTemplate;
 import com.aionemu.gameserver.world.zone.ZoneName;
 import com.aionemu.gameserver.world.zone.ZoneService;
 
+import java.lang.reflect.Field;
+import sun.misc.Unsafe;
 
 /**
  * @author Mr. Poke
@@ -293,16 +275,13 @@ public class GeoWorldLoader {
 			return;
 		}
 		try {
-			Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
-			java.lang.reflect.Field theUnsafe = unsafeClass.getDeclaredField("theUnsafe");
-			theUnsafe.setAccessible(true);
-			Object unsafe = theUnsafe.get(null);
-			java.lang.reflect.Method invokeCleaner = unsafeClass.getMethod("invokeCleaner", ByteBuffer.class);
-			invokeCleaner.invoke(unsafe, (ByteBuffer) toBeDestroyed);
+			Field field = Unsafe.class.getDeclaredField("theUnsafe");
+			field.setAccessible(true);
+			Unsafe unsafe = (Unsafe) field.get(null);
+			unsafe.invokeCleaner((ByteBuffer) toBeDestroyed);
 		}
 		catch (Throwable ignored) {
-			// JDK 9+ strongly encapsulates direct-buffer internals. If explicit
-			// cleaning is denied, let the VM reclaim it normally.
+			// JDK9+ safe fallback: GC will release the mapped buffer eventually.
 		}
 	}
 }

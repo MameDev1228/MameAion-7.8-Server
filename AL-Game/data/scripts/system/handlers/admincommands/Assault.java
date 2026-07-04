@@ -1,23 +1,4 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
@@ -27,6 +8,9 @@ import com.aionemu.gameserver.spawnengine.SpawnEngine;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ginho1
@@ -49,11 +33,10 @@ public class Assault extends AdminCommand {
 		try {
 			radius = Math.abs(Integer.parseInt(params[0]));
 			amount = Integer.parseInt(params[1]);
-			if (params.length == 4) {
+			if(params.length == 4)
 				despawnTime = Math.abs(Integer.parseInt(params[3]));
-			}
 		}
-		catch (NumberFormatException e) {
+		catch(NumberFormatException e) {
 			PacketSendUtility.sendMessage(admin, "You should only input integers as radius, amount and despawn time.");
 			return;
 		}
@@ -63,18 +46,18 @@ public class Assault extends AdminCommand {
 			return;
 		}
 
-		if (amount < 1 || amount > 100) {
+		if(amount < 1 || amount > 100) {
 			PacketSendUtility.sendMessage(admin, "Amount should be between 1-100.");
 			return;
 		}
 
-		if (despawnTime > 60 * 60) {
+		if( despawnTime > 60*60 ) {
 			PacketSendUtility.sendMessage(admin, "You can't have a despawn time longer than 1hr.");
 			return;
 		}
 
 		List<Integer> idList = new ArrayList<Integer>();
-		if ((params[2]).equals("tier20")) {
+		if((params[2]).equals("tier20")) {
 			idList.add(210799);
 			idList.add(211961);
 			idList.add(213831);
@@ -82,7 +65,7 @@ public class Assault extends AdminCommand {
 			idList.add(210566);
 			idList.add(210745);
 		}
-		else if (params[2].equals("tier30")) {
+		else if(params[2].equals("tier30")) {
 			idList.add(210997);
 			idList.add(213831);
 			idList.add(213547);
@@ -90,7 +73,7 @@ public class Assault extends AdminCommand {
 			idList.add(210942);
 			idList.add(212631);
 		}
-		else if (params[2].equals("balaur4")) {
+		else if(params[2].equals("balaur4")) {
 			idList.add(210997);
 			idList.add(255704);
 			idList.add(211962);
@@ -98,7 +81,7 @@ public class Assault extends AdminCommand {
 			idList.add(214387);
 			idList.add(213547);
 		}
-		else if (params[2].equals("balaur5")) {
+		else if(params[2].equals("balaur5")) {
 			idList.add(250187);
 			idList.add(250187);
 			idList.add(250187);
@@ -107,7 +90,7 @@ public class Assault extends AdminCommand {
 			idList.add(250182);
 			idList.add(250187);
 		}
-		else if (params[2].equals("dredgion")) {
+		else if(params[2].equals("dredgion")) {
 			idList.add(258236);
 			idList.add(258238);
 			idList.add(258243);
@@ -119,28 +102,26 @@ public class Assault extends AdminCommand {
 			idList.add(250187);
 			idList.add(250182);
 		}
-		else {
-			for (String npcId : params[2].split(",")) {
+		else
+		{
+			for(String npcId : params[2].split(",")) {
 				try {
 					idList.add(Integer.parseInt(npcId));
 				}
-				catch (NumberFormatException e) {
+				catch(NumberFormatException e) {
 					PacketSendUtility.sendMessage(admin, "You should only input integers as NPC ids.");
 					return;
 				}
 			}
-			if (idList.size() == 0) {
+			if(idList.size() == 0)
 				return;
-			}
 		}
 
 		Creature target;
-		if (admin.getTarget() != null) {
+		if(admin.getTarget() != null)
 			target = (Creature) admin.getTarget();
-		}
-		else {
-			target = admin;
-		}
+		else
+			target = (Creature) admin;
 
 		float x = target.getX();
 		float y = target.getY();
@@ -157,31 +138,30 @@ public class Assault extends AdminCommand {
 		int spawnCount = 0;
 
 		VisibleObject visibleObject;
-		List<VisibleObject> despawnList = new ArrayList<VisibleObject>();// will hold the list of spawned mobs
+		List<VisibleObject> despawnList = new ArrayList<VisibleObject>();//will hold the list of spawned mobs
 
-		for (int i = 0; amount > i; i++) {
-			templateId = idList.get((int) (Math.random() * idList.size()));
-			x1 = (float) (Math.cos(interval * i) * radius);
-			y1 = (float) (Math.sin(interval * i) * radius);
-			spawn = SpawnEngine.addNewSpawn(worldId, templateId, x + x1, y + y1, z, heading, 0);
+		for( int i = 0; amount > i; i++) {
+			templateId = idList.get((int)(Math.random() * idList.size()));
+			x1 = (float)(Math.cos( interval * i ) * radius);
+			y1 = (float)(Math.sin( interval * i ) * radius);
+			spawn = SpawnEngine.addNewSpawn(worldId, templateId, x + x1 , y + y1, z, heading, 0);
 
-			if (spawn == null) {
+			if(spawn == null) {
 				PacketSendUtility.sendMessage(admin, "There is no npc: " + templateId);
 				return;
 			}
 			else {
 				visibleObject = SpawnEngine.spawnObject(spawn, 1);
 
-				if (despawnTime > 0) {
+				if(despawnTime > 0)
 					despawnList.add(visibleObject);
-				}
 
 				spawnCount++;
 			}
 		}
 
-		if (despawnTime > 0) {
-			PacketSendUtility.sendMessage(admin, "Despawn time active: " + despawnTime + "sec");
+		if( despawnTime > 0 ) {
+			PacketSendUtility.sendMessage(admin, "Despawn time active: " + despawnTime + "sec" );
 			despawnThem(admin, despawnList, despawnTime);
 		}
 
@@ -190,13 +170,12 @@ public class Assault extends AdminCommand {
 
 	private void despawnThem(final Player admin, final List<VisibleObject> despawnList, final int despawnTime) {
 		ThreadPoolManager.getInstance().schedule(new Runnable() {
-
 			@Override
 			public void run() {
 				int despawnCount = 0;
-				for (VisibleObject visObj : despawnList) {
-					if (visObj != null && visObj.isSpawned()) {
-						visObj.getController().onDelete();
+				for(VisibleObject visObj : despawnList)	{
+					if(visObj != null && visObj.isSpawned()) {
+						visObj.getController().delete();
 						despawnCount++;
 					}
 				}

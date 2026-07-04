@@ -1,36 +1,6 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.templates.item;
 
-import java.util.List;
-
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.aionemu.gameserver.configs.main.CustomConfig;
-import com.aionemu.gameserver.configs.main.LunaSystemConfig;
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.PlayerClass;
 import com.aionemu.gameserver.model.Race;
@@ -43,23 +13,24 @@ import com.aionemu.gameserver.model.templates.item.actions.ItemActions;
 import com.aionemu.gameserver.model.templates.itemset.ItemSetTemplate;
 import com.aionemu.gameserver.model.templates.stats.ModifiersTemplate;
 import com.aionemu.gameserver.world.zone.ZoneName;
+import org.apache.commons.lang.StringUtils;
 
-/**
- * @author Luno modified by ATracer
- */
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.*;
+import java.util.List;
+
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlType(namespace = "", name = "ItemTemplate")
-public class ItemTemplate extends VisibleObjectTemplate {
-
+public class ItemTemplate extends VisibleObjectTemplate
+{
 	@XmlAttribute(name = "id", required = true)
 	@XmlID
 	private String id;
 
+	private int itemId;
+
 	@XmlElement(name = "modifiers", required = false)
 	protected ModifiersTemplate modifiers;
-
-	@XmlAttribute(name = "name_desc")
-	private String namedesc;
 
 	@XmlElement(name = "actions", required = false)
 	protected ItemActions actions;
@@ -85,8 +56,17 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	@XmlAttribute(name = "luna_price")
 	private int lunaPrice;
 
+	@XmlAttribute(name = "robot_id")
+	private int robot_id;
+
+	@XmlAttribute(name = "abyss_point")
+	private int abyssPoint;
+
 	@XmlAttribute(name = "max_stack_count")
 	private int maxStackCount = 1;
+
+	@XmlAttribute(name = "unit_sell_count")
+	private int unitSellCount = 1;
 
 	@XmlAttribute(name = "level")
 	private int level;
@@ -118,20 +98,35 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	@XmlAttribute(name = "rnd_bonus")
 	private int rnd_bonus = 0;
 
-	@XmlAttribute(name = "rnd_real_bonus")
-	private int real_rnd_bonus = 0;
-
 	@XmlAttribute(name = "rnd_count")
 	private int rnd_count = 0;
 
+	@XmlAttribute(name = "wrappable_count")
+	private int wrappable_count = 0;
+
+	@XmlAttribute(name = "max_authorize")
+	private int maxAuthorize;
+
+	@XmlAttribute(name = "tempering_table_id")
+	private int temperingTableId;
+
+	@XmlAttribute(name = "enchant_table_id")
+	private int enchantTableId;
+
+	@XmlAttribute(name = "robot_name")
+	private int robotName = 0;
+
 	@XmlAttribute(name = "bonus_apply")
-	private String bonusApply;// enum
+	private String bonusApply;
+
+	@XmlAttribute(name = "no_enchant")
+	private boolean noEnchant;
+
+	@XmlAttribute(name = "dye")
+	private boolean itemDyePermitted;
 
 	@XmlAttribute(name = "race")
 	private Race race = Race.PC_ALL;
-
-	@XmlAttribute(name = "id")
-	private int itemId;
 
 	@XmlAttribute(name = "return_world")
 	private int returnWorldId;
@@ -172,9 +167,6 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	@XmlAttribute(name = "max_enchant_bonus")
 	private int max_enchant_bonus;
 
-	@XmlAttribute(name = "pack_count")
-	protected int packCount;
-
 	@XmlAttribute(name = "temp_exchange_time")
 	protected int temExchangeTime;
 
@@ -186,6 +178,9 @@ public class ItemTemplate extends VisibleObjectTemplate {
 
 	@XmlAttribute(name = "activate_count")
 	private int activationCount;
+
+	@XmlAttribute(name = "func_pet_id")
+	private int funcPetId;
 
 	@XmlElement(name = "tradein_list")
 	protected TradeinList tradeinList;
@@ -200,7 +195,10 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	private Improvement improvement;
 
 	@XmlElement(name = "uselimits")
-	private final ItemUseLimits useLimits = new ItemUseLimits();
+	private ItemUseLimits useLimits = new ItemUseLimits();
+
+	@XmlElement(name = "purchable")
+	private ItemPurchableLimits purchableLimits = new ItemPurchableLimits();
 
 	@XmlElement(name = "inventory")
 	private ExtraInventory extraInventory;
@@ -208,117 +206,109 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	@XmlElement(name = "idian")
 	private Idian idianAction;
 
-	@XmlAttribute(name = "robot_id")
-	private int robot_id;
+	@XmlTransient
+	private boolean isQuestUpdateItem;
 
-	@XmlAttribute(name = "max_authorize")
-	private int max_authorize;
-
-	@XmlAttribute(name = "authorize_condition")
-	private int authorize_condition;
-
-	@XmlAttribute(name = "authorize_name")
-	private int authorize_name;
-
-	@XmlAttribute(name = "oversea_only")
-	private int oversea_only;
-
-	@XmlAttribute(name = "activate_combat")
-	private boolean activateCombat = false;
-
-	@XmlAttribute(name = "exceed_enchant")
-	private boolean exceedEnchant = false;
-
-	@XmlAttribute(name = "enchant_skill")
-	private String enchantSkillSet;
-	
-	@XmlAttribute(name = "minion_ticket")
-	private boolean minion_ticket;
-
-	@XmlAttribute(name = "is_cash_contract")
-	private boolean is_cash_contract;
-
-    @XmlAttribute(name = "minion_list")
-    private int minionList;
-
-    @XmlAttribute(name = "skill_enchant")
-    private int skill_enchant;
-    
-    @XmlAttribute(name = "enchant_type")
-	private EnchantType enchantType;
+	@XmlAttribute(name = "skill_group")
+	private String skill_group;
 
 	@XmlAttribute(name = "skin_skill")
 	private int skin_skill;
 
-    @XmlAttribute(name = "option_slot_max")
-    private int option_slot_max;
+	@XmlAttribute(name = "skill_enchant")
+	private int skill_enchant;
+	
+	@XmlAttribute(name = "enchant_base")
+	private int enchant_base = 0;
+	
+	@XmlAttribute(name = "item_custom_set")
+	private int itemCustomSet = 0;
+	
+	@XmlAttribute(name = "minion_ticket")
+	private boolean minion_ticket;
+	
+	@XmlAttribute(name = "is_cash_contract")
+	private boolean is_cash_contract;
 
-    @XmlAttribute(name = "option_slot_add_count")
-    private int option_slot_add_count;
+	@XmlAttribute(name = "minion_list")
+	private int minionList;
 
-    @XmlAttribute(name = "grind_color")
-    private int grindColor;
+	@XmlAttribute(name = "option_slot_max")
+	private int option_slot_max;
 
-    @XmlAttribute(name = "grind_tier")
-    private int grindTier;
+	@XmlAttribute(name = "option_slot_add_count")
+	private int option_slot_add_count;
 
-    @XmlAttribute(name = "grind_quality")
-    private int grindQuality;
+	@XmlAttribute(name = "grind_slot_opening_cost")
+	private int grind_slot_opening_cost;
 
-    @XmlAttribute(name = "grind_slot")
-    private GrindSlot grindSlot;
+	@XmlAttribute(name = "enchant_type")
+	private EnchantType enchant_type;
+	
+	@XmlAttribute(name = "decompose_table_id")
+	private int decomposeTableId;
+	
+	@XmlAttribute(name = "grind_color")
+	private int grindColor;
 
-    @XmlAttribute(name = "grind_slot_opening_cost")
-    private int grind_slot_opening_cost;
+	@XmlAttribute(name = "grind_tier")
+	private int grindTier;
 
-    @XmlAttribute(name = "odian_skill_id")
-    private int odianSkillId;
+	@XmlAttribute(name = "grind_quality")
+	private int grindQuality;
+	
+	@XmlAttribute(name = "enhance_table")
+	private int enhanceTable;
 
-    @XmlAttribute(name = "odian_skill_level")
-    private int odianSkillLevel;
+	@XmlAttribute(name = "odian_skill_id")
+	private int odianSkillId;
 
-    @XmlAttribute(name = "rune_transform_table_id")
-    private int runTransformTableId;
+	@XmlAttribute(name = "odian_skill_level")
+	private int odianSkillLevel;
 
-    @XmlAttribute(name = "transform_list")
-    private int transformList;
+	@XmlAttribute(name = "rune_transform_table_id")
+	private int runTransformTableId;
+
+	@XmlAttribute(name = "grind_slot")
+	private GrindSlot grindSlot;
+
+	@XmlAttribute(name = "vision_skill")
+	private int visionSkill;
+
+	@XmlAttribute(name = "transform_list")
+	private int transformList;
+
 
 	private static final WeaponStats emptyWeaponStats = new WeaponStats();
-	@XmlTransient
-	private boolean isQuestUpdateItem;
-
-	/**
-	 * @param u
-	 * @param parent
-	 */
+	
 	void afterUnmarshal(Unmarshaller u, Object parent) {
-		if (id != null) {
-			setItemId(Integer.parseInt(id));
-		}
+		setItemId(Integer.parseInt(id));
 		String[] parts = restrict.split(",");
-		restricts = new int[18]; // 18 (7.x Painter)
+		restricts = new int[18];
 		for (int i = 0; i < parts.length; i++) {
 			restricts[i] = Integer.parseInt(parts[i]);
-		}
-		if (restrictMax != null) {
+		} if (restrictMax != null) {
 			String[] partsMax = restrictMax.split(",");
-			restrictsMax = new byte[18]; // 18 (7.x Painter)
+			restrictsMax = new byte[18];
 			for (int i = 0; i < partsMax.length; i++) {
 				restrictsMax[i] = Byte.parseByte(partsMax[i]);
 			}
-		}
-		if (weaponStats == null) {
+		} if (weaponStats == null) {
 			weaponStats = emptyWeaponStats;
 		}
 	}
-
+	
 	public byte getMaxLevelRestrict(Player player) {
 		if (restrictMax != null) {
-			byte restrictId = player.getPlayerClass().getClassId();
-			byte restrictLevel = restrictsMax[restrictId];
-			return player.getLevel() <= restrictLevel ? 0 : restrictLevel;
-		}
-		return 0;
+            byte restrictId = player.getPlayerClass().getClassId();
+            byte restrictLevel = restrictsMax[restrictId];
+            return player.getLevel() <= restrictLevel ? 0 : restrictLevel;
+        }
+        return 0;
+    }
+	
+	public String getId() {
+		return id;
 	}
 
 	public int getMask() {
@@ -330,14 +320,6 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public int getItemSlot() {
-		if (itemSlot < 1) { // TEMP FIX UNTIL PARSER IS FIXED (Missing Slot for some Items!!!!!
-			if (getCategory() == ItemCategory.JACKET && getArmorType() == ArmorType.ROBE) {
-				return 8;
-			}
-		}
-		if (isTwoHandWeapon()) { // Temp fix for 2Hand Weapon's Display TODO find a better way ^^
-			return 3;
-		}
 		return itemSlot;
 	}
 
@@ -360,14 +342,9 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	 */
 	public int getRequiredLevel(PlayerClass playerClass) {
 		int requiredLevel = restricts[playerClass.ordinal()];
-		// A player can equip item between 66-83 but have not full stats apply
-		if (requiredLevel >= 66 && requiredLevel <= 83) {
-			return 66;
-		}
 		if (requiredLevel == 0) {
 			return -1;
-		}
-		else {
+		} else {
 			return requiredLevel;
 		}
 	}
@@ -395,6 +372,14 @@ public class ItemTemplate extends VisibleObjectTemplate {
 		return lunaPrice;
 	}
 
+	public int getRobotId() {
+		return robot_id;
+	}
+
+	public int getAbyssPoint() {
+		return abyssPoint;
+	}
+
 	public int getLevel() {
 		return level;
 	}
@@ -412,17 +397,15 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public ArmorType getArmorType() {
-		if (isPlume()) {
-			return ArmorType.PLUME;
-		}
-		if (isBracelet()) {
-			return ArmorType.ACCESSORY;
-		}
-        if (isGlyph()) {
+        if (isPlume()) {
+            return ArmorType.PLUME;
+		} if (isBracelet()) {
+            return ArmorType.BRACELET;
+		} if (isGlyph()) {
             return ArmorType.GLYPH;
-        }
-		return armorType;
-	}
+		}
+        return armorType;
+    }
 
 	@Override
 	public int getNameId() {
@@ -439,16 +422,13 @@ public class ItemTemplate extends VisibleObjectTemplate {
 		if (isKinah()) {
 			if (CustomConfig.ENABLE_KINAH_CAP) {
 				return CustomConfig.KINAH_CAP_VALUE;
-			}
-			else {
+			} else {
 				return Long.MAX_VALUE;
 			}
-		}
-		if (isLuna()) {
-			if (LunaSystemConfig.ENABLE_LUNA_CAP) {
-				return LunaSystemConfig.LUNA_CAP_VALUE;
-			}
-			else {
+		} if (isLuna()) {
+			if (CustomConfig.ENABLE_LUNA_CAP) {
+				return CustomConfig.LUNA_CAP_VALUE;
+			} else {
 				return Long.MAX_VALUE;
 			}
 		}
@@ -456,29 +436,7 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public ItemAttackType getAttackType() {
-		if (attackType != null) {
-			return attackType;
-		}
-		return inferAttackType();
-	}
-
-	private ItemAttackType inferAttackType() {
-		if (!isWeapon() || weaponType == null) {
-			return ItemAttackType.PHYSICAL;
-		}
-		switch (weaponType) {
-			case BOOK_2H:
-			case ORB_2H:
-			case GUN_1H:
-			case CANNON_2H:
-			case HARP_2H:
-			case GUN_2H:
-			case SPRAY_2H:
-			case KEYBLADE_2H:
-				return ItemAttackType.MAGICAL_FIRE;
-			default:
-				return ItemAttackType.PHYSICAL;
-		}
+		return attackType;
 	}
 
 	public float getAttackGap() {
@@ -494,11 +452,11 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public boolean isNoEnchant() {
-		return (getMask() & ItemMask.NO_ENCHANT) == ItemMask.NO_ENCHANT;
+		return noEnchant;
 	}
 
 	public boolean isItemDyePermitted() {
-		return (getMask() & ItemMask.DYEABLE) == ItemMask.DYEABLE;
+		return itemDyePermitted;
 	}
 
 	public Race getRace() {
@@ -517,21 +475,21 @@ public class ItemTemplate extends VisibleObjectTemplate {
 		return equipmentType == EquipType.ARMOR;
 	}
 
-    public boolean isManaSlotOpen() {
-        return category == ItemCategory.MANA_SLOT_OPEN;
-    }
+	public boolean isManaSlotOpen() {
+		return category == ItemCategory.MANA_SLOT_OPEN;
+	}
 
-    public boolean isGrindSlotOpen() {
-        return category == ItemCategory.GRIND_SLOT_OPEN;
-    }
+	public boolean isGrindSlotOpen() {
+		return category == ItemCategory.GRIND_SLOT_OPEN;
+	}
 
-    public boolean isOdian() {
-        return category == ItemCategory.ODIAN;
-    }
+	public boolean isOdian() {
+		return category == ItemCategory.ODIAN;
+	}
 
-    public boolean isRune() {
-        return category == ItemCategory.RUNE;
-    }
+	public boolean isRune() {
+		return category == ItemCategory.RUNE;
+	}
 
 	public boolean isKinah() {
 		return itemId == ItemId.KINAH.value();
@@ -542,60 +500,70 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	}
 
 	public boolean isStigma() {
-		return category == ItemCategory.STIGMA; // return itemId > 140001101 && itemId < 140001930;
-	}
-    
-    public boolean isGrindEnchant() {
-        return category == ItemCategory.GRIND_ENCHANT;
-    }
-    
-	public boolean isInertStigma() {
-		return name.endsWith("(damaged)");
+		return category == ItemCategory.STIGMA;
 	}
 
-    public boolean isTransformInvisible() {
-        return itemId == 190099001;
-    }
-    
-    public boolean isTransform() {
-        return itemId == 190099000;
-    }
-    
+	public boolean isGrindEnchant() {
+		return category == ItemCategory.GRIND_ENCHANT;
+	}
+
+	public boolean isCpStones() {
+		return itemId >= 187300002 && itemId <= 187300005;
+	}
+
+	public boolean isTransformInvisible() {
+		return itemId == 190099001 || itemId == 190099002;
+	}
+
+	public boolean isTransform() {
+		return itemId == 190099000;
+	}
+
 	public boolean isPlume() {
-		return category == ItemCategory.PLUME; // return itemId >= 187100015 && itemId <= 187100018;
+		return category == ItemCategory.PLUME;
 	}
 
 	public boolean isBracelet() {
 		return category == ItemCategory.BRACELET;
 	}
 
+	public boolean isGlyph() {
+		return category == ItemCategory.GLYPH;
+	}
+
+	public boolean isGlyphEnchant() {
+		return category == ItemCategory.GLYPH_ENCHANT;
+	}
+
+	public boolean isManaStone() {
+		return category == ItemCategory.MANASTONE ||
+		category == ItemCategory.SPECIAL_MANASTONE ||
+		category == ItemCategory.PRIMARY_MANASTONE;
+	}
+
 	public boolean isEstima() {
 		return category == ItemCategory.ESTIMA;
 	}
 
-    public boolean isGlyph() {
-        return category == ItemCategory.GLYPH;
-    }
+	public boolean isTemperingSolution(){
+		return category == ItemCategory.TEMPERING;
+	}
 
-    public boolean isGlyphEnchant() {
-        return category == ItemCategory.GLYPH_ENCHANT;
-    }
+	public boolean isMedal() {
+		return category == ItemCategory.MEDALS;
+	}
+
+	public boolean isAbyssItem() {
+		return itemType == ItemType.ABYSS;
+	}
+
+	public boolean isInertStigma() {
+		return name.endsWith("(Inert)");
+	}
 
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
-	
-	public boolean getMinionTicket() {
-		return this.minion_ticket;
-	}
-
-	public boolean isMinionCashContract() {
-		return this.is_cash_contract;
-	}
-
-    public int getMinionList() {
-        return this.minionList;
-    }
 
 	/**
 	 * @return id of the associated ItemSetTemplate or null if none
@@ -636,19 +604,19 @@ public class ItemTemplate extends VisibleObjectTemplate {
 	public Stigma getStigma() {
 		return stigma;
 	}
-
+	
 	public int getManastoneSlots() {
 		return manastoneSlots;
 	}
-
+	
 	public int getSpecialSlots() {
 		return specialSlots;
 	}
-
+	
 	public int getMaxEnchantLevel() {
 		return maxEnchant;
 	}
-
+	
 	public int getMaxEnchantBonus() {
 		return max_enchant_bonus;
 	}
@@ -681,12 +649,32 @@ public class ItemTemplate extends VisibleObjectTemplate {
 		return (getMask() & ItemMask.DELETABLE) == ItemMask.DELETABLE;
 	}
 
-	public boolean isCanPolish() {
-		return (getMask() & ItemMask.CAN_POLISH) == ItemMask.CAN_POLISH;
+	public boolean isCanIdian() {
+		return (getMask() & ItemMask.CAN_IDIAN) == ItemMask.CAN_IDIAN;
+	}
+
+	public boolean isArchdaeva() {
+		return (getMask() & ItemMask.ITEM_ARCHDAEVA) == ItemMask.ITEM_ARCHDAEVA;
+	}
+
+	public boolean isCanVendor() {
+		return (getMask() & ItemMask.CAN_VENDOR) == ItemMask.CAN_VENDOR;
+	}
+
+	public boolean isCannotExtraction() {
+		return (getMask() & ItemMask.CANNOT_EXTRACTION) == ItemMask.CANNOT_EXTRACTION;
+	}
+
+	public boolean isCannotMatterOptions() {
+		return (getMask() & ItemMask.CANNOT_MATTER_OPTIONS) == ItemMask.CANNOT_MATTER_OPTIONS;
+	}
+
+	public boolean isCanDecomposable() {
+		return (getMask() & ItemMask.CAN_DECOMPOSABLE) == ItemMask.CAN_DECOMPOSABLE;
 	}
 
 	public boolean isTwoHandWeapon() {
-		if (!isWeapon() || weaponType == null) {
+		if (!isWeapon()) {
 			return false;
 		}
 		return weaponType.getRequiredSlots() == 2 ? true : false;
@@ -694,10 +682,6 @@ public class ItemTemplate extends VisibleObjectTemplate {
 
 	public int getTempExchangeTime() {
 		return temExchangeTime;
-	}
-
-	public int getPackCount() {
-		return packCount;
 	}
 
 	public int getExpireTime() {
@@ -712,23 +696,15 @@ public class ItemTemplate extends VisibleObjectTemplate {
 		return activationCount;
 	}
 
-	/**
-	 * Null if no id, can be values 0, 1, 2
-	 */
-	public int getExtraInventoryId() {
-		if (extraInventory == null) {
-			return -1;
-		}
-		return extraInventory.getId();
+	public final int getFuncPetId() {
+		return funcPetId;
 	}
 
 	public void modifyMask(boolean apply, int filter) {
-		if (apply) {
+		if (apply)
 			mask |= filter;
-		}
-		else {
+		else
 			mask &= ~filter;
-		}
 	}
 
 	public boolean isStackable() {
@@ -743,188 +719,222 @@ public class ItemTemplate extends VisibleObjectTemplate {
 		return useLimits.getUseArea();
 	}
 
-	/**
-	 * @return the tradeinList
-	 */
 	public TradeinList getTradeinList() {
 		return tradeinList;
 	}
 
-	/**
-	 * @return the acquisition
-	 */
 	public Acquisition getAcquisition() {
 		return acquisition;
 	}
 
-	/**
-	 * @return the rnd_bonus, 0 if no bonus exists
-	 */
 	public int getRandomBonusId() {
 		return rnd_bonus;
 	}
 
-	/**
-	 * @return the real_rnd_bonus, 0 if no bonus exists
-	 */
-	public int getRealRndBonus() {
-		return real_rnd_bonus;
-	}
-
-	/**
-	 * @return the rnd_count, 0 if no randomization is limited (JUST A GUESS!)
-	 */
 	public int getRandomBonusCount() {
 		return rnd_count;
 	}
+	
+	public int getWrappableCount() {
+		return wrappable_count;
+	}
 
-	/**
-	 * @return the conditioning
-	 */
+	public int getMaxAuthorize() {
+		return maxAuthorize;
+	}
+	
+	public int getTemperingTableId() {
+		return temperingTableId;
+	}
+	
+	public int getDecomposeTableId() {
+		return decomposeTableId;
+	}
+	
+	public int getGrindColor() {
+		return grindColor;
+	}
+	
+	public int getEnhanceTable() {
+		return enhanceTable;
+	}
+	
+	public int getRobotName() {
+		return robotName;
+	}
+
 	public Improvement getImprovement() {
 		return improvement;
 	}
 
-	/**
-	 * @return the useLimits
-	 */
 	public ItemUseLimits getUseLimits() {
 		return useLimits;
+	}
+
+	public ItemPurchableLimits getPurchableLimits() {
+		return purchableLimits;
 	}
 
 	public Disposition getDisposition() {
 		return disposition;
 	}
 
-	public int getOwnershipWorld() {
+	public List<Integer> getOwnershipWorld() {
 		return useLimits.getOwnershipWorld();
-	}
-
-	public boolean isCloth() {
-		return armorType != null && armorType != ArmorType.ARROW && equipmentType == EquipType.ARMOR;
-	}
-
-	public boolean isQuestUpdateItem() {
-		return isQuestUpdateItem;
-	}
-
-	public void setQuestUpdateItem(boolean value) {
-		this.isQuestUpdateItem = value;
 	}
 
 	public Idian getIdianAction() {
 		return idianAction;
 	}
-
+	
 	public boolean isCombinationItem() {
 		return category == ItemCategory.COMBINATION;
 	}
-
+	
 	public boolean isEnchantmentStone() {
 		return category == ItemCategory.ENCHANTMENT;
 	}
 
-	public boolean isAccessory() {
-		return category == ItemCategory.EARRINGS || category == ItemCategory.RINGS || category == ItemCategory.NECKLACE || category == ItemCategory.PLUME || category == ItemCategory.BRACELET || category == ItemCategory.BELT || category == ItemCategory.HELMET;
+	public boolean isEnchantmentDestructionStone() {
+		return category == ItemCategory.ENCHANTMENT_DESTRUCTION;
 	}
-
-    public boolean isOdianAccessory() {
-        return category == ItemCategory.EARRINGS || category == ItemCategory.RINGS || category == ItemCategory.NECKLACE || category == ItemCategory.BELT;
-    }
-
-    public boolean isRuneAccessory() {
-        return category == ItemCategory.BRACELET || category == ItemCategory.PLUME || armorType == ArmorType.WING;
-    }
-
-	public int getMaxAuthorize() {
-		return max_authorize;
-	}
-
-	public int getAuthorizeName() {
-		return authorize_name;
-	}
-
-	public int getAuthorizeCondition() {
-		return authorize_condition;
-	}
-
-	public int getOverseaOnly() {
-		return oversea_only;
-	}
-
-	public boolean getExceedEnchant() {
-		return exceedEnchant;
-	}
-
-	public String getEnchantSkillSet() {
-		return enchantSkillSet;
-	}
-
-	public int getRobotId() {
-		return robot_id;
-	}
-
-	public String getNamedesc() {
-		return namedesc;
-	}
-
-    public int getSkillEnchant() {
-        return skill_enchant;
-    }	
 	
-    public int getSkillEnhance() {
-        return skill_enchant;
-    }
-    
-    public EnchantType getEnchantType() {
-		return enchantType;
+	public boolean isEnchantmentStigmaStone() {
+		return category == ItemCategory.ENCHANTMENT_STIGMA;
+	}
+	
+	public boolean isAmplificationStone() {
+		return category == ItemCategory.ENCHANTMENT_AMPLIFICATION;
+	}
+	
+	public boolean isCloth() {
+		return armorType != null && equipmentType == EquipType.ARMOR;
+	}
+	
+	public boolean isAncientStone() {
+		//Ancient Manastone: HP +105 && //[Stamp] Ancient Manastone: Healing Boost +6
+		return itemId >= 167020000 && itemId <= 167020112;
+	}
+	
+	public boolean isAccessory() {
+		return category == ItemCategory.EARRINGS ||
+		category == ItemCategory.RINGS ||
+		category == ItemCategory.NECKLACE ||
+		category == ItemCategory.BELT ||
+		category == ItemCategory.HELMET;
 	}
 
+	public boolean isOdianAccessory() {
+		return category == ItemCategory.EARRINGS ||
+		category == ItemCategory.RINGS ||
+		category == ItemCategory.NECKLACE ||
+		category == ItemCategory.BELT;
+	}
+
+	public boolean isRuneAccessory() {
+		return category == ItemCategory.BRACELET || category == ItemCategory.PLUME || armorType == ArmorType.WING;
+	}
+
+	public boolean isQuestUpdateItem() {
+		return isQuestUpdateItem;
+	}
+	
+	public void setQuestUpdateItem(boolean value) {
+		this.isQuestUpdateItem = value;
+	}
+	
+	public int getExtraInventoryId() {
+		if (extraInventory == null) {
+			return -1;
+		}
+		return extraInventory.getId();
+	}
+	
+	public String getSkillGroup() {
+		return skill_group;
+	}
+	
 	public int getSkinSkill() {
 		return skin_skill;
 	}
+	
+	public int getSkillEnchant() {
+		return skill_enchant;
+	}
+	
+	public int getBaseEnchant() {
+		return enchant_base;
+	}
+	
+	public int getItemCustomSet() {
+		return itemCustomSet;
+	}
+	
+	public boolean getMinionTicket() {
+		return minion_ticket;
+	}
+	
+	public boolean isMinionCashContract() {
+		return is_cash_contract;
+	}
+	
+	public int getSkillEnhance() {
+		return skill_enchant;
+	}
 
-    public int getMaxSlot() {
-        return option_slot_max;
-    }
+	public int getMinionList() {
+		return minionList;
+	}
 
-    public int getOptionSlotAddCount() {
-        return option_slot_add_count;
-    }
+	public int getMaxSlot() {
+		return option_slot_max;
+	}
 
-    public int getGrindColor() {
-        return grindColor;
-    }
+	public EnchantType getEnchantType() {
+		return enchant_type;
+	}
 
-    public int getGrindSlotOpeningCost() {
-        return grind_slot_opening_cost;
-    }
+	public int getOptionSlotAddCount() {
+		return option_slot_add_count;
+	}
 
-    public GrindSlot getGrindSlot() {
-        return grindSlot;
-    }
+	public int getEnchantTableId() {
+		return enchantTableId;
+	}
 
-    public int getGrindQuality() {
-        return grindQuality;
-    }
+	public int getGrindSlotOpeningCost() {
+		return grind_slot_opening_cost;
+	}
 
-    public int getGrindTier() {
-        return grindTier;
-    }
+	public int getOdianSkillId() {
+		return odianSkillId;
+	}
 
-    public int getOdianSkillId() {
-        return odianSkillId;
-    }
+	public int getOdianSkillLevel() {
+		return odianSkillLevel;
+	}
 
-    public int getOdianSkillLevel() {
-        return odianSkillLevel;
-    }
+	public int getRunTransformTableId() {
+		return runTransformTableId;
+	}
 
-    public int getRunTransformTableId() {
-        return runTransformTableId;
-    }
+	public GrindSlot getGrindSlot() {
+		return grindSlot;
+	}
 
-    public int getTransformList() {
-        return transformList;
-    }
+	public int getGrindQuality() {
+		return grindQuality;
+	}
+
+	public int getGrindTier() {
+		return grindTier;
+	}
+
+	public int getVisionSkill() {
+		return visionSkill;
+	}
+
+	public int getTransformList() {
+		return transformList;
+	}
 }

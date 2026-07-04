@@ -1,43 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- parsed by phpTools from Aion Germany Group (Mariella) at 2018-09-08 09:44 -->
 <quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
-    <!-- 10 Quests listed -->
-    <!--
-        [BEGIN] SUMMARY
-               70300 [SCRIPT] Support in Gelkmaros
-               70301 [SCRIPT] Securing Aether as Combat Preparation
-               70302 [SCRIPT] Taking the Windstream to the Aether Research Group Campsite
-               70303 [SCRIPT] Drana, the Balaur Raw Material
-               70304 [SCRIPT] A Method for Removing Drana
-               70305 [SCRIPT] Secret of Subterranea
-               70306 [SCRIPT] A Hard Test
-               70307 [SCRIPT] At the Crossroads
-               70308 [SCRIPT] Taloc, a Mysterious Elim
-               70309 [SCRIPT] Report on the Gelkmaros Mission
-               71900 [SCRIPT] For Cheska 1
-               71901 [SCRIPT] For Cheska 2
-               71902 [SCRIPT] The Aether Generator
-               71903 [SCRIPT] Water Analysis Methods
-               71904 [SCRIPT] Mookie Farming
-               71905 [SCRIPT] Please Help Mitta!
-               71906 [SCRIPT] Mitta Needs More Help!
-               71907 [SCRIPT] Selling Salvage
-               71908 [SCRIPT] A Refugee's Revenge
-               71909 [SCRIPT] Chenkiki's Enemies
-               71910 [SCRIPT] Tenacious Balaur
-               71911 [SCRIPT] Jecasti's Request
-               71912 [SCRIPT] Poisoned Fungie
-               71913 [SCRIPT] Rise of Living Stone
-               71914 [SCRIPT] Valuable Crystal
-               71915 [SCRIPT] Reian Incorporeal Phantoms
-               71916 [SCRIPT] Useless Regret
-               71917 [SCRIPT] End the Reian Abductions
-               71918 [SCRIPT] The Threatening Manticores
-               71919 [SCRIPT] Reian Tribe's Enemy
-               80266 [SCRIPT] [Event] Preparing a Birthday Celebration Feast
-        [END] SUMMARY
-    -->
-    <!-- REPORTING QUESTS -->
-    <!-- COLLECTING QUESTS -->
-    <!-- HUNTING QUESTS -->
+<!--
+    Gelkmaros 7.x
+	Make By Encom
+ -->
+    <item_collecting id="71903" start_npc_ids="799249" end_npc_ids="799249" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="71906" start_npc_ids="799280" end_npc_ids="799276" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="71907" start_npc_ids="799262" end_npc_ids="799262" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="71914" start_npc_ids="799289" end_npc_ids="799334" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="71918" start_npc_ids="799297" end_npc_ids="799297" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="71921" start_npc_ids="799249" end_npc_ids="806908" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="71962" start_npc_ids="839971" end_npc_ids="839971" start_dialog_id="4762" start_dialog_id2="1011"/>
+	
+	<monster_hunt id="71904" start_npc_ids="799248" end_npc_ids="799248" start_dialog_id="4762">
+		<monster var="1" npc_ids="650114 650115" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="71910" start_npc_ids="799268" end_npc_ids="799283" start_dialog_id="4762">
+		<monster var="1" npc_ids="650255 650256 650257 650258" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="71916" start_npc_ids="799333" end_npc_ids="799295" start_dialog_id="4762">
+		<monster var="1" npc_ids="650303" end_var="1"/>
+	</monster_hunt>
+	<monster_hunt id="71920" start_npc_ids="799248" end_npc_ids="806908" start_dialog_id="4762">
+		<monster var="1" npc_ids="650287" end_var="1"/>
+	</monster_hunt>
+	<monster_hunt id="71932" start_npc_ids="799228" end_npc_ids="799228" start_dialog_id="4762">
+		<monster var="1" npc_ids="662107 662108 662109 662110" end_var="20"/>
+	</monster_hunt>
+	<monster_hunt id="71946" start_npc_ids="839973" end_npc_ids="839973" start_dialog_id="4762">
+		<monster var="1" npc_ids="662055 662056 662057 662058 662059 662060 662061" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="71947" start_npc_ids="839974" end_npc_ids="839974" start_dialog_id="4762">
+		<monster var="1" npc_ids="662062 662063 662064 662065 662066 662067 662068" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="71948" start_npc_ids="839975" end_npc_ids="839975" start_dialog_id="4762">
+		<monster var="1" npc_ids="662069 662070 662071 662072 662073 662074 662075" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="71949" start_npc_ids="839976" end_npc_ids="839976" start_dialog_id="4762">
+		<monster var="1" npc_ids="662076 662077 662078 662079 662080 662081 662082 662083 662084 662085" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="71950" start_npc_ids="839977" end_npc_ids="839977" start_dialog_id="4762">
+		<monster var="1" npc_ids="662086 662087 662088 662089 662090 662091 662092" end_var="10"/>
+		<monster var="1" npc_ids="662093 662093 662095 662096 662097 662098 662099" end_var="10"/>
+		<monster var="1" npc_ids="662100 662101 662102" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="71961" start_npc_ids="839971" end_npc_ids="839971" start_dialog_id="4762">
+		<monster var="1" npc_ids="839978 839979 839980 839981 839982" end_var="1"/>
+	</monster_hunt>
+	<monster_hunt id="71970" start_npc_ids="799557" end_npc_ids="799557" start_dialog_id="4762">
+		<monster var="1" npc_ids="650183 650184 650185 650186 650187 650188 650189 650190" end_var="10"/>
+		<monster var="1" npc_ids="650323 650324 650325 650326 650327 650328 650329 650330" end_var="10"/>
+		<monster var="1" npc_ids="650331 650332 650333 650334 650335 650336 650337 650338 650339" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="71971" start_npc_ids="799557" end_npc_ids="799557" start_dialog_id="4762">
+		<monster var="1" npc_ids="650431 650432 650433 650434 650443 650444 650445 650446" end_var="10"/>
+		<monster var="1" npc_ids="650447 650448 650449" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="71973" start_npc_ids="799295" end_npc_ids="799295" start_dialog_id="4762">
+		<monster var="1" npc_ids="650162 650163 650164 650165 650166 650167 650234 650235" end_var="10"/>
+		<monster var="1" npc_ids="650236 650237 650238 650239 650240 650241 650242 650243" end_var="10"/>
+	</monster_hunt>
 </quest_scripts>

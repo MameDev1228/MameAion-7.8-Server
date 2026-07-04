@@ -18,10 +18,10 @@
         <xs:attribute name="target_class" type="playerClass" use="required"/>
         <xs:attribute name="category" type="xs:string" use="required"/>
         <xs:attribute name="price" type="xs:int" use="required"/>
-        <xs:attribute name="material_color_1" type="xs:int" use="required"/>
-        <xs:attribute name="material_color_2" type="xs:int" use="required"/>
-        <xs:attribute name="material_quality_1" type="xs:int" use="optional"/>
-        <xs:attribute name="material_quality_2" type="xs:int" use="optional"/>
+        <xs:attribute name="materiel_color_1" type="xs:int" use="required"/>
+        <xs:attribute name="materiel_color_2" type="xs:int" use="required"/>
+        <xs:attribute name="materiel_quality_1" type="xs:int" use="optional"/>
+        <xs:attribute name="materiel_quality_2" type="xs:int" use="optional"/>
     </xs:complexType>
     <xs:complexType name="RewardGrind">
         <xs:attribute name="item_id" type="xs:int"/>

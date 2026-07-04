@@ -1,35 +1,30 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.stats.calc.functions;
-
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 import com.aionemu.gameserver.model.stats.calc.Stat2;
 import com.aionemu.gameserver.model.stats.calc.StatOwner;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
 import com.aionemu.gameserver.skillengine.condition.Conditions;
+
+import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 
 /**
  * @author ATracer
@@ -44,8 +39,8 @@ public class StatFunction implements IStatFunction {
 	private boolean bonus;
 	@XmlAttribute
 	protected int value;
-    @XmlAttribute(name = "class_type")
-    protected String classType;
+	@XmlAttribute(name = "class_type")
+	protected String classType;
 	@XmlElement(name = "conditions")
 	private Conditions conditions;
 
@@ -61,15 +56,10 @@ public class StatFunction implements IStatFunction {
 	@Override
 	public int compareTo(IStatFunction o) {
 		int result = getPriority() - o.getPriority();
-		if (result == 0) {
+		if (result == 0)
 			return this.hashCode() - o.hashCode();
-		}
 		return result;
 	}
-
-    public String getClassType() {
-        return this.classType;
-    }
 
 	@Override
 	public StatOwner getOwner() {
@@ -107,26 +97,23 @@ public class StatFunction implements IStatFunction {
 
 	@Override
 	public String toString() {
-		return this.getClass().getName() + " [stat=" + stat + ", bonus=" + bonus + ", value=" + value + ", priority=" + getPriority() + "]";
+		return this.getClass().getName() + " [stat=" + stat + ", bonus=" + bonus + ", value=" + value + ", priority="
+			+ getPriority() + "]";
 	}
 
 	public StatFunction withConditions(Conditions conditions) {
 		this.conditions = conditions;
 		return this;
 	}
-
-	@Override
+	
 	public boolean hasConditions() {
 		return conditions != null;
 	}
-
+	
 	/**
-	 * Creates a final list of modifiers combining bonuses with random bonuses
-	 * 
-	 * @param modifiers
-	 *            - can be null if do not exist
-	 * @param rndBonuses
-	 *            - can be null if do not exist
+	 * Creates a final list of modifiers combining bonuses with random bonuses 
+	 * @param modifiers - can be null if do not exist
+	 * @param rndBonuses - can be null if do not exist
 	 * @return a list of modifiers, empty if none
 	 */
 	public static List<StatFunction> mergeRandomBonuses(List<StatFunction> modifiers, List<StatFunction> rndBonuses) {
@@ -179,12 +166,6 @@ public class StatFunction implements IStatFunction {
 		}
 
 		return allModifiers;
-	}
-
-	@Override
-	public int getRandomNumber() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

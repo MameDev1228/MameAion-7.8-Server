@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Lakrum 7.x
+	Made By Rinzler (Encom)
+ -->
+<spawns>
+	<spawn_map map_id="800050000">
+		<!-- LDF7_1511 -->
+		<siege_spawn siege_id="1511">
+			<siege_race race="ELYOS">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1511_Boss_Li -->
+				    <spawn npc_id="885646" respawn_time="295">
+						<spot h="88" z="262.83136" y="1121.6146" x="1788.205"/>
+					</spawn>
+					<!-- LDF7_Artifact_15111_Li -->
+					<spawn npc_id="885781" respawn_time="295">
+                        <spot x="1788.5396" y="1125.1465" z="261.67276" entity_id="432"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="ASMODIANS">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1511_Boss_Da -->
+					<spawn npc_id="885651" respawn_time="295">
+						<spot h="88" z="262.83136" y="1121.6146" x="1788.205"/>
+					</spawn>
+					<!-- LDF7_Artifact_15111_Da -->
+					<spawn npc_id="885782" respawn_time="295">
+                        <spot x="1788.5396" y="1125.1465" z="261.67276" entity_id="421"/>
+					</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="BALAUR">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1511_Boss_Dr -->
+					<spawn npc_id="885656" respawn_time="295">
+						<spot h="88" z="262.83136" y="1121.6146" x="1788.205"/>
+					</spawn>
+					<!-- LDF7_Artifact_15111_Dr -->
+					<spawn npc_id="885783" respawn_time="295">
+                        <spot x="1788.5396" y="1125.1465" z="261.67276" entity_id="413"/>
+					</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+		</siege_spawn>
+		<!-- LDF7_1512 -->
+		<siege_spawn siege_id="1512">
+			<siege_race race="ELYOS">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1512_Boss_Li -->
+					<spawn npc_id="885661" respawn_time="295">
+						<spot h="96" z="305.1572" y="536.37775" x="1047.7078"/>
+					</spawn>
+					<!-- LDF7_Artifact_15121_Li -->
+					<spawn npc_id="885784" respawn_time="295">
+                        <spot x="1046.7218" y="539.76337" z="303.99860" entity_id="1498"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="ASMODIANS">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1512_Boss_Da -->
+					<spawn npc_id="885666" respawn_time="295">
+						<spot h="96" z="305.1572" y="536.37775" x="1047.7078"/>
+					</spawn>
+					<!-- LDF7_Artifact_15121_Da -->
+					<spawn npc_id="885785" respawn_time="295">
+                        <spot x="1046.7218" y="539.76337" z="303.99860" entity_id="1497"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="BALAUR">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1512_Boss_Dr -->
+					<spawn npc_id="885671" respawn_time="295">
+						<spot h="96" z="305.1572" y="536.37775" x="1047.7078"/>
+					</spawn>
+					<!-- LDF7_Artifact_15121_Dr -->
+					<spawn npc_id="885786" respawn_time="295">
+                        <spot x="1046.7218" y="539.76337" z="303.9986" entity_id="827"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+		</siege_spawn>
+		<!-- LDF7_1513 -->
+		<siege_spawn siege_id="1513">
+			<siege_race race="ELYOS">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1513_Boss_Li -->
+					<spawn npc_id="885676" respawn_time="295">
+						<spot h="5" z="333.6482" y="803.7664" x="748.2857"/>
+					</spawn>
+					<!-- LDF7_Artifact_15131_Li -->
+					<spawn npc_id="885787" respawn_time="295">
+                        <spot x="744.75903" y="802.83533" z="332.48956" entity_id="1734"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="ASMODIANS">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1513_Boss_Da -->
+					<spawn npc_id="885681" respawn_time="295">
+						<spot h="5" z="333.6482" y="803.7664" x="748.2857"/>
+					</spawn>
+					<!-- LDF7_Artifact_15131_Da -->
+					<spawn npc_id="885788" respawn_time="295">
+                        <spot x="744.75903" y="802.83533" z="332.48956" entity_id="1733"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="BALAUR">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1513_Boss_Dr -->
+					<spawn npc_id="885686" respawn_time="295">
+						<spot h="5" z="333.6482" y="803.7664" x="748.2857"/>
+					</spawn>
+					<!-- LDF7_Artifact_15131_Dr -->
+					<spawn npc_id="885789" respawn_time="295">
+                        <spot x="744.75903" y="802.83533" z="332.48956" entity_id="1460"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+		</siege_spawn>
+		<!-- LDF7_1514 -->
+		<siege_spawn siege_id="1514">
+			<siege_race race="ELYOS">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1514_Boss_Li -->
+					<spawn npc_id="885691" respawn_time="295">
+						<spot h="89" z="286.17105" y="2128.1045" x="1901.3204"/>
+					</spawn>
+					<!-- LDF7_Artifact_15141_Li -->
+					<spawn npc_id="885790" respawn_time="295">
+                        <spot x="1901.9103" y="2131.5771" z="285.01245" entity_id="1485"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="ASMODIANS">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1514_Boss_Da -->
+					<spawn npc_id="885696" respawn_time="295">
+						<spot h="89" z="286.17105" y="2128.1045" x="1901.3204"/>
+					</spawn>
+					<!-- LDF7_Artifact_15141_Da -->
+					<spawn npc_id="885791" respawn_time="295">
+                        <spot x="1901.9103" y="2131.5771" z="285.01245" entity_id="1484"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="BALAUR">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1514_Boss_Dr -->
+					<spawn npc_id="885701" respawn_time="295">
+						<spot h="89" z="286.17105" y="2128.1045" x="1901.3204"/>
+					</spawn>
+					<!-- LDF7_Artifact_15141_Dr -->
+					<spawn npc_id="885792" respawn_time="295">
+                        <spot x="1901.9103" y="2131.5771" z="285.01245" entity_id="1270"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+		</siege_spawn>
+		<!-- LDF7_1515 -->
+		<siege_spawn siege_id="1515">
+			<siege_race race="ELYOS">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1515_Boss_Li -->
+					<spawn npc_id="885706" respawn_time="295">
+						<spot h="86" z="232.2043" y="2753.7393" x="1074.548"/>
+					</spawn>
+					<!-- LDF7_Artifact_15151_Li -->
+					<spawn npc_id="885793" respawn_time="295">
+                        <spot x="1075.4185" y="2757.3611" z="231.04565" entity_id="1743"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="ASMODIANS">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1515_Boss_Da -->
+					<spawn npc_id="885711" respawn_time="295">
+						<spot h="86" z="232.2043" y="2753.7393" x="1074.548"/>
+					</spawn>
+					<!-- LDF7_Artifact_15151_Da -->
+					<spawn npc_id="885794" respawn_time="295">
+                        <spot x="1075.4185" y="2757.3611" z="231.04565" entity_id="1742"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="BALAUR">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1515_Boss_Dr -->
+					<spawn npc_id="885716" respawn_time="295">
+						<spot h="86" z="232.2043" y="2753.7393" x="1074.548"/>
+					</spawn>
+					<!-- LDF7_Artifact_15151_Dr -->
+					<spawn npc_id="885795" respawn_time="295">
+                        <spot x="1075.4185" y="2757.3611" z="231.04565" entity_id="828"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+		</siege_spawn>
+		<!-- LDF7_1516 -->
+		<siege_spawn siege_id="1516">
+			<siege_race race="ELYOS">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1516_Boss_Li -->
+					<spawn npc_id="885721" respawn_time="295">
+						<spot h="27" z="285.71652" y="2196.0894" x="555.9687"/>
+					</spawn>
+					<!-- LDF7_Artifact_15161_Li -->
+					<spawn npc_id="885796" respawn_time="295">
+                        <spot x="555.23627" y="2192.6709" z="284.55792" entity_id="1739"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="ASMODIANS">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1516_Boss_Da -->
+					<spawn npc_id="885726" respawn_time="295">
+						<spot h="27" z="285.71652" y="2196.0894" x="555.9687"/>
+					</spawn>
+					<!-- LDF7_Artifact_15161_Da -->
+					<spawn npc_id="885797" respawn_time="295">
+                        <spot x="555.23627" y="2192.6709" z="284.55792" entity_id="1738"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="BALAUR">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1516_Boss_Dr -->
+					<spawn npc_id="885731" respawn_time="295">
+						<spot h="27" z="285.71652" y="2196.0894" x="555.9687"/>
+					</spawn>
+					<!-- LDF7_Artifact_15161_Dr -->
+					<spawn npc_id="885798" respawn_time="295">
+                        <spot x="555.23627" y="2192.6709" z="284.55792" entity_id="1469"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+		</siege_spawn>
+		<!-- LDF7_1517 -->
+		<siege_spawn siege_id="1517">
+			<siege_race race="ELYOS">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1517_Boss_Li -->
+					<spawn npc_id="885736" respawn_time="295">
+						<spot h="111" z="198.9827" y="1459.3776" x="2763.614"/>
+					</spawn>
+					<!-- LDF7_Artifact_15171_Li -->
+					<spawn npc_id="885799" respawn_time="295">
+                        <spot x="2760.8262" y="1461.1189" z="197.82416" entity_id="1186"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="ASMODIANS">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1517_Boss_Da -->
+					<spawn npc_id="885741" respawn_time="295">
+						<spot h="111" z="198.9827" y="1459.3776" x="2763.614"/>
+					</spawn>
+					<!-- LDF7_Artifact_15171_Da -->
+					<spawn npc_id="885800" respawn_time="295">
+                        <spot x="2760.8262" y="1461.1189" z="197.82416" entity_id="1185"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="BALAUR">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1517_Boss_Dr -->
+					<spawn npc_id="885746" respawn_time="295">
+						<spot h="111" z="198.9827" y="1459.3776" x="2763.614"/>
+					</spawn>
+					<!-- LDF7_Artifact_15171_Dr -->
+					<spawn npc_id="885801" respawn_time="295">
+                        <spot x="2760.8262" y="1461.1189" z="197.82416" entity_id="1184"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+		</siege_spawn>
+		<!-- LDF7_1518 -->
+		<siege_spawn siege_id="1518">
+			<siege_race race="ELYOS">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1518_Boss_Li -->
+					<spawn npc_id="885751" respawn_time="295">
+						<spot h="0" z="216.06627" y="1488.2698" x="1918.3452"/>
+					</spawn>
+					<!-- LDF7_Artifact_15181_Li -->
+					<spawn npc_id="885802" respawn_time="295">
+                        <spot x="1915.1565" y="1488.4167" z="214.90776" entity_id="1748"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="ASMODIANS">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1518_Boss_Da -->
+					<spawn npc_id="885756" respawn_time="295">
+						<spot h="0" z="216.06627" y="1488.2698" x="1918.3452"/>
+					</spawn>
+					<!-- LDF7_Artifact_15181_Da -->
+					<spawn npc_id="885803" respawn_time="295">
+                        <spot x="1915.1565" y="1488.4167" z="214.90776" entity_id="1475"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="BALAUR">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1518_Boss_Dr -->
+					<spawn npc_id="885761" respawn_time="295">
+						<spot h="0" z="216.06627" y="1488.2698" x="1918.3452"/>
+					</spawn>
+					<!-- LDF7_Artifact_15181_Dr -->
+					<spawn npc_id="885804" respawn_time="295">
+                        <spot x="1915.1565" y="1488.4167" z="214.90776" entity_id="1474"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+		</siege_spawn>
+		<!-- LDF7_1519 -->
+		<siege_spawn siege_id="1519">
+			<siege_race race="ELYOS">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1519_Boss_Li -->
+					<spawn npc_id="885766" respawn_time="295">
+						<spot h="60" z="254.64616" y="1505.1301" x="1280.2201"/>
+					</spawn>
+					<!-- LDF7_Artifact_15191_Li -->
+					<spawn npc_id="885805" respawn_time="295">
+                        <spot x="1283.5626" y="1504.9851" z="253.48763" entity_id="1024"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="ASMODIANS">
+				<siege_mod mod="PEACE">
+					<!-- LDF7_1519_Boss_Da -->
+					<spawn npc_id="885771" respawn_time="295">
+						<spot h="60" z="254.64616" y="1505.1301" x="1280.2201"/>
+					</spawn>
+					<!-- LDF7_Artifact_15191_Da -->
+					<spawn npc_id="885806" respawn_time="295">
+                        <spot x="1283.5626" y="1504.9851" z="253.48763" entity_id="969"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+			<siege_race race="BALAUR">
+				<siege_mod mod="PEACE">
+				    <!-- LDF7_1519_Boss_Dr -->
+					<spawn npc_id="885776" respawn_time="295">
+						<spot h="60" z="254.64616" y="1505.1301" x="1280.2201"/>
+					</spawn>
+					<!-- LDF7_Artifact_15191_Dr -->
+					<spawn npc_id="885807" respawn_time="295">
+                        <spot x="1283.5626" y="1504.9851" z="253.48763" entity_id="830"/>
+            		</spawn>
+				</siege_mod>
+				<siege_mod mod="SIEGE">
+				</siege_mod>
+			</siege_race>
+		</siege_spawn>
+	</spawn_map>
+</spawns>

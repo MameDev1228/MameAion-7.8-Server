@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Cubic 7.x
+	Made By Encom
+ -->
+<monster_core_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="monster_core_templates.xsd">
+    <monster_core_template id="1" name="Golden Garkion's Life Cubic" quality="GOLD" maxRank="5" category="100" itemId="188200023">
+		<core_list id="1" level="5" stat="MAXHP" value="429"/>
+		<core_list id="2" level="10" stat="MAXHP" value="613"/>
+		<core_list id="3" level="15" stat="MAXHP" value="875"/>
+		<core_list id="4" level="20" stat="MAXHP" value="1330"/>
+		<core_list id="5" level="25" stat="MAXHP" value="1900"/>
+	</monster_core_template>
+	<monster_core_template id="2" name="Silver Garkion's Life Cubic" quality="SILVER" maxRank="5" category="100" itemId="188200024">
+		<core_list id="1" level="10" stat="MAXHP" value="420"/>
+		<core_list id="2" level="20" stat="MAXHP" value="600"/>
+		<core_list id="3" level="30" stat="MAXHP" value="858"/>
+		<core_list id="4" level="40" stat="MAXHP" value="1225"/>
+		<core_list id="5" level="50" stat="MAXHP" value="1650"/>
+	</monster_core_template>
+	<monster_core_template id="3" name="Bronze Garkion's Life Cubic" quality="BRONZE" maxRank="5" category="100" itemId="188200025">
+		<core_list id="1" level="20" stat="MAXHP" value="336"/>
+		<core_list id="2" level="40" stat="MAXHP" value="480"/>
+		<core_list id="3" level="60" stat="MAXHP" value="686"/>
+		<core_list id="4" level="80" stat="MAXHP" value="980"/>
+		<core_list id="5" level="100" stat="MAXHP" value="1400"/>
+	</monster_core_template>
+	<monster_core_template id="4" name="Golden Agrint's Mind Cubic" quality="GOLD" maxRank="5" category="101" itemId="188200026">
+		<core_list id="1" level="5" stat="MAXMP" value="300"/>
+		<core_list id="2" level="10" stat="MAXMP" value="429"/>
+		<core_list id="3" level="15" stat="MAXMP" value="613"/>
+		<core_list id="4" level="20" stat="MAXMP" value="931"/>
+		<core_list id="5" level="25" stat="MAXMP" value="1330"/>
+	</monster_core_template>
+	<monster_core_template id="5" name="Silver Agrint's Mind Cubic" quality="SILVER" maxRank="5" category="101" itemId="188200027">
+		<core_list id="1" level="10" stat="MAXMP" value="294"/>
+		<core_list id="2" level="20" stat="MAXMP" value="420"/>
+		<core_list id="3" level="30" stat="MAXMP" value="600"/>
+		<core_list id="4" level="40" stat="MAXMP" value="858"/>
+		<core_list id="5" level="50" stat="MAXMP" value="1155"/>
+	</monster_core_template>
+	<monster_core_template id="6" name="Bronze Agrint's Mind Cubic" quality="BRONZE" maxRank="5" category="101" itemId="188200028">
+		<core_list id="1" level="20" stat="MAXMP" value="235"/>
+		<core_list id="2" level="40" stat="MAXMP" value="336"/>
+		<core_list id="3" level="60" stat="MAXMP" value="480"/>
+		<core_list id="4" level="80" stat="MAXMP" value="686"/>
+		<core_list id="5" level="100" stat="MAXMP" value="980"/>
+	</monster_core_template>
+	<monster_core_template id="7" name="Golden Trico's Blessing Cubic" quality="GOLD" maxRank="5" category="102" itemId="188200029">
+		<core_list id="1" level="5" stat="HEAL_BOOST" value="10"/>
+		<core_list id="2" level="10" stat="HEAL_BOOST" value="15"/>
+		<core_list id="3" level="15" stat="HEAL_BOOST" value="21"/>
+		<core_list id="4" level="20" stat="HEAL_BOOST" value="32"/>
+		<core_list id="5" level="25" stat="HEAL_BOOST" value="46"/>
+	</monster_core_template>
+	<monster_core_template id="8" name="Silver Trico's Blessing Cubic" quality="SILVER" maxRank="5" category="102" itemId="188200030">
+		<core_list id="1" level="10" stat="HEAL_BOOST" value="10"/>
+		<core_list id="2" level="20" stat="HEAL_BOOST" value="14"/>
+		<core_list id="3" level="30" stat="HEAL_BOOST" value="21"/>
+		<core_list id="4" level="40" stat="HEAL_BOOST" value="29"/>
+		<core_list id="5" level="50" stat="HEAL_BOOST" value="40"/>
+	</monster_core_template>
+	<monster_core_template id="9" name="Bronze Trico's Blessing Cubic" quality="BRONZE" maxRank="5" category="102" itemId="188200031">
+		<core_list id="1" level="20" stat="HEAL_BOOST" value="8"/>
+		<core_list id="2" level="40" stat="HEAL_BOOST" value="12"/>
+		<core_list id="3" level="60" stat="HEAL_BOOST" value="16"/>
+		<core_list id="4" level="80" stat="HEAL_BOOST" value="24"/>
+		<core_list id="5" level="100" stat="HEAL_BOOST" value="34"/>
+	</monster_core_template>
+	<monster_core_template id="10" name="Golden Worg's Lunacy Cubic" quality="GOLD" maxRank="5" category="103" itemId="188200032">
+		<core_list id="1" level="5" stat="PHYSICAL_POWER_BOOST" value="33"/>
+		<core_list id="2" level="10" stat="PHYSICAL_POWER_BOOST" value="47"/>
+		<core_list id="3" level="15" stat="PHYSICAL_POWER_BOOST" value="67"/>
+		<core_list id="4" level="20" stat="PHYSICAL_POWER_BOOST" value="101"/>
+		<core_list id="5" level="25" stat="PHYSICAL_POWER_BOOST" value="144"/>
+	</monster_core_template>
+	<monster_core_template id="11" name="Silver Worg's Lunacy Cubic" quality="SILVER" maxRank="5" category="103" itemId="188200033">
+		<core_list id="1" level="10" stat="PHYSICAL_POWER_BOOST" value="32"/>
+		<core_list id="2" level="20" stat="PHYSICAL_POWER_BOOST" value="46"/>
+		<core_list id="3" level="30" stat="PHYSICAL_POWER_BOOST" value="65"/>
+		<core_list id="4" level="40" stat="PHYSICAL_POWER_BOOST" value="93"/>
+		<core_list id="5" level="50" stat="PHYSICAL_POWER_BOOST" value="125"/>
+	</monster_core_template>
+	<monster_core_template id="12" name="Bronze Worg's Lunacy Cubic" quality="BRONZE" maxRank="5" category="103" itemId="188200034">
+		<core_list id="1" level="20" stat="PHYSICAL_POWER_BOOST" value="26"/>
+		<core_list id="2" level="40" stat="PHYSICAL_POWER_BOOST" value="36"/>
+		<core_list id="3" level="60" stat="PHYSICAL_POWER_BOOST" value="52"/>
+		<core_list id="4" level="80" stat="PHYSICAL_POWER_BOOST" value="74"/>
+		<core_list id="5" level="100" stat="PHYSICAL_POWER_BOOST" value="106"/>
+	</monster_core_template>
+	<monster_core_template id="13" name="Golden Griffon's Wisdom Cubic" quality="GOLD" maxRank="5" category="104" itemId="188200035">
+		<core_list id="1" level="5" stat="MAGICAL_POWER_BOOST" value="33"/>
+		<core_list id="2" level="10" stat="MAGICAL_POWER_BOOST" value="47"/>
+		<core_list id="3" level="15" stat="MAGICAL_POWER_BOOST" value="67"/>
+		<core_list id="4" level="20" stat="MAGICAL_POWER_BOOST" value="101"/>
+		<core_list id="5" level="25" stat="MAGICAL_POWER_BOOST" value="144"/>
+	</monster_core_template>
+	<monster_core_template id="14" name="Silver Griffon's Wisdom Cubic" quality="SILVER" maxRank="5" category="104" itemId="188200036">
+		<core_list id="1" level="10" stat="MAGICAL_POWER_BOOST" value="32"/>
+		<core_list id="2" level="20" stat="MAGICAL_POWER_BOOST" value="46"/>
+		<core_list id="3" level="30" stat="MAGICAL_POWER_BOOST" value="65"/>
+		<core_list id="4" level="40" stat="MAGICAL_POWER_BOOST" value="93"/>
+		<core_list id="5" level="50" stat="MAGICAL_POWER_BOOST" value="125"/>
+	</monster_core_template>
+	<monster_core_template id="15" name="Bronze Griffon's Wisdom Cubic" quality="BRONZE" maxRank="5" category="104" itemId="188200037">
+		<core_list id="1" level="20" stat="MAGICAL_POWER_BOOST" value="26"/>
+		<core_list id="2" level="40" stat="MAGICAL_POWER_BOOST" value="36"/>
+		<core_list id="3" level="60" stat="MAGICAL_POWER_BOOST" value="52"/>
+		<core_list id="4" level="80" stat="MAGICAL_POWER_BOOST" value="74"/>
+		<core_list id="5" level="100" stat="MAGICAL_POWER_BOOST" value="106"/>
+	</monster_core_template>
+	<monster_core_template id="16" name="Golden Starturtle's Protection Cubic" quality="GOLD" maxRank="5" category="105" itemId="188200038">
+		<core_list id="1" level="5" stat="PHYSICAL_POWER_BOOST_RESIST" value="33"/>
+		<core_list id="2" level="10" stat="PHYSICAL_POWER_BOOST_RESIST" value="47"/>
+		<core_list id="3" level="15" stat="PHYSICAL_POWER_BOOST_RESIST" value="67"/>
+		<core_list id="4" level="20" stat="PHYSICAL_POWER_BOOST_RESIST" value="101"/>
+		<core_list id="5" level="25" stat="PHYSICAL_POWER_BOOST_RESIST" value="144"/>
+	</monster_core_template>
+	<monster_core_template id="17" name="Silver Starturtle's Protection Cubic" quality="SILVER" maxRank="5" category="105" itemId="188200039">
+		<core_list id="1" level="10" stat="PHYSICAL_POWER_BOOST_RESIST" value="32"/>
+		<core_list id="2" level="20" stat="PHYSICAL_POWER_BOOST_RESIST" value="46"/>
+		<core_list id="3" level="30" stat="PHYSICAL_POWER_BOOST_RESIST" value="65"/>
+		<core_list id="4" level="40" stat="PHYSICAL_POWER_BOOST_RESIST" value="93"/>
+		<core_list id="5" level="50" stat="PHYSICAL_POWER_BOOST_RESIST" value="125"/>
+	</monster_core_template>
+	<monster_core_template id="18" name="Bronze Starturtle's Protection Cubic" quality="BRONZE" maxRank="5" category="105" itemId="188200040">
+		<core_list id="1" level="20" stat="PHYSICAL_POWER_BOOST_RESIST" value="26"/>
+		<core_list id="2" level="40" stat="PHYSICAL_POWER_BOOST_RESIST" value="36"/>
+		<core_list id="3" level="60" stat="PHYSICAL_POWER_BOOST_RESIST" value="52"/>
+		<core_list id="4" level="80" stat="PHYSICAL_POWER_BOOST_RESIST" value="74"/>
+		<core_list id="5" level="100" stat="PHYSICAL_POWER_BOOST_RESIST" value="106"/>
+	</monster_core_template>
+	<monster_core_template id="19" name="Golden Scolopen's Aegis Cubic" quality="GOLD" maxRank="5" category="106" itemId="188200041">
+		<core_list id="1" level="5" stat="MAGICAL_POWER_BOOST_RESIST" value="33"/>
+		<core_list id="2" level="10" stat="MAGICAL_POWER_BOOST_RESIST" value="47"/>
+		<core_list id="3" level="15" stat="MAGICAL_POWER_BOOST_RESIST" value="67"/>
+		<core_list id="4" level="20" stat="MAGICAL_POWER_BOOST_RESIST" value="101"/>
+		<core_list id="5" level="25" stat="MAGICAL_POWER_BOOST_RESIST" value="144"/>
+	</monster_core_template>
+	<monster_core_template id="20" name="Silver Scolopen's Aegis Cubic" quality="SILVER" maxRank="5" category="106" itemId="188200042">
+		<core_list id="1" level="10" stat="MAGICAL_POWER_BOOST_RESIST" value="32"/>
+		<core_list id="2" level="20" stat="MAGICAL_POWER_BOOST_RESIST" value="46"/>
+		<core_list id="3" level="30" stat="MAGICAL_POWER_BOOST_RESIST" value="65"/>
+		<core_list id="4" level="40" stat="MAGICAL_POWER_BOOST_RESIST" value="93"/>
+		<core_list id="5" level="50" stat="MAGICAL_POWER_BOOST_RESIST" value="125"/>
+	</monster_core_template>
+	<monster_core_template id="21" name="Bronze Scolopen's Aegis Cubic" quality="BRONZE" maxRank="5" category="106" itemId="188200043">
+		<core_list id="1" level="20" stat="MAGICAL_POWER_BOOST_RESIST" value="26"/>
+		<core_list id="2" level="40" stat="MAGICAL_POWER_BOOST_RESIST" value="36"/>
+		<core_list id="3" level="60" stat="MAGICAL_POWER_BOOST_RESIST" value="52"/>
+		<core_list id="4" level="80" stat="MAGICAL_POWER_BOOST_RESIST" value="74"/>
+		<core_list id="5" level="100" stat="MAGICAL_POWER_BOOST_RESIST" value="106"/>
+	</monster_core_template>
+	<monster_core_template id="22" name="Golden Malodor's Will Cubic" quality="GOLD" maxRank="5" category="107" itemId="188200044">
+		<core_list id="1" level="5" stat="PHYSICAL_ACCURACY" value="47"/>
+		<core_list id="2" level="10" stat="PHYSICAL_ACCURACY" value="67"/>
+		<core_list id="3" level="15" stat="PHYSICAL_ACCURACY" value="96"/>
+		<core_list id="4" level="20" stat="PHYSICAL_ACCURACY" value="146"/>
+		<core_list id="5" level="25" stat="PHYSICAL_ACCURACY" value="209"/>
+	</monster_core_template>
+	<monster_core_template id="23" name="Silver Malodor's Will Cubic" quality="SILVER" maxRank="5" category="107" itemId="188200045">
+		<core_list id="1" level="10" stat="PHYSICAL_ACCURACY" value="46"/>
+		<core_list id="2" level="20" stat="PHYSICAL_ACCURACY" value="66"/>
+		<core_list id="3" level="30" stat="PHYSICAL_ACCURACY" value="94"/>
+		<core_list id="4" level="40" stat="PHYSICAL_ACCURACY" value="135"/>
+		<core_list id="5" level="50" stat="PHYSICAL_ACCURACY" value="182"/>
+	</monster_core_template>
+	<monster_core_template id="24" name="Bronze Malodor's Will Cubic" quality="BRONZE" maxRank="5" category="107" itemId="188200046">
+		<core_list id="1" level="20" stat="PHYSICAL_ACCURACY" value="37"/>
+		<core_list id="2" level="40" stat="PHYSICAL_ACCURACY" value="53"/>
+		<core_list id="3" level="60" stat="PHYSICAL_ACCURACY" value="75"/>
+		<core_list id="4" level="80" stat="PHYSICAL_ACCURACY" value="108"/>
+		<core_list id="5" level="100" stat="PHYSICAL_ACCURACY" value="154"/>
+	</monster_core_template>
+	<monster_core_template id="25" name="Golden Oculazen's Rationality Cubic" quality="GOLD" maxRank="5" category="108" itemId="188200047">
+		<core_list id="1" level="5" stat="MAGICAL_ACCURACY" value="47"/>
+		<core_list id="2" level="10" stat="MAGICAL_ACCURACY" value="67"/>
+		<core_list id="3" level="15" stat="MAGICAL_ACCURACY" value="96"/>
+		<core_list id="4" level="20" stat="MAGICAL_ACCURACY" value="146"/>
+		<core_list id="5" level="25" stat="MAGICAL_ACCURACY" value="209"/>
+	</monster_core_template>
+	<monster_core_template id="26" name="Silver Oculazen's Rationality Cubic" quality="SILVER" maxRank="5" category="108" itemId="188200048">
+		<core_list id="1" level="10" stat="MAGICAL_ACCURACY" value="46"/>
+		<core_list id="2" level="20" stat="MAGICAL_ACCURACY" value="66"/>
+		<core_list id="3" level="30" stat="MAGICAL_ACCURACY" value="94"/>
+		<core_list id="4" level="40" stat="MAGICAL_ACCURACY" value="135"/>
+		<core_list id="5" level="50" stat="MAGICAL_ACCURACY" value="182"/>
+	</monster_core_template>
+	<monster_core_template id="27" name="Bronze Oculazen's Rationality Cubic" quality="BRONZE" maxRank="5" category="108" itemId="188200049">
+		<core_list id="1" level="20" stat="MAGICAL_ACCURACY" value="37"/>
+		<core_list id="2" level="40" stat="MAGICAL_ACCURACY" value="53"/>
+		<core_list id="3" level="60" stat="MAGICAL_ACCURACY" value="75"/>
+		<core_list id="4" level="80" stat="MAGICAL_ACCURACY" value="108"/>
+		<core_list id="5" level="100" stat="MAGICAL_ACCURACY" value="154"/>
+	</monster_core_template>
+	<monster_core_template id="28" name="Golden Airon's Agility Cubic" quality="GOLD" maxRank="5" category="109" itemId="188200050">
+		<core_list id="1" level="5" stat="EVASION" value="94"/>
+		<core_list id="2" level="10" stat="EVASION" value="135"/>
+		<core_list id="3" level="15" stat="EVASION" value="193"/>
+		<core_list id="4" level="20" stat="EVASION" value="293"/>
+		<core_list id="5" level="25" stat="EVASION" value="418"/>
+	</monster_core_template>
+	<monster_core_template id="29" name="Silver Airon's Agility Cubic" quality="SILVER" maxRank="5" category="109" itemId="188200051">
+		<core_list id="1" level="10" stat="EVASION" value="92"/>
+		<core_list id="2" level="20" stat="EVASION" value="132"/>
+		<core_list id="3" level="30" stat="EVASION" value="189"/>
+		<core_list id="4" level="40" stat="EVASION" value="270"/>
+		<core_list id="5" level="50" stat="EVASION" value="363"/>
+	</monster_core_template>
+	<monster_core_template id="30" name="Bronze Airon's Agility Cubic" quality="BRONZE" maxRank="5" category="109" itemId="188200052">
+		<core_list id="1" level="20" stat="EVASION" value="74"/>
+		<core_list id="2" level="40" stat="EVASION" value="106"/>
+		<core_list id="3" level="60" stat="EVASION" value="151"/>
+		<core_list id="4" level="80" stat="EVASION" value="216"/>
+		<core_list id="5" level="100" stat="EVASION" value="308"/>
+	</monster_core_template>
+	<monster_core_template id="31" name="Golden Specter's Honor Cubic" quality="GOLD" maxRank="5" category="110" itemId="188200053">
+		<core_list id="1" level="5" stat="PARRY" value="94"/>
+		<core_list id="2" level="10" stat="PARRY" value="135"/>
+		<core_list id="3" level="15" stat="PARRY" value="193"/>
+		<core_list id="4" level="20" stat="PARRY" value="293"/>
+		<core_list id="5" level="25" stat="PARRY" value="418"/>
+	</monster_core_template>
+	<monster_core_template id="32" name="Silver Specter's Honor Cubic" quality="SILVER" maxRank="5" category="110" itemId="188200054">
+		<core_list id="1" level="10" stat="PARRY" value="92"/>
+		<core_list id="2" level="20" stat="PARRY" value="132"/>
+		<core_list id="3" level="30" stat="PARRY" value="189"/>
+		<core_list id="4" level="40" stat="PARRY" value="270"/>
+		<core_list id="5" level="50" stat="PARRY" value="363"/>
+	</monster_core_template>
+	<monster_core_template id="33" name="Bronze Specter's Honor Cubic" quality="BRONZE" maxRank="5" category="110" itemId="188200055">
+		<core_list id="1" level="20" stat="PARRY" value="74"/>
+		<core_list id="2" level="40" stat="PARRY" value="106"/>
+		<core_list id="3" level="60" stat="PARRY" value="151"/>
+		<core_list id="4" level="80" stat="PARRY" value="216"/>
+		<core_list id="5" level="100" stat="PARRY" value="308"/>
+	</monster_core_template>
+	<monster_core_template id="34" name="Golden Petralith's Oath Cubic" quality="GOLD" maxRank="5" category="111" itemId="188200056">
+		<core_list id="1" level="5" stat="BLOCK" value="94"/>
+		<core_list id="2" level="10" stat="BLOCK" value="135"/>
+		<core_list id="3" level="15" stat="BLOCK" value="193"/>
+		<core_list id="4" level="20" stat="BLOCK" value="293"/>
+		<core_list id="5" level="25" stat="BLOCK" value="418"/>
+	</monster_core_template>
+	<monster_core_template id="35" name="Silver Petralith's Oath Cubic" quality="SILVER" maxRank="5" category="111" itemId="188200057">
+		<core_list id="1" level="10" stat="BLOCK" value="92"/>
+		<core_list id="2" level="20" stat="BLOCK" value="132"/>
+		<core_list id="3" level="30" stat="BLOCK" value="189"/>
+		<core_list id="4" level="40" stat="BLOCK" value="270"/>
+		<core_list id="5" level="50" stat="BLOCK" value="363"/>
+	</monster_core_template>
+	<monster_core_template id="36" name="Bronze Petralith's Oath Cubic" quality="BRONZE" maxRank="5" category="111" itemId="188200058">
+		<core_list id="1" level="20" stat="BLOCK" value="74"/>
+		<core_list id="2" level="40" stat="BLOCK" value="106"/>
+		<core_list id="3" level="60" stat="BLOCK" value="151"/>
+		<core_list id="4" level="80" stat="BLOCK" value="216"/>
+		<core_list id="5" level="100" stat="BLOCK" value="308"/>
+	</monster_core_template>
+	<monster_core_template id="37" name="Golden Panolem's Silence Cubic" quality="GOLD" maxRank="5" category="112" itemId="188200059">
+		<core_list id="1" level="5" stat="MAGICAL_RESIST" value="94"/>
+		<core_list id="2" level="10" stat="MAGICAL_RESIST" value="135"/>
+		<core_list id="3" level="15" stat="MAGICAL_RESIST" value="193"/>
+		<core_list id="4" level="20" stat="MAGICAL_RESIST" value="293"/>
+		<core_list id="5" level="25" stat="MAGICAL_RESIST" value="418"/>
+	</monster_core_template>
+	<monster_core_template id="38" name="Silver Panolem's Silence Cubic" quality="SILVER" maxRank="5" category="112" itemId="188200060">
+		<core_list id="1" level="10" stat="MAGICAL_RESIST" value="92"/>
+		<core_list id="2" level="20" stat="MAGICAL_RESIST" value="132"/>
+		<core_list id="3" level="30" stat="MAGICAL_RESIST" value="189"/>
+		<core_list id="4" level="40" stat="MAGICAL_RESIST" value="270"/>
+		<core_list id="5" level="50" stat="MAGICAL_RESIST" value="363"/>
+	</monster_core_template>
+	<monster_core_template id="39" name="Bronze Panolem's Silence Cubic" quality="BRONZE" maxRank="5" category="112" itemId="188200061">
+		<core_list id="1" level="20" stat="MAGICAL_RESIST" value="74"/>
+		<core_list id="2" level="40" stat="MAGICAL_RESIST" value="106"/>
+		<core_list id="3" level="60" stat="MAGICAL_RESIST" value="151"/>
+		<core_list id="4" level="80" stat="MAGICAL_RESIST" value="216"/>
+		<core_list id="5" level="100" stat="MAGICAL_RESIST" value="308"/>
+	</monster_core_template>
+	<monster_core_template id="40" name="Ereshkigal Hunter's Golden Cubic" quality="GOLD" maxRank="3" category="99" itemId="188200062">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="50"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="41" name="Ereshkigal Hunter's White Silver Cubic" quality="SILVER" maxRank="4" category="99" itemId="188200063">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="80"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="150"/>
+	</monster_core_template>
+	<monster_core_template id="42" name="Ereshkigal Hunter's Bronze Cubic" quality="BRONZE" maxRank="5" category="99" itemId="188200064">
+		<core_list id="1" level="60" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="2" level="120" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="4" level="240" stat="PVE_POWER_BOOST" value="160"/>
+		<core_list id="5" level="300" stat="PVE_POWER_BOOST" value="250"/>
+	</monster_core_template>
+	<monster_core_template id="43" name="Ereshkigal Expert's Golden Cubic" quality="GOLD" maxRank="3" category="99" itemId="188200065">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="44" name="Ereshkigal Expert's White Silver Cubic" quality="SILVER" maxRank="4" category="99" itemId="188200066">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="80"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="150"/>
+	</monster_core_template>
+	<monster_core_template id="45" name="Ereshkigal Expert's Bronze Cubic" quality="BRONZE" maxRank="5" category="99" itemId="188200067">
+		<core_list id="1" level="60" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="2" level="120" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="4" level="240" stat="PVE_POWER_BOOST_RESIST" value="160"/>
+		<core_list id="5" level="300" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+	</monster_core_template>
+	<monster_core_template id="46" name="Platinum Garkion's Life Cubic" quality="PLATINUM" maxRank="5" category="100" itemId="188200068">
+		<core_list id="1" level="5" stat="MAXHP" value="132"/>
+		<core_list id="2" level="10" stat="MAXHP" value="189"/>
+		<core_list id="3" level="15" stat="MAXHP" value="270"/>
+		<core_list id="4" level="20" stat="MAXHP" value="385"/>
+		<core_list id="5" level="25" stat="MAXHP" value="550"/>
+	</monster_core_template>
+	<monster_core_template id="47" name="Platinum Agrint's Mind Cubic" quality="PLATINUM" maxRank="5" category="101" itemId="188200069">
+		<core_list id="1" level="5" stat="MAXMP" value="92"/>
+		<core_list id="2" level="10" stat="MAXMP" value="132"/>
+		<core_list id="3" level="15" stat="MAXMP" value="189"/>
+		<core_list id="4" level="20" stat="MAXMP" value="270"/>
+		<core_list id="5" level="25" stat="MAXMP" value="385"/>
+	</monster_core_template>
+	<monster_core_template id="48" name="Platinum Trico's Blessing Cubic" quality="PLATINUM" maxRank="5" category="102" itemId="188200070">
+		<core_list id="1" level="5" stat="HEAL_BOOST" value="3"/>
+		<core_list id="2" level="10" stat="HEAL_BOOST" value="5"/>
+		<core_list id="3" level="15" stat="HEAL_BOOST" value="6"/>
+		<core_list id="4" level="20" stat="HEAL_BOOST" value="9"/>
+		<core_list id="5" level="25" stat="HEAL_BOOST" value="13"/>
+	</monster_core_template>
+	<monster_core_template id="49" name="Platinum Worg's Lunacy Cubic" quality="PLATINUM" maxRank="5" category="103" itemId="188200071">
+		<core_list id="1" level="5" stat="PHYSICAL_POWER_BOOST" value="10"/>
+		<core_list id="2" level="10" stat="PHYSICAL_POWER_BOOST" value="14"/>
+		<core_list id="3" level="15" stat="PHYSICAL_POWER_BOOST" value="20"/>
+		<core_list id="4" level="20" stat="PHYSICAL_POWER_BOOST" value="29"/>
+		<core_list id="5" level="25" stat="PHYSICAL_POWER_BOOST" value="42"/>
+	</monster_core_template>
+	<monster_core_template id="50" name="Platinum Griffon's Wisdom Cubic" quality="PLATINUM" maxRank="5" category="104" itemId="188200072">
+		<core_list id="1" level="5" stat="MAGICAL_POWER_BOOST" value="10"/>
+		<core_list id="2" level="10" stat="MAGICAL_POWER_BOOST" value="14"/>
+		<core_list id="3" level="15" stat="MAGICAL_POWER_BOOST" value="20"/>
+		<core_list id="4" level="20" stat="MAGICAL_POWER_BOOST" value="29"/>
+		<core_list id="5" level="25" stat="MAGICAL_POWER_BOOST" value="42"/>
+	</monster_core_template>
+	<monster_core_template id="51" name="Platinum Starturtle's Protection Cubic" quality="PLATINUM" maxRank="5" category="105" itemId="188200073">
+		<core_list id="1" level="5" stat="PHYSICAL_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="10" stat="PHYSICAL_POWER_BOOST_RESIST" value="14"/>
+		<core_list id="3" level="15" stat="PHYSICAL_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="4" level="20" stat="PHYSICAL_POWER_BOOST_RESIST" value="29"/>
+		<core_list id="5" level="25" stat="PHYSICAL_POWER_BOOST_RESIST" value="42"/>
+	</monster_core_template>
+	<monster_core_template id="52" name="Platinum Scolopen's Aegis Cubic" quality="PLATINUM" maxRank="5" category="106" itemId="188200074">
+		<core_list id="1" level="5" stat="MAGICAL_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="10" stat="MAGICAL_POWER_BOOST_RESIST" value="14"/>
+		<core_list id="3" level="15" stat="MAGICAL_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="4" level="20" stat="MAGICAL_POWER_BOOST_RESIST" value="29"/>
+		<core_list id="5" level="25" stat="MAGICAL_POWER_BOOST_RESIST" value="42"/>
+	</monster_core_template>
+	<monster_core_template id="53" name="Platinum Malodor's Will Cubic" quality="PLATINUM" maxRank="5" category="107" itemId="188200075">
+		<core_list id="1" level="5" stat="PHYSICAL_ACCURACY" value="15"/>
+		<core_list id="2" level="10" stat="PHYSICAL_ACCURACY" value="21"/>
+		<core_list id="3" level="15" stat="PHYSICAL_ACCURACY" value="30"/>
+		<core_list id="4" level="20" stat="PHYSICAL_ACCURACY" value="42"/>
+		<core_list id="5" level="25" stat="PHYSICAL_ACCURACY" value="61"/>
+	</monster_core_template>
+	<monster_core_template id="54" name="Platinum Oculazen's Rationality Cubic" quality="PLATINUM" maxRank="5" category="108" itemId="188200076">
+		<core_list id="1" level="5" stat="MAGICAL_ACCURACY" value="15"/>
+		<core_list id="2" level="10" stat="MAGICAL_ACCURACY" value="21"/>
+		<core_list id="3" level="15" stat="MAGICAL_ACCURACY" value="30"/>
+		<core_list id="4" level="20" stat="MAGICAL_ACCURACY" value="42"/>
+		<core_list id="5" level="25" stat="MAGICAL_ACCURACY" value="61"/>
+	</monster_core_template>
+	<monster_core_template id="55" name="Platinum Airon's Agility Cubic" quality="PLATINUM" maxRank="5" category="109" itemId="188200077">
+		<core_list id="1" level="5" stat="EVASION" value="29"/>
+		<core_list id="2" level="10" stat="EVASION" value="42"/>
+		<core_list id="3" level="15" stat="EVASION" value="59"/>
+		<core_list id="4" level="20" stat="EVASION" value="85"/>
+		<core_list id="5" level="25" stat="EVASION" value="121"/>
+	</monster_core_template>
+	<monster_core_template id="56" name="Platinum Specter's Honor Cubic" quality="PLATINUM" maxRank="5" category="110" itemId="188200078">
+		<core_list id="1" level="5" stat="PARRY" value="29"/>
+		<core_list id="2" level="10" stat="PARRY" value="42"/>
+		<core_list id="3" level="15" stat="PARRY" value="59"/>
+		<core_list id="4" level="20" stat="PARRY" value="85"/>
+		<core_list id="5" level="25" stat="PARRY" value="121"/>
+	</monster_core_template>
+	<monster_core_template id="57" name="Platinum Petralith's Oath Cubic" quality="PLATINUM" maxRank="5" category="111" itemId="188200079">
+		<core_list id="1" level="5" stat="BLOCK" value="29"/>
+		<core_list id="2" level="10" stat="BLOCK" value="42"/>
+		<core_list id="3" level="15" stat="BLOCK" value="59"/>
+		<core_list id="4" level="20" stat="BLOCK" value="85"/>
+		<core_list id="5" level="25" stat="BLOCK" value="121"/>
+	</monster_core_template>
+	<monster_core_template id="58" name="Platinum Panolem's Silence Cubic" quality="PLATINUM" maxRank="5" category="112" itemId="188200080">
+		<core_list id="1" level="5" stat="MAGICAL_RESIST" value="29"/>
+		<core_list id="2" level="10" stat="MAGICAL_RESIST" value="42"/>
+		<core_list id="3" level="15" stat="MAGICAL_RESIST" value="59"/>
+		<core_list id="4" level="20" stat="MAGICAL_RESIST" value="85"/>
+		<core_list id="5" level="25" stat="MAGICAL_RESIST" value="121"/>
+	</monster_core_template>
+	<monster_core_template id="59" name="Yastikan/Varakan Hunter's White Silver Cubic" quality="SILVER" maxRank="3" category="95" itemId="188200089">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="60" name="Yastikan/Varakan Hunter's Golden Cubic" quality="GOLD" maxRank="4" category="95" itemId="188200090">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="61" name="Yastikan/Varakan Hunter's Platinum Cubic" quality="PLATINUM" maxRank="5" category="95" itemId="188200091">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="62" name="Suffering Primeth Hunter's White Silver Cubic" quality="SILVER" maxRank="3" category="96" itemId="188200092">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="63" name="Suffering Primeth Hunter's Golden Cubic" quality="GOLD" maxRank="4" category="96" itemId="188200093">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="64" name="Suffering Primeth Hunter's Platinum Cubic" quality="PLATINUM" maxRank="5" category="96" itemId="188200094">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="65" name="Tarukan Hunter's White Silver Cubic" quality="SILVER" maxRank="3" category="97" itemId="188200095">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="66" name="Tarukan Hunter's Golden Cubic" quality="GOLD" maxRank="4" category="97" itemId="188200096">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="67" name="Tarukan Hunter's Platinum Cubic" quality="PLATINUM" maxRank="5" category="97" itemId="188200097">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="68" name="Maddened Frigida Hunter's White Silver Cubic" quality="SILVER" maxRank="3" category="98" itemId="188200098">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="69" name="Maddened Frigida Hunter's Golden Cubic" quality="GOLD" maxRank="4" category="98" itemId="188200099">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="70" name="Maddened Frigida Hunter's Platinum Cubic" quality="PLATINUM" maxRank="5" category="98" itemId="188200100">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="71" name="Daeva's Mutant Hunter's White Silver Cubic" quality="SILVER" maxRank="3" category="94" itemId="188200101">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="72" name="Daeva's Mutant Hunter's Golden Cubic" quality="GOLD" maxRank="4" category="94" itemId="188200102">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="73" name="Daeva's Mutant Hunter's Platinum Cubic" quality="PLATINUM" maxRank="5" category="94" itemId="188200103">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="74" name="Oversized Armor SVR-07 Hunter's White Silver Cubic" quality="SILVER" maxRank="3" category="93" itemId="188200104">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="75" name="Oversized Armor SVR-07 Hunter's Golden Cubic" quality="GOLD" maxRank="4" category="93" itemId="188200105">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="76" name="Oversized Armor SVR-07 Hunter's Platinum Cubic" quality="PLATINUM" maxRank="5" category="93" itemId="188200106">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="77" name="Yastikan/Varakan Expert's White Silver Cubic" quality="SILVER" maxRank="3" category="95" itemId="188200107">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="78" name="Yastikan/Varakan Expert's Golden Cubic" quality="GOLD" maxRank="4" category="95" itemId="188200108">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="79" name="Yastikan/Varakan Expert's Platinum Cubic" quality="PLATINUM" maxRank="5" category="95" itemId="188200109">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="80" name="Suffering Primeth Expert's White Silver Cubic" quality="SILVER" maxRank="3" category="96" itemId="188200110">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="81" name="Suffering Primeth Expert's Golden Cubic" quality="GOLD" maxRank="4" category="96" itemId="188200111">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="82" name="Suffering Primeth Expert's Platinum Cubic" quality="PLATINUM" maxRank="5" category="96" itemId="188200112">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="83" name="Tarukan Expert's White Silver Cubic" quality="SILVER" maxRank="3" category="97" itemId="188200113">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="84" name="Tarukan Expert's Golden Cubic" quality="GOLD" maxRank="4" category="97" itemId="188200114">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="85" name="Tarukan Expert's Platinum Cubic" quality="PLATINUM" maxRank="5" category="97" itemId="188200115">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="86" name="Maddened Frigida Expert's White Silver Cubic" quality="SILVER" maxRank="3" category="98" itemId="188200116">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="87" name="Maddened Frigida Expert's Golden Cubic" quality="GOLD" maxRank="4" category="98" itemId="188200117">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="88" name="Maddened Frigida Expert's Platinum Cubic" quality="PLATINUM" maxRank="5" category="98" itemId="188200118">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="89" name="Daeva's Mutant Expert's White Silver Cubic" quality="SILVER" maxRank="3" category="94" itemId="188200119">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="90" name="Daeva's Mutant Expert's Golden Cubic" quality="GOLD" maxRank="4" category="94" itemId="188200120">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="91" name="Daeva's Mutant Expert's Platinum Cubic" quality="PLATINUM" maxRank="5" category="94" itemId="188200121">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="92" name="Oversized Armor SVR-07 Expert's White Silver Cubic" quality="SILVER" maxRank="3" category="93" itemId="188200122">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="93" name="Oversized Armor SVR-07 Expert's Golden Cubic" quality="GOLD" maxRank="4" category="93" itemId="188200123">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="94" name="Oversized Armor SVR-07 Expert's Platinum Cubic" quality="PLATINUM" maxRank="5" category="93" itemId="188200124">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="300"/>
+	</monster_core_template>
+	<monster_core_template id="95" name="cubic_stat_idseal_hard_boss_1st_atk_02" quality="SILVER" maxRank="3" category="92" itemId="188200125">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="96" name="cubic_stat_idseal_hard_boss_1st_atk_03" quality="GOLD" maxRank="4" category="92" itemId="188200126">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="97" name="cubic_stat_idseal_hard_boss_1st_atk_04" quality="PLATINUM" maxRank="5" category="92" itemId="188200127">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST" value="350"/>
+	</monster_core_template>
+	<monster_core_template id="98" name="cubic_stat_idf8_Dragon_Altar_atk_02" quality="SILVER" maxRank="3" category="91" itemId="188200128">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="99" name="cubic_stat_idf8_Dragon_Altar_atk_03" quality="GOLD" maxRank="4" category="91" itemId="188200129">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="100" name="cubic_stat_idf8_Dragon_Altar_atk_04" quality="PLATINUM" maxRank="5" category="91" itemId="188200130">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST" value="350"/>
+	</monster_core_template>
+	<monster_core_template id="101" name="cubic_stat_idseal_hard_boss_1st_def_02" quality="SILVER" maxRank="3" category="92" itemId="188200131">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="102" name="cubic_stat_idseal_hard_boss_1st_def_03" quality="GOLD" maxRank="4" category="92" itemId="188200132">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="103" name="cubic_stat_idseal_hard_boss_1st_def_04" quality="PLATINUM" maxRank="5" category="92" itemId="188200133">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="350"/>
+	</monster_core_template>
+	<monster_core_template id="104" name="cubic_stat_idf8_Dragon_Altar_def_02" quality="SILVER" maxRank="3" category="91" itemId="188200134">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="105" name="cubic_stat_idf8_Dragon_Altar_def_03" quality="GOLD" maxRank="4" category="91" itemId="188200135">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="106" name="cubic_stat_idf8_Dragon_Altar_def_04" quality="PLATINUM" maxRank="5" category="91" itemId="188200136">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="350"/>
+	</monster_core_template>
+	<monster_core_template id="107" name="cubic_stat_idseal_hard_boss_2nd_atk_02" quality="SILVER" maxRank="3" category="90" itemId="188200137">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="108" name="cubic_stat_idseal_hard_boss_2nd_atk_03" quality="GOLD" maxRank="4" category="90" itemId="188200138">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="109" name="cubic_stat_idseal_hard_boss_2nd_atk_04" quality="PLATINUM" maxRank="5" category="90" itemId="188200139">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="350"/>
+	</monster_core_template>
+	<monster_core_template id="110" name="cubic_stat_idseal_hard_boss_2nd_def_02" quality="SILVER" maxRank="3" category="90" itemId="188200140">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="111" name="cubic_stat_idseal_hard_boss_2nd_def_03" quality="GOLD" maxRank="4" category="90" itemId="188200141">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="112" name="cubic_stat_idseal_hard_boss_2nd_def_04" quality="PLATINUM" maxRank="5" category="90" itemId="188200142">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="350"/>
+	</monster_core_template>
+	<monster_core_template id="113" name="cubic_stat_catacombs_3rd_atk_02" quality="SILVER" maxRank="3" category="88" itemId="188200149">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="114" name="cubic_stat_catacombs_3rd_atk_03" quality="GOLD" maxRank="4" category="88" itemId="188200150">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="115" name="cubic_stat_catacombs_3rd_atk_04" quality="PLATINUM" maxRank="5" category="88" itemId="188200151">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST" value="350"/>
+	</monster_core_template>
+	<monster_core_template id="116" name="cubic_stat_catacombs_3rd_def_02" quality="SILVER" maxRank="3" category="88" itemId="188200152">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="24" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="34" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="117" name="cubic_stat_catacombs_3rd_def_03" quality="GOLD" maxRank="4" category="88" itemId="188200153">
+		<core_list id="1" level="30" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="60" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="90" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="120" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="118" name="cubic_stat_catacombs_3rd_def_04" quality="PLATINUM" maxRank="5" category="88" itemId="188200154">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="350"/>
+	</monster_core_template>
+	<monster_core_template id="119" name="cubic_stat_idseal_hard_boss_3rd_atk_02" quality="SILVER" maxRank="3" category="89" itemId="188200143">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="120" name="cubic_stat_idseal_hard_boss_3rd_atk_03" quality="GOLD" maxRank="4" category="89" itemId="188200144">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="121" name="cubic_stat_idseal_hard_boss_3rd_atk_04" quality="PLATINUM" maxRank="5" category="89" itemId="188200145">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST" value="350"/>
+	</monster_core_template>
+	<monster_core_template id="122" name="cubic_stat_idseal_hard_boss_3rd_def_02" quality="SILVER" maxRank="3" category="89" itemId="188200146">
+		<core_list id="1" level="10" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="18" stat="PVE_POWER_BOOST_RESIST" value="20"/>
+		<core_list id="3" level="26" stat="PVE_POWER_BOOST_RESIST" value="50"/>
+	</monster_core_template>
+	<monster_core_template id="123" name="cubic_stat_idseal_hard_boss_3rd_def_03" quality="GOLD" maxRank="4" category="89" itemId="188200147">
+		<core_list id="1" level="20" stat="PVE_POWER_BOOST_RESIST" value="10"/>
+		<core_list id="2" level="35" stat="PVE_POWER_BOOST_RESIST" value="30"/>
+		<core_list id="3" level="45" stat="PVE_POWER_BOOST_RESIST" value="60"/>
+		<core_list id="4" level="80" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+	</monster_core_template>
+	<monster_core_template id="124" name="cubic_stat_idseal_hard_boss_3rd_def_04" quality="PLATINUM" maxRank="5" category="89" itemId="188200148">
+		<core_list id="1" level="180" stat="PVE_POWER_BOOST_RESIST" value="40"/>
+		<core_list id="2" level="180" stat="PVE_POWER_BOOST_RESIST" value="100"/>
+		<core_list id="3" level="180" stat="PVE_POWER_BOOST_RESIST" value="170"/>
+		<core_list id="4" level="180" stat="PVE_POWER_BOOST_RESIST" value="250"/>
+		<core_list id="5" level="180" stat="PVE_POWER_BOOST_RESIST" value="350"/>
+	</monster_core_template>
+</monster_core_templates>

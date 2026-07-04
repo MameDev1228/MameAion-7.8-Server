@@ -1,25 +1,25 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.broker;
 
+import com.aionemu.gameserver.model.gameobjects.BrokerItem;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.aionemu.gameserver.model.gameobjects.BrokerItem;
 
 /**
  * @author ATracer
@@ -41,7 +41,7 @@ public class BrokerPlayerCache {
 
 	/**
 	 * @param brokerListCache
-	 *            the brokerListCache to set
+	 *          the brokerListCache to set
 	 */
 	public void setBrokerListCache(BrokerItem[] brokerListCache) {
 		this.brokerListCache = brokerListCache;
@@ -56,7 +56,7 @@ public class BrokerPlayerCache {
 
 	/**
 	 * @param brokerMaskCache
-	 *            the brokerMaskCache to set
+	 *          the brokerMaskCache to set
 	 */
 	public void setBrokerMaskCache(int brokerMaskCache) {
 		this.brokerMaskCache = brokerMaskCache;
@@ -71,7 +71,7 @@ public class BrokerPlayerCache {
 
 	/**
 	 * @param brokerSoftTypeCache
-	 *            the brokerSoftTypeCache to set
+	 *          the brokerSoftTypeCache to set
 	 */
 	public void setBrokerSortTypeCache(int brokerSoftTypeCache) {
 		this.brokerSoftTypeCache = brokerSoftTypeCache;
@@ -86,18 +86,17 @@ public class BrokerPlayerCache {
 
 	/**
 	 * @param the
-	 *            getSearchItemList
+	 *          getSearchItemList
 	 */
 	public List<Integer> getSearchItemList() {
-		if (this.itemList == null) {
+		if (this.itemList == null)
 			return null;
-		}
 		return this.itemList;
 	}
 
 	/**
 	 * @param brokerStartPageCache
-	 *            the brokerStartPageCache to set
+	 *          the brokerStartPageCache to set
 	 */
 	public void setBrokerStartPageCache(int brokerStartPageCache) {
 		this.brokerStartPageCache = brokerStartPageCache;
@@ -105,7 +104,7 @@ public class BrokerPlayerCache {
 
 	/**
 	 * @param setSearchItemsList
-	 *            the searched item list to set
+	 *          the searched item list to set
 	 */
 	public void setSearchItemsList(List<Integer> itemList) {
 		this.itemList = itemList;

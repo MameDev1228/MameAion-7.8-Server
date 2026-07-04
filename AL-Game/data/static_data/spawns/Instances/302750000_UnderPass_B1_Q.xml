@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	UnderPass_B1_Q 7.x
+	Spawn By Encom
+ -->
+<spawns>
+	<spawn_map map_id="302750000">
+		<!-- UnderPass_B1_Q_Entrance_Out -->
+		<spawn npc_id="840674">
+			<spot x="326.71054" y="255.88277" z="188.32082" h="0"/>
+		</spawn>
+		<!-- UnderPass_B1_Q_Irrnyn_E -->
+		<spawn npc_id="840676">
+			<spot x="224.80164" y="251.82906" z="188.59239" h="15"/>
+		</spawn>
+		<!-- UnderPass_B1_Q_Imitation_Artifact -->
+		<spawn npc_id="840675">
+			<spot x="215.30388" y="255.88202" z="189.34523" entity_id="22"/>
+		</spawn>
+	</spawn_map>
+</spawns>

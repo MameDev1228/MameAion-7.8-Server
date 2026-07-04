@@ -1,55 +1,31 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.controllers;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.concurrent.Future;
-
-import javax.annotation.Nonnull;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.aionemu.gameserver.ai2.manager.LookManager;
-import com.aionemu.gameserver.configs.main.HTMLConfig;
-import com.aionemu.gameserver.configs.main.MembershipConfig;
-import com.aionemu.gameserver.configs.main.SecurityConfig;
+import com.aionemu.gameserver.configs.main.*;
 import com.aionemu.gameserver.controllers.attack.AttackUtil;
 import com.aionemu.gameserver.dataholders.DataManager;
-import com.aionemu.gameserver.dataholders.PlayerInitialData;
 import com.aionemu.gameserver.model.DescriptionId;
 import com.aionemu.gameserver.model.EmotionType;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.TaskId;
 import com.aionemu.gameserver.model.actions.PlayerMode;
-import com.aionemu.gameserver.model.gameobjects.Creature;
-import com.aionemu.gameserver.model.gameobjects.Gatherable;
-import com.aionemu.gameserver.model.gameobjects.Item;
-import com.aionemu.gameserver.model.gameobjects.Kisk;
-import com.aionemu.gameserver.model.gameobjects.Minion;
-import com.aionemu.gameserver.model.gameobjects.Npc;
-import com.aionemu.gameserver.model.gameobjects.Pet;
-import com.aionemu.gameserver.model.gameobjects.StaticObject;
-import com.aionemu.gameserver.model.gameobjects.Summon;
-import com.aionemu.gameserver.model.gameobjects.VisibleObject;
+import com.aionemu.gameserver.model.gameobjects.*;
 import com.aionemu.gameserver.model.gameobjects.player.AbyssRank;
-import com.aionemu.gameserver.model.gameobjects.player.BindPointPosition;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureVisualState;
@@ -65,71 +41,34 @@ import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.panels.SkillPanel;
 import com.aionemu.gameserver.model.templates.quest.QuestItems;
 import com.aionemu.gameserver.model.templates.robot.RobotInfo;
+import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.model.templates.stats.PlayerStatsTemplate;
 import com.aionemu.gameserver.model.templates.zone.ZoneClassName;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS;
+import com.aionemu.gameserver.network.aion.serverpackets.*;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.LOG;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK_STATUS.TYPE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_DELETE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_DIE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_EMOTION;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_GATHERABLE_INFO;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_HEADING_UPDATE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_USAGE_ANIMATION;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_KISK_UPDATE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_LEVEL_UPDATE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_MINIONS;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_MOTION;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_NEARBY_QUESTS;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_NPC_INFO;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_PET;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_PLAYER_INFO;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_PLAYER_PROTECTION;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_PLAYER_STANCE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_PLAYER_STATE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_PRIVATE_STORE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_QUEST_ACTION;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_RIDE_ROBOT;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_CANCEL;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_LIST;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_STATS_INFO;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_TRANSFORM;
 import com.aionemu.gameserver.questEngine.QuestEngine;
-import com.aionemu.gameserver.questEngine.model.QuestEnv;
-import com.aionemu.gameserver.questEngine.model.QuestState;
-import com.aionemu.gameserver.questEngine.model.QuestStatus;
+import com.aionemu.gameserver.questEngine.model.*;
 import com.aionemu.gameserver.restrictions.RestrictionsManager;
-import com.aionemu.gameserver.services.ClassChangeService;
-import com.aionemu.gameserver.services.DuelService;
-import com.aionemu.gameserver.services.HTMLService;
-import com.aionemu.gameserver.services.LegionService;
-import com.aionemu.gameserver.services.MinionService;
-import com.aionemu.gameserver.services.PvpService;
-import com.aionemu.gameserver.services.QuestService;
-import com.aionemu.gameserver.services.SkillLearnService;
-import com.aionemu.gameserver.services.WorldPlayTimeService;
+import com.aionemu.gameserver.services.*;
 import com.aionemu.gameserver.services.abyss.AbyssService;
 import com.aionemu.gameserver.services.craft.CraftSkillUpdateService;
-import com.aionemu.gameserver.services.instance.InstanceService;
+import com.aionemu.gameserver.services.instance.*;
 import com.aionemu.gameserver.services.item.ItemService;
-import com.aionemu.gameserver.services.debug.StatAuditService;
 import com.aionemu.gameserver.services.player.AchievementService;
+import com.aionemu.gameserver.services.player.PlayerFameService;
 import com.aionemu.gameserver.services.summons.SummonsService;
 import com.aionemu.gameserver.services.teleport.TeleportService2;
 import com.aionemu.gameserver.services.toypet.PetSpawnService;
 import com.aionemu.gameserver.skillengine.SkillEngine;
-import com.aionemu.gameserver.skillengine.model.DispelCategoryType;
-import com.aionemu.gameserver.skillengine.model.Effect;
-import com.aionemu.gameserver.skillengine.model.HealType;
-import com.aionemu.gameserver.skillengine.model.Skill;
+import com.aionemu.gameserver.skillengine.model.*;
 import com.aionemu.gameserver.skillengine.model.Skill.SkillMethod;
-import com.aionemu.gameserver.skillengine.model.SkillTargetSlot;
-import com.aionemu.gameserver.skillengine.model.SkillTemplate;
+import com.aionemu.gameserver.spawnengine.SpawnEngine;
 import com.aionemu.gameserver.taskmanager.tasks.PlayerMoveTaskManager;
 import com.aionemu.gameserver.taskmanager.tasks.TeamEffectUpdater;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.utils.MameClientCompatDebug;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.audit.AuditLogger;
 import com.aionemu.gameserver.world.MapRegion;
@@ -140,20 +79,25 @@ import com.aionemu.gameserver.world.knownlist.Visitor;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
 import com.aionemu.gameserver.world.zone.ZoneName;
 
-/**
- * This class is for controlling players.
- *
- * @author -Nemesiss-, ATracer, xavier, Sarynth, RotO, xTz, KID, Sippolo
- */
-public class PlayerController extends CreatureController<Player> {
+import javolution.util.FastMap;
 
-	private Logger log = LoggerFactory.getLogger(PlayerController.class);
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.Nonnull;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.concurrent.Future;
+
+public class PlayerController extends CreatureController<Player>
+{
+    private static final Logger log = LoggerFactory.getLogger(PlayerController.class);
+
 	private boolean isInShutdownProgress;
 	private long lastAttackMilis = 0;
 	private long lastAttackedMilis = 0;
 	private int stance = 0;
-	@SuppressWarnings("unused")
-	private Listener mListener;
 
 	@Override
 	public void see(VisibleObject object) {
@@ -163,65 +107,53 @@ public class PlayerController extends CreatureController<Player> {
 			PacketSendUtility.sendPacket(getOwner(), new SM_PLAYER_INFO(player, getOwner().isAggroIconTo(player)));
 			PacketSendUtility.sendPacket(getOwner(), new SM_MOTION(player.getObjectId(), player.getMotions().getActiveMotions()));
 			if (player.isUseRobot() || player.getRobotId() != 0) {
-				PacketSendUtility.sendPacket(getOwner(), new SM_RIDE_ROBOT(player, getRobotInfo(player).getRobotId()));
-			}
-			if (player.isTransformed()) {
+				player.getEffectController().updatePlayerEffectIcons();
+				PacketSendUtility.sendPacket(getOwner(), new SM_USE_ROBOT(player, getRobotInfo(player).getRobotId()));
+			} if (player.isTransformed()) {
 				TeleportService2.playerTransformation(getOwner());
-				PacketSendUtility.broadcastPacketAndReceive(player, new SM_TRANSFORM(player, player.getTransformedModelId(), true, player.getTransformedItemId(), player.getTransformedSkillId()));
+				TeleportService2.instanceTransformation(getOwner());
+				TeleportService2.archdaevaTransformation(getOwner());
+				player.getEffectController().updatePlayerEffectIcons();
 				PacketSendUtility.broadcastPacketAndReceive(player, new SM_TRANSFORM(player, true));
-			}
-			if (player.isInPlayerMode(PlayerMode.RIDE)) {
+				PacketSendUtility.broadcastPacketAndReceive(player, new SM_TRANSFORM(player, player.getTransformedModelId(), true, player.getTransformedItemId(), player.getTransformedSkillId()));
+            } if (player.isInPlayerMode(PlayerMode.RIDE)) {
 				PacketSendUtility.sendPacket(getOwner(), new SM_EMOTION(player, EmotionType.RIDE, 0, player.ride.getNpcId()));
-			}
-			if (player.getPet() != null) {
-				LoggerFactory.getLogger(PlayerController.class).debug("Player " + getOwner().getName() + " sees " + object.getName() + " that has toypet");
+			} else if (player.getPet() != null) {
+				LoggerFactory.getLogger(PlayerController.class).debug("Player " + getOwner().getName() + " sees " + object.getName() + " that has Toypet");
 				PacketSendUtility.sendPacket(getOwner(), new SM_PET(3, player.getPet()));
+			} else if (player.getMinion() != null) {
+				LoggerFactory.getLogger(PlayerController.class).debug("Player " + getOwner().getName() + " sees " + object.getName() + " that has Minion");
+				PacketSendUtility.broadcastPacketAndReceive(player, new SM_MINION(6, player.getMinion().getCommonData(), 0));
 			}
-            else if (player.getMinion() != null) {
-                LoggerFactory.getLogger(PlayerController.class).debug("Player " + getOwner().getName() + " sees " + object.getName() + " that has Minion");
-                PacketSendUtility.broadcastPacketAndReceive(player, new SM_MINIONS(6, player.getMinion().getCommonData(), 0));
-            }
 			player.getEffectController().sendEffectIconsTo(getOwner());
-		}
-		else if (object instanceof Kisk) {
+		} else if (object instanceof Kisk) {
 			Kisk kisk = ((Kisk) object);
 			PacketSendUtility.sendPacket(getOwner(), new SM_NPC_INFO(kisk, getOwner()));
 			if (getOwner().getRace() == kisk.getOwnerRace()) {
 				PacketSendUtility.sendPacket(getOwner(), new SM_KISK_UPDATE(kisk));
 			}
-		}
-		else if (object instanceof Npc) {
+		} else if (object instanceof Npc) {
 			Npc npc = ((Npc) object);
-			long npcVisibleStart = System.currentTimeMillis();
-			StatAuditService.getInstance().npcVisibility(getOwner(), npc, "see_start", 0);
-			LookManager.corrigateHeading(npc, this.getOwner());
 			PacketSendUtility.sendPacket(getOwner(), new SM_NPC_INFO(npc, getOwner()));
-			PacketSendUtility.sendPacket(getOwner(), new SM_EMOTION(npc, EmotionType.SELECT_TARGET));
+			PacketSendUtility.sendPacket(getOwner(), new SM_EMOTION_NPC(npc, npc.getState(), EmotionType.SELECT_TARGET));
 			PacketSendUtility.sendPacket(getOwner(), new SM_HEADING_UPDATE(object.getObjectId(), (byte) object.getHeading()));
 			if (!npc.getEffectController().isEmpty()) {
 				npc.getEffectController().sendEffectIconsTo(getOwner());
 			}
 			QuestEngine.getInstance().onAtDistance(new QuestEnv(object, getOwner(), 0, 0));
-			StatAuditService.getInstance().npcVisibility(getOwner(), npc, "see_done", System.currentTimeMillis() - npcVisibleStart);
-		}
-		else if (object instanceof Summon) {
+		} else if (object instanceof Summon) {
 			Summon npc = ((Summon) object);
-			PacketSendUtility.sendPacket(getOwner(), new SM_NPC_INFO(npc, getOwner()));
+			PacketSendUtility.sendPacket(getOwner(), new SM_NPC_INFO(npc));
 			if (!npc.getEffectController().isEmpty()) {
 				npc.getEffectController().sendEffectIconsTo(getOwner());
 			}
-		}
-		else if (object instanceof Gatherable || object instanceof StaticObject) {
+		} else if (object instanceof Gatherable || object instanceof StaticObject) {
 			PacketSendUtility.sendPacket(getOwner(), new SM_GATHERABLE_INFO(object));
-		}
-		else if (object instanceof Pet) {
+		} else if (object instanceof Pet) {
 			PacketSendUtility.sendPacket(getOwner(), new SM_PET(3, (Pet) object));
 		}
-		else if (object instanceof Minion) {
-			PacketSendUtility.sendPacket(getOwner(), new SM_MINIONS(5));
-		}
 	}
-
+	
 	private RobotInfo getRobotInfo(Player player) {
 		ItemTemplate template = player.getEquipment().getMainHandWeapon().getItemSkinTemplate();
 		return DataManager.ROBOT_DATA.getRobotInfo(template.getRobotId());
@@ -232,77 +164,79 @@ public class PlayerController extends CreatureController<Player> {
 		super.notSee(object, isOutOfRange);
 		if (object instanceof Pet) {
 			PacketSendUtility.sendPacket(getOwner(), new SM_PET(4, (Pet) object));
-		}
-		else if (object instanceof Minion) {
-			PacketSendUtility.sendPacket(getOwner(), new SM_MINIONS(6));
-		}
-		else {
-			PacketSendUtility.sendPacket(getOwner(), new SM_DELETE(object, isOutOfRange ? 0 : 15));
+		} else {
+			int spawnCode;
+			if (getOwner().getRace() == Race.ELYOS) {
+				spawnCode = 0x00;
+			} else if (getOwner().getRace() == Race.ELYOS) {
+				spawnCode = 0x01;
+			} else {
+				spawnCode = 0xFF;
+			}
+			PacketSendUtility.sendPacket(getOwner(), new SM_DELETE(object, isOutOfRange ? 0 : 1, spawnCode));
 		}
 	}
 
 	public void updateNearbyQuests() {
-		HashMap<Integer, Integer> nearbyQuestList = new HashMap<>();
-		for (int questId : getOwner().getPosition().getMapRegion().getParent().getQuestIds()) {
-			int diff = 0;
-			if (questId <= 0xFFFF) {
-				diff = QuestService.getLevelRequirementDiff(questId, getOwner().getCommonData().getLevel());
-			}
-			if (diff <= 2 && QuestService.checkStartConditions(new QuestEnv(null, getOwner(), questId, 0), false)) {
-				nearbyQuestList.put(questId, diff);
-			}
-		}
-		PacketSendUtility.sendPacket(getOwner(), new SM_NEARBY_QUESTS(nearbyQuestList));
-	}
+        HashMap<Integer, Integer> nearbyQuestList = new HashMap<>();
+        for (int questId : getOwner().getPosition().getMapRegion().getParent().getQuestIds()) {
+            int diff = 0;
+            if (questId <= 0xFFFF) {
+                diff = QuestService.getLevelRequirement(questId, getOwner().getCommonData().getLevel());
+            } if (diff <= 2 && QuestService.checkStartConditions(new QuestEnv(null, getOwner(), questId, 0), false)) {
+                nearbyQuestList.put(questId, diff);
+            }
+        }
+        PacketSendUtility.sendPacket(getOwner(), new SM_NEARBY_QUESTS(nearbyQuestList));
+    }
 
 	@Override
 	public void onEnterZone(ZoneInstance zone) {
 		Player player = getOwner();
 		if ((!zone.canRide()) && (player.isInPlayerMode(PlayerMode.RIDE))) {
 			player.unsetPlayerMode(PlayerMode.RIDE);
-		}
-		if (zone.getZoneTemplate().getZoneType().equals(ZoneClassName.FORT) && (player.isInState(CreatureState.FLYING))) {
+		} if (zone.getZoneTemplate().getZoneType().equals(ZoneClassName.FORT) && (player.isInState(CreatureState.FLYING))) {
+		   /**
+		    * If a player enter in zone "Panesterra Fortress"
+			* of while player flying, then the system will landing the player.
+			*/
 			switch (player.getWorldId()) {
-                case 210050000: 
-                case 220070000: 
-                case 400070000: 
-                case 800030000: 
-                case 800040000: 
-                case 800060000:
+			    case 210050000: //Inggison.
+			    case 220070000: //Gelkmaros.
+				case 400070000: //Abyss Core.
+				case 800030000: //Crimson Katalam.
+			    case 800040000: //Crimson Danaria.
+				case 800060000: //Demaha.
 					player.setFlyState(0);
 					player.getFlyController().endFly(true);
 					player.unsetState(CreatureState.FLYING);
-					// You cannot fly in this area.
+					//You cannot fly in this area.
 					PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_FLYING_FORBIDDEN_ZONE);
-					PacketSendUtility.broadcastPacket(player, new SM_EMOTION(player, EmotionType.LAND, 0, 0), true);
-					break;
+				    PacketSendUtility.broadcastPacket(player, new SM_EMOTION(player, EmotionType.LAND, 0, 0), true);
+				break;
 			}
 		}
-        player.getController().updateZone();
-        player.getController().updateNearbyQuests();
-        if (player.getPosition().isInstanceMap()) {
-            InstanceService.onEnterZone(player, zone);
-        } 
-        else {
-            player.getPosition().getWorld().getWorldMap(player.getWorldId()).getWorldHandler().onEnterZone(player, zone);
-        }
-		if (zone.getAreaTemplate().getZoneName() == null) {
+		player.getController().updateZone();
+		player.getController().updateNearbyQuests();
+		if (player.getPosition().isInstanceMap()) {
+			InstanceService.onEnterZone(player, zone);
+		} else {
+			player.getPosition().getWorld().getWorldMap(player.getWorldId()).getWorldHandler().onEnterZone(player, zone);
+		} if (zone.getAreaTemplate().getZoneName() == null) {
 			log.error("No name found for a Zone in the map " + zone.getAreaTemplate().getWorldId());
-		}
-		else {
+		} else {
 			QuestEngine.getInstance().onEnterZone(new QuestEnv(null, player, 0, 0), zone.getAreaTemplate().getZoneName());
 		}
 	}
-
+	
 	@Override
 	public void onLeaveZone(ZoneInstance zone) {
 		Player player = getOwner();
-        if (player.getPosition().isInstanceMap()) {
-            InstanceService.onLeaveZone(player, zone);
-        } 
-        else {
-            player.getPosition().getWorld().getWorldMap(player.getWorldId()).getWorldHandler().onLeaveZone(player, zone);
-        }
+		if (player.getPosition().isInstanceMap()) {
+			InstanceService.onLeaveZone(player, zone);
+		} else {
+			player.getPosition().getWorld().getWorldMap(player.getWorldId()).getWorldHandler().onLeaveZone(player, zone);
+		}
 		ZoneName zoneName = zone.getAreaTemplate().getZoneName();
 		if (zoneName == null) {
 			log.warn("No name for zone template in " + zone.getAreaTemplate().getWorldId());
@@ -319,21 +253,16 @@ public class PlayerController extends CreatureController<Player> {
 		Player player = getOwner();
 		InstanceService.onEnterInstance(getOwner());
 		TeleportService2.playerTransformation(getOwner());
+		TeleportService2.instanceTransformation(getOwner());
 		WorldPlayTimeService.getInstance().onEnterWorld(player);
-
-		if (getOwner().getPosition().getWorldMapInstance().getParent().isExceptBuff()) {
-			getOwner().getEffectController().removeAllEffects();
-		}
-
-		for (Effect ef : getOwner().getEffectController().getAbnormalEffects()) {
+		for (Effect ef: getOwner().getEffectController().getAbnormalEffects()) {
 			if (ef.isDeityAvatar()) {
-				// Remove abyss transformation if worldtype != "Abyss" && worldtype != "Balaurea" && worldtype != "Panesterra"
-				if (getOwner().getWorldType() != WorldType.ABYSS && getOwner().getWorldType() != WorldType.BALAUREA || getOwner().isInInstance()) {
+				if (getOwner().getWorldType() != WorldType.ABYSS &&
+				    getOwner().getWorldType() != WorldType.BALAUREA && getOwner().isInInstance()) {
 					ef.endEffect();
 					getOwner().getEffectController().clearEffect(ef);
 				}
-			}
-			else if (ef.getSkillTemplate().getDispelCategory() == DispelCategoryType.NPC_BUFF) {
+			} else if (ef.isArchDaeva()) {
 				ef.endEffect();
 				getOwner().getEffectController().clearEffect(ef);
 			}
@@ -342,79 +271,37 @@ public class PlayerController extends CreatureController<Player> {
 
 	// TODO [AT] move
 	public void onLeaveWorld() {
+		ProtectorConquerorService.getInstance().onLeaveMap(getOwner());
 		InstanceService.onLeaveInstance(getOwner());
 	}
 
-	public void validateLoginZone() {
-		int mapId;
-		float x, y, z;
-		byte h;
-		boolean moveToBind = false;
-
-		BindPointPosition bind = getOwner().getBindPoint();
-
-		if (bind != null) {
-			mapId = bind.getMapId();
-			x = bind.getX();
-			y = bind.getY();
-			z = bind.getZ();
-			h = bind.getHeading();
-		}
-		else {
-			PlayerInitialData.LocationData start = DataManager.PLAYER_INITIAL_DATA.getSpawnLocation(getOwner().getRace());
-
-			mapId = start.getMapId();
-			x = start.getX();
-			y = start.getY();
-			z = start.getZ();
-			h = start.getHeading();
-		}
-		long lastOnline = getOwner().getCommonData().getLastOnline().getTime();
-		long secondsOffline = (System.currentTimeMillis() / 1000) - lastOnline / 1000;
-		if (secondsOffline > 10 * 60) { // Logout in no-recall zone sends you to bindpoint after 10 (??) minutes
-			for (ZoneInstance zone : getOwner().getPosition().getMapRegion().getZones(getOwner())) {
-				if (!zone.canRecall()) {
-					moveToBind = true;
-					break;
-				}
-			}
-
-		}
-
-		if (moveToBind) {
-			World.getInstance().setPosition(getOwner(), mapId, x, y, z, h);
-		}
-	}
-
-	public void onDie(@Nonnull Creature lastAttacker, boolean showPacket) {
+	public void onDie(Creature lastAttacker, boolean showPacket) {
 		Player player = this.getOwner();
 		player.getController().cancelCurrentSkill();
 		player.setRebirthRevive(getOwner().haveSelfRezEffect());
 		showPacket = player.hasResurrectBase() ? false : showPacket;
 		Creature master = lastAttacker.getMaster();
-
-		// High ranked kill announce
-		AbyssRank ar = player.getAbyssRank();
-		if (AbyssService.isOnPvpMap(player) && ar != null) {
-			if (ar.getRank().getId() >= 10) {
-				AbyssService.rankedKillAnnounce(player);
+		if ((PvPConfig.ENABLE_KILLING_SPREE_SYSTEM) && (getOwner().getRawKillCount() > 0)) {
+			if ((master instanceof Npc)) {
+				PvPSpreeService.cancelSpree(player, (Npc) master, false);
+			} if (((master instanceof Player)) && (master.getRace() != player.getRace())) {
+				PvPSpreeService.cancelSpree(player, (Player) master, true);
 			}
 		}
-
-		if (DuelService.getInstance().isDueling(player.getObjectId())) {
+		AbyssRank ar = player.getAbyssRank();
+		if (AbyssService.isOnPvpMap(player) && ar != null) {
+			if (ar.getRank().getId() >= 1) {
+				AbyssService.rankedKillAnnounce(player);
+			}
+		} if (DuelService.getInstance().isDueling(player.getObjectId())) {
 			if (master != null && DuelService.getInstance().isDueling(player.getObjectId(), master.getObjectId())) {
 				DuelService.getInstance().loseDuel(player);
 				player.getEffectController().removeAbnormalEffectsByTargetSlot(SkillTargetSlot.DEBUFF);
-				player.getLifeStats().setCurrentHpPercent(33);
-				player.getLifeStats().setCurrentMpPercent(33);
+				player.getLifeStats().setCurrentHp(player.getLifeStats().getMaxHp() / 3);
 				return;
 			}
 			DuelService.getInstance().loseDuel(player);
 		}
-
-		/**
-		 * Release summon
-		 */
 		Summon summon = player.getSummon();
 		if (summon != null) {
 			SummonsService.doMode(SummonMode.RELEASE, summon, UnsummonType.UNSPECIFIED);
@@ -422,58 +309,39 @@ public class PlayerController extends CreatureController<Player> {
 		Pet pet = player.getPet();
 		if (pet != null) {
 			PetSpawnService.dismissPet(player, true);
-		}
-		Minion minion = player.getMinion();
-		if (minion != null) {
-			MinionService.getInstance().despawnMinion(player, player.getMinionList().getLastUsed());
-		}
-		if (player.isInState(CreatureState.FLYING)) {
+		} if (player.isInState(CreatureState.FLYING)) {
 			player.setIsFlyingBeforeDeath(true);
 		}
-
-		// ride
 		player.setPlayerMode(PlayerMode.RIDE, null);
 		player.unsetState(CreatureState.RESTING);
 		player.unsetState(CreatureState.FLOATING_CORPSE);
-
-		// unsetflying
 		player.unsetState(CreatureState.FLYING);
 		player.unsetState(CreatureState.GLIDING);
 		player.setFlyState(0);
-
 		if (player.isInInstance()) {
 			if (player.getPosition().getWorldMapInstance().getInstanceHandler().onDie(player, lastAttacker)) {
 				super.onDie(lastAttacker);
 				return;
 			}
 		}
-
 		MapRegion mapRegion = player.getPosition().getMapRegion();
 		if (mapRegion != null && mapRegion.onDie(lastAttacker, getOwner())) {
 			return;
 		}
-
 		this.doReward();
-
 		if (master instanceof Npc || master == player) {
-			if (player.getLevel() > 4 && !isNoDeathPenaltyInEffect() && !isNoDeathPenaltyReduceInEffect()
-				&& !isDeathPenaltyReduceInEffect()) {
-				player.getCommonData().calculateExpLoss();
+			if (player.getLevel() > 76 ){
+				PlayerFameService.getInstance().onPlayerDie(player);
 			}
 		}
-		// Effects removed with super.onDie()
 		super.onDie(lastAttacker);
-
-		// send sm_emotion with DIE have to be send after state is updated!
 		sendDieFromCreature(lastAttacker, showPacket);
-
 		QuestEngine.getInstance().onDie(new QuestEnv(null, player, 0, 0));
-
 		if (player.isInGroup2()) {
 			player.getPlayerGroup2().sendPacket(SM_SYSTEM_MESSAGE.STR_MSG_COMBAT_FRIENDLY_DEATH(player.getName()), new ExcludePlayerFilter(player));
 		}
 	}
-
+	
 	@Override
 	public void onDie(Creature lastAttacker) {
 		this.onDie(lastAttacker, true);
@@ -485,29 +353,16 @@ public class PlayerController extends CreatureController<Player> {
 
 	private void sendDieFromCreature(@Nonnull Creature lastAttacker, boolean showPacket) {
 		Player player = this.getOwner();
-
 		PacketSendUtility.broadcastPacket(player, new SM_EMOTION(player, EmotionType.DIE, 0, player.equals(lastAttacker) ? 0 : lastAttacker.getObjectId()), true);
-
 		if (showPacket) {
 			if (player.isInInstance()) {
 				PacketSendUtility.sendPacket(player, new SM_DIE(player.haveSelfRezEffect(), player.haveSelfRezItem(), 0, 8, false));
-			} 
-			else {
+			} else {
 				int kiskTimeRemaining = (player.getKisk() != null ? player.getKisk().getRemainingLifetime() : 0);
-				PacketSendUtility.sendPacket(player, new SM_DIE(player.canUseRebirthRevive(), player.haveSelfRezItem(), kiskTimeRemaining, 0, isInvader(player)));
+				PacketSendUtility.sendPacket(player, new SM_DIE(player.canUseRebirthRevive(), player.haveSelfRezItem(), kiskTimeRemaining, 0));
 			}
 		}
-
 		PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_COMBAT_MY_DEATH);
-	}
-
-	private boolean isInvader(Player player) {
-		if (player.getRace().equals(Race.ASMODIANS)) {
-			return player.getWorldId() == 210060000; // Theobomos
-		}
-		else {
-			return player.getWorldId() == 220050000; // Brusthonin
-		}
 	}
 
 	@Override
@@ -521,81 +376,50 @@ public class PlayerController extends CreatureController<Player> {
 	}
 
 	public void onBeforeSpawn(boolean blink) {
-		super.onBeforeSpawn();
-		if (blink) {
-			startProtectionActiveTask();
-		}
-		if (getOwner().getIsFlyingBeforeDeath()) {
-			getOwner().unsetState(CreatureState.FLOATING_CORPSE);
-		}
-		else {
-			getOwner().unsetState(CreatureState.DEAD);
-		}
-		getOwner().setState(CreatureState.ACTIVE);
-	}
+        super.onBeforeSpawn();
+        if (blink) {
+            startProtectionActiveTask();
+        } if (getOwner().getIsFlyingBeforeDeath()) {
+            getOwner().unsetState(CreatureState.FLOATING_CORPSE);
+        } else {
+            getOwner().unsetState(CreatureState.DEAD);
+        }
+        getOwner().setState(CreatureState.ACTIVE);
+    }
 
 	@Override
 	public void attackTarget(Creature target, int attackNo, int time, int type) {
-
 		PlayerGameStats gameStats = getOwner().getGameStats();
-
 		if (!RestrictionsManager.canAttack(getOwner(), target)) {
 			return;
-		}
-
-		// Normal attack is already limited client side (ex. Press C and attacker approaches target) but need a check server side too also for Z axis issue
-		if (!MathUtil.isInAttackRange(getOwner(), target, (gameStats.getAttackRange().getCurrent() / 1000) + 1)) {
+		} if (!MathUtil.isInAttackRange(getOwner(), target, (gameStats.getAttackRange().getCurrent() / 1000) + 1)) {
 			return;
-		}
-
-		if (!GeoService.getInstance().canSee(getOwner(), target)) {
+		} if (!GeoService.getInstance().canSee(getOwner(), target)) {
 			PacketSendUtility.sendPacket(getOwner(), SM_SYSTEM_MESSAGE.STR_ATTACK_OBSTACLE_EXIST);
 			return;
-		}
-
-		if (target instanceof Npc) {
+		} if (target instanceof Npc) {
 			QuestEngine.getInstance().onAttack(new QuestEnv(target, getOwner(), 0, 0));
 		}
-
 		int attackSpeed = gameStats.getAttackSpeed().getCurrent();
-
 		long milis = System.currentTimeMillis();
-		// network ping..
-		if (milis - lastAttackMilis + 300 < attackSpeed) {
-			// hack
+		if (milis - lastAttackMilis < attackSpeed) {
 			return;
 		}
 		lastAttackMilis = milis;
-
-		/**
-		 * notify attack observers
-		 */
 		super.attackTarget(target, attackNo, time, type);
-
 	}
 
 	@Override
 	public void onAttack(Creature creature, int skillId, TYPE type, int damage, boolean notifyAttack, LOG log) {
-		if (getOwner().getLifeStats().isAlreadyDead())
+		if (getOwner().getLifeStats().isAlreadyDead()) {
 			return;
-
-		if (getOwner().isInvul() || getOwner().isProtectionActive())
+		} else if (getOwner().isInvul() || getOwner().isProtectionActive()) {
 			damage = 0;
-
+		}
 		cancelUseItem();
 		cancelGathering();
 		super.onAttack(creature, skillId, type, damage, notifyAttack, log);
-
-		StatAuditService.getInstance().combatAttackStatus(getOwner(), creature, type, skillId, damage, log, notifyAttack, "PlayerController.onAttack");
-		SM_ATTACK_STATUS attackStatus = new SM_ATTACK_STATUS(getOwner(), creature, type, skillId, damage, log);
-		if (StatAuditService.getInstance().shouldSuppressZeroDamageNpcToPlayer(getOwner(), creature, damage)) {
-			StatAuditService.getInstance().suppressedAttackStatus(getOwner(), creature, skillId, damage, "PlayerController.onAttack");
-			PacketSendUtility.broadcastPacket(getOwner(), attackStatus, false);
-		}
-		else {
-			PacketSendUtility.broadcastPacket(getOwner(), attackStatus, true);
-		}
-
+		PacketSendUtility.broadcastPacket(getOwner(), new SM_ATTACK_STATUS(getOwner(), creature, type, skillId, damage, log), true);
 		lastAttackedMilis = System.currentTimeMillis();
 	}
 
@@ -612,9 +436,8 @@ public class PlayerController extends CreatureController<Player> {
 		Skill skill = SkillEngine.getInstance().getSkillFor(player, skillId, player.getTarget());
 
 		if (skill != null) {
-			if (!RestrictionsManager.canUseSkill(player, skill)) {
+			if (!RestrictionsManager.canUseSkill(player, skill))
 				return;
-			}
 
 			skill.setTargetType(targetType, x, y, z);
 			skill.setHitTime(time);
@@ -632,26 +455,22 @@ public class PlayerController extends CreatureController<Player> {
 	 */
 	public void useSkill(SkillTemplate template, int targetType, float x, float y, float z, int clientHitTime, int skillLevel) {
 		Player player = getOwner();
-		Skill skill = null;
-        if (player.isInInstance()) {
-            player.getPosition().getWorldMapInstance().getInstanceHandler().onSkillUse(player, template);
-        } 
-        else {
-            player.getPosition().getWorld().getWorldMap(player.getWorldId()).getWorldHandler().onSkillUse(player, template);
-        }		
-		skill = SkillEngine.getInstance().getSkillFor(player, template, player.getTarget());
-		if (skill == null && player.isTransformed()) {
+		if (player.isInInstance()) {
+			player.getPosition().getWorldMapInstance().getInstanceHandler().onSkillUse(player, template);
+		} else {
+			player.getPosition().getWorld().getWorldMap(player.getWorldId()).getWorldHandler().onSkillUse(player, template);
+		}
+		Skill skill = SkillEngine.getInstance().getSkillFor(player, template, player.getTarget());
+		MameClientCompatDebug.logSkillResolved(player, template, skill, targetType, x, y, z, clientHitTime, skillLevel);
+		if ((skill == null) && (player.isTransformed())) {
 			SkillPanel panel = DataManager.PANEL_SKILL_DATA.getSkillPanel(player.getTransformModel().getPanelId());
-			if (panel != null && panel.canUseSkill(template.getSkillId(), skillLevel)) {
+			if ((panel != null) && (panel.canUseSkill(template.getSkillId(), skillLevel))) {
 				skill = SkillEngine.getInstance().getSkillFor(player, template, player.getTarget(), skillLevel);
 			}
-		}
-
-		if (skill != null) {
+		} if (skill != null) {
 			if (!RestrictionsManager.canUseSkill(player, skill)) {
 				return;
 			}
-
 			skill.setTargetType(targetType, x, y, z);
 			skill.setHitTime(clientHitTime);
 			skill.useSkill();
@@ -690,21 +509,19 @@ public class PlayerController extends CreatureController<Player> {
 		if (getOwner().getCastingSkill() == null) {
 			return;
 		}
-
 		Player player = getOwner();
 		Skill castingSkill = player.getCastingSkill();
 		castingSkill.cancelCast();
-		player.removeSkillCoolDown(castingSkill.getSkillTemplate().getCooldownId());
+		player.removeSkillCoolDown(castingSkill.getSkillTemplate().getDelayId());
 		player.setCasting(null);
 		player.setNextSkillUse(0);
-		if (castingSkill.getSkillMethod() == SkillMethod.CAST || castingSkill.getSkillMethod() == SkillMethod.CHARGE) {
+		if (castingSkill.getSkillMethod() == SkillMethod.CAST) {
 			PacketSendUtility.broadcastPacket(player, new SM_SKILL_CANCEL(player, castingSkill.getSkillTemplate().getSkillId()), true);
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_SKILL_CANCELED);
-		}
-		else if (castingSkill.getSkillMethod() == SkillMethod.ITEM) {
+		} else if (castingSkill.getSkillMethod() == SkillMethod.ITEM) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ITEM_CANCELED(new DescriptionId(castingSkill.getItemTemplate().getNameId())));
 			player.removeItemCoolDown(castingSkill.getItemTemplate().getUseLimits().getDelayId());
-			PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), castingSkill.getFirstTarget().getObjectId(), castingSkill.getItemObjectId(), castingSkill.getItemTemplate().getTemplateId(), 0, 3), true);
+			PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), castingSkill.getFirstTarget().getObjectId(), castingSkill.getItemObjectId(), castingSkill.getItemTemplate().getTemplateId(), 0, 3, 0), true);
 		}
 	}
 
@@ -715,10 +532,7 @@ public class PlayerController extends CreatureController<Player> {
 		player.setUsingItem(null);
 		if (hasTask(TaskId.ITEM_USE)) {
 			cancelTask(TaskId.ITEM_USE);
-			PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), 0, usingItem == null ? 0 : usingItem.getObjectId(), usingItem == null ? 0 : usingItem.getItemTemplate().getTemplateId(), 0, 3), true);
-		}
-		if (hasTask(TaskId.MAGIC_MORPH)) {
-			player.getController().onMove(); // Not nice but working ;)
+			PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), usingItem == null ? 0 : usingItem.getObjectId(), usingItem == null ? 0 : usingItem.getItemTemplate().getTemplateId(), 0, 3, 0), true);
 		}
 	}
 
@@ -751,9 +565,7 @@ public class PlayerController extends CreatureController<Player> {
 		switch (healType) {
 			case DP:
 				getOwner().getCommonData().addDp(value);
-				break;
-			default:
-				break;
+			break;
 		}
 	}
 
@@ -780,119 +592,132 @@ public class PlayerController extends CreatureController<Player> {
 	public void onDialogSelect(int dialogId, Player player, int questId, int extendedRewardIndex, int unk) {
 		switch (dialogId) {
 			case 2:
-				PacketSendUtility.sendPacket(player, new SM_PRIVATE_STORE(getOwner().getStore(), player));
-				break;
+			break;
 		}
 	}
-
+	
 	public void upgradePlayer() {
 		Player player = getOwner();
-		byte level = player.getLevel();
-
+		int level = player.getLevel();
 		PlayerStatsTemplate statsTemplate = DataManager.PLAYER_STATS_DATA.getTemplate(player);
 		player.setPlayerStatsTemplate(statsTemplate);
-
 		player.getLifeStats().synchronizeWithMaxStats();
 		player.getLifeStats().updateCurrentStats();
-
-		//TODO TEST
-		int effectId = player.getRace() == Race.ELYOS ? 0 : 4;
-		PacketSendUtility.broadcastPacket(player, new SM_LEVEL_UPDATE(player.getObjectId(), effectId, level), true);
-
-		// Guides Html on level up
+		PacketSendUtility.broadcastPacket(player, new SM_LEVEL_UPDATE(player.getObjectId(), 0, level), true);
 		if (HTMLConfig.ENABLE_GUIDES) {
 			HTMLService.sendGuideHtml(player);
 		}
-
-		// Temporal
-		ClassChangeService.showClassChangeDialog(player);
-		
-		if (player.getLevel() == 14) {
-			switch (player.getRace()) {
-				case ELYOS: {
-					if (player.getQuestStateList().hasQuest(61601)) {
-						QuestState qs = player.getQuestStateList().getQuestState(61601);
-						if (qs.getStatus() == QuestStatus.START && qs.getQuestVarById(0) == 0) {
-							qs.setQuestVar(1);
-							PacketSendUtility.sendPacket(player, new SM_QUEST_ACTION(61601, qs.getStatus(), qs.getQuestVars().getQuestVars()));
-						}
-					}
-					break;
-				}
-				case ASMODIANS: {
-					// TODO
-				}
-				default:
-					break;
-			}
-		}
-
 		QuestEngine.getInstance().onLvlUp(new QuestEnv(null, player, 0, 0));
 		player.getController().updateZone();
 		player.getController().updateNearbyQuests();
 		player.getController().updatePassiveStats();
 		PacketSendUtility.sendPacket(player, new SM_STATS_INFO(player));
-
-		// add recipe for morph
-		if (level == 10) {
+		if (level == 3) {
+			if (player.getRace() == Race.ELYOS) {
+				ItemService.addItem(player, 182216247, 1); //Q60003.
+			} else {
+				ItemService.addItem(player, 182216395, 1); //Q70003.
+			}
+		} if (level >= 9 && CustomConfig.ENABLE_SIMPLE_2NDCLASS) {
+			if (!player.isCompleteQuest(1006) && player.getRace() == Race.ELYOS) {
+				ClassChangeService.completeQuest(player, 1006);
+			} else if (!player.isCompleteQuest(2008) && player.getRace() == Race.ASMODIANS) {
+				ClassChangeService.completeQuest(player, 2008);
+			}
+		} if (level >= 20) {
+			//Open "Stigma Slot" + "Completed" quest auto.
+			if (!player.isCompleteQuest(1929) && player.getRace() == Race.ELYOS) {
+				ClassChangeService.completeQuest(player, 1929);
+			} else if (!player.isCompleteQuest(2900) && player.getRace() == Race.ASMODIANS) {
+				ClassChangeService.completeQuest(player, 2900);
+			}
+        }
+		//Morph Recipe 7.x
+		if (level == 76) {
 			CraftSkillUpdateService.getInstance().setMorphRecipe(player);
 		}
-		SkillLearnService.addNewSkills(player);
+		SkillLearnService.addMissingSkills(player);
+		PacketSendUtility.sendPacket(player, new SM_RECIPE_LIST(player.getRecipeList().getRecipeList()));
 		PacketSendUtility.sendPacket(player, new SM_SKILL_LIST(player, player.getSkillList().getBasicSkills()));
 		if (player.isInTeam()) {
 			TeamEffectUpdater.getInstance().startTask(player);
-		}
-		if (player.isLegionMember()) {
+		} if (player.isLegionMember()) {
 			LegionService.getInstance().updateMemberInfo(player);
-		}
-
-		/**
-		 * Mentor status now cancels automatically as soon as the lowest level group member reaches level 51
-		 */
-		if (player.isInGroup2() && player.isMentor()) {
-			if (level == 51) {
-				PlayerGroupService.stopMentoring(player);
-				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_CANT_BE_MENTEE_BY_LEVEL_LIMIT);
-			}
-		}
-		if (level >= 66 && level <= 83) {
+		} if (level >= 1 && level <= 80) {
 			reachedPlayerLvl(player);
+		} if (level >= 65) {
+			avatarVessel(player);
+		} if (level >= 75) {
+			avatarTransform(player);
+		} if (level >= 76) {
+			AchievementService.getInstance().onLeveUplPlayer(player);
 		}
-        if (level >= 76) {
-            AchievementService.getInstance().onLeveUplPlayer(player);
-        }
-
-
+		//Update Summon.
+		if (player.getSummon() != null) {
+			Summon summon = player.getSummon();
+			summon.setLevel(player.getLevel());
+			PacketSendUtility.sendPacket(player, new SM_SUMMON_UPDATE(summon));
+		}
 		player.getNpcFactions().onLevelUp();
+		FireTempleService.getInstance().onlevelUpPlayer(player);
+		PvPSoloArenaService.getInstance().onlevelUpPlayer(player);
 	}
-
+	
+	public static final void avatarVessel(final Player player) {
+		player.getSkillList().addSkill(player, 4696, 1); //Transformation: Vessel Of Wind.
+        player.getSkillList().addSkill(player, 4697, 1); //Mercurial Blast.
+		player.getSkillList().addSkill(player, 4698, 1); //Transformation: Vessel Of Earth.
+        player.getSkillList().addSkill(player, 4699, 1); //Terraform.
+		player.getSkillList().addSkill(player, 4702, 1); //Transformation: Vessel Of Water.
+        player.getSkillList().addSkill(player, 4703, 1); //Waterbind.
+		if (player.getRace() == Race.ELYOS) {
+            player.getSkillList().addSkill(player, 4700, 1); //Transformation: Vessel Of Fire.
+            player.getSkillList().addSkill(player, 4701, 1); //Detonate (Elyos)
+        } else if (player.getRace() == Race.ASMODIANS) {
+            player.getSkillList().addSkill(player, 4700, 1); //Transformation: Vessel Of Fire.
+            player.getSkillList().addSkill(player, 4704, 1); //Detonate (Asmodians)
+        }
+	}
+	
+	public static final void avatarTransform(final Player player) {
+		if (player.getRace() == Race.ELYOS) {
+			player.getSkillList().addSkill(player, 4752, 1); //Transformation: Avatar Of Fire (Elyos)
+			player.getSkillList().addSkill(player, 4757, 1); //Transformation: Avatar Of Water (Elyos)
+			player.getSkillList().addSkill(player, 4762, 1); //Transformation: Avatar Of Earth (Elyos)
+			player.getSkillList().addSkill(player, 4768, 1); //Transformation: Avatar Of Wind (Elyos)
+		} else if (player.getRace() == Race.ASMODIANS) {
+			player.getSkillList().addSkill(player, 4804, 1); //Transformation: Avatar Of Fire (Asmodians)
+			player.getSkillList().addSkill(player, 4805, 1); //Transformation: Avatar Of Water (Asmodians)
+			player.getSkillList().addSkill(player, 4806, 1); //Transformation: Avatar Of Earth (Asmodians)
+			player.getSkillList().addSkill(player, 4807, 1); //Transformation: Avatar Of Wind (Asmodians)
+		}
+	}
+	
 	public static final void reachedPlayerLvl(final Player player) {
-		World.getInstance().doOnAllPlayers(new Visitor<Player>() {
-
+	    World.getInstance().doOnAllPlayers(new Visitor<Player>() {
 			@Override
 			public void visit(Player players) {
-				// "Player Name" has reached level %1
-				byte playerLevel = player.getLevel();
+				//"Player Name" has reached level %1.
+				int playerLevel = player.getLevel();
 				PacketSendUtility.sendPacket(players, new SM_SYSTEM_MESSAGE(1300086, player.getName(), playerLevel));
 			}
 		});
 	}
-
+	
 	/**
-	 * After entering game player char is "blinking" which means that it's in under some protection, after making an action char stops blinking. 
-	 * Starts protection active - Schedules task to end protection
+	 * After entering game player char is "blinking" which means that it's in under some protection, after making an
+	 * action char stops blinking. - Starts protection active - Schedules task to end protection
 	 */
 	public void startProtectionActiveTask() {
 		if (!getOwner().isProtectionActive()) {
 			TeleportService2.playerTransformation(getOwner());
-			PacketSendUtility.broadcastPacket(getOwner(), new SM_PLAYER_PROTECTION(60));
+			TeleportService2.instanceTransformation(getOwner());
+			TeleportService2.archdaevaTransformation(getOwner());
 			getOwner().setVisualState(CreatureVisualState.BLINKING);
-			AttackUtil.cancelCastOn(getOwner());
-			AttackUtil.removeTargetFrom(getOwner());
-			PacketSendUtility.broadcastPacket(getOwner(), new SM_PLAYER_PROTECTION(60000));
+			AttackUtil.cancelCastOn((Creature) getOwner());
+            AttackUtil.removeTargetFrom((Creature) getOwner());
 			PacketSendUtility.broadcastPacket(getOwner(), new SM_PLAYER_STATE(getOwner()), true);
 			Future<?> task = ThreadPoolManager.getInstance().schedule(new Runnable() {
-
 				@Override
 				public void run() {
 					stopProtectionActiveTask();
@@ -910,7 +735,6 @@ public class PlayerController extends CreatureController<Player> {
 		Player player = getOwner();
 		if (player != null && player.isSpawned()) {
 			player.unsetVisualState(CreatureVisualState.BLINKING);
-			PacketSendUtility.broadcastPacket(player, new SM_PLAYER_PROTECTION(0));
 			PacketSendUtility.broadcastPacket(player, new SM_PLAYER_STATE(player), true);
 			notifyAIOnMove();
 		}
@@ -928,29 +752,23 @@ public class PlayerController extends CreatureController<Player> {
 			player.setState(CreatureState.ACTIVE);
 			player.setState(CreatureState.GLIDING);
 			player.getGameStats().updateStatsAndSpeedVisually();
-		}
-		else {
+		} else {
 			player.unsetState(CreatureState.FLIGHT_TELEPORT);
 			player.setFlightTeleportId(0);
-
 			if (SecurityConfig.ENABLE_FLYPATH_VALIDATOR) {
 				long diff = (System.currentTimeMillis() - player.getFlyStartTime());
 				FlyPathEntry path = player.getCurrentFlyPath();
-
 				if (player.getWorldId() != path.getEndWorldId()) {
 					AuditLogger.info(player, "Player tried to use flyPath #" + path.getId() + " from not native start world " + player.getWorldId() + ". expected " + path.getEndWorldId());
-				}
-
-				if (diff < path.getTimeInMs()) {
+				} if (diff < path.getTimeInMs()) {
 					AuditLogger.info(player, "Player " + player.getName() + " used flypath bug " + diff + " instead of " + path.getTimeInMs());
-					TeleportService2.moveToBindLocation(player, true);
 				}
 				player.setCurrentFlypath(null);
 			}
-
 			player.setFlightDistance(0);
 			player.setState(CreatureState.ACTIVE);
-			updateZone();
+			player.getController().updateZone();
+		    player.getController().updateNearbyQuests();
 		}
 	}
 
@@ -981,25 +799,17 @@ public class PlayerController extends CreatureController<Player> {
 		House house = player.getActiveHouse();
 		if (house != null) {
 			switch (house.getHouseType()) {
-				case STUDIO:
-				case HOUSE:
 				case MANSION:
 				case ESTATE:
 				case PALACE:
 					return;
-				default:
-					break;
 			}
-		}
-
-		if (!player.havePermission(MembershipConfig.DISABLE_SOULSICKNESS)) {
+		} if (!player.havePermission(MembershipConfig.DISABLE_SOULSICKNESS)) {
 			int deathCount = player.getCommonData().getDeathCount();
 			if (deathCount < 10) {
 				deathCount++;
 				player.getCommonData().setDeathCount(deathCount);
-			}
-
-			if (skillId == 0) {
+			} if (skillId == 0) {
 				skillId = 8291;
 			}
 			SkillEngine.getInstance().getSkill(player, skillId, deathCount, player).useSkill();
@@ -1008,111 +818,87 @@ public class PlayerController extends CreatureController<Player> {
 
 	/**
 	 * Player is considered in combat if he's been attacked or has attacked less or equal 10s before
-	 *
+	 * 
 	 * @return true if the player is actively in combat
 	 */
 	public boolean isInCombat() {
 		return (((System.currentTimeMillis() - lastAttackedMilis) <= 10000) || ((System.currentTimeMillis() - lastAttackMilis) <= 10000));
 	}
 
-	/**
-	 * Check if NoDeathPenalty is active
-	 *
-	 * @param player
-	 * @return boolean
-	 */
 	public boolean isNoDeathPenaltyInEffect() {
-		// Check if NoDeathPenalty is active
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = iterator.next();
+			Effect effect = (Effect) iterator.next();
 			if (effect.isNoDeathPenalty()) {
 				return true;
 			}
 		}
 		return false;
 	}
-
-	/**
-	 * Check if NoDeathPenaltyReduce is active
-	 *
-	 * @param player
-	 * @return boolean
-	 */
+	
 	public boolean isNoDeathPenaltyReduceInEffect() {
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = iterator.next();
+			Effect effect = (Effect) iterator.next();
 			if (effect.isNoDeathPenaltyReduce()) {
 				return true;
 			}
 		}
 		return false;
 	}
-
-	/**
-	 * Check if DeathPenaltyReduce is active
-	 *
-	 * @param player
-	 * @return boolean
-	 */
+	
 	public boolean isDeathPenaltyReduceInEffect() {
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = iterator.next();
+			Effect effect = (Effect) iterator.next();
 			if (effect.isDeathPenaltyReduce()) {
 				return true;
 			}
 		}
 		return false;
 	}
-
-	/**
-	 * Check if NoResurrectPenalty is active
-	 *
-	 * @param player
-	 * @return boolean
-	 */
+	
 	public boolean isNoResurrectPenaltyInEffect() {
-		// Check if NoResurrectPenalty is active
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = iterator.next();
+			Effect effect = (Effect) iterator.next();
 			if (effect.isNoResurrectPenalty()) {
 				return true;
 			}
 		}
 		return false;
 	}
-
-	/**
-	 * Check if HiPass is active
-	 *
-	 * @param player
-	 * @return boolean
-	 */
+	
 	public boolean isHiPassInEffect() {
-		// Check if HiPass is active
 		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
 		while (iterator.hasNext()) {
-			Effect effect = iterator.next();
+			Effect effect = (Effect) iterator.next();
 			if (effect.isHiPass()) {
 				return true;
 			}
 		}
 		return false;
 	}
-
-	public void registerListener(Listener listener) {
-		this.mListener = listener;
+	
+	public boolean isHandOfReincarnationEffect() {
+		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
+		while (iterator.hasNext()) {
+			Effect effect = (Effect) iterator.next();
+			if (effect.isHandOfReincarnation()) {
+				return true;
+			}
+		}
+		return false;
 	}
-
-	public void unregisterListener() {
-		this.mListener = null;
-	}
-
-	public static abstract interface Listener {
-
-		public abstract void onPlayerUsedSkill(int paramInt, Player paramPlayer);
+	
+	public boolean isChromaticAuraEffect() {
+		Iterator<Effect> iterator = getOwner().getEffectController().iterator();
+		while (iterator.hasNext()) {
+			Effect effect = (Effect) iterator.next();
+			if (effect.isChromaticAura()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

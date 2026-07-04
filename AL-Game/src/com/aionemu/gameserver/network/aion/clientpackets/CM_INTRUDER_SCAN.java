@@ -1,55 +1,46 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
-import com.aionemu.gameserver.GameServer;
-import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
-import com.aionemu.gameserver.services.conquerer_protector.ConquerorsService;
-import com.aionemu.gameserver.services.territory.TerritoryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * @author Falke_34
+ * @author Ranastic (Encom)
  */
-public class CM_INTRUDER_SCAN extends AionClientPacket {
 
-	int type = 0;
-
+public class CM_INTRUDER_SCAN extends AionClientPacket
+{
+	private int value;
+	
+	Logger log = LoggerFactory.getLogger(CM_INTRUDER_SCAN.class);
+	
 	public CM_INTRUDER_SCAN(int opcode, State state, State... restStates) {
 		super(opcode, state, restStates);
 	}
-
+	
 	@Override
 	protected void readImpl() {
-		type = readC(); // 0 is Protector IntruderScan / 1 is automatic TerretoryScan
+		this.value = readC();
 	}
-
+	
 	@Override
 	protected void runImpl() {
-		Player player = getConnection().getActivePlayer();
-		GameServer.log.info("CM_INTRUDER_SCAN: Type : " + type);
-		switch (type) {
-			case 0: // IntruderRadar
-				ConquerorsService.getInstance().scanForIntruders(player);
-				break;
-			case 1: // Automatic TerritoryScan
-				TerritoryService.getInstance().scanForIntruders(player);
-				break;
-		}
 	}
 }

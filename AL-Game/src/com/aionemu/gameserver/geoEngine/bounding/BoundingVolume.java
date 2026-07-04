@@ -1,22 +1,36 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * Copyright (c) 2009-2010 jMonkeyEngine
+ * All rights reserved.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * * Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ *
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
+ *   may be used to endorse or promote products derived from this software
+ *   without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.aionemu.gameserver.geoEngine.bounding;
 
-import java.nio.FloatBuffer;
+package com.aionemu.gameserver.geoEngine.bounding;
 
 import com.aionemu.gameserver.geoEngine.collision.Collidable;
 import com.aionemu.gameserver.geoEngine.math.Matrix4f;
@@ -24,16 +38,17 @@ import com.aionemu.gameserver.geoEngine.math.Plane;
 import com.aionemu.gameserver.geoEngine.math.Ray;
 import com.aionemu.gameserver.geoEngine.math.Vector3f;
 
+import java.nio.FloatBuffer;
+
 /**
  * <code>BoundingVolume</code> defines an interface for dealing with containment of a collection of points.
- *
+ * 
  * @author Mark Powell
  * @version $Id: BoundingVolume.java,v 1.24 2007/09/21 15:45:32 nca Exp $
  */
 public abstract class BoundingVolume implements Collidable {
 
 	public enum Type {
-
 		Sphere,
 		AABB,
 		OBB,
@@ -59,7 +74,7 @@ public abstract class BoundingVolume implements Collidable {
 
 	/**
 	 * Sets the index of the plane that should be first checked during rendering.
-	 *
+	 * 
 	 * @param value
 	 */
 	public final void setCheckPlane(int value) {
@@ -73,55 +88,59 @@ public abstract class BoundingVolume implements Collidable {
 
 	/**
 	 * <code>transform</code> alters the location of the bounding volume by a rotation, translation and a scalar.
-	 *
+	 * 
 	 * @param trans
-	 *            the transform to affect the bound.
+	 *          the transform to affect the bound.
 	 * @param store
-	 *            sphere to store result in
+	 *          sphere to store result in
 	 * @return the new bounding volume.
 	 */
+
 	public abstract BoundingVolume transform(Matrix4f trans, BoundingVolume store);
 
 	/**
-	 * <code>whichSide</code> returns the side on which the bounding volume lies on a plane. Possible values are POSITIVE_SIDE, NEGATIVE_SIDE, and NO_SIDE.
-	 *
+	 * <code>whichSide</code> returns the side on which the bounding volume lies on a plane. Possible values are
+	 * POSITIVE_SIDE, NEGATIVE_SIDE, and NO_SIDE.
+	 * 
 	 * @param plane
-	 *            the plane to check against this bounding volume.
+	 *          the plane to check against this bounding volume.
 	 * @return the side on which this bounding volume lies.
 	 */
 	public abstract Plane.Side whichSide(Plane plane);
 
 	/**
 	 * <code>computeFromPoints</code> generates a bounding volume that encompasses a collection of points.
-	 *
+	 * 
 	 * @param points
-	 *            the points to contain.
+	 *          the points to contain.
 	 */
 	public abstract void computeFromPoints(FloatBuffer points);
 
 	/**
-	 * <code>merge</code> combines two bounding volumes into a single bounding volume that contains both this bounding volume and the parameter volume.
-	 *
+	 * <code>merge</code> combines two bounding volumes into a single bounding volume that contains both this bounding
+	 * volume and the parameter volume.
+	 * 
 	 * @param volume
-	 *            the volume to combine.
+	 *          the volume to combine.
 	 * @return the new merged bounding volume.
 	 */
 	public abstract BoundingVolume merge(BoundingVolume volume);
 
 	/**
-	 * <code>mergeLocal</code> combines two bounding volumes into a single bounding volume that contains both this bounding volume and the parameter volume. The result is stored locally.
-	 *
+	 * <code>mergeLocal</code> combines two bounding volumes into a single bounding volume that contains both this
+	 * bounding volume and the parameter volume. The result is stored locally.
+	 * 
 	 * @param volume
-	 *            the volume to combine.
+	 *          the volume to combine.
 	 * @return this
 	 */
 	public abstract BoundingVolume mergeLocal(BoundingVolume volume);
 
 	/**
 	 * <code>clone</code> creates a new BoundingVolume object containing the same data as this one.
-	 *
+	 * 
 	 * @param store
-	 *            where to store the cloned information. if null or wrong class, a new store is created.
+	 *          where to store the cloned information. if null or wrong class, a new store is created.
 	 * @return the new BoundingVolume
 	 */
 	public abstract BoundingVolume clone(BoundingVolume store);
@@ -141,9 +160,9 @@ public abstract class BoundingVolume implements Collidable {
 
 	/**
 	 * Find the distance from the center of this Bounding Volume to the given point.
-	 *
+	 * 
 	 * @param point
-	 *            The point to get the distance to
+	 *          The point to get the distance to
 	 * @return distance
 	 */
 	public final float distanceTo(Vector3f point) {
@@ -152,9 +171,9 @@ public abstract class BoundingVolume implements Collidable {
 
 	/**
 	 * Find the squared distance from the center of this Bounding Volume to the given point.
-	 *
+	 * 
 	 * @param point
-	 *            The point to get the distance to
+	 *          The point to get the distance to
 	 * @return distance
 	 */
 	public final float distanceSquaredTo(Vector3f point) {
@@ -163,72 +182,72 @@ public abstract class BoundingVolume implements Collidable {
 
 	/**
 	 * Find the distance from the nearest edge of this Bounding Volume to the given point.
-	 *
+	 * 
 	 * @param point
-	 *            The point to get the distance to
+	 *          The point to get the distance to
 	 * @return distance
 	 */
 	public abstract float distanceToEdge(Vector3f point);
 
 	/**
-	 * determines if this bounding volume and a second given volume are intersecting. Intersecting being: one volume contains another, one volume overlaps another or one volume touches another.
-	 *
+	 * determines if this bounding volume and a second given volume are intersecting. Intersecting being: one volume
+	 * contains another, one volume overlaps another or one volume touches another.
+	 * 
 	 * @param bv
-	 *            the second volume to test against.
+	 *          the second volume to test against.
 	 * @return true if this volume intersects the given volume.
 	 */
 	public abstract boolean intersects(BoundingVolume bv);
 
 	/**
 	 * determines if a ray intersects this bounding volume.
-	 *
+	 * 
 	 * @param ray
-	 *            the ray to test.
+	 *          the ray to test.
 	 * @return true if this volume is intersected by a given ray.
 	 */
 	public abstract boolean intersects(Ray ray);
 
 	/**
 	 * determines if this bounding volume and a given bounding sphere are intersecting.
-	 *
+	 * 
 	 * @param bs
-	 *            the bounding sphere to test against.
+	 *          the bounding sphere to test against.
 	 * @return true if this volume intersects the given bounding sphere.
 	 */
 	public abstract boolean intersectsSphere(BoundingSphere bs);
 
 	/**
 	 * determines if this bounding volume and a given bounding box are intersecting.
-	 *
+	 * 
 	 * @param bb
-	 *            the bounding box to test against.
+	 *          the bounding box to test against.
 	 * @return true if this volume intersects the given bounding box.
 	 */
 	public abstract boolean intersectsBoundingBox(BoundingBox bb);
 
 	/**
 	 * determines if this bounding volume and a given bounding box are intersecting.
-	 *
+	 * 
 	 * @param bb
-	 *            the bounding box to test against.
+	 *          the bounding box to test against.
 	 * @return true if this volume intersects the given bounding box.
 	 */
 	// public abstract boolean intersectsOrientedBoundingBox(OrientedBoundingBox bb);
-
 	/**
 	 * determines if a given point is contained within this bounding volume.
-	 *
+	 * 
 	 * @param point
-	 *            the point to check
+	 *          the point to check
 	 * @return true if the point lies within this bounding volume.
 	 */
 	public abstract boolean contains(Vector3f point);
 
 	/**
 	 * Determines if a given point intersects (touches or is inside) this bounding volume.
-	 *
+	 * 
 	 * @param point
-	 *            the point to check
+	 *          the point to check
 	 * @return true if the point lies within this bounding volume.
 	 */
 	public abstract boolean intersects(Vector3f point);

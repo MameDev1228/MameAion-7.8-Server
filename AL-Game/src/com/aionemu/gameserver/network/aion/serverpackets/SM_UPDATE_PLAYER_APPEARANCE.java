@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <www.aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.serverpackets;
 
@@ -21,41 +21,35 @@ import com.aionemu.gameserver.model.items.GodStone;
 import com.aionemu.gameserver.model.items.ItemSlot;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
+import com.aionemu.gameserver.services.enchant.EnchantService;
 
 import javolution.util.FastList;
 
-/**
- * @author Avol modified by ATracer
- */
-public class SM_UPDATE_PLAYER_APPEARANCE extends AionServerPacket {
-
+public class SM_UPDATE_PLAYER_APPEARANCE extends AionServerPacket
+{
 	public int playerId;
-	public int size;
-	public FastList<Item> items;
+    public int size;
+    public FastList<Item> items;
 
-	public SM_UPDATE_PLAYER_APPEARANCE(int playerId, FastList<Item> items) {
-		this.playerId = playerId;
-		this.items = items;
-		this.size = items.size();
-	}
+    public SM_UPDATE_PLAYER_APPEARANCE(int playerId, FastList<Item> items) {
+        this.playerId = playerId;
+        this.items = items;
+        this.size = items.size();
+    }
 
-	@Override
+    @Override
 	protected void writeImpl(AionConnection con) {
 		writeD(playerId);
-
 		int mask = 0;
 		for (Item item : items) {
 			if (item.getItemTemplate().isTwoHandWeapon()) {
 				ItemSlot[] slots = ItemSlot.getSlotsFor(item.getEquipmentSlot());
 				mask |= slots[0].getSlotIdMask();
-			}
-			else {
+			} else {
 				mask |= item.getEquipmentSlot();
 			}
 		}
-
-		writeD(mask); // item size DBS
-
+		writeD(mask); // DBS size
 		for (Item item : items) {
 			writeD(item.getItemSkinTemplate().getTemplateId());
 			GodStone godStone = item.getGodStone();
@@ -63,34 +57,27 @@ public class SM_UPDATE_PLAYER_APPEARANCE extends AionServerPacket {
 			writeD(item.getItemColor());
 			if (item.getItemTemplate().isAccessory()) {
 				if (item.getItemTemplate().isPlume()) {
-					float authorize = item.getEnchantOrAuthorizeLevel() / 5;
-					if (item.getEnchantOrAuthorizeLevel() >= 5) {
-						authorize = authorize > 2.0F ? 2.0F : authorize;
-						writeD((int) authorize << 3);
-					}
-					else {
+					float enchant = item.getEnchantPvPvELevel() / 5;
+					if (item.getEnchantPvPvELevel() >= 5) {
+						enchant = enchant > 2.0F ? 2.0F : enchant;
+						writeD((int) enchant << 3);
+					} else {
 						writeD(0);
 					}
-				}
-				else if (item.getItemTemplate().isBracelet()) {
-					if (item.getEnchantOrAuthorizeLevel() >= 5 && item.getEnchantOrAuthorizeLevel() < 10) {
+				} else if (item.getItemTemplate().isBracelet()) {
+					if (item.getEnchantPvPvELevel() >= 5 && item.getEnchantPvPvELevel() < 10) {
 						writeD(96);
-					}
-					else if (item.getEnchantOrAuthorizeLevel() >= 10) {
+					} else if (item.getEnchantPvPvELevel() >= 10) {
 						writeD(160);
-					}
-					else {
+					} else {
 						writeD(32);
 					}
+				} else {
+					writeD(item.getEnchantPvPvELevel() >= 5 ? 2 : 0);
 				}
-				else {
-					writeD(item.getEnchantOrAuthorizeLevel() >= 5 ? 2 : 0);
-				}
-			}
-			else if ((item.getItemTemplate().isWeapon()) || (item.getItemTemplate().isTwoHandWeapon())) {
-				writeD(item.getEnchantOrAuthorizeLevel() == 15 ? 2 : item.getEnchantOrAuthorizeLevel() >= 20 ? 4 : 0);
-			}
-			else {
+			} else if ((item.getItemTemplate().isWeapon()) || (item.getItemTemplate().isTwoHandWeapon())) {
+				writeD(item.getEnchantPvPvELevel() == 15 ? 2 : item.getEnchantPvPvELevel() >= 15 ? 4 : 0);
+			} else {
 				writeD(0);
 			}
 		}

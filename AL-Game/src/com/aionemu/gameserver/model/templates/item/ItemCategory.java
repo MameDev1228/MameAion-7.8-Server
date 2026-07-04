@@ -1,36 +1,21 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.templates.item;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
-/**
- * @author LokiReborn
- */
 @XmlType(name = "item_category")
 @XmlEnum
-public enum ItemCategory {
-
+public enum ItemCategory
+{
 	MANASTONE,
-	ANCIENT_MANASTONE,
+	SPECIAL_MANASTONE,
+	PRIMARY_MANASTONE,
 	GODSTONE,
-	AMPLIFICATION,
 	ENCHANTMENT,
+	ENCHANTMENT_DESTRUCTION,
+	ENCHANTMENT_STIGMA,
+	ENCHANTMENT_AMPLIFICATION,
+	GRIND_ENCHANT,
 	FLUX,
 	BALIC_EMOTION,
 	BALIC_MATERIAL,
@@ -39,7 +24,6 @@ public enum ItemCategory {
 	RECIPE,
 	GATHERABLE,
 	GATHERABLE_BONUS,
-	DROP_MATERIAL,
 	SWORD,
 	DAGGER,
 	MACE,
@@ -50,13 +34,8 @@ public enum ItemCategory {
 	STAFF,
 	BOW,
 	SHIELD,
-	HARP,
-	GUN,
-	CANNON,
-	KEYBLADE,
 	JACKET,
 	PANTS,
-	SHARD,
 	SHOES,
 	GLOVES,
 	SHOULDERS,
@@ -73,18 +52,21 @@ public enum ItemCategory {
 	KEY,
 	TEMPERING,
 	CRAFT_BOOST,
-	COMBINATION,
+    COMBINATION,
+	GUN,
+	CANNON,
+	HARP,
+	KEYBLADE,
+	CHROMABLASTER,
+	KEYHAMMER,
 	PLUME,
-	STENCHANTMENT,
-	BRACELET,
+    NONE,
 	ESTIMA,
-	SPRAY,
+	BRACELET,
 	MANA_SLOT_OPEN,
 	GRIND_SLOT_OPEN,
-	GRIND_ENCHANT,
 	ODIAN,
 	RUNE,
-    GLYPH,
-    GLYPH_ENCHANT,
-	NONE
+	GLYPH,
+	GLYPH_ENCHANT
 }

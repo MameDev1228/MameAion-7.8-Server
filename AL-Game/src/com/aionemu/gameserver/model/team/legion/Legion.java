@@ -1,61 +1,48 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.team.legion;
-
-import static ch.lambdaj.Lambda.having;
-import static ch.lambdaj.Lambda.on;
-import static ch.lambdaj.Lambda.select;
-import static org.hamcrest.Matchers.equalTo;
-
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.SortedSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.aionemu.gameserver.configs.main.LegionConfig;
 import com.aionemu.gameserver.model.bonus_service.ServiceBuff;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_ICON_INFO;
-import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
-
 import javolution.util.FastMap;
 
+import java.sql.Timestamp;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import static ch.lambdaj.Lambda.*;
+import static org.hamcrest.Matchers.equalTo;
+
 /**
- * @author Simple, CoolyT
+ * @author Simple
  */
 public class Legion {
 
-	/**
-	 * Legion Information *
-	 */
+	/** Legion Information **/
+	private ServiceBuff serviceBuff;
 	private int legionId = 0;
 	private String legionName = "";
 	private int legionLevel = 1;
 	private int legionRank = 0;
 	private long contributionPoints = 0;
 	private List<Integer> legionMembers = new ArrayList<Integer>();
-	private int onlineMembersCount = 0;
 	private short deputyPermission = 0x1E0C;
 	private short centurionPermission = 0x1C08;
 	private short legionaryPermission = 0x1800;
@@ -67,11 +54,9 @@ public class Legion {
 	private SortedSet<LegionHistory> legionHistory;
 	private AtomicBoolean hasBonus = new AtomicBoolean(false);
 	private FastMap<Integer, LegionJoinRequest> joinRequestMap = new FastMap<Integer, LegionJoinRequest>();
-	private String description = "";
-	private int minJoinLevel = 0;
-	private int joinType = 0;
-	private LegionTerritory territory;
-	private ServiceBuff serviceBuff;
+    private String description = "";
+    private int minJoinLevel = 0;
+    private int joinType = 0;
 
 	/**
 	 * Only called when a legion is created!
@@ -96,12 +81,13 @@ public class Legion {
 			public int compare(LegionHistory o1, LegionHistory o2) {
 				return o1.getTime().getTime() < o2.getTime().getTime() ? 1 : -1;
 			}
+
 		});
 	}
 
 	/**
 	 * @param legionId
-	 *            the legionId to set
+	 *          the legionId to set
 	 */
 	public void setLegionId(int legionId) {
 		this.legionId = legionId;
@@ -116,7 +102,7 @@ public class Legion {
 
 	/**
 	 * @param legionName
-	 *            the legionName to set
+	 *          the legionName to set
 	 */
 	public void setLegionName(String legionName) {
 		this.legionName = legionName;
@@ -131,7 +117,7 @@ public class Legion {
 
 	/**
 	 * @param legionMembers
-	 *            the legionMembers to set
+	 *          the legionMembers to set
 	 */
 	public void setLegionMembers(ArrayList<Integer> legionMembers) {
 		this.legionMembers = legionMembers;
@@ -151,9 +137,8 @@ public class Legion {
 		ArrayList<Player> onlineLegionMembers = new ArrayList<Player>();
 		for (int legionMemberObjId : legionMembers) {
 			Player onlineLegionMember = World.getInstance().findPlayer(legionMemberObjId);
-			if (onlineLegionMember != null) {
+			if (onlineLegionMember != null)
 				onlineLegionMembers.add(onlineLegionMember);
-			}
 		}
 		return onlineLegionMembers;
 	}
@@ -180,18 +165,6 @@ public class Legion {
 		legionMembers.remove(new Integer(playerObjId));
 	}
 
-	public int getOnlineMembersCount() {
-		return this.onlineMembersCount;
-	}
-
-	public void decreaseOnlineMembersCount() {
-		this.onlineMembersCount--;
-	}
-
-	public void increaseOnlineMembersCount() {
-		this.onlineMembersCount++;
-	}
-
 	/**
 	 * This method will set the permissions
 	 *
@@ -200,12 +173,12 @@ public class Legion {
 	 * @param centurionPermission2
 	 * @return true or false
 	 */
-	public boolean setLegionPermissions(short deputyPermission, short centurionPermission, short legionaryPermission, short volunteerPermission) {
-		this.deputyPermission = deputyPermission;
-		this.centurionPermission = centurionPermission;
-		this.legionaryPermission = legionaryPermission;
-		this.volunteerPermission = volunteerPermission;
-		return true;
+	public boolean setLegionPermissions(short deputyPermission,	short centurionPermission,	short legionaryPermission,	short volunteerPermission) {
+			this.deputyPermission = deputyPermission;
+			this.centurionPermission = centurionPermission;
+			this.legionaryPermission = legionaryPermission;
+			this.volunteerPermission = volunteerPermission;
+			return true;
 	}
 
 	/**
@@ -222,12 +195,14 @@ public class Legion {
 		return centurionPermission;
 	}
 
+
 	/**
 	 * @return the legionarPermission
 	 */
 	public short getLegionaryPermission() {
 		return legionaryPermission;
 	}
+
 
 	/**
 	 * @return the volunteerPermission
@@ -252,7 +227,7 @@ public class Legion {
 
 	/**
 	 * @param legionRank
-	 *            the legionRank to set
+	 *          the legionRank to set
 	 */
 	public void setLegionRank(int legionRank) {
 		this.legionRank = legionRank;
@@ -267,7 +242,7 @@ public class Legion {
 
 	/**
 	 * @param contributionPoints
-	 *            the contributionPoints to set
+	 *          the contributionPoints to set
 	 */
 	public void addContributionPoints(long contributionPoints) {
 		this.contributionPoints += contributionPoints;
@@ -293,7 +268,7 @@ public class Legion {
 	 * @return true or false
 	 */
 	public boolean hasRequiredMembers() {
-		int memberSize = getLegionMembers().size();
+		int memberSize = getLegionMembers().size(); 
 		switch (getLegionLevel()) {
 			case 1:
 				return memberSize >= LegionConfig.LEGION_LEVEL2_REQUIRED_MEMBERS;
@@ -369,7 +344,7 @@ public class Legion {
 	 * @return
 	 */
 	private boolean canAddMember() {
-		int memberSize = getLegionMembers().size();
+		int memberSize = getLegionMembers().size(); 
 		switch (getLegionLevel()) {
 			case 1:
 				return memberSize < LegionConfig.LEGION_LEVEL1_MAX_MEMBERS;
@@ -393,7 +368,7 @@ public class Legion {
 
 	/**
 	 * @param announcementList
-	 *            the announcementList to set
+	 *          the announcementList to set
 	 */
 	public void setAnnouncementList(TreeMap<Timestamp, String> announcementList) {
 		this.announcementList = announcementList;
@@ -424,15 +399,14 @@ public class Legion {
 	 * @return the currentAnnouncement
 	 */
 	public Entry<Timestamp, String> getCurrentAnnouncement() {
-		if (this.announcementList.size() > 0) {
+		if (this.announcementList.size() > 0)
 			return this.announcementList.lastEntry();
-		}
 		return null;
 	}
 
 	/**
 	 * @param disbandTime
-	 *            the disbandTime to set
+	 *          the disbandTime to set
 	 */
 	public void setDisbandTime(int disbandTime) {
 		this.disbandTime = disbandTime;
@@ -464,7 +438,7 @@ public class Legion {
 
 	/**
 	 * @param legionEmblem
-	 *            the legionEmblem to set
+	 *          the legionEmblem to set
 	 */
 	public void setLegionEmblem(LegionEmblem legionEmblem) {
 		this.legionEmblem = legionEmblem;
@@ -479,7 +453,7 @@ public class Legion {
 
 	/**
 	 * @param legionWarehouse
-	 *            the legionWarehouse to set
+	 *          the legionWarehouse to set
 	 */
 	public void setLegionWarehouse(LegionWarehouse legionWarehouse) {
 		this.legionWarehouse = legionWarehouse;
@@ -536,82 +510,67 @@ public class Legion {
 		}
 		return select(legionHistory, having(on(LegionHistory.class).getTabId(), equalTo(tabType)));
 	}
-
+	
 	/**
 	 * @param history
 	 */
 	public void addHistory(LegionHistory history) {
 		this.legionHistory.add(history);
 	}
-
+	
 	public void addBonus() {
 		ArrayList<Player> members = getOnlineLegionMembers();
-          if (members.size() >= LegionConfig.LEGION_BUFF_REQUIRED_MEMBERS && members.size() <= 9) {
-            if (hasBonus.compareAndSet(false, true)) {
-                for (Player member : members) {
-                	serviceBuff = new ServiceBuff(1);
+		//레기온 창고란 같은 레기온원들 끼리 공동으로 사용하는 창고의 개념이다.
+		//즉, 다른 레기온원이 이곳에 물건을 넣으면, 자신 외에 다른 권한을 가진 레기온원이 꺼내서 사용할 수 있다는 것.
+		//아직 영혼 각인하지 않은 무기, 방어구라든지 각종 소비 아이템, 심지어 키나까지도 레기온원들 끼리 공동으로 사용할 수 있게 해주는 아주 편리한 시스템이다.
+		//레기온 창고는 레기온을 설립하면 바로 이용이 가능하며, 레기온 창고의 이용 방식은 일반 창고와 동일하다.
+		//레기온의 레벨이 올라갈 수록 레기온 창고의 슬롯 수를 늘릴 수 있다.
+		if (members.size() >= 2 && members.size() <= 9) {
+			if (hasBonus.compareAndSet(false, true)) {
+			    for (Player member: members) {
+				    serviceBuff = new ServiceBuff(1);
 				    serviceBuff.applyEffect(member, 1);
 			    }
 			}
-		} else if (members.size() >= LegionConfig.LEGION_BUFF_REQUIRED_MEMBERS && members.size() <= 240) {
+		} else if (members.size() >= 10 && members.size() <= 240) {
 			if (hasBonus.compareAndSet(false, true)) {
-				for (Player member : members) {
-				    serviceBuff = new ServiceBuff(5);
-				    serviceBuff.applyEffect(member, 5);
+			    for (Player member: members) {
+				    serviceBuff = new ServiceBuff(6);
+				    serviceBuff.applyEffect(member, 6);
 				    serviceBuff.endEffect(member, 1);
-					PacketSendUtility.sendPacket(member, new SM_ICON_INFO(1, true));
-				}
+			    }
 			}
 		}
-        for (Player member : members) {
-        	PacketSendUtility.sendMessage(member, "Legion: Bonus + 10 % XP , Craft , Gather"); 
-        }        	
 	}
 
 	public void removeBonus() {
 		ArrayList<Player> members = getOnlineLegionMembers();
-        if (members.size() < LegionConfig.LEGION_BUFF_REQUIRED_MEMBERS) {
-            	if (hasBonus.compareAndSet(true, false)) {
-            	for (Player member: members) {
-            		serviceBuff = new ServiceBuff(1);
-            		serviceBuff.endEffect(member, 1);
-            	}
-            }
-         } else if (members.size() < LegionConfig.LEGION_BUFF_REQUIRED_MEMBERS) {
+		if (members.size() < 2) {
 			if (hasBonus.compareAndSet(true, false)) {
-				for (Player member : members) {
-            		serviceBuff = new ServiceBuff(5);
-            		serviceBuff.endEffect(member, 5);
-            		serviceBuff.applyEffect(member, 1);
-					PacketSendUtility.sendPacket(member, new SM_ICON_INFO(1, false));
-				}
+			    for (Player member: members) {
+				    serviceBuff = new ServiceBuff(1);
+				    serviceBuff.endEffect(member, 1);
+			    }
+			}
+		} else if (members.size() < 10) {
+			if (hasBonus.compareAndSet(true, false)) {
+			    for (Player member: members) {
+				    serviceBuff = new ServiceBuff(6);
+				    serviceBuff.endEffect(member, 6);
+				    serviceBuff.applyEffect(member, 1);
+			    }
 			}
 		}
 	}
-                  
-    //Legion buff remove message
-    public void removeBonusMassage() {
-        ArrayList<Player> members = getOnlineLegionMembers();
-        if (members.size() < LegionConfig.LEGION_BUFF_REQUIRED_MEMBERS) {
-        	for (Player member : members) {
-        		PacketSendUtility.sendMessage(member, "Legion : Bonus + 0 % XP , Craft , Gather");             
-        	}
-        }
-        
-    } 
 
 	public boolean hasBonus() {
 		return hasBonus.get();
 	}
-
+	
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
 
 		Legion legion = (Legion) o;
 		return legionId == legion.legionId;
@@ -622,16 +581,10 @@ public class Legion {
 		return legionId;
 	}
 
-	/**
-	 * @return Legion Description for Legion Search
-	 */
-	public String getLegionDiscription() {
+	public String getLegionDescription() {
 		return description;
 	}
 
-	/**
-	 * 0 : can join 1 : can join only with confirmation 2 : join is disabled @ return joinType
-	 */
 	public int getLegionJoinType() {
 		return joinType;
 	}
@@ -652,16 +605,10 @@ public class Legion {
 		this.joinType = joinType;
 	}
 
-	/**
-	 * @return the joinRequestMap
-	 */
 	public FastMap<Integer, LegionJoinRequest> getJoinRequestMap() {
 		return joinRequestMap;
 	}
-
-	/**
-	 * @return the joinRequest for playerId
-	 */
+	
 	public LegionJoinRequest getJoinRequestByPlayerId(int playerId) {
 		return joinRequestMap.get(playerId);
 	}
@@ -670,28 +617,9 @@ public class Legion {
 		joinRequestMap.remove(playerId);
 	}
 
-	/**
-	 * @param adds
-	 *            a joinRequest to the joinRequestMap
-	 */
 	public void addJoinRequest(LegionJoinRequest joinRequest) {
-		if (!joinRequestMap.containsKey(joinRequest.getPlayerId()))
+		if (!joinRequestMap.containsKey(joinRequest.getPlayerId())) {
 			this.joinRequestMap.put(joinRequest.getPlayerId(), joinRequest);
-	}
-
-	public void clearTerritory() {
-		setTerritory(new LegionTerritory(0));
-	}
-
-	public boolean ownsTerretory() {
-		return getTerritory().getId() > 0;
-	}
-
-	public LegionTerritory getTerritory() {
-		return territory;
-	}
-
-	public void setTerritory(LegionTerritory territory) {
-		this.territory = territory;
+		}
 	}
 }

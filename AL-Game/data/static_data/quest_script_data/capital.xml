@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quest_scripts>
+<!--
+    Quest Capital
+	Make By Encom
+ -->
+	<!-- [Learn Pet] Having A Pet -->
+	<report_to id="19040" start_npc_ids="203725" end_npc_ids="798440"/>
+	<!-- [Learn Pet] Emotional Pet -->
+	<report_to id="19044" start_npc_ids="798440" end_npc_ids="798438"/>
+	<!-- [Learn Pet] Love For Pet -->
+	<report_to id="19045" start_npc_ids="798438" end_npc_ids="798439"/>
+	<!-- [Learn Pet] Having A Pet -->
+	<report_to id="29040" start_npc_ids="798385" end_npc_ids="798443"/>
+	<!-- [Learn Pet] Pet's Hidden Thoughts -->
+	<report_to id="29044" start_npc_ids="798443" end_npc_ids="798441"/>
+	<!-- [Learn Pet] Pet Waiting For Love! -->
+	<report_to id="29045" start_npc_ids="798441" end_npc_ids="798442"/>
+</quest_scripts>

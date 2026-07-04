@@ -1,0 +1,103 @@
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
+ *
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Encom is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package com.aionemu.gameserver.model.autogroup;
+
+import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.PlayerClass;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.team2.TeamType;
+import com.aionemu.gameserver.model.team2.group.PlayerGroup;
+import com.aionemu.gameserver.model.team2.group.PlayerGroupService;
+import com.aionemu.gameserver.model.templates.portal.PortalLoc;
+import com.aionemu.gameserver.model.templates.portal.PortalPath;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.teleport.TeleportService2;
+import com.aionemu.gameserver.utils.PacketSendUtility;
+import org.hamcrest.Matchers;
+
+import java.util.List;
+
+import static ch.lambdaj.Lambda.having;
+import static ch.lambdaj.Lambda.on;
+import static ch.lambdaj.Lambda.select;
+
+public class AutoFireTempleInstance extends AutoInstance
+{
+    private int worldId = 320100000; //Fire Temple.
+	
+    @Override
+    public AGQuestion addPlayer(Player player, SearchInstance searchInstance) {
+        super.writeLock();
+        try {
+            if (!satisfyTime(searchInstance) || (players.size() >= agt.getPlayerSize())) {
+                return AGQuestion.FAILED;
+            }
+            players.put(player.getObjectId(), new AGPlayer(player));
+            return instance != null ? AGQuestion.ADDED : (players.size() == agt.getPlayerSize() ? AGQuestion.READY : AGQuestion.ADDED);
+        } finally {
+            super.writeUnlock();
+        }
+    }
+	
+    @Override
+    public void onEnterInstance(Player player) {
+        super.onEnterInstance(player);
+        List<Player> playersByRace = instance.getPlayersInside();
+        if (playersByRace.size() == 1 && !playersByRace.get(0).isInGroup2()) {
+            PlayerGroup newGroup = PlayerGroupService.createGroup(playersByRace.get(0), player, TeamType.GROUP);
+            int groupId = newGroup.getObjectId();
+            if (!instance.isRegistered(groupId)) {
+                instance.register(groupId);
+            } if (player.getPortalCooldownList().getPortalCooldownItem(worldId) == null) {
+                player.getPortalCooldownList().addPortalCooldown(worldId, 1, DataManager.INSTANCE_COOLTIME_DATA.getInstanceEntranceCooltime(player, worldId));
+            } else {
+                player.getPortalCooldownList().addEntry(worldId);
+                //You have successfully entered the area, consuming one of your permitted entries.
+                PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_INSTANCE_DUNGEON_COUNT_USE);
+            }
+        } else if (!playersByRace.isEmpty() && playersByRace.get(0).isInGroup2()) {
+            PlayerGroupService.addPlayer(playersByRace.get(0).getPlayerGroup2(), player);
+            if (player.getPortalCooldownList().getPortalCooldownItem(worldId) == null) {
+                player.getPortalCooldownList().addPortalCooldown(worldId, 1, DataManager.INSTANCE_COOLTIME_DATA.getInstanceEntranceCooltime(player, worldId));
+            } else {
+                player.getPortalCooldownList().addEntry(worldId);
+                //You have successfully entered the area, consuming one of your permitted entries.
+                PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_INSTANCE_DUNGEON_COUNT_USE);
+            }
+        }
+        Integer object = player.getObjectId();
+        if (!instance.isRegistered(object)) {
+            instance.register(object);
+        }
+    }
+	
+    @Override
+    public void onPressEnter(Player player) {
+        super.onPressEnter(player);
+        TeleportService2.teleportTo(player, worldId, instance.getInstanceId(), 148.000f, 460.000f, 141.000f, (byte) 0);
+    }
+	
+    @Override
+    public void onLeaveInstance(Player player) {
+        super.unregister(player);
+        PlayerGroupService.removePlayer(player);
+    }
+	
+    private List<AGPlayer> getPlayersByClass(PlayerClass playerClass) {
+        return select(players, having(on(AGPlayer.class).getPlayerClass(), Matchers.equalTo(playerClass)));
+    }
+}

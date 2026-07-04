@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Shugo League Merchant
+	Made By Encom
+ -->
+<dynamic_rift xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="dynamic_rift.xsd">
+	<!-- Oriel [Shugo League Merchant] -->
+	<dynamic_location id="1"/>
+	<!-- Pernon [Shugo League Merchant] -->
+	<dynamic_location id="2"/>
+</dynamic_rift>

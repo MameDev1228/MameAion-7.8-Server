@@ -1,24 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 import com.aionemu.commons.callbacks.util.GlobalCallbackHelper;
 import com.aionemu.commons.objects.filter.ObjectFilter;
@@ -39,14 +35,16 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_AUTO_GROUP;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_FIND_GROUP;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-
 import javolution.util.FastMap;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Find Group Service
- *
+ * 
  * @author cura, MrPoke
- * @modified teenwolf
  */
 public class FindGroupService {
 
@@ -67,24 +65,18 @@ public class FindGroupService {
 
 	public void addFindGroupList(Player player, int action, String message, int groupType) {
 		AionObject object = null;
-		if (player.isInTeam()) {
-			object = player.getCurrentTeam();
-		}
-		else {
-			object = player;
-		}
 
-		FindGroup findGroup = new FindGroup(object, message, groupType);
-		int objectId = object.getObjectId();
+		FindGroup findGroup = new FindGroup(player, message, groupType);
+
 		switch (player.getRace()) {
 			case ELYOS:
 				switch (action) {
 					case 0x02:
-						elyosRecruitFindGroups.put(objectId, findGroup);
+						elyosRecruitFindGroups.put(player.getObjectId(), findGroup);
 						PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1400392));
 						break;
 					case 0x06:
-						elyosApplyFindGroups.put(objectId, findGroup);
+						elyosApplyFindGroups.put(player.getObjectId(), findGroup);
 						PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1400393));
 						break;
 				}
@@ -92,11 +84,11 @@ public class FindGroupService {
 			case ASMODIANS:
 				switch (action) {
 					case 0x02:
-						asmodianRecruitFindGroups.put(objectId, findGroup);
+						asmodianRecruitFindGroups.put(player.getObjectId(), findGroup);
 						PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1400392));
 						break;
 					case 0x06:
-						asmodianApplyFindGroups.put(objectId, findGroup);
+						asmodianApplyFindGroups.put(player.getObjectId(), findGroup);
 						PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1400393));
 						break;
 				}
@@ -108,7 +100,7 @@ public class FindGroupService {
 		Collection<FindGroup> findGroupList = new ArrayList<FindGroup>();
 		findGroupList.add(findGroup);
 
-		PacketSendUtility.sendPacket(player, new SM_FIND_GROUP(action, ((int) (System.currentTimeMillis() / 1000)), findGroupList));
+		PacketSendUtility.sendPacket(player, new SM_FIND_GROUP(0, ((int) (System.currentTimeMillis() / 1000)), findGroupList));
 	}
 
 	public void updateFindGroupList(Player player, String message, int action, int groupType, int objectId) {
@@ -216,11 +208,11 @@ public class FindGroupService {
 		if (findGroup != null) {
 			PacketSendUtility.broadcastFilteredPacket(new SM_FIND_GROUP(action + 1, playerObjId, findGroup.getUnk()), new ObjectFilter<Player>() {
 
-					@Override
-					public boolean acceptObject(Player object) {
-						return race == object.getRace();
-					}
-				});
+				@Override
+				public boolean acceptObject(Player object) {
+					return race == object.getRace();
+				}
+			});
 		}
 		return findGroup;
 	}
@@ -325,15 +317,13 @@ public class FindGroupService {
 			}
 		}
 	}
-
+	
 	static class FindGroupOnAddPlayerToAllianceListener extends AddPlayerToAllianceCallback {
-
 		@Override
 		public void onBeforePlayerAddToAlliance(PlayerAlliance alliance, Player player) {
 			FindGroupService.getInstance().removeFindGroup(player.getRace(), 0x00, player.getObjectId());
 			FindGroupService.getInstance().removeFindGroup(player.getRace(), 0x04, player.getObjectId());
 		}
-
 		@Override
 		public void onAfterPlayerAddToAlliance(PlayerAlliance alliance, Player player) {
 			if (alliance.isFull()) {

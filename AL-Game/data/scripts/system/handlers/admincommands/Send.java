@@ -1,38 +1,4 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.GameServerError;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -41,6 +7,18 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_CUSTOM_PACKET.Packet
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * This admin command is used for sending custom packets from server to client.
@@ -53,7 +31,7 @@ import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
  * * Reciever is a targetted by admin player. If target is 'null' or not a Player - sends to admin.<br />
  * <p/>
  * Created on: 14.07.2009 13:54:46
- *
+ * 
  * @author Aquanox
  */
 public class Send extends AdminCommand {
@@ -70,7 +48,9 @@ public class Send extends AdminCommand {
 	}
 
 	private static final Logger logger = LoggerFactory.getLogger(Send.class);
+
 	private static final File FOLDER = new File("./data/packets");
+
 	private Unmarshaller unmarshaller;
 
 	@Override
@@ -85,6 +65,7 @@ public class Send extends AdminCommand {
 
 		// logger.debug("Mapping: " + mappingName);
 		// logger.debug("Target: " + target);
+
 		File packetsData = new File(FOLDER, mappingName + ".xml");
 
 		if (!packetsData.exists()) {
@@ -125,24 +106,20 @@ public class Send extends AdminCommand {
 
 				String value = part.getValue();
 
-				if (value.indexOf("${objectId}") != -1) {
+				if (value.indexOf("${objectId}") != -1)
 					value = value.replace("${objectId}", targetObjectId);
-				}
-				if (value.indexOf("${senderObjectId}") != -1) {
+				if (value.indexOf("${senderObjectId}") != -1)
 					value = value.replace("${senderObjectId}", senderObjectId);
-				}
-				if (value.indexOf("${targetObjectId}") != -1) {
+				if (value.indexOf("${targetObjectId}") != -1)
 					value = value.replace("${targetObjectId}", targetObjectId);
-				}
 
 				if (part.getRepeatCount() == 1) // skip loop
 				{
 					packet.addElement(byCode, value);
 				}
 				else {
-					for (int i = 0; i < part.getRepeatCount(); i++) {
+					for (int i = 0; i < part.getRepeatCount(); i++)
 						packet.addElement(byCode, value);
-					}
 				}
 			}
 
@@ -174,6 +151,7 @@ public class Send extends AdminCommand {
 
 		@XmlElement(name = "packet")
 		private List<Packet> packets = new ArrayList<Packet>();
+
 		@XmlAttribute(name = "delay")
 		private long delay = -1;
 
@@ -212,8 +190,10 @@ public class Send extends AdminCommand {
 
 		@XmlElement(name = "part")
 		private Collection<Part> parts = new ArrayList<Part>();
+
 		@XmlAttribute(name = "opcode")
 		private String opcode = "-1";
+
 		@XmlAttribute(name = "delay")
 		private long delay = 0;
 
@@ -246,8 +226,10 @@ public class Send extends AdminCommand {
 
 		@XmlAttribute(name = "type", required = true)
 		private String type = null;
+
 		@XmlAttribute(name = "value", required = true)
 		private String value = null;
+
 		@XmlAttribute(name = "repeat", required = true)
 		private int repeatCount = 1;
 

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+<!--
+    Quest Crimson Katalam 7.x
+	Make By Encom
+ -->
+	<!-- [주간] 제1 요충지 방어 -->
+	<monster_hunt id="63302" start_npc_ids="820558" end_npc_ids="820558" start_dialog_id="4762">
+		<monster var="1" npc_ids="659609 659610 659611 659612 659613 659614" end_var="10"/>
+		<monster var="1" npc_ids="659615 659616 659617 659618 659619 659620" end_var="10"/>
+		<monster var="1" npc_ids="659621 659622 659623 659624" end_var="10"/>
+	</monster_hunt>
+	<!-- [주간] 제2 요충지 방어 -->
+	<monster_hunt id="63303" start_npc_ids="820559" end_npc_ids="820559" start_dialog_id="4762">
+		<monster var="1" npc_ids="659625 659627 659628 659629 659630 659631" end_var="10"/>
+		<monster var="1" npc_ids="659633 659635 659636 659637 659638 659679" end_var="10"/>
+		<monster var="1" npc_ids="659680 659681 659683 659685 659687 659688" end_var="10"/>
+		<monster var="1" npc_ids="659705 659706 659707 659708 659709 659710" end_var="10"/>
+	</monster_hunt>
+	<!-- [주간] 제3 요충지 방어 -->
+	<monster_hunt id="63304" start_npc_ids="820560" end_npc_ids="820560" start_dialog_id="4762">
+		<monster var="1" npc_ids="659722 659723 659724 659725 659726 659738" end_var="10"/>
+		<monster var="1" npc_ids="659739 659740 659741 659742 659743 659756" end_var="10"/>
+		<monster var="1" npc_ids="659757 659758 659759 659760 659761" end_var="10"/>
+	</monster_hunt>
+	<!-- [주간] 제4 요충지 방어 -->
+	<monster_hunt id="63305" start_npc_ids="820561" end_npc_ids="820561" start_dialog_id="4762">
+		<monster var="1" npc_ids="659776 659777 659778 659779 659780 659781" end_var="10"/>
+		<monster var="1" npc_ids="659782 659799 659800 659801 659802 659803" end_var="10"/>
+		<monster var="1" npc_ids="659804 659805 659820 659821 659822 659823" end_var="10"/>
+		<monster var="1" npc_ids="659824 659825 659826" end_var="10"/>
+	</monster_hunt>
+	<!-- [주간] 제5 요충지 방어 -->
+	<monster_hunt id="63306" start_npc_ids="820562" end_npc_ids="820562" start_dialog_id="4762">
+		<monster var="1" npc_ids="659357 659360 659362 659364 659366" end_var="10"/>
+	</monster_hunt>
+	<!-- [주간] 제1 요충지 수비 -->
+	<monster_hunt id="63322" start_npc_ids="820558" end_npc_ids="820558" start_dialog_id="4762">
+		<monster var="1" npc_ids="662515 662531 662547" end_var="3"/>
+	</monster_hunt>
+	<!-- [주간] 제2 요충지 수비 -->
+	<monster_hunt id="63323" start_npc_ids="820559" end_npc_ids="820559" start_dialog_id="4762">
+		<monster var="1" npc_ids="662563 662579" end_var="3"/>
+	</monster_hunt>
+	<!-- [주간] 제3 요충지 수비 -->
+	<monster_hunt id="63324" start_npc_ids="820560" end_npc_ids="820560" start_dialog_id="4762">
+		<monster var="1" npc_ids="662591 662611" end_var="3"/>
+	</monster_hunt>
+	<!-- [주간] 제4 요충지 수비 -->
+	<monster_hunt id="63325" start_npc_ids="820561" end_npc_ids="820561" start_dialog_id="4762">
+		<monster var="1" npc_ids="662627 662643 662659" end_var="3"/>
+	</monster_hunt>
+	<!-- [주간] 제5 요충지 수비 -->
+	<monster_hunt id="63326" start_npc_ids="820562" end_npc_ids="820562" start_dialog_id="4762">
+		<monster var="1" npc_ids="662675 662691 662707" end_var="3"/>
+	</monster_hunt>
+	<!-- [주간] 제1 요충지 탈환 명령 -->
+	<monster_hunt id="63360" start_npc_ids="820704" end_npc_ids="820704" start_dialog_id="4762">
+		<monster var="1" npc_ids="658738 658748 658749 658759 658760 658770" end_var="1"/>
+	</monster_hunt>
+	<!-- [주간] 제2 요충지 탈환 명령 -->
+	<monster_hunt id="63361" start_npc_ids="820705" end_npc_ids="820705" start_dialog_id="4762">
+		<monster var="1" npc_ids="658771 658781 658782 658792 658793 658803" end_var="1"/>
+	</monster_hunt>
+	<!-- [주간] 제3 요충지 탈환 명령 -->
+	<monster_hunt id="63362" start_npc_ids="820705" end_npc_ids="820705" start_dialog_id="4762">
+		<monster var="1" npc_ids="658804 658814 658815 658825 658826 658836" end_var="1"/>
+	</monster_hunt>
+	<!-- [주간] 제4 요충지 탈환 명령 -->
+	<monster_hunt id="63363" start_npc_ids="820706" end_npc_ids="820706" start_dialog_id="4762">
+		<monster var="1" npc_ids="658941 658951 658952 658962 658963 658973" end_var="1"/>
+	</monster_hunt>
+	<!-- [주간] 제5 요충지 탈환 명령 -->
+	<monster_hunt id="63364" start_npc_ids="820704" end_npc_ids="820704" start_dialog_id="4762">
+		<monster var="1" npc_ids="658974 658984 658985 658995 658996 659006" end_var="1"/>
+	</monster_hunt>
+	
+	<report_to_many id="63880" start_npc_ids="839813" end_npc_ids="839853" start_dialog_id="4762">
+        <npc_infos npc_id="839853" var="0" quest_dialog="10002" close_dialog="1009"/>
+    </report_to_many>
+	
+	<report_to id="64325" start_npc_ids="820546 820547 820548 820549 820550 820551" end_npc_ids="840192" item_id="182217064"/>
+	
+	<item_collecting id="64335" start_npc_ids="820546 820547 820548 820549 820550 820551" end_npc_ids="820546 820547 820548 820549 820550 820551" start_dialog_id="4762" start_dialog_id2="1011"/>
+	
+	<!-- [주간] 제1 요충지 방어 전투 -->
+	<monster_hunt id="73302" start_npc_ids="820588" end_npc_ids="820588" start_dialog_id="4762">
+		<monster var="1" npc_ids="659639 659640 659641 659642 659643 659644" end_var="10"/>
+		<monster var="1" npc_ids="659646 659647 659648 659649 659650 659651" end_var="10"/>
+		<monster var="1" npc_ids="659652 659653" end_var="10"/>
+	</monster_hunt>
+	<!-- [주간] 제2 요충지 방어 전투 -->
+	<monster_hunt id="73303" start_npc_ids="820589" end_npc_ids="820589" start_dialog_id="4762">
+		<monster var="1" npc_ids="659655 659657 659658 659659 659660 659661" end_var="10"/>
+		<monster var="1" npc_ids="659663 659665 659666 659667 659668 659689" end_var="10"/>
+		<monster var="1" npc_ids="659690 659693 659695 659697 659698 659711" end_var="10"/>
+		<monster var="1" npc_ids="659712 659713 659714 659715 659716" end_var="10"/>
+	</monster_hunt>
+	<!-- [주간] 제3 요충지 방어 전투 -->
+	<monster_hunt id="73304" start_npc_ids="820590" end_npc_ids="820590" start_dialog_id="4762">
+		<monster var="1" npc_ids="659727 659728 659729 659730 659731 659744" end_var="10"/>
+		<monster var="1" npc_ids="659745 659746 659747 659748 659749 659762" end_var="10"/>
+		<monster var="1" npc_ids="659763 659764 659765 659766 659767" end_var="10"/>
+	</monster_hunt>
+	<!-- [주간] 제4 요충지 방어 전투 -->
+	<monster_hunt id="73305" start_npc_ids="820591" end_npc_ids="820591" start_dialog_id="4762">
+		<monster var="1" npc_ids="659784 659785 659786 659787 659788 659789" end_var="10"/>
+		<monster var="1" npc_ids="659790 659806 659807 659808 659809 659810" end_var="10"/>
+		<monster var="1" npc_ids="659811 659812 659827 659828 659829 659830" end_var="10"/>
+		<monster var="1" npc_ids="659831 659832 659833" end_var="10"/>
+	</monster_hunt>
+	<!-- [주간] 제5 요충지 방어 전투 -->
+	<monster_hunt id="73306" start_npc_ids="820592" end_npc_ids="820592" start_dialog_id="4762">
+		<monster var="1" npc_ids="659468 659471 659473 659475 659477" end_var="10"/>
+	</monster_hunt>
+	<!-- [주간] 제1 요충지 수비 전투 -->
+	<monster_hunt id="73322" start_npc_ids="820588" end_npc_ids="820588" start_dialog_id="4762">
+		<monster var="1" npc_ids="662515 662531 662547" end_var="3"/>
+	</monster_hunt>
+	<!-- [주간] 제2 요충지 수비 전투 -->
+	<monster_hunt id="73323" start_npc_ids="820589" end_npc_ids="820589" start_dialog_id="4762">
+		<monster var="1" npc_ids="662563 662579" end_var="3"/>
+	</monster_hunt>
+	<!-- [주간] 제3 요충지 수비 전투 -->
+	<monster_hunt id="73324" start_npc_ids="820590" end_npc_ids="820590" start_dialog_id="4762">
+		<monster var="1" npc_ids="662591 662611" end_var="3"/>
+	</monster_hunt>
+	<!-- [주간] 제4 요충지 수비 전투 -->
+	<monster_hunt id="73325" start_npc_ids="820591" end_npc_ids="820591" start_dialog_id="4762">
+		<monster var="1" npc_ids="662627 662643 662659" end_var="3"/>
+	</monster_hunt>
+	<!-- [주간] 제5 요충지 수비 전투 -->
+	<monster_hunt id="73326" start_npc_ids="820592" end_npc_ids="820592" start_dialog_id="4762">
+		<monster var="1" npc_ids="662675 662691 662707" end_var="3"/>
+	</monster_hunt>
+	<!-- [주간] 제1 요충지 수복 명령 -->
+	<monster_hunt id="73360" start_npc_ids="820709" end_npc_ids="820709" start_dialog_id="4762">
+		<monster var="1" npc_ids="658738 658747 658749 658758 658760 658769" end_var="1"/>
+	</monster_hunt>
+	<!-- [주간] 제2 요충지 수복 명령 -->
+	<monster_hunt id="73361" start_npc_ids="820710" end_npc_ids="820710" start_dialog_id="4762">
+		<monster var="1" npc_ids="658771 658780 658782 658791 658793 658802" end_var="1"/>
+	</monster_hunt>
+	<!-- [주간] 제3 요충지 수복 명령 -->
+	<monster_hunt id="73362" start_npc_ids="820710" end_npc_ids="820710" start_dialog_id="4762">
+		<monster var="1" npc_ids="658804 658813 658815 658824 658826 658835" end_var="1"/>
+	</monster_hunt>
+	<!-- [주간] 제4 요충지 수복 명령 -->
+	<monster_hunt id="73363" start_npc_ids="820711" end_npc_ids="820711" start_dialog_id="4762">
+		<monster var="1" npc_ids="658941 658950 658952 658961 658963 658972" end_var="1"/>
+	</monster_hunt>
+	<!-- [주간] 제5 요충지 수복 명령 -->
+	<monster_hunt id="73364" start_npc_ids="820710" end_npc_ids="820710" start_dialog_id="4762">
+		<monster var="1" npc_ids="658974 658983 658985 658994 658996 659005" end_var="1"/>
+	</monster_hunt>
+	
+	<report_to_many id="73880" start_npc_ids="839814" end_npc_ids="839858" start_dialog_id="4762">
+        <npc_infos npc_id="839858" var="0" quest_dialog="10002" close_dialog="1009"/>
+    </report_to_many>
+	
+	<report_to id="74325" start_npc_ids="820576 820577 820578 820579 820580 820581" end_npc_ids="840193" item_id="182217065"/>
+	
+	<item_collecting id="74335" start_npc_ids="820576 820577 820578 820579 820580 820581" end_npc_ids="820576 820577 820578 820579 820580 820581" start_dialog_id="4762" start_dialog_id2="1011"/>
+</quest_scripts>

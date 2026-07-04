@@ -1,35 +1,16 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.controllers.attack;
 
-/**
- * @author ATracer
- */
-public enum AttackStatus {
-
+public enum AttackStatus
+{
 	DODGE(0, true, false),
 	OFFHAND_DODGE(1, true, false),
 	PARRY(2, true, false),
 	OFFHAND_PARRY(3, true, false),
 	BLOCK(4, true, false),
 	OFFHAND_BLOCK(5, true, false),
-	RESIST(6, true, false),
+    RESIST(6, true, false),
 	OFFHAND_RESIST(7),
-	BUF(8), // ??
+	BUF(8),
 	OFFHAND_BUF(9),
 	NORMALHIT(10),
 	OFFHAND_NORMALHIT(11),
@@ -43,33 +24,33 @@ public enum AttackStatus {
 	OFFHAND_CRITICAL_BLOCK(213, true, true),
 	OFFHAND_CRITICAL_RESIST(215, false, true),
 	OFFHAND_CRITICAL(219, false, true);
-
+	
 	private final int type;
 	private final boolean counterSkill;
 	private final boolean isCritical;
-
+	
 	private AttackStatus(int type) {
 		this(type, false, false);
 	}
-
+	
 	private AttackStatus(int type, boolean counterSkill, boolean isCritical) {
 		this.type = type;
 		this.counterSkill = counterSkill;
 		this.isCritical = isCritical;
 	}
-
+	
 	public final int getId() {
 		return type;
 	}
-
+	
 	public final boolean isCounterSkill() {
 		return counterSkill;
 	}
-
+	
 	public final boolean isCritical() {
 		return isCritical;
 	}
-
+	
 	public static final AttackStatus getOffHandStats(AttackStatus mainHandStatus) {
 		switch (mainHandStatus) {
 			case DODGE:
@@ -94,12 +75,10 @@ public enum AttackStatus {
 				return OFFHAND_CRITICAL_BLOCK;
 			case CRITICAL_RESIST:
 				return OFFHAND_CRITICAL_RESIST;
-			default:
-				break;
 		}
 		throw new IllegalArgumentException("Invalid mainHandStatus " + mainHandStatus);
 	}
-
+	
 	public static final AttackStatus getBaseStatus(AttackStatus status) {
 		switch (status) {
 			case DODGE:
@@ -126,9 +105,9 @@ public enum AttackStatus {
 				return status;
 		}
 	}
-
+	
 	public static final AttackStatus getCriticalStatusFor(AttackStatus status) {
-		switch (status) {
+		switch(status) {
 			case DODGE:
 				return AttackStatus.CRITICAL_DODGE;
 			case OFFHAND_DODGE:
@@ -149,8 +128,8 @@ public enum AttackStatus {
 				return AttackStatus.CRITICAL;
 			case OFFHAND_NORMALHIT:
 				return AttackStatus.OFFHAND_CRITICAL;
-			default:
-				return status;
+		    default:
+			    return status;
 		}
 	}
 }

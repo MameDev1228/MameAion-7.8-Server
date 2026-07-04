@@ -1,38 +1,38 @@
-@echo off
-chcp 65001 >nul
-mode con:cols=150 lines=45
-color 0B
-TITLE MameAion 7.8.0 - Game Server Panel
+@ECHO off
+TITLE Encom - Game Server Panel
 :MENU
 CLS
 ECHO.
-ECHO   *--------------------------------------------------------------------------*
-ECHO   ^|                  MameAion 7.8.0 - Game Server Panel                   ^|
-ECHO   *--------------------------------------------------------------------------*
+ECHO   ^*--------------------------------------------------------------------------^*
+ECHO   ^|                    Encom - Game Server Panel                             ^|
+ECHO   ^*--------------------------------------------------------------------------^*
 ECHO   ^|                                                                          ^|
-ECHO   ^|    1 - 開発モード / Development                         4 - 終了        ^|
-ECHO   ^|    2 - 本番モード / Production X1                                      ^|
-ECHO   ^|    3 - 本番モード / Production X2                                      ^|
+ECHO   ^|    1 - Development                                                       ^|
+ECHO   ^|    2 - Production                                                        ^|
+ECHO   ^|    3 - Production X2                                                     ^|
+ECHO   ^|    4 - Quit                                                              ^|
 ECHO   ^|                                                                          ^|
-ECHO   *--------------------------------------------------------------------------*
+ECHO   ^*--------------------------------------------------------------------------^*
 ECHO.
-SET /P OPTION=番号を入力して ENTER: 
-IF "%OPTION%" == "1" (
+SET /P OPTION=Type your option and press ENTER: 
+IF %OPTION% == 1 (
 SET MODE=DEVELOPMENT
-SET JAVA_OPTS=-Xms3072m -Xmx3072m -XX:MaxHeapSize=3072m -agentlib:jdwp=transport=dt_socket,address=8998,server=y,suspend=n -ea
+SET JAVA_OPTS=-Xms700m -Xmx1000m -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y,suspend=n -ea
 CALL StartGS.bat
 )
-IF "%OPTION%" == "2" (
+IF %OPTION% == 2 (
 SET MODE=PRODUCTION
-SET JAVA_OPTS=-Xms1536m -Xmx1536m -server
+SET JAVA_OPTS=-Xms1536m -Xmx1536m -XX:PermSize=512M -XX:MaxPermSize=1024M -server
 CALL StartGS.bat
 )
-IF "%OPTION%" == "3" (
+IF %OPTION% == 3 (
 SET MODE=PRODUCTION X2
-SET JAVA_OPTS=-Xms3872m -Xmx3872m -server
+SET JAVA_OPTS=-Xms4072m -Xmx8096m -XX:PermSize=512M -XX:MaxPermSize=1024M -server
 CALL StartGS.bat
 )
-IF "%OPTION%" == "4" (
+IF %OPTION% == 4 (
 EXIT
 )
+IF %OPTION% GEQ 5 (
 GOTO :MENU
+)

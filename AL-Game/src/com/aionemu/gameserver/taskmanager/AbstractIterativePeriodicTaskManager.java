@@ -1,26 +1,25 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.taskmanager;
 
-import java.util.Set;
-
 import com.aionemu.commons.utils.concurrent.RunnableStatsManager;
-
 import javolution.util.FastSet;
+
+import java.util.Set;
 
 /**
  * @author NB4L1
@@ -29,6 +28,7 @@ public abstract class AbstractIterativePeriodicTaskManager<T> extends AbstractPe
 
 	private final Set<T> startList = new FastSet<T>();
 	private final Set<T> stopList = new FastSet<T>();
+
 	private final FastSet<T> activeTasks = new FastSet<T>();
 
 	protected AbstractIterativePeriodicTaskManager(int period) {
@@ -38,9 +38,8 @@ public abstract class AbstractIterativePeriodicTaskManager<T> extends AbstractPe
 	public boolean hasTask(T task) {
 		readLock();
 		try {
-			if (stopList.contains(task)) {
+			if (stopList.contains(task))
 				return false;
-			}
 
 			return activeTasks.contains(task) || startList.contains(task);
 		}

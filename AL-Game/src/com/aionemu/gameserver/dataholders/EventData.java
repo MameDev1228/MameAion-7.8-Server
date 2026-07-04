@@ -1,46 +1,33 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.dataholders;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-
 import com.aionemu.gameserver.model.templates.event.EventTemplate;
-
 import gnu.trove.map.hash.THashMap;
 
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.*;
+import java.util.*;
+
 /**
- * <p/>
+ * <p>
  * Java class for EventData complex type.
- * <p/>
+ * <p>
  * The following schema fragment specifies the expected content contained within this class.
- * <p/>
  * 
  * <pre>
  * &lt;complexType name="EventData">
@@ -69,20 +56,23 @@ public class EventData {
 
 	@XmlElement(required = true)
 	protected String active;
+
 	@XmlElementWrapper(name = "events")
 	@XmlElement(name = "event")
 	protected List<EventTemplate> events;
+
 	@XmlTransient
 	private THashMap<String, EventTemplate> activeEvents = new THashMap<String, EventTemplate>();
+
 	@XmlTransient
 	private THashMap<String, EventTemplate> allEvents = new THashMap<String, EventTemplate>();
+
 	@XmlTransient
 	private int counter = 0;
 
 	void afterUnmarshal(Unmarshaller u, Object parent) {
-		if (active == null || events == null) {
+		if (active == null || events == null)
 			return;
-		}
 
 		counter = 0;
 		allEvents.clear();
@@ -122,18 +112,16 @@ public class EventData {
 	}
 
 	public void setAllEvents(List<EventTemplate> events, String active) {
-		if (events == null) {
+		if (events == null)
 			events = new ArrayList<EventTemplate>();
-		}
 		this.events = events;
 		this.active = active;
 
 		for (EventTemplate et : this.events) {
 			if (allEvents.containsKey(et.getName())) {
 				EventTemplate oldEvent = allEvents.get(et.getName());
-				if (oldEvent.isActive() && oldEvent.isStarted()) {
+				if (oldEvent.isActive() && oldEvent.isStarted())
 					et.setStarted();
-				}
 			}
 		}
 		afterUnmarshal(null, null);
@@ -151,4 +139,5 @@ public class EventData {
 	public boolean Contains(String eventName) {
 		return activeEvents.containsKey(eventName);
 	}
+
 }

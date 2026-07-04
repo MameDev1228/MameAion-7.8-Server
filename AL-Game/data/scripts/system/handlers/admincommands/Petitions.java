@@ -1,22 +1,4 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
-
-import java.util.Collection;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.dao.PetitionDAO;
@@ -30,6 +12,8 @@ import com.aionemu.gameserver.services.mail.MailService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 import com.aionemu.gameserver.world.World;
+
+import java.util.Collection;
 
 /**
  * @author zdead
@@ -50,13 +34,15 @@ public class Petitions extends AdminCommand {
 			if (petitionsArray.length < 5) {
 				PacketSendUtility.sendMessage(admin, "== " + petitionsArray.length + " first petitions to reply ==");
 				for (int i = 0; i < petitionsArray.length; i++) {
-					PacketSendUtility.sendMessage(admin, petitionsArray[i].getPetitionId() + " | " + petitionsArray[i].getTitle());
+					PacketSendUtility.sendMessage(admin, petitionsArray[i].getPetitionId() + " | "
+						+ petitionsArray[i].getTitle());
 				}
 			}
 			else {
 				PacketSendUtility.sendMessage(admin, "== 5 first petitions to reply ==");
 				for (int i = 0; i < 5; i++) {
-					PacketSendUtility.sendMessage(admin, petitionsArray[i].getPetitionId() + " | " + petitionsArray[i].getTitle());
+					PacketSendUtility.sendMessage(admin, petitionsArray[i].getPetitionId() + " | "
+						+ petitionsArray[i].getTitle());
 				}
 			}
 			return;
@@ -96,12 +82,10 @@ public class Petitions extends AdminCommand {
 			StringBuilder message = new StringBuilder();
 			message.append("== Petition #" + petitionId + " ==\n");
 			message.append("Player: " + petitionPlayer + " (");
-			if (isOnline) {
+			if (isOnline)
 				message.append("Online");
-			}
-			else {
+			else
 				message.append("Offline");
-			}
 			message.append(")\n");
 			message.append("Type: " + getHumanizedValue(petition.getPetitionType()) + "\n");
 			message.append("Title: " + petition.getTitle() + "\n");
@@ -109,26 +93,29 @@ public class Petitions extends AdminCommand {
 			message.append("= Additional Data =\n");
 			message.append(getFormattedAdditionalData(petition.getPetitionType(), petition.getAdditionalData()));
 			PacketSendUtility.sendMessage(admin, message.toString());
-		} // Delete
+		}
+		// Delete
 		else if (params.length == 2 && params[1].equals("delete")) {
 			PetitionService.getInstance().deletePetition(petition.getPlayerObjId());
 			PacketSendUtility.sendMessage(admin, "Petition #" + petitionId + " deleted.");
-		} // Reply
+		}
+		// Reply
 		else if (params.length >= 3 && params[1].equals("reply")) {
 			String replyMessage = "";
-			for (int i = 2; i < params.length - 1; i++) {
+			for (int i = 2; i < params.length - 1; i++)
 				replyMessage += params[i] + " ";
-			}
 			replyMessage += params[params.length - 1];
 			if (replyMessage.equals("")) {
 				PacketSendUtility.sendMessage(admin, "You must specify a reply to that petition");
 				return;
 			}
 
-			MailService.getInstance().sendMail(admin, petitionPlayer, "GM-Re:" + petition.getTitle(), replyMessage, 0, 0, 0, LetterType.NORMAL);
+			MailService.getInstance().sendMail(admin, petitionPlayer, "GM-Re:" + petition.getTitle(), replyMessage, 0, 0, 0, 0,
+				LetterType.NORMAL);
 			PetitionService.getInstance().setPetitionReplied(petitionId);
 
-			PacketSendUtility.sendMessage(admin, "Your reply has been sent to " + petitionPlayer + ". Petition is now closed.");
+			PacketSendUtility.sendMessage(admin, "Your reply has been sent to " + petitionPlayer
+				+ ". Petition is now closed.");
 		}
 	}
 
@@ -173,9 +160,8 @@ public class Petitions extends AdminCommand {
 				String[] bugData = additionalData.split("/");
 				result = "Time Occured: " + bugData[0] + "\n";
 				result += "Zone and Coords: " + bugData[1];
-				if (bugData.length > 2) {
+				if (bugData.length > 2)
 					result += "\nHow to Replicate: " + bugData[2];
-				}
 				break;
 			case QUEST:
 				result = "Quest Title: " + additionalData;

@@ -1,23 +1,22 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA  02110-1301, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
  */
 package com.aionemu.gameserver.taskmanager.tasks;
-
-import java.util.Collection;
-import java.util.Map;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -25,8 +24,10 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.taskmanager.AbstractPeriodicTaskManager;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
-
 import javolution.util.FastMap;
+
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * @author Mr. Poke
@@ -60,9 +61,8 @@ public class TemporaryTradeTimeTask extends AbstractPeriodicTaskManager {
 
 	public boolean canTrade(Item item, int playerObjectId) {
 		Collection<Integer> players = items.get(item);
-		if (players == null) {
+		if (players == null)
 			return false;
-		}
 		return players.contains(playerObjectId);
 	}
 
@@ -96,17 +96,15 @@ public class TemporaryTradeTimeTask extends AbstractPeriodicTaskManager {
 				if (time == 60) {
 					for (int playerId : entry.getValue()) {
 						Player player = World.getInstance().findPlayer(playerId);
-						if (player != null) {
+						if (player != null)
 							PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_END_OF_EXCHANGE_TIME(item.getNameId(), time));
-						}
 					}
 				}
 				else if (time <= 0) {
 					for (int playerId : entry.getValue()) {
 						Player player = World.getInstance().findPlayer(playerId);
-						if (player != null) {
+						if (player != null)
 							PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_MSG_EXCHANGE_TIME_OVER(item.getNameId()));
-						}
 					}
 					item.setTemporaryExchangeTime(0);
 					items.remove(item);

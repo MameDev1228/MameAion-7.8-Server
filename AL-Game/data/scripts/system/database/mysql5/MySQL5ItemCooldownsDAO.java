@@ -1,32 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-unique is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-unique is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-unique. If not, see <http://www.gnu.org/licenses/>.
  */
 package mysql5;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.Map;
-
-import javax.annotation.Nullable;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.DB;
 import com.aionemu.commons.database.DatabaseFactory;
@@ -38,6 +26,16 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.items.ItemCooldown;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Maps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.Nullable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * @author ATracer
@@ -45,16 +43,18 @@ import com.google.common.collect.Maps;
 public class MySQL5ItemCooldownsDAO extends ItemCooldownsDAO {
 
 	private static final Logger log = LoggerFactory.getLogger(MySQL5ItemCooldownsDAO.class);
+
 	public static final String INSERT_QUERY = "INSERT INTO `item_cooldowns` (`player_id`, `delay_id`, `use_delay`, `reuse_time`) VALUES (?,?,?,?)";
 	public static final String DELETE_QUERY = "DELETE FROM `item_cooldowns` WHERE `player_id`=?";
 	public static final String SELECT_QUERY = "SELECT `delay_id`, `use_delay`, `reuse_time` FROM `item_cooldowns` WHERE `player_id`=?";
-	private static final Predicate<ItemCooldown> itemCooldownPredicate = new Predicate<ItemCooldown>() {
 
+	private static final Predicate<ItemCooldown> itemCooldownPredicate = new Predicate<ItemCooldown>() {
 		@Override
 		public boolean apply(@Nullable ItemCooldown input) {
 			return input != null && input.getReuseTime() - System.currentTimeMillis() > 30000;
 		}
 	};
+
 
 	@Override
 	public void loadItemCooldowns(final Player player) {
@@ -72,9 +72,8 @@ public class MySQL5ItemCooldownsDAO extends ItemCooldownsDAO {
 					int useDelay = rset.getInt("use_delay");
 					long reuseTime = rset.getLong("reuse_time");
 
-					if (reuseTime > System.currentTimeMillis()) {
+					if (reuseTime > System.currentTimeMillis())
 						player.addItemCoolDown(delayId, reuseTime, useDelay);
-					}
 
 				}
 			}
@@ -87,24 +86,23 @@ public class MySQL5ItemCooldownsDAO extends ItemCooldownsDAO {
 		deleteItemCooldowns(player);
 		Map<Integer, ItemCooldown> itemCoolDowns = player.getItemCoolDowns();
 
-		if (itemCoolDowns == null) {
+		if (itemCoolDowns == null)
 			return;
-		}
 
 		Map<Integer, ItemCooldown> map = Maps.filterValues(itemCoolDowns, itemCooldownPredicate);
 		final Iterator<Map.Entry<Integer, ItemCooldown>> iterator = map.entrySet().iterator();
-		if (!iterator.hasNext()) {
+		if(!iterator.hasNext()){
 			return;
 		}
 
 		Connection con = null;
 		PreparedStatement st = null;
-		try {
+		try{
 			con = DatabaseFactory.getConnection();
 			con.setAutoCommit(false);
 			st = con.prepareStatement(INSERT_QUERY);
-
-			while (iterator.hasNext()) {
+			
+			while(iterator.hasNext()){
 				Map.Entry<Integer, ItemCooldown> entry = iterator.next();
 				st.setInt(1, player.getObjectId());
 				st.setInt(2, entry.getKey());
@@ -115,11 +113,9 @@ public class MySQL5ItemCooldownsDAO extends ItemCooldownsDAO {
 
 			st.executeBatch();
 			con.commit();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			log.error("Error while storing item cooldows for player " + player.getObjectId(), e);
-		}
-		finally {
+		} finally {
 			DatabaseFactory.close(st, con);
 		}
 	}

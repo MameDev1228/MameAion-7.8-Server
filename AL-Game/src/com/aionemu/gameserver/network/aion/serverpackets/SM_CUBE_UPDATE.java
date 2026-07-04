@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.serverpackets;
 
@@ -29,43 +29,49 @@ public class SM_CUBE_UPDATE extends AionServerPacket {
 	private int action;
 	/**
 	 * for action 0 - its storage type<br>
-	 * for action 6 - its advanced stigma count
+	 * for action 9 - its advanced stigma count
 	 */
 	private int actionValue;
-	private int itemsCount;
-	private int cubeExpands;
 
-	public static SM_CUBE_UPDATE stigmaSlots(int slots) {
-		return new SM_CUBE_UPDATE(6, slots);
+	private int itemsCount;
+	private int npcExpands;
+	private int questExpands;
+
+	public static SM_CUBE_UPDATE stigmaSlots(int slots)
+	{
+		return new SM_CUBE_UPDATE(9, slots);
 	}
 
-	public static SM_CUBE_UPDATE cubeSize(StorageType type, Player player) {
+	public static SM_CUBE_UPDATE cubeSize(StorageType type, Player player)
+	{
 		int itemsCount = 0;
-		int cubeExpands = 0;
-		switch (type) {
+		int npcExpands = 0;
+		int questExpands = 0;
+		switch(type) {
 			case CUBE:
 				itemsCount = player.getInventory().size();
-				cubeExpands = player.getCubeExpands();
+				npcExpands = player.getNpcExpands();
+				questExpands = player.getQuestExpands();
 				break;
 			case REGULAR_WAREHOUSE:
 				itemsCount = player.getWarehouse().size();
-				cubeExpands = player.getWarehouseSize();
+				npcExpands = player.getWarehouseSize();
+				//questExpands = ?? //TODO!
 				break;
 			case LEGION_WAREHOUSE:
 				itemsCount = player.getLegion().getLegionWarehouse().size();
-				cubeExpands = player.getLegion().getWarehouseLevel();
-				break;
-			default:
+				npcExpands = player.getLegion().getWarehouseLevel();
 				break;
 		}
-
-		return new SM_CUBE_UPDATE(0, type.ordinal(), itemsCount, cubeExpands);
+		
+		return new SM_CUBE_UPDATE(0, type.ordinal(), itemsCount, npcExpands, questExpands);
 	}
 
-	private SM_CUBE_UPDATE(int action, int actionValue, int itemsCount, int cubeExpands) {
+	private SM_CUBE_UPDATE(int action, int actionValue, int itemsCount, int npcExpands, int questExpands) {
 		this(action, actionValue);
 		this.itemsCount = itemsCount;
-		this.cubeExpands = cubeExpands;
+		this.npcExpands = npcExpands;
+		this.questExpands = questExpands;
 	}
 
 	private SM_CUBE_UPDATE(int action, int actionValue) {
@@ -80,11 +86,11 @@ public class SM_CUBE_UPDATE extends AionServerPacket {
 		switch (action) {
 			case 0:
 				writeD(itemsCount);
-				writeC(cubeExpands); // cube size from npc (so max 5 for now)
-				writeC(0);
+				writeC(npcExpands); // cube size from npc (so max 5 for now)
+				writeC(questExpands); // cube size from quest (so max 2 for now)
 				writeC(0); // unk - expands from items?
 				break;
-			case 6:
+			case 9:
 				break;
 			default:
 				break;

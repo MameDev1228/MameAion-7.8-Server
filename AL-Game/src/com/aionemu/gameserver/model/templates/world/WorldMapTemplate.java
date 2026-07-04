@@ -1,71 +1,63 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.templates.world;
 
-import java.util.List;
-
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
 import com.aionemu.gameserver.configs.main.WorldConfig;
+import com.aionemu.gameserver.world.WorldDropType;
 import com.aionemu.gameserver.world.WorldType;
 import com.aionemu.gameserver.world.zone.ZoneAttributes;
 
-/**
- * @author Luno
- */
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.*;
+import java.util.List;
+
 @XmlRootElement(name = "map")
 @XmlAccessorType(XmlAccessType.NONE)
-public class WorldMapTemplate {
-
+public class WorldMapTemplate
+{
 	@XmlAttribute(name = "name")
 	protected String name = "";
+
 	@XmlAttribute(name = "id", required = true)
 	protected Integer mapId;
+
 	@XmlAttribute(name = "twin_count")
 	protected int twinCount;
+	
 	@XmlAttribute(name = "beginner_twin_count")
 	protected int beginnerTwinCount;
+
 	@XmlAttribute(name = "max_user")
 	protected int maxUser;
+
 	@XmlAttribute(name = "prison")
 	protected boolean prison = false;
+
 	@XmlAttribute(name = "instance")
 	protected boolean instance = false;
+
 	@XmlAttribute(name = "death_level", required = true)
 	protected int deathlevel = 0;
+
 	@XmlAttribute(name = "water_level", required = true)
-	// TODO: Move to Zone
 	protected int waterlevel = 16;
+
 	@XmlAttribute(name = "world_type")
 	protected WorldType worldType = WorldType.NONE;
+
 	@XmlAttribute(name = "world_size")
 	protected int worldSize;
+
 	@XmlElement(name = "ai_info")
 	protected AiInfo aiInfo = AiInfo.DEFAULT;
+
 	@XmlAttribute(name = "except_buff")
 	protected boolean exceptBuff = false;
+
 	@XmlAttribute(name = "flags")
 	protected List<ZoneAttributes> flagValues;
+	
+	@XmlAttribute(name = "drop_type")
+	protected WorldDropType dropWorldType = WorldDropType.NONE;
+
 	@XmlTransient
 	protected Integer flags;
 
@@ -81,17 +73,13 @@ public class WorldMapTemplate {
 		if (WorldConfig.WORLD_MAX_TWINS_USUAL == 0) {
 			return twinCount;
 		}
-		else if (WorldConfig.WORLD_MAX_TWINS_USUAL == -1) { // disabled
-			return 0;
-		}
 		return Math.min(WorldConfig.WORLD_MAX_TWINS_USUAL, twinCount);
 	}
 
 	public int getBeginnerTwinCount() {
 		if (WorldConfig.WORLD_MAX_TWINS_BEGINNER == 0) {
 			return beginnerTwinCount;
-		}
-		else if (WorldConfig.WORLD_MAX_TWINS_BEGINNER == -1) { // disabled
+		} else if (WorldConfig.WORLD_MAX_TWINS_BEGINNER == -1) {
 			return 0;
 		}
 		return Math.min(WorldConfig.WORLD_MAX_TWINS_BEGINNER, beginnerTwinCount);
@@ -125,7 +113,10 @@ public class WorldMapTemplate {
 		return worldSize;
 	}
 
-	/* Default zone attributes for the map */
+	public WorldDropType getWorldDropType() {
+		return dropWorldType;
+	}
+
 	public boolean isFly() {
 		return (flags & ZoneAttributes.FLY.getId()) != 0;
 	}
@@ -170,9 +161,6 @@ public class WorldMapTemplate {
 		flags = ZoneAttributes.fromList(flagValues);
 	}
 
-	/**
-	 * @return the exceptBuff
-	 */
 	public boolean isExceptBuff() {
 		return exceptBuff;
 	}

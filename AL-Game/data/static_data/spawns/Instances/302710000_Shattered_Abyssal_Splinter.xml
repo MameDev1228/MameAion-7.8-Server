@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Shattered Abyssal Splinter
+	Spawn By Encom
+ -->
+<spawns>
+	<spawn_map map_id="302710000">
+		<!-- IDED_01_StatUp_Buff_01 -->
+		<spawn npc_id="661474">
+			<spot h="90" z="197.59686" y="215.20477" x="253.90912"/>
+		</spawn>
+		<!-- IDED_01_StatUp_Buff_02 -->
+		<spawn npc_id="661475">
+			<spot h="90" z="197.6121" y="214.61024" x="286.68234"/>
+		</spawn>
+		<!-- Light Crystal
+		A shining crystal obtained from Reian Fighter Spirit and Reian Sorcerer Spirit -->
+		<spawn npc_id="820796">
+			<spot h="109" z="197.39075" y="144.43182" x="197.47758"/>
+            <spot h="93" z="197.24353" y="151.7962" x="211.36363"/>
+            <spot h="99" z="197.23315" y="154.15349" x="214.60081"/>
+		</spawn>
+		<!-- Octaside Egg -->
+		<spawn npc_id="820803">
+			<spot h="70" z="197.6354" y="231.82745" x="310.16415"/>
+            <spot h="61" z="197.53189" y="222.71222" x="313.82785"/>
+            <spot h="57" z="197.46259" y="213.67563" x="311.65085"/>
+		</spawn>
+		<!-- Shattered Abyssal Splinter Exit -->
+		<spawn npc_id="820810">
+            <spot h="17" z="197.20651" y="107.6291" x="188.77037"/>
+		</spawn>
+		
+		<!-- IDEvent_Damage_01_Normal_Silika_80_Ah -->
+		<spawn npc_id="858703">
+			<spot h="65" z="197.60266" y="189.3337" x="282.0816"/>
+            <spot h="91" z="197.4042" y="221.06212" x="246.43735"/>
+		</spawn>
+		<!-- IDEvent_Damage_01_Normal_Octaside_80_Ah -->
+		<spawn npc_id="858704">
+			<spot h="73" z="197.51344" y="227.74202" x="294.6187"/>
+            <spot h="70" z="197.65059" y="213.64359" x="299.00403"/>
+            <spot h="89" z="197.445" y="230.98726" x="273.36395"/>
+		</spawn>
+		<!-- Bluerinerk
+		<Abyssal Fragment Store> -->
+		<spawn npc_id="840667">
+            <spot x="226.51779" y="158.7992" z="197.29526" h="101"/>
+        </spawn>
+		<!-- Redrinerk
+		<Abyssal Fragment Specialty Store> -->
+        <spawn npc_id="840668">
+            <spot x="224.22575" y="157.4789" z="197.22884" h="100"/>
+        </spawn>
+		
+		<!-- Shattered Abyssal Splinter Shield
+		<spawn npc_id="703026">
+			<spot x="236.8382" y="165.9354" z="196.78162" entity_id="17"/>
+			<spot x="232.2489" y="158.7666" z="197.11995" entity_id="18"/>
+		</spawn> -->
+	</spawn_map>
+</spawns>

@@ -1,13 +1,10 @@
 #!/bin/bash
 
-JAVA=${JAVA:-java}
-JAVA_OPTS=${JAVA_OPTS:-"-Xms128m -Xmx1536m -XX:+UseG1GC -Dfile.encoding=UTF-8 -DconsoleEncoding=UTF-8"}
-
 case $1 in
 noloop)
-  [ -d log/backup ] || mkdir -p log/backup
+  [ -d log/ ] || mkdir log/
   [ -f log/console.log ] && mv log/console.log "log/backup/`date +%Y-%m-%d_%H-%M-%S`_console.log"
-  "$JAVA" $JAVA_OPTS -ea -javaagent:./libs/al-commons.jar -cp "./libs/*:AL-Game.jar" com.aionemu.gameserver.GameServer > log/console.log 2>&1 &
+  java -Xms3072m -Xmx4096m -ea -javaagent:./libs/al-commons-1.0.jar -cp ./libs/*:AL-Game.jar com.aionemu.gameserver.GameServer > log/console.log 2>&1
   echo $! > gameserver.pid
   echo "Server started!"
   ;;

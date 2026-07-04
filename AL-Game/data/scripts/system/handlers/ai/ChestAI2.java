@@ -1,69 +1,66 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package ai;
 
-import static ch.lambdaj.Lambda.maxFrom;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-
-import com.aionemu.gameserver.ai2.AI2Actions;
 import com.aionemu.gameserver.ai2.AIName;
+import com.aionemu.gameserver.ai2.AI2Actions;
 import com.aionemu.gameserver.configs.main.GroupConfig;
 import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.templates.chest.ChestTemplate;
 import com.aionemu.gameserver.model.templates.chest.KeyItem;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_FLAG_INFO;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_FLAG_UPDATE;
 import com.aionemu.gameserver.services.drop.DropRegistrationService;
 import com.aionemu.gameserver.services.drop.DropService;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-import com.aionemu.gameserver.utils.audit.AuditLogger;
+import com.aionemu.gameserver.utils.ThreadPoolManager;
+import com.aionemu.gameserver.world.World;
+import com.aionemu.gameserver.world.knownlist.Visitor;
 
-/**
- * @author ATracer, xTz
- */
+import java.util.*;
+import java.util.concurrent.Future;
+
+import static ch.lambdaj.Lambda.maxFrom;
+
 @AIName("chest")
-public class ChestAI2 extends ActionItemNpcAI2 {
-
+public class ChestAI2 extends ActionItemNpcAI2
+{
+	private Future<?> sendPacketTask;
 	private ChestTemplate chestTemplate;
-
+	
 	@Override
 	protected void handleDialogStart(final Player player) {
 		chestTemplate = DataManager.CHEST_DATA.getChestTemplate(getNpcId());
-
 		if (chestTemplate == null) {
 			return;
 		}
 		super.handleDialogStart(player);
 	}
-
+	
 	@Override
 	protected void handleUseItemFinish(Player player) {
 		if (analyzeOpening(player)) {
-			if (getOwner().isInState(CreatureState.DEAD)) {
-				AuditLogger.info(player, "Attempted multiple Chest looting!");
+			if (isAlreadyDead())
 				return;
-			}
-
 			AI2Actions.dieSilently(this, player);
 			Collection<Player> players = new HashSet<Player>();
 			if (player.isInGroup2()) {
@@ -72,26 +69,22 @@ public class ChestAI2 extends ActionItemNpcAI2 {
 						players.add(member);
 					}
 				}
-			}
-			else if (player.isInAlliance2()) {
+			} else if (player.isInAlliance2()) {
 				for (Player member : player.getPlayerAlliance2().getOnlineMembers()) {
 					if (MathUtil.isIn3dRange(member, getOwner(), GroupConfig.GROUP_MAX_DISTANCE)) {
 						players.add(member);
 					}
 				}
-			}
-			else {
+			} else {
 				players.add(player);
 			}
 			DropRegistrationService.getInstance().registerDrop(getOwner(), player, maxFrom(players).getLevel(), players);
 			DropService.getInstance().requestDropList(player, getObjectId());
-			super.handleUseItemFinish(player);
-		}
-		else {
-			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1111301));
+		} else {
+			PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(false, 1111300, player.getObjectId(), 2));
 		}
 	}
-
+	
 	private boolean analyzeOpening(final Player player) {
 		List<KeyItem> keyItems = chestTemplate.getKeyItem();
 		int i = 0;
@@ -105,19 +98,16 @@ public class ChestAI2 extends ActionItemNpcAI2 {
 					int _i = 0;
 					for (Item findedItem : player.getInventory().getItemsByItemId(keyItem.getItemId())) {
 						_i += findedItem.getItemCount();
-					}
-					if (_i < keyItem.getQuantity()) {
+					} if (_i < keyItem.getQuantity()) {
 						return false;
 					}
 				}
 				i++;
 				continue;
-			}
-			else {
+			} else {
 				return false;
 			}
-		}
-		if (i == keyItems.size()) {
+		} if (i == keyItems.size()) {
 			for (KeyItem keyItem : keyItems) {
 				player.getInventory().decreaseByItemId(keyItem.getItemId(), keyItem.getQuantity());
 			}
@@ -125,7 +115,60 @@ public class ChestAI2 extends ActionItemNpcAI2 {
 		}
 		return false;
 	}
-
+	
+	@Override
+    public void handleSpawned() {
+        super.handleSpawned();
+		switch (getNpcId()) {
+			case 839266: //LDF5_Weapon_Box_Flag.
+				World.getInstance().doOnAllPlayers(new Visitor<Player>() {
+					@Override
+					public void visit(final Player player) {
+						sendPacketTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
+							@Override
+							public void run() {
+								if (player.getWorldId() == getOwner().getWorldId()) {
+									if (getOwner().isSpawned()) {
+										PacketSendUtility.sendPacket(player, new SM_FLAG_INFO(1, getOwner()));
+									}
+								}
+							}
+						}, 1000, 2000);
+					}
+				});
+			break;
+		}
+    }
+	
+    @Override
+    protected void handleDespawned() {
+        super.handleDespawned();
+		switch (getNpcId()) {
+			case 839266: //LDF5_Weapon_Box_Flag.
+				World.getInstance().doOnAllPlayers(new Visitor<Player>() {
+					@Override
+					public void visit(final Player player) {
+						sendPacketTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
+							@Override
+							public void run() {
+								if (player.getWorldId() == getOwner().getWorldId()) {
+									PacketSendUtility.sendPacket(player, new SM_FLAG_UPDATE(getOwner()));
+									getOwner().getController().onDelete();
+								}
+							}
+						}, 1000, 2000);
+					}
+				});
+			break;
+		}
+    }
+	
+    private void cancelTask() {
+        if (sendPacketTask != null && !sendPacketTask.isCancelled()) {
+            sendPacketTask.cancel(true);
+        }
+    }
+	
 	@Override
 	protected void handleDialogFinish(Player player) {
 	}

@@ -1,25 +1,27 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network;
 
 import java.nio.ByteBuffer;
 
+
 /**
  * @author -Nemesiss-
+ *
  */
 public abstract class PacketWriteHelper {
 
@@ -27,7 +29,7 @@ public abstract class PacketWriteHelper {
 
 	/**
 	 * Write int to buffer.
-	 *
+	 * 
 	 * @param buf
 	 * @param value
 	 */
@@ -37,7 +39,7 @@ public abstract class PacketWriteHelper {
 
 	/**
 	 * Write short to buffer.
-	 *
+	 * 
 	 * @param buf
 	 * @param value
 	 */
@@ -47,7 +49,7 @@ public abstract class PacketWriteHelper {
 
 	/**
 	 * Write byte to buffer.
-	 *
+	 * 
 	 * @param buf
 	 * @param value
 	 */
@@ -57,7 +59,7 @@ public abstract class PacketWriteHelper {
 
 	/**
 	 * Write double to buffer.
-	 *
+	 * 
 	 * @param buf
 	 * @param value
 	 */
@@ -67,7 +69,7 @@ public abstract class PacketWriteHelper {
 
 	/**
 	 * Write float to buffer.
-	 *
+	 * 
 	 * @param buf
 	 * @param value
 	 */
@@ -77,7 +79,7 @@ public abstract class PacketWriteHelper {
 
 	/**
 	 * Write long to buffer.
-	 *
+	 * 
 	 * @param buf
 	 * @param value
 	 */
@@ -87,7 +89,7 @@ public abstract class PacketWriteHelper {
 
 	/**
 	 * Write String to buffer
-	 *
+	 * 
 	 * @param buf
 	 * @param text
 	 */
@@ -97,16 +99,15 @@ public abstract class PacketWriteHelper {
 		}
 		else {
 			final int len = text.length();
-			for (int i = 0; i < len; i++) {
+			for (int i = 0; i < len; i++)
 				buf.putChar(text.charAt(i));
-			}
 			buf.putChar('\000');
 		}
 	}
 
 	/**
 	 * Write byte array to buffer.
-	 *
+	 * 
 	 * @param buf
 	 * @param data
 	 */
@@ -116,11 +117,12 @@ public abstract class PacketWriteHelper {
 
 	/**
 	 * Skip specified amount of bytes
-	 *
+	 * 
 	 * @param buf
 	 * @param bytes
 	 */
-	protected final void skip(ByteBuffer buf, int bytes) {
+	protected final void skip(ByteBuffer buf, int bytes)
+	{
 		buf.put(new byte[bytes]);
 	}
 }

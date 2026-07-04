@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+<!--
+    Quest Yustiel's Lifekeepers
+	Make By Encom
+ -->
+	<!-- [일일] 신록의 그란케르를 처치하라 -->
+	<monster_hunt id="39801" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="655244 655020" end_var="10"/>
+	</monster_hunt>
+	<!-- [일일] 소심한 가르키온을 처치하라 -->
+	<monster_hunt id="39802" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="655246 655022" end_var="10"/>
+	</monster_hunt>
+	<!-- [일일] 레블루 숲의 우두머리를 처치하라 -->
+	<monster_hunt id="39803" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="655125 655126" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 나른한 해안가의 우두머리를 처치하라 -->
+	<monster_hunt id="39804" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="655127 655128" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 빨간 뿔 푸구파를 처치하라 -->
+	<monster_hunt id="39805" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="655030" end_var="10"/>
+	</monster_hunt>
+	<!-- [일일] 거친 뿔 고르키온을 처치하라 -->
+	<monster_hunt id="39806" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="655032" end_var="10"/>
+	</monster_hunt>
+	<!-- [일일] 기록의 호수의 우두머리를 처치하라 -->
+	<monster_hunt id="39807" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="655137 655138" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 태고의 붉은 나무 숲의 우두머리를 처치하라 -->
+	<monster_hunt id="39808" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="655139 655140" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 엔도림 사원의 우두머리를 처치하라 -->
+	<monster_hunt id="39809" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="655131 655132" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 참혹한 해안가의 우두머리를 처치하라 -->
+	<monster_hunt id="39810" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="655133 655134" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 제128 기지를 공격하라 -->
+	<monster_hunt id="39811" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="885756 885761" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 제129 기지를 공격하라 -->
+	<monster_hunt id="39812" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="885771 885776" end_var="1"/>
+	</monster_hunt>
+	<!-- [일일] 제127 기지를 공격하라 -->
+	<monster_hunt id="39813" start_npc_ids="0" end_npc_ids="806898">
+		<monster var="1" npc_ids="885741 885746" end_var="1"/>
+	</monster_hunt>
+</quest_scripts>

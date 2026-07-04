@@ -1,32 +1,32 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * This file is part of aion-lightning <aion-lightning.org>.
+ * 
+ * aion-lightning is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * aion-lightning is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.utils.collections;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.AbstractQueue;
 import java.util.Iterator;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
-import javax.annotation.concurrent.ThreadSafe;
-
 /**
- * Optimistic approach to lock-free FIFO queue; E. Ladan-Mozes and N. Shavit algorithm, less CAS failures when enqueueing, if compared with Michael and Scott Nonblocking Queue, in
- * ConcurrentLinkedQueue
+ * Optimistic approach to lock-free FIFO queue;
+ * E. Ladan-Mozes and N. Shavit algorithm, less CAS failures when enqueueing, 
+ * if compared with Michael and Scott Nonblocking Queue, in ConcurrentLinkedQueue
  */
 @ThreadSafe
 public class OptimisticLinkedQueue<E> extends AbstractQueue<E> implements Queue<E>, java.io.Serializable {
@@ -79,9 +79,11 @@ public class OptimisticLinkedQueue<E> extends AbstractQueue<E> implements Queue<
 	}
 
 	@SuppressWarnings("rawtypes")
-	private static final AtomicReferenceFieldUpdater<OptimisticLinkedQueue, Node> tailUpdater = AtomicReferenceFieldUpdater.newUpdater(OptimisticLinkedQueue.class, Node.class, "tail");
+	private static final AtomicReferenceFieldUpdater<OptimisticLinkedQueue, Node> tailUpdater = AtomicReferenceFieldUpdater
+		.newUpdater(OptimisticLinkedQueue.class, Node.class, "tail");
 	@SuppressWarnings("rawtypes")
-	private static final AtomicReferenceFieldUpdater<OptimisticLinkedQueue, Node> headUpdater = AtomicReferenceFieldUpdater.newUpdater(OptimisticLinkedQueue.class, Node.class, "head");
+	private static final AtomicReferenceFieldUpdater<OptimisticLinkedQueue, Node> headUpdater = AtomicReferenceFieldUpdater
+		.newUpdater(OptimisticLinkedQueue.class, Node.class, "head");
 
 	private boolean casTail(Node<E> cmp, Node<E> val) {
 		return tailUpdater.compareAndSet(this, cmp, val);
@@ -96,7 +98,7 @@ public class OptimisticLinkedQueue<E> extends AbstractQueue<E> implements Queue<
 	 */
 	private transient volatile Node<E> head = new Node<E>(null, null);
 	/**
-	 * Pointer to last node on list
+	 *  Pointer to last node on list 
 	 */
 	private transient volatile Node<E> tail = head;
 
@@ -107,15 +109,13 @@ public class OptimisticLinkedQueue<E> extends AbstractQueue<E> implements Queue<
 	}
 
 	AtomicInteger count = new AtomicInteger();
-
+	
 	/**
 	 * Enqueues the specified element at the tail of this queue.
 	 */
-	@Override
 	public boolean offer(E e) {
-		if (e == null) {
+		if (e == null)
 			throw new NullPointerException();
-		}
 		Node<E> n = new Node<E>(e, null);
 		for (;;) {
 			Node<E> t = tail;
@@ -129,9 +129,9 @@ public class OptimisticLinkedQueue<E> extends AbstractQueue<E> implements Queue<
 	}
 
 	/**
-	 * Dequeues an element from the queue. After a successful casHead, the prev and next pointers of the dequeued node are set to null to allow garbage collection.
+	 * Dequeues an element from the queue. After a successful casHead, the prev and next pointers of the dequeued node are
+	 * set to null to allow garbage collection.
 	 */
-	@Override
 	public E poll() {
 		for (;;) {
 			Node<E> h = head;
@@ -151,9 +151,8 @@ public class OptimisticLinkedQueue<E> extends AbstractQueue<E> implements Queue<
 						return item;
 					}
 				}
-				else {
+				else
 					return null;
-				}
 			}
 		}
 	}
@@ -170,12 +169,11 @@ public class OptimisticLinkedQueue<E> extends AbstractQueue<E> implements Queue<
 			curNode = curNode.getNext();
 		}
 	}
-
-	@Override
+	
 	public void clear() {
 		while (poll() != null);
 	}
-
+	
 	public int leaveTail() {
 		E elem = null;
 		E elem1 = null;

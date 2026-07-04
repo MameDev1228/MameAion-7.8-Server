@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- parsed by phpTools from Aion Germany Group (Mariella) at 2020-11-08 19:07 -->
+<!--
+	Challenge Task
+	Made By Encom
+ -->
 <challenge_tasks>
-    <task id="300" type="LEGION" race="ELYOS" min_level="5" max_level="6" name_id="1199506" repeat="true">
+    <!-- LEGION -->
+	<task id="300" type="LEGION" race="ELYOS" min_level="5" max_level="6" name_id="1199506" repeat="true">
         <quest id="17200" repeat_count="18" score="990"/>
         <contrib rank="1" number="2" reward_id="186000199" item_count="15"/>
         <contrib rank="2" number="3" reward_id="186000199" item_count="10"/>
@@ -30,18 +34,18 @@
     <task id="303" type="LEGION" race="ELYOS" prev_task="302" min_level="8" max_level="9" name_id="1199512">
         <quest id="17205" repeat_count="12" score="960"/>
         <quest id="17206" repeat_count="24" score="1920"/>
-        <contrib rank="1" number="4" reward_id="186000199" item_count="45"/>
-        <contrib rank="2" number="6" reward_id="186000199" item_count="35"/>
-        <contrib rank="3" number="12" reward_id="186000199" item_count="25"/>
+        <contrib rank="1" number="4" reward_id="186000147" item_count="45"/>
+        <contrib rank="2" number="6" reward_id="188052427" item_count="35"/>
+        <contrib rank="3" number="12" reward_id="167000518" item_count="25"/>
         <contrib rank="4" number="240" reward_id="186000199" item_count="7"/>
         <reward type="NONE"/>
     </task>
     <task id="304" type="LEGION" race="ELYOS" prev_task="302" min_level="8" max_level="9" name_id="1199514">
         <quest id="17207" repeat_count="36" score="2736"/>
         <quest id="17208" repeat_count="48" score="3648"/>
-        <contrib rank="1" number="4" reward_id="186000199" item_count="45"/>
-        <contrib rank="2" number="6" reward_id="186000199" item_count="35"/>
-        <contrib rank="3" number="12" reward_id="186000199" item_count="25"/>
+        <contrib rank="1" number="4" reward_id="186000147" item_count="45"/>
+        <contrib rank="2" number="6" reward_id="188052426" item_count="35"/>
+        <contrib rank="3" number="12" reward_id="188052428" item_count="25"/>
         <contrib rank="4" number="240" reward_id="186000199" item_count="7"/>
         <reward type="NONE"/>
     </task>
@@ -49,27 +53,27 @@
         <quest id="17209" repeat_count="24" score="1824"/>
         <quest id="17210" repeat_count="36" score="2736"/>
         <quest id="17211" repeat_count="48" score="3648"/>
-        <contrib rank="1" number="2" reward_id="186000199" item_count="60"/>
-        <contrib rank="2" number="8" reward_id="186000199" item_count="50"/>
-        <contrib rank="3" number="24" reward_id="186000199" item_count="40"/>
+        <contrib rank="1" number="2" reward_id="100001394" item_count="60"/>
+        <contrib rank="2" number="8" reward_id="186000147" item_count="50"/>
+        <contrib rank="3" number="24" reward_id="188052429" item_count="40"/>
         <contrib rank="4" number="240" reward_id="186000199" item_count="10"/>
         <reward type="NONE"/>
     </task>
-    <task id="310" type="LEGION" race="ELYOS" min_level="9" max_level="9" name_id="1800531">
+	<task id="310" type="LEGION" race="ELYOS" min_level="9" max_level="9" name_id="1800531">
         <quest id="9688" repeat_count="3" score="50"/>
         <quest id="9689" repeat_count="5" score="100"/>
         <quest id="9690" repeat_count="7" score="150"/>
         <contrib rank="1" number="1" reward_id="186000199" item_count="12"/>
         <reward type="NONE"/>
     </task>
-    <task id="320" type="LEGION" race="ELYOS" min_level="9" max_level="9" name_id="1801135">
+	<task id="320" type="LEGION" race="ELYOS" min_level="6" max_level="9" name_id="1801135">
         <quest id="17160" repeat_count="24" score="1560"/>
         <quest id="17161" repeat_count="24" score="1560"/>
         <quest id="17162" repeat_count="48" score="3120"/>
         <contrib rank="1" number="1" reward_id="185000230" item_count="1"/>
-        <contrib rank="2" number="3" reward_id="186000199" item_count="1"/>
-        <contrib rank="3" number="6" reward_id="186000199" item_count="1"/>
-        <contrib rank="4" number="14" reward_id="186000199" item_count="1"/>
+		<contrib rank="2" number="3" reward_id="186000199" item_count="1"/>
+		<contrib rank="3" number="6" reward_id="186000199" item_count="1"/>
+		<contrib rank="4" number="14" reward_id="186000199" item_count="1"/>
         <reward type="NONE"/>
     </task>
     <task id="400" type="LEGION" race="ASMODIANS" min_level="5" max_level="6" name_id="1199518" repeat="true">
@@ -101,18 +105,18 @@
     <task id="403" type="LEGION" race="ASMODIANS" prev_task="402" min_level="8" max_level="9" name_id="1199524">
         <quest id="27205" repeat_count="12" score="960"/>
         <quest id="27206" repeat_count="24" score="1920"/>
-        <contrib rank="1" number="4" reward_id="186000199" item_count="45"/>
-        <contrib rank="2" number="6" reward_id="186000199" item_count="35"/>
-        <contrib rank="3" number="12" reward_id="186000199" item_count="25"/>
+        <contrib rank="1" number="4" reward_id="186000147" item_count="45"/>
+        <contrib rank="2" number="6" reward_id="188052427" item_count="35"/>
+        <contrib rank="3" number="12" reward_id="167000518" item_count="25"/>
         <contrib rank="4" number="240" reward_id="186000199" item_count="7"/>
         <reward type="NONE"/>
     </task>
     <task id="404" type="LEGION" race="ASMODIANS" prev_task="402" min_level="8" max_level="9" name_id="1199526">
         <quest id="27207" repeat_count="36" score="2736"/>
         <quest id="27208" repeat_count="48" score="3648"/>
-        <contrib rank="1" number="4" reward_id="186000199" item_count="45"/>
-        <contrib rank="2" number="6" reward_id="186000199" item_count="35"/>
-        <contrib rank="3" number="12" reward_id="186000199" item_count="25"/>
+        <contrib rank="1" number="4" reward_id="186000147" item_count="45"/>
+        <contrib rank="2" number="6" reward_id="188052426" item_count="35"/>
+        <contrib rank="3" number="12" reward_id="188052428" item_count="25"/>
         <contrib rank="4" number="240" reward_id="186000199" item_count="7"/>
         <reward type="NONE"/>
     </task>
@@ -120,22 +124,24 @@
         <quest id="27209" repeat_count="24" score="1824"/>
         <quest id="27210" repeat_count="36" score="2736"/>
         <quest id="27211" repeat_count="48" score="3648"/>
-        <contrib rank="1" number="2" reward_id="186000199" item_count="60"/>
-        <contrib rank="2" number="8" reward_id="186000199" item_count="50"/>
-        <contrib rank="3" number="24" reward_id="186000199" item_count="40"/>
+        <contrib rank="1" number="2" reward_id="100001395" item_count="60"/>
+        <contrib rank="2" number="8" reward_id="186000147" item_count="50"/>
+        <contrib rank="3" number="24" reward_id="188052429" item_count="40"/>
         <contrib rank="4" number="240" reward_id="186000199" item_count="10"/>
         <reward type="NONE"/>
     </task>
-    <task id="420" type="LEGION" race="ASMODIANS" min_level="9" max_level="9" name_id="1801140">
+	<task id="420" type="LEGION" race="ASMODIANS" min_level="6" max_level="9" name_id="1801140">
         <quest id="27160" repeat_count="24" score="1560"/>
         <quest id="27161" repeat_count="24" score="1560"/>
         <quest id="27162" repeat_count="48" score="3120"/>
         <contrib rank="1" number="1" reward_id="185000230" item_count="1"/>
-        <contrib rank="2" number="3" reward_id="186000199" item_count="1"/>
-        <contrib rank="3" number="6" reward_id="186000199" item_count="1"/>
-        <contrib rank="4" number="14" reward_id="186000199" item_count="1"/>
+		<contrib rank="2" number="3" reward_id="186000199" item_count="1"/>
+		<contrib rank="3" number="6" reward_id="186000199" item_count="1"/>
+		<contrib rank="4" number="14" reward_id="186000199" item_count="1"/>
         <reward type="NONE"/>
     </task>
+	
+	<!-- TOWN -->
     <task id="500" type="TOWN" race="ELYOS" min_level="1" max_level="2" name_id="1199571" repeat="true">
         <quest id="17100" repeat_count="10" score="1"/>
         <reward type="POINT" value="1000" msg_id="1199568"/>
@@ -204,7 +210,7 @@
     <task id="529" type="TOWN" race="ELYOS" prev_task="503" min_level="5" max_level="6" name_id="1199629" town_residence="true">
         <quest id="17130" repeat_count="20" score="1"/>
         <reward type="SPAWN" value="4320" msg_id="1199570"/>
-    </task>
+    </task> 
     <task id="531" type="TOWN" race="ELYOS" prev_task="503" min_level="5" max_level="6" name_id="1199633" town_residence="true">
         <quest id="17132" repeat_count="20" score="1"/>
         <reward type="SPAWN" value="4320" msg_id="1199570"/>

@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.skillengine.properties;
 
@@ -25,67 +25,58 @@ import com.aionemu.gameserver.skillengine.model.DispelCategoryType;
 import com.aionemu.gameserver.skillengine.model.Skill;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
-/**
- * @author ATracer
- */
-public class FirstTargetProperty {
-
-	/**
-	 * @param skill
-	 * @param properties
-	 * @return
-	 */
+public class FirstTargetProperty
+{
 	public static final boolean set(Skill skill, Properties properties) {
-
 		FirstTargetAttribute value = properties.getFirstTarget();
 		skill.setFirstTargetAttribute(value);
 		switch (value) {
 			case ME:
 				skill.setFirstTargetRangeCheck(false);
 				skill.setFirstTarget(skill.getEffector());
-				break;
+			break;
 			case TARGETORME:
 				boolean changeTargetToMe = false;
 				if (skill.getFirstTarget() == null) {
 					skill.setFirstTarget(skill.getEffector());
-				}
-				else if (skill.getFirstTarget().isAttackableNpc()) {
+				} else if (skill.getFirstTarget().isAttackableNpc()) {
 					Player playerEffector = (Player) skill.getEffector();
 					if (skill.getFirstTarget().isEnemy(playerEffector)) {
 						changeTargetToMe = true;
 					}
-				}
-				else if ((skill.getFirstTarget() instanceof Player) && (skill.getEffector() instanceof Player)) {
+				} else if ((skill.getFirstTarget() instanceof Player) && (skill.getEffector() instanceof Player)) {
 					Player playerEffected = (Player) skill.getFirstTarget();
 					Player playerEffector = (Player) skill.getEffector();
-					if (!playerEffected.getRace().equals(playerEffector.getRace()) || playerEffected.isEnemy(playerEffector)) {
+					if (playerEffected.isEnemy(playerEffector)) {
 						changeTargetToMe = true;
 					}
-				}
-				else if (skill.getFirstTarget() instanceof Npc) {
+				} else if (skill.getFirstTarget() instanceof Npc) {
 					Npc npcEffected = (Npc) skill.getFirstTarget();
 					Player playerEffector = (Player) skill.getEffector();
 					if (npcEffected.isEnemy(playerEffector)) {
 						changeTargetToMe = true;
 					}
-				}
-				else if ((skill.getFirstTarget() instanceof Summon) && (skill.getEffector() instanceof Player)) {
+				} else if ((skill.getFirstTarget() instanceof Summon) && (skill.getEffector() instanceof Player)) {
 					Summon summon = (Summon) skill.getFirstTarget();
 					Player playerEffected = summon.getMaster();
 					Player playerEffector = (Player) skill.getEffector();
 					if (playerEffected.isEnemy(playerEffector)) {
 						changeTargetToMe = true;
 					}
-				}
-				if (changeTargetToMe) {
+				} if (changeTargetToMe) {
 					if (skill.getEffector() instanceof Player) {
 						PacketSendUtility.sendPacket((Player) skill.getEffector(), SM_SYSTEM_MESSAGE.STR_SKILL_AUTO_CHANGE_TARGET_TO_MY);
 					}
 					skill.setFirstTarget(skill.getEffector());
 				}
-				break;
+			break;
 			case TARGET:
-				if ((skill.getSkillId() <= 8217) || (skill.getSkillId() >= 9180)) { // 5.1
+				if ((skill.getSkillId() == 8217) ||
+				    (skill.getSkillId() == 8632) ||
+					(skill.getSkillId() == 8633) ||
+					(skill.getSkillId() == 8634) ||
+					(skill.getSkillId() == 8675) ||
+					(skill.getSkillId() == 9222)) {
 					if ((skill.getSkillTemplate().getDispelCategory() != DispelCategoryType.NPC_BUFF) && (skill.getSkillTemplate().getDispelCategory() != DispelCategoryType.NPC_DEBUFF_PHYSICAL)) {
 						if (((skill.getFirstTarget() == null) || (skill.getFirstTarget().equals(skill.getEffector()))) && ((skill.getEffector() instanceof Player))) {
 							if (skill.getSkillTemplate().getProperties().getTargetType() == TargetRangeAttribute.AREA) {
@@ -99,73 +90,60 @@ public class FirstTargetProperty {
 						}
 					}
 				}
-				break;
+			break;
 			case MYPET:
 				Creature effector = skill.getEffector();
 				if (effector instanceof Player) {
 					Summon summon = ((Player) effector).getSummon();
 					if (summon != null) {
 						skill.setFirstTarget(summon);
-					}
-					else {
+					} else {
 						return false;
 					}
-				}
-				else {
+				} else {
 					return false;
 				}
-				break;
+			break;
 			case MYMASTER:
 				Creature peteffector = skill.getEffector();
 				if (peteffector instanceof Summon) {
 					Player player = ((Summon) peteffector).getMaster();
 					if (player != null) {
 						skill.setFirstTarget(player);
-					}
-					else {
+					} else {
 						return false;
 					}
-				}
-				else {
+				} else {
 					return false;
 				}
-				break;
+			break;
 			case PASSIVE:
 				skill.setFirstTarget(skill.getEffector());
-				break;
+			break;
 			case TARGET_MYPARTY_NONVISIBLE:
 				Creature effected = skill.getFirstTarget();
-				if (effected == null || skill.getEffector() == null) {
+				if ((effected == null) || (skill.getEffector() == null))
 					return false;
-				}
-				if (!(effected instanceof Player) || !(skill.getEffector() instanceof Player) || !((Player) skill.getEffector()).isInGroup2()) {
+				if ((!(effected instanceof Player)) || (!(skill.getEffector() instanceof Player)) || (!((Player) skill.getEffector()).isInGroup2()))
 					return false;
-				}
 				boolean myParty = false;
 				for (Player member : ((Player) skill.getEffector()).getPlayerGroup2().getMembers()) {
-					if (member == skill.getEffector()) {
-						continue;
+					if (member != skill.getEffector()) {
+						if (member == effected) {
+							myParty = true;
+							break;
+						}
 					}
-					if (member == effected) {
-						myParty = true;
-						break;
-					}
-				}
-				if (!myParty) {
+				} if (!myParty) {
 					return false;
 				}
-
 				skill.setFirstTargetRangeCheck(false);
-				break;
+			break;
 			case POINT:
 				skill.setFirstTarget(skill.getEffector());
 				skill.setFirstTargetRangeCheck(false);
 				return true;
-			default:
-				break;
-		}
-
-		if (skill.getFirstTarget() != null) {
+		} if (skill.getFirstTarget() != null) {
 			skill.getEffectedList().add(skill.getFirstTarget());
 		}
 		return true;

@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services;
 
@@ -22,17 +22,17 @@ import com.aionemu.gameserver.network.chatserver.ChatServer;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 
-/**
+/** 
  * @author ATracer
  */
 public class ChatService {
-
+	
 	private static byte[] ip = { 127, 0, 0, 1 };
 	private static int port = 10241;
 
 	/**
 	 * Disonnect from chat server
-	 *
+	 * 
 	 * @param player
 	 */
 	public static void onPlayerLogout(Player player) {
@@ -42,6 +42,8 @@ public class ChatService {
 	/**
 	 * @param playerId
 	 * @param token
+	 * @param account 
+	 * @param nick 
 	 */
 	public static void playerAuthed(int playerId, byte[] token) {
 		Player player = World.getInstance().findPlayer(playerId);
@@ -66,7 +68,7 @@ public class ChatService {
 
 	/**
 	 * @param ip
-	 *            the ip to set
+	 *          the ip to set
 	 */
 	public static void setIp(byte[] _ip) {
 		ip = _ip;
@@ -74,7 +76,7 @@ public class ChatService {
 
 	/**
 	 * @param port
-	 *            the port to set
+	 *          the port to set
 	 */
 	public static void setPort(int _port) {
 		port = _port;

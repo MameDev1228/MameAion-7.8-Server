@@ -1,30 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.model.gameobjects.player;
-
-import java.sql.Timestamp;
 
 import com.aionemu.gameserver.model.IExpirable;
 import com.aionemu.gameserver.model.templates.VisibleObjectTemplate;
 import com.aionemu.gameserver.model.templates.minion.MinionDopingBag;
 import com.aionemu.gameserver.utils.idfactory.IDFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class MinionCommonData extends VisibleObjectTemplate implements IExpirable {
+import java.sql.Timestamp;
 
+/**
+ * @author Ranastic
+ */
+
+public class MinionCommonData extends VisibleObjectTemplate implements IExpirable
+{
 	private int minionId;
 	private Timestamp birthday;
 	private int minionObjId;
@@ -36,13 +26,16 @@ public class MinionCommonData extends VisibleObjectTemplate implements IExpirabl
 	private boolean locked;
 	private boolean isLooting = false;
 	private boolean isBuffing = false;
+	
 	MinionDopingBag dopingBag = null;
+	
 	private Timestamp despawnTime;
-	private int expireTime;
-
+	
+	Logger log = LoggerFactory.getLogger(MinionCommonData.class);
+	
 	public MinionCommonData(int minionId, int masterObjectId, String name, String minionGrade, int minionLevel, int growthPoints, boolean locked) {
 		if (minionObjId == 0) {
-			minionObjId = IDFactory.getInstance().nextId();
+			this.minionObjId = IDFactory.getInstance().nextId();
 		}
 		this.minionId = minionId;
 		this.masterObjectId = masterObjectId;
@@ -51,29 +44,29 @@ public class MinionCommonData extends VisibleObjectTemplate implements IExpirabl
 		this.minionLevel = minionLevel;
 		this.growthPoints = growthPoints;
 		this.locked = locked;
-		this.dopingBag = new MinionDopingBag();
+		dopingBag = new MinionDopingBag();
 	}
-
+	
 	public void setObjectId(int minionObjId) {
 		this.minionObjId = minionObjId;
 	}
-
+	
 	public int getObjectId() {
 		return minionObjId;
 	}
-
+	
 	public int getMasterObjectId() {
 		return masterObjectId;
 	}
-
+	
 	public final int getMinionId() {
 		return minionId;
 	}
-
+	
 	public String getMinionGrade() {
 		return minionGrade;
 	}
-
+	
 	public int getMinionLevel() {
 		return minionLevel;
 	}
@@ -89,18 +82,18 @@ public class MinionCommonData extends VisibleObjectTemplate implements IExpirabl
 		return (int) (birthday.getTime() / 1000);
 	}
 
-	public boolean isLocked() {
+	public boolean isLocked(){
 		return locked;
 	}
-
+	
 	public Timestamp getBirthdayTimestamp() {
 		return birthday;
 	}
-
+	
 	public void setBirthday(Timestamp birthday) {
 		this.birthday = birthday;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -109,18 +102,17 @@ public class MinionCommonData extends VisibleObjectTemplate implements IExpirabl
 		this.growthPoints = growthPoints;
 	}
 
-	public void setLocked(boolean locked) {
+	public void setLocked(boolean locked){
 		this.locked = locked;
 	}
 
 	@Override
 	public int getExpireTime() {
-		return expireTime;
+		return 0;
 	}
 
 	@Override
 	public void expireEnd(Player player) {
-
 	}
 
 	@Override
@@ -144,7 +136,6 @@ public class MinionCommonData extends VisibleObjectTemplate implements IExpirabl
 
 	@Override
 	public int getNameId() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -161,7 +152,7 @@ public class MinionCommonData extends VisibleObjectTemplate implements IExpirabl
 	}
 
 	public boolean isLooting() {
-		return isLooting;
+		return this.isLooting;
 	}
 
 	public MinionDopingBag getDopingBag() {
@@ -173,6 +164,6 @@ public class MinionCommonData extends VisibleObjectTemplate implements IExpirabl
 	}
 
 	public boolean isBuffing() {
-		return isBuffing;
+		return this.isBuffing;
 	}
 }

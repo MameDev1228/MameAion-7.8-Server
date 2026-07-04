@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Inggison 7.x
+	Gelkmaros 7.x
+	Crimson Katalam 7.x
+	Made By Encom
+ -->
+<base_locations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="base_locations.xsd">
+	<!-- [INGGISON 7.x] -->
+	<base_location id="1" world="210050000" name="Wisplight Legion Garrison 1"/>
+	<base_location id="2" world="210050000" name="Wisplight Legion Garrison 2"/>
+	<base_location id="3" world="210050000" name="Wisplight Legion Garrison 3"/>
+	<base_location id="4" world="210050000" name="Wisplight Legion Garrison 4"/>
+	<base_location id="5" world="210050000" name="Wisplight Legion Garrison 5"/>
+	
+	<!-- [GELKMAROS 7.x] -->
+	<base_location id="6" world="220070000" name="Fatebound Legion Garrison 1"/>
+	<base_location id="7" world="220070000" name="Fatebound Legion Garrison 2"/>
+	<base_location id="8" world="220070000" name="Fatebound Legion Garrison 3"/>
+	<base_location id="9" world="220070000" name="Fatebound Legion Garrison 4"/>
+	<base_location id="10" world="220070000" name="Fatebound Legion Garrison 5"/>
+	
+	<!-- [CRIMSON KATALAM 7.x] -->
+	<base_location id="701" world="800030000" name="701 Base"/>
+	<base_location id="702" world="800030000" name="702 Base"/>
+	<base_location id="703" world="800030000" name="703 Base"/>
+	<base_location id="704" world="800030000" name="704 Base"/>
+	<base_location id="705" world="800030000" name="705 Base"/>
+	<base_location id="706" world="800030000" name="706 Base"/>
+	<base_location id="707" world="800030000" name="707 Base"/>
+	<base_location id="708" world="800030000" name="708 Base"/>
+	<base_location id="709" world="800030000" name="709 Base"/>
+	<base_location id="710" world="800030000" name="710 Base"/>
+	<base_location id="711" world="800030000" name="711 Base"/>
+	<base_location id="712" world="800030000" name="712 Base"/>
+	<base_location id="713" world="800030000" name="713 Base"/>
+	
+	<!-- [CRIMSON DANARIA 7.x] -->
+	<base_location id="81" world="800040000" name="81 Base"/>
+</base_locations>

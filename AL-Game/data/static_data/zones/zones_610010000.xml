@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zones>
+	<zone mapid="610010000" name="SPACEGAP_610010000" area_type="POLYGON" zone_type="SUB" priority="17" flags="55">
+		<points bottom="172.284973" top="472.284973">
+			<point x="208.727493" y="122.730453"/>
+			<point x="125.946617" y="301.516357"/>
+			<point x="302.261902" y="387.042480"/>
+			<point x="387.066101" y="211.006775"/>
+		</points>
+	</zone>
+</zones>

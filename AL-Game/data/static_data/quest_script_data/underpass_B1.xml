@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+<!--
+    Quest Underpass B1 7.x
+	Make By Encom
+ -->
+	<report_to_many id="64351" start_npc_ids="840660" end_npc_ids="840660" start_dialog_id="4762">
+        <npc_infos npc_id="840660" var="0" quest_dialog="10002" close_dialog="1009"/>
+    </report_to_many>
+	<report_to_many id="64383" start_npc_ids="840698" end_npc_ids="840662" start_dialog_id="4762">
+        <npc_infos npc_id="840662" var="0" quest_dialog="10002" close_dialog="1009"/>
+    </report_to_many>
+	<report_to_many id="74351" start_npc_ids="840663" end_npc_ids="840663" start_dialog_id="4762">
+        <npc_infos npc_id="840663" var="0" quest_dialog="10002" close_dialog="1009"/>
+    </report_to_many>
+	<report_to_many id="74383" start_npc_ids="840703" end_npc_ids="840665" start_dialog_id="4762">
+        <npc_infos npc_id="840665" var="0" quest_dialog="10002" close_dialog="1009"/>
+    </report_to_many>
+	
+	<item_collecting id="64353" start_npc_ids="840660" end_npc_ids="840660" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64385" start_npc_ids="840696" end_npc_ids="840696" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="74353" start_npc_ids="840663" end_npc_ids="840663" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="74385" start_npc_ids="840701" end_npc_ids="840701" start_dialog_id="4762" start_dialog_id2="1011"/>
+	
+	<monster_hunt id="64355" item_id="186030059" start_npc_ids="840661" end_npc_ids="840661" start_dialog_id="4762">
+		<monster var="1" npc_ids="663032 663033 663034 663035 663036 663037" end_var="120"/>
+		<monster var="1" npc_ids="663038 663039 663040 663041 663042 663043" end_var="120"/>
+		<monster var="1" npc_ids="663044 663045 663046 663047 663048 663049" end_var="120"/>
+		<monster var="1" npc_ids="663050 663051" end_var="120"/>
+	</monster_hunt>
+	<monster_hunt id="74355" item_id="186030061" start_npc_ids="840664" end_npc_ids="840664" start_dialog_id="4762">
+		<monster var="1" npc_ids="663032 663033 663034 663035 663036 663037" end_var="120"/>
+		<monster var="1" npc_ids="663038 663039 663040 663041 663042 663043" end_var="120"/>
+		<monster var="1" npc_ids="663044 663045 663046 663047 663048 663049" end_var="120"/>
+		<monster var="1" npc_ids="663050 663051" end_var="120"/>
+	</monster_hunt>
+</quest_scripts>

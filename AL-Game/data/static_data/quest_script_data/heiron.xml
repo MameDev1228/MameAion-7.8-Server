@@ -1,56 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- parsed by phpTools from Aion Germany Group (Mariella) at 2018-09-08 09:44 -->
 <quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
-    <!-- 13 Quests listed -->
-    <!--
-        [BEGIN] SUMMARY
-               14043 [SCRIPT] Off to Balaurea
-               60110 [SCRIPT] Kaisinel's Mission
-               60200 [SCRIPT] Heiron's Warehouse
-               60201 [SCRIPT] Sleepless Undead
-               60202 [SCRIPT] Suspicious Changarnerk Trader
-               60203 [SCRIPT] Investigating the Kishar Krall
-               60204 [SCRIPT] Crazy Krall
-               60205 [SCRIPT] Deciphering the Kunpapa Document
-               60206 [SCRIPT] Hidden Fortress
-               60207 [SCRIPT] The Place Where the Odium was Used
-               60208 [SCRIPT] Where is the Odium?
-               61601 [SCRIPT] In the Aether Flow
-               61602 [SCRIPT] Desolate Heiron
-               61603 [SCRIPT] Investigating the Lepharists
-               61604 [SCRIPT] Lepharist Experiments
-               61605 [SCRIPT] Secret Laboratory
-               61606 [SCRIPT] Right Wing Raid
-               61607 [SCRIPT] Arbolu, the Ancestor of Elim
-               61608 [SCRIPT] Journey into the Unknown
-               61609 [SCRIPT] Know Your Anubites
-               61610 [SCRIPT] Lighting the Trade Route
-               61611 [TODO]   Vicarious Viciousness
-               61612 [SCRIPT] The Star of Heiron
-               61613 [SCRIPT] Zetus's Plan
-               61614 [SCRIPT] Gathering Broken Odium Pieces
-               61615 [TODO]   Exploring Kishar Village
-               61616 [TODO]   Preventing the Refinement of Kishar Odium
-               61617 [TODO]   Revenge Isn't Always Revenge
-               61618 [TODO]   Neutralisation of the Balaur Tipolids
-               61619 [TODO]   Neutralisation of the Balaur Drake Farm
-               61620 [SCRIPT] Destruction of the Balaur Odium
-               61621 [TODO]   Defeating the Indratu Legion
-               61622 [SCRIPT] Investigation of Heiron's Inhabitants
-               61623 [SCRIPT] Eliminating Ettins
-               61624 [SCRIPT] Strange Leather
-               80004 [SCRIPT] [Event] Heart Headband Sport
-               80138 [TODO]   [Event] Alone in Heiron
-               80139 [TODO]   [Event] Close the Warped Rift
-               80215 [TODO]   [Levelling] Off to Draupnir! Go!
-               80217 [TODO]   [Levelling] Dark Poeta Armour 1
-               80218 [TODO]   [Levelling] Dark Poeta Armour 2
-               80219 [TODO]   [Levelling] Dark Poeta Armour 3
-               80220 [TODO]   [Levelling] Dark Poeta Armour 3
-               80259 [SCRIPT] [Event] Preparing a Birthday Celebration Feast
-        [END] SUMMARY
-    -->
-    <!-- REPORTING QUESTS -->
-    <!-- COLLECTING QUESTS -->
-    <!-- HUNTING QUESTS -->
+<!--
+    Heiron 7.x
+	Make By Encom
+ -->
+    <report_to id="15545" start_npc_ids="838061 838071" end_npc_ids="838061 838071" start_dialog_id="4762" item_id="190080010"/>
+	
+	<report_to_many id="61606" start_npc_ids="820025" end_npc_ids="820024" start_dialog_id="4762">
+        <npc_infos npc_id="820024" var="0" quest_dialog="10002" close_dialog="1009"/>
+    </report_to_many>
+	<report_to_many id="64185" start_npc_ids="204610" end_npc_ids="204610" start_dialog_id="4762">
+        <npc_infos npc_id="204610" var="0" quest_dialog="10002" close_dialog="1009"/>
+    </report_to_many>
+	
+	<monster_hunt id="61617" start_npc_ids="204020" end_npc_ids="820005" start_dialog_id="4762">
+		<monster var="1" npc_ids="653142" end_var="3"/>
+	</monster_hunt>
+	<monster_hunt id="61620" start_npc_ids="800413" end_npc_ids="820005" start_dialog_id="4762">
+		<monster var="1" npc_ids="703513" end_var="5"/>
+	</monster_hunt>
+	<monster_hunt id="61623" start_npc_ids="204507" end_npc_ids="204507" start_dialog_id="4762">
+		<monster var="1" npc_ids="652531 652532" end_var="5"/>
+	</monster_hunt>
+	<monster_hunt id="61626" start_npc_ids="820024" end_npc_ids="204647" start_dialog_id="4762">
+		<monster var="1" npc_ids="652718" end_var="7"/>
+	</monster_hunt>
+	<monster_hunt id="61627" start_npc_ids="820024" end_npc_ids="204647" start_dialog_id="4762">
+		<monster var="1" npc_ids="652713 652714 652716" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="61629" start_npc_ids="204647" end_npc_ids="204647" start_dialog_id="4762">
+		<monster var="1" npc_ids="652807" end_var="1"/>
+	</monster_hunt>
+	<monster_hunt id="63985" start_npc_ids="839764" end_npc_ids="839764" start_dialog_id="4762">
+		<monster var="1" npc_ids="652664" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="63995" start_npc_ids="204578" end_npc_ids="204578" start_dialog_id="4762">
+		<monster var="1" npc_ids="652599 652600" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="64000" start_npc_ids="820023" end_npc_ids="820023" start_dialog_id="4762">
+		<monster var="1" npc_ids="652608 652609 652619 652620 652621 652677" end_var="10"/>
+		<monster var="1" npc_ids="652678 652679 652680 652828 652829 652959" end_var="10"/>
+	</monster_hunt>
+	<monster_hunt id="64005" start_npc_ids="820024" end_npc_ids="820024" start_dialog_id="4762">
+		<monster var="1" npc_ids="657910" end_var="1"/>
+	</monster_hunt>
+	<monster_hunt id="64035" start_npc_ids="839983" end_npc_ids="839983" start_dialog_id="4762">
+		<monster var="1" npc_ids="652707 652708" end_var="12"/>
+	</monster_hunt>
+	<monster_hunt id="64045" start_npc_ids="839984" end_npc_ids="839984" start_dialog_id="4762">
+		<monster var="1" npc_ids="652565 652583 652566 652700 652702 652703" end_var="12"/>
+	</monster_hunt>
+	<monster_hunt id="64055" start_npc_ids="204613" end_npc_ids="204613" start_dialog_id="4762">
+		<monster var="1" npc_ids="652544 652545 652546 652555" end_var="12"/>
+	</monster_hunt>
+	<monster_hunt id="64090" start_npc_ids="204600" end_npc_ids="204600" start_dialog_id="4762">
+		<monster var="1" npc_ids="653031 653055 653056 653059 653062 653063" end_var="12"/>
+		<monster var="1" npc_ids="653029 653035 653036 653041 653042 653064" end_var="12"/>
+		<monster var="1" npc_ids="653023 653025 653030 653043 653057 653058" end_var="12"/>
+		<monster var="1" npc_ids="653024 653026 653032 653033 653038 653072" end_var="12"/>
+	</monster_hunt>
+	<monster_hunt id="64100" start_npc_ids="800413" end_npc_ids="800413" start_dialog_id="4762">
+		<monster var="1" npc_ids="652960 652988 652989 652990 652993 652994 653013 653017" end_var="12"/>
+	</monster_hunt>
+	<monster_hunt id="64105" start_npc_ids="800413" end_npc_ids="800413" start_dialog_id="4762">
+		<monster var="1" npc_ids="657912" end_var="1"/>
+	</monster_hunt>
+	<monster_hunt id="64120" start_npc_ids="204543" end_npc_ids="204543" start_dialog_id="4762">
+		<monster var="1" npc_ids="652741 652742 652743 652744" end_var="12"/>
+	</monster_hunt>
+	<monster_hunt id="64125" start_npc_ids="204543" end_npc_ids="204543" start_dialog_id="4762">
+		<monster var="1" npc_ids="657911" end_var="1"/>
+	</monster_hunt>
+	<monster_hunt id="64145" start_npc_ids="839988" end_npc_ids="839988" start_dialog_id="4762">
+		<monster var="1" npc_ids="652945 652946 652947 652948 652949 652950 652951" end_var="12"/>
+	</monster_hunt>
+	<monster_hunt id="64150" start_npc_ids="839989" end_npc_ids="839989" start_dialog_id="4762">
+		<monster var="1" npc_ids="657911" end_var="1"/>
+	</monster_hunt>
+	<monster_hunt id="64165" start_npc_ids="800412" end_npc_ids="800412" start_dialog_id="4762">
+		<monster var="1" npc_ids="652631 652637 652640 652794 652795" end_var="12"/>
+	</monster_hunt>
+	<monster_hunt id="64170" start_npc_ids="800412" end_npc_ids="800412" start_dialog_id="4762">
+		<monster var="1" npc_ids="652917 652918" end_var="12"/>
+	</monster_hunt>
+	<monster_hunt id="64175" start_npc_ids="800412" end_npc_ids="800412" start_dialog_id="4762">
+		<monster var="1" npc_ids="212008" end_var="1"/>
+	</monster_hunt>
+	
+	<item_collecting id="61607" start_npc_ids="820024" end_npc_ids="204647" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="63955" start_npc_ids="839767" end_npc_ids="839767" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="63965" start_npc_ids="798103" end_npc_ids="798103" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="63975" start_npc_ids="839764" end_npc_ids="839764" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="63980" start_npc_ids="839764" end_npc_ids="839764" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="63990" start_npc_ids="204578" end_npc_ids="204578" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64010" start_npc_ids="839765" end_npc_ids="839765" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64015" start_npc_ids="204628" end_npc_ids="204628" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64025" start_npc_ids="839766" end_npc_ids="839766" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64030" start_npc_ids="839983" end_npc_ids="839983" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64040" start_npc_ids="839984" end_npc_ids="839984" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64050" start_npc_ids="204613" end_npc_ids="204613" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64060" start_npc_ids="839985" end_npc_ids="839985" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64070" start_npc_ids="839770" end_npc_ids="839770" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64075" start_npc_ids="839986" end_npc_ids="839986" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64085" start_npc_ids="204600" end_npc_ids="204600" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64095" start_npc_ids="839768" end_npc_ids="839768" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64115" start_npc_ids="839769" end_npc_ids="839769" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64130" start_npc_ids="839987" end_npc_ids="839987" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64140" start_npc_ids="839988" end_npc_ids="839988" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64155" start_npc_ids="839990" end_npc_ids="839990" start_dialog_id="4762" start_dialog_id2="1011"/>
+	<item_collecting id="64180" start_npc_ids="839949" end_npc_ids="839949" start_dialog_id="4762" start_dialog_id2="1011"/>
 </quest_scripts>

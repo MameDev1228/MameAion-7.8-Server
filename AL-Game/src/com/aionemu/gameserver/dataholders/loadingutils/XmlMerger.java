@@ -1,53 +1,24 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-emu is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-emu is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.dataholders.loadingutils;
 
-import static org.apache.commons.io.filefilter.FileFilterUtils.andFileFilter;
-import static org.apache.commons.io.filefilter.FileFilterUtils.makeSVNAware;
-import static org.apache.commons.io.filefilter.FileFilterUtils.notFileFilter;
-import static org.apache.commons.io.filefilter.FileFilterUtils.prefixFileFilter;
-import static org.apache.commons.io.filefilter.FileFilterUtils.suffixFileFilter;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Properties;
-
-import javax.xml.namespace.QName;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import javax.xml.stream.XMLEventFactory;
-import javax.xml.stream.XMLEventReader;
-import javax.xml.stream.XMLEventWriter;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.Attribute;
-import javax.xml.stream.events.Comment;
-import javax.xml.stream.events.StartElement;
-import javax.xml.stream.events.XMLEvent;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.slf4j.Logger;
@@ -58,13 +29,28 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.xml.namespace.QName;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import javax.xml.stream.*;
+import javax.xml.stream.events.Attribute;
+import javax.xml.stream.events.Comment;
+import javax.xml.stream.events.StartElement;
+import javax.xml.stream.events.XMLEvent;
+import java.io.*;
+import java.util.Collection;
+import java.util.Properties;
+
+import static org.apache.commons.io.filefilter.FileFilterUtils.makeSVNAware;
+
 /**
  * <p>
- * <code>XmlMerger</code> is a utility that writes XML document onto an other document with resolving all <code>import</code> elements.
+ * <code>XmlMerger</code> is a utility that writes XML document onto an other document with resolving all
+ * <code>import</code> elements.
  * </p>
  * <p>
  * Schema:
- * <p/>
  * 
  * <pre>
  * &lt;xs:element name="import"&gt;
@@ -93,31 +79,35 @@ import org.xml.sax.helpers.DefaultHandler;
  * &lt;/xs:complexType&gt;
  * &lt;/xs:element&gt;
  * </pre>
- * <p/>
+ * 
  * </p>
  * <p/>
  * Created on: 23.07.2009 12:55:14
- *
+ * 
  * @author Aquanox
  */
 public class XmlMerger {
 
 	private static final Logger logger = LoggerFactory.getLogger(XmlMerger.class);
+
 	private final File baseDir;
+
 	private final File sourceFile;
 	private final File destFile;
+
 	private final File metaDataFile;
+
 	private XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 	private XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
 	private XMLEventFactory eventFactory = XMLEventFactory.newInstance();
 
 	/**
 	 * Create new instance of <tt>XmlMerger </tt>. Base directory is set to directory which contains source file.
-	 *
+	 * 
 	 * @param source
-	 *            Source file.
+	 *          Source file.
 	 * @param target
-	 *            Destination file.
+	 *          Destination file.
 	 */
 	public XmlMerger(File source, File target) {
 		this(source, target, source.getParentFile());
@@ -125,13 +115,13 @@ public class XmlMerger {
 
 	/**
 	 * Create new instance of <tt>XmlMerger </tt>
-	 *
+	 * 
 	 * @param source
-	 *            Source file.
+	 *          Source file.
 	 * @param target
-	 *            Destination file.
+	 *          Destination file.
 	 * @param baseDir
-	 *            Root directory.
+	 *          Root directory.
 	 */
 	public XmlMerger(File source, File target, File baseDir) {
 		this.baseDir = baseDir;
@@ -143,20 +133,20 @@ public class XmlMerger {
 	}
 
 	/**
-	 * This method creates a result document if it is missing, or updates existing one if the source file has modification.<br />
+	 * This method creates a result document if it is missing, or updates existing one if the source file has
+	 * modification.<br />
 	 * If there are no changes - nothing happens.
-	 *
+	 * 
 	 * @throws FileNotFoundException
-	 *             when source file doesn't exists.
+	 *           when source file doesn't exists.
 	 * @throws XMLStreamException
-	 *             when XML processing error was occurred.
+	 *           when XML processing error was occurred.
 	 */
 	public void process() throws Exception {
 		logger.debug("Processing " + sourceFile + " files into " + destFile);
 
-		if (!sourceFile.exists()) {
+		if (!sourceFile.exists())
 			throw new FileNotFoundException("Source file " + sourceFile.getPath() + " not found.");
-		}
 
 		boolean needUpdate = false;
 
@@ -191,14 +181,14 @@ public class XmlMerger {
 
 	/**
 	 * Check for modifications of included files.
-	 *
+	 * 
 	 * @return <code>true</code> if at least one of included files has modifications.
 	 * @throws IOException
-	 *             IO Error.
+	 *           IO Error.
 	 * @throws SAXException
-	 *             Document parsing error.
+	 *           Document parsing error.
 	 * @throws ParserConfigurationException
-	 *             if a SAX parser cannot be created which satisfies the requested configuration.
+	 *           if a SAX parser cannot be created which satisfies the requested configuration.
 	 */
 	private boolean checkFileModifications() throws Exception {
 		long destFileTime = destFile.lastModified();
@@ -211,9 +201,7 @@ public class XmlMerger {
 		Properties metadata = restoreFileModifications(metaDataFile);
 
 		if (metadata == null) // new file or smth else.
-		{
 			return true;
-		}
 
 		SAXParserFactory parserFactory = SAXParserFactory.newInstance();
 
@@ -228,11 +216,12 @@ public class XmlMerger {
 
 	/**
 	 * This method processes the source file, replacing all of the 'import' tags by the data from the relevant files.
-	 *
+	 * 
 	 * @throws XMLStreamException
-	 *             on event writing error.
+	 *           on event writing error.
 	 * @throws IOException
-	 *             if the destination file exists but is a directory rather than a regular file, does not exist but cannot be created, or cannot be opened for any other reason
+	 *           if the destination file exists but is a directory rather than a regular file, does not exist but cannot
+	 *           be created, or cannot be opened for any other reason
 	 */
 	private void doUpdate() throws XMLStreamException, IOException {
 		XMLEventReader reader = null;
@@ -252,23 +241,16 @@ public class XmlMerger {
 					continue;
 				}
 
-				if (xmlEvent.isEndElement() && isImportQName(xmlEvent.asEndElement().getName())) {
+				if (xmlEvent.isEndElement() && isImportQName(xmlEvent.asEndElement().getName()))
 					continue;
-				}
 
 				if (xmlEvent instanceof Comment)// skip comments.
-				{
 					continue;
-				}
 
 				if (xmlEvent.isCharacters())// skip whitespaces.
-				{
 					if (xmlEvent.asCharacters().isWhiteSpace() || xmlEvent.asCharacters().isIgnorableWhiteSpace())// skip
-					// whitespaces.
-					{
+																																																				// whitespaces.
 						continue;
-					}
-				}
 
 				writer.add(xmlEvent);
 
@@ -280,20 +262,18 @@ public class XmlMerger {
 			storeFileModifications(metadata, metaDataFile);
 		}
 		finally {
-			if (writer != null) {
+			if (writer != null)
 				try {
 					writer.close();
 				}
 				catch (Exception ignored) {
 				}
-			}
-			if (reader != null) {
+			if (reader != null)
 				try {
 					reader.close();
 				}
 				catch (Exception ignored) {
 				}
-			}
 		}
 	}
 
@@ -303,6 +283,7 @@ public class XmlMerger {
 
 	private static final QName qNameFile = new QName("file");
 	private static final QName qNameSkipRoot = new QName("skipRoot");
+
 	/**
 	 * If this option is enabled you import the directory, and all its subdirectories. Default is 'true'.
 	 */
@@ -310,18 +291,18 @@ public class XmlMerger {
 
 	/**
 	 * This method processes the 'import' element, replacing it by the data from the relevant files.
-	 *
+	 * 
 	 * @throws XMLStreamException
-	 *             on event writing error.
+	 *           on event writing error.
 	 * @throws FileNotFoundException
-	 *             of imported file was not found.
+	 *           of imported file was not found.
 	 */
-	private void processImportElement(StartElement element, XMLEventWriter writer, Properties metadata) throws XMLStreamException, IOException {
+	private void processImportElement(StartElement element, XMLEventWriter writer, Properties metadata)
+		throws XMLStreamException, IOException {
 		File file = new File(baseDir, getAttributeValue(element, qNameFile, null, "Attribute 'file' is missing or empty."));
 
-		if (!file.exists()) {
+		if (!file.exists())
 			throw new FileNotFoundException("Missing file to import:" + file.getPath());
-		}
 
 		boolean skipRoot = Boolean.valueOf(getAttributeValue(element, qNameSkipRoot, "false", null));
 		boolean recImport = Boolean.valueOf(getAttributeValue(element, qNameRecursiveImport, "true", null));
@@ -340,35 +321,34 @@ public class XmlMerger {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	private static Collection<File> listFiles(File root, boolean recursive) {
 		IOFileFilter dirFilter = recursive ? makeSVNAware(HiddenFileFilter.VISIBLE) : null;
 
-		return FileUtils.listFiles(root, andFileFilter(andFileFilter(notFileFilter(prefixFileFilter("new")), suffixFileFilter(".xml")), HiddenFileFilter.VISIBLE), dirFilter);
-	}
+		return FileUtils.listFiles(root, FileFilterUtils.andFileFilter(FileFilterUtils.andFileFilter(FileFilterUtils.notFileFilter(FileFilterUtils.prefixFileFilter("new")), FileFilterUtils.suffixFileFilter(".xml")), HiddenFileFilter.VISIBLE), dirFilter);
+  }
 
 	/**
 	 * Extract an attribute value from a <code>StartElement </code> event.
-	 *
+	 * 
 	 * @param element
-	 *            Event object.
+	 *          Event object.
 	 * @param name
-	 *            Attribute QName
+	 *          Attribute QName
 	 * @param def
-	 *            Default value.
+	 *          Default value.
 	 * @param onErrorMessage
-	 *            On error message.
+	 *          On error message.
 	 * @return attribute value
 	 * @throws XMLStreamException
-	 *             if attribute is missing and there is no default value set.
+	 *           if attribute is missing and there is no default value set.
 	 */
-	private String getAttributeValue(StartElement element, QName name, String def, String onErrorMessage) throws XMLStreamException {
+	private String getAttributeValue(StartElement element, QName name, String def, String onErrorMessage)
+		throws XMLStreamException {
 		Attribute attribute = element.getAttributeByName(name);
 
 		if (attribute == null) {
-			if (def == null) {
+			if (def == null)
 				throw new XMLStreamException(onErrorMessage, element.getLocation());
-			}
 
 			return def;
 		}
@@ -377,20 +357,23 @@ public class XmlMerger {
 	}
 
 	/**
-	 * Read all {@link javax.xml.stream.events.XMLEvent}'s from specified file and write them onto the {@link javax.xml.stream.XMLEventWriter}
-	 *
+	 * Read all {@link javax.xml.stream.events.XMLEvent}'s from specified file and write them onto the
+	 * {@link javax.xml.stream.XMLEventWriter}
+	 * 
 	 * @param file
-	 *            File to import
+	 *          File to import
 	 * @param skipRoot
-	 *            Skip-root flag
+	 *          Skip-root flag
 	 * @param writer
-	 *            Destenation writer
+	 *          Destenation writer
 	 * @throws XMLStreamException
-	 *             On event reading/writing error.
+	 *           On event reading/writing error.
 	 * @throws FileNotFoundException
-	 *             if the reading file does not exist, is a directory rather than a regular file, or for some other reason cannot be opened for reading.
+	 *           if the reading file does not exist, is a directory rather than a regular file, or for some other reason
+	 *           cannot be opened for reading.
 	 */
-	private void importFile(File file, boolean skipRoot, XMLEventWriter writer, Properties metadata) throws XMLStreamException, IOException {
+	private void importFile(File file, boolean skipRoot, XMLEventWriter writer, Properties metadata)
+		throws XMLStreamException, IOException {
 		logger.debug("Appending file " + file);
 		metadata.setProperty(file.getPath(), makeHash(file));
 
@@ -405,18 +388,15 @@ public class XmlMerger {
 				XMLEvent event = reader.nextEvent();
 
 				// skip start and end of document.
-				if (event.isStartDocument() || event.isEndDocument()) {
+				if (event.isStartDocument() || event.isEndDocument())
 					continue;
-				}
 				// skip all comments.
-				if (event instanceof Comment) {
+				if (event instanceof Comment)
 					continue;
-				}
 				// skip white-spaces and all ignoreable white-spaces.
 				if (event.isCharacters()) {
-					if (event.asCharacters().isWhiteSpace() || event.asCharacters().isIgnorableWhiteSpace()) {
+					if (event.asCharacters().isWhiteSpace() || event.asCharacters().isIgnorableWhiteSpace())
 						continue;
-					}
 				}
 
 				// modify root-tag of imported file.
@@ -434,22 +414,20 @@ public class XmlMerger {
 				}
 
 				// if root was skipped - skip root end too.
-				if (event.isEndElement() && skipRoot && event.asEndElement().getName().equals(firstTagQName)) {
+				if (event.isEndElement() && skipRoot && event.asEndElement().getName().equals(firstTagQName))
 					continue;
-				}
 
 				// finally - write tag
 				writer.add(event);
 			}
 		}
 		finally {
-			if (reader != null) {
+			if (reader != null)
 				try {
 					reader.close();
 				}
 				catch (Exception ignored) {
 				}
-			}
 		}
 	}
 
@@ -457,7 +435,9 @@ public class XmlMerger {
 
 		private File basedir;
 		private Properties metadata;
+
 		private boolean isModified = false;
+
 		private Locator locator;
 
 		private TimeCheckerHandler(File basedir, Properties metadata) {
@@ -472,22 +452,19 @@ public class XmlMerger {
 
 		@Override
 		public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-			if (isModified || !"import".equals(qName)) {
+			if (isModified || !"import".equals(qName))
 				return;
-			}
 
 			String value = attributes.getValue(qNameFile.getLocalPart());
 
-			if (value == null) {
+			if (value == null)
 				throw new SAXParseException("Attribute 'file' is missing", locator);
-			}
 
 			File file = new File(basedir, value);
 
-			if (!file.exists()) // noinspection ThrowableInstanceNeverThrown
-			{
+			if (!file.exists())
+				// noinspection ThrowableInstanceNeverThrown
 				throw new SAXParseException("Imported file not found. file=" + file.getPath(), locator);
-			}
 
 			if (file.isFile() && checkFile(file))// if file - just check it.
 			{
@@ -514,20 +491,17 @@ public class XmlMerger {
 			String data = metadata.getProperty(file.getPath());
 
 			if (data == null) // file was added.
-			{
 				return true;
-			}
 
 			try {
 				String hash = makeHash(file);
 
 				if (!data.equals(hash))// file|dir was changed.
-				{
 					return true;
-				}
 			}
 			catch (IOException e) {
-				logger.warn("File varification error. File: " + file.getPath() + ", location=" + locator.getLineNumber() + ":" + locator.getColumnNumber(), e);
+				logger.warn("File varification error. File: " + file.getPath() + ", location=" + locator.getLineNumber() + ":"
+					+ locator.getColumnNumber(), e);
 				return true;// was modified.
 			}
 
@@ -540,9 +514,8 @@ public class XmlMerger {
 	}
 
 	private Properties restoreFileModifications(File file) {
-		if (!file.exists() || !file.isFile()) {
+		if (!file.exists() || !file.isFile())
 			return null;
-		}
 
 		FileReader reader = null;
 
@@ -582,12 +555,12 @@ public class XmlMerger {
 
 	/**
 	 * Create a unique identifier of file and it contents.
-	 *
+	 * 
 	 * @param file
-	 *            the file to checksum, must not be <code>null</code>
+	 *          the file to checksum, must not be <code>null</code>
 	 * @return String identifier
 	 * @throws IOException
-	 *             if an IO error occurs reading the file
+	 *           if an IO error occurs reading the file
 	 */
 	private static String makeHash(File file) throws IOException {
 		return String.valueOf(FileUtils.checksumCRC32(file));

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Hotspot Location
+	Made By Rinzler
+ -->
+<hotspot_location xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="hotspot_location.xsd">
+	<!-- POETA -->
+	<hotspot_template loc_id="13" mapid="210010000" name="Akarios Village" name_id="400499" price="22" race="ELYOS" posX="807.000000" posY="1242.000000" posZ="119.000000" heading="0"/>
+	<hotspot_template loc_id="14" mapid="210010000" name="Daminu Forest" name_id="400193" price="22" race="ELYOS" posX="560.000000" posY="1382.000000" posZ="119.000000" heading="0"/>
+	<hotspot_template loc_id="15" mapid="210010000" name="Melponeh's Campsite" name_id="400500" price="22" race="ELYOS" posX="427.000000" posY="1741.000000" posZ="120.000000" heading="0"/>
+	<!-- ISHALGEN -->
+	<hotspot_template loc_id="16" mapid="220010000" name="Aldelle Village" name_id="400504" price="22" race="ASMODIANS" posX="570.000000" posY="2457.000000" posZ="280.000000" heading="0"/>
+	<hotspot_template loc_id="17" mapid="220010000" name="Sap Farm" name_id="400278" price="22" race="ASMODIANS" posX="859.000000" posY="2217.000000" posZ="266.000000" heading="0"/>
+	<hotspot_template loc_id="18" mapid="220010000" name="Anturoon Crossing" name_id="400505" price="22" race="ASMODIANS" posX="941.000000" posY="1707.000000" posZ="260.000000" heading="0"/>
+	<!-- HEIRON -->
+	<hotspot_template loc_id="44" mapid="210040000" name="New Heiron Gate" name_id="400596" price="198" race="ELYOS" posX="2543.000000" posY="341.000000" posZ="412.000000" heading="0"/>
+	<hotspot_template loc_id="45" mapid="210040000" name="Heiron Observatory" name_id="400597" price="198" race="ELYOS" posX="1425.000000" posY="1335.000000" posZ="175.000000" heading="0"/>
+	<hotspot_template loc_id="46" mapid="210040000" name="Senea's Campsite" name_id="401647" price="198" race="ELYOS" posX="970.000000" posY="687.000000" posZ="135.000000" heading="0"/>
+	<hotspot_template loc_id="47" mapid="210040000" name="Arbolu's Haven" name_id="400598" price="198" race="ELYOS" posX="167.000000" posY="1627.000000" posZ="124.000000" heading="0"/>
+	<hotspot_template loc_id="48" mapid="210040000" name="Changarnerk's Campsite" name_id="401649" price="198" race="ELYOS" posX="920.000000" posY="2331.000000" posZ="158.000000" heading="0"/>
+	<hotspot_template loc_id="49" mapid="210040000" name="Coast Watchers Post" name_id="403617" price="3504" race="ELYOS" posX="760.000000" posY="2883.000000" posZ="107.000000" heading="0"/>
+	<hotspot_template loc_id="50" mapid="210040000" name="Jeiaparan Village" name_id="400599" price="198" race="ELYOS" posX="1634.000000" posY="2695.000000" posZ="116.000000" heading="0"/>
+	<hotspot_template loc_id="51" mapid="210040000" name="Kishar Observation Post" name_id="401648" price="198" race="ELYOS" posX="1998.000000" posY="1392.000000" posZ="118.000000" heading="0"/>
+	<hotspot_template loc_id="52" mapid="210040000" name="Reaper Outpost" name_id="403618" price="198" race="ELYOS" posX="2765.000000" posY="1886.000000" posZ="154.000000" heading="0"/>
+	<!-- BELUSLAN -->
+	<hotspot_template loc_id="53" mapid="220040000" name="Beluslan Fortress" name_id="400929" price="198" race="ASMODIANS" posX="399.000000" posY="402.000000" posZ="223.000000" heading="0"/>
+	<hotspot_template loc_id="54" mapid="220040000" name="Kidorun's Campsite" name_id="401658" price="198" race="ASMODIANS" posX="1245.000000" posY="821.000000" posZ="260.000000" heading="0"/>
+	<hotspot_template loc_id="55" mapid="220040000" name="Red Mane Cavern" name_id="400931" price="198" race="ASMODIANS" posX="2358.000000" posY="1240.000000" posZ="470.000000" heading="0"/>
+	<hotspot_template loc_id="56" mapid="220040000" name="Camp Kistenian" name_id="401659" price="198" race="ASMODIANS" posX="1942.000000" posY="510.000000" posZ="413.000000" heading="0"/>
+	<hotspot_template loc_id="57" mapid="220040000" name="Besfer Refugee Camp" name_id="400930" price="3504" race="ASMODIANS" posX="534.000000" posY="1867.000000" posZ="263.000000" heading="0"/>
+	<hotspot_template loc_id="58" mapid="220040000" name="Hoarfrost Shelter" name_id="401660" price="198" race="ASMODIANS" posX="2430.000000" posY="2062.000000" posZ="580.000000" heading="0"/>
+	<hotspot_template loc_id="119" mapid="220040000" name="Beluslan Aetheric Field Observatory" name_id="471103" price="198" race="ASMODIANS" posX="1900.000000" posY="2233.000000" posZ="648.000000" heading="0"/>
+    <hotspot_template loc_id="120" mapid="220040000" name="Frost Eyebrow Guard Post" name_id="471103" price="198" race="ASMODIANS" posX="2340.000000" posY="2473.000000" posZ="603.000000" heading="0"/>
+	<!-- SANCTUM -->
+	<hotspot_template loc_id="78" mapid="110010000" name="Elyos Square" name_id="400508" price="32" race="ELYOS" posX="1460.000000" posY="1448.000000" posZ="573.000000" heading="0"/>
+	<hotspot_template loc_id="79" mapid="110010000" name="Divine Road" name_id="400509" price="32" race="ELYOS" posX="1586.000000" posY="1504.000000" posZ="572.000000" heading="0"/>
+	<hotspot_template loc_id="80" mapid="110010000" name="Lyceum" name_id="-1" price="32" race="ELYOS" posX="1475.000000" posY="1595.000000" posZ="573.000000" heading="0"/>
+	<!-- PANDAEMONIUM -->
+	<hotspot_template loc_id="82" mapid="120010000" name="Vifrost Bridge" name_id="400606" price="32" race="ASMODIANS" posX="1602.000000" posY="1413.000000" posZ="193.000000" heading="0"/>
+	<hotspot_template loc_id="83" mapid="120010000" name="Prosperity Road" name_id="400607" price="32" race="ASMODIANS" posX="1054.000000" posY="1491.000000" posZ="214.000000" heading="0"/>
+    <hotspot_template loc_id="84" mapid="120010000" name="Crandale District" name_id="401553" price="32" race="ASMODIANS" posX="1258.000000" posY="1274.000000" posZ="209.000000" heading="0"/>
+	<hotspot_template loc_id="86" mapid="110010000" name="Path Of Glory" name_id="404675" price="32" race="ELYOS" posX="1363.000000" posY="1481.000000" posZ="570.000000" heading="0"/>
+	<hotspot_template loc_id="87" mapid="120010000" name="Path Of Gold" name_id="404676" price="32" race="ASMODIANS" posX="1314.000000" posY="1426.000000" posZ="210.000000" heading="0"/>
+</hotspot_location>

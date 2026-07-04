@@ -1,85 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- parsed by phpTools from Aion Germany Group (Mariella) at 2018-09-07 16:53 -->
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Player Experience Table.
+	Made By Encom.
+ -->
 <player_experience_table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="player_experience_table.xsd">
-    <exp level="1" exp="0" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="2" exp="400" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="3" exp="1433" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="4" exp="3820" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="5" exp="9054" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="6" exp="17655" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="7" exp="30978" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="8" exp="52010" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="9" exp="82982" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="10" exp="126069" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="11" exp="182252" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="12" exp="260622" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="13" exp="360825" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="14" exp="490331" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="15" exp="649169" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="16" exp="844378" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="17" exp="1080479" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="18" exp="1393133" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="19" exp="1793977" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="20" exp="2282186" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="21" exp="2881347" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="22" exp="3659516" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="23" exp="4622407" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="24" exp="5821524" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="25" exp="7227983" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="26" exp="8835056" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="27" exp="10699436" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="28" exp="12853998" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="29" exp="15255815" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="30" exp="18061172" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="31" exp="21551945" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="32" exp="25635643" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="33" exp="30490364" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="34" exp="36299780" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="35" exp="43890745" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="36" exp="53559061" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="37" exp="65392986" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="38" exp="81005799" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="39" exp="98965887" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="40" exp="120006279" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="41" exp="145305546" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="42" exp="174901906" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="43" exp="209678951" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="44" exp="246923912" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="45" exp="286491872" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="46" exp="328812035" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="47" exp="374157438" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="48" exp="422165990" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="49" exp="473102570" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="50" exp="527287631" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="51" exp="584861315" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="52" exp="649149135" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="53" exp="718967268" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="54" exp="793470302" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="55" exp="871508583" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="56" exp="953180528" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="57" exp="1039463797" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="58" exp="1130615342" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="59" exp="1226906283" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="60" exp="1328622680" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="61" exp="1434562107" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="62" exp="1548141590" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="63" exp="1667422949" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="64" exp="1793319043" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="65" exp="1926765410" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="66" exp="2070319842" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="67" exp="2223885608" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="68" exp="2387996897" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="69" exp="2563207914" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="70" exp="2750093321" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="71" exp="2949248682" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="72" exp="3161290908" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="73" exp="3386858711" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="74" exp="3626613055" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="75" exp="3881237613" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="76" exp="4151439229" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="77" exp="4437948377" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="78" exp="4741519631" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="79" exp="5062932130" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="80" exp="5402990050" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
-    <exp level="81" exp="5762523081" cp="0" cp_lvlup="0" feverpoint_boost="0" feverpoint_max="0"></exp>
+	<exp level="1" exp="0"/>
+	<exp level="2" exp="400"/>
+	<exp level="3" exp="1033"/>
+	<exp level="4" exp="2387"/>
+	<exp level="5" exp="5234"/>
+	<exp level="6" exp="8601"/>
+	<exp level="7" exp="13323"/>
+	<exp level="8" exp="21032"/>
+	<exp level="9" exp="30972"/>
+	<exp level="10" exp="43087"/>
+	<exp level="11" exp="56183"/>
+	<exp level="12" exp="78370"/>
+	<exp level="13" exp="100203"/>
+	<exp level="14" exp="129506"/>
+	<exp level="15" exp="158838"/>
+	<exp level="16" exp="195209"/>
+	<exp level="17" exp="236101"/>
+	<exp level="18" exp="312654"/>
+	<exp level="19" exp="400844"/>
+	<exp level="20" exp="488209"/>
+	<exp level="21" exp="599161"/>
+	<exp level="22" exp="778169"/>
+	<exp level="23" exp="962891"/>
+	<exp level="24" exp="1199117"/>
+	<exp level="25" exp="1406459"/>
+	<exp level="26" exp="1607073"/>
+	<exp level="27" exp="1864380"/>
+	<exp level="28" exp="2154562"/>
+	<exp level="29" exp="2401817"/>
+	<exp level="30" exp="2805357"/>
+	<exp level="31" exp="3490773"/>
+	<exp level="32" exp="4083698"/>
+	<exp level="33" exp="4854721"/>
+	<exp level="34" exp="5809416"/>
+	<exp level="35" exp="7590965"/>
+	<exp level="36" exp="9668316"/>
+	<exp level="37" exp="11833925"/>
+	<exp level="38" exp="15612813"/>
+	<exp level="39" exp="17960088"/>
+	<exp level="40" exp="21040392"/>
+	<exp level="41" exp="25299267"/>
+	<exp level="42" exp="29596360"/>
+	<exp level="43" exp="34777045"/>
+	<exp level="44" exp="37244961"/>
+	<exp level="45" exp="39567960"/>
+	<exp level="46" exp="42320163"/>
+	<exp level="47" exp="45345403"/>
+	<exp level="48" exp="48008552"/>
+	<exp level="49" exp="50936580"/>
+	<exp level="50" exp="54185061"/>
+	<exp level="51" exp="57573684"/>
+	<exp level="52" exp="64287820"/>
+	<exp level="53" exp="69818133"/>
+	<exp level="54" exp="74503034"/>
+	<exp level="55" exp="78038281"/>
+	<exp level="56" exp="81671945"/>
+	<exp level="57" exp="86283269"/>
+	<exp level="58" exp="91151545"/>
+	<exp level="59" exp="96290941"/>
+	<exp level="60" exp="101716397"/>
+	<exp level="61" exp="105939427"/>
+	<exp level="62" exp="113579483"/>
+	<exp level="63" exp="119281359"/>
+	<exp level="64" exp="125896094"/>
+	<exp level="65" exp="133446367"/>
+	<exp level="66" exp="143554432"/>
+	<exp level="67" exp="153565766"/>
+	<exp level="68" exp="164111289"/>
+	<exp level="69" exp="175211017"/>
+	<exp level="70" exp="186885407"/>
+	<exp level="71" exp="199155361"/>
+	<exp level="72" exp="212042226"/>
+	<exp level="73" exp="225567803"/>
+	<exp level="74" exp="239754344"/>
+	<exp level="75" exp="254624558"/>
+	<exp level="76" exp="270201616"/>
+	<exp level="77" exp="286509148"/>
+	<exp level="78" exp="303571254"/>
+	<exp level="79" exp="321412499"/>
+	<exp level="80" exp="340057920"/>
+	<exp level="81" exp="359533031"/>
 </player_experience_table>

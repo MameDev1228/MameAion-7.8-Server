@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Rift
+	Made By Rinzler (Encom)
+ -->
+<rift_schedule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="rift_schedule.xsd">
+	<!-- INGGISON -->
+	<rift id="210050000">
+	    <open schedule="0 0 0-23 ? * * *" spawn="true"/>
+	</rift>
+	<!-- GELKMAROS -->
+	<rift id="220070000">
+	    <open schedule="0 0 0-23 ? * * *" spawn="true"/>
+	</rift>
+</rift_schedule>

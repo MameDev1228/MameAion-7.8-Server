@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<player_stats_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../stats.xsd">
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="9">
+		<stats_template maxHp="2992" maxMp="4231" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="503" block="636" parry="733" main_hand_attack="18" main_hand_accuracy="422" main_hand_crit_rate="2" magic_accuracy="336" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="10">
+		<stats_template maxHp="3137" maxMp="4610" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="518" block="651" parry="748" main_hand_attack="18" main_hand_accuracy="437" main_hand_crit_rate="2" magic_accuracy="351" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="11">
+		<stats_template maxHp="3251" maxMp="4851" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="533" block="666" parry="763" main_hand_attack="18" main_hand_accuracy="452" main_hand_crit_rate="2" magic_accuracy="366" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="12">
+		<stats_template maxHp="3370" maxMp="5092" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="548" block="681" parry="778" main_hand_attack="18" main_hand_accuracy="467" main_hand_crit_rate="2" magic_accuracy="381" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="13">
+		<stats_template maxHp="3493" maxMp="5333" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="563" block="696" parry="793" main_hand_attack="18" main_hand_accuracy="482" main_hand_crit_rate="2" magic_accuracy="396" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="14">
+		<stats_template maxHp="3620" maxMp="5575" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="578" block="711" parry="808" main_hand_attack="18" main_hand_accuracy="497" main_hand_crit_rate="2" magic_accuracy="411" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="15">
+		<stats_template maxHp="3750" maxMp="5816" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="593" block="726" parry="823" main_hand_attack="18" main_hand_accuracy="512" main_hand_crit_rate="2" magic_accuracy="426" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="16">
+		<stats_template maxHp="3885" maxMp="6057" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="608" block="741" parry="838" main_hand_attack="18" main_hand_accuracy="527" main_hand_crit_rate="2" magic_accuracy="441" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="17">
+		<stats_template maxHp="4023" maxMp="6299" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="623" block="756" parry="853" main_hand_attack="18" main_hand_accuracy="542" main_hand_crit_rate="2" magic_accuracy="456" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="18">
+		<stats_template maxHp="4165" maxMp="6540" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="638" block="771" parry="868" main_hand_attack="18" main_hand_accuracy="557" main_hand_crit_rate="2" magic_accuracy="471" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="19">
+		<stats_template maxHp="4312" maxMp="6782" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="653" block="786" parry="883" main_hand_attack="18" main_hand_accuracy="572" main_hand_crit_rate="2" magic_accuracy="486" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="20">
+		<stats_template maxHp="4462" maxMp="7023" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="668" block="801" parry="898" main_hand_attack="18" main_hand_accuracy="587" main_hand_crit_rate="2" magic_accuracy="501" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="21">
+		<stats_template maxHp="4612" maxMp="7265" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="683" block="816" parry="913" main_hand_attack="18" main_hand_accuracy="602" main_hand_crit_rate="2" magic_accuracy="516" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="22">
+		<stats_template maxHp="4762" maxMp="7507" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="698" block="831" parry="928" main_hand_attack="18" main_hand_accuracy="617" main_hand_crit_rate="2" magic_accuracy="531" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="23">
+		<stats_template maxHp="4912" maxMp="7749" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="713" block="846" parry="943" main_hand_attack="18" main_hand_accuracy="632" main_hand_crit_rate="2" magic_accuracy="546" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="24">
+		<stats_template maxHp="5062" maxMp="7991" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="728" block="861" parry="958" main_hand_attack="18" main_hand_accuracy="647" main_hand_crit_rate="2" magic_accuracy="561" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="25">
+		<stats_template maxHp="5212" maxMp="8233" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="743" block="876" parry="973" main_hand_attack="18" main_hand_accuracy="662" main_hand_crit_rate="2" magic_accuracy="576" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="26">
+		<stats_template maxHp="5362" maxMp="8475" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="758" block="891" parry="988" main_hand_attack="18" main_hand_accuracy="677" main_hand_crit_rate="2" magic_accuracy="591" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="27">
+		<stats_template maxHp="5512" maxMp="8717" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="773" block="906" parry="1003" main_hand_attack="18" main_hand_accuracy="692" main_hand_crit_rate="2" magic_accuracy="606" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="28">
+		<stats_template maxHp="5662" maxMp="8959" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="788" block="921" parry="1018" main_hand_attack="18" main_hand_accuracy="707" main_hand_crit_rate="2" magic_accuracy="621" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="29">
+		<stats_template maxHp="5812" maxMp="9201" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="803" block="936" parry="1033" main_hand_attack="18" main_hand_accuracy="722" main_hand_crit_rate="2" magic_accuracy="636" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="30">
+		<stats_template maxHp="5962" maxMp="9443" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="813" block="951" parry="1048" main_hand_attack="18" main_hand_accuracy="737" main_hand_crit_rate="2" magic_accuracy="651" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="31">
+		<stats_template maxHp="6112" maxMp="9685" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="833" block="966" parry="1063" main_hand_attack="18" main_hand_accuracy="752" main_hand_crit_rate="2" magic_accuracy="666" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="32">
+		<stats_template maxHp="6262" maxMp="9927" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="848" block="981" parry="1078" main_hand_attack="18" main_hand_accuracy="767" main_hand_crit_rate="2" magic_accuracy="681" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="33">
+		<stats_template maxHp="6412" maxMp="10169" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="863" block="996" parry="1093" main_hand_attack="18" main_hand_accuracy="782" main_hand_crit_rate="2" magic_accuracy="696" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="34">
+		<stats_template maxHp="6562" maxMp="10411" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="878" block="1011" parry="1108" main_hand_attack="18" main_hand_accuracy="797" main_hand_crit_rate="2" magic_accuracy="711" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="35">
+		<stats_template maxHp="6712" maxMp="10653" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="893" block="1026" parry="1123" main_hand_attack="18" main_hand_accuracy="812" main_hand_crit_rate="2" magic_accuracy="726" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="36">
+		<stats_template maxHp="6862" maxMp="10895" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="908" block="1041" parry="1138" main_hand_attack="18" main_hand_accuracy="827" main_hand_crit_rate="2" magic_accuracy="741" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="37">
+		<stats_template maxHp="7012" maxMp="11137" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="923" block="1056" parry="1153" main_hand_attack="18" main_hand_accuracy="842" main_hand_crit_rate="2" magic_accuracy="756" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="38">
+		<stats_template maxHp="7162" maxMp="11379" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="938" block="1071" parry="1168" main_hand_attack="18" main_hand_accuracy="857" main_hand_crit_rate="2" magic_accuracy="771" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="39">
+		<stats_template maxHp="7312" maxMp="11621" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="953" block="1086" parry="1183" main_hand_attack="18" main_hand_accuracy="872" main_hand_crit_rate="2" magic_accuracy="786" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="40">
+		<stats_template maxHp="7462" maxMp="11863" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="968" block="1101" parry="1198" main_hand_attack="18" main_hand_accuracy="887" main_hand_crit_rate="2" magic_accuracy="801" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="41">
+		<stats_template maxHp="7612" maxMp="12105" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="983" block="1116" parry="1213" main_hand_attack="18" main_hand_accuracy="902" main_hand_crit_rate="2" magic_accuracy="816" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="42">
+		<stats_template maxHp="7762" maxMp="12347" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="998" block="1131" parry="1228" main_hand_attack="18" main_hand_accuracy="917" main_hand_crit_rate="2" magic_accuracy="831" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="43">
+		<stats_template maxHp="7912" maxMp="12589" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1013" block="1146" parry="1243" main_hand_attack="18" main_hand_accuracy="932" main_hand_crit_rate="2" magic_accuracy="846" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="44">
+		<stats_template maxHp="8062" maxMp="12831" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1028" block="1161" parry="1258" main_hand_attack="18" main_hand_accuracy="947" main_hand_crit_rate="2" magic_accuracy="861" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="45">
+		<stats_template maxHp="8212" maxMp="13073" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1043" block="1176" parry="1273" main_hand_attack="18" main_hand_accuracy="962" main_hand_crit_rate="2" magic_accuracy="876" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="46">
+		<stats_template maxHp="8362" maxMp="13315" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1058" block="1191" parry="1288" main_hand_attack="18" main_hand_accuracy="977" main_hand_crit_rate="2" magic_accuracy="891" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="47">
+		<stats_template maxHp="8512" maxMp="13557" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1073" block="1206" parry="1303" main_hand_attack="18" main_hand_accuracy="992" main_hand_crit_rate="2" magic_accuracy="906" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="48">
+		<stats_template maxHp="8662" maxMp="13799" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1088" block="1221" parry="1318" main_hand_attack="18" main_hand_accuracy="1007" main_hand_crit_rate="2" magic_accuracy="921" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="49">
+		<stats_template maxHp="8812" maxMp="14041" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1103" block="1236" parry="1333" main_hand_attack="18" main_hand_accuracy="1022" main_hand_crit_rate="2" magic_accuracy="936" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="50">
+		<stats_template maxHp="8962" maxMp="14283" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1118" block="1251" parry="1348" main_hand_attack="18" main_hand_accuracy="1037" main_hand_crit_rate="2" magic_accuracy="951" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="51">
+		<stats_template maxHp="9112" maxMp="14525" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1133" block="1266" parry="1363" main_hand_attack="18" main_hand_accuracy="1052" main_hand_crit_rate="2" magic_accuracy="966" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="52">
+		<stats_template maxHp="9262" maxMp="14767" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1148" block="1281" parry="1378" main_hand_attack="18" main_hand_accuracy="1067" main_hand_crit_rate="2" magic_accuracy="981" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="53">
+		<stats_template maxHp="9412" maxMp="15009" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1163" block="1296" parry="1393" main_hand_attack="18" main_hand_accuracy="1082" main_hand_crit_rate="2" magic_accuracy="996" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="54">
+		<stats_template maxHp="9562" maxMp="15251" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1178" block="1311" parry="1408" main_hand_attack="18" main_hand_accuracy="1097" main_hand_crit_rate="2" magic_accuracy="1011" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="55">
+		<stats_template maxHp="9712" maxMp="15493" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1193" block="1326" parry="1423" main_hand_attack="18" main_hand_accuracy="1112" main_hand_crit_rate="2" magic_accuracy="1026" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="56">
+		<stats_template maxHp="9862" maxMp="15735" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1208" block="1341" parry="1438" main_hand_attack="18" main_hand_accuracy="1127" main_hand_crit_rate="2" magic_accuracy="1041" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="57">
+		<stats_template maxHp="10012" maxMp="15977" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1223" block="1356" parry="1453" main_hand_attack="18" main_hand_accuracy="1142" main_hand_crit_rate="2" magic_accuracy="1056" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="58">
+		<stats_template maxHp="10162" maxMp="16219" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1238" block="1371" parry="1468" main_hand_attack="18" main_hand_accuracy="1157" main_hand_crit_rate="2" magic_accuracy="1071" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="59">
+		<stats_template maxHp="10312" maxMp="16461" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1253" block="1386" parry="1483" main_hand_attack="18" main_hand_accuracy="1172" main_hand_crit_rate="2" magic_accuracy="1086" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="60">
+		<stats_template maxHp="10462" maxMp="16703" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1268" block="1401" parry="1498" main_hand_attack="18" main_hand_accuracy="1187" main_hand_crit_rate="2" magic_accuracy="1101" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="61">
+		<stats_template maxHp="10612" maxMp="16945" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1283" block="1416" parry="1513" main_hand_attack="18" main_hand_accuracy="1202" main_hand_crit_rate="2" magic_accuracy="1116" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="62">
+		<stats_template maxHp="10762" maxMp="17187" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1298" block="1431" parry="1528" main_hand_attack="18" main_hand_accuracy="1217" main_hand_crit_rate="2" magic_accuracy="1131" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="63">
+		<stats_template maxHp="10912" maxMp="17429" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1313" block="1446" parry="1543" main_hand_attack="18" main_hand_accuracy="1232" main_hand_crit_rate="2" magic_accuracy="1146" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="64">
+		<stats_template maxHp="11062" maxMp="17671" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1328" block="1461" parry="1558" main_hand_attack="18" main_hand_accuracy="1247" main_hand_crit_rate="2" magic_accuracy="1161" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="65">
+		<stats_template maxHp="11212" maxMp="17913" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1343" block="1476" parry="1573" main_hand_attack="18" main_hand_accuracy="1262" main_hand_crit_rate="2" magic_accuracy="1176" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="66">
+		<stats_template maxHp="11362" maxMp="18155" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1358" block="1491" parry="1588" main_hand_attack="18" main_hand_accuracy="1277" main_hand_crit_rate="2" magic_accuracy="1191" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="67">
+		<stats_template maxHp="11512" maxMp="18397" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1373" block="1506" parry="1603" main_hand_attack="18" main_hand_accuracy="1292" main_hand_crit_rate="2" magic_accuracy="1206" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="68">
+		<stats_template maxHp="11662" maxMp="18639" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1388" block="1521" parry="1618" main_hand_attack="18" main_hand_accuracy="1307" main_hand_crit_rate="2" magic_accuracy="1221" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="69">
+		<stats_template maxHp="11812" maxMp="18881" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1403" block="1536" parry="1633" main_hand_attack="18" main_hand_accuracy="1322" main_hand_crit_rate="2" magic_accuracy="1236" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="70">
+		<stats_template maxHp="11962" maxMp="19123" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1418" block="1551" parry="1648" main_hand_attack="18" main_hand_accuracy="1337" main_hand_crit_rate="2" magic_accuracy="1251" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="71">
+		<stats_template maxHp="12112" maxMp="19365" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1433" block="1566" parry="1663" main_hand_attack="18" main_hand_accuracy="1352" main_hand_crit_rate="2" magic_accuracy="1266" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="72">
+		<stats_template maxHp="12262" maxMp="19607" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1448" block="1581" parry="1678" main_hand_attack="18" main_hand_accuracy="1367" main_hand_crit_rate="2" magic_accuracy="1281" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="73">
+		<stats_template maxHp="12412" maxMp="19849" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1463" block="1596" parry="1693" main_hand_attack="18" main_hand_accuracy="1382" main_hand_crit_rate="2" magic_accuracy="1296" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="74">
+		<stats_template maxHp="12562" maxMp="20091" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1478" block="1611" parry="1708" main_hand_attack="18" main_hand_accuracy="1397" main_hand_crit_rate="2" magic_accuracy="1311" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="75">
+		<stats_template maxHp="12712" maxMp="20333" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1493" block="1626" parry="1723" main_hand_attack="18" main_hand_accuracy="1412" main_hand_crit_rate="2" magic_accuracy="1326" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="76">
+		<stats_template maxHp="12872" maxMp="20575" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1508" block="1641" parry="1738" main_hand_attack="18" main_hand_accuracy="1427" main_hand_crit_rate="2" magic_accuracy="1341" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="77">
+		<stats_template maxHp="13012" maxMp="20817" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1523" block="1656" parry="1753" main_hand_attack="18" main_hand_accuracy="1442" main_hand_crit_rate="2" magic_accuracy="1356" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="78">
+		<stats_template maxHp="13162" maxMp="21059" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1538" block="1671" parry="1768" main_hand_attack="18" main_hand_accuracy="1457" main_hand_crit_rate="2" magic_accuracy="1371" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="79">
+		<stats_template maxHp="13312" maxMp="21301" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1553" block="1686" parry="1783" main_hand_attack="18" main_hand_accuracy="1472" main_hand_crit_rate="2" magic_accuracy="1386" crit_spell="50"/>
+	</player_stats>
+	<!-- Revisited by Encom 28.05.2019 -->
+	<player_stats class="GUNSLINGER" level="80">
+		<stats_template maxHp="13462" maxMp="21543" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1568" block="1701" parry="1798" main_hand_attack="18" main_hand_accuracy="1487" main_hand_crit_rate="2" magic_accuracy="1401" crit_spell="50"/>
+	</player_stats>
+	
+	<!--
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="81">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1139" block="1079" parry="1079" main_hand_attack="18" main_hand_accuracy="838" main_hand_crit_rate="2" magic_accuracy="1166" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="82">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1151" block="1091" parry="1091" main_hand_attack="18" main_hand_accuracy="846" main_hand_crit_rate="2" magic_accuracy="1181" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="83">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1163" block="1103" parry="1103" main_hand_attack="18" main_hand_accuracy="854" main_hand_crit_rate="2" magic_accuracy="1196" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="84">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1175" block="1115" parry="1115" main_hand_attack="18" main_hand_accuracy="862" main_hand_crit_rate="2" magic_accuracy="1211" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="85">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1187" block="1127" parry="1127" main_hand_attack="18" main_hand_accuracy="870" main_hand_crit_rate="2" magic_accuracy="1226" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="86">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1199" block="1139" parry="1139" main_hand_attack="18" main_hand_accuracy="878" main_hand_crit_rate="2" magic_accuracy="1241" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="87">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1211" block="1151" parry="1151" main_hand_attack="18" main_hand_accuracy="886" main_hand_crit_rate="2" magic_accuracy="1256" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="88">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1223" block="1163" parry="1163" main_hand_attack="18" main_hand_accuracy="894" main_hand_crit_rate="2" magic_accuracy="1271" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="89">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1235" block="1175" parry="1175" main_hand_attack="18" main_hand_accuracy="902" main_hand_crit_rate="2" magic_accuracy="1286" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="90">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1247" block="1187" parry="1187" main_hand_attack="18" main_hand_accuracy="910" main_hand_crit_rate="2" magic_accuracy="1301" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="91">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1259" block="1199" parry="1199" main_hand_attack="18" main_hand_accuracy="918" main_hand_crit_rate="2" magic_accuracy="1316" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="92">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1271" block="1211" parry="1211" main_hand_attack="18" main_hand_accuracy="926" main_hand_crit_rate="2" magic_accuracy="1331" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="93">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1283" block="1223" parry="1223" main_hand_attack="18" main_hand_accuracy="934" main_hand_crit_rate="2" magic_accuracy="1346" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="94">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1295" block="1235" parry="1235" main_hand_attack="18" main_hand_accuracy="942" main_hand_crit_rate="2" magic_accuracy="1361" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="95">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1307" block="1247" parry="1247" main_hand_attack="18" main_hand_accuracy="950" main_hand_crit_rate="2" magic_accuracy="1376" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="96">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1319" block="1259" parry="1259" main_hand_attack="18" main_hand_accuracy="958" main_hand_crit_rate="2" magic_accuracy="1391" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="97">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1331" block="1271" parry="1271" main_hand_attack="18" main_hand_accuracy="966" main_hand_crit_rate="2" magic_accuracy="1406" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="98">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1343" block="1283" parry="1283" main_hand_attack="18" main_hand_accuracy="974" main_hand_crit_rate="2" magic_accuracy="1421" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="99">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1355" block="1295" parry="1295" main_hand_attack="18" main_hand_accuracy="982" main_hand_crit_rate="2" magic_accuracy="1436" crit_spell="50"/>
+	</player_stats>
+	Revisited by Encom 28.05.2019
+	<player_stats class="GUNSLINGER" level="100">
+		<stats_template maxHp="8922" maxMp="5418" power="100" health="100" agility="110" accuracy="110" knowledge="90" will="90" walk_speed="1.5" run_speed="6" fly_speed="9" attack_speed="1.5" evasion="1367" block="1307" parry="1307" main_hand_attack="18" main_hand_accuracy="990" main_hand_crit_rate="2" magic_accuracy="1451" crit_spell="50"/>
+	</player_stats> -->
+</player_stats_templates>

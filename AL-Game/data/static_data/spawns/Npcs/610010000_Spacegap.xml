@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Spacegap 7.x
+	Spawn By Encom
+ -->
+<spawns>
+    <spawn_map map_id="610010000">
+        <!-- Spacegap_Enter_B1_Li -->
+		<spawn npc_id="807405" respawn_time="295">
+            <spot x="233.60437" y="261.88696" z="299.99008" h="115"/>
+        </spawn>
+		<!-- Spacegap_Enter_B1_Da -->
+        <spawn npc_id="807406" respawn_time="295">
+            <spot x="236.08728" y="246.42552" z="299.99008" h="8"/>
+        </spawn>
+    </spawn_map>
+</spawns>

@@ -1,28 +1,4 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.utils.chathandlers;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.scripting.classlistener.AggregatedClassListener;
 import com.aionemu.commons.scripting.classlistener.OnClassLoadUnloadListener;
@@ -34,8 +10,14 @@ import com.aionemu.gameserver.configs.main.CustomConfig;
 import com.aionemu.gameserver.model.GameEngine;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
-
 import javolution.util.FastMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @author KID
@@ -61,9 +43,8 @@ public class ChatProcessor implements GameEngine {
 			init(sm, this);
 		}
 		finally {
-			if (progressLatch != null) {
+			if (progressLatch != null)
 				progressLatch.countDown();
-			}
 		}
 	}
 
@@ -87,7 +68,8 @@ public class ChatProcessor implements GameEngine {
 		acl.addClassListener(new ChatCommandsLoader(processor));
 		scriptManager.setGlobalClassListener(acl);
 
-		final File[] files = new File[] { new File("./data/scripts/system/adminhandlers.xml"), new File("./data/scripts/system/playerhandlers.xml"), new File("./data/scripts/system/weddinghandlers.xml") };
+		final File[] files = new File[] { new File("./data/scripts/system/adminhandlers.xml"),
+			new File("./data/scripts/system/playerhandlers.xml"), new File("./data/scripts/system/weddinghandlers.xml") };
 		final CountDownLatch loadLatch = new CountDownLatch(files.length);
 
 		for (int i = 0; i < files.length; i++) {
@@ -175,18 +157,19 @@ public class ChatProcessor implements GameEngine {
 	}
 
 	public boolean handleChatCommand(Player player, String text) {
-		if (text.split(" ").length == 0) {
+		if (text.split(" ").length == 0)
 			return false;
-		}
-		if ((text.startsWith("//") && getCommand(text.substring(2)) instanceof AdminCommand) || (text.startsWith("..") && getCommand(text.substring(2)) instanceof WeddingCommand)) {
+		if ((text.startsWith("//") && getCommand(text.substring(2)) instanceof AdminCommand)
+			|| (text.startsWith("..") && getCommand(text.substring(2)) instanceof WeddingCommand)) {
 			return (getCommand(text.substring(2))).process(player, text.substring(2));
 		}
-		else if (text.startsWith(".") && (getCommand(text.substring(1)) instanceof PlayerCommand || (CustomConfig.ENABLE_ADMIN_DOT_COMMANDS && getCommand(text.substring(1)) instanceof AdminCommand))) {
+		else if (text.startsWith(".")
+			&& (getCommand(text.substring(1)) instanceof PlayerCommand 
+				|| (CustomConfig.ENABLE_ADMIN_DOT_COMMANDS && getCommand(text.substring(1)) instanceof AdminCommand))) {
 			return (getCommand(text.substring(1))).process(player, text.substring(1));
 		}
-		else {
+		else
 			return false;
-		}
 	}
 
 	private ChatCommand getCommand(String text) {

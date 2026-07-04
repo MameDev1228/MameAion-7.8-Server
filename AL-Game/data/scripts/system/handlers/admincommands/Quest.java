@@ -1,25 +1,4 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
-
-import java.sql.Timestamp;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.PersistentState;
@@ -31,12 +10,18 @@ import com.aionemu.gameserver.model.templates.quest.FinishedQuestCond;
 import com.aionemu.gameserver.model.templates.quest.XMLStartCondition;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_QUEST_ACTION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_QUEST_COMPLETED_LIST;
+import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
 import com.aionemu.gameserver.services.QuestService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
+
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author MrPoke
@@ -59,8 +44,7 @@ public class Quest extends AdminCommand {
 			target = (Player) creature;
 		}
 
-		// <mariella> - target isn't required for the command ".quest id <link>"
-		if (target == null && !params[0].equals("id")) {
+		if (target == null) {
 			PacketSendUtility.sendMessage(admin, "Incorrect target!");
 			return;
 		}
@@ -75,12 +59,10 @@ public class Quest extends AdminCommand {
 				String quest = params[1];
 				Pattern questId = Pattern.compile("\\[quest:([^%]+)]");
 				Matcher result = questId.matcher(quest);
-				if (result.find()) {
+				if (result.find())
 					id = Integer.parseInt(result.group(1));
-				}
-				else {
+				else
 					id = Integer.parseInt(params[1]);
-				}
 			}
 			catch (NumberFormatException e) {
 				PacketSendUtility.sendMessage(admin, "syntax //quest start <questId>");
@@ -119,12 +101,10 @@ public class Quest extends AdminCommand {
 				String quest = params[1];
 				Pattern id = Pattern.compile("\\[quest:([^%]+)]");
 				Matcher result = id.matcher(quest);
-				if (result.find()) {
+				if (result.find())
 					questId = Integer.parseInt(result.group(1));
-				}
-				else {
+				else
 					questId = Integer.parseInt(params[1]);
-				}
 
 				String statusValue = params[2];
 				if ("START".equals(statusValue)) {
@@ -166,19 +146,11 @@ public class Quest extends AdminCommand {
 				qs.setQuestVar(var);
 			}
 			PacketSendUtility.sendPacket(target, new SM_QUEST_ACTION(questId, qs.getStatus(), qs.getQuestVars().getQuestVars()));
-			
-			switch (questStatus) {
-				case REWARD: {
-					target.getController().updateNearbyQuests();
-					break;
-				}
-				case COMPLETE: {
-					qs.setCompleteCount(qs.getCompleteCount() + 1);
-					target.getController().updateNearbyQuests();
-					break;
-				}
-				default:
-					break;
+			QuestEnv env = new QuestEnv(null, target, questId, 0);
+			if (questStatus == QuestStatus.COMPLETE) {
+				QuestEngine.getInstance().onLvlUp(env);
+				target.getController().updateNearbyQuests();
+				qs.setCompleteCount(qs.getCompleteCount() + 1);
 			}
 		}
 		if (params[0].equals("delete")) {
@@ -204,9 +176,8 @@ public class Quest extends AdminCommand {
 				qs.setQuestVar(0);
 				qs.setCompleteCount(0);
 				qs.setStatus(null);
-				if (qs.getPersistentState() != PersistentState.NEW) {
+				if (qs.getPersistentState() != PersistentState.NEW)
 					qs.setPersistentState(PersistentState.DELETED);
-				}
 				PacketSendUtility.sendPacket(admin, new SM_QUEST_COMPLETED_LIST(admin.getQuestStateList().getAllFinishedQuests()));
 				admin.getController().updateNearbyQuests();
 			}
@@ -217,29 +188,9 @@ public class Quest extends AdminCommand {
 				return;
 			}
 			ShowQuestInfo(target, admin, params[1]);
-			// <mariella> add sub-command "id" to see the linked questId
 		}
-		else if (params[0].equals("id")) {
-			if (params.length != 2) {
-				PacketSendUtility.sendMessage(admin, "syntax //quest id <quest link>");
-				return;
-			}
-			String quest = params[1];
-			int questId;
-			Pattern id = Pattern.compile("\\[quest:([^%]+)]");
-			Matcher result = id.matcher(quest);
-			if (result.find()) {
-				questId = Integer.parseInt(result.group(1));
-			}
-			else {
-				questId = Integer.parseInt(params[1]);
-			}
-			PacketSendUtility.sendMessage(admin, "Quest-ID: " + questId);
-			// </mariella>
-		}
-		else {
-			PacketSendUtility.sendMessage(admin, "syntax //quest <start|set|show|delete|id>"); // <mariella>
-		}
+		else
+			PacketSendUtility.sendMessage(admin, "syntax //quest <start|set|show|delete>");
 	}
 
 	private void ShowQuestInfo(Player player, Player admin, String param) {
@@ -257,10 +208,10 @@ public class Quest extends AdminCommand {
 		}
 		else {
 			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 5; i++)
 				sb.append(Integer.toString(qs.getQuestVarById(i)) + " ");
-			}
-			PacketSendUtility.sendMessage(admin, "Quest state: " + qs.getStatus().toString() + "; vars: " + sb.toString() + qs.getQuestVarById(5));
+			PacketSendUtility.sendMessage(admin, "Quest state: " + qs.getStatus().toString() + "; vars: " + sb.toString()
+					+ qs.getQuestVarById(5));
 			sb.setLength(0);
 			sb = null;
 		}
@@ -268,6 +219,7 @@ public class Quest extends AdminCommand {
 
 	@Override
 	public void onFail(Player player, String message) {
-		PacketSendUtility.sendMessage(player, "syntax //quest <start|set|show|delete|id>");
+		PacketSendUtility.sendMessage(player, "syntax //quest <start|set|show|delete>");
 	}
+
 }

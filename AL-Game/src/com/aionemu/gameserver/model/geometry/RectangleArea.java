@@ -1,31 +1,31 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-emu is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-emu is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aionemu.gameserver.model.geometry;
 
-import java.awt.Point;
-import java.awt.Rectangle;
+package com.aionemu.gameserver.model.geometry;
 
 import com.aionemu.gameserver.model.templates.zone.Point2D;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.world.zone.ZoneName;
 
+import java.awt.*;
+
 /**
  * Rectangle area, most wide spread in the game
- *
+ * 
  * @author SoulKeeper
  */
 public class RectangleArea extends AbstractArea {
@@ -35,6 +35,7 @@ public class RectangleArea extends AbstractArea {
 	 */
 	private final float minX;
 
+	
 	/**
 	 * @return the minX
 	 */
@@ -42,6 +43,7 @@ public class RectangleArea extends AbstractArea {
 		return minX;
 	}
 
+	
 	/**
 	 * @return the maxX
 	 */
@@ -49,6 +51,7 @@ public class RectangleArea extends AbstractArea {
 		return maxX;
 	}
 
+	
 	/**
 	 * @return the minY
 	 */
@@ -56,6 +59,7 @@ public class RectangleArea extends AbstractArea {
 		return minY;
 	}
 
+	
 	/**
 	 * @return the maxY
 	 */
@@ -67,10 +71,12 @@ public class RectangleArea extends AbstractArea {
 	 * Max x point
 	 */
 	private final float maxX;
+
 	/**
 	 * Min y point
 	 */
 	private final float minY;
+
 	/**
 	 * Max y point
 	 */
@@ -78,19 +84,19 @@ public class RectangleArea extends AbstractArea {
 
 	/**
 	 * Creates new area from given points. Point order doesn't matter
-	 *
+	 * 
 	 * @param p1
-	 *            point
+	 *          point
 	 * @param p2
-	 *            point
+	 *          point
 	 * @param p3
-	 *            point
+	 *          point
 	 * @param p4
-	 *            point
+	 *          point
 	 * @param minZ
-	 *            minimal z
+	 *          minimal z
 	 * @param maxZ
-	 *            maximal z
+	 *          maximal z
 	 */
 	public RectangleArea(ZoneName zoneName, int worldId, Point p1, Point p2, Point p3, Point p4, int minZ, int maxZ) {
 		super(zoneName, worldId, minZ, maxZ);
@@ -109,19 +115,19 @@ public class RectangleArea extends AbstractArea {
 
 	/**
 	 * Creates new are from given coords
-	 *
+	 * 
 	 * @param minX
-	 *            mimal x point
+	 *          mimal x point
 	 * @param minY
-	 *            minimal y point
+	 *          minimal y point
 	 * @param maxX
-	 *            maximal x point
+	 *          maximal x point
 	 * @param maxY
-	 *            maximal y point
+	 *          maximal y point
 	 * @param minZ
-	 *            minimal z point
+	 *          minimal z point
 	 * @param maxZ
-	 *            maximal z point
+	 *          maximal z point
 	 */
 	public RectangleArea(ZoneName zoneName, int worldId, float minX, float minY, float maxX, float maxY, float minZ, float maxZ) {
 		super(zoneName, worldId, minZ, maxZ);
@@ -141,12 +147,10 @@ public class RectangleArea extends AbstractArea {
 
 	@Override
 	public boolean isInside3D(float x, float y, float z) {
-		if (!isInside2D(x, y)) {
+		if (!isInside2D(x, y))
 			return false;
-		}
 		return super.isInside3D(x, y, z);
 	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -220,8 +224,7 @@ public class RectangleArea extends AbstractArea {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
+	/* (non-Javadoc)
 	 * @see com.aionemu.gameserver.model.geometry.Area#intersectsRectangle(com.aionemu.gameserver.model.geometry.RectangleArea)
 	 */
 	@Override

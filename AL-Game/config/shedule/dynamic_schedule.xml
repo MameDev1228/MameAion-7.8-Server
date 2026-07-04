@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Shugo League Merchant
+	Made By Rinzler (Encom)
+ -->
+<dynamic_schedule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="dynamic_schedule.xsd">
+	<!-- Shugo League Merchant -->
+	<dynamic id="1">
+		<riftTime>0 0 3,9 ? * MON-SUN *</riftTime>
+	</dynamic>
+	<dynamic id="2">
+		<riftTime>0 0 3,9 ? * MON-SUN *</riftTime>
+	</dynamic>
+</dynamic_schedule>

@@ -1,19 +1,3 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -38,11 +22,11 @@ public class PowerUp extends AdminCommand {
 		// if ("help".startsWith(params[i])) {
 		// PacketSendUtility.sendMessage(admin, "0 to return to normal state");
 		// PacketSendUtility.sendMessage(admin, "//powerup <Multiplier = 2>");
-		// PacketSendUtility.sendMessage(admin, "Syntax: //powerup [playerName] [Multiplier = 2]\n"
-		// + " This command multiplies your actual power to the number given.\n"
-		// + " Using 0 as the Multiplier resets the power to normal.\n"
-		// + " Notice: You can ommit parameters between [], especially playerName.\n"
-		// + " Target: Named player, then targeted player, only then self.\n" + " Default Value: Multiplier is 2.");
+		// PacketSendUtility.sendMessage(admin, "Syntax:  //powerup [playerName] [Multiplier = 2]\n"
+		// + "  This command multiplies your actual power to the number given.\n"
+		// + "  Using 0 as the Multiplier resets the power to normal.\n"
+		// + "  Notice: You can ommit parameters between [], especially playerName.\n"
+		// + "  Target: Named player, then targeted player, only then self.\n" + "  Default Value: Multiplier is 2.");
 		// return;
 		// }
 		// player = World.getInstance().findPlayer(Util.convertName(params[i]));

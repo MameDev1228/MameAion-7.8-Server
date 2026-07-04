@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.utils.captcha;
 
@@ -50,25 +50,20 @@ public class DDSConverter {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o) {
+			if (this == o)
 				return true;
-			}
-			if (o == null || getClass() != o.getClass()) {
+			if (o == null || getClass() != o.getClass())
 				return false;
-			}
 
 			final Color color = (Color) o;
 
-			if (b != color.b) {
+			if (b != color.b)
 				return false;
-			}
-			if (g != color.g) {
+			if (g != color.g)
 				return false;
-			}
 			// noinspection RedundantIfStatement
-			if (r != color.r) {
+			if (r != color.r)
 				return false;
-			}
 
 			return true;
 		}
@@ -178,9 +173,8 @@ public class DDSConverter {
 		Color[] colorPoints = new Color[] { null, null, new Color(), new Color() };
 		colorPoints[0] = colors[extremaIndices[0]];
 		colorPoints[1] = colors[extremaIndices[1]];
-		if (colorPoints[0].equals(colorPoints[1])) {
+		if (colorPoints[0].equals(colorPoints[1]))
 			return 0;
-		}
 
 		colorPoints[2].r = (2 * colorPoints[0].r + colorPoints[1].r + 1) / 3;
 		colorPoints[2].g = (2 * colorPoints[0].g + colorPoints[1].g + 1) / 3;

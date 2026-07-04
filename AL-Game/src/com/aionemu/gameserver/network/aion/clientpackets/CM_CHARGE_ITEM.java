@@ -1,29 +1,29 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
 import com.aionemu.gameserver.services.item.ItemChargeService;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * @author ATracer
@@ -63,11 +63,11 @@ public class CM_CHARGE_ITEM extends AionClientPacket {
 				int itemChargeLevel = item.getChargeLevelMax();
 				int possibleChargeLevel = Math.min(itemChargeLevel, chargeLevel);
 				if (possibleChargeLevel > 0) {
-					if (ItemChargeService.processPayment(player, item, possibleChargeLevel)) {
+					if (ItemChargeService.processPayment(player, item, possibleChargeLevel))
 						ItemChargeService.chargeItem(player, item, possibleChargeLevel);
-					}
 				}
 			}
 		}
 	}
+
 }

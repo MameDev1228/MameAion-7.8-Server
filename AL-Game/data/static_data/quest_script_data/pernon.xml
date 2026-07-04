@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quest_scripts>
+<!--
+    Quest Pernon
+	Make By Encom
+ -->
+	<!-- [Housing] Moving Up In The World -->
+	<report_to id="28801" start_npc_ids="830085" end_npc_ids="830102"/>
+	<!-- Going Twice... -->
+	<report_to id="28810" start_npc_ids="830118" end_npc_ids="830154"/>
+	<!-- Precious In Pink -->
+	<item_collecting id="28812" start_npc_ids="830525"/>
+	<!-- Homage To An Unsung Hero -->
+	<item_collecting id="28813" start_npc_ids="830525"/>
+	<!-- Fit for a Sprigg -->
+	<item_collecting id="28814" start_npc_ids="830525"/>
+	<!-- Immortal Guru... Sort Of -->
+	<item_collecting id="28815" start_npc_ids="830525"/>
+	<!-- Turn, Turn, Turn -->
+	<item_collecting id="28816" start_npc_ids="830436"/>
+	<!-- Crystal Visions -->
+	<item_collecting id="28817" start_npc_ids="830436"/>
+	<!-- [Daily] Gentlemen Prefer Pearls -->
+	<item_collecting id="28818" start_npc_ids="830391"/>
+	<!-- [Daily] Much More Than Ore -->
+	<item_collecting id="28819" start_npc_ids="830430"/>
+	<!-- [Daily] How Does Your Garden Grow ? -->
+	<item_collecting id="28820" start_npc_ids="830436"/>
+	<!-- Spring Light Box -->
+	<item_collecting id="28822" start_npc_ids="830526"/>
+	<!-- Summer Light Box -->
+	<item_collecting id="28823" start_npc_ids="830526"/>
+	<!-- Autumn Light Box -->
+	<item_collecting id="28824" start_npc_ids="830526"/>
+	<!-- Winter Light Box -->
+	<item_collecting id="28825" start_npc_ids="830526"/>
+	<!-- [Housing] Homeward Bound -->
+	<report_to id="28827" start_npc_ids="830153" end_npc_ids="810022 810023 810024 810025 810026"/>
+	<!-- [Housing] The Big Empty -->
+	<report_to id="28829" start_npc_ids="810022 810023 810024 810025 810026" end_npc_ids="830585"/>
+	<!-- [Daily] Sprout, Sprout, Let It All Out -->
+	<item_order id="28833" start_item_id="182213209" end_npc_id="830656"/>
+	<!-- [Daily] Sprout It Out -->
+	<item_order id="28835" start_item_id="182213210" end_npc_id="830656"/>
+	<!-- [Daily] Sprout Of Joy -->
+	<item_order id="28837" start_item_id="182213211" end_npc_id="830656"/>
+	<!-- Turn, Turn, Turn I -->
+	<item_collecting id="28840" start_npc_ids="830436"/>
+	<!-- Turn, Turn, Turn II -->
+	<item_collecting id="28841" start_npc_ids="830436"/>
+	<!-- Turn, Turn, Turn III -->
+	<item_collecting id="28842" start_npc_ids="830436"/>
+	<!-- No One Under 21 Allowed -->
+	<report_to id="28843" start_npc_ids="830532" end_npc_ids="830211"/>
+	<!-- [Daily] A Little Alchemy Practice -->
+	<item_collecting id="28844" start_npc_ids="830394"/>
+</quest_scripts>

@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
@@ -29,12 +29,13 @@ public class CM_START_LOOT extends AionClientPacket {
 	/**
 	 * Target object id that client wants to TALK WITH or 0 if wants to unselect
 	 */
+
 	private int targetObjectId;
 	private int action;
 
 	/**
 	 * Constructs new instance of <tt>CM_CM_REQUEST_DIALOG </tt> packet
-	 *
+	 * 
 	 * @param opcode
 	 */
 	public CM_START_LOOT(int opcode, State state, State... restStates) {
@@ -46,7 +47,7 @@ public class CM_START_LOOT extends AionClientPacket {
 	 */
 	@Override
 	protected void readImpl() {
-		targetObjectId = readD();
+		targetObjectId = readD();// empty
 		action = readC();
 	}
 
@@ -57,10 +58,12 @@ public class CM_START_LOOT extends AionClientPacket {
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
 
-		if (action == 0) { // open
+		if (action == 0) // open
+		{
 			DropService.getInstance().requestDropList(player, targetObjectId);
 		}
-		else if (action == 1) { // close
+		else if (action == 1) // close
+		{
 			DropService.getInstance().closeDropList(player, targetObjectId);
 		}
 	}

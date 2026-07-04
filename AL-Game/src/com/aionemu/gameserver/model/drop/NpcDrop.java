@@ -1,51 +1,47 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+ * This file is part of aion-lightning <aion-lightning.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package com.aionemu.gameserver.model.drop;
 
+import com.aionemu.gameserver.model.Race;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+
+import javax.xml.bind.annotation.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import com.aionemu.gameserver.model.Race;
-import com.aionemu.gameserver.model.gameobjects.player.Player;
-
-/**
- * @author MrPoke
- */
+@XmlRootElement(name = "npc_drop")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "npcDrop", propOrder = {
+    "dropGroup"
+})
 public class NpcDrop implements DropCalculator {
 
+    @XmlElement(name = "drop_group")
 	protected List<DropGroup> dropGroup;
+    @XmlAttribute(name = "npc_id", required = true)
 	protected int npcId;
 
-	/**
-	 * @param dropGroup
-	 * @param npcId
-	 */
-	public NpcDrop(List<DropGroup> dropGroup, int npcId) {
-		super();
-		this.dropGroup = dropGroup;
-		this.npcId = npcId;
-	}
 
 	public List<DropGroup> getDropGroup() {
-		if (dropGroup == null) {
+		if (dropGroup == null)
 			return Collections.emptyList();
-		}
 		return this.dropGroup;
 	}
 
@@ -58,9 +54,8 @@ public class NpcDrop implements DropCalculator {
 
 	@Override
 	public int dropCalculator(Set<DropItem> result, int index, float dropModifier, Race race, Collection<Player> groupMembers) {
-		if (dropGroup == null || dropGroup.isEmpty()) {
+		if (dropGroup == null || dropGroup.isEmpty())
 			return index;
-		}
 		for (DropGroup dg : dropGroup) {
 			if (dg.getRace() == Race.PC_ALL || dg.getRace() == race) {
 				index = dg.dropCalculator(result, index, dropModifier, race, groupMembers);

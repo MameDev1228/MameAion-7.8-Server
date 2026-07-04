@@ -1,20 +1,21 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.serverpackets;
+
 
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
@@ -30,7 +31,7 @@ public class SM_SKILL_ACTIVATION extends AionServerPacket {
 
 	/**
 	 * For toggle skills
-	 *
+	 * 
 	 * @param skillId
 	 * @param isActive
 	 */
@@ -42,7 +43,7 @@ public class SM_SKILL_ACTIVATION extends AionServerPacket {
 
 	/**
 	 * For stigma remove should work in 1.5.1.15
-	 *
+	 * 
 	 * @param skillId
 	 */
 	public SM_SKILL_ACTIVATION(int skillId) {
@@ -59,6 +60,5 @@ public class SM_SKILL_ACTIVATION extends AionServerPacket {
 		writeH(skillId);
 		writeD(unk);
 		writeC(isActive ? 1 : 0);
-		writeC(0); // 4.8
 	}
 }

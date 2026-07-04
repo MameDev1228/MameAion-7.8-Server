@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+	Absolute Stats 4.8
+	Made By Encom
+ -->
 <absolute_stats>
     <stats_set id="1">
         <modifiers>
@@ -77,7 +81,7 @@
             <set name="PERIFICATION_RESISTANCE" value="523"/>
             <set name="STUMBLE_RESISTANCE" value="524"/>
             <set name="STAGGER_RESISTANCE" value="525"/>
-            <set name="OPENAREIAL_RESISTANCE" value="526"/>
+            <set name="OPENAERIAL_RESISTANCE" value="526"/>
             <set name="SNARE_RESISTANCE" value="527"/>
             <set name="SLOW_RESISTANCE" value="528"/>
             <set name="SPIN_RESISTANCE" value="529"/>
@@ -97,7 +101,7 @@
             <set name="PERIFICATION_RESISTANCE_PENETRATION" value="623"/>
             <set name="STUMBLE_RESISTANCE_PENETRATION" value="624"/>
             <set name="STAGGER_RESISTANCE_PENETRATION" value="625"/>
-            <set name="OPENAREIAL_RESISTANCE_PENETRATION" value="626"/>
+            <set name="OPENAERIAL_RESISTANCE_PENETRATION" value="626"/>
             <set name="SNARE_RESISTANCE_PENETRATION" value="627"/>
             <set name="SLOW_RESISTANCE_PENETRATION" value="628"/>
             <set name="SPIN_RESISTANCE_PENETRATION" value="629"/>
@@ -180,7 +184,7 @@
             <set name="PERIFICATION_RESISTANCE" value="723"/>
             <set name="STUMBLE_RESISTANCE" value="724"/>
             <set name="STAGGER_RESISTANCE" value="725"/>
-            <set name="OPENAREIAL_RESISTANCE" value="726"/>
+            <set name="OPENAERIAL_RESISTANCE" value="726"/>
             <set name="SNARE_RESISTANCE" value="727"/>
             <set name="SLOW_RESISTANCE" value="728"/>
             <set name="SPIN_RESISTANCE" value="729"/>
@@ -200,7 +204,7 @@
             <set name="PERIFICATION_RESISTANCE_PENETRATION" value="823"/>
             <set name="STUMBLE_RESISTANCE_PENETRATION" value="824"/>
             <set name="STAGGER_RESISTANCE_PENETRATION" value="825"/>
-            <set name="OPENAREIAL_RESISTANCE_PENETRATION" value="826"/>
+            <set name="OPENAERIAL_RESISTANCE_PENETRATION" value="826"/>
             <set name="SNARE_RESISTANCE_PENETRATION" value="827"/>
             <set name="SLOW_RESISTANCE_PENETRATION" value="828"/>
             <set name="SPIN_RESISTANCE_PENETRATION" value="829"/>
@@ -390,7 +394,7 @@
             <set name="PERIFICATION_RESISTANCE" value="500"/>
             <set name="STUMBLE_RESISTANCE" value="500"/>
             <set name="STAGGER_RESISTANCE" value="500"/>
-            <set name="OPENAREIAL_RESISTANCE" value="500"/>
+            <set name="OPENAERIAL_RESISTANCE" value="500"/>
             <set name="SNARE_RESISTANCE" value="500"/>
             <set name="SLOW_RESISTANCE" value="500"/>
             <set name="SPIN_RESISTANCE" value="500"/>
@@ -410,7 +414,7 @@
             <set name="PERIFICATION_RESISTANCE_PENETRATION" value="500"/>
             <set name="STUMBLE_RESISTANCE_PENETRATION" value="500"/>
             <set name="STAGGER_RESISTANCE_PENETRATION" value="500"/>
-            <set name="OPENAREIAL_RESISTANCE_PENETRATION" value="500"/>
+            <set name="OPENAERIAL_RESISTANCE_PENETRATION" value="500"/>
             <set name="SNARE_RESISTANCE_PENETRATION" value="500"/>
             <set name="SLOW_RESISTANCE_PENETRATION" value="500"/>
             <set name="SPIN_RESISTANCE_PENETRATION" value="500"/>
@@ -548,7 +552,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -575,7 +579,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -603,7 +607,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -635,7 +639,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -664,7 +668,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -691,7 +695,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -719,7 +723,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -764,7 +768,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -809,7 +813,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -854,7 +858,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -899,7 +903,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -945,7 +949,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -994,7 +998,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -1039,7 +1043,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -1085,7 +1089,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -1130,7 +1134,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>
@@ -1175,7 +1179,7 @@
             <set name="PERIFICATION_RESISTANCE" value="9999"/>
             <set name="STUMBLE_RESISTANCE" value="9999"/>
             <set name="STAGGER_RESISTANCE" value="9999"/>
-            <set name="OPENAREIAL_RESISTANCE" value="9999"/>
+            <set name="OPENAERIAL_RESISTANCE" value="9999"/>
             <set name="SNARE_RESISTANCE" value="9999"/>
             <set name="SLOW_RESISTANCE" value="9999"/>
             <set name="SPIN_RESISTANCE" value="9999"/>

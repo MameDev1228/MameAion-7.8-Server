@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc_drops>
+		<!-- INDRATU FORTRESS 7.x -->
+		<!-- Praetorius Artair -->
+		<npc_drop npc_id="653323">
+				<drop_group name="CUBIC">
+			            <drop chance="9.0" item_id="188071672" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="KINAH_BOX">
+			            <drop chance="9.0" item_id="188071632" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005044" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="SPEED_POTION">
+			            <drop chance="9.0" item_id="160040083" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="MANASTONE_FASTENER">
+			            <drop chance="9.0" item_id="166401000" min_amount="100" max_amount="200"/>
+				</drop_group>
+				<drop_group name="STIGMA_STONE">
+			            <drop chance="9.0" item_id="188053785" min_amount="1" max_amount="1"/>
+			    </drop_group>
+				<drop_group name="POWER_SHARDS_BOX">
+				        <drop chance="9.0" item_id="188071083" min_amount="1" max_amount="1"/>
+                </drop_group>
+				<drop_group name="STIGMA_ENCHANTMENT_BOX">
+				        <drop chance="9.0" item_id="188070351" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="ENCHANTMENT_STONES_BOX">
+			            <drop chance="9.0" item_id="188058954" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072348" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="REWARD_NAMED_BOX">
+						<drop chance="9.0" item_id="188070443" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="188071413" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="188071631" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="190099000" min_amount="1" max_amount="5"/>
+						<drop chance="9.0" item_id="190095004" min_amount="1" max_amount="3"/>
+				</drop_group>
+				<drop_group name="MANASTONES_ANCIENT">
+			            <drop chance="9.0" item_id="167075090" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075091" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075092" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075093" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075094" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075095" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075096" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075097" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075098" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075099" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075100" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075101" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075102" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075103" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075104" min_amount="1" max_amount="1"/>
+			    </drop_group>
+		</npc_drop>
+		<!-- Staff Captain Lahumu -->
+		<npc_drop npc_id="653324">
+				<drop_group name="CUBIC">
+			            <drop chance="9.0" item_id="188071672" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="KINAH_BOX">
+			            <drop chance="9.0" item_id="188071632" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005044" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="SPEED_POTION">
+			            <drop chance="9.0" item_id="160040083" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="MANASTONE_FASTENER">
+			            <drop chance="9.0" item_id="166401000" min_amount="100" max_amount="200"/>
+				</drop_group>
+				<drop_group name="STIGMA_STONE">
+			            <drop chance="9.0" item_id="188053785" min_amount="1" max_amount="1"/>
+			    </drop_group>
+				<drop_group name="POWER_SHARDS_BOX">
+				        <drop chance="9.0" item_id="188071083" min_amount="1" max_amount="1"/>
+                </drop_group>
+				<drop_group name="STIGMA_ENCHANTMENT_BOX">
+				        <drop chance="9.0" item_id="188070351" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="ENCHANTMENT_STONES_BOX">
+			            <drop chance="9.0" item_id="188058954" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072348" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="REWARD_NAMED_BOX">
+						<drop chance="9.0" item_id="188070443" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="188071413" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="188071631" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="190099000" min_amount="1" max_amount="5"/>
+						<drop chance="9.0" item_id="190095004" min_amount="1" max_amount="3"/>
+				</drop_group>
+				<drop_group name="MANASTONES_ANCIENT">
+			            <drop chance="9.0" item_id="167075090" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075091" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075092" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075093" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075094" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075095" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075096" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075097" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075098" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075099" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075100" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075101" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075102" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075103" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075104" min_amount="1" max_amount="1"/>
+			    </drop_group>
+		</npc_drop>
+		<!-- Brigadier Indratu -->
+		<npc_drop npc_id="653325">
+				<drop_group name="CUBIC">
+			            <drop chance="9.0" item_id="188071672" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="KINAH_BOX">
+			            <drop chance="9.0" item_id="188071632" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005044" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="SPEED_POTION">
+			            <drop chance="9.0" item_id="160040083" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="MANASTONE_FASTENER">
+			            <drop chance="9.0" item_id="166401000" min_amount="100" max_amount="200"/>
+				</drop_group>
+				<drop_group name="STIGMA_STONE">
+			            <drop chance="9.0" item_id="188053785" min_amount="1" max_amount="1"/>
+			    </drop_group>
+				<drop_group name="POWER_SHARDS_BOX">
+				        <drop chance="9.0" item_id="188071083" min_amount="1" max_amount="1"/>
+                </drop_group>
+				<drop_group name="STIGMA_ENCHANTMENT_BOX">
+				        <drop chance="9.0" item_id="188070351" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="ENCHANTMENT_STONES_BOX">
+			            <drop chance="9.0" item_id="188058954" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072348" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="REWARD_NAMED_BOX">
+						<drop chance="9.0" item_id="188070443" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="188071413" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="188071631" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="190099000" min_amount="1" max_amount="5"/>
+						<drop chance="9.0" item_id="190095004" min_amount="1" max_amount="3"/>
+				</drop_group>
+				<drop_group name="MANASTONES_ANCIENT">
+			            <drop chance="9.0" item_id="167075090" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075091" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075092" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075093" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075094" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075095" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075096" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075097" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075098" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075099" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075100" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075101" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075102" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075103" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075104" min_amount="1" max_amount="1"/>
+			    </drop_group>
+		</npc_drop>
+		<!-- Adjutant Ursanafi -->
+		<npc_drop npc_id="653328">
+				<drop_group name="CUBIC">
+			            <drop chance="9.0" item_id="188071672" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="KINAH_BOX">
+			            <drop chance="9.0" item_id="188071632" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005044" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="SPEED_POTION">
+			            <drop chance="9.0" item_id="160040083" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="MANASTONE_FASTENER">
+			            <drop chance="9.0" item_id="166401000" min_amount="100" max_amount="200"/>
+				</drop_group>
+				<drop_group name="STIGMA_STONE">
+			            <drop chance="9.0" item_id="188053785" min_amount="1" max_amount="1"/>
+			    </drop_group>
+				<drop_group name="POWER_SHARDS_BOX">
+				        <drop chance="9.0" item_id="188071083" min_amount="1" max_amount="1"/>
+                </drop_group>
+				<drop_group name="STIGMA_ENCHANTMENT_BOX">
+				        <drop chance="9.0" item_id="188070351" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="ENCHANTMENT_STONES_BOX">
+			            <drop chance="9.0" item_id="188058954" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072348" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="REWARD_NAMED_BOX">
+						<drop chance="9.0" item_id="188070443" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="188071413" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="188071631" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="190099000" min_amount="1" max_amount="5"/>
+						<drop chance="9.0" item_id="190095004" min_amount="1" max_amount="3"/>
+				</drop_group>
+				<drop_group name="MANASTONES_ANCIENT">
+			            <drop chance="9.0" item_id="167075090" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075091" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075092" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075093" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075094" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075095" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075096" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075097" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075098" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075099" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075100" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075101" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075102" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075103" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075104" min_amount="1" max_amount="1"/>
+			    </drop_group>
+		</npc_drop>
+		<!-- Commander Inshar -->
+		<npc_drop npc_id="653329">
+				<drop_group name="CUBIC">
+			            <drop chance="9.0" item_id="188071672" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="KINAH_BOX">
+			            <drop chance="9.0" item_id="188071632" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="LIFE_POTION">
+			            <drop chance="9.0" item_id="162005044" min_amount="1" max_amount="5"/>
+				</drop_group>
+				<drop_group name="SPEED_POTION">
+			            <drop chance="9.0" item_id="160040083" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="MANASTONE_FASTENER">
+			            <drop chance="9.0" item_id="166401000" min_amount="100" max_amount="200"/>
+				</drop_group>
+				<drop_group name="STIGMA_STONE">
+			            <drop chance="9.0" item_id="188053785" min_amount="1" max_amount="1"/>
+			    </drop_group>
+				<drop_group name="POWER_SHARDS_BOX">
+				        <drop chance="9.0" item_id="188071083" min_amount="1" max_amount="1"/>
+                </drop_group>
+				<drop_group name="STIGMA_ENCHANTMENT_BOX">
+				        <drop chance="9.0" item_id="188070351" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="ENCHANTMENT_STONES_BOX">
+			            <drop chance="9.0" item_id="188058954" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="TRANSFORMATION_POTION_BOX">
+			            <drop chance="9.0" item_id="188071419" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072347" min_amount="1" max_amount="1"/>
+			            <drop chance="9.0" item_id="188072348" min_amount="1" max_amount="1"/>
+				</drop_group>
+				<drop_group name="REWARD_NAMED_BOX">
+						<drop chance="9.0" item_id="188070443" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="188071413" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="188071631" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="190099000" min_amount="1" max_amount="5"/>
+						<drop chance="9.0" item_id="190095004" min_amount="1" max_amount="3"/>
+				</drop_group>
+				<drop_group name="MANASTONES_ANCIENT">
+			            <drop chance="9.0" item_id="167075090" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075091" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075092" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075093" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075094" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075095" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075096" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075097" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075098" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075099" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075100" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075101" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075102" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075103" min_amount="1" max_amount="1"/>
+						<drop chance="9.0" item_id="167075104" min_amount="1" max_amount="1"/>
+			    </drop_group>
+		</npc_drop>
+</npc_drops>

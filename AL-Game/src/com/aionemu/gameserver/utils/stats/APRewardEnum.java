@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.org>
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-lightning is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-lightning is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-lightning. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.utils.stats;
 
@@ -43,6 +43,7 @@ public enum APRewardEnum {
 	SUPREME_COMMANDER(18, 6.25f);
 
 	private int playerRank;
+
 	private float rewardPercent;
 
 	private APRewardEnum(int playerRank, float rewardPercent) {
@@ -55,8 +56,7 @@ public enum APRewardEnum {
 	}
 
 	/**
-	 * @param playerRank
-	 *            current Abyss Rank
+	 * @param playerRank current Abyss Rank
 	 * @return AP reward percentage
 	 */
 	public static float apReward(int playerRank) {
@@ -75,4 +75,5 @@ public enum APRewardEnum {
 
 		throw new NoSuchElementException("AP reward for such rank was not found");
 	}
+
 }

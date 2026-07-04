@@ -1,23 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services;
-
-import java.util.Set;
-import java.util.concurrent.Future;
 
 import com.aionemu.gameserver.model.TaskId;
 import com.aionemu.gameserver.model.drop.DropItem;
@@ -30,16 +27,16 @@ import com.aionemu.gameserver.spawnengine.SpawnEngine;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
 
-import javolution.util.FastList;
+import java.util.Set;
+import java.util.concurrent.Future;
 
 /**
  * @author ATracer, Source, xTz
  */
 public class RespawnService {
-
-	private static final int IMMEDIATE_DECAY = 5 * 1000;
-	private static final int WITHOUT_DROP_DECAY = (int) (1.5 * 60 * 1000);
-	private static final int WITH_DROP_DECAY = 5 * 60 * 1000;
+	private static final int IMMEDIATE_DECAY = 2 * 1000;
+	private static final int WITHOUT_DROP_DECAY = 0;
+	private static final int WITH_DROP_DECAY = 2 * 60 * 1000;
 
 	/**
 	 * @param npc
@@ -49,15 +46,12 @@ public class RespawnService {
 		int decayInterval;
 		Set<DropItem> drop = DropRegistrationService.getInstance().getCurrentDropMap().get(npc.getObjectId());
 
-		if (drop == null) {
+		if(drop == null)
 			decayInterval = IMMEDIATE_DECAY;
-		}
-		else if (drop.isEmpty()) {
+		else if(drop.isEmpty())
 			decayInterval = WITHOUT_DROP_DECAY;
-		}
-		else {
+		else
 			decayInterval = WITH_DROP_DECAY;
-		}
 
 		return scheduleDecayTask(npc, decayInterval);
 	}
@@ -80,10 +74,9 @@ public class RespawnService {
 	 * @param spawnTemplate
 	 * @param instanceId
 	 */
-	private static VisibleObject respawn(SpawnTemplate spawnTemplate, final int instanceId) {
-		if (spawnTemplate.isTemporarySpawn() && !spawnTemplate.getTemporarySpawn().isInSpawnTime()) {
+	private static final VisibleObject respawn(SpawnTemplate spawnTemplate, final int instanceId) {
+		if (spawnTemplate.isTemporarySpawn() && !spawnTemplate.getTemporarySpawn().canSpawn() && !spawnTemplate.getTemporarySpawn().isInSpawnTime())
 			return null;
-		}
 
 		int worldId = spawnTemplate.getWorldId();
 		boolean instanceExists = InstanceService.isInstanceExist(worldId, instanceId);
@@ -112,6 +105,7 @@ public class RespawnService {
 				visibleObject.getController().onDelete();
 			}
 		}
+
 	}
 
 	private static class RespawnTask implements Runnable {
@@ -126,15 +120,13 @@ public class RespawnService {
 
 		@Override
 		public void run() {
-			FastList<VisibleObject> visibleObjects = spawn.getVisibleObjects();
-			if (visibleObjects != null) {
-				for (VisibleObject visibleObject : visibleObjects) {
-					if (visibleObject != null && visibleObject instanceof Npc && visibleObject.getInstanceId() == instanceId) {
-						((Npc) visibleObject).getController().cancelTask(TaskId.RESPAWN);
-					}
-				}
+			VisibleObject visibleObject = spawn.getVisibleObject();
+			if (visibleObject != null && visibleObject instanceof Npc) {
+				((Npc) visibleObject).getController().cancelTask(TaskId.RESPAWN);
 			}
 			respawn(spawn, instanceId);
 		}
+
 	}
+
 }

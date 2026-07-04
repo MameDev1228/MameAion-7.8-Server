@@ -1,26 +1,22 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.templates.housing;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 /**
  * @author Rolandas
@@ -31,14 +27,19 @@ public class HousingUseableItem extends PlaceableHouseObject {
 
 	@XmlElement(required = true)
 	protected UseItemAction action;
+
 	@XmlAttribute(required = true)
 	protected boolean owner;
+
 	@XmlAttribute
 	protected Integer cd;
+
 	@XmlAttribute(required = true)
 	protected int delay;
+
 	@XmlAttribute(name = "use_count")
 	protected Integer useCount;
+
 	@XmlAttribute(name = "required_item")
 	protected Integer requiredItem;
 
@@ -82,4 +83,5 @@ public class HousingUseableItem extends PlaceableHouseObject {
 	public byte getTypeId() {
 		return 1;
 	}
+
 }

@@ -1,33 +1,32 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.gameobjects;
-
-import org.apache.commons.lang.StringUtils;
 
 import com.aionemu.gameserver.controllers.NpcController;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.npc.NpcTemplate;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * @author ATracer
  */
-public class Servant extends SummonedObject<Creature> {
-
+public class Servant extends SummonedObject<Creature>
+{
 	private NpcObjectType objectType;
 
 	/**
@@ -37,7 +36,7 @@ public class Servant extends SummonedObject<Creature> {
 	 * @param objectTemplate
 	 * @param level
 	 */
-	public Servant(int objId, NpcController controller, SpawnTemplate spawnTemplate, NpcTemplate objectTemplate, byte level) {
+	public Servant(int objId, NpcController controller, SpawnTemplate spawnTemplate, NpcTemplate objectTemplate, int level) {
 		super(objId, controller, spawnTemplate, objectTemplate, level);
 	}
 
@@ -61,7 +60,8 @@ public class Servant extends SummonedObject<Creature> {
 	}
 
 	@Override
-	public String getMasterName() {
+  public String getMasterName() {
 		return StringUtils.EMPTY;
 	}
+
 }

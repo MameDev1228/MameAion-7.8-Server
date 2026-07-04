@@ -1,57 +1,51 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services.abyss;
-
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.utils.stats.AbyssRankEnum;
+import org.slf4j.LoggerFactory;
 
-enum AbyssSkills {
-
-	SUPREME_COMMANDER(Race.ELYOS, AbyssRankEnum.SUPREME_COMMANDER, new int[] { 11889, 11898, 11900, 11903, 11904, 11905, 11906 }),
-	COMMANDER(Race.ELYOS, AbyssRankEnum.COMMANDER, new int[] { 11888, 11898, 11900, 11903, 11904 }),
-	GREAT_GENERAL(Race.ELYOS, AbyssRankEnum.GREAT_GENERAL, new int[] { 11887, 11897, 11899, 11903 }),
-	GENERAL(Race.ELYOS, AbyssRankEnum.GENERAL, new int[] { 11886, 11896, 11899 }),
-	STAR5_OFFICER(Race.ELYOS, AbyssRankEnum.STAR5_OFFICER, new int[] { 11885, 11895 }),
-	SUPREME_COMMANDER_A(Race.ASMODIANS, AbyssRankEnum.SUPREME_COMMANDER, new int[] { 11894, 11898, 11902, 11903, 11904, 11905, 11906 }),
-	COMMANDER_A(Race.ASMODIANS, AbyssRankEnum.COMMANDER, new int[] { 11893, 11898, 11902, 11903, 11904 }),
-	GREAT_GENERAL_A(Race.ASMODIANS, AbyssRankEnum.GREAT_GENERAL, new int[] { 11892, 11897, 11901, 11903 }),
-	GENERAL_A(Race.ASMODIANS, AbyssRankEnum.GENERAL, new int[] { 11891, 11896, 11901 }),
-	STAR5_OFFICER_A(Race.ASMODIANS, AbyssRankEnum.STAR5_OFFICER, new int[] { 11890, 11895 });
-
+enum AbyssSkills
+{
+	//Elyos.
+	SUPREME_COMMANDER_E(Race.ELYOS, AbyssRankEnum.SUPREME_COMMANDER, new int[] {4846, 4852, 4855, 4858, 4861, 11889, 11898, 11900, 11903, 11904, 11905, 11906}),
+	COMMANDER_E(Race.ELYOS, AbyssRankEnum.COMMANDER, new int[] {4845, 4852, 4855, 4858, 4861, 11888, 11898, 11900, 11903, 11904}),
+	GREAT_GENERAL_E(Race.ELYOS, AbyssRankEnum.GREAT_GENERAL, new int[] {4845, 4851, 4854, 4857, 4860, 11887, 11897, 11899, 11903}),
+	GENERAL_E(Race.ELYOS, AbyssRankEnum.GENERAL, new int[] {4845, 4851, 4854, 4857, 4860, 11886, 11896, 11899}),
+	STAR5_OFFICER_E(Race.ELYOS, AbyssRankEnum.STAR5_OFFICER, new int[] {4844, 4850, 4853, 4856, 4859, 11885, 11895}),
+	STAR4_OFFICER_E(Race.ELYOS, AbyssRankEnum.STAR4_OFFICER, new int[] {4844, 4850, 4853, 4856, 4859}),
+	STAR3_OFFICER_E(Race.ELYOS, AbyssRankEnum.STAR3_OFFICER, new int[] {4844, 4850, 4853, 4856, 4859}),
+	STAR2_OFFICER_E(Race.ELYOS, AbyssRankEnum.STAR2_OFFICER, new int[] {4844, 4850, 4853, 4856, 4859}),
+	STAR1_OFFICER_E(Race.ELYOS, AbyssRankEnum.STAR1_OFFICER, new int[] {4844, 4850, 4853, 4856, 4859}),
+	
+	//Asmodians.
+	SUPREME_COMMANDER_A(Race.ASMODIANS, AbyssRankEnum.SUPREME_COMMANDER, new int[] {4849, 4852, 4855, 4858, 4861, 11894, 11898, 11902, 11903, 11904, 11905, 11906}),
+	COMMANDER_A(Race.ASMODIANS, AbyssRankEnum.COMMANDER, new int[] {4845, 4852, 4855, 4858, 4861, 11893, 11898, 11902, 11903, 11904}),
+	GREAT_GENERAL_A(Race.ASMODIANS, AbyssRankEnum.GREAT_GENERAL, new int[] {4845, 4851, 4854, 4857, 4860, 11892, 11897, 11901, 11903}),
+	GENERAL_A(Race.ASMODIANS, AbyssRankEnum.GENERAL, new int[] {4845, 4851, 4854, 4857, 4860, 11891, 11896, 11901}),
+	STAR5_OFFICER_A(Race.ASMODIANS, AbyssRankEnum.STAR5_OFFICER, new int[] {4844, 4850, 4853, 4856, 4859, 11890, 11895}),
+	STAR4_OFFICER_A(Race.ASMODIANS, AbyssRankEnum.STAR4_OFFICER, new int[] {4844, 4850, 4853, 4856, 4859}),
+	STAR3_OFFICER_A(Race.ASMODIANS, AbyssRankEnum.STAR3_OFFICER, new int[] {4844, 4850, 4853, 4856, 4859}),
+	STAR2_OFFICER_A(Race.ASMODIANS, AbyssRankEnum.STAR2_OFFICER, new int[] {4844, 4850, 4853, 4856, 4859}),
+	STAR1_OFFICER_A(Race.ASMODIANS, AbyssRankEnum.STAR1_OFFICER, new int[] {4844, 4850, 4853, 4856, 4859});
+	
 	private int[] skills;
 	private AbyssRankEnum rankenum;
 	private Race race;
-
+	
 	private AbyssSkills(Race race, AbyssRankEnum rankEnum, int[] skills) {
 		this.race = race;
 		rankenum = rankEnum;
 		this.skills = skills;
 	}
-
+	
 	public Race getRace() {
 		return race;
 	}
-
+	
 	public int[] getSkills() {
 		return skills;
 	}
-
+	
 	public static int[] getSkills(Race race, AbyssRankEnum rank) {
 		for (AbyssSkills aSkills : values()) {
 			if ((aSkills.race == race) && (aSkills.rankenum == rank)) {

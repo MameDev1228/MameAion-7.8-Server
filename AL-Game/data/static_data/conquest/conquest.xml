@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Conquest
+ -->
+<conquest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="conquest.xsd">
+	<!-- [Qubrinerk's Cubic Lab - Inggison] -->
+	<conquest_location id="1"/>
+	<!-- [Qubrinerk's Cubic Lab - Gelkmaros] -->
+	<conquest_location id="2"/>
+	
+	<!-- [Dredgion - Inggison]
+	https://aion.plaync.com/board/aionreport/view?articleId=349&page=2&categoryId=0&viewMode=thumb&size=20 -->
+	<conquest_location id="3"/>
+	<!-- [Dredgion - Gelkmaros] -->
+	<conquest_location id="4"/>
+	
+	<!-- [The Shugo Emperor's Vault - Sanctum] -->
+	<conquest_location id="5"/>
+	<!-- [The Shugo Emperor's Vault - Pandaemonium] -->
+	<conquest_location id="6"/>
+	
+	<!-- [Crimson Danaria 7.x - 81th Base]
+	https://aion.plaync.com/board/aionreport/view?articleId=322&categoryId=24 -->
+	<conquest_location id="17"/>
+	<!-- [Crimson Danaria 7.x - Silona/Pradeth Fortress] -->
+	<conquest_location id="18"/>
+	<!-- [Crimson Danaria 7.x - 81th Base Reward] -->
+	<conquest_location id="19"/>
+	<!-- [Crimson Danaria 7.x - Pradeth Battle Reward] -->
+	<conquest_location id="20"/>
+	
+	<!-- 레이드 몬스터 수나야카
+	레이드 몬스터 수나야카 편집
+	요일별 정해진 시간이 되면, 사령관 실에 수나야카가 등장한다.
+	수나야카는 대규모 인원이 모여서 공략해야 하는 몬스터로, 공략 성공 시 신규 늘어나는 무기와 신규 머리장식 등 좋은 보상을 획득할 수 있다
+	http://aion.power.plaync.com/wiki/%ED%8B%B0%EC%95%84%EB%A7%88%EB%9E%80%ED%83%80%EC%9D%98+%EB%88%88 -->
+	<!-- [Berserker/Governor Sunayaka] -->
+	<conquest_location id="24"/>
+	<conquest_location id="25"/>
+</conquest>

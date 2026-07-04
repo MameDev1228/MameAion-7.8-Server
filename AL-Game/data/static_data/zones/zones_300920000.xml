@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zones>
+	<zone mapid="300920000" name="BESHMUNDIRS_WALK_300920000" area_type="POLYGON" zone_type="SUB" priority="1" flags="0">
+        <points bottom="160.000000" top="300.000000">
+			<point x="1251.980591" y="675.453552"/>
+			<point x="1252.773926" y="911.575684"/>
+			<point x="1350.273926" y="911.575684"/>
+			<point x="1349.480591" y="675.453552"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="GATE_OF_REPOSE_300920000" area_type="POLYGON" zone_type="SUB" priority="2" flags="0">
+        <points bottom="160.000000" top="300.000000">
+			<point x="1143.980591" y="709.650696"/>
+			<point x="1254.980591" y="709.650696"/>
+			<point x="1254.480591" y="784.650696"/>
+			<point x="1143.980591" y="784.650696"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="TEMPLE_OF_ETERNITY_ENTRANCE_300920000" area_type="POLYGON" zone_type="SUB" priority="1" flags="0">
+        <points bottom="249.999969" top="550.000000">
+			<point x="1214.017456" y="1165.257813"/>
+			<point x="1195.756836" y="1180.637817"/>
+			<point x="1217.755493" y="1209.263550"/>
+			<point x="1235.992920" y="1195.100952"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="CRYPT_OF_THE_VANQUISHED_300920000" area_type="POLYGON" zone_type="SUB" priority="3" flags="0">
+        <points bottom="160.000000" top="300.000000">
+			<point x="854.185303" y="920.772034"/>
+			<point x="910.822937" y="840.973145"/>
+			<point x="1018.238464" y="840.973145"/>
+			<point x="1018.238464" y="1103.973145"/>
+			<point x="853.787109" y="1105.715088"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="VAULT_OF_THE_CONQUERORS_300920000" area_type="POLYGON" zone_type="SUB" priority="3" flags="0">
+        <points bottom="160.000000" top="300.000000">
+			<point x="857.476807" y="468.150696"/>
+			<point x="856.895630" y="731.693909"/>
+			<point x="1017.629578" y="733.060425"/>
+			<point x="1017.980530" y="468.150696"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="TWISTING_PASSAGE_300920000" area_type="POLYGON" zone_type="SUB" priority="4" flags="0">
+        <points bottom="160.000000" top="300.000000">
+			<point x="1016.356812" y="729.967590"/>
+			<point x="914.065674" y="729.708435"/>
+			<point x="914.132080" y="842.091309"/>
+			<point x="1031.775146" y="843.486816"/>
+			<point x="1031.411377" y="885.954529"/>
+			<point x="1074.516357" y="885.806641"/>
+			<point x="1076.357788" y="770.966248"/>
+			<point x="1145.980469" y="770.650696"/>
+			<point x="1145.980469" y="697.011963"/>
+			<point x="1040.980469" y="697.011963"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="EVERLASTING_LINK_300920000" area_type="POLYGON" zone_type="SUB" priority="1" flags="0">
+        <points bottom="160.000000" top="300.000000">
+			<point x="1030.101685" y="884.645325"/>
+			<point x="1029.440430" y="951.138489"/>
+			<point x="1078.002319" y="951.427368"/>
+			<point x="1078.148071" y="884.733276"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="FORGOTTEN_STOREROOM_300920000" area_type="POLYGON" zone_type="SUB" priority="2" flags="0">
+        <points bottom="160.100006" top="260.100006">
+			<point x="1074.259399" y="837.219727"/>
+			<point x="1074.610107" y="886.062378"/>
+			<point x="1095.668457" y="900.306335"/>
+			<point x="1110.091553" y="1040.351685"/>
+			<point x="1286.608765" y="1039.364258"/>
+			<point x="1286.480103" y="917.848022"/>
+			<point x="1250.346313" y="917.380005"/>
+			<point x="1250.234985" y="897.137207"/>
+			<point x="1159.118774" y="897.902954"/>
+			<point x="1158.251953" y="878.626343"/>
+			<point x="1117.531128" y="837.405762"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="COURTYARD_OF_ETERNITY_300920000" area_type="POLYGON" zone_type="SUB" priority="2" flags="0">
+        <points bottom="250.000000" top="550.000000">
+			<point x="1204.776978" y="1217.603271"/>
+			<point x="1246.699463" y="1185.208496"/>
+			<point x="1331.497314" y="1155.672363"/>
+			<point x="1482.990234" y="1238.564575"/>
+			<point x="1443.926025" y="1485.335938"/>
+			<point x="1217.601807" y="1478.214600"/>
+			<point x="1143.275635" y="1309.549316"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="MEDITATION_CHAMBER_300920000" area_type="POLYGON" zone_type="SUB" priority="1" flags="0">
+        <points bottom="250.000000" top="550.000000">
+			<point x="1284.446899" y="1397.943481"/>
+			<point x="1250.222534" y="1385.361206"/>
+			<point x="1217.904541" y="1425.774048"/>
+			<point x="1225.219360" y="1444.786255"/>
+			<point x="1238.631958" y="1457.473389"/>
+			<point x="1259.336548" y="1460.300781"/>
+			<point x="1280.471069" y="1451.093628"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="CONTEMPLATION_CHAMBER_300920000" area_type="POLYGON" zone_type="SUB" priority="1" flags="0">
+        <points bottom="250.000000" top="550.000000">
+			<point x="1290.896851" y="1400.313354"/>
+			<point x="1328.562256" y="1396.965332"/>
+			<point x="1347.185791" y="1445.302612"/>
+			<point x="1332.747314" y="1462.461304"/>
+			<point x="1315.379395" y="1468.529663"/>
+			<point x="1297.383667" y="1465.181519"/>
+			<point x="1280.434204" y="1450.743286"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="SUPPLICATION_CHAMBER_300920000" area_type="POLYGON" zone_type="SUB" priority="1" flags="0">
+        <points bottom="250.000000" top="550.000000">
+			<point x="1398.616821" y="1317.853394"/>
+			<point x="1385.709595" y="1353.300171"/>
+			<point x="1427.898926" y="1384.123413"/>
+			<point x="1449.089966" y="1374.876465"/>
+			<point x="1460.514404" y="1357.135498"/>
+			<point x="1458.858398" y="1338.832275"/>
+			<point x="1451.401733" y="1321.898926"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="PETITION_CHAMBER_300920000" area_type="POLYGON" zone_type="SUB" priority="1" flags="0">
+        <points bottom="250.000000" top="550.000000">
+			<point x="1397.123657" y="1275.604126"/>
+			<point x="1399.628052" y="1311.821533"/>
+			<point x="1452.027710" y="1321.261108"/>
+			<point x="1464.934937" y="1305.464233"/>
+			<point x="1468.787842" y="1286.007080"/>
+			<point x="1462.045288" y="1267.705688"/>
+			<point x="1444.707153" y="1254.798462"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="RITUAL_CHAMBER_300920000" area_type="POLYGON" zone_type="SUB" priority="1" flags="0">
+        <points bottom="250.000000" top="550.000000">
+			<point x="1336.446899" y="1409.923462"/>
+			<point x="1348.681396" y="1383.678711"/>
+			<point x="1369.447998" y="1368.576538"/>
+			<point x="1396.845459" y="1364.124634"/>
+			<point x="1430.044556" y="1406.123535"/>
+			<point x="1423.844727" y="1423.923096"/>
+			<point x="1436.244507" y="1440.122803"/>
+			<point x="1436.844482" y="1459.322266"/>
+			<point x="1428.844727" y="1469.922119"/>
+			<point x="1413.045044" y="1473.921997"/>
+			<point x="1398.045532" y="1469.121948"/>
+			<point x="1386.645630" y="1451.922485"/>
+			<point x="1367.846191" y="1452.722412"/>
+		</points>
+	</zone>
+	<zone mapid="300920000" name="PRISON_OF_ICE_300920000" area_type="POLYGON" zone_type="SUB" priority="1" flags="0">
+        <points bottom="200.000000" top="300.000000">
+			<point x="789.388306" y="1270.273071"/>
+			<point x="898.856689" y="1270.102051"/>
+			<point x="899.360596" y="1380.901978"/>
+			<point x="789.269165" y="1380.560059"/>
+		</points>
+	</zone>
+</zones>

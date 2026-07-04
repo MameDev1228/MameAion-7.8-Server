@@ -1,30 +1,29 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.serverpackets;
+
 
 import com.aionemu.gameserver.controllers.RVController;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
-
 import javolution.util.FastMap;
 
 /**
  * @author Sweetkr
- * @modified -Enomine-
  */
 public class SM_RIFT_ANNOUNCE extends AionServerPacket {
 
@@ -76,21 +75,21 @@ public class SM_RIFT_ANNOUNCE extends AionServerPacket {
 	@Override
 	protected void writeImpl(AionConnection con) {
 		switch (actionId) {
-			case 0: // announce
-				writeH(0x57);// 4.7 // old -->writeH(0x19); // 0x19 // 4.9 = 57
+			case 0:
+				writeH(0x41); //7.5
 				writeC(actionId);
 				for (int value : rifts.values()) {
 					writeD(value);
 				}
-				break;
+			break;
 			case 1:
-				writeH(0x09); // 0x09
+				writeH(0x09);
 				writeC(actionId);
 				writeD(gelkmaros);
 				writeD(inggison);
-				break;
+			break;
 			case 2:
-				writeH(0x39); // 0x39
+				writeH(0x33); //7.5
 				writeC(actionId);
 				writeD(rift.getOwner().getObjectId());
 				writeD(rift.getMaxEntries());
@@ -100,32 +99,35 @@ public class SM_RIFT_ANNOUNCE extends AionServerPacket {
 				writeF(rift.getOwner().getX());
 				writeF(rift.getOwner().getY());
 				writeF(rift.getOwner().getZ());
-				writeC(rift.isVortex() ? 1 : 0); // red | blue
-				writeC(rift.isMaster() ? 1 : 0); // display | hide
+				writeC(0);
+				writeC(rift.isMaster() ? 1 : 0);
 				writeD(rift.getOwner().getWorldId());
-				break;
+				writeD(rift.getAbyssPoint());
+				writeD(0); //7.5
+				writeD(0); //7.5
+			break;
 			case 3:
-				writeH(0x15);
-				writeC(actionId);
-				writeD(rift.getOwner().getObjectId());
-				writeD(rift.getUsedEntries());
-				writeD(rift.getRemainTime());
-				writeC(rift.isVortex() ? 1 : 0); // red | blue
-				writeC(rift.isMaster() ? 1 : 0); // display | hide
-				break;
+				writeH(0x13);//7.5
+                writeC(actionId);
+                writeD(rift.getOwner().getObjectId());
+                writeD(rift.getUsedEntries());
+                writeD(rift.getRemainTime());
+				writeC(0);
+                writeC(rift.isMaster() ? 1 : 0);
+				writeD(rift.getAbyssPoint());
+			break;
 			case 4:
 				writeH(0x07);
 				writeC(actionId);
 				writeD(objectId);
-				writeC(rift.isVortex() ? 1 : 0); // red | blue
-				writeC(rift.isMaster() ? 1 : 0); // display | hide
-				break;
+				writeC(0);
+                writeC(rift.isMaster() ? 1 : 0);
+			break;
 			case 5:
-				writeH(0x05);
-				writeC(actionId);
-				writeD(0x00); // 0x00
-				break;
-
+                writeH(0x05);
+                writeC(actionId);
+                writeD(0x00);
+            break;
 		}
 	}
 }

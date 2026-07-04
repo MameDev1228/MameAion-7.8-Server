@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Crimson Katalam 7.x
+	Spawn By Encom
+ -->
+<spawns>
+    <spawn_map map_id="800030000">
+		<!-- [Crimson Danaria 7.x - 81th Base]
+		https://aion.plaync.com/board/aionreport/view?articleId=322&categoryId=24 -->
+		<conquest_spawn id="17">
+			<conquest_type ostate="CONQUEST">
+				<spawn npc_id="839813" respawn_time="295">
+					<spot h="18" z="143.06139" y="2687.6633" x="319.77606"/>
+				</spawn>
+				<spawn npc_id="839814" respawn_time="295">
+					<spot h="92" z="282.47684" y="375.88126" x="431.00003"/>
+				</spawn>
+				<!-- Crimson Katalam To 81th Base [Elyos] -->
+				<spawn npc_id="703849" respawn_time="295">
+					<spot h="36" z="143.31596" y="2683.3245" x="338.74954"/>
+				</spawn>
+				<!-- Crimson Katalam To 81th Base [Asmodians] -->
+				<spawn npc_id="703851" respawn_time="295">
+					<spot h="91" z="282.5171" y="379.08447" x="439.09955"/>
+				</spawn>
+			</conquest_type>
+			<conquest_type ostate="PEACE">
+			</conquest_type>
+		</conquest_spawn>
+		
+		<!-- [Crimson Danaria 7.x - Silona/Pradeth Fortress] -->
+		<conquest_spawn id="18">
+			<conquest_type ostate="CONQUEST">
+				<spawn npc_id="839826" respawn_time="295">
+					<spot x="224.1608" y="2761.8086" z="142.94589" h="0"/>
+				</spawn>
+				<spawn npc_id="839827" respawn_time="295">
+					<spot x="310.41498" y="404.49182" z="274.03073" h="70"/>
+				</spawn>
+				<!-- LDF5A_6011_DirectPortal_In_L -->
+				<spawn npc_id="703894" respawn_time="295">
+					<spot x="207.63144" y="2752.563" z="142.82721" h="20"/>
+				</spawn>
+				<!-- LDF5A_6011_DirectPortal_In_D -->
+				<spawn npc_id="703895" respawn_time="295">
+					<spot x="309.98856" y="410.50595" z="274.15518" h="68"/>
+				</spawn>
+				<!-- LDF5A_6021_DirectPortal_In_L -->
+				<spawn npc_id="703898" respawn_time="295">
+					<spot x="203.89066" y="2769.8855" z="142.8273" h="105"/>
+				</spawn>
+				<!-- LDF5A_6021_DirectPortal_In_D -->
+				<spawn npc_id="703899" respawn_time="295">
+					<spot x="314.92032" y="400.19247" z="274.0" h="68"/>
+				</spawn>
+			</conquest_type>
+			<conquest_type ostate="PEACE">
+			</conquest_type>
+		</conquest_spawn>
+    </spawn_map>
+</spawns>

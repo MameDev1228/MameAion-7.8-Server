@@ -1,44 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.dataholders;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.templates.portal.PortalDialog;
 import com.aionemu.gameserver.model.templates.portal.PortalPath;
 import com.aionemu.gameserver.model.templates.portal.PortalScroll;
 import com.aionemu.gameserver.model.templates.portal.PortalUse;
-
 import gnu.trove.map.hash.TIntObjectHashMap;
 
-/**
- * @author xTz
- */
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "portalUse", "portalDialog", "portalScroll" })
 @XmlRootElement(name = "portal_templates2")
@@ -46,14 +20,19 @@ public class Portal2Data {
 
 	@XmlElement(name = "portal_use")
 	protected List<PortalUse> portalUse;
+
 	@XmlElement(name = "portal_dialog")
 	protected List<PortalDialog> portalDialog;
+
 	@XmlElement(name = "portal_scroll")
 	protected List<PortalScroll> portalScroll;
+
 	@XmlTransient
 	private TIntObjectHashMap<PortalUse> portalUses = new TIntObjectHashMap<PortalUse>();
+
 	@XmlTransient
 	private TIntObjectHashMap<PortalDialog> portalDialogs = new TIntObjectHashMap<PortalDialog>();
+
 	@XmlTransient
 	private Map<String, PortalScroll> portalScrolls = new HashMap<String, PortalScroll>();
 

@@ -1,33 +1,34 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * This file is part of aion-lightning <aion-lightning.org>.
+ * 
+ * aion-lightning is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * aion-lightning is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.utils.collections;
 
+import com.aionemu.commons.utils.internal.chmv8.PlatformDependent;
+
 import java.io.Serializable;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Rolandas
  */
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class LastUsedCache<K extends Comparable, V> implements ICache<K, V>, Serializable {
 
 	private static final long serialVersionUID = 3674312987828041877L;
-	Map<K, Item> map = new ConcurrentHashMap<K, Item>();
+	Map<K, Item> map = PlatformDependent.newConcurrentHashMap();
 	Item startItem = new Item();
 	Item endItem = new Item();
 	int maxSize;
@@ -42,7 +43,6 @@ public class LastUsedCache<K extends Comparable, V> implements ICache<K, V>, Ser
 
 		public Item() {
 		}
-
 		public Comparable key;
 		public Object value;
 		public Item previous;
@@ -107,13 +107,11 @@ public class LastUsedCache<K extends Comparable, V> implements ICache<K, V>, Ser
 	@Override
 	public V get(K key) {
 		Item cur = map.get(key);
-		if (cur == null) {
+		if (cur == null)
 			return null;
-		}
 
-		if (cur != startItem.next) {
+		if (cur != startItem.next)
 			moveToHead(cur);
-		}
 		return (V) cur.value;
 	}
 
@@ -143,9 +141,8 @@ public class LastUsedCache<K extends Comparable, V> implements ICache<K, V>, Ser
 	@Override
 	public void remove(K key) {
 		Item cur = map.get(key);
-		if (cur == null) {
+		if (cur == null)
 			return;
-		}
 		map.remove(key);
 		removeItem(cur);
 	}

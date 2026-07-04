@@ -1,27 +1,19 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-emu is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-emu is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * aion-emu. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.world.knownlist;
-
-import java.util.Collections;
-import java.util.Map;
-import java.util.concurrent.locks.ReentrantLock;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.configs.main.SecurityConfig;
 import com.aionemu.gameserver.model.gameobjects.AionObject;
@@ -31,8 +23,13 @@ import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.world.MapRegion;
-
 import javolution.util.FastMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Collections;
+import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * KnownList.
@@ -42,28 +39,33 @@ import javolution.util.FastMap;
  */
 public class KnownList {
 
-	@SuppressWarnings("unused")
 	private static final Logger log = LoggerFactory.getLogger(KnownList.class);
+
 	/**
 	 * Owner of this KnownList.
 	 */
 	protected final VisibleObject owner;
+
 	/**
 	 * List of objects that this KnownList owner known
 	 */
 	protected final FastMap<Integer, VisibleObject> knownObjects = new FastMap<Integer, VisibleObject>().shared();
+
 	/**
 	 * List of player that this KnownList owner known
 	 */
 	protected volatile FastMap<Integer, Player> knownPlayers;
+
 	/**
 	 * List of objects that this KnownList owner known
 	 */
 	protected final FastMap<Integer, VisibleObject> visualObjects = new FastMap<Integer, VisibleObject>().shared();
+
 	/**
 	 * List of player that this KnownList owner known
 	 */
 	protected volatile FastMap<Integer, Player> visualPlayers;
+
 	private ReentrantLock lock = new ReentrantLock();
 
 	/**
@@ -120,9 +122,8 @@ public class KnownList {
 	 * @param object
 	 */
 	protected boolean add(VisibleObject object) {
-		if (!isAwareOf(object)) {
+		if (!isAwareOf(object))
 			return false;
-		}
 
 		if (knownObjects.put(object.getObjectId(), object) == null) {
 			if (object instanceof Player) {
@@ -168,18 +169,16 @@ public class KnownList {
 		 * object was known.
 		 */
 		if (knownObjects.remove(object.getObjectId()) != null) {
-			if (knownPlayers != null) {
+			if (knownPlayers != null)
 				knownPlayers.remove(object.getObjectId());
-			}
 			delVisualObject(object, isOutOfRange);
 		}
 	}
 
 	public void delVisualObject(VisibleObject object, boolean isOutOfRange) {
 		if (visualObjects.remove(object.getObjectId()) != null) {
-			if (visualPlayers != null) {
+			if (visualPlayers != null)
 				visualPlayers.remove(object.getObjectId());
-			}
 			owner.getController().notSee(object, isOutOfRange);
 		}
 	}
@@ -200,9 +199,8 @@ public class KnownList {
 	 * Find objects that are in visibility range.
 	 */
 	protected void findVisibleObjects() {
-		if (owner == null || !owner.isSpawned()) {
+		if (owner == null || !owner.isSpawned())
 			return;
-		}
 
 		MapRegion[] regions = owner.getActiveRegion().getNeighbours();
 		for (int i = 0; i < regions.length; i++) {
@@ -210,20 +208,17 @@ public class KnownList {
 			FastMap<Integer, VisibleObject> objects = r.getObjects();
 			for (FastMap.Entry<Integer, VisibleObject> e = objects.head(), mapEnd = objects.tail(); (e = e.getNext()) != mapEnd;) {
 				VisibleObject newObject = e.getValue();
-				if (newObject == owner || newObject == null) {
+				if (newObject == owner || newObject == null)
 					continue;
-				}
 
 				if (!isAwareOf(newObject)) {
 					continue;
 				}
-				if (knownObjects.containsKey(newObject.getObjectId())) {
+				if (knownObjects.containsKey(newObject.getObjectId()))
 					continue;
-				}
 
-				if (!checkObjectInRange(newObject) && !newObject.getKnownList().checkReversedObjectInRange(owner)) {
+				if (!checkObjectInRange(newObject) && !newObject.getKnownList().checkReversedObjectInRange(owner))
 					continue;
-				}
 
 				/**
 				 * New object is not known.
@@ -236,7 +231,8 @@ public class KnownList {
 	}
 
 	/**
-	 * Whether knownlist owner aware of found object (should be kept in knownlist)
+	 * Whether knownlist owner aware of found object (should be kept in
+	 * knownlist)
 	 *
 	 * @param newObject
 	 * @return
@@ -247,15 +243,15 @@ public class KnownList {
 
 	protected boolean checkObjectInRange(VisibleObject newObject) {
 		// check if Z distance is greater than maxZvisibleDistance
-		if (Math.abs(owner.getZ() - newObject.getZ()) > owner.getMaxZVisibleDistance()) {
+		if (Math.abs(owner.getZ() - newObject.getZ()) > owner.getMaxZVisibleDistance())
 			return false;
-		}
 
 		return MathUtil.isInRange(owner, newObject, owner.getVisibilityDistance());
 	}
 
 	/**
-	 * Check can be overriden if new object has different known range and that value should be used
+	 * Check can be overriden if new object has different known range and that
+	 * value should be used
 	 *
 	 * @param newObject
 	 * @return
@@ -274,15 +270,14 @@ public class KnownList {
 			for (FastMap.Entry<Integer, VisibleObject> e = knownObjects.head(), mapEnd = knownObjects.tail(); (e = e.getNext()) != mapEnd;) {
 				VisibleObject newObject = e.getValue();
 				if (newObject instanceof Npc) {
-					if ((++counter) == iterationLimit) {
+					if ((++counter) == iterationLimit)
 						break;
-					}
 					visitor.visit((Npc) newObject);
 				}
 			}
 		}
 		catch (Exception ex) {
-			// log.error("Exception when running visitor on all npcs" + ex);
+			log.error("Exception when running visitor on all npcs" + ex);
 		}
 		return counter;
 	}
@@ -297,15 +292,14 @@ public class KnownList {
 			for (FastMap.Entry<Integer, VisibleObject> e = knownObjects.head(), mapEnd = knownObjects.tail(); (e = e.getNext()) != mapEnd;) {
 				VisibleObject newObject = e.getValue();
 				if (newObject instanceof Npc) {
-					if ((++counter) == iterationLimit) {
+					if ((++counter) == iterationLimit)
 						break;
-					}
 					visitor.visit((Npc) newObject, owner);
 				}
 			}
 		}
 		catch (Exception ex) {
-			// log.error("Exception when running visitor on all npcs" + ex);
+			log.error("Exception when running visitor on all npcs" + ex);
 		}
 		return counter;
 	}
@@ -323,7 +317,7 @@ public class KnownList {
 			}
 		}
 		catch (Exception ex) {
-			// log.error("Exception when running visitor on all players" + ex);
+			log.error("Exception when running visitor on all players" + ex);
 		}
 	}
 
@@ -337,7 +331,7 @@ public class KnownList {
 			}
 		}
 		catch (Exception ex) {
-			// log.error("Exception when running visitor on all objects" + ex);
+			log.error("Exception when running visitor on all objects" + ex);
 		}
 	}
 
@@ -350,11 +344,11 @@ public class KnownList {
 	}
 
 	public Map<Integer, Player> getKnownPlayers() {
-		return knownPlayers != null ? knownPlayers : Collections.<Integer, Player> emptyMap();
+		return knownPlayers != null ? knownPlayers : Collections.<Integer, Player>emptyMap();
 	}
 
 	public Map<Integer, Player> getVisiblePlayers() {
-		return visualPlayers != null ? visualPlayers : Collections.<Integer, Player> emptyMap();
+		return visualPlayers != null ? visualPlayers : Collections.<Integer, Player>emptyMap();
 	}
 
 	final void checkKnownPlayersInitialized() {
@@ -380,4 +374,5 @@ public class KnownList {
 	public VisibleObject getObject(int targetObjectId) {
 		return this.knownObjects.get(targetObjectId);
 	}
+
 }

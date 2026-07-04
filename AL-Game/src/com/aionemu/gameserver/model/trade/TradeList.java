@@ -1,25 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.trade;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -30,18 +25,28 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.trade.PricesService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author ATracer modified by Wakizashi
  */
 public class TradeList {
 
 	private int sellerObjId;
+
 	private List<TradeItem> tradeItems = new ArrayList<TradeItem>();
+
 	private long requiredKinah;
+
 	private int requiredAp;
+
 	private Map<Integer, Long> requiredItems = new HashMap<Integer, Long>();
 
 	public TradeList() {
+
 	}
 
 	public TradeList(int sellerObjId) {
@@ -88,7 +93,8 @@ public class TradeList {
 		requiredKinah = 0;
 
 		for (TradeItem tradeItem : tradeItems) {
-			requiredKinah += PricesService.getKinahForBuy(tradeItem.getItemTemplate().getPrice(), player.getRace()) * tradeItem.getCount() * modifier / 100;
+			requiredKinah += PricesService.getKinahForBuy(tradeItem.getItemTemplate().getPrice(), player.getRace())
+				* tradeItem.getCount() * modifier / 100;
 		}
 
 		return availableKinah >= requiredKinah;
@@ -105,28 +111,23 @@ public class TradeList {
 
 		for (TradeItem tradeItem : tradeItems) {
 			Acquisition aquisition = tradeItem.getItemTemplate().getAcquisition();
-			if (aquisition == null || aquisition.getType() != AcquisitionType.ABYSS && aquisition.getType() != AcquisitionType.AP) {
+			if (aquisition == null || aquisition.getType() != AcquisitionType.ABYSS
+				&& aquisition.getType() != AcquisitionType.AP)
 				continue;
-			}
 
 			requiredAp += aquisition.getRequiredAp() * tradeItem.getCount();
 
 			int abysItemId = aquisition.getItemId();
 			if (abysItemId == 0) // no abyss required item (medals, etc))
-			{
 				continue;
-			}
-
+			
 			long alreadyAddedCount = 0;
-			if (requiredItems.containsKey(abysItemId)) {
+			if (requiredItems.containsKey(abysItemId))
 				alreadyAddedCount = requiredItems.get(abysItemId);
-			}
-			if (alreadyAddedCount == 0) {
+			if (alreadyAddedCount == 0)
 				requiredItems.put(abysItemId, (long) aquisition.getItemCount());
-			}
-			else {
+			else
 				requiredItems.put(abysItemId, alreadyAddedCount + aquisition.getItemCount() * tradeItem.getCount());
-			}
 		}
 
 		if (ap < requiredAp) {
@@ -137,9 +138,8 @@ public class TradeList {
 
 		for (Integer itemId : requiredItems.keySet()) {
 			long count = player.getInventory().getItemCountByItemId(itemId);
-			if (requiredItems.get(itemId) < 1 || count < requiredItems.get(itemId)) {
+			if (requiredItems.get(itemId) < 1 || count < requiredItems.get(itemId))
 				return false;
-			}
 		}
 
 		return true;
@@ -153,28 +153,24 @@ public class TradeList {
 
 		for (TradeItem tradeItem : tradeItems) {
 			Acquisition aquisition = tradeItem.getItemTemplate().getAcquisition();
-			if (aquisition == null || aquisition.getType() != AcquisitionType.REWARD && aquisition.getType() != AcquisitionType.COUPON) {
+			if (aquisition == null || aquisition.getType() != AcquisitionType.REWARD
+				&& aquisition.getType() != AcquisitionType.COUPON)
 				continue;
-			}
 
 			int itemId = aquisition.getItemId();
 			long alreadyAddedCount = 0;
-			if (requiredItems.containsKey(itemId)) {
+			if (requiredItems.containsKey(itemId))
 				alreadyAddedCount = requiredItems.get(itemId);
-			}
-			if (alreadyAddedCount == 0) {
+			if (alreadyAddedCount == 0)
 				requiredItems.put(itemId, aquisition.getItemCount() * tradeItem.getCount());
-			}
-			else {
+			else
 				requiredItems.put(itemId, alreadyAddedCount + aquisition.getItemCount() * tradeItem.getCount());
-			}
 		}
 
 		for (Integer itemId : requiredItems.keySet()) {
 			long count = player.getInventory().getItemCountByItemId(itemId);
-			if (requiredItems.get(itemId) < 1 || count < requiredItems.get(itemId)) {
+			if (requiredItems.get(itemId) < 1 || count < requiredItems.get(itemId))
 				return false;
-			}
 		}
 
 		return true;

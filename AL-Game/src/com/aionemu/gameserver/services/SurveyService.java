@@ -1,25 +1,4 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.services;
-
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.cache.HTMLCache;
@@ -36,9 +15,12 @@ import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
-
 import javolution.util.FastList;
 import javolution.util.FastMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * @author KID
@@ -51,9 +33,8 @@ public class SurveyService {
 
 	public boolean isActive(Player player, int survId) {
 		boolean avail = this.activeItems.containsKey(survId);
-		if (avail) {
+		if (avail)
 			this.requestSurvey(player, survId);
-		}
 
 		return avail;
 	}
@@ -88,20 +69,16 @@ public class SurveyService {
 			return;
 		}
 		if (DAOManager.getDAO(SurveyControllerDAO.class).useItem(item.uniqueId)) {
-
+			
 			ItemService.addItem(player, item.itemId, item.count);
 			if (item.itemId == ItemId.KINAH.value()) // You received %num0 Kinah as reward for the survey.
-			{
 				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300945, item.count));
-			}
 			else if (item.count == 1) // You received %0 item as reward for the survey.
-			{
 				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300945, new DescriptionId(template.getNameId())));
-			}
-			else // You received %num1 %0 items as reward for the survey.
-			{
-				PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1300946, item.count, new DescriptionId(template.getNameId())));
-			}
+			else
+				// You received %num1 %0 items as reward for the survey.
+				PacketSendUtility.sendPacket(player,
+					new SM_SYSTEM_MESSAGE(1300946, item.count, new DescriptionId(template.getNameId())));
 
 			template = null;
 			activeItems.remove(survId);
@@ -110,18 +87,16 @@ public class SurveyService {
 
 	public void taskUpdate() {
 		List<SurveyItem> newList = DAOManager.getDAO(SurveyControllerDAO.class).getAllNew();
-		if (newList.size() == 0) {
+		if (newList.size() == 0)
 			return;
-		}
 
 		List<Integer> players = FastList.newInstance();
 		int cnt = 0;
 		for (SurveyItem item : newList) {
 			activeItems.put(item.uniqueId, item);
 			cnt++;
-			if (!players.contains(item.ownerId)) {
+			if (!players.contains(item.ownerId))
 				players.add(item.ownerId);
-			}
 		}
 		log.info("[SurveyController] found new " + cnt + " items for " + players.size() + " players.");
 		for (int ownerId : players) {
@@ -134,9 +109,8 @@ public class SurveyService {
 
 	public void showAvailable(Player player) {
 		for (SurveyItem item : this.activeItems.values()) {
-			if (item.ownerId != player.getObjectId()) {
+			if (item.ownerId != player.getObjectId())
 				continue;
-			}
 
 			String context = htmlTemplate;
 			context = context.replace("%itemid%", item.itemId + "");

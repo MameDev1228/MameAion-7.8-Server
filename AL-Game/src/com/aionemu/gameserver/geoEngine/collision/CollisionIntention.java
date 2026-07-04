@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.geoEngine.collision;
 
@@ -22,7 +22,6 @@ import java.util.EnumSet;
  * @author Rolandas
  */
 public enum CollisionIntention {
-
 	NONE(0),
 	PHYSICAL(1 << 0), // Physical collision
 	MATERIAL(1 << 1), // Mesh materials with skills
@@ -50,9 +49,8 @@ public enum CollisionIntention {
 		EnumSet<CollisionIntention> result = EnumSet.noneOf(CollisionIntention.class);
 		for (CollisionIntention m : CollisionIntention.values()) {
 			if ((value & m.getId()) == m.getId()) {
-				if (m == NONE || m == ALL) {
+				if (m == NONE || m == ALL)
 					continue;
-				}
 				result.add(m);
 			}
 		}
@@ -62,17 +60,15 @@ public enum CollisionIntention {
 	public static String toString(int value) {
 		String str = "";
 		for (CollisionIntention m : CollisionIntention.values()) {
-			if (m == NONE || m == ALL) {
+			if (m == NONE || m == ALL)
 				continue;
-			}
 			if ((value & m.getId()) == m.getId()) {
 				str += m.toString();
 				str += ", ";
 			}
 		}
-		if (str.length() > 0) {
+		if (str.length() > 0)
 			str = str.substring(0, str.length() - 2);
-		}
 		return str;
 	}
 }

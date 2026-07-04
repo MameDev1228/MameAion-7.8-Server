@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.tasks;
 
@@ -33,23 +33,24 @@ public class TaskFromDB {
 
 	/**
 	 * Constructor
-	 *
+	 * 
 	 * @param id
-	 *            : int
+	 *          : int
 	 * @param name
-	 *            : String
+	 *          : String
 	 * @param type
-	 *            : String
+	 *          : String
 	 * @param lastActivation
-	 *            : Timestamp
+	 *          : Timestamp
 	 * @param startTime
-	 *            : String
+	 *          : String
 	 * @param delay
-	 *            : int
+	 *          : int
 	 * @param param
-	 *            : String
+	 *          : String
 	 */
-	public TaskFromDB(int id, String name, String type, Timestamp lastActivation, String startTime, int delay, String param) {
+	public TaskFromDB(int id, String name, String type, Timestamp lastActivation, String startTime, int delay,
+		String param) {
 		this.id = id;
 		this.name = name;
 		this.type = type;
@@ -57,17 +58,15 @@ public class TaskFromDB {
 		this.startTime = startTime;
 		this.delay = delay;
 
-		if (param != null) {
+		if (param != null)
 			this.params = param.split(" ");
-		}
-		else {
+		else
 			this.params = new String[0];
-		}
 	}
 
 	/**
 	 * Task's id
-	 *
+	 * 
 	 * @return int
 	 */
 	public int getId() {
@@ -76,7 +75,7 @@ public class TaskFromDB {
 
 	/**
 	 * Task's name
-	 *
+	 * 
 	 * @return String
 	 */
 	public String getName() {
@@ -85,7 +84,7 @@ public class TaskFromDB {
 
 	/**
 	 * Task's type : - FIXED_IN_TIME (HH:MM:SS)
-	 *
+	 * 
 	 * @return String
 	 */
 	public String getType() {
@@ -94,7 +93,7 @@ public class TaskFromDB {
 
 	/**
 	 * Task's last activation
-	 *
+	 * 
 	 * @return Timestamp
 	 */
 	public Timestamp getLastActivation() {
@@ -103,7 +102,7 @@ public class TaskFromDB {
 
 	/**
 	 * Task's starting time (HH:MM:SS format)
-	 *
+	 * 
 	 * @return String
 	 */
 	public String getStartTime() {
@@ -112,7 +111,7 @@ public class TaskFromDB {
 
 	/**
 	 * Task's delay
-	 *
+	 * 
 	 * @return int
 	 */
 	public int getDelay() {
@@ -121,7 +120,7 @@ public class TaskFromDB {
 
 	/**
 	 * Task's param(s)
-	 *
+	 * 
 	 * @return String[]
 	 */
 	public String[] getParams() {

@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.utils3d;
 
@@ -22,6 +22,7 @@ package com.aionemu.gameserver.model.utils3d;
 public class Matrix3D {
 
 	public static final double[][] IDENTITY = new double[][] { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
+
 	private double[][] data;
 
 	public Matrix3D() {
@@ -50,31 +51,25 @@ public class Matrix3D {
 			throw new RuntimeException("Invalid column dimension");
 		}
 		Matrix3D B = new Matrix3D(data);
-		for (int j = 0; j < 3; j++) {
+		for (int j = 0; j < 3; j++)
 			B.data[j][i] = newColumn[j];
-		}
 		return B;
 	}
 
 	public Matrix3D multiply(Matrix3D B) {
 		Matrix3D C = new Matrix3D();
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				for (int k = 0; k < 3; k++) {
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 3; j++)
+				for (int k = 0; k < 3; k++)
 					C.data[i][j] += (data[i][k] * B.data[k][j]);
-				}
-			}
-		}
 		return C;
 	}
 
 	public Matrix3D multiply(double b) {
 		Matrix3D C = new Matrix3D();
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 3; j++)
 				C.data[i][j] = b * data[i][j];
-			}
-		}
 		return C;
 	}
 
@@ -114,7 +109,9 @@ public class Matrix3D {
 			throw new RuntimeException("Vector dimensions invalid");
 		}
 
-		double[] result = new double[] { data[0][0] * v[0] + data[0][1] * v[1] + data[0][2] * v[2], data[1][0] * v[0] + data[1][1] * v[1] + data[1][2] * v[2], data[2][0] * v[0] + data[2][1] * v[1] + data[2][2] * v[2] };
+		double[] result = new double[] { data[0][0] * v[0] + data[0][1] * v[1] + data[0][2] * v[2],
+			data[1][0] * v[0] + data[1][1] * v[1] + data[1][2] * v[2],
+			data[2][0] * v[0] + data[2][1] * v[1] + data[2][2] * v[2] };
 
 		return result;
 	}

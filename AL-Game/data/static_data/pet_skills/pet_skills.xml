@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- parsed by phpTools from Aion Germany Group (Mariella) at 2020-11-22 10:28 -->
-<pet_skill_templates>
-    <pet_skill order_skill="3835" pet_id="833288" skill_id="22107"/>
+<!--
+	Pet Skill
+	Made By Encom
+ -->
+<pet_skill_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!-- Taloc Hollow [Engeius] -->
+	<pet_skill skill_id="18962" pet_id="799500"/>
+	<pet_skill skill_id="18963" pet_id="799500"/>
+	<!-- Taloc Hollow [Abyla] -->
+	<pet_skill skill_id="18964" pet_id="799501"/>
+	<pet_skill skill_id="18965" pet_id="799501"/>
+	<!-- Haramel [Roye] -->
+    <pet_skill skill_id="18964" pet_id="799994"/>
+    <pet_skill skill_id="19037" pet_id="799994"/>
+	<!-- Haramel [Cheska] -->
+    <pet_skill skill_id="18964" pet_id="799995"/>
+    <pet_skill skill_id="19037" pet_id="799995"/>
+	<!-- Indratu Fortress [Roye] -->
+    <pet_skill skill_id="18964" pet_id="799996"/>
+	<pet_skill skill_id="19037" pet_id="799996"/>
+	<!-- Bakarma Fortress [Cheska] -->
+    <pet_skill skill_id="18964" pet_id="799997"/>
+	<pet_skill skill_id="19037" pet_id="799997"/>
+	<!-- Silentera Canyon [Roye] -->
+    <pet_skill skill_id="18964" pet_id="799998"/>
+	<pet_skill skill_id="19037" pet_id="799998"/>
+	<!-- Silentera Canyon [Cheska] -->
+    <pet_skill skill_id="18964" pet_id="799999"/>
+	<pet_skill skill_id="19037" pet_id="799999"/>
+	
+	<!-- Summon -->
+	<pet_skill order_skill="3835" pet_id="833288" skill_id="22107"/>
     <pet_skill order_skill="3835" pet_id="833290" skill_id="22108"/>
     <pet_skill order_skill="3835" pet_id="833292" skill_id="22109"/>
     <pet_skill order_skill="3835" pet_id="833294" skill_id="22110"/>
@@ -471,7 +500,7 @@
     <pet_skill order_skill="3837" pet_id="833367" skill_id="22237"/>
     <pet_skill order_skill="3837" pet_id="833369" skill_id="22238"/>
     <pet_skill order_skill="3837" pet_id="833261" skill_id="22055"/>
-    <pet_skill order_skill="3549" pet_id="833288" skill_id="22422"/>
+	<pet_skill order_skill="3549" pet_id="833288" skill_id="22422"/>
     <pet_skill order_skill="3549" pet_id="833290" skill_id="22423"/>
     <pet_skill order_skill="3549" pet_id="833292" skill_id="22424"/>
     <pet_skill order_skill="3549" pet_id="833294" skill_id="22425"/>
@@ -1129,7 +1158,7 @@
     <pet_skill order_skill="3833" pet_id="833367" skill_id="22417"/>
     <pet_skill order_skill="3833" pet_id="833369" skill_id="22418"/>
     <pet_skill order_skill="3833" pet_id="833261" skill_id="22079"/>
-    <pet_skill order_skill="4833" pet_id="833287" skill_id="18262"/>
+	<pet_skill order_skill="4833" pet_id="833287" skill_id="18262"/>
     <pet_skill order_skill="4833" pet_id="833289" skill_id="18262"/>
     <pet_skill order_skill="4833" pet_id="833291" skill_id="18262"/>
     <pet_skill order_skill="4833" pet_id="833293" skill_id="18262"/>
@@ -1484,8 +1513,10 @@
     <pet_skill order_skill="5124" pet_id="833366" skill_id="20860"/>
     <pet_skill order_skill="5124" pet_id="833368" skill_id="20860"/>
     <pet_skill order_skill="5124" pet_id="833370" skill_id="20860"/>
-    <pet_skill order_skill="5124" pet_id="833262" skill_id="20860"/>
-    <pet_skill order_skill="5788" pet_id="833287" skill_id="20182"/>
+	<pet_skill order_skill="5124" pet_id="833262" skill_id="20860"/>
+	
+	<!-- Daevanion Skill UP 7.x -->
+	<pet_skill order_skill="5788" pet_id="833287" skill_id="20182"/>
     <pet_skill order_skill="5788" pet_id="833289" skill_id="20182"/>
     <pet_skill order_skill="5788" pet_id="833291" skill_id="20182"/>
     <pet_skill order_skill="5788" pet_id="833293" skill_id="20182"/>
@@ -1516,6 +1547,16 @@
     <pet_skill order_skill="5788" pet_id="833339" skill_id="20183"/>
     <pet_skill order_skill="5788" pet_id="833341" skill_id="20183"/>
     <pet_skill order_skill="5788" pet_id="833257" skill_id="20183"/>
+    <pet_skill order_skill="5788" pet_id="833324" skill_id="20183"/>
+    <pet_skill order_skill="5788" pet_id="833326" skill_id="20183"/>
+    <pet_skill order_skill="5788" pet_id="833328" skill_id="20183"/>
+    <pet_skill order_skill="5788" pet_id="833330" skill_id="20183"/>
+    <pet_skill order_skill="5788" pet_id="833332" skill_id="20183"/>
+    <pet_skill order_skill="5788" pet_id="833334" skill_id="20183"/>
+    <pet_skill order_skill="5788" pet_id="833336" skill_id="20183"/>
+    <pet_skill order_skill="5788" pet_id="833338" skill_id="20183"/>
+    <pet_skill order_skill="5788" pet_id="833340" skill_id="20183"/>
+    <pet_skill order_skill="5788" pet_id="833342" skill_id="20183"/>
     <pet_skill order_skill="5788" pet_id="833258" skill_id="20183"/>
     <pet_skill order_skill="5788" pet_id="833343" skill_id="20184"/>
     <pet_skill order_skill="5788" pet_id="833345" skill_id="20184"/>
@@ -1568,8 +1609,8 @@
     <pet_skill order_skill="5788" pet_id="833366" skill_id="20187"/>
     <pet_skill order_skill="5788" pet_id="833368" skill_id="20187"/>
     <pet_skill order_skill="5788" pet_id="833370" skill_id="20187"/>
-    <pet_skill order_skill="5788" pet_id="833262" skill_id="20187"/>
-    <pet_skill order_skill="5789" pet_id="833287" skill_id="20188"/>
+	<pet_skill order_skill="5788" pet_id="833262" skill_id="20187"/>
+	<pet_skill order_skill="5789" pet_id="833287" skill_id="20188"/>
     <pet_skill order_skill="5789" pet_id="833289" skill_id="20188"/>
     <pet_skill order_skill="5789" pet_id="833291" skill_id="20188"/>
     <pet_skill order_skill="5789" pet_id="833293" skill_id="20188"/>
@@ -1662,8 +1703,10 @@
     <pet_skill order_skill="5789" pet_id="833366" skill_id="20193"/>
     <pet_skill order_skill="5789" pet_id="833368" skill_id="20193"/>
     <pet_skill order_skill="5789" pet_id="833370" skill_id="20193"/>
-    <pet_skill order_skill="5789" pet_id="833262" skill_id="20193"/>
-    <pet_skill order_skill="6131" pet_id="833288" skill_id="22422"/>
+	<pet_skill order_skill="5789" pet_id="833262" skill_id="20193"/>
+	
+	<!-- Stigma Purifier 7.x -->
+	<pet_skill order_skill="6131" pet_id="833288" skill_id="22422"/>
     <pet_skill order_skill="6131" pet_id="833290" skill_id="22423"/>
     <pet_skill order_skill="6131" pet_id="833292" skill_id="22424"/>
     <pet_skill order_skill="6131" pet_id="833294" skill_id="22425"/>
@@ -1757,7 +1800,7 @@
     <pet_skill order_skill="6131" pet_id="833367" skill_id="22462"/>
     <pet_skill order_skill="6131" pet_id="833369" skill_id="22463"/>
     <pet_skill order_skill="6131" pet_id="833261" skill_id="22085"/>
-    <pet_skill order_skill="6136" pet_id="833288" skill_id="22332"/>
+	<pet_skill order_skill="6136" pet_id="833288" skill_id="22332"/>
     <pet_skill order_skill="6136" pet_id="833290" skill_id="22333"/>
     <pet_skill order_skill="6136" pet_id="833292" skill_id="22334"/>
     <pet_skill order_skill="6136" pet_id="833294" skill_id="22335"/>
@@ -1851,7 +1894,7 @@
     <pet_skill order_skill="6136" pet_id="833367" skill_id="22372"/>
     <pet_skill order_skill="6136" pet_id="833369" skill_id="22373"/>
     <pet_skill order_skill="6136" pet_id="833261" skill_id="22073"/>
-    <pet_skill order_skill="6146" pet_id="833288" skill_id="22152"/>
+	<pet_skill order_skill="6146" pet_id="833288" skill_id="22152"/>
     <pet_skill order_skill="6146" pet_id="833290" skill_id="22153"/>
     <pet_skill order_skill="6146" pet_id="833292" skill_id="22154"/>
     <pet_skill order_skill="6146" pet_id="833294" skill_id="22155"/>
@@ -1945,7 +1988,7 @@
     <pet_skill order_skill="6146" pet_id="833367" skill_id="22192"/>
     <pet_skill order_skill="6146" pet_id="833369" skill_id="22193"/>
     <pet_skill order_skill="6146" pet_id="833261" skill_id="22049"/>
-    <pet_skill order_skill="6149" pet_id="833288" skill_id="22287"/>
+	<pet_skill order_skill="6149" pet_id="833288" skill_id="22287"/>
     <pet_skill order_skill="6149" pet_id="833290" skill_id="22288"/>
     <pet_skill order_skill="6149" pet_id="833292" skill_id="22289"/>
     <pet_skill order_skill="6149" pet_id="833294" skill_id="22290"/>

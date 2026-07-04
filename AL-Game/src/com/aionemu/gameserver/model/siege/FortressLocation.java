@@ -1,22 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.siege;
-
-import java.util.List;
 
 import com.aionemu.gameserver.model.DescriptionId;
 import com.aionemu.gameserver.model.gameobjects.Creature;
@@ -26,8 +24,9 @@ import com.aionemu.gameserver.model.templates.siegelocation.SiegeLegionReward;
 import com.aionemu.gameserver.model.templates.siegelocation.SiegeLocationTemplate;
 import com.aionemu.gameserver.model.templates.siegelocation.SiegeReward;
 import com.aionemu.gameserver.model.templates.zone.ZoneType;
-import com.aionemu.gameserver.services.teleport.TeleportService2;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
+
+import java.util.List;
 
 /**
  * @author Source
@@ -36,7 +35,9 @@ public class FortressLocation extends SiegeLocation {
 
 	protected List<SiegeReward> siegeRewards;
 	protected List<SiegeLegionReward> siegeLegionRewards;
-	protected boolean isUnderAssault;
+	protected boolean isUnderShield;
+    protected boolean isUnderAssault;
+	protected boolean isCanTeleport;
 
 	public FortressLocation() {
 	}
@@ -55,11 +56,28 @@ public class FortressLocation extends SiegeLocation {
 		return this.siegeLegionRewards;
 	}
 
+
 	/**
 	 * @return isEnemy
 	 */
 	public boolean isEnemy(Creature creature) {
-		return creature.getRace().getRaceId() != getRace().getRaceId();
+    return creature.getRace().getRaceId() != getRace().getRaceId();
+  }
+
+	/**
+	 * @return isUnderShield
+	 */
+	@Override
+	public boolean isUnderShield() {
+		return this.isUnderShield;
+	}
+
+	/**
+	 * @param value new undershield value
+	 */
+	@Override
+	public void setUnderShield(boolean value) {
+		this.isUnderShield = value;
 	}
 
 	/**
@@ -67,10 +85,17 @@ public class FortressLocation extends SiegeLocation {
 	 */
 	@Override
 	public boolean isCanTeleport(Player player) {
-		if (player == null) {
-			return canTeleport;
-		}
-		return canTeleport && player.getRace().getRaceId() == getRace().getRaceId();
+	    if (player == null)
+      return isCanTeleport;
+		return isCanTeleport && player.getRace().getRaceId() == getRace().getRaceId();
+	}
+
+	/**
+	 * @param status Teleportation status
+	 */
+	@Override
+	public void setCanTeleport(boolean status) {
+		this.isCanTeleport = status;
 	}
 
 	/**
@@ -80,38 +105,25 @@ public class FortressLocation extends SiegeLocation {
 		return new DescriptionId(template.getNameId());
 	}
 
-	@Override
 	public void onEnterZone(Creature creature, ZoneInstance zone) {
-		super.onEnterZone(creature, zone);
-		if (this.isVulnerable()) {
-			creature.setInsideZoneType(ZoneType.SIEGE);
-		}
-	}
-
+    super.onEnterZone(creature, zone);
+    if (isVulnerable())
+      creature.setInsideZoneType(ZoneType.SIEGE);
+  }
+  
 	@Override
 	public void onLeaveZone(Creature creature, ZoneInstance zone) {
 		super.onLeaveZone(creature, zone);
-		if (this.isVulnerable()) {
+		if (this.isVulnerable())
 			creature.unsetInsideZoneType(ZoneType.SIEGE);
-		}
 	}
 
-	@Override
 	public void clearLocation() {
-		// TODO: not allow to place Kisk if siege will be soon
-		for (Creature creature : getCreatures().values()) {
-			if (isEnemy(creature)) {
-				if (creature instanceof Kisk) {
-					Kisk kisk = (Kisk) creature;
-					kisk.getController().die();
-				}
+		for (Creature creature: getCreatures().values()) {
+			if ((isEnemy(creature)) && ((creature instanceof Kisk))) {
+				Kisk kisk = (Kisk)creature;
+				kisk.getController().die();
 			}
 		}
-
-		for (Player player : getPlayers().values()) {
-			if (isEnemy(player)) {
-				TeleportService2.moveToBindLocation(player, true);
-			}
-		}
-	}
+    }
 }

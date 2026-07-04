@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Crimson Katalam 7.x
+	Made By Rinzler (Encom)
+ -->
+<spawns>
+    <spawn_map map_id="800030000">
+		<siege_spawn siege_id="1811">
+			<siege_race race="ELYOS">
+                <siege_mod mod="PEACE">
+					<!-- LDF5a_1811_Boss_Li_1 -->
+				    <spawn npc_id="887228" respawn_time="295">
+						<spot h="62" z="143.80804" y="966.1765" x="1305.4336"/>
+					</spawn>
+					<!-- LDF5A_1811_Li_Guard_Fi -->
+					<spawn npc_id="887426" respawn_time="295">
+						<spot h="65" z="142.75" y="968.974" x="1294.1641"/>
+						<spot h="71" z="142.39587" y="958.16705" x="1295.5967"/>
+						<spot h="94" z="142.37961" y="950.0738" x="1309.0222"/>
+						<spot h="103" z="142.5" y="952.4002" x="1319.5858"/>
+						<spot h="4" z="142.75" y="967.4889" x="1315.8646"/>
+					</spawn>
+					<!-- LDF5A_1811_Li_Guard_As -->
+					<spawn npc_id="887427" respawn_time="295">
+						<spot h="85" z="142.65776" y="960.5241" x="1307.1853"/>
+						<spot h="38" z="142.625" y="972.4535" x="1305.8008"/>
+					</spawn>
+					<!-- LDF5A_1811_Li_Guard_Wi -->
+					<spawn npc_id="887428" respawn_time="295">
+						<spot h="55" z="142.37744" y="985.43933" x="1296.039"/>
+						<spot h="63" z="142.625" y="963.6472" x="1292.7244"/>
+						<spot h="95" z="142.5" y="948.9946" x="1314.4117"/>
+						<spot h="56" z="142.625" y="945.39935" x="1298.78"/>
+					</spawn>
+					<!-- LDF5A_1811_Li_Guard_Pr -->
+					<spawn npc_id="887429" respawn_time="295">
+						<spot h="26" z="142.625" y="972.7084" x="1310.2377"/>
+						<spot h="100" z="142.5" y="960.9303" x="1311.4938"/>
+						<spot h="95" z="142.5" y="964.8185" x="1326.881"/>
+						<spot h="73" z="142.62984" y="983.9711" x="1312.0531"/>
+					</spawn>
+					<!-- Artifact_18111_1_1_Li -->
+				    <spawn npc_id="887363" respawn_time="295">
+						<spot x="1308.6637" y="966.65887" z="142.64951" entity_id="1496"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+			<siege_race race="ASMODIANS">
+                <siege_mod mod="PEACE">
+				    <!-- LDF5a_1811_Boss_Da_1 -->
+				    <spawn npc_id="887233" respawn_time="295">
+						<spot h="62" z="143.80804" y="966.1765" x="1305.4336"/>
+					</spawn>
+					<!-- LDF5A_1811_Da_Guard_Fi -->
+					<spawn npc_id="887430" respawn_time="295">
+						<spot h="65" z="142.75" y="968.974" x="1294.1641"/>
+						<spot h="71" z="142.39587" y="958.16705" x="1295.5967"/>
+						<spot h="94" z="142.37961" y="950.0738" x="1309.0222"/>
+						<spot h="103" z="142.5" y="952.4002" x="1319.5858"/>
+						<spot h="4" z="142.75" y="967.4889" x="1315.8646"/>
+					</spawn>
+					<!-- LDF5A_1811_Da_Guard_As -->
+					<spawn npc_id="887431" respawn_time="295">
+						<spot h="85" z="142.65776" y="960.5241" x="1307.1853"/>
+						<spot h="38" z="142.625" y="972.4535" x="1305.8008"/>
+					</spawn>
+					<!-- LDF5A_1811_Da_Guard_Wi -->
+					<spawn npc_id="887432" respawn_time="295">
+						<spot h="55" z="142.37744" y="985.43933" x="1296.039"/>
+						<spot h="63" z="142.625" y="963.6472" x="1292.7244"/>
+						<spot h="95" z="142.5" y="948.9946" x="1314.4117"/>
+						<spot h="56" z="142.625" y="945.39935" x="1298.78"/>
+					</spawn>
+					<!-- LDF5A_1811_Da_Guard_Pr -->
+					<spawn npc_id="887433" respawn_time="295">
+						<spot h="26" z="142.625" y="972.7084" x="1310.2377"/>
+						<spot h="100" z="142.5" y="960.9303" x="1311.4938"/>
+						<spot h="95" z="142.5" y="964.8185" x="1326.881"/>
+						<spot h="73" z="142.62984" y="983.9711" x="1312.0531"/>
+					</spawn>
+					<!-- Artifact_18111_1_1_Da -->
+				    <spawn npc_id="887364" respawn_time="295">
+						<spot x="1308.6637" y="966.65887" z="142.64951" entity_id="1523"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+			<siege_race race="BALAUR">
+                <siege_mod mod="PEACE">
+				    <!-- LDF5a_1811_Boss_Dr_1 -->
+				    <spawn npc_id="887238" respawn_time="295">
+						<spot h="62" z="143.80804" y="966.1765" x="1305.4336"/>
+					</spawn>
+					<!-- LDF5A_1811_Dr_Guard_Fi -->
+					<spawn npc_id="887434" respawn_time="295">
+						<spot h="65" z="142.75" y="968.974" x="1294.1641"/>
+						<spot h="71" z="142.39587" y="958.16705" x="1295.5967"/>
+						<spot h="94" z="142.37961" y="950.0738" x="1309.0222"/>
+						<spot h="103" z="142.5" y="952.4002" x="1319.5858"/>
+						<spot h="4" z="142.75" y="967.4889" x="1315.8646"/>
+					</spawn>
+					<!-- LDF5A_1811_Dr_Guard_As -->
+					<spawn npc_id="887435" respawn_time="295">
+						<spot h="85" z="142.65776" y="960.5241" x="1307.1853"/>
+						<spot h="38" z="142.625" y="972.4535" x="1305.8008"/>
+					</spawn>
+					<!-- LDF5A_1811_Dr_Guard_Wi -->
+					<spawn npc_id="887436" respawn_time="295">
+						<spot h="55" z="142.37744" y="985.43933" x="1296.039"/>
+						<spot h="63" z="142.625" y="963.6472" x="1292.7244"/>
+						<spot h="95" z="142.5" y="948.9946" x="1314.4117"/>
+						<spot h="56" z="142.625" y="945.39935" x="1298.78"/>
+					</spawn>
+					<!-- LDF5A_1811_Dr_Guard_Pr -->
+					<spawn npc_id="887437" respawn_time="295">
+						<spot h="26" z="142.625" y="972.7084" x="1310.2377"/>
+						<spot h="100" z="142.5" y="960.9303" x="1311.4938"/>
+						<spot h="95" z="142.5" y="964.8185" x="1326.881"/>
+						<spot h="73" z="142.62984" y="983.9711" x="1312.0531"/>
+					</spawn>
+					<!-- Artifact_18111_1_1_Dr -->
+				    <spawn npc_id="887365" respawn_time="295">
+						<spot x="1308.6637" y="966.65887" z="142.64951" entity_id="1471"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+		</siege_spawn>
+		<siege_spawn siege_id="1812">
+			<siege_race race="ELYOS">
+                <siege_mod mod="PEACE">
+					<!-- LDF5a_1812_Boss_Li_1 -->
+				    <spawn npc_id="887243" respawn_time="295">
+						<spot h="87" z="206.40265" y="990.72266" x="2028.9386"/>
+					</spawn>
+					<!-- LDF5A_1812_Li_Guard_Fi -->
+					<spawn npc_id="887438" respawn_time="295">
+						<spot h="87" z="205.375" y="979.98126" x="2029.4119"/>
+						<spot h="86" z="205.07289" y="981.88074" x="2023.5831"/>
+						<spot h="26" z="205.375" y="1000.9763" x="2032.4282"/>
+						<spot h="66" z="205.81085" y="998.65393" x="2012.2814"/>
+					</spawn>
+					<!-- LDF5A_1812_Li_Guard_As -->
+					<spawn npc_id="887439" respawn_time="295">
+						<spot h="61" z="205.375" y="993.6822" x="2023.5269"/>
+						<spot h="109" z="205.37483" y="989.9974" x="2035.1371"/>
+					</spawn>
+					<!-- LDF5A_1812_Li_Guard_Wi -->
+					<spawn npc_id="887440" respawn_time="295">
+						<spot h="73" z="205.86499" y="990.3471" x="2014.4515"/>
+						<spot h="98" z="205.78474" y="983.1885" x="2042.3489"/>
+						<spot h="99" z="205.69235" y="1006.1722" x="2015.0778"/>
+						<spot h="78" z="205.35379" y="1005.41077" x="2039.6606"/>
+					</spawn>
+					<!-- LDF5A_1812_Li_Guard_Pr -->
+					<spawn npc_id="887441" respawn_time="295">
+						<spot h="1" z="205.34314" y="994.18976" x="2036.5098"/>
+						<spot h="48" z="205.43402" y="997.80505" x="2025.0557"/>
+					</spawn>
+					<!-- Artifact_18121_1_1_Li -->
+				    <spawn npc_id="887366" respawn_time="295">
+						<spot x="2030.1492" y="993.98108" z="205.24408" entity_id="1488"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+			<siege_race race="ASMODIANS">
+                <siege_mod mod="PEACE">
+				    <!-- LDF5a_1812_Boss_Da_1 -->
+				    <spawn npc_id="887248" respawn_time="295">
+						<spot h="87" z="206.40265" y="990.72266" x="2028.9386"/>
+					</spawn>
+					<!-- LDF5A_1812_Da_Guard_Fi -->
+					<spawn npc_id="887442" respawn_time="295">
+						<spot h="87" z="205.375" y="979.98126" x="2029.4119"/>
+						<spot h="86" z="205.07289" y="981.88074" x="2023.5831"/>
+						<spot h="26" z="205.375" y="1000.9763" x="2032.4282"/>
+						<spot h="66" z="205.81085" y="998.65393" x="2012.2814"/>
+					</spawn>
+					<!-- LDF5A_1812_Da_Guard_As -->
+					<spawn npc_id="887443" respawn_time="295">
+						<spot h="61" z="205.375" y="993.6822" x="2023.5269"/>
+						<spot h="109" z="205.37483" y="989.9974" x="2035.1371"/>
+					</spawn>
+					<!-- LDF5A_1812_Da_Guard_Wi -->
+					<spawn npc_id="887444" respawn_time="295">
+						<spot h="73" z="205.86499" y="990.3471" x="2014.4515"/>
+						<spot h="98" z="205.78474" y="983.1885" x="2042.3489"/>
+						<spot h="99" z="205.69235" y="1006.1722" x="2015.0778"/>
+						<spot h="78" z="205.35379" y="1005.41077" x="2039.6606"/>
+					</spawn>
+					<!-- LDF5A_1812_Da_Guard_Pr -->
+					<spawn npc_id="887445" respawn_time="295">
+						<spot h="1" z="205.34314" y="994.18976" x="2036.5098"/>
+						<spot h="48" z="205.43402" y="997.80505" x="2025.0557"/>
+					</spawn>
+					<!-- Artifact_18121_1_1_Da -->
+				    <spawn npc_id="887367" respawn_time="295">
+						<spot x="2030.1492" y="993.98108" z="205.24408" entity_id="1490"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+			<siege_race race="BALAUR">
+                <siege_mod mod="PEACE">
+				    <!-- LDF5a_1812_Boss_Dr_1 -->
+				    <spawn npc_id="887253" respawn_time="295">
+						<spot h="87" z="206.40265" y="990.72266" x="2028.9386"/>
+					</spawn>
+					<!-- LDF5A_1812_Dr_Guard_Fi -->
+					<spawn npc_id="887446" respawn_time="295">
+						<spot h="87" z="205.375" y="979.98126" x="2029.4119"/>
+						<spot h="86" z="205.07289" y="981.88074" x="2023.5831"/>
+						<spot h="26" z="205.375" y="1000.9763" x="2032.4282"/>
+						<spot h="66" z="205.81085" y="998.65393" x="2012.2814"/>
+					</spawn>
+					<!-- LDF5A_1812_Dr_Guard_As -->
+					<spawn npc_id="887447" respawn_time="295">
+						<spot h="61" z="205.375" y="993.6822" x="2023.5269"/>
+						<spot h="109" z="205.37483" y="989.9974" x="2035.1371"/>
+					</spawn>
+					<!-- LDF5A_1812_Dr_Guard_Wi -->
+					<spawn npc_id="887448" respawn_time="295">
+						<spot h="73" z="205.86499" y="990.3471" x="2014.4515"/>
+						<spot h="98" z="205.78474" y="983.1885" x="2042.3489"/>
+						<spot h="99" z="205.69235" y="1006.1722" x="2015.0778"/>
+						<spot h="78" z="205.35379" y="1005.41077" x="2039.6606"/>
+					</spawn>
+					<!-- LDF5A_1812_Dr_Guard_Pr -->
+					<spawn npc_id="887449" respawn_time="295">
+						<spot h="1" z="205.34314" y="994.18976" x="2036.5098"/>
+						<spot h="48" z="205.43402" y="997.80505" x="2025.0557"/>
+					</spawn>
+					<!-- Artifact_18121_1_1_Dr -->
+				    <spawn npc_id="887368" respawn_time="295">
+						<spot x="2030.1492" y="993.98108" z="205.24408" entity_id="1505"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+        </siege_spawn>
+		<siege_spawn siege_id="1813">
+			<siege_race race="ELYOS">
+                <siege_mod mod="PEACE">
+					<!-- LDF5a_1813_Boss_Li_1 -->
+				    <spawn npc_id="887258" respawn_time="295">
+						<spot h="40" z="65.74745" y="1913.8232" x="1342.2645"/>
+					</spawn>
+					<!-- LDF5A_1813_Li_Guard_Fi -->
+					<spawn npc_id="887450" respawn_time="295">
+						<spot h="42" z="64.625" y="1920.9594" x="1332.1433"/>
+						<spot h="38" z="64.625" y="1926.1517" x="1342.0415"/>
+						<spot h="100" z="64.778595" y="1904.4479" x="1346.9054"/>
+					</spawn>
+					<!-- LDF5A_1813_Li_Guard_As -->
+					<spawn npc_id="887451" respawn_time="295">
+						<spot h="62" z="64.71579" y="1910.2991" x="1337.4526"/>
+						<spot h="16" z="64.54736" y="1915.404" x="1348.3231"/>
+					</spawn>
+					<!-- LDF5A_1813_Li_Guard_Wi -->
+					<spawn npc_id="887452" respawn_time="295">
+						<spot h="41" z="64.625" y="1925.0659" x="1336.0834"/>
+						<spot h="59" z="64.5" y="1922.0613" x="1355.6113"/>
+						<spot h="29" z="64.6212" y="1898.8279" x="1337.595"/>
+						<spot h="56" z="65.08226" y="1907.8092" x="1359.3162"/>
+					</spawn>
+					<!-- LDF5A_1813_Li_Guard_Pr -->
+					<spawn npc_id="887453" respawn_time="295">
+						<spot h="115" z="64.344124" y="1911.3835" x="1350.2871"/>
+						<spot h="77" z="64.450096" y="1906.4005" x="1339.226"/>
+					</spawn>
+					<!-- Artifact_18131_1_1_Li -->
+				    <spawn npc_id="887369" respawn_time="295">
+						<spot x="1343.7375" y="1910.7819" z="64.588905" entity_id="1457"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+			<siege_race race="ASMODIANS">
+                <siege_mod mod="PEACE">
+				    <!-- LDF5a_1813_Boss_Da_1 -->
+				    <spawn npc_id="887263" respawn_time="295">
+						<spot h="40" z="65.74745" y="1913.8232" x="1342.2645"/>
+					</spawn>
+					<!-- LDF5A_1813_Da_Guard_Fi -->
+					<spawn npc_id="887454" respawn_time="295">
+						<spot h="42" z="64.625" y="1920.9594" x="1332.1433"/>
+						<spot h="38" z="64.625" y="1926.1517" x="1342.0415"/>
+						<spot h="100" z="64.778595" y="1904.4479" x="1346.9054"/>
+					</spawn>
+					<!-- LDF5A_1813_Da_Guard_As -->
+					<spawn npc_id="887455" respawn_time="295">
+						<spot h="62" z="64.71579" y="1910.2991" x="1337.4526"/>
+						<spot h="16" z="64.54736" y="1915.404" x="1348.3231"/>
+					</spawn>
+					<!-- LDF5A_1813_Da_Guard_Wi -->
+					<spawn npc_id="887456" respawn_time="295">
+						<spot h="41" z="64.625" y="1925.0659" x="1336.0834"/>
+						<spot h="59" z="64.5" y="1922.0613" x="1355.6113"/>
+						<spot h="29" z="64.6212" y="1898.8279" x="1337.595"/>
+						<spot h="56" z="65.08226" y="1907.8092" x="1359.3162"/>
+					</spawn>
+					<!-- LDF5A_1813_Da_Guard_Pr -->
+					<spawn npc_id="887457" respawn_time="295">
+						<spot h="115" z="64.344124" y="1911.3835" x="1350.2871"/>
+						<spot h="77" z="64.450096" y="1906.4005" x="1339.226"/>
+					</spawn>
+					<!-- Artifact_18131_1_1_Da -->
+				    <spawn npc_id="887370" respawn_time="295">
+						<spot x="1343.7375" y="1910.7819" z="64.588905" entity_id="1184"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+			<siege_race race="BALAUR">
+                <siege_mod mod="PEACE">
+				    <!-- LDF5a_1813_Boss_Dr_1 -->
+				    <spawn npc_id="887268" respawn_time="295">
+						<spot h="40" z="65.74745" y="1913.8232" x="1342.2645"/>
+					</spawn>
+					<!-- LDF5A_1813_Dr_Guard_Fi -->
+					<spawn npc_id="887458" respawn_time="295">
+						<spot h="42" z="64.625" y="1920.9594" x="1332.1433"/>
+						<spot h="38" z="64.625" y="1926.1517" x="1342.0415"/>
+						<spot h="100" z="64.778595" y="1904.4479" x="1346.9054"/>
+					</spawn>
+					<!-- LDF5A_1813_Dr_Guard_As -->
+					<spawn npc_id="887459" respawn_time="295">
+						<spot h="62" z="64.71579" y="1910.2991" x="1337.4526"/>
+						<spot h="16" z="64.54736" y="1915.404" x="1348.3231"/>
+					</spawn>
+					<!-- LDF5A_1813_Dr_Guard_Wi -->
+					<spawn npc_id="887460" respawn_time="295">
+						<spot h="41" z="64.625" y="1925.0659" x="1336.0834"/>
+						<spot h="59" z="64.5" y="1922.0613" x="1355.6113"/>
+						<spot h="29" z="64.6212" y="1898.8279" x="1337.595"/>
+						<spot h="56" z="65.08226" y="1907.8092" x="1359.3162"/>
+					</spawn>
+					<!-- LDF5A_1813_Dr_Guard_Pr -->
+					<spawn npc_id="887461" respawn_time="295">
+						<spot h="115" z="64.344124" y="1911.3835" x="1350.2871"/>
+						<spot h="77" z="64.450096" y="1906.4005" x="1339.226"/>
+					</spawn>
+					<!-- Artifact_18131_1_1_Dr -->
+				    <spawn npc_id="887371" respawn_time="295">
+						<spot x="1343.7375" y="1910.7819" z="64.588905" entity_id="1464"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+        </siege_spawn>
+		<siege_spawn siege_id="1814">
+			<siege_race race="ELYOS">
+                <siege_mod mod="PEACE">
+					<!-- LDF5a_1814_Boss_Li_1 -->
+				    <spawn npc_id="887273" respawn_time="295">
+						<spot h="49" z="154.429" y="2219.2415" x="1939.5994"/>
+					</spawn>
+					<!-- LDF5A_1814_Li_Guard_Fi -->
+					<spawn npc_id="887462" respawn_time="295">
+						<spot h="72" z="153.23842" y="2213.644" x="1937.1028"/>
+						<spot h="25" z="153.625" y="2223.0815" x="1944.0927"/>
+						<spot h="108" z="153.64867" y="2213.158" x="1948.1389"/>
+					</spawn>
+					<!-- LDF5A_1814_Li_Guard_As -->
+					<spawn npc_id="887463" respawn_time="295">
+						<spot h="13" z="153.625" y="2220.5552" x="1947.5786"/>
+						<spot h="87" z="153.69038" y="2211.1074" x="1940.6305"/>
+					</spawn>
+					<!-- LDF5A_1814_Li_Guard_Wi -->
+					<spawn npc_id="887464" respawn_time="295">
+						<spot h="33" z="154.17636" y="2203.7112" x="1944.0223"/>
+					</spawn>
+					<!-- LDF5A_1814_Li_Guard_Pr -->
+					<spawn npc_id="887465" respawn_time="295">
+						<spot h="52" z="154.67738" y="2212.9578" x="1957.8204"/>
+					</spawn>
+					<!-- Artifact_18141_1_1_Li -->
+				    <spawn npc_id="887372" respawn_time="295">
+						<spot x="1942.3582" y="2217.1577" z="153.27042" entity_id="1532"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+			<siege_race race="ASMODIANS">
+                <siege_mod mod="PEACE">
+				    <!-- LDF5a_1814_Boss_Da_1 -->
+				    <spawn npc_id="887278" respawn_time="295">
+						<spot h="49" z="154.429" y="2219.2415" x="1939.5994"/>
+					</spawn>
+					<!-- LDF5A_1814_Da_Guard_Fi -->
+					<spawn npc_id="887466" respawn_time="295">
+						<spot h="72" z="153.23842" y="2213.644" x="1937.1028"/>
+						<spot h="25" z="153.625" y="2223.0815" x="1944.0927"/>
+						<spot h="108" z="153.64867" y="2213.158" x="1948.1389"/>
+					</spawn>
+					<!-- LDF5A_1814_Da_Guard_As -->
+					<spawn npc_id="887467" respawn_time="295">
+						<spot h="13" z="153.625" y="2220.5552" x="1947.5786"/>
+						<spot h="87" z="153.69038" y="2211.1074" x="1940.6305"/>
+					</spawn>
+					<!-- LDF5A_1814_Da_Guard_Wi -->
+					<spawn npc_id="887468" respawn_time="295">
+						<spot h="33" z="154.17636" y="2203.7112" x="1944.0223"/>
+					</spawn>
+					<!-- LDF5A_1814_Da_Guard_Pr -->
+					<spawn npc_id="887469" respawn_time="295">
+						<spot h="52" z="154.67738" y="2212.9578" x="1957.8204"/>
+					</spawn>
+					<!-- Artifact_18141_1_1_Da -->
+				    <spawn npc_id="887373" respawn_time="295">
+						<spot x="1942.3582" y="2217.1577" z="153.27042" entity_id="1531"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+			<siege_race race="BALAUR">
+                <siege_mod mod="PEACE">
+				    <!-- LDF5a_1814_Boss_Dr_1 -->
+				    <spawn npc_id="887283" respawn_time="295">
+						<spot h="49" z="154.429" y="2219.2415" x="1939.5994"/>
+					</spawn>
+					<!-- LDF5A_1814_Dr_Guard_Fi -->
+					<spawn npc_id="887470" respawn_time="295">
+						<spot h="72" z="153.23842" y="2213.644" x="1937.1028"/>
+						<spot h="25" z="153.625" y="2223.0815" x="1944.0927"/>
+						<spot h="108" z="153.64867" y="2213.158" x="1948.1389"/>
+					</spawn>
+					<!-- LDF5A_1814_Dr_Guard_As -->
+					<spawn npc_id="887471" respawn_time="295">
+						<spot h="13" z="153.625" y="2220.5552" x="1947.5786"/>
+						<spot h="87" z="153.69038" y="2211.1074" x="1940.6305"/>
+					</spawn>
+					<!-- LDF5A_1814_Dr_Guard_Wi -->
+					<spawn npc_id="887472" respawn_time="295">
+						<spot h="33" z="154.17636" y="2203.7112" x="1944.0223"/>
+					</spawn>
+					<!-- LDF5A_1814_Dr_Guard_Pr -->
+					<spawn npc_id="887473" respawn_time="295">
+						<spot h="52" z="154.67738" y="2212.9578" x="1957.8204"/>
+					</spawn>
+					<!-- Artifact_18141_1_1_Dr -->
+				    <spawn npc_id="887374" respawn_time="295">
+						<spot x="1942.3582" y="2217.1577" z="153.27042" entity_id="1535"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+        </siege_spawn>
+		<siege_spawn siege_id="1815">
+			<siege_race race="ELYOS">
+                <siege_mod mod="PEACE">
+					<!-- LDF5a_1815_Boss_Li_1 -->
+				    <spawn npc_id="887288" respawn_time="295">
+						<spot h="61" z="408.71313" y="1683.734" x="2906.499"/>
+					</spawn>
+					<!-- LDF5A_1815_Li_Guard_Fi -->
+					<spawn npc_id="887474" respawn_time="295">
+						<spot h="1" z="408.0058" y="1683.6278" x="2916.5232"/>
+						<spot h="25" z="408.32065" y="1696.4308" x="2914.5217"/>
+						<spot h="16" z="409.32065" y="1690.8679" x="2920.1755"/>
+						<spot h="100" z="406.96173" y="1670.3883" x="2914.4998"/>
+						<spot h="109" z="408.70963" y="1675.7742" x="2919.2966"/>
+						<spot h="60" z="407.10938" y="1684.05" x="2897.7002"/>
+					</spawn>
+					<!-- LDF5A_1815_Li_Guard_As -->
+					<spawn npc_id="887475" respawn_time="295">
+						<spot h="36" z="407.625" y="1689.7899" x="2907.7063"/>
+						<spot h="85" z="407.625" y="1677.7174" x="2907.471"/>
+					</spawn>
+					<!-- LDF5A_1815_Li_Guard_Wi -->
+					<spawn npc_id="887476" respawn_time="295">
+						<spot h="79" z="406.75" y="1671.378" x="2902.5432"/>
+						<spot h="47" z="408.125" y="1695.4867" x="2902.9102"/>
+					</spawn>
+					<!-- LDF5A_1815_Li_Guard_Pr -->
+					<spawn npc_id="887477" respawn_time="295">
+						<spot h="98" z="407.625" y="1677.6775" x="2911.8474"/>
+						<spot h="24" z="407.84888" y="1689.637" x="2911.9727"/>
+					</spawn>
+					<!-- Artifact_18151_1_1_Li -->
+				    <spawn npc_id="887375" respawn_time="295">
+						<spot x="2909.7842" y="1683.7500" z="407.5546" entity_id="1467"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+			<siege_race race="ASMODIANS">
+                <siege_mod mod="PEACE">
+				    <!-- LDF5a_1815_Boss_Da_1 -->
+				    <spawn npc_id="887293" respawn_time="295">
+						<spot h="61" z="408.71313" y="1683.734" x="2906.499"/>
+					</spawn>
+					<!-- LDF5A_1815_Da_Guard_Fi -->
+					<spawn npc_id="887478" respawn_time="295">
+						<spot h="1" z="408.0058" y="1683.6278" x="2916.5232"/>
+						<spot h="25" z="408.32065" y="1696.4308" x="2914.5217"/>
+						<spot h="16" z="409.32065" y="1690.8679" x="2920.1755"/>
+						<spot h="100" z="406.96173" y="1670.3883" x="2914.4998"/>
+						<spot h="109" z="408.70963" y="1675.7742" x="2919.2966"/>
+						<spot h="60" z="407.10938" y="1684.05" x="2897.7002"/>
+					</spawn>
+					<!-- LDF5A_1815_Da_Guard_As -->
+					<spawn npc_id="887479" respawn_time="295">
+						<spot h="36" z="407.625" y="1689.7899" x="2907.7063"/>
+						<spot h="85" z="407.625" y="1677.7174" x="2907.471"/>
+					</spawn>
+					<!-- LDF5A_1815_Da_Guard_Wi -->
+					<spawn npc_id="887480" respawn_time="295">
+						<spot h="79" z="406.75" y="1671.378" x="2902.5432"/>
+						<spot h="47" z="408.125" y="1695.4867" x="2902.9102"/>
+					</spawn>
+					<!-- LDF5A_1815_Da_Guard_Pr -->
+					<spawn npc_id="887481" respawn_time="295">
+						<spot h="98" z="407.625" y="1677.6775" x="2911.8474"/>
+						<spot h="24" z="407.84888" y="1689.637" x="2911.9727"/>
+					</spawn>
+					<!-- Artifact_18151_1_1_Da -->
+				    <spawn npc_id="887376" respawn_time="295">
+						<spot x="2909.7842" y="1683.7500" z="407.5546" entity_id="1465"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+			<siege_race race="BALAUR">
+                <siege_mod mod="PEACE">
+				    <!-- LDF5a_1815_Boss_Dr_1 -->
+				    <spawn npc_id="887298" respawn_time="295">
+						<spot h="61" z="408.71313" y="1683.734" x="2906.499"/>
+					</spawn>
+					<!-- LDF5A_1815_Dr_Guard_Fi -->
+					<spawn npc_id="887482" respawn_time="295">
+						<spot h="1" z="408.0058" y="1683.6278" x="2916.5232"/>
+						<spot h="25" z="408.32065" y="1696.4308" x="2914.5217"/>
+						<spot h="16" z="409.32065" y="1690.8679" x="2920.1755"/>
+						<spot h="100" z="406.96173" y="1670.3883" x="2914.4998"/>
+						<spot h="109" z="408.70963" y="1675.7742" x="2919.2966"/>
+						<spot h="60" z="407.10938" y="1684.05" x="2897.7002"/>
+					</spawn>
+					<!-- LDF5A_1815_Dr_Guard_As -->
+					<spawn npc_id="887483" respawn_time="295">
+						<spot h="36" z="407.625" y="1689.7899" x="2907.7063"/>
+						<spot h="85" z="407.625" y="1677.7174" x="2907.471"/>
+					</spawn>
+					<!-- LDF5A_1815_Dr_Guard_Wi -->
+					<spawn npc_id="887484" respawn_time="295">
+						<spot h="79" z="406.75" y="1671.378" x="2902.5432"/>
+						<spot h="47" z="408.125" y="1695.4867" x="2902.9102"/>
+					</spawn>
+					<!-- LDF5A_1815_Dr_Guard_Pr -->
+					<spawn npc_id="887485" respawn_time="295">
+						<spot h="98" z="407.625" y="1677.6775" x="2911.8474"/>
+						<spot h="24" z="407.84888" y="1689.637" x="2911.9727"/>
+					</spawn>
+					<!-- Artifact_18151_1_1_Dr -->
+				    <spawn npc_id="887377" respawn_time="295">
+						<spot x="2909.7842" y="1683.7500" z="407.5546" entity_id="1486"/>
+					</spawn>
+                </siege_mod>
+                <siege_mod mod="SIEGE">
+                </siege_mod>
+            </siege_race>
+        </siege_spawn>
+    </spawn_map>
+</spawns>

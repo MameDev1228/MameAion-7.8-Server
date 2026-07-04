@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.skill;
 
@@ -20,6 +20,8 @@ import com.aionemu.gameserver.configs.main.CraftConfig;
 import com.aionemu.gameserver.model.gameobjects.PersistentState;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.stats.container.StatEnum;
+
+import java.sql.Timestamp;
 
 /**
  * @author ATracer
@@ -37,7 +39,7 @@ public class PlayerSkillEntry extends SkillEntry {
 	private PersistentState persistentState;
 
 	public PlayerSkillEntry(int skillId, boolean isStigma, boolean isLinked, int skillLvl, PersistentState persistentState) {
-		super(skillId, skillLvl, 0, 0);
+		super(skillId, skillLvl);
 		this.isStigma = isStigma;
 		this.isLinked = isLinked;
 		this.persistentState = persistentState;
@@ -50,30 +52,14 @@ public class PlayerSkillEntry extends SkillEntry {
 		return isStigma;
 	}
 
-	/**
-	 * @return isLinked
-	 */
 	public boolean isLinked() {
 		return isLinked;
 	}
 
-	@Override
 	public void setSkillLvl(int skillLevel) {
 		super.setSkillLvl(skillLevel);
 		setPersistentState(PersistentState.UPDATE_REQUIRED);
 	}
-
-	/* TODO CP
-	@Override
-	public void setSkillLvlCp(int skillLevel) {
-		super.setSkillLvlCp(skillLevel);
-	}
-
-	@Override
-	public void setSkillLvlBoost(int skillLevel) {
-		super.setSkillLvlBoost(skillLevel);
-	}
-	*/
 
 	/**
 	 * @return The skill extra lvl
@@ -82,8 +68,9 @@ public class PlayerSkillEntry extends SkillEntry {
 		switch (skillId) {
 			case 30002:
 			case 30003:
-				if (skillLevel > 399 && skillLevel < 500)
+				if (skillLevel > 399 && skillLevel < 500) {
 					return 4;
+				}
 			case 40001:
 			case 40002:
 			case 40003:
@@ -91,14 +78,15 @@ public class PlayerSkillEntry extends SkillEntry {
 			case 40007:
 			case 40008:
 			case 40010:
-				if (skillLevel > 449 && skillLevel < 500)
+				if (skillLevel > 449 && skillLevel < 500) {
 					return 5;
-				else if (skillLevel > 499 && skillLevel < 550)
+				} else if (skillLevel > 499 && skillLevel < 550) {
 					return 6;
-				else
+				} else {
 					return skillLevel / 100;
+				}
 			case 40011:
-				return 0;
+			    return 0;
 		}
 		return 0;
 	}
@@ -112,7 +100,7 @@ public class PlayerSkillEntry extends SkillEntry {
 
 	/**
 	 * @param currentXp
-	 *            the currentXp to set
+	 *          the currentXp to set
 	 */
 	public void setCurrentXp(int currentXp) {
 		this.currentXp = currentXp;
@@ -124,16 +112,16 @@ public class PlayerSkillEntry extends SkillEntry {
 	 */
 	public boolean addSkillXp(Player player, int xp) {
 		this.currentXp += xp;
-		int requiredExp = (int) ((0.37 * (skillLevel + 17.2) * (skillLevel + 17.2)) / 3.7); // 4.7.5
+		int requiredExp = (int) (0.23 * (skillLevel + 17.2) * (skillLevel + 17.2));
 		StatEnum boostStat = StatEnum.getModifier(skillId);
-		if (boostStat != null) {
+		if(boostStat != null) {
 			float statRate = player.getGameStats().getStat(boostStat, 100).getCurrent() / 100f;
-			if (statRate > 0)
+			if(statRate > 0)
 				requiredExp /= statRate;
 		}
 		if (currentXp > requiredExp) {
 			if (CraftConfig.UNABLE_CRAFT_SKILLS_UNRESTRICTED_LEVELUP == true) {
-				float skillUpRatio = (currentXp / (0.37f * (skillLevel + 17.2f) * (skillLevel + 17.2f)));
+				float skillUpRatio = (currentXp / (0.23f * (skillLevel + 17.2f) * (skillLevel + 17.2f)));
 				int skillUp = skillLevel + (int) skillUpRatio;
 
 				if (skillLevel > 0 && skillLevel < 99) {
@@ -178,30 +166,6 @@ public class PlayerSkillEntry extends SkillEntry {
 	}
 
 	/**
-	 * @param player
-	 * @param xp
-	 */
-	int count = 0;
-
-	public boolean addMagicCraftSkillXp(Player player, int xp) {
-		this.currentXp += xp;
-		int requiredExp = (int) ((1000 * 1000) + (1000 * 1000 * 0.4)); // Temp for MagicCraft
-		StatEnum boostStat = StatEnum.getModifier(skillId);
-		if (boostStat != null) {
-			float statRate = player.getGameStats().getStat(boostStat, 100).getCurrent() / 100f;
-			if (statRate > 0)
-				requiredExp /= statRate;
-		}
-
-		if (currentXp > requiredExp) {
-			setSkillLvl(skillLevel + 1);
-			currentXp = 0;
-			return true;
-		}
-		return false;
-	}
-
-	/**
 	 * @return the pState
 	 */
 	public PersistentState getPersistentState() {
@@ -210,7 +174,7 @@ public class PlayerSkillEntry extends SkillEntry {
 
 	/**
 	 * @param persistentState
-	 *            the pState to set
+	 *          the pState to set
 	 */
 	public void setPersistentState(PersistentState persistentState) {
 		switch (persistentState) {
@@ -230,5 +194,5 @@ public class PlayerSkillEntry extends SkillEntry {
 				this.persistentState = persistentState;
 		}
 	}
-}
 
+}

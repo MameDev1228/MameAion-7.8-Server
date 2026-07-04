@@ -1,23 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services.item;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.DescriptionId;
@@ -33,76 +30,56 @@ import com.aionemu.gameserver.utils.audit.AuditLogger;
 
 import javolution.util.FastMap;
 
-/**
- * @author Ranastic
- */
-public class ItemUpgradeService {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class ItemUpgradeService
+{
 	private static final Logger log = LoggerFactory.getLogger(ItemUpgradeService.class);
-
-	public static boolean decreaseMaterial(Player player, Item baseItem, int resultItemId) {
-		FastMap<Integer, UpgradeResultItem> resultItemMap = DataManager.ITEM_UPGRADE_DATA.getResultItemMap(baseItem.getItemId());
-
-		UpgradeResultItem resultItem = resultItemMap.get(resultItemId);
-		if (resultItem.getNeed_kinah() == null) {
-			for (SubMaterialItem item : resultItem.getUpgrade_materials().getSubMaterialItem()) {
-				if (!player.getInventory().decreaseByItemId(item.getId(), item.getCount())) {
-					AuditLogger.info(player, "try item upgrade without sub material");
-					return false;
-				}
-			}
-		} 
-		else {
-			player.getInventory().decreaseKinah(-resultItem.getNeed_kinah().getCount());
-		}
-		if (resultItem.getNeed_abyss_point() != null) {
-			AbyssPointsService.setAp(player, -resultItem.getNeed_abyss_point().getCount());
-		}
-		if (resultItem.getNeed_kinah() != null) {
-			player.getInventory().decreaseKinah(-resultItem.getNeed_kinah().getCount());
-		}
-		player.getInventory().decreaseByObjectId(baseItem.getObjectId(), 1);
-		return true;
-	}
-
-	public static boolean checkItemUpgrade(Player player, Item baseItem, int resultItemId) {
-		ItemUpgradeTemplate itemUpgradeTemplate = DataManager.ITEM_UPGRADE_DATA.getItemUpgradeTemplate(baseItem.getItemId());
-		if (itemUpgradeTemplate == null) {
-			log.warn(resultItemId + " item's itemupgrade template is null");
+	
+	public static boolean checkItemUpgrade(Player player, Item baseItem, int choice) {
+		ItemUpgradeTemplate itemUpgardeTemplate = DataManager.ITEM_UPGRADE_DATA.getItemUpgradeTemplate(baseItem.getItemId());
+		UpgradeResultItem resultItem = itemUpgardeTemplate.getUpgrade_result_item().get(choice);
+		if (itemUpgardeTemplate == null) {
 			return false;
-		}
-		FastMap<Integer, UpgradeResultItem> resultItemMap = DataManager.ITEM_UPGRADE_DATA.getResultItemMap(baseItem.getItemId());
-		if (!resultItemMap.containsKey(resultItemId)) {
-			AuditLogger.info(player, resultItemId + " item's baseItem and resultItem is not matched (possible client modify)");
-			return false;
-		}
-		UpgradeResultItem resultItem = resultItemMap.get(resultItemId);
-		if (resultItem.getCheck_enchant_count() > 0) {
-			if (baseItem.getEnchantOrAuthorizeLevel() < resultItem.getCheck_enchant_count()) {
-				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT(new DescriptionId(baseItem.getNameId())));
-				return false;
-			}
-		}
-		if (resultItem.getNeed_abyss_point() != null) {
+		} if (resultItem.getNeed_abyss_point() != null) {
 			if (player.getAbyssRank().getAp() < resultItem.getNeed_abyss_point().getCount()) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT_NEED_AP);
 				return false;
 			}
-		}
-		if (resultItem.getNeed_kinah() == null) {
-			for (SubMaterialItem sub : resultItem.getUpgrade_materials().getSubMaterialItem()) {
-				if (player.getInventory().getItemCountByItemId(sub.getId()) < sub.getCount()) {
-					// SubMaterial is not enough
-					return false;
-				}
-			}
-		} 
-		else {
+		} if (resultItem.getNeed_kinah() != null) {
 			if (player.getInventory().getKinah() < resultItem.getNeed_kinah().getCount()) {
 				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_REGISTER_ITEM_MSG_UPGRADE_CANNOT_NEED_QINA);
 				return false;
 			}
 		}
+		return true;
+	}
+	
+	public static boolean decreaseMaterial(Player player, Item baseItem, int choice) {
+		ItemUpgradeTemplate itemUpgardeTemplate = DataManager.ITEM_UPGRADE_DATA.getItemUpgradeTemplate(baseItem.getItemId());
+		UpgradeResultItem resultItem = itemUpgardeTemplate.getUpgrade_result_item().get(choice);
+		//If items purifier has none "Upgrade Materials" and required only "AP or Kinah"
+		if (resultItem.getUpgrade_materials() == null) {
+			if (resultItem.getNeed_abyss_point() != null && resultItem.getUpgrade_materials() == null) {
+				AbyssPointsService.setAp(player, -resultItem.getNeed_abyss_point().getCount());
+			} if (resultItem.getNeed_kinah() != null && resultItem.getUpgrade_materials() == null) {
+				player.getInventory().decreaseKinah(resultItem.getNeed_kinah().getCount());
+			}
+		}
+		//If items purifier has "Upgrade Materials" and required or no somes "AP or Kinah"
+		if (resultItem.getUpgrade_materials() != null) {
+			for (SubMaterialItem item : resultItem.getUpgrade_materials().getSubMaterialItem()) {
+				if (!player.getInventory().decreaseByItemId(item.getId(), item.getCount())) {
+					return false;
+				}
+			}
+		} if (resultItem.getNeed_abyss_point() != null && resultItem.getUpgrade_materials() != null) {
+			AbyssPointsService.setAp(player, -resultItem.getNeed_abyss_point().getCount());
+		} if (resultItem.getNeed_kinah() != null && resultItem.getUpgrade_materials() != null) {
+			player.getInventory().decreaseKinah(resultItem.getNeed_kinah().getCount());
+		}
+		player.getInventory().decreaseByObjectId(baseItem.getObjectId(), 1);
 		return true;
 	}
 }

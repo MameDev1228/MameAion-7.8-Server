@@ -1,56 +1,65 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package ai;
 
-import com.aionemu.gameserver.ai2.AI2Actions;
 import com.aionemu.gameserver.ai2.AIName;
 import com.aionemu.gameserver.ai2.AIState;
 import com.aionemu.gameserver.ai2.NpcAI2;
+import com.aionemu.gameserver.ai2.AI2Actions;
 import com.aionemu.gameserver.ai2.poll.AIAnswer;
 import com.aionemu.gameserver.ai2.poll.AIAnswers;
 import com.aionemu.gameserver.ai2.poll.AIQuestion;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
-import com.aionemu.gameserver.utils.ThreadPoolManager;
+import com.aionemu.gameserver.model.gameobjects.state.CreatureVisualState;
+import com.aionemu.gameserver.model.skill.NpcSkillEntry;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_PLAYER_STATE;
+import com.aionemu.gameserver.utils.*;
 import com.aionemu.gameserver.world.knownlist.Visitor;
 
-/**
- * @author ATracer
- * @modified Kashim
- * @Reworked Kill3r
- * @Reworked Phantom_KNA
- */
+import java.util.concurrent.Future;
+
+/****/
+/** Author Rinzler (Encom)
+/****/
+
 @AIName("trap")
-public class TrapNpcAI2 extends NpcAI2 {
-
+public class TrapNpcAI2 extends NpcAI2
+{
+	private int sensoryRange = 0;
+	private Future<?> despawnTask;
 	public static int EVENT_SET_TRAP_RANGE = 1;
-	@SuppressWarnings("unused")
-	private int trapRange = 0;
-
+	
 	@Override
-	protected void handleCreatureMoved(Creature creature) {
+	protected void handleCreatureSee(Creature creature) {
+		super.handleCreatureSee(creature);
 		tryActivateTrap(creature);
 	}
-
+	
+	@Override
+	protected void handleCreatureMoved(Creature creature) {
+		super.handleCreatureMoved(creature);
+		tryActivateTrap(creature);
+	}
+	
 	@Override
 	protected void handleSpawned() {
 		getKnownList().doUpdate();
 		getKnownList().doOnAllObjects(new Visitor<VisibleObject>() {
-
 			@Override
 			public void visit(VisibleObject object) {
 				if (!(object instanceof Creature)) {
@@ -62,67 +71,109 @@ public class TrapNpcAI2 extends NpcAI2 {
 		});
 		super.handleSpawned();
 	}
-
+	
 	private void tryActivateTrap(Creature creature) {
-		int npcId = this.getNpcId();
-		int time = 1000;
-		if (this.getNpcId() == 833190 || this.getNpcId() == 833189 || this.getNpcId() == 855429) { // Fix for Skill 1058 - 1059
-			if (setStateIfNot(AIState.FIGHT)) {
-				AI2Actions.targetCreature(this, creature);
-				AI2Actions.useSkill(this, getSkillList().getRandomSkill().getSkillId());
-				ThreadPoolManager.getInstance().schedule(new TrapDelete(this), 4500);
-			}
-		}
-		if (!creature.getLifeStats().isAlreadyDead() && isInRange(creature, getOwner().getAggroRange() + 2)) {
-
+		if (despawnTask != null) {
+			return;
+		} if (!creature.getLifeStats().isAlreadyDead() &&
+		      !creature.isInVisualState(CreatureVisualState.BLINKING) && MathUtil.isIn3dRangeLimited(getOwner(), creature, 1, 10)) {
 			Creature creator = (Creature) getCreator();
 			if (!creator.isEnemy(creature)) {
 				return;
 			}
-
-			if (npcId == 833190 || npcId == 833189 || npcId == 749250 || npcId == 749251 || npcId == 855429) { // Fix for Skill 1058 - 1059
-				time = 5000;
-			}
-
-			if (setStateIfNot(AIState.FIGHT)) {
-				AI2Actions.targetCreature(this, creature);
-				AI2Actions.useSkill(this, getSkillList().getRandomSkill().getSkillId());
-				ThreadPoolManager.getInstance().schedule(new TrapDelete(this), time);
+			explode(creature);
+		}
+	}
+	
+	@Override
+	protected void handleCustomEvent(int eventId, Object... args) {
+		if (eventId == EVENT_SET_TRAP_RANGE) {
+			String ownerName = getObjectTemplate().getName().toLowerCase();
+			if (ownerName.equals("snare trap")
+			    || ownerName.equals("caltrop")
+				|| ownerName.equals("spike trap")
+				|| ownerName.equals("shock trap")
+				|| ownerName.equals("sleep trap")
+				|| ownerName.equals("blazing trap")
+				|| ownerName.equals("explosion trap")
+				|| ownerName.equals("specter's trap")
+		        || ownerName.equals("explosive trap")
+				|| ownerName.equals("poisoning trap")
+				|| ownerName.equals("sandstorm trap")
+				|| ownerName.equals("trap of slowing")
+				|| ownerName.equals("trap of silence")
+				|| ownerName.equals("propelling trap")
+				|| ownerName.equals("spike bite trap")) {
+				sensoryRange = 4;
+			} else if (ownerName.equals("trap")
+				|| ownerName.equals("web trap")
+				|| ownerName.equals("ice trap")
+				|| ownerName.equals("storm mine")
+				|| ownerName.equals("swamp trap")
+				|| ownerName.equals("flame trap")
+				|| ownerName.equals("sticky trap")
+				|| ownerName.equals("skybound trap")
+				|| ownerName.equals("paralyze trap")
+				|| ownerName.equals("protect symbol")
+				|| ownerName.equals("drakan net trap")
+				|| ownerName.equals("thornburst trap")
+				|| ownerName.equals("thorntwist trap")
+				|| ownerName.equals("drakan mine trap")
+				|| ownerName.equals("symbol of spirit")
+				|| ownerName.equals("destruction trap")
+				|| ownerName.equals("unidentified trap")
+				|| ownerName.equals("symbol of solidity")
+				|| ownerName.equals("symbol of recovery")
+				|| ownerName.equals("symbol of protection")
+				|| ownerName.equals("trap of clairvoyance")
+				|| ownerName.equals("symbol of castle wall")
+				|| ownerName.equals("scrapped mechanisms")
+				|| ownerName.equals("trap of infernal blaze")
+				|| ownerName.equals("Highdeva_Fire_NPC_L_G1")
+				|| ownerName.equals("Highdeva_Fire_NPC_D_G1")
+				|| ownerName.equals("IDEvent_Solo_Paralyze_NPC")
+				|| ownerName.equals("Oil Cask")
+				|| ownerName.equals("Shulack Bomb")
+				|| ownerName.equals("ldf8_shapechange_boom")
+				|| ownerName.equals("EV_RA_N_Light_SleepingTrap_G1_NPC")
+				|| ownerName.equals("EV_RA_N_Dark_SleepingTrap_G1_NPC")) {
+				sensoryRange = 10;
 			}
 		}
 	}
-
-	/**
-	 * @Override protected void handleCustomEvent(int eventId, Object... args) { if (eventId == EVENT_SET_TRAP_RANGE) { trapRange = (Integer) args[0]; } }
-	 */
-
+	
+	private void explode(Creature creature) {
+		if (setStateIfNot(AIState.FIGHT)) {
+			getOwner().unsetVisualState(CreatureVisualState.HIDE1);
+			PacketSendUtility.broadcastPacket(getOwner(), new SM_PLAYER_STATE(getOwner()));
+			AI2Actions.targetCreature(this, creature);
+			AI2Actions.useSkill(this, getSkillList().getRandomSkill().getSkillId());
+			despawnTask = ThreadPoolManager.getInstance().schedule(new TrapDelete(this), 3000);
+		}
+	}
+	
 	@Override
 	public boolean isMoveSupported() {
 		return false;
 	}
-
+	
 	@Override
 	protected AIAnswer pollInstance(AIQuestion question) {
 		switch (question) {
-			case SHOULD_DECAY:
-				return AIAnswers.NEGATIVE;
-			case SHOULD_RESPAWN:
-				return AIAnswers.NEGATIVE;
-			case SHOULD_REWARD:
-				return AIAnswers.NEGATIVE;
+			case CAN_ATTACK_PLAYER:
+                return AIAnswers.POSITIVE;
 			default:
 				return null;
 		}
 	}
-
+	
 	private static final class TrapDelete implements Runnable {
-
 		private TrapNpcAI2 ai;
-
+		
 		TrapDelete(TrapNpcAI2 ai) {
 			this.ai = ai;
 		}
-
+		
 		@Override
 		public void run() {
 			AI2Actions.deleteOwner(ai);

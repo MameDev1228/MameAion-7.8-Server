@@ -1,19 +1,3 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
 
 import com.aionemu.gameserver.dataholders.DataManager;
@@ -78,7 +62,8 @@ public class AddSet extends AdminCommand {
 		}
 
 		if (receiver.getInventory().getFreeSlots() < itemSet.getItempart().size()) {
-			PacketSendUtility.sendMessage(player, "Inventory needs at least " + itemSet.getItempart().size() + " free slots.");
+			PacketSendUtility
+				.sendMessage(player, "Inventory needs at least " + itemSet.getItempart().size() + " free slots.");
 			return;
 		}
 
@@ -100,4 +85,5 @@ public class AddSet extends AdminCommand {
 		PacketSendUtility.sendMessage(player, "syntax //addset <player> <itemset ID>");
 		PacketSendUtility.sendMessage(player, "syntax //addset <itemset ID>");
 	}
+
 }

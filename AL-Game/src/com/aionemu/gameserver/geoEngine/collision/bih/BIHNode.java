@@ -1,23 +1,36 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * Copyright (c) 2009-2010 jMonkeyEngine
+ * All rights reserved.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * * Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ *
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
+ *   may be used to endorse or promote products derived from this software
+ *   without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.aionemu.gameserver.geoEngine.collision.bih;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
+package com.aionemu.gameserver.geoEngine.collision.bih;
 
 import com.aionemu.gameserver.geoEngine.bounding.BoundingBox;
 import com.aionemu.gameserver.geoEngine.collision.Collidable;
@@ -27,15 +40,19 @@ import com.aionemu.gameserver.geoEngine.math.Matrix4f;
 import com.aionemu.gameserver.geoEngine.math.Ray;
 import com.aionemu.gameserver.geoEngine.math.Triangle;
 import com.aionemu.gameserver.geoEngine.math.Vector3f;
-
 import javolution.util.FastList;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 /**
- * Bounding Interval Hierarchy. Based on: Instant Ray Tracing: The Bounding Interval Hierarchy By Carsten Wächter and Alexander Keller
+ * Bounding Interval Hierarchy. Based on: Instant Ray Tracing: The Bounding Interval Hierarchy By Carsten Wächter and
+ * Alexander Keller
  */
 public final class BIHNode {
 
 	private int leftIndex, rightIndex;
+
 	private BIHNode left;
 	private BIHNode right;
 	private float leftPlane;
@@ -97,12 +114,9 @@ public final class BIHNode {
 			this.min = min;
 			this.max = max;
 		}
+
 	}
 
-	/**
-	 * @param col
-	 * @param results
-	 */
 	public final int intersectWhere(Collidable col, BoundingBox box, Matrix4f worldMatrix, BIHTree tree, CollisionResults results) {
 
 		FastList<BIHStackData> stack = FastList.newInstance();
@@ -128,9 +142,8 @@ public final class BIHNode {
 				if (node.leftPlane < node.rightPlane) {
 					// means there's a gap in the middle
 					// if the box is in that gap, we stop there
-					if (minExt > node.leftPlane && maxExt < node.rightPlane) {
+					if (minExt > node.leftPlane && maxExt < node.rightPlane)
 						continue stackloop;
-					}
 				}
 
 				if (maxExt < node.rightPlane) {
@@ -153,19 +166,18 @@ public final class BIHNode {
 					worldMatrix.mult(t.get3(), t.get3());
 				}
 
-				/*
-				 * Original code had this int added = col.collideWith(t, results, 1); if (added > 0) { cols += added; }
-				 */
+				/* Original code had this
+				int added = col.collideWith(t, results, 1);
+				if (added > 0) {
+					cols += added;
+				}
+				*/
 			}
 		}
 		FastList.recycle(stack);
 		return cols;
 	}
 
-	/**
-	 * @param sceneMin
-	 * @param sceneMax
-	 */
 	public final int intersectBrute(Ray r, Matrix4f worldMatrix, BIHTree tree, float sceneMin, float sceneMax, CollisionResults results) {
 		float tHit = Float.POSITIVE_INFINITY;
 
@@ -219,6 +231,7 @@ public final class BIHNode {
 		FastList<BIHStackData> stack = FastList.newInstance();
 
 		// float tHit = Float.POSITIVE_INFINITY;
+
 		Vector3f o = r.getOrigin().clone();
 		Vector3f d = r.getDirection().clone();
 
@@ -246,9 +259,8 @@ public final class BIHNode {
 			BIHNode node = data.node;
 			float tMin = data.min, tMax = data.max;
 
-			if (tMax < tMin) {
+			if (tMax < tMin)
 				continue;
-			}
 
 			while (node.axis != 3) { // while node is not a leaf
 				int a = node.axis;
@@ -312,15 +324,13 @@ public final class BIHNode {
 					Vector3f contactPoint = new Vector3f(d).multLocal(t).addLocal(o);
 					float worldSpaceDist = o.distance(contactPoint);
 					// fix invisible walls
-					if (worldSpaceDist > r.limit) {
+					if (worldSpaceDist > r.limit)
 						continue;
-					}
 					CollisionResult cr = new CollisionResult(contactPoint, worldSpaceDist);
 					cr.setContactNormal(contactNormal);
 					results.addCollision(cr);
-					if (results.isOnlyFirst()) {
+					if (results.isOnlyFirst())
 						return 1;
-					}
 					cols++;
 				}
 			}
@@ -331,4 +341,5 @@ public final class BIHNode {
 		FastList.recycle(stack);
 		return cols;
 	}
+
 }

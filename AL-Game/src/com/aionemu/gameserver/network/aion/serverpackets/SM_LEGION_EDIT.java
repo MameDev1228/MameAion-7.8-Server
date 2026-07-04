@@ -1,20 +1,21 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.serverpackets;
+
 
 import com.aionemu.gameserver.model.team.legion.Legion;
 import com.aionemu.gameserver.network.aion.AionConnection;
@@ -54,74 +55,55 @@ public class SM_LEGION_EDIT extends AionServerPacket {
 	protected void writeImpl(AionConnection con) {
 		writeC(type);
 		switch (type) {
-			/**
-			 * Change Legion Level *
-			 */
+			/** Change Legion Level **/
 			case 0x00:
 				writeC(legion.getLegionLevel());
 				break;
-			/**
-			 * Change Legion Rank *
-			 */
+			/** Change Legion Rank **/
 			case 0x01:
 				writeD(legion.getLegionRank());
 				break;
-			/**
-			 * Change Legion Permissions *
-			 */
+			/** Change Legion Permissions **/
 			case 0x02:
 				writeH(legion.getDeputyPermission());
 				writeH(legion.getCenturionPermission());
 				writeH(legion.getLegionaryPermission());
 				writeH(legion.getVolunteerPermission());
 				break;
-			/**
-			 * Change Legion Contributions *
-			 */
+			/** Change Legion Contributions **/
 			case 0x03:
 				writeQ(legion.getContributionPoints()); // get Contributions
 				break;
 			case 0x04:
 				writeQ(legion.getLegionWarehouse().getKinah());
 				break;
-			/**
-			 * Change Legion Announcement *
-			 */
+			/** Change Legion Announcement **/
 			case 0x05:
 				writeS(announcement);
 				writeD(unixTime);
 				break;
-			/**
-			 * Disband Legion *
-			 */
+			/** Disband Legion **/
 			case 0x06:
 				writeD(unixTime);
 				break;
-			/**
-			 * Recover Legion *
-			 */
+			/** Recover Legion **/
 			case 0x07:
 				break;
-			/**
-			 * Refresh Legion Announcement? *
-			 */
+			/** Refresh Legion Announcement? **/
 			case 0x08:
 				break;
-
+			/** Stonespear Reach **/		
 			case 0x10:
-				break;
+			    break;
 			case 0x0C:
-				writeS(legion.getLegionDiscription());
-				break;
-
-			case 0x0D:
-				writeC(legion.getLegionJoinType());
-				break;
-
-			case 0x0E:
-				writeH(legion.getMinLevel());
-				break;
-
+                writeS(legion.getLegionDescription());
+                break;
+            case 0x0D:
+            	writeC(legion.getLegionJoinType());
+            	break;
+            case 0x0E:
+            	writeH(legion.getMinLevel());
+            	break;
 		}
 	}
 }

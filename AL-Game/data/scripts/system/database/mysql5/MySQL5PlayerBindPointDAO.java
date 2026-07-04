@@ -1,27 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package mysql5;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.DatabaseFactory;
 import com.aionemu.gameserver.dao.MySQL5DAOUtils;
@@ -29,6 +22,12 @@ import com.aionemu.gameserver.dao.PlayerBindPointDAO;
 import com.aionemu.gameserver.model.gameobjects.PersistentState;
 import com.aionemu.gameserver.model.gameobjects.player.BindPointPosition;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  * @author evilset
@@ -36,6 +35,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 public class MySQL5PlayerBindPointDAO extends PlayerBindPointDAO {
 
 	private static final Logger log = LoggerFactory.getLogger(MySQL5PlayerBindPointDAO.class);
+
 	public static final String INSERT_QUERY = "REPLACE INTO `player_bind_point` (`player_id`, `map_id`, `x`, `y`, `z`, `heading`) VALUES (?,?,?,?,?,?)";
 	public static final String SELECT_QUERY = "SELECT `map_id`, `x`, `y`, `z`, `heading` FROM `player_bind_point` WHERE `player_id`=?";
 	public static final String UPDATE_QUERY = "UPDATE player_bind_point set `map_id`=?, `x`=?, `y`=? , `z`=?, `heading`=? WHERE `player_id`=?";
@@ -68,7 +68,8 @@ public class MySQL5PlayerBindPointDAO extends PlayerBindPointDAO {
 			stmt.close();
 		}
 		catch (Exception e) {
-			log.error("Could not restore BindPointPosition data for playerObjId: " + player.getObjectId() + " from DB: " + e.getMessage(), e);
+			log.error("Could not restore BindPointPosition data for playerObjId: " + player.getObjectId() + " from DB: "
+					+ e.getMessage(), e);
 		}
 		finally {
 			DatabaseFactory.close(con);
@@ -120,7 +121,8 @@ public class MySQL5PlayerBindPointDAO extends PlayerBindPointDAO {
 			stmt.close();
 		}
 		catch (Exception e) {
-			log.error("Could not update BindPointPosition data for player " + player.getObjectId() + " from DB: " + e.getMessage(), e);
+			log.error("Could not update BindPointPosition data for player " + player.getObjectId() + " from DB: " + e.getMessage(),
+					e);
 			return false;
 		}
 		finally {
@@ -133,15 +135,13 @@ public class MySQL5PlayerBindPointDAO extends PlayerBindPointDAO {
 	public boolean store(final Player player) {
 		boolean insert = false;
 		BindPointPosition bind = player.getBindPoint();
-
+		
 		switch (bind.getPersistentState()) {
 			case NEW:
 				insert = insertBindPoint(player);
 				break;
 			case UPDATE_REQUIRED:
 				insert = updateBindPoint(player);
-				break;
-			default:
 				break;
 		}
 		bind.setPersistentState(PersistentState.UPDATED);

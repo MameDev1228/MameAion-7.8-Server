@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Conquest
+ -->
+<conquest_schedule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="conquest_schedule.xsd">
+	<!-- [Qubrinerk's Cubic Lab - Inggison] -->
+	<conquest id="1">
+		<offeringTime>0 0 */2 ? * MON-SUN *</offeringTime>
+	</conquest>
+	<!-- [Qubrinerk's Cubic Lab - Gelkmaros] -->
+	<conquest id="2">
+		<offeringTime>0 0 */2 ? * MON-SUN *</offeringTime>
+	</conquest>
+	
+	<!-- [Dredgion 7.x] - Inggison] -->
+	<conquest id="3">
+		<offeringTime>0 0 */2 ? * MON-SUN *</offeringTime>
+	</conquest>
+	<!-- [Dredgion 7.x] - Gelkmaros] -->
+	<conquest id="4">
+		<offeringTime>0 0 */2 ? * MON-SUN *</offeringTime>
+	</conquest>
+	
+	<!-- [Emperor Trillirunerk's Safe - Sanctum] -->
+	<conquest id="5">
+		<offeringTime>0 0 17,22,3,8,13 ? * TUE *</offeringTime>
+	</conquest>
+	<!-- [Emperor Trillirunerk's Safe - Pandaemonium] -->
+	<conquest id="6">
+		<offeringTime>0 0 17,22,3,8,13 ? * TUE *</offeringTime>
+	</conquest>
+	
+	<!-- [Danaria 7.x - 81th Base]
+	https://aion.plaync.com/board/aionreport/view?articleId=322&categoryId=24 -->
+	<conquest id="17">
+		<offeringTime>0 0 12,15,18,21,0 ? * MON-SUN *</offeringTime>
+	</conquest>
+	
+	<!-- 레이드 몬스터 수나야카
+	레이드 몬스터 수나야카 편집
+	요일별 정해진 시간이 되면, 사령관 실에 수나야카가 등장한다.
+	수나야카는 대규모 인원이 모여서 공략해야 하는 몬스터로, 공략 성공 시 신규 늘어나는 무기와 신규 머리장식 등 좋은 보상을 획득할 수 있다
+	http://aion.power.plaync.com/wiki/%ED%8B%B0%EC%95%84%EB%A7%88%EB%9E%80%ED%83%80%EC%9D%98+%EB%88%88 -->
+	<!-- [Berserker/Governor Sunayaka] -->
+	<conquest id="24">
+		<offeringTime>0 0 18 ? * MON-FRI *</offeringTime>
+		<offeringTime>0 0 15 ? * SAT-SUN *</offeringTime>
+	</conquest>
+	<conquest id="25">
+		<offeringTime>0 0 21 ? * MON-FRI *</offeringTime>
+		<offeringTime>0 0 19 ? * SAT-SUN *</offeringTime>
+	</conquest>
+</conquest_schedule>

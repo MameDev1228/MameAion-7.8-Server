@@ -1,25 +1,36 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * Copyright (c) 2009-2010 jMonkeyEngine
+ * All rights reserved.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * * Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ *
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
+ *   may be used to endorse or promote products derived from this software
+ *   without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.aionemu.gameserver.geoEngine.scene;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-
 
 import com.aionemu.gameserver.geoEngine.bounding.BoundingVolume;
 import com.aionemu.gameserver.geoEngine.collision.Collidable;
@@ -29,10 +40,16 @@ import com.aionemu.gameserver.geoEngine.math.Matrix3f;
 import com.aionemu.gameserver.geoEngine.math.Ray;
 import com.aionemu.gameserver.geoEngine.math.Vector3f;
 
+import javax.activation.UnsupportedDataTypeException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 /**
- * <code>Node</code> defines an internal node of a scene graph. The internal node maintains a collection of children and handles merging said children into a single bound to allow for very fast
- * culling of multiple nodes. Node allows for any number of children to be attached.
- *
+ * <code>Node</code> defines an internal node of a scene graph. The internal node maintains a collection of children and
+ * handles merging said children into a single bound to allow for very fast culling of multiple nodes. Node allows for
+ * any number of children to be attached.
+ * 
  * @author Mark Powell
  * @author Gregg Patton
  * @author Joshua Slack
@@ -40,10 +57,12 @@ import com.aionemu.gameserver.geoEngine.math.Vector3f;
 public class Node extends Spatial implements Cloneable {
 
 	private static final Logger logger = Logger.getLogger(Node.class.getName());
+
 	/**
 	 * This node's children.
 	 */
 	protected ArrayList<Spatial> children = new ArrayList<Spatial>(1);
+
 	protected short collisionFlags;
 
 	/**
@@ -54,18 +73,18 @@ public class Node extends Spatial implements Cloneable {
 
 	/**
 	 * Constructor instantiates a new <code>Node</code> with a default empty list for containing children.
-	 *
+	 * 
 	 * @param name
-	 *            the name of the scene element. This is required for identification and comparision purposes.
+	 *          the name of the scene element. This is required for identification and comparision purposes.
 	 */
 	public Node(String name) {
 		super(name);
-		collisionFlags = CollisionIntention.ALL.getId();
+		collisionFlags = (short) CollisionIntention.ALL.getId();
 	}
 
 	/**
 	 * <code>getQuantity</code> returns the number of children this node maintains.
-	 *
+	 * 
 	 * @return the number of children this node maintains.
 	 */
 	public int getQuantity() {
@@ -73,8 +92,9 @@ public class Node extends Spatial implements Cloneable {
 	}
 
 	/**
-	 * <code>getTriangleCount</code> returns the number of triangles contained in all sub-branches of this node that contain geometry.
-	 *
+	 * <code>getTriangleCount</code> returns the number of triangles contained in all sub-branches of this node that
+	 * contain geometry.
+	 * 
 	 * @return the triangle count of this branch.
 	 */
 	@Override
@@ -90,8 +110,9 @@ public class Node extends Spatial implements Cloneable {
 	}
 
 	/**
-	 * <code>getVertexCount</code> returns the number of vertices contained in all sub-branches of this node that contain geometry.
-	 *
+	 * <code>getVertexCount</code> returns the number of vertices contained in all sub-branches of this node that contain
+	 * geometry.
+	 * 
 	 * @return the vertex count of this branch.
 	 */
 	@Override
@@ -107,19 +128,19 @@ public class Node extends Spatial implements Cloneable {
 	}
 
 	/**
-	 * <code>attachChild</code> attaches a child to this node. This node becomes the child's parent. The current number of children maintained is returned. <br>
+	 * <code>attachChild</code> attaches a child to this node. This node becomes the child's parent. The current number of
+	 * children maintained is returned. <br>
 	 * If the child already had a parent it is detached from that former parent.
-	 *
+	 * 
 	 * @param child
-	 *            the child to attach to this node.
+	 *          the child to attach to this node.
 	 * @return the number of children maintained by this node.
 	 * @throws NullPointerException
-	 *             If child is null.
+	 *           If child is null.
 	 */
 	public int attachChild(Spatial child) {
-		if (child == null) {
+		if (child == null)
 			throw new NullPointerException();
-		}
 
 		if (child.getParent() != this && child != this) {
 			if (child.getParent() != null) {
@@ -133,19 +154,19 @@ public class Node extends Spatial implements Cloneable {
 	}
 
 	/**
-	 * <code>attachChildAt</code> attaches a child to this node at an index. This node becomes the child's parent. The current number of children maintained is returned. <br>
+	 * <code>attachChildAt</code> attaches a child to this node at an index. This node becomes the child's parent. The
+	 * current number of children maintained is returned. <br>
 	 * If the child already had a parent it is detached from that former parent.
-	 *
+	 * 
 	 * @param child
-	 *            the child to attach to this node.
+	 *          the child to attach to this node.
 	 * @return the number of children maintained by this node.
 	 * @throws NullPointerException
-	 *             if child is null.
+	 *           if child is null.
 	 */
 	public int attachChildAt(Spatial child, int index) {
-		if (child == null) {
+		if (child == null)
 			throw new NullPointerException();
-		}
 
 		if (child.getParent() != this && child != this) {
 			if (child.getParent() != null) {
@@ -160,15 +181,14 @@ public class Node extends Spatial implements Cloneable {
 
 	/**
 	 * <code>detachChild</code> removes a given child from the node's list. This child will no longe be maintained.
-	 *
+	 * 
 	 * @param child
-	 *            the child to remove.
+	 *          the child to remove.
 	 * @return the index the child was at. -1 if the child was not in the list.
 	 */
 	public int detachChild(Spatial child) {
-		if (child == null) {
+		if (child == null)
 			throw new NullPointerException();
-		}
 
 		if (child.getParent() == this) {
 			int index = children.indexOf(child);
@@ -182,16 +202,16 @@ public class Node extends Spatial implements Cloneable {
 	}
 
 	/**
-	 * <code>detachChild</code> removes a given child from the node's list. This child will no longe be maintained. Only the first child with a matching name is removed.
-	 *
+	 * <code>detachChild</code> removes a given child from the node's list. This child will no longe be maintained. Only
+	 * the first child with a matching name is removed.
+	 * 
 	 * @param childName
-	 *            the child to remove.
+	 *          the child to remove.
 	 * @return the index the child was at. -1 if the child was not in the list.
 	 */
 	public int detachChildNamed(String childName) {
-		if (childName == null) {
+		if (childName == null)
 			throw new NullPointerException();
-		}
 
 		for (int x = 0, max = children.size(); x < max; x++) {
 			Spatial child = children.get(x);
@@ -205,9 +225,9 @@ public class Node extends Spatial implements Cloneable {
 
 	/**
 	 * <code>detachChildAt</code> removes a child at a given index. That child is returned for saving purposes.
-	 *
+	 * 
 	 * @param index
-	 *            the index of the child to be removed.
+	 *          the index of the child to be removed.
 	 * @return the child at the supplied index.
 	 */
 	public Spatial detachChildAt(int index) {
@@ -234,7 +254,7 @@ public class Node extends Spatial implements Cloneable {
 
 	/**
 	 * More efficient than e.g detaching and attaching as no updates are needed.
-	 *
+	 * 
 	 * @param index1
 	 * @param index2
 	 */
@@ -248,9 +268,9 @@ public class Node extends Spatial implements Cloneable {
 
 	/**
 	 * <code>getChild</code> returns a child at a given index.
-	 *
+	 * 
 	 * @param i
-	 *            the index to retrieve the child from.
+	 *          the index to retrieve the child from.
 	 * @return the child at a specified index.
 	 */
 	public Spatial getChild(int i) {
@@ -259,15 +279,14 @@ public class Node extends Spatial implements Cloneable {
 
 	/**
 	 * <code>getChild</code> returns the first child found with exactly the given name (case sensitive.)
-	 *
+	 * 
 	 * @param name
-	 *            the name of the child to retrieve. If null, we'll return null.
+	 *          the name of the child to retrieve. If null, we'll return null.
 	 * @return the child if found, or null.
 	 */
 	public Spatial getChild(String name) {
-		if (name == null) {
+		if (name == null)
 			return null;
-		}
 
 		for (int x = 0, cSize = getQuantity(); x < cSize; x++) {
 			Spatial child = children.get(x);
@@ -286,21 +305,19 @@ public class Node extends Spatial implements Cloneable {
 
 	/**
 	 * determines if the provided Spatial is contained in the children list of this node.
-	 *
+	 * 
 	 * @param spat
-	 *            the child object to look for.
+	 *          the child object to look for.
 	 * @return true if the object is contained, false otherwise.
 	 */
 	public boolean hasChild(Spatial spat) {
-		if (children.contains(spat)) {
+		if (children.contains(spat))
 			return true;
-		}
 
 		for (int i = 0, max = getQuantity(); i < max; i++) {
 			Spatial child = children.get(i);
-			if (child instanceof Node && ((Node) child).hasChild(spat)) {
+			if (child instanceof Node && ((Node) child).hasChild(spat))
 				return true;
-			}
 		}
 
 		return false;
@@ -308,7 +325,7 @@ public class Node extends Spatial implements Cloneable {
 
 	/**
 	 * Returns all children to this node.
-	 *
+	 * 
 	 * @return a list containing all children to this node
 	 */
 	public List<Spatial> getChildren() {
@@ -322,16 +339,13 @@ public class Node extends Spatial implements Cloneable {
 		}
 	}
 
-	@Override
 	public int collideWith(Collidable other, CollisionResults results) {
-		if ((getIntentions() & results.getIntentions()) == 0) {
+		if ((getIntentions() & results.getIntentions()) == 0)
 			return 0;
-		}
-
+		
 		if (other instanceof Ray) {
-			if (worldBound == null || !worldBound.intersects(((Ray) other))) {
+			if (worldBound == null || !worldBound.intersects(((Ray) other)))
 				return 0;
-			}
 		}
 
 		int total = 0;
@@ -342,42 +356,41 @@ public class Node extends Spatial implements Cloneable {
 				// not used materialIds do not have collision intention for materials set
 				// not all material meshes have physical collisions set
 				// TODO: implement event mesh collisions
-				if ((child.getIntentions() & results.getIntentions()) == 0 || (child.getIntentions() & CollisionIntention.EVENT.getId()) != 0) {
+				if ((child.getIntentions() & results.getIntentions()) == 0
+					|| (child.getIntentions() & CollisionIntention.EVENT.getId()) != 0)
 					continue;
-				}
 				if ((results.getIntentions() & CollisionIntention.MATERIAL.getId()) != 0 && child.getMaterialId() <= 0) {
 					continue;
 				}
 			}
 			total += child.collideWith(other, results);
-			if (total > 0 && results.isOnlyFirst()) {
+			if (total > 0 && results.isOnlyFirst())
 				break;
-			}
 		}
 		return total;
 	}
 
 	/**
-	 * Returns flat list of Spatials implementing the specified class AND with name matching the specified pattern.
+	 * Returns flat list of Spatials implementing the specified class AND with name matching the specified pattern. </P>
+	 * <P>
+	 * Note that we are <i>matching</i> the pattern, therefore the pattern must match the entire pattern (i.e. it behaves
+	 * as if it is sandwiched between "^" and "$"). You can set regex modes, like case insensitivity, by using the (?X) or
+	 * (?X:Y) constructs.
 	 * </P>
-	 * <p/>
-	 * Note that we are <i>matching</i> the pattern, therefore the pattern must match the entire pattern (i.e. it behaves as if it is sandwiched between "^" and "$"). You can set regex modes, like
-	 * case insensitivity, by using the (?X) or (?X:Y) constructs.
-	 * </P>
-	 * <p/>
-	 * By design, it is always safe to code loops like: <CODE><PRE>
-	 * for (Spatial spatial : node.descendantMatches(AClass.class, "regex"))
+	 * <P>
+	 * By design, it is always safe to code loops like:<CODE><PRE>
+	 *     for (Spatial spatial : node.descendantMatches(AClass.class, "regex"))
 	 * </PRE></CODE>
 	 * </P>
-	 * <p/>
-	 * "Descendants" does not include self, per the definition of the word. To test for descendants AND self, you must do a <code>node.matches(aClass, aRegex)</code> +
-	 * <code>node.descendantMatches(aClass, aRegex)</code>.
-	 * <p/>
-	 *
+	 * <P>
+	 * "Descendants" does not include self, per the definition of the word. To test for descendants AND self, you must do
+	 * a <code>node.matches(aClass, aRegex)</code> + <code>node.descendantMatches(aClass, aRegex)</code>.
+	 * <P>
+	 * 
 	 * @param spatialSubclass
-	 *            Subclass which matching Spatials must implement. Null causes all Spatials to qualify.
+	 *          Subclass which matching Spatials must implement. Null causes all Spatials to qualify.
 	 * @param nameRegex
-	 *            Regular expression to match Spatial name against. Null causes all Names to qualify.
+	 *          Regular expression to match Spatial name against. Null causes all Names to qualify.
 	 * @return Non-null, but possibly 0-element, list of matching Spatials (also Instances extending Spatials).
 	 * @see java.util.regex.Pattern
 	 * @see Spatial#matches(Class<? extends Spatial>, String)
@@ -385,24 +398,21 @@ public class Node extends Spatial implements Cloneable {
 	@SuppressWarnings("unchecked")
 	public <T extends Spatial> List<T> descendantMatches(Class<T> spatialSubclass, String nameRegex) {
 		List<T> newList = new ArrayList<T>();
-		if (getQuantity() < 1) {
+		if (getQuantity() < 1)
 			return newList;
-		}
 		for (int i = 0; i < children.size(); i++) {
 			Spatial child = children.get(i);
-			if (child.matches(spatialSubclass, nameRegex)) {
+			if (child.matches(spatialSubclass, nameRegex))
 				newList.add((T) child);
-			}
-			if (child instanceof Node) {
+			if (child instanceof Node)
 				newList.addAll(((Node) child).descendantMatches(spatialSubclass, nameRegex));
-			}
 		}
 		return newList;
 	}
 
 	/**
 	 * Convenience wrapper.
-	 *
+	 * 
 	 * @see #descendantMatches(Class<? extends Spatial>, String)
 	 */
 	public <T extends Spatial> List<T> descendantMatches(Class<T> spatialSubclass) {
@@ -411,7 +421,7 @@ public class Node extends Spatial implements Cloneable {
 
 	/**
 	 * Convenience wrapper.
-	 *
+	 * 
 	 * @see #descendantMatches(Class<? extends Spatial>, String)
 	 */
 	public <T extends Spatial> List<T> descendantMatches(String nameRegex) {
@@ -451,7 +461,8 @@ public class Node extends Spatial implements Cloneable {
 
 	/*
 	 * (non-Javadoc)
-	 * @see aionjHungary.geoEngine.scene.Spatial#setTransform(aionjHungary.geoEngine.math.Matrix3f, aionjHungary.geoEngine.math.Vector3f)
+	 * @see aionjHungary.geoEngine.scene.Spatial#setTransform(aionjHungary.geoEngine.math.Matrix3f,
+	 * aionjHungary.geoEngine.math.Vector3f)
 	 */
 	@Override
 	public void setTransform(Matrix3f rotation, Vector3f loc, float scale) {
@@ -466,18 +477,15 @@ public class Node extends Spatial implements Cloneable {
 	public Node clone() throws CloneNotSupportedException {
 		Node node = new Node(name);
 		node.collisionFlags = collisionFlags;
-		for (Spatial spatial : children) {
+		for (Spatial spatial : children)
 			if (spatial instanceof Geometry) {
 				Geometry geom = new Geometry(spatial.getName(), ((Geometry) spatial).getMesh());
 				node.attachChild(geom);
 			}
-			else if (spatial instanceof Node) {
+			else if (spatial instanceof Node)
 				node.attachChild(((Node) (spatial)).clone());
-			}
-			else {
-				throw new IllegalStateException("Unsupported child spatial type: " + spatial.getClass().getName());
-			}
-		}
+			else
+				new UnsupportedDataTypeException();
 		return node;
 	}
 

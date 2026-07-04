@@ -1,41 +1,24 @@
 /**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-emu is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-emu is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.world;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.Future;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.aionemu.gameserver.configs.main.WorldConfig;
 import com.aionemu.gameserver.instance.handlers.InstanceHandler;
-import com.aionemu.gameserver.model.gameobjects.AionObject;
-import com.aionemu.gameserver.model.gameobjects.Creature;
-import com.aionemu.gameserver.model.gameobjects.Npc;
-import com.aionemu.gameserver.model.gameobjects.StaticDoor;
-import com.aionemu.gameserver.model.gameobjects.Trap;
-import com.aionemu.gameserver.model.gameobjects.VisibleObject;
+import com.aionemu.gameserver.model.gameobjects.*;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.team2.alliance.PlayerAlliance;
 import com.aionemu.gameserver.model.team2.group.PlayerGroup;
@@ -51,14 +34,18 @@ import com.aionemu.gameserver.world.zone.RegionZone;
 import com.aionemu.gameserver.world.zone.ZoneInstance;
 import com.aionemu.gameserver.world.zone.ZoneName;
 import com.aionemu.gameserver.world.zone.ZoneService;
-
 import gnu.trove.map.hash.TIntObjectHashMap;
 import javolution.util.FastList;
 import javolution.util.FastMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.*;
+import java.util.concurrent.Future;
 
 /**
  * World map instance object.
- *
+ * 
  * @author -Nemesiss-
  */
 public abstract class WorldMapInstance {
@@ -79,32 +66,43 @@ public abstract class WorldMapInstance {
 	 * Map of active regions.
 	 */
 	protected final TIntObjectHashMap<MapRegion> regions = new TIntObjectHashMap<MapRegion>();
+
 	/**
 	 * All objects spawned in this world map instance
 	 */
 	private final Map<Integer, VisibleObject> worldMapObjects = new FastMap<Integer, VisibleObject>().shared();
+
 	/**
 	 * All players spawned in this world map instance
 	 */
 	private final FastMap<Integer, Player> worldMapPlayers = new FastMap<Integer, Player>().shared();
+
 	private final Set<Integer> registeredObjects = Collections.newSetFromMap(new FastMap<Integer, Boolean>().shared());
+
 	private PlayerGroup registeredGroup = null;
+
 	private Future<?> emptyInstanceTask = null;
+
 	/**
 	 * Id of this instance (channel)
 	 */
 	private int instanceId;
+
 	private final FastList<Integer> questIds = new FastList<Integer>();
+
 	private InstanceHandler instanceHandler;
+	
 	private Map<ZoneName, ZoneInstance> zones = new HashMap<ZoneName, ZoneInstance>();
+
 	// TODO: Merge this with owner
 	private Integer soloPlayer;
+	
 	private PlayerAlliance registredAlliance;
 	private League registredLeague;
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param parent
 	 */
 	public WorldMapInstance(WorldMap parent, int instanceId) {
@@ -116,7 +114,7 @@ public abstract class WorldMapInstance {
 
 	/**
 	 * Return World map id.
-	 *
+	 * 
 	 * @return world map id
 	 */
 	public Integer getMapId() {
@@ -125,20 +123,20 @@ public abstract class WorldMapInstance {
 
 	/**
 	 * Returns WorldMap witch is parent of this instance
-	 *
+	 * 
 	 * @return parent
 	 */
 	public WorldMap getParent() {
 		return parent;
 	}
-
+	
 	public WorldMapTemplate getTemplate() {
 		return parent.getTemplate();
 	}
 
 	/**
 	 * Returns MapRegion that contains coordinates of VisibleObject. If the region doesn't exist, it's created.
-	 *
+	 * 
 	 * @param object
 	 * @return a MapRegion
 	 */
@@ -148,7 +146,7 @@ public abstract class WorldMapInstance {
 
 	/**
 	 * Returns MapRegion that contains given x,y coordinates. If the region doesn't exist, it's created.
-	 *
+	 * 
 	 * @param x
 	 * @param y
 	 * @return a MapRegion
@@ -157,21 +155,21 @@ public abstract class WorldMapInstance {
 
 	/**
 	 * Create new MapRegion and add link to neighbours.
-	 *
+	 * 
 	 * @param regionId
 	 * @return newly created map region
 	 */
 	protected abstract MapRegion createMapRegion(int regionId);
-
+	
 	protected abstract void initMapRegions();
-
+	
 	public abstract boolean isPersonal();
-
+	
 	public abstract int getOwnerId();
 
 	/**
 	 * Returs {@link World} instance to which belongs this WorldMapInstance
-	 *
+	 * 
 	 * @return World
 	 */
 	public World getWorld() {
@@ -183,22 +181,21 @@ public abstract class WorldMapInstance {
 	 */
 	public void addObject(VisibleObject object) {
 		if (worldMapObjects.put(object.getObjectId(), object) != null) {
-			throw new DuplicateAionObjectException("Object with templateId " + String.valueOf(object.getObjectTemplate().getTemplateId()) + " already spawned in the instance " + String.valueOf(this.getMapId()) + " " + String.valueOf(this.getInstanceId()));
+			throw new DuplicateAionObjectException("Object with templateId "
+				+ String.valueOf(object.getObjectTemplate().getTemplateId()) + " already spawned in the instance "
+				+ String.valueOf(this.getMapId()) + " " + String.valueOf(this.getInstanceId()));
 		}
 		if (object instanceof Npc) {
 			QuestNpc data = QuestEngine.getInstance().getQuestNpc(((Npc) object).getNpcId());
 			if (data != null) {
-				for (int id : data.getOnQuestStart()) {
-					if (!questIds.contains(id)) {
+				for (int id : data.getOnQuestStart())
+					if (!questIds.contains(id))
 						questIds.add(id);
-					}
-				}
 			}
 		}
-		if (object instanceof Player) {
-			if (this.getParent().isPossibleFly()) {
-				((Player) object).setInsideZoneType(ZoneType.FLY);
-			}
+		if (object instanceof Player){
+			if (this.getParent().isPossibleFly())
+				((Player)object).setInsideZoneType(ZoneType.FLY);
 			worldMapPlayers.put(object.getObjectId(), (Player) object);
 		}
 	}
@@ -208,16 +205,16 @@ public abstract class WorldMapInstance {
 	 */
 	public void removeObject(AionObject object) {
 		worldMapObjects.remove(object.getObjectId());
-		if (object instanceof Player) {
-			if (this.getParent().isPossibleFly()) {
-				((Player) object).unsetInsideZoneType(ZoneType.FLY);
-			}
+		if (object instanceof Player){
+			if (this.getParent().isPossibleFly())
+				((Player)object).unsetInsideZoneType(ZoneType.FLY);
 			worldMapPlayers.remove(object.getObjectId());
 		}
 	}
 
 	/**
 	 * @param npcId
+	 * 
 	 * @return npc
 	 */
 	public Npc getNpc(int npcId) {
@@ -244,6 +241,7 @@ public abstract class WorldMapInstance {
 
 	/**
 	 * @param npcId
+	 * 
 	 * @return List<npc>
 	 */
 	public List<Npc> getNpcs(int npcId) {
@@ -277,33 +275,34 @@ public abstract class WorldMapInstance {
 	/**
 	 * @return List<doors>
 	 */
-	public Map<Integer, StaticDoor> getDoors() {
-		Map<Integer, StaticDoor> doors = new HashMap<Integer, StaticDoor>();
+	public Map<Integer,StaticDoor> getDoors() {
+		Map<Integer,StaticDoor> doors = new HashMap<Integer,StaticDoor>();
 		for (Iterator<VisibleObject> iter = objectIterator(); iter.hasNext();) {
 			VisibleObject obj = iter.next();
 			if (obj instanceof StaticDoor) {
 				StaticDoor door = (StaticDoor) obj;
-				doors.put(door.getSpawn().getStaticId(), door);
+				doors.put(door.getSpawn().getEntityId(), door);
 			}
 		}
 		return doors;
 	}
 
 	/**
-	 * @return List<traps>
+	 * @return List<트랩>
 	 */
 	public List<Trap> getTraps(Creature p) {
-		List<Trap> traps = new ArrayList<Trap>();
-		for (Iterator<VisibleObject> iter = objectIterator(); iter.hasNext();) {
-			VisibleObject obj = iter.next();
-			if (obj instanceof Trap) {
-				Trap t = (Trap) obj;
-				if (t.getCreatorId() == p.getObjectId())
-					traps.add(t);
-			}
-		}
-		return traps;
-	}
+        List<Trap> traps = new ArrayList<Trap>();
+        for (Iterator<VisibleObject> iter = objectIterator(); iter.hasNext();) {
+            VisibleObject obj = iter.next();
+            if (obj instanceof Trap) {
+                Trap t = (Trap)obj;
+                if (t.getCreatorId() == p.getObjectId()) {
+                    traps.add(t);
+				}
+            }
+        }
+        return traps;
+    }
 
 	/**
 	 * @return the instanceIndex
@@ -311,28 +310,23 @@ public abstract class WorldMapInstance {
 	public int getInstanceId() {
 		return instanceId;
 	}
-
+	
 	public final boolean isBeginnerInstance() {
-		if (parent == null) {
-			return false;
-		}
-
-		if (parent.getTemplate().isInstance()) {
-			// TODO: check Karamatis and Ataxiar for exception in FastTrack ?
-			// return parent.getTemplate().getBeginnerTwinCount() > 0;
-			return false;
-		}
-
-		int twinCount = parent.getTemplate().getTwinCount();
-		if (twinCount == 0) {
-			twinCount = 1;
-		}
-		return getInstanceId() > twinCount;
-	}
+        if (parent == null) {
+            return false;
+        } if (parent.getTemplate().isInstance()) {
+            return false;
+        }
+        int twinCount = parent.getTemplate().getTwinCount();
+        if (twinCount == 0) {
+            twinCount = 1;
+        }
+        return getInstanceId() > twinCount;
+    }
 
 	/**
 	 * Check player is in instance
-	 *
+	 * 
 	 * @param objId
 	 * @return
 	 */
@@ -401,7 +395,7 @@ public abstract class WorldMapInstance {
 
 	/**
 	 * @param emptyInstanceTask
-	 *            the emptyInstanceTask to set
+	 *          the emptyInstanceTask to set
 	 */
 	public void setEmptyInstanceTask(Future<?> emptyInstanceTask) {
 		this.emptyInstanceTask = emptyInstanceTask;
@@ -447,11 +441,10 @@ public abstract class WorldMapInstance {
 	 */
 	public void doOnAllPlayers(Visitor<Player> visitor) {
 		try {
-			for (Player player : worldMapPlayers.values()) {
+			for (Player player : worldMapPlayers.values())
 				if (player != null) {
 					visitor.visit(player);
 				}
-			}
 		}
 		catch (Exception ex) {
 			log.error("Exception when running visitor on all players" + ex);
@@ -463,16 +456,15 @@ public abstract class WorldMapInstance {
 		RegionZone regionZone = new RegionZone(startX, startY, minZ, maxZ);
 
 		for (ZoneInstance zoneInstance : zones.values()) {
-			if (zoneInstance.getAreaTemplate().intersectsRectangle(regionZone)) {
+			if (zoneInstance.getAreaTemplate().intersectsRectangle(regionZone))
 				regionZones.add(zoneInstance);
-			}
 			else if (zoneInstance.getZoneTemplate().getZoneType() == ZoneClassName.DUMMY) {
 				log.error("Region " + regionId + " should intersect with whole map zone!!! (map=" + mapId + ")");
 			}
 		}
 		return regionZones.toArray(new ZoneInstance[regionZones.size()]);
 	}
-
+	
 	/**
 	 * @param player
 	 * @param zoneName
@@ -480,9 +472,8 @@ public abstract class WorldMapInstance {
 	 */
 	public boolean isInsideZone(VisibleObject object, ZoneName zoneName) {
 		ZoneInstance zoneTemplate = zones.get(zoneName);
-		if (zoneTemplate == null) {
+		if (zoneTemplate == null)
 			return false;
-		}
 		return isInsideZone(object.getPosition(), zoneName);
 	}
 
@@ -496,7 +487,7 @@ public abstract class WorldMapInstance {
 		return mapRegion.isInsideZone(zoneName, pos.getX(), pos.getY(), pos.getZ());
 	}
 
-	public void setSoloPlayerObj(Integer obj) {
+	public void  setSoloPlayerObj(Integer obj) {
 		soloPlayer = obj;
 	}
 

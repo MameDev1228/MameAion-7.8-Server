@@ -1,27 +1,25 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-emu is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-emu is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.serverpackets;
 
-import java.util.Map.Entry;
-
-import org.apache.commons.lang.StringUtils;
-
+import com.aionemu.gameserver.model.NpcType;
+import com.aionemu.gameserver.model.Race;
+import com.aionemu.gameserver.model.TribeClass;
 import com.aionemu.gameserver.model.gameobjects.Creature;
-import com.aionemu.gameserver.model.gameobjects.CreatureType;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.Summon;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -30,22 +28,17 @@ import com.aionemu.gameserver.model.items.NpcEquippedGear;
 import com.aionemu.gameserver.model.templates.BoundRadius;
 import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.model.templates.npc.NpcTemplate;
-import com.aionemu.gameserver.model.templates.npc.NpcTemplateType;
 import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
 import com.aionemu.gameserver.services.TownService;
+import com.aionemu.gameserver.services.account.MonsterCoreService;
+import org.apache.commons.lang.StringUtils;
 
-/**
- * This packet is displaying visible npc/monsters.
- *
- * @author -Nemesiss-
- */
-public class SM_NPC_INFO extends AionServerPacket {
+import java.util.Map.Entry;
 
-	/**
-	 * Visible npc
-	 */
+public class SM_NPC_INFO extends AionServerPacket
+{
 	private Creature _npc;
 	private NpcTemplate npcTemplate;
 	private int npcId;
@@ -54,111 +47,82 @@ public class SM_NPC_INFO extends AionServerPacket {
 	@SuppressWarnings("unused")
 	private float speed = 0.3f;
 	private int npcTypeId;
+	private Player player;
 
-	/**
-	 * Constructs new <tt>SM_NPC_INFO </tt> packet
-	 *
-	 * @param player
-	 * @param kisk
-	 *            - the visible npc.
-	 */
 	public SM_NPC_INFO(Npc npc, Player player) {
 		this._npc = npc;
 		npcTemplate = npc.getObjectTemplate();
-		npcTypeId = npc.getType(player);
+		npcTypeId = npc.getNpcType().getId();
+		if (npc.isPeace()) {
+			if (npc.getRace().equals(player.getRace())
+					|| (player.getRace().equals(Race.ELYOS) && (npc.getTribe().equals(TribeClass.FIELD_OBJECT_LIGHT)
+					|| npc.getTribe().equals(TribeClass.GENERAL))
+					|| player.getRace() .equals(Race.ASMODIANS) && (npc.getTribe().equals(TribeClass.FIELD_OBJECT_DARK)
+					|| npc.getTribe().equals(TribeClass.GENERAL_DARK)))) {
+				npcTypeId = NpcType.NON_ATTACKABLE.getId();
+			}
+		} else if (npc.isFriendTo(player)) {
+			npcTypeId = NpcType.NON_ATTACKABLE.getId();
+		} else if (npc.isAggressiveTo(player)) {
+			npcTypeId = NpcType.AGGRESSIVE.getId();
+		} else if (player.isEnemy(npc)) {
+			npcTypeId = NpcType.ATTACKABLE.getId();
+		} else if (npc.isNoneRelation(player)) {
+			npcTypeId = NpcType.PEACE.getId();
+		}
 		npcId = npc.getNpcId();
 		creatorId = npc.getCreatorId();
 		masterName = npc.getMasterName();
+		this.player = player;
 	}
 
-	/**
-	 * @param summon
-	 */
-	public SM_NPC_INFO(Summon summon, Player player) {
+	public SM_NPC_INFO(Summon summon) {
 		this._npc = summon;
 		npcTemplate = summon.getObjectTemplate();
+		npcTypeId = npcTemplate.getNpcType().getId();
 		npcId = summon.getNpcId();
 		Player owner = summon.getMaster();
-		npcTypeId = !player.isEnemy(owner) ? CreatureType.SUPPORT.getId() : CreatureType.ATTACKABLE.getId();
 		if (owner != null) {
 			creatorId = owner.getObjectId();
 			masterName = owner.getName();
 			speed = owner.getGameStats().getMovementSpeedFloat();
-		}
-		else {
+		} else {
 			masterName = "LOST";
 		}
 	}
 
-	/**
-	 * @param add
-	 *            mob
-	 */
-	public SM_NPC_INFO(Npc npc, String master) {
-		this._npc = npc;
-		npcTemplate = npc.getObjectTemplate();
-		npcTypeId = CreatureType.ATTACKABLE.getId();
-		npcId = npc.getNpcId();
-		masterName = master;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void writeImpl(AionConnection con) {
-		writeF(_npc.getX());// x
-		writeF(_npc.getY());// y
-		writeF(_npc.getZ());// z
+		writeF(_npc.getX());
+		writeF(_npc.getY());
+		writeF(_npc.getZ());
 		writeD(_npc.getObjectId());
 		writeD(npcId);
 		writeD(npcId);
-
 		writeC(npcTypeId);
-
-		writeH(_npc.getState());// unk 65=normal,0x47 (71)= [dead npc ?]no drop,0x21(33)=fight state,0x07=[dead
-		// monster?]
-		// no drop
-		// 3,19 - wings spread (NPCs)
-		// 5,6,11,21 - sitting (NPC)
-		// 7,23 - dead (no drop)
-		// 8,24 - [dead][NPC only] - looks like some orb of light (no normal mesh)
-		// 32,33 - fight mode
-
+		writeH(_npc.getState());
 		writeC(_npc.getHeading());
 		writeD(npcTemplate.getNameId());
-		writeD(npcTemplate.getTitleId());// TODO: implement fortress titles
-
-		writeH(0x00);// unk
-		writeC(0x00);// unk
-		writeD(0x00);// unk
-
-		/*
-		 * Creator/Master Info (Summon, Kisk, Etc)
-		 */
-		writeD(creatorId);// creatorId - playerObjectId or House address
-		writeS(masterName);// masterName
-
+		writeD(npcTemplate.getTitleId());
+		writeH(0x00);
+		writeC(0x00);
+		writeD(0x00);
+		writeD(creatorId);
+		writeS(masterName);
 		int maxHp = _npc.getLifeStats().getMaxHp();
 		int currHp = _npc.getLifeStats().getCurrentHp();
-
-		writeC((int) (100f * currHp / maxHp));// %hp
+		writeC((int) (100f * currHp / maxHp));
 		writeD(_npc.getGameStats().getMaxHp().getCurrent());
-		writeC(_npc.getLevel());// lvl
-
+		writeC(_npc.getLevel());
 		NpcEquippedGear gear = npcTemplate.getEquipment();
 		boolean hasWeapon = false;
 		BoundRadius boundRadius = npcTemplate.getBoundRadius();
-
 		if (gear == null) {
-			writeD(0x00);// unk 4.6
+			writeD(0x00);
 			writeF(boundRadius.getFront());
-		}
-		else {
+		} else {
 			writeD(gear.getItemsMask());
-			for (Entry<ItemSlot, ItemTemplate> item : gear) // getting it from template ( later if we make sure that npcs
-			// actually use items, we'll make Item from it )
-			{
+			for (Entry<ItemSlot, ItemTemplate> item : gear) {
 				if (item.getValue().getWeaponType() != null) {
 					hasWeapon = true;
 				}
@@ -168,53 +132,38 @@ public class SM_NPC_INFO extends AionServerPacket {
 				writeH(0x00);
 				writeH(0x00);
 			}
-			// we don't know weapon dimensions, just add 0.1
 			writeF(boundRadius.getFront() + 0.125f + (hasWeapon ? 0.1f : 0f));
 		}
-		
 		writeF(npcTemplate.getHeight());
-		writeF(_npc.getGameStats().getMovementSpeedFloat());// speed
-
+		writeF(_npc.getGameStats().getMovementSpeedFloat());
 		writeH(npcTemplate.getAttackDelay());
 		writeH(npcTemplate.getAttackDelay());
-
-		if (npcTemplate.getNpcTemplateType() == NpcTemplateType.FLAG) {
-			writeC(0x13);
-		} 
-		else {
-			writeC(_npc.isNewSpawn() ? 0x01 : 0x00);
-		}
-
-		/**
-		 * Movement
-		 */
-		writeF(_npc.getMoveController().getTargetX2());// x
-		writeF(_npc.getMoveController().getTargetY2());// y
-		writeF(_npc.getMoveController().getTargetZ2());// z
-		writeC(_npc.getMoveController().getMovementMask()); // move type
-
+		writeC(_npc.isNewSpawn() ? 0x01 : 0x00);
+		writeF(_npc.getMoveController().getTargetX2());
+		writeF(_npc.getMoveController().getTargetY2());
+		writeF(_npc.getMoveController().getTargetZ2());
+		writeC(_npc.getMoveController().getMovementMask());
 		SpawnTemplate spawn = _npc.getSpawn();
 		if (spawn == null) {
 			writeH(0);
+		} else {
+			writeH(spawn.getEntityId());
 		}
-		else {
-			writeH(spawn.getStaticId());
-		}
-		writeQ(0);
-		writeC(_npc.getVisualState()); // visualState
-
-		/**
-		 * 1 : normal (kisk too) 2 : summon 32 : trap 64 : skill area 1024 : holy servant, noble energy
-		 */
-		if (npcTemplate.getNpcTemplateType() == NpcTemplateType.FLAG) {
-			writeH(0x13);
-		} 
-		else {
-			writeH(_npc.getNpcObjectType().getId());
-		}
-		writeC(0x00); // unk
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(_npc.getVisualState());
+		writeH(_npc.getNpcObjectType().getId());
+		writeC(0);
 		writeD(_npc.getTarget() == null ? 0 : _npc.getTarget().getObjectId());
 		writeD(TownService.getInstance().getTownIdByPosition(_npc));
-		writeB(new byte [12]);// unk 6.5
+		writeB(new byte [12]);
+		//writeF(MonsterCoreService.getInstance().getCubusAttack(player, npcId));
+		//writeF(MonsterCoreService.getInstance().getCubusDef(player, npcId));
 	}
 }

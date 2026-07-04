@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc_drops>
+        <!-- QUEST OBJECT -->
+		<!-- Wild Ginseng [Q70009] -->
+		<npc_drop npc_id="700385">
+		        <drop_group name="" use_category="false">
+						<drop chance="100.0" eachmember="true" item_id="182216581" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- Taloc's Soil [Q62101/Q72101] -->
+		<npc_drop npc_id="700634">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182216355" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+				<drop_group name="" use_category="false" race="ASMODIANS">
+						<drop chance="100.0" eachmember="true" item_id="182216511" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- Research Journal [Q60308] -->
+		<npc_drop npc_id="700636">
+		        <drop_group name="" use_category="false">
+						<drop chance="100.0" eachmember="true" item_id="182216541" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- Odella [Q60009] -->
+		<npc_drop npc_id="700834">
+		        <drop_group name="" use_category="false">
+						<drop chance="100.0" eachmember="true" item_id="182216580" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- Research Journal [Q70308] -->
+		<npc_drop npc_id="701526">
+		        <drop_group name="" use_category="false">
+						<drop chance="100.0" eachmember="true" item_id="182216512" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- LDF8_fobj_officerpaper_q60603a [Q60603/Q70603] -->
+		<npc_drop npc_id="703705">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182216753" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+				<drop_group name="" use_category="false" race="ASMODIANS">
+						<drop chance="100.0" eachmember="true" item_id="182216764" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- LDF8_FOBJ_Stellaky_Coin [Q62903/Q72903] -->
+		<npc_drop npc_id="838227">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182216884" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+				<drop_group name="" use_category="false" race="ASMODIANS">
+						<drop chance="100.0" eachmember="true" item_id="182216904" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- LDF8_snoowaherb_q63005 [Q63005/Q73005] -->
+		<npc_drop npc_id="703790">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182216802" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+				<drop_group name="" use_category="false" race="ASMODIANS">
+						<drop chance="100.0" eachmember="true" item_id="182216824" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- LDF8_environmentcheck_q63006 [Q63006/Q73006] -->
+		<npc_drop npc_id="703787">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182216803" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+				<drop_group name="" use_category="false" race="ASMODIANS">
+						<drop chance="100.0" eachmember="true" item_id="182216825" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- LDF8_D3_K_Mission_Lega_KeyNamed_80_An_01 -->
+		<npc_drop npc_id="661284">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="164010101" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+				<drop_group name="" use_category="false" race="ASMODIANS">
+						<drop chance="100.0" eachmember="true" item_id="164010102" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- LDF8_D3_K_Mission_Lega_KeyNamed_80_An_02 -->
+		<npc_drop npc_id="661285">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="164010101" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+				<drop_group name="" use_category="false" race="ASMODIANS">
+						<drop chance="100.0" eachmember="true" item_id="164010102" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- UnderPass_B1_FOBJ_Q60609_Fire_L [Q60609] -->
+		<npc_drop npc_id="703943">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182217111" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- UnderPass_B1_FOBJ_Q60609_Earth_L [Q60609] -->
+		<npc_drop npc_id="703944">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182217112" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- UnderPass_B1_FOBJ_Q60609_Water_L [Q60609] -->
+		<npc_drop npc_id="703945">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182217113" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- UnderPass_B1_FOBJ_Q60609_Air_L [Q60609] -->
+		<npc_drop npc_id="703946">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182217114" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- UnderPass_B1_FOBJ_Q70609_Fire_D [Q70609] -->
+		<npc_drop npc_id="703947">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182217115" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- UnderPass_B1_FOBJ_Q70609_Earth_D [Q70609] -->
+		<npc_drop npc_id="703948">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182217116" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- UnderPass_B1_FOBJ_Q70609_Water_D [Q70609] -->
+		<npc_drop npc_id="703949">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182217117" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		<!-- UnderPass_B1_FOBJ_Q70609_Air_D [Q70609] -->
+		<npc_drop npc_id="703950">
+		        <drop_group name="" use_category="false" race="ELYOS">
+						<drop chance="100.0" eachmember="true" item_id="182217118" min_amount="1" max_amount="1" no_reduce="true"/>
+				</drop_group>
+		</npc_drop>
+		
+		<!-- Legendary Kibrium Box -->
+		<npc_drop npc_id="656301">
+				<drop_group name="" use_category="false">
+			            <drop chance="9.0" item_id="152080003" min_amount="10" max_amount="20"/>
+						<drop chance="9.0" item_id="152080013" min_amount="10" max_amount="20"/>
+						<drop chance="9.0" item_id="152080023" min_amount="10" max_amount="20"/>
+				</drop_group>
+		</npc_drop>
+		<!-- Ultimate Kibrium Box -->
+		<npc_drop npc_id="656302">
+				<drop_group name="" use_category="false">
+			            <drop chance="9.0" item_id="152080003" min_amount="10" max_amount="20"/>
+						<drop chance="9.0" item_id="152080013" min_amount="10" max_amount="20"/>
+						<drop chance="9.0" item_id="152080023" min_amount="10" max_amount="20"/>
+				</drop_group>
+		</npc_drop>
+		
+		<!-- HOUSING [Oriel] -->
+		<!-- Spring Agrint [Oriel] -->
+		<npc_drop npc_id="218850">
+                <drop_group name="" use_category="false">
+				        <drop chance="1.0" item_id="190100000" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100004" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100008" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100009" min_amount="1" max_amount="1"/>
+                        <drop chance="1.0" item_id="190100012" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100023" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100032" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100046" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100049" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100051" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100065" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100072" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100078" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100084" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100090" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="188051564" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006839" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006843" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006984" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Summer Agrint [Oriel] -->
+		<npc_drop npc_id="218851">
+                <drop_group name="" use_category="false">
+                        <drop chance="1.0" item_id="190100000" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100004" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100008" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100009" min_amount="1" max_amount="1"/>
+                        <drop chance="1.0" item_id="190100012" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100023" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100032" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100046" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100049" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100051" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100065" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100072" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100078" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100084" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100090" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="188051564" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006840" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006844" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006984" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Autumn Agrint [Oriel] -->
+		<npc_drop npc_id="218852">
+                <drop_group name="" use_category="false">
+                        <drop chance="1.0" item_id="190100000" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100004" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100008" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100009" min_amount="1" max_amount="1"/>
+                        <drop chance="1.0" item_id="190100012" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100023" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100032" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100046" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100049" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100051" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100065" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100072" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100078" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100084" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100090" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="188051564" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006841" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006845" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006984" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Winter Agrint [Oriel] -->
+		<npc_drop npc_id="218853">
+                <drop_group name="" use_category="false">
+                        <drop chance="1.0" item_id="190100000" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100004" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100008" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100009" min_amount="1" max_amount="1"/>
+                        <drop chance="1.0" item_id="190100012" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100023" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100032" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100046" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100049" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100051" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100065" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100072" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100078" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100084" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100090" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="188051564" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006842" max_amount="3" min_amount="1"/>
+                        <drop chance="50.0" item_id="182006846" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006984" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Vernal Audria [Oriel] -->
+		<npc_drop npc_id="218854">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006839" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006847" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Sprouting Audria [Oriel] -->
+		<npc_drop npc_id="218855">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006839" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006847" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Sweltering Audria [Oriel] -->
+		<npc_drop npc_id="218856">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006853" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006840" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006848" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Rain Audria [Oriel] -->
+		<npc_drop npc_id="218857">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006853" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006840" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006848" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Foliage Audria [Oriel] -->
+		<npc_drop npc_id="218858">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006841" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006849" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Sunset Audria [Oriel] -->
+		<npc_drop npc_id="218859">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006841" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006849" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Ice Audria [Oriel] -->
+		<npc_drop npc_id="218860">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006842" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006850" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006851" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Snowflower Audria [Oriel] -->
+		<npc_drop npc_id="218861">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006842" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006850" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006851" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Vernal Umbronite -->
+		<npc_drop npc_id="218866">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006839" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006847" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Sprout Umbronite -->
+		<npc_drop npc_id="218867">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006839" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006847" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Sweltering Umbronite -->
+		<npc_drop npc_id="218868">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006853" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006840" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006848" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Rain Umbronite -->
+		<npc_drop npc_id="218869">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006853" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006840" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006848" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Maple Umbronite -->
+		<npc_drop npc_id="218870">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006841" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006849" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Dusk Umbronite -->
+		<npc_drop npc_id="218871">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006841" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006849" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Ice Umbronite -->
+		<npc_drop npc_id="218872">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006842" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006850" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006851" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Snowflower Umbronite -->
+		<npc_drop npc_id="218873">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006842" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006850" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006851" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		
+		<!-- HOUSING [Pernon] -->
+        <!-- Spring Agrint [Pernon] -->
+        <npc_drop npc_id="218862">
+                <drop_group name="" use_category="false">
+                        <drop chance="1.0" item_id="190100000" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100004" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100008" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100009" min_amount="1" max_amount="1"/>
+                        <drop chance="1.0" item_id="190100012" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100023" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100032" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100046" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100049" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100051" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100065" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100072" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100078" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100084" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100090" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="188051564" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006839" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006843" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006984" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Summer Agrint [Pernon] -->
+		<npc_drop npc_id="218863">
+                <drop_group name="" use_category="false">
+                        <drop chance="1.0" item_id="190100000" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100004" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100008" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100009" min_amount="1" max_amount="1"/>
+                        <drop chance="1.0" item_id="190100012" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100023" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100032" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100046" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100049" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100051" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100065" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100072" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100078" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100084" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100090" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="188051564" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006840" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006844" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006984" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Fall Agrint [Pernon] -->
+		<npc_drop npc_id="218864">
+                <drop_group name="" use_category="false">
+                        <drop chance="1.0" item_id="190100000" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100004" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100008" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100009" min_amount="1" max_amount="1"/>
+                        <drop chance="1.0" item_id="190100012" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100023" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100032" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100046" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100049" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100051" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100065" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100072" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100078" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100084" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100090" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="188051564" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006841" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006845" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006984" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Winter Agrint [Pernon] -->
+		<npc_drop npc_id="218865">
+                <drop_group name="" use_category="false">
+                        <drop chance="1.0" item_id="190100000" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100004" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100008" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100009" min_amount="1" max_amount="1"/>
+                        <drop chance="1.0" item_id="190100012" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100023" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100032" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100046" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100049" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100051" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100065" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100072" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100078" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100084" min_amount="1" max_amount="1"/>
+						<drop chance="1.0" item_id="190100090" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="188051564" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006842" min_amount="1" max_amount="1"/>
+                        <drop chance="50.0" item_id="182006846" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006984" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Vernal Audria [Pernon] -->
+		<npc_drop npc_id="218874">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006839" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006847" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Sprouting Audria [Pernon] -->
+		<npc_drop npc_id="218875">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006839" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006847" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Sweltering Audria [Pernon] -->
+		<npc_drop npc_id="218876">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006853" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006840" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006848" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Rain Audria [Pernon] -->
+		<npc_drop npc_id="218877">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006853" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006840" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006848" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Foliage Audria [Pernon] -->
+		<npc_drop npc_id="218878">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006841" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006849" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Sunset Audria [Pernon] -->
+		<npc_drop npc_id="218879">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006841" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006849" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Ice Audria [Pernon] -->
+		<npc_drop npc_id="218880">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006842" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006850" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006851" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Snowflower Audria [Pernon] -->
+		<npc_drop npc_id="218881">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006842" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006850" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006851" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Vernal Umbronite -->
+		<npc_drop npc_id="218882">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006839" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006847" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Sprout Umbronite -->
+		<npc_drop npc_id="218883">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006839" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006847" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Sweltering Umbronite -->
+		<npc_drop npc_id="218884">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006853" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006840" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006848" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Rain Umbronite -->
+		<npc_drop npc_id="218885">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006853" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006840" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006848" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Maple Umbronite -->
+		<npc_drop npc_id="218886">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006841" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006849" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Dusk Umbronite -->
+		<npc_drop npc_id="218887">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006852" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006841" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006849" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Ice Umbronite -->
+		<npc_drop npc_id="218888">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006842" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006850" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006851" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+		<!-- Snowflower Umbronite -->
+		<npc_drop npc_id="218889">
+				<drop_group name="" use_category="false">
+						<drop chance="50.0" item_id="182006842" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006850" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006851" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="182006981" min_amount="1" max_amount="1"/>
+						<drop chance="50.0" item_id="186000146" min_amount="1" max_amount="5"/>
+                </drop_group>
+        </npc_drop>
+</npc_drops>

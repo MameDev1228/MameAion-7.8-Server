@@ -1,36 +1,34 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.gameobjects.player;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.dataholders.QuestsData;
 import com.aionemu.gameserver.model.templates.quest.QuestCategory;
 import com.aionemu.gameserver.questEngine.model.QuestState;
 import com.aionemu.gameserver.questEngine.model.QuestStatus;
-
 import javolution.util.FastList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * @author MrPoke
@@ -38,6 +36,7 @@ import javolution.util.FastList;
 public class QuestStateList {
 
 	private static final Logger log = LoggerFactory.getLogger(QuestStateList.class);
+
 	private final SortedMap<Integer, QuestState> _quests;
 	private QuestsData _questData = DataManager.QUEST_DATA;
 
@@ -100,10 +99,9 @@ public class QuestStateList {
 
 		for (QuestState qs : this.getAllQuestState()) {
 			QuestCategory qc = _questData.getQuestById(qs.getQuestId()).getCategory();
-			String name = _questData.getQuestById(qs.getQuestId()).getName();
 			QuestStatus s = qs.getStatus();
 
-			if (s != QuestStatus.COMPLETE && s != QuestStatus.LOCKED && s != QuestStatus.NONE && qc == QuestCategory.QUEST && !name.startsWith("[Event]")) {
+			if (s != QuestStatus.COMPLETE && s != QuestStatus.LOCKED && s != QuestStatus.NONE && qc == QuestCategory.QUEST) {
 				l.add(qs);
 			}
 		}
@@ -125,11 +123,11 @@ public class QuestStateList {
 	public void changeQuestStatus(Integer key, QuestStatus newStatus) {
 		_quests.get(key).setStatus(newStatus);
 	}
-
+	
 	public int size() {
 		return this._quests.size();
 	}
-
+	
 	public SortedMap<Integer, QuestState> getQuests() {
 		return this._quests;
 	}

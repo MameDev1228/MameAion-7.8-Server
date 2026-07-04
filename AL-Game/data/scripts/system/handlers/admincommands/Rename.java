@@ -1,22 +1,4 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
-
-import java.util.Iterator;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.configs.main.CustomConfig;
@@ -36,6 +18,8 @@ import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.Util;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
+import java.util.Iterator;
+
 /**
  * @author xTz
  */
@@ -48,7 +32,8 @@ public class Rename extends AdminCommand {
 	@Override
 	public void execute(Player admin, String... params) {
 		if (params.length < 1 || params.length > 2) {
-			PacketSendUtility.sendMessage(admin, "No parameters detected.\n" + "Please use //rename <Player name> <rename>\n" + "or use //rename [target] <rename>");
+			PacketSendUtility.sendMessage(admin, "No parameters detected.\n" + "Please use //rename <Player name> <rename>\n"
+				+ "or use //rename [target] <rename>");
 			return;
 		}
 
@@ -67,13 +52,11 @@ public class Rename extends AdminCommand {
 			PlayerCommonData recipientCommonData = DAOManager.getDAO(PlayerDAO.class).loadPlayerCommonDataByName(recipient);
 			player = recipientCommonData.getPlayer();
 
-			if (!check(admin, rename)) {
+			if (!check(admin, rename))
 				return;
-			}
 
-			if (!CustomConfig.OLD_NAMES_COMMAND_DISABLED) {
+			if (!CustomConfig.OLD_NAMES_COMMAND_DISABLED)
 				DAOManager.getDAO(OldNamesDAO.class).insertNames(player.getObjectId(), player.getName(), rename);
-			}
 			recipientCommonData.setName(rename);
 			DAOManager.getDAO(PlayerDAO.class).storePlayerName(recipientCommonData);
 			if (recipientCommonData.isOnline()) {
@@ -81,9 +64,8 @@ public class Rename extends AdminCommand {
 				PacketSendUtility.sendPacket(player, new SM_MOTION(player.getObjectId(), player.getMotions().getActiveMotions()));
 				sendPacket(admin, player, rename, recipient);
 			}
-			else {
+			else
 				PacketSendUtility.sendMessage(admin, "Player " + recipient + " has been renamed to " + rename);
-			}
 		}
 		if (params.length == 1) {
 			rename = Util.convertName(params[0]);
@@ -96,20 +78,17 @@ public class Rename extends AdminCommand {
 
 			if (target instanceof Player) {
 				player = (Player) target;
-				if (!check(admin, rename)) {
+				if (!check(admin, rename))
 					return;
-				}
 
-				if (!CustomConfig.OLD_NAMES_COMMAND_DISABLED) {
+				if (!CustomConfig.OLD_NAMES_COMMAND_DISABLED)
 					DAOManager.getDAO(OldNamesDAO.class).insertNames(player.getObjectId(), player.getName(), rename);
-				}
 				player.getCommonData().setName(rename);
 				PacketSendUtility.sendPacket(player, new SM_PLAYER_INFO(player, false));
 				DAOManager.getDAO(PlayerDAO.class).storePlayerName(player.getCommonData());
 			}
-			else {
+			else
 				PacketSendUtility.sendMessage(admin, "The command can be applied only on the player.");
-			}
 
 			recipient = target.getName();
 			sendPacket(admin, player, rename, recipient);
@@ -151,6 +130,7 @@ public class Rename extends AdminCommand {
 
 	@Override
 	public void onFail(Player player, String message) {
-		PacketSendUtility.sendMessage(player, "No parameters detected.\n" + "Please use //rename <Player name> <rename>\n" + "or use //rename [target] <rename>");
+		PacketSendUtility.sendMessage(player, "No parameters detected.\n" + "Please use //rename <Player name> <rename>\n"
+			+ "or use //rename [target] <rename>");
 	}
 }

@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.actions;
 
@@ -26,11 +26,12 @@ import com.aionemu.gameserver.model.templates.windstreams.WindstreamPath;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_EMOTION;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 
-/**
- * @author xTz
- */
-public class PlayerActions extends CreatureActions {
+/****/
+/** Author Rinzler (Encom)
+/****/
 
+public class PlayerActions extends CreatureActions
+{
 	public static boolean isInPlayerMode(Player player, PlayerMode mode) {
 		switch (mode) {
 			case RIDE:
@@ -39,37 +40,31 @@ public class PlayerActions extends CreatureActions {
 				return player.inRoll != null;
 			case WINDSTREAM:
 				return player.windstreamPath != null;
-			default:
-				break;
 		}
 		return false;
 	}
-
+	
 	public static void setPlayerMode(Player player, PlayerMode mode, Object obj) {
 		switch (mode) {
 			case RIDE:
 				player.ride = (RideInfo) obj;
-				break;
+			break;
 			case IN_ROLL:
 				player.inRoll = (InRoll) obj;
-				break;
+			break;
 			case WINDSTREAM:
 				player.windstreamPath = (WindstreamPath) obj;
-				break;
-			default:
-				break;
+			break;	
 		}
 	}
-
+	
 	public static boolean unsetPlayerMode(Player player, PlayerMode mode) {
 		switch (mode) {
 			case RIDE:
 				RideInfo ride = player.ride;
 				if (ride == null) {
 					return false;
-				}
-				// check for sprinting when forcefully dismounting player
-				if (player.isInSprintMode()) {
+				} if (player.isInSprintMode()) {
 					player.getLifeStats().triggerFpRestore();
 					player.setSprintMode(false);
 				}
@@ -79,15 +74,16 @@ public class PlayerActions extends CreatureActions {
 				player.ride = null;
 				PacketSendUtility.broadcastPacket(player, new SM_EMOTION(player, EmotionType.START_EMOTE2, 0, 0), true);
 				PacketSendUtility.broadcastPacket(player, new SM_EMOTION(player, EmotionType.RIDE_END), true);
-
 				player.getGameStats().updateStatsAndSpeedVisually();
-
-				// remove rideObservers
-				for (ActionObserver observer : player.getRideObservers()) {
+				for (ActionObserver observer: player.getRideObservers()) {
 					player.getObserveController().removeObserver(observer);
+					//Remove Ride Buff.
+					if (player.getEffectController().hasAbnormalEffect(ride.getBuffId())) {
+						player.getEffectController().removeEffect(ride.getBuffId());
+					}
 				}
 				player.getRideObservers().clear();
-				return true;
+			    return true;
 			case IN_ROLL:
 				if (player.inRoll == null) {
 					return false;
@@ -100,8 +96,7 @@ public class PlayerActions extends CreatureActions {
 				}
 				player.windstreamPath = null;
 				return true;
-			default:
-				return false;
 		}
+		return false;
 	}
 }

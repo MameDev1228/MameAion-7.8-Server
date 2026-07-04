@@ -1,289 +1,245 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.templates.item.actions;
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlType;
-
-/**
- * @author ATracer
- */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ItemActions")
-public class ItemActions {
-
-	@XmlElements({ 
-		@XmlElement(name = "skilllearn", type = SkillLearnAction.class), 
-		@XmlElement(name = "extract", type = ExtractAction.class), 
-		@XmlElement(name = "skilluse", type = SkillUseAction.class), 
-		@XmlElement(name = "enchant", type = EnchantItemAction.class), 
-		@XmlElement(name = "queststart", type = QuestStartAction.class), 
-		@XmlElement(name = "dye", type = DyeAction.class), 
-		@XmlElement(name = "craftlearn", type = CraftLearnAction.class), 
-		@XmlElement(name = "toypetspawn", type = ToyPetSpawnAction.class), 
-		@XmlElement(name = "decompose", type = DecomposeAction.class), 
-		@XmlElement(name = "titleadd", type = TitleAddAction.class), 
-		@XmlElement(name = "learnemotion", type = EmotionLearnAction.class), 
-		@XmlElement(name = "read", type = ReadAction.class), 
-		@XmlElement(name = "fireworkact", type = FireworksUseAction.class), 
-		@XmlElement(name = "instancetimeclear", type = InstanceTimeClear.class), 
-		@XmlElement(name = "expandinventory", type = ExpandInventoryAction.class), 
-		@XmlElement(name = "animation", type = AnimationAddAction.class), 
-		@XmlElement(name = "cosmetic", type = CosmeticItemAction.class), 
-		@XmlElement(name = "charge", type = ChargeAction.class),
-		@XmlElement(name = "ride", type = RideAction.class), 
-		@XmlElement(name = "houseobject", type = SummonHouseObjectAction.class), 
-		@XmlElement(name = "housedeco", type = DecorateAction.class), 
-		@XmlElement(name = "assemble", type = AssemblyItemAction.class), 
-		@XmlElement(name = "adoptpet", type = AdoptPetAction.class), 
-		@XmlElement(name = "apextract", type = ApExtractAction.class), 
-		@XmlElement(name = "remodel", type = RemodelAction.class), 
-		@XmlElement(name = "expextract", type = ExpExtractAction.class), 
-		@XmlElement(name = "polish", type = PolishAction.class), 
-		@XmlElement(name = "composition", type = CompositionAction.class), 
-		@XmlElement(name = "tuning", type = TuningAction.class), 
-		@XmlElement(name = "pack", type = PackAction.class), 
-		@XmlElement(name = "stenchant", type = AuthorizeAction.class), 
-		@XmlElement(name = "multi_return_item", type = MultiReturnAction.class), 
-		@XmlElement(name = "godsocket", type = GodstoneAction.class), 
-		@XmlElement(name = "remove_soul_bind", type = RemoveSoulBindAction.class), 
-		@XmlElement(name = "expaction", type = ExpAction.class), 
-		@XmlElement(name = "skill_skin", type = SkillAnimationAction.class), 
-		@XmlElement(name = "f2p", type = F2pAction.class),
-		@XmlElement(name = "reduce_level", type = ItemReduceLevelAction.class), 
-		@XmlElement(name = "luna", type = LunaChestAction.class), 
-		@XmlElement(name = "skill_enhance", type = SkillEnhanceAction.class),
-		@XmlElement(name = "sweep", type = ShugoSweepAction.class),
-		@XmlElement(name = "unseal", type = UnSealAction.class),
-		@XmlElement(name = "manastone_slot_expansion", type = ManastoneSlotExpansionAction.class),
+public class ItemActions
+{
+	@XmlElements
+	({
+	    @XmlElement(name = "skilllearn", type = SkillLearnAction.class),
+		@XmlElement(name = "extract", type = ExtractAction.class),
+		@XmlElement(name = "extractabyss", type = ExtractAbyssAction.class),
+		@XmlElement(name = "extractexp", type = ExtractExpAction.class),
+		@XmlElement(name = "idian", type = IdianAction.class),
+		@XmlElement(name = "bonusexp", type = BonusAddExpAction.class),
 		@XmlElement(name = "fame_exp", type = FameAddExpAction.class),
-		@XmlElement(name = "enchant_grind", type = EnchantGrindingAction.class),
+		@XmlElement(name = "houselimit", type = HouseLimitAction.class),
+		@XmlElement(name = "skilluse", type = SkillUseAction.class),
+		@XmlElement(name = "enchant", type = EnchantItemAction.class),
+		@XmlElement(name = "queststart", type = QuestStartAction.class),
+		@XmlElement(name = "dye", type = DyeAction.class),
+		@XmlElement(name = "craftlearn", type = CraftLearnAction.class),
+		@XmlElement(name = "toypetspawn", type = ToyPetSpawnAction.class),
+		@XmlElement(name = "decompose", type = DecomposeAction.class),
+		@XmlElement(name = "titleadd", type = TitleAddAction.class),
+		@XmlElement(name = "learnemotion", type = EmotionLearnAction.class),
+		@XmlElement(name = "read", type = ReadAction.class),
+		@XmlElement(name = "fireworkact", type = FireworksUseAction.class),
+		@XmlElement(name = "instancetimeclear", type = InstanceTimeClear.class),
+		@XmlElement(name = "expandinventory", type = ExpandInventoryAction.class),
+		@XmlElement(name = "animation", type = AnimationAddAction.class),
+		@XmlElement(name = "cosmetic", type = CosmeticItemAction.class),
+		@XmlElement(name = "charge", type = ChargeAction.class),
+		@XmlElement(name = "ride", type = RideAction.class),
+		@XmlElement(name = "houseobject", type = SummonHouseObjectAction.class),
+		@XmlElement(name = "housedeco", type = DecorateAction.class),
+		@XmlElement(name = "assemble", type = AssemblyItemAction.class),
+        @XmlElement(name = "adoptpet", type = AdoptPetAction.class),
+		@XmlElement(name = "composition", type = CompositionAction.class),
+		@XmlElement(name = "retuning", type = RetuningAction.class),
+		@XmlElement(name = "wrapping", type = WrappingAction.class),
+		@XmlElement(name = "f2p", type = F2pAction.class),
+		@XmlElement(name = "tempering", type = TemperingAction.class),
+		@XmlElement(name = "multireturn", type = MultiReturnAction.class),
+		@XmlElement(name = "purifierexp", type = PurifierExpAction.class),
+		@XmlElement(name = "unbinding", type = UnbindingAction.class),
+		@XmlElement(name = "reductlevel", type = EquipedLevelAdjAction.class),
+		@XmlElement(name = "unseal", type = UnSealAction.class),
+		@XmlElement(name = "enhance", type = EnhanceAction.class),
+		@XmlElement(name = "skin_skill", type = SkinSkillAction.class),
+		@XmlElement(name = "enchant_stigma", type = EnchantStigmaAction.class),
+		@XmlElement(name = "sweep_reset", type = ShugoSweepResetAction.class),
+		@XmlElement(name = "sweep_dice", type = ShugoSweepDiceAction.class),
+		@XmlElement(name = "magmatic_slot_expansion", type = MagmaticSlotExpansionAction.class),
 		@XmlElement(name = "grind_slot_expansion", type = GrindSlotExpansionAction.class),
-		@XmlElement(name = "enchant_glyph", type = EnchantGlyphAction.class)})
-
+		@XmlElement(name = "enchant_grind", type = EnchantGrindingAction.class),
+		@XmlElement(name = "enchant_glyph", type = EnchantGlyphAction.class),
+	})
 	protected List<AbstractItemAction> itemActions;
-
-	/**
-	 * Gets the value of the itemActions property. Objects of the following type(s) are allowed in the list {@link SkillLearnAction } {@link SkillUseAction }
-	 */
+	
 	public List<AbstractItemAction> getItemActions() {
 		if (itemActions == null) {
 			itemActions = new ArrayList<AbstractItemAction>();
 		}
 		return this.itemActions;
 	}
-
+	
 	public List<ToyPetSpawnAction> getToyPetSpawnActions() {
 		List<ToyPetSpawnAction> result = new ArrayList<ToyPetSpawnAction>();
-		if (itemActions == null) {
+		if (itemActions == null)
 			return result;
-		}
-
-		for (AbstractItemAction action : itemActions) {
-			if (action instanceof ToyPetSpawnAction) {
+		for (AbstractItemAction action : itemActions)
+			if (action instanceof ToyPetSpawnAction)
 				result.add((ToyPetSpawnAction) action);
-			}
-		}
 		return result;
 	}
-
+	
 	public EnchantItemAction getEnchantAction() {
-		if (itemActions == null) {
+		if (itemActions == null)
 			return null;
-		}
 		for (AbstractItemAction action : itemActions) {
-			if (action instanceof EnchantItemAction) {
+			if ((action instanceof EnchantItemAction))
 				return (EnchantItemAction) action;
-			}
 		}
 		return null;
 	}
-
+	
+	public EnchantStigmaAction getEnchantStigmaAction() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if ((action instanceof EnchantStigmaAction))
+				return (EnchantStigmaAction) action;
+		}
+		return null;
+	}
+	
 	public SummonHouseObjectAction getHouseObjectAction() {
-		if (itemActions == null) {
+		if (itemActions == null)
 			return null;
-		}
 		for (AbstractItemAction action : itemActions) {
-			if (action instanceof SummonHouseObjectAction) {
+			if ((action instanceof SummonHouseObjectAction))
 				return (SummonHouseObjectAction) action;
-			}
 		}
 		return null;
 	}
-
+	
 	public CraftLearnAction getCraftLearnAction() {
-		if (itemActions == null) {
+		if (itemActions == null)
 			return null;
-		}
 		for (AbstractItemAction action : itemActions) {
-			if (action instanceof CraftLearnAction) {
+			if ((action instanceof CraftLearnAction))
 				return (CraftLearnAction) action;
-			}
 		}
 		return null;
 	}
-
+	
 	public DecorateAction getDecorateAction() {
-		if (itemActions == null) {
+		if (itemActions == null)
 			return null;
-		}
 		for (AbstractItemAction action : itemActions) {
-			if (action instanceof DecorateAction) {
+			if ((action instanceof DecorateAction))
 				return (DecorateAction) action;
-			}
 		}
 		return null;
 	}
-
+	
 	public DyeAction getDyeAction() {
-		if (itemActions == null) {
+		if (itemActions == null)
 			return null;
-		}
 		for (AbstractItemAction action : itemActions) {
-			if (action instanceof DyeAction) {
+			if (action instanceof DyeAction)
 				return (DyeAction) action;
-			}
 		}
 		return null;
 	}
-
-	public AdoptPetAction getAdoptPetAction() {
-		if (itemActions == null) {
-			return null;
-		}
-		for (AbstractItemAction action : itemActions) {
-			if (action instanceof AdoptPetAction) {
-				return (AdoptPetAction) action;
-			}
-		}
-		return null;
-	}
-
-	public RemodelAction getRemodelAction() {
-		if (itemActions == null) {
-			return null;
-		}
-		for (AbstractItemAction action : itemActions) {
-			if (action instanceof RemodelAction) {
-				return (RemodelAction) action;
-			}
-		}
-		return null;
-	}
-
-	public PolishAction getPolishAction() {
-		if (itemActions == null) {
-			return null;
-		}
-		for (AbstractItemAction action : itemActions) {
-			if (action instanceof PolishAction) {
-				return (PolishAction) action;
-			}
-		}
-		return null;
-	}
-
-	public TuningAction getTuningAction() {
-		if (itemActions == null) {
-			return null;
-		}
-		for (AbstractItemAction action : itemActions) {
-			if (action instanceof TuningAction) {
-				return (TuningAction) action;
-			}
-		}
-		return null;
-	}
-
-	public AuthorizeAction getAuthorizeAction() {
-		if (itemActions == null) {
-			return null;
-		}
-		for (AbstractItemAction action : itemActions) {
-			if (action instanceof AuthorizeAction) {
-				return (AuthorizeAction) action;
-			}
-		}
-		return null;
-	}
-
-	public RemoveSoulBindAction getRemoveSoulBindAction() {
-		if (itemActions == null) {
-			return null;
-		}
-		for (AbstractItemAction action : itemActions) {
-			if (action instanceof RemoveSoulBindAction) {
-				return (RemoveSoulBindAction) action;
-			}
-		}
-		return null;
-	}
-
-    public ManastoneSlotExpansionAction getMagmaticExpandSlot() {
+    public AdoptPetAction getAdoptPetAction() {
         if (itemActions == null) {
             return null;
         }
         for (AbstractItemAction action : itemActions) {
-            if (action instanceof ManastoneSlotExpansionAction); {
-				return (ManastoneSlotExpansionAction) action;
-			}
+            if (action instanceof AdoptPetAction) {
+                return (AdoptPetAction) action;
+            }
         }
         return null;
     }
-
-    public GrindSlotExpansionAction getGrindExpandSlot() {
-        if (itemActions == null) {
-            return null;
-        }
-        for (AbstractItemAction action : itemActions) {
-            if (action instanceof GrindSlotExpansionAction); {
+	public RetuningAction getTuningAction() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if (action instanceof RetuningAction)
+				return (RetuningAction) action;
+		}
+		return null;
+	}
+	
+	public IdianAction getPolishAction() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if (action instanceof IdianAction)
+				return (IdianAction) action;
+		}
+		return null;
+	}
+	
+	public TemperingAction getTempering() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if (action instanceof TemperingAction)
+				return (TemperingAction) action;
+		}
+		return null;
+	}
+	
+	public UnbindingAction getUnbinding() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if (action instanceof UnbindingAction)
+				return (UnbindingAction) action;
+		}
+		return null;
+	}
+	
+	public MagmaticSlotExpansionAction getMagmaticExpandSlot() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if (action instanceof MagmaticSlotExpansionAction)
+				return (MagmaticSlotExpansionAction) action;
+		}
+		return null;
+	}
+	
+	public GrindSlotExpansionAction getGrindExpandSlot() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if (action instanceof GrindSlotExpansionAction)
 				return (GrindSlotExpansionAction) action;
-			}
-        }
-        return null;
-    }
-
-    public EnchantGrindingAction getEnchantGrindAction() {
-        if (itemActions == null) {
-            return null;
-        }
-        for (AbstractItemAction action : itemActions) {
-            if (action instanceof EnchantGrindingAction); {
+		}
+		return null;
+	}
+	public EnchantGrindingAction getEnchantGrindAction() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if (action instanceof EnchantGrindingAction)
 				return (EnchantGrindingAction) action;
-			}
-        }
-        return null;
-    }
+		}
+		return null;
+	}
 
-    public EnchantGlyphAction getEnchantGlyphAction() {
-        if (itemActions == null) {
-            return null;
-        }
-        for (AbstractItemAction action : itemActions) {
-            if (action instanceof EnchantGlyphAction); {
+	public EnchantGlyphAction getEnchantGlyphAction() {
+		if (itemActions == null)
+			return null;
+		for (AbstractItemAction action : itemActions) {
+			if (action instanceof EnchantGlyphAction)
 				return (EnchantGlyphAction) action;
-			}
-        }
-        return null;
-    }
+		}
+		return null;
+	}
 }

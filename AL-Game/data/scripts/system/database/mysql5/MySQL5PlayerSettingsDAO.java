@@ -1,28 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-emu is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-emu is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-emu. If not, see <http://www.gnu.org/licenses/>.
  */
 package mysql5;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.commons.database.DB;
 import com.aionemu.commons.database.DatabaseFactory;
@@ -32,6 +24,13 @@ import com.aionemu.gameserver.dao.PlayerSettingsDAO;
 import com.aionemu.gameserver.model.gameobjects.PersistentState;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerSettings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author ATracer
@@ -41,7 +40,8 @@ public class MySQL5PlayerSettingsDAO extends PlayerSettingsDAO {
 	private static final Logger log = LoggerFactory.getLogger(MySQL5PlayerSettingsDAO.class);
 
 	/**
-	 * TODO 1) analyze possibility to zip settings 2) insert/update instead of replace 0 - uisettings 1 - shortcuts 2 - display 3 - deny
+	 * TODO 1) analyze possibility to zip settings 2) insert/update instead of replace 0 - uisettings 1 - shortcuts 2 -
+	 * display 3 - deny
 	 */
 	@Override
 	public void loadSettings(final Player player) {
@@ -91,9 +91,8 @@ public class MySQL5PlayerSettingsDAO extends PlayerSettingsDAO {
 		final int playerId = player.getObjectId();
 
 		PlayerSettings playerSettings = player.getPlayerSettings();
-		if (playerSettings.getPersistentState() == PersistentState.UPDATED) {
+		if (playerSettings.getPersistentState() == PersistentState.UPDATED)
 			return;
-		}
 
 		final byte[] uiSettings = playerSettings.getUiSettings();
 		final byte[] shortcuts = playerSettings.getShortcuts();
@@ -126,7 +125,7 @@ public class MySQL5PlayerSettingsDAO extends PlayerSettingsDAO {
 				}
 			});
 		}
-
+		
 		if (houseBuddies != null) {
 			DB.insertUpdate("REPLACE INTO player_settings values (?, ?, ?)", new IUStH() {
 

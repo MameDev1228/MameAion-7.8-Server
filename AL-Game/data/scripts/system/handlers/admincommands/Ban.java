@@ -1,19 +1,3 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
 
 import com.aionemu.commons.database.dao.DAOManager;
@@ -54,9 +38,8 @@ public class Ban extends AdminCommand {
 		}
 
 		// Second, try to get account ID of offline player from database
-		if (accountId == 0) {
+		if (accountId == 0)
 			accountId = DAOManager.getDAO(PlayerDAO.class).getAccountIdByName(name);
-		}
 
 		// Third, fail
 		if (accountId == 0) {
@@ -69,15 +52,12 @@ public class Ban extends AdminCommand {
 		if (params.length > 1) {
 			// Smart Matching
 			String stype = params[1].toLowerCase();
-			if (("account").startsWith(stype)) {
+			if (("account").startsWith(stype))
 				type = 1;
-			}
-			else if (("ip").startsWith(stype)) {
+			else if (("ip").startsWith(stype))
 				type = 2;
-			}
-			else if (("full").startsWith(stype)) {
+			else if (("full").startsWith(stype))
 				type = 3;
-			}
 			else {
 				PacketSendUtility.sendMessage(admin, "Syntax: //ban <player> [account|ip|full] [time in minutes]");
 				return;
@@ -93,9 +73,6 @@ public class Ban extends AdminCommand {
 				PacketSendUtility.sendMessage(admin, "Syntax: //ban <player> [account|ip|full] [time in minutes]");
 				return;
 			}
-		}
-		if (time == 0) {
-			time = 60 * 24 * 365 * 10; // pseudo infinity. TODO: rework
 		}
 
 		LoginServer.getInstance().sendBanPacket(type, accountId, accountIp, time, admin.getObjectId());

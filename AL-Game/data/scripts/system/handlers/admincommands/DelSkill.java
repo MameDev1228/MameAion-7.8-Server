@@ -1,19 +1,3 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package admincommands;
 
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
@@ -38,7 +22,8 @@ public class DelSkill extends AdminCommand {
 	@Override
 	public void execute(Player admin, String... params) {
 		if (params.length < 1 || params.length > 2) {
-			PacketSendUtility.sendMessage(admin, "No parameters detected.\n" + "Please use //delskill <Player name> <all | skillId>\n" + "or use //delskill [target] <all | skillId>");
+			PacketSendUtility.sendMessage(admin, "No parameters detected.\n"
+				+ "Please use //delskill <Player name> <all | skillId>\n" + "or use //delskill [target] <all | skillId>");
 			return;
 		}
 
@@ -54,9 +39,8 @@ public class DelSkill extends AdminCommand {
 				return;
 			}
 
-			if ("all".startsWith(params[1])) {
+			if ("all".startsWith(params[1]))
 				playerSkillList = player.getSkillList();
-			}
 			else {
 				try {
 					skillId = Integer.parseInt(params[1]);
@@ -66,9 +50,8 @@ public class DelSkill extends AdminCommand {
 					return;
 				}
 
-				if (!check(admin, player, skillId)) {
+				if (!check(admin, player, skillId))
 					return;
-				}
 			}
 			apply(admin, player, skillId, playerSkillList);
 
@@ -83,9 +66,8 @@ public class DelSkill extends AdminCommand {
 			if (target instanceof Player) {
 				player = (Player) target;
 
-				if ("all".startsWith(params[0])) {
+				if ("all".startsWith(params[0]))
 					playerSkillList = player.getSkillList();
-				}
 				else {
 					try {
 						skillId = Integer.parseInt(params[0]);
@@ -95,17 +77,14 @@ public class DelSkill extends AdminCommand {
 						return;
 					}
 
-					if (!check(admin, player, skillId)) {
+					if (!check(admin, player, skillId))
 						return;
-					}
 				}
-				if (target instanceof Player) {
+				if (target instanceof Player)
 					apply(admin, player, skillId, playerSkillList);
-				}
 			}
-			else {
+			else
 				PacketSendUtility.sendMessage(admin, "This command can only be used on a player !");
-			}
 		}
 	}
 
@@ -140,6 +119,7 @@ public class DelSkill extends AdminCommand {
 
 	@Override
 	public void onFail(Player player, String message) {
-		PacketSendUtility.sendMessage(player, "No parameters detected.\n" + "Please use //delskill <Player name> <all | skillId>\n" + "or use //delskill [target] <all | skillId>");
+		PacketSendUtility.sendMessage(player, "No parameters detected.\n"
+			+ "Please use //delskill <Player name> <all | skillId>\n" + "or use //delskill [target] <all | skillId>");
 	}
 }

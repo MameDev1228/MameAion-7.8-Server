@@ -1,27 +1,21 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aionemu.gameserver.controllers;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
+package com.aionemu.gameserver.controllers;
 
 import com.aionemu.gameserver.controllers.attack.AttackResult;
 import com.aionemu.gameserver.controllers.attack.AttackStatus;
@@ -36,14 +30,16 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.skillengine.effect.AbnormalState;
 import com.aionemu.gameserver.skillengine.model.Effect;
 import com.aionemu.gameserver.skillengine.model.Skill;
-
 import javolution.util.FastList;
+
+import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Notes:<br>
  * 1) There should be locking against onceUsedObservers<br>
  * 2) Check observers size before iteration to minimize memory allocations
- *
+ * 
  * @author ATracer
  * @author Cura
  */
@@ -56,7 +52,7 @@ public class ObserveController {
 
 	/**
 	 * Once used observer add to observerController. If observer notify will be removed.
-	 *
+	 * 
 	 * @param observer
 	 */
 	public void attach(ActionObserver observer) {
@@ -97,6 +93,7 @@ public class ObserveController {
 			lock.unlock();
 		}
 	}
+
 
 	/**
 	 * @param observer
@@ -182,14 +179,11 @@ public class ObserveController {
 			case SUMMONRELEASE:
 				observer.summonrelease();
 				break;
-			default:
-				break;
 		}
 	}
 
 	/**
-	 * @param notify
-	 *            that creature died
+	 * @param notify that creature died
 	 */
 	public void notifyDeathObservers(Creature creature) {
 		notifyObservers(ObserverType.DEATH, creature);
@@ -204,8 +198,7 @@ public class ObserveController {
 
 	/**
 	 * notify that creature attacking
-	 *
-	 * @param damage
+	 * @param damage 
 	 */
 	public void notifyAttackObservers(Creature creature) {
 		notifyObservers(ObserverType.ATTACK, creature);
@@ -247,14 +240,14 @@ public class ObserveController {
 	public void notifyItemUnEquip(Item item, Player owner) {
 		notifyObservers(ObserverType.UNEQUIP, item, owner);
 	}
-
+	
 	/**
 	 * notify that player used an item
 	 */
 	public void notifyItemuseObservers(Item item) {
 		notifyObservers(ObserverType.ITEMUSE, item);
 	}
-
+	
 	/**
 	 * notify that player requested dialog with npc
 	 */
@@ -262,16 +255,10 @@ public class ObserveController {
 		notifyObservers(ObserverType.NPCDIALOGREQUEST, npc);
 	}
 
-	/**
-	 * notify that abnormalstate is setted in effectcontroller
-	 */
 	public void notifyAbnormalSettedObservers(AbnormalState state) {
 		notifyObservers(ObserverType.ABNORMALSETTED, state);
 	}
 
-	/**
-	 * notify that abnormalstate is setted in effectcontroller
-	 */
 	public void notifySummonReleaseObservers() {
 		notifyObservers(ObserverType.SUMMONRELEASE);
 	}
@@ -320,7 +307,6 @@ public class ObserveController {
 
 	/**
 	 * @param attackList
-	 * @param effect
 	 */
 	public void checkShieldStatus(List<AttackResult> attackList, Effect effect, Creature attacker) {
 		if (attackCalcObservers.size() > 0) {

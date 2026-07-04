@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Revive World Start Point
+	Made By Encom
+ -->
  <revive_world_start_points xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="revive_world_start_points.xsd">
  	<!-- Revive Start Point Elyos -->
-	<revive_world_start_point world_id="210010000" name="Akarios Village" race="ELYOS" min_level="1" max_level="80" x="856.0" y="1210.0" z="118.0" h="0"/> <!-- checked -->
-	<revive_world_start_point world_id="210040000" name="New Heiron Gate" race="ELYOS" min_level="1" max_level="80" x="2472.0" y="305.0" z="416.0" h="0"/> <!-- checked -->
-	<revive_world_start_point world_id="210070000" name="Aequis Headquarters" race="ELYOS" min_level="1" max_level="80" x="2943.0" y="853.0" z="572.0" h="0"/> <!-- checked -->
-	<revive_world_start_point world_id="210130000" name="Inggison Illusion Fortress" race="ELYOS" min_level="1" max_level="80" x="1383.0" y="307.0" z="589.0" h="0"/> <!-- checked -->
+	<revive_world_start_point world_id="210010000" name="Akarios Village" race="ELYOS" min_level="1" max_level="80" x="854.45807" y="1208.9177" z="117.80736" h="39"/>
+	<revive_world_start_point world_id="210040000" name="New Heiron Gate" race="ELYOS" min_level="1" max_level="80" x="2478.0000" y="329.0000" z="415.28503" h="24"/>
+	<revive_world_start_point world_id="210050000" name="Inggison Illusion Fortress" race="ELYOS" min_level="1" max_level="80" x="1386.6333" y="303.7946" z="588.78503" h="66"/>
 	<!-- Revive Start Point Asmodians -->
-	<revive_world_start_point world_id="220010000" name="Aldelle Village" race="ASMODIANS" min_level="1" max_level="80" x="590.0" y="2464.0" z="280.0" h="0"/> <!-- checked -->
-	<revive_world_start_point world_id="220040000" name="Beluslan Fortress" race="ASMODIANS" min_level="1" max_level="80" x="325.0" y="337.0" z="230.0" h="0"/> <!-- checked -->
-	<revive_world_start_point world_id="220080000" name="Temple of Oblivion" race="ASMODIANS" min_level="1" max_level="80" x="433.0" y="2235.0" z="220.0" h="0"/> <!-- checked -->
-	<revive_world_start_point world_id="220140000" name="Gelkmaros Fortress" race="ASMODIANS" min_level="1" max_level="80" x="1765.0" y="2911.0" z="555.0" h="0"/> <!-- checked -->
+	<revive_world_start_point world_id="220010000" name="Aldelle Village" race="ASMODIANS" min_level="1" max_level="80" x="589.22565" y="2465.403" z="278.6643" h="92"/>
+	<revive_world_start_point world_id="220040000" name="Beluslan Fortress" race="ASMODIANS" min_level="1" max_level="80" x="320.9731" y="335.03366" z="229.59511" h="8"/>
+	<revive_world_start_point world_id="220070000" name="Gelkmaros Fortress" race="ASMODIANS" min_level="1" max_level="80" x="1764.1581" y="2909.8933" z="554.7983" h="9"/>
 	<!-- Revive Start Point Both Race -->
-	<revive_world_start_point world_id="600200000" name="Everlasting Live Refuge" race="ELYOS" min_level="1" max_level="80" x="2656.0" y="457.0" z="325.0" h="0"/> <!-- checked -->
-	<revive_world_start_point world_id="600200000" name="Temple of Perpetual Wisdor" race="ASMODIANS" min_level="1" max_level="80" x="2918.0" y="2463.0" z="320.0" h="0"/> <!-- checked -->
+	<revive_world_start_point world_id="600040000" name="Elyos Breakout" race="ELYOS" min_level="1" max_level="80" x="753.8862" y="196.5616" z="1201.5183" h="83"/>
+	<revive_world_start_point world_id="600040000" name="Asmodians Breakout" race="ASMODIANS" min_level="1" max_level="80" x="754.4194" y="1341.1023" z="1201.5183" h="91"/>
 </revive_world_start_points>

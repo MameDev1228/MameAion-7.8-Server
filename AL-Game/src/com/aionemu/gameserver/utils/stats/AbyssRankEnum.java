@@ -1,85 +1,66 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.utils.stats;
 
-import javax.xml.bind.annotation.XmlEnum;
-
-import com.aionemu.gameserver.configs.main.RateConfig;
 import com.aionemu.gameserver.model.DescriptionId;
 import com.aionemu.gameserver.model.Race;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 
-/**
- * @author ATracer
- * @author Sarynth
- * @author Imaginary
- * @rework Ever' for 4.5
- */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.xml.bind.annotation.XmlEnum;
+
 @XmlEnum
-public enum AbyssRankEnum {
-
-	// Abyss Points
-	GRADE9_SOLDIER(1, 300, 90, 0, 0, 0, 0, 0, 1802431),
-	GRADE8_SOLDIER(2, 414, 103, 1200, 0, 0, 0, 0, 1802433),
-	GRADE7_SOLDIER(3, 475, 118, 4220, 0, 0, 0, 0, 1802435),
-	GRADE6_SOLDIER(4, 546, 136, 10990, 0, 0, 0, 0, 1802437),
-	GRADE5_SOLDIER(5, 627, 156, 23500, 0, 0, 0, 0, 1802439),
-	GRADE4_SOLDIER(6, 721, 180, 42780, 0, 0, 0, 0, 1802441),
-	GRADE3_SOLDIER(7, 865, 216, 69700, 0, 0, 0, 0, 1802443),
-	GRADE2_SOLDIER(8, 1038, 259, 105600, 0, 0, 0, 0, 1802445),
-	GRADE1_SOLDIER(9, 1245, 311, 150800, 0, 0, 0, 0, 1802447),
-	// Glory Points
-	STAR1_OFFICER(10, 1868, 467, 0, 1244, 1000, 7, 49, 1802449),
-	STAR2_OFFICER(11, 2241, 560, 0, 1368, 700, 14, 98, 1802451),
-	STAR3_OFFICER(12, 2577, 644, 0, 1915, 500, 28, 196, 1802453),
-	STAR4_OFFICER(13, 2964, 741, 0, 3064, 300, 49, 343, 1802455),
-	STAR5_OFFICER(14, 4446, 1511, 0, 5210, 100, 107, 749, 1802457),
-	GENERAL(15, 4890, 1662, 0, 8335, 30, 119, 833, 1802459),
-	GREAT_GENERAL(16, 5378, 1828, 0, 10002, 10, 122, 854, 1802461),
-	COMMANDER(17, 5916, 2011, 0, 11503, 3, 127, 889, 1802463),
-	SUPREME_COMMANDER(18, 7099, 2413, 0, 12437, 1, 147, 1029, 1802465);
-
+public enum AbyssRankEnum
+{
+	//Ap Rank 7.x
+	GRADE9_SOLDIER(1, 1800, 180, 0, 0, 0, 1802431, 0),
+	GRADE8_SOLDIER(2, 2160, 216, 1200, 0, 0, 1802433, 0),
+	GRADE7_SOLDIER(3, 2592, 259, 4220, 0, 0, 1802435, 0),
+	GRADE6_SOLDIER(4, 3110, 311, 10990, 0, 0, 1802437, 0),
+	GRADE5_SOLDIER(5, 3732, 373, 23500, 0, 0, 1802439, 0),
+	GRADE4_SOLDIER(6, 4478, 447, 42780, 0, 0, 1802441, 0),
+	GRADE3_SOLDIER(7, 5373, 537, 69700, 0, 0, 1802443, 0),
+	GRADE2_SOLDIER(8, 6228, 622, 105600, 0, 0, 1802445, 0),
+	GRADE1_SOLDIER(9, 7473, 1120, 150800, 0, 0, 1802447, 0),
+	
+	//Glory Rank 7.x
+	STAR1_OFFICER(10, 8967, 1793, 0, 1244, 1000, 1802449, 400),
+	STAR2_OFFICER(11, 10760, 2690, 0, 1368, 700, 1802451, 450),
+	STAR3_OFFICER(12, 12912, 3873, 0, 1915, 500, 1802453, 600),
+	STAR4_OFFICER(13, 15494, 5422, 0, 3064, 300, 1802455, 800),
+	STAR5_OFFICER(14, 23241, 8134, 0, 5210, 100, 1802457, 1500),
+	GENERAL(15, 26727, 10690, 0, 8335, 30, 1802459, 2000),
+	GREAT_GENERAL(16, 30736, 12909, 0, 10002, 10, 1802461, 2500),
+	COMMANDER(17, 35346, 15552, 0, 11503, 3, 1802463, 3000),
+	SUPREME_COMMANDER(18, 40647, 18697, 0, 12437, 1, 1802465, 4000);
+	
+	static Logger log = LoggerFactory.getLogger(AbyssRankEnum.class);
+	
 	private int id;
 	private int pointsGained;
 	private int pointsLost;
-	private int requiredAp;
-	private int requiredGp;
+	private int apRequired;
+	private int gpRequired;
 	private int quota;
-	private int dailyReduceGp;
-	private int weeklyReduceGp;
 	private int descriptionId;
+	private int dailyReduceGp;
 
 	/**
 	 * @param id
 	 * @param pointsGained
 	 * @param pointsLost
-	 * @param requiredAp
+	 * @param required
 	 * @param quota
 	 */
-	private AbyssRankEnum(int id, int pointsGained, int pointsLost, int requiredAp, int requiredGp, int quota, int dailyReduceGp, int weeklyReduceGp, int descriptionId) {
+	private AbyssRankEnum(int id, int pointsGained, int pointsLost, int apRequired, int gpRequired, int quota, int descriptionId, int dailyReduceGp) {
 		this.id = id;
 		this.pointsGained = pointsGained;
 		this.pointsLost = pointsLost;
-		this.requiredAp = requiredAp * RateConfig.ABYSS_RANK_RATE;
-		this.requiredGp = requiredGp * RateConfig.ABYSS_RANK_RATE;
+		this.apRequired = apRequired;
+		this.gpRequired = gpRequired;
 		this.quota = quota;
-		this.dailyReduceGp = dailyReduceGp;
-		this.weeklyReduceGp = weeklyReduceGp;
 		this.descriptionId = descriptionId;
+		this.dailyReduceGp = dailyReduceGp;
 	}
 
 	/**
@@ -106,15 +87,12 @@ public enum AbyssRankEnum {
 	/**
 	 * @return AP required for Rank
 	 */
-	public int getRequiredAp() {
-		return requiredAp == 0 ? 1 : requiredAp;
+	public int getApRequired() {
+		return apRequired;
 	}
-
-	/**
-	 * @return AP required for Rank
-	 */
-	public int getRequiredGp() {
-		return requiredGp == 0 ? 1 : requiredGp;
+	
+	public int getGpRequired() {
+		return gpRequired;
 	}
 
 	/**
@@ -124,19 +102,15 @@ public enum AbyssRankEnum {
 		return quota;
 	}
 
+	public int getDescriptionId() {
+		return descriptionId;
+	}
+	
 	public int getDailyReduceGp() {
 		return dailyReduceGp;
 	}
 
-	public int getWeeklyReduceGp() {
-		return weeklyReduceGp;
-	}
-
-	public int getDescriptionId() {
-		return descriptionId;
-	}
-
-	public static DescriptionId getRankDescriptionId(Player player) {
+	public static DescriptionId getRankDescriptionId(Player player){
 		int pRankId = player.getAbyssRank().getRank().getId();
 		for (AbyssRankEnum rank : values()) {
 			if (rank.getId() == pRankId) {
@@ -157,7 +131,7 @@ public enum AbyssRankEnum {
 				return rank;
 			}
 		}
-		throw new IllegalArgumentException("Invalid abyss rank provided" + id);
+		throw new IllegalArgumentException("Invalid abyss rank provided " + id);
 	}
 
 	/**
@@ -165,46 +139,30 @@ public enum AbyssRankEnum {
 	 * @return The abyss rank enum for his needed ap
 	 */
 	public static AbyssRankEnum getRankForAp(int ap) {
-		AbyssRankEnum r = AbyssRankEnum.GRADE9_SOLDIER;
-		for (AbyssRankEnum rank : values()) {
-			if (rank.getRequiredAp() <= ap) {
-				r = rank;
-			}
-			else {
-				break;
-			}
-		}
-		return r;
-	}
+        AbyssRankEnum r = AbyssRankEnum.GRADE9_SOLDIER;
+        for (AbyssRankEnum rank : values()) {
+            if (rank.getApRequired() <= ap) {
+                r = rank;
+            } else {
+                break;
+            }
+        }
+        return r;
+    }
 
 	/**
 	 * @param gp
 	 * @return The abyss rankGp enum for his needed gp
 	 */
 	public static AbyssRankEnum getRankForGp(int gp) {
-		AbyssRankEnum rgp = null;
-		for (AbyssRankEnum rank : values()) {
-			if (rank.getRequiredGp() <= gp) {
-				rgp = rank;
-			}
-			else {
-				break;
-			}
-		}
-		return rgp;
-	}
-
-	public static AbyssRankEnum getRank(int ap, int gp) {
-		AbyssRankEnum rap = getRankForAp(ap);
-		AbyssRankEnum rgp = getRankForGp(gp);
-		if (rgp != null) {
-			return rgp;
-		}
-		else {
-			if (rap.getId() <= 9)
-				return rap;
-			else
-				return getRankById(9);
-		}
-	}
+        AbyssRankEnum rgp = AbyssRankEnum.STAR1_OFFICER;
+        for (AbyssRankEnum rank : values()) {
+            if (rank.getGpRequired() <= gp) {
+                rgp = rank;
+            } else {
+                break;
+            }
+        }
+        return rgp;
+    }
 }

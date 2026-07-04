@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.controllers.attack;
 
@@ -24,8 +24,11 @@ import com.aionemu.gameserver.skillengine.model.HitType;
 public class AttackResult {
 
 	private int damage;
+
 	private AttackStatus attackStatus;
+	
 	private HitType hitType = HitType.EVERYHIT;
+
 	/**
 	 * shield effects related
 	 */
@@ -36,6 +39,7 @@ public class AttackResult {
 	private int protectedDamage = 0;
 	private int protectorId = 0;
 	private int shieldMp = 0;
+	
 	private boolean launchSubEffect = true;
 
 	public AttackResult(int damage, AttackStatus attackStatus) {
@@ -57,7 +61,7 @@ public class AttackResult {
 
 	/**
 	 * @param damage
-	 *            the damage to set
+	 *          the damage to set
 	 */
 	public void setDamage(int damage) {
 		this.damage = damage;
@@ -79,15 +83,17 @@ public class AttackResult {
 
 	/**
 	 * @param type
-	 *            the Damage Type to set
+	 *          the Damage Type to set
 	 */
 	public void setDamageType(HitType type) {
 		this.hitType = type;
 	}
-
+	
 	/**
 	 * shield effects related
+	 * 
 	 */
+	
 	/**
 	 * @return the shieldType
 	 */
@@ -97,7 +103,7 @@ public class AttackResult {
 
 	/**
 	 * @param shieldType
-	 *            the shieldType to set
+	 *          the shieldType to set
 	 */
 	public void setShieldType(int shieldType) {
 		this.shieldType |= shieldType;
@@ -118,7 +124,7 @@ public class AttackResult {
 	public void setReflectedSkillId(int skillId) {
 		this.reflectedSkillId = skillId;
 	}
-
+	
 	public int getProtectedSkillId() {
 		return this.protectedSkillId;
 	}
@@ -126,7 +132,7 @@ public class AttackResult {
 	public void setProtectedSkillId(int skillId) {
 		this.protectedSkillId = skillId;
 	}
-
+	
 	public int getProtectedDamage() {
 		return this.protectedDamage;
 	}
@@ -134,7 +140,7 @@ public class AttackResult {
 	public void setProtectedDamage(int protectedDamage) {
 		this.protectedDamage = protectedDamage;
 	}
-
+	
 	public int getProtectorId() {
 		return this.protectorId;
 	}
@@ -142,20 +148,20 @@ public class AttackResult {
 	public void setProtectorId(int protectorId) {
 		this.protectorId = protectorId;
 	}
-
+	
 	public boolean isLaunchSubEffect() {
 		return launchSubEffect;
 	}
-
+	
 	public void setLaunchSubEffect(boolean launchSubEffect) {
 		this.launchSubEffect = launchSubEffect;
 	}
-
+	
 	public int getShieldMp() {
-		return this.shieldMp;
-	}
-
+        return this.shieldMp;
+    }
+	
 	public void setShieldMp(int shieldMp) {
-		this.shieldMp = shieldMp;
-	}
+        this.shieldMp = shieldMp;
+    }
 }

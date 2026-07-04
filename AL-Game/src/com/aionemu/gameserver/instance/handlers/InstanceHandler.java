@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.instance.handlers;
 
@@ -20,7 +20,6 @@ import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Gatherable;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
-import com.aionemu.gameserver.model.instance.StageList;
 import com.aionemu.gameserver.model.instance.StageType;
 import com.aionemu.gameserver.model.instance.instancereward.InstanceReward;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
@@ -35,9 +34,9 @@ public interface InstanceHandler {
 	/**
 	 * Executed during instance creation.<br>
 	 * This method will run after spawns are loaded
-	 *
+	 * 
 	 * @param instance
-	 *            created
+	 *          created
 	 */
 	void onInstanceCreate(WorldMapInstance instance);
 
@@ -56,7 +55,7 @@ public interface InstanceHandler {
 
 	void onLeaveInstance(Player player);
 
-	void onOpenDoor(int door);
+	void onOpenDoor(Player player, int door);
 
 	void onEnterZone(Player player, ZoneInstance zone);
 
@@ -64,7 +63,7 @@ public interface InstanceHandler {
 
 	void onPlayMovieEnd(Player player, int movieId);
 	
-	public void onSkillUse(Player player, SkillTemplate template);
+	void onSkillUse(Player player, SkillTemplate template);
 
 	boolean onReviveEvent(Player player);
 
@@ -80,19 +79,15 @@ public interface InstanceHandler {
 
 	void onChangeStage(StageType type);
 
-	void onChangeStageList(StageList list);
-
 	StageType getStage();
 
 	void onDropRegistered(Npc npc);
 
-	void onGather(Player player, Gatherable gatherable);
+	void onGather(Player player, Gatherable paramGatherable);
 
 	InstanceReward<?> getInstanceReward();
 
 	boolean onPassFlyingRing(Player player, String flyingRing);
 
-	void handleUseItemFinish(Player player, Npc npc);
-
-	boolean isEnemy(Player attacker, Player target);
+	void handleUseItemFinish(Player player, Npc npcId);
 }

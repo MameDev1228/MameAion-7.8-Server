@@ -1,31 +1,32 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-emu <aion-emu.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * aion-emu is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ * aion-emu is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with aion-emu.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aionemu.gameserver.model.geometry;
 
-import java.util.Collection;
+package com.aionemu.gameserver.model.geometry;
 
 import com.aionemu.gameserver.configs.main.WorldConfig;
 import com.aionemu.gameserver.model.templates.zone.Point2D;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.world.zone.ZoneName;
 
+import java.util.Collection;
+
 /**
  * Area of free form
- *
+ * 
  * @author SoulKeeper
  */
 public class PolyArea extends AbstractArea {
@@ -37,13 +38,13 @@ public class PolyArea extends AbstractArea {
 
 	/**
 	 * Creates new area from given points
-	 *
+	 * 
 	 * @param points
-	 *            list of points
+	 *          list of points
 	 * @param zMin
-	 *            minimal z
+	 *          minimal z
 	 * @param zMax
-	 *            maximal z
+	 *          maximal z
 	 */
 	public PolyArea(ZoneName zoneName, int worldId, Collection<Point2D> points, float zMin, float zMax) {
 		this(zoneName, worldId, points.toArray(new Point2D[points.size()]), zMin, zMax);
@@ -51,13 +52,13 @@ public class PolyArea extends AbstractArea {
 
 	/**
 	 * Creates new area from given points
-	 *
+	 * 
 	 * @param points
-	 *            list of points
+	 *          list of points
 	 * @param zMin
-	 *            minimal z
+	 *          minimal z
 	 * @param zMax
-	 *            maximal z
+	 *          maximal z
 	 */
 	public PolyArea(ZoneName zoneName, int worldId, Point2D[] points, float zMin, float zMax) {
 		super(zoneName, worldId, zMin, zMax);
@@ -155,9 +156,8 @@ public class PolyArea extends AbstractArea {
 
 	@Override
 	public boolean intersectsRectangle(RectangleArea area) {
-		if (area.getMinZ() > getMaxZ() || area.getMaxZ() < getMinZ()) {
+		if (area.getMinZ() > getMaxZ() || area.getMaxZ() < getMinZ())
 			return false;
-		}
 		return poly.intersects(area.getMinX(), area.getMinY(), WorldConfig.WORLD_REGION_SIZE, WorldConfig.WORLD_REGION_SIZE);
 	}
 }

@@ -1,24 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.services;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 import com.aionemu.commons.database.dao.DAOManager;
 import com.aionemu.gameserver.configs.main.WeddingsConfig;
@@ -29,9 +25,14 @@ import com.aionemu.gameserver.services.item.ItemService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.world.World;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 /**
  * @author synchro2
  */
+
 public class WeddingService {
 
 	private Map<Integer, Wedding> weddings = new HashMap<Integer, Wedding>();
@@ -50,7 +51,8 @@ public class WeddingService {
 	}
 
 	private boolean canRegister(Player partner1, Player partner2) {
-		return (getWedding(partner1) == null && getWedding(partner2) == null && !partner1.isMarried() && !partner2.isMarried());
+		return (getWedding(partner1) == null && getWedding(partner2) == null && !partner1.isMarried() && !partner2
+			.isMarried());
 	}
 
 	public void acceptWedding(Player player) {
@@ -81,18 +83,18 @@ public class WeddingService {
 		partner.setPartnerId(player.getObjectId());
 		PacketSendUtility.sendMessage(player, "You had married on " + partner.getName() + ".");
 		PacketSendUtility.sendMessage(partner, "You had married on " + player.getName() + ".");
-		PacketSendUtility.sendMessage(getPriest(player), "You had married" + player.getName() + " and " + partner.getName() + ".");
+		PacketSendUtility.sendMessage(getPriest(player), "You had married" + player.getName() + " and " + partner.getName()
+			+ ".");
 		cleanWedding(player, partner);
 	}
 
-	public void unDoWedding(Player player, Player partner) {
-		DAOManager.getDAO(WeddingDAO.class).deleteWedding(player, partner);
-		player.setPartnerId(0);
-		partner.setPartnerId(0);
-		PacketSendUtility.sendMessage(player, "Wedding canceled.");
-		PacketSendUtility.sendMessage(partner, "Wedding canceled.");
-	}
-
+  public void unDoWedding(Player player, Player partner) {
+    DAOManager.getDAO(WeddingDAO.class).deleteWedding(player, partner);
+    player.setPartnerId(0);
+    partner.setPartnerId(0);
+    PacketSendUtility.sendMessage(player, "Wedding canceled.");
+    PacketSendUtility.sendMessage(partner, "Wedding canceled.");
+  }
 	private boolean checkConditions(Player player, Player partner) {
 		if (player.isMarried() || partner.isMarried()) {
 			PacketSendUtility.sendMessage(player, "One of players already married.");
@@ -134,21 +136,24 @@ public class WeddingService {
 			return false;
 		}
 
-		if (!player.havePermission(WeddingsConfig.WEDDINGS_MEMBERSHIP) || !partner.havePermission(WeddingsConfig.WEDDINGS_MEMBERSHIP)) {
+		if (!player.havePermission(WeddingsConfig.WEDDINGS_MEMBERSHIP)
+			|| !partner.havePermission(WeddingsConfig.WEDDINGS_MEMBERSHIP)) {
 			PacketSendUtility.sendMessage(player, "One of players not have required membership.");
 			PacketSendUtility.sendMessage(partner, "One of players not have required membership.");
 			PacketSendUtility.sendMessage(getPriest(player), "One of players not have required membership.");
 			return false;
 		}
 
-		if (!WeddingsConfig.WEDDINGS_SAME_SEX && player.getCommonData().getGender().equals(partner.getCommonData().getGender())) {
+		if (!WeddingsConfig.WEDDINGS_SAME_SEX
+			&& player.getCommonData().getGender().equals(partner.getCommonData().getGender())) {
 			PacketSendUtility.sendMessage(player, "Same-sex weddings prohibited.");
 			PacketSendUtility.sendMessage(partner, "Same-sex weddings prohibited.");
 			PacketSendUtility.sendMessage(getPriest(player), "Same-sex weddings prohibited.");
 			return false;
 		}
 
-		if (!WeddingsConfig.WEDDINGS_DIFF_RACES && !player.getCommonData().getRace().equals(partner.getCommonData().getRace())) {
+		if (!WeddingsConfig.WEDDINGS_DIFF_RACES
+			&& !player.getCommonData().getRace().equals(partner.getCommonData().getRace())) {
 			PacketSendUtility.sendMessage(player, "Weddings between different races prohibited.");
 			PacketSendUtility.sendMessage(partner, "Weddings between different races prohibited.");
 			PacketSendUtility.sendMessage(getPriest(player), "Weddings between different races prohibited.");
@@ -156,7 +161,8 @@ public class WeddingService {
 		}
 
 		if (WeddingsConfig.WEDDINGS_KINAH != 0) {
-			if (!player.getInventory().tryDecreaseKinah(WeddingsConfig.WEDDINGS_KINAH) || !partner.getInventory().tryDecreaseKinah(WeddingsConfig.WEDDINGS_KINAH)) {
+			if (!player.getInventory().tryDecreaseKinah(WeddingsConfig.WEDDINGS_KINAH)
+				|| !partner.getInventory().tryDecreaseKinah(WeddingsConfig.WEDDINGS_KINAH)) {
 				PacketSendUtility.sendMessage(player, "One of players not have required kinah count.");
 				PacketSendUtility.sendMessage(partner, "One of players not have required kinah count.");
 				PacketSendUtility.sendMessage(getPriest(player), "One of players not have required kinah count.");

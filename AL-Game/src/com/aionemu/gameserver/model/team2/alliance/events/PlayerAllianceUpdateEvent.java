@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.model.team2.alliance.events;
 
@@ -30,37 +30,37 @@ import com.google.common.base.Predicate;
  */
 public class PlayerAllianceUpdateEvent extends AlwaysTrueTeamEvent implements Predicate<PlayerAllianceMember> {
 
-	private final PlayerAlliance alliance;
-	private final Player player;
-	private final PlayerAllianceEvent allianceEvent;
-	private final PlayerAllianceMember updateMember;
+    private final PlayerAlliance alliance;
+    private final Player player;
+    private final PlayerAllianceEvent allianceEvent;
+    private final PlayerAllianceMember updateMember;
 
-	public PlayerAllianceUpdateEvent(PlayerAlliance alliance, Player player, PlayerAllianceEvent allianceEvent) {
-		this.alliance = alliance;
-		this.player = player;
-		this.allianceEvent = allianceEvent;
-		this.updateMember = alliance.getMember(player.getObjectId());
-	}
+    public PlayerAllianceUpdateEvent(PlayerAlliance alliance, Player player, PlayerAllianceEvent allianceEvent) {
+        this.alliance = alliance;
+        this.player = player;
+        this.allianceEvent = allianceEvent;
+        this.updateMember = alliance.getMember(player.getObjectId());
+    }
 
-	@Override
-	public void handleEvent() {
-		switch (allianceEvent) {
-			case MOVEMENT:
-			case UPDATE:
-				alliance.apply(this);
-				break;
-			default:
-				// Unsupported
-				break;
-		}
+    @Override
+    public void handleEvent() {
+        switch (allianceEvent) {
+            case MOVEMENT:
+            case UPDATE:
+                alliance.apply(this);
+                break;
+            default:
+                // Unsupported
+                break;
+        }
 
-	}
+    }
 
-	@Override
-	public boolean apply(PlayerAllianceMember member) {
-		if (!member.getObjectId().equals(player.getObjectId())) {
-			PacketSendUtility.sendPacket(member.getObject(), new SM_ALLIANCE_MEMBER_INFO(updateMember, allianceEvent));
-		}
-		return true;
-	}
+    @Override
+    public boolean apply(PlayerAllianceMember member) {
+        if (!member.getObjectId().equals(player.getObjectId())) {
+            PacketSendUtility.sendPacket(member.getObject(), new SM_ALLIANCE_MEMBER_INFO(updateMember, allianceEvent));
+        }
+        return true;
+    }
 }

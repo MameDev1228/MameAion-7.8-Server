@@ -1,23 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.configs.main.SecurityConfig;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -28,6 +25,8 @@ import com.aionemu.gameserver.network.aion.serverpackets.SM_CAPTCHA;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.services.PunishmentService;
 import com.aionemu.gameserver.utils.PacketSendUtility;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Cura
@@ -38,6 +37,7 @@ public class CM_CAPTCHA extends AionClientPacket {
 	 * Logger
 	 */
 	private static final Logger log = LoggerFactory.getLogger(CM_CAPTCHA.class);
+
 	private int type;
 	private int count;
 	private String word;
@@ -54,14 +54,6 @@ public class CM_CAPTCHA extends AionClientPacket {
 		type = readC();
 
 		switch (type) {
-			case 0x00:
-				count = readC();
-				word = readS();
-				break;
-			case 0x01:
-				count = readC();
-				word = readS();
-				break;
 			case 0x02:
 				count = readC();
 				word = readS();
@@ -88,7 +80,8 @@ public class CM_CAPTCHA extends AionClientPacket {
 					player.getLifeStats().increaseFp(TYPE.FP, SecurityConfig.CAPTCHA_BONUS_FP_TIME);
 				}
 				else {
-					int banTime = SecurityConfig.CAPTCHA_EXTRACTION_BAN_TIME + (SecurityConfig.CAPTCHA_EXTRACTION_BAN_ADD_TIME * count);
+					int banTime = SecurityConfig.CAPTCHA_EXTRACTION_BAN_TIME + SecurityConfig.CAPTCHA_EXTRACTION_BAN_ADD_TIME
+						* count;
 
 					if (count < 3) {
 						PacketSendUtility.sendPacket(player, new SM_SYSTEM_MESSAGE(1400271, 3 - count));

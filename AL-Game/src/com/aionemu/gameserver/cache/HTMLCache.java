@@ -1,41 +1,31 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.cache;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map.Entry;
-
+import com.aionemu.gameserver.configs.main.HTMLConfig;
+import javolution.util.FastMap;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.aionemu.gameserver.configs.main.HTMLConfig;
-
-import javolution.util.FastMap;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
 
 /**
  * @authors Layane, nbali, savormix, hex1r0, lord_rex
@@ -43,6 +33,7 @@ import javolution.util.FastMap;
 public final class HTMLCache {
 
 	private static final Logger log = LoggerFactory.getLogger(HTMLCache.class);
+
 	private static final FileFilter HTML_FILTER = new FileFilter() {
 
 		@Override
@@ -50,6 +41,7 @@ public final class HTMLCache {
 			return file.isDirectory() || file.getName().endsWith(".xhtml");
 		}
 	};
+
 	private static final File HTML_ROOT = new File(HTMLConfig.HTML_ROOT);
 
 	private static final class SingletonHolder {
@@ -62,6 +54,7 @@ public final class HTMLCache {
 	}
 
 	private FastMap<String, String> cache = new FastMap<String, String>(16000);
+
 	private int loadedFiles;
 	private int size;
 
@@ -193,11 +186,9 @@ public final class HTMLCache {
 		sb.setLength(0);
 		sb.append(html);
 
-		for (int i = 0; i < sb.length(); i++) {
-			if (Character.isWhitespace(sb.charAt(i))) {
+		for (int i = 0; i < sb.length(); i++)
+			if (Character.isWhitespace(sb.charAt(i)))
 				sb.setCharAt(i, ' ');
-			}
-		}
 
 		replaceAll(sb, "  ", " ");
 
@@ -215,21 +206,18 @@ public final class HTMLCache {
 		int fromIndex = 0;
 		int toIndex = sb.length();
 
-		while (fromIndex < toIndex && sb.charAt(fromIndex) == ' ') {
+		while (fromIndex < toIndex && sb.charAt(fromIndex) == ' ')
 			fromIndex++;
-		}
 
-		while (fromIndex < toIndex && sb.charAt(toIndex - 1) == ' ') {
+		while (fromIndex < toIndex && sb.charAt(toIndex - 1) == ' ')
 			toIndex--;
-		}
 
 		return sb.substring(fromIndex, toIndex);
 	}
 
 	private void replaceAll(StringBuilder sb, String pattern, String value) {
-		for (int index = 0; (index = sb.indexOf(pattern, index)) != -1;) {
+		for (int index = 0; (index = sb.indexOf(pattern, index)) != -1;)
 			sb.replace(index, index + pattern.length(), value);
-		}
 	}
 
 	public void reloadPath(File f) {
@@ -240,12 +228,10 @@ public final class HTMLCache {
 
 	public void parseDir(File dir) {
 		for (File file : dir.listFiles(HTML_FILTER)) {
-			if (!file.isDirectory()) {
+			if (!file.isDirectory())
 				loadFile(file);
-			}
-			else {
+			else
 				parseDir(file);
-			}
 		}
 	}
 
@@ -263,12 +249,10 @@ public final class HTMLCache {
 				size += content.length();
 
 				String oldContent = cache.get(relpath);
-				if (oldContent == null) {
+				if (oldContent == null)
 					loadedFiles++;
-				}
-				else {
+				else
 					size -= oldContent.length();
-				}
 
 				cache.put(relpath, content);
 
@@ -299,7 +283,8 @@ public final class HTMLCache {
 
 	@Override
 	public String toString() {
-		return "Cache[HTML]: " + String.format("%.3f", (float) size / 1024) + " kilobytes on " + loadedFiles + " file(s) loaded.";
+		return "Cache[HTML]: " + String.format("%.3f", (float) size / 1024) + " kilobytes on " + loadedFiles
+			+ " file(s) loaded.";
 	}
 
 	public static String getRelativePath(File base, File file) {

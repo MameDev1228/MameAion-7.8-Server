@@ -1,127 +1,162 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of Encom. **ENCOM FUCK OTHER SVN**
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
+ *  Encom is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  Encom is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  GNU Lesser Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser Public License
+ *  along with Encom.  If not, see <http://www.gnu.org/licenses/>.
  */
 package ai.instance.tallocsHollow;
 
-import java.util.List;
-import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import com.aionemu.gameserver.utils.ThreadPoolManager;
-import com.aionemu.gameserver.ai2.AIName;
-import com.aionemu.gameserver.ai2.NpcAI2;
-import com.aionemu.gameserver.ai2.manager.WalkManager;
-import com.aionemu.gameserver.model.EmotionType;
-import com.aionemu.gameserver.model.gameobjects.Creature;
-import com.aionemu.gameserver.model.gameobjects.Npc;
-import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_EMOTION;
-import com.aionemu.gameserver.skillengine.SkillEngine;
-import com.aionemu.gameserver.utils.PacketSendUtility;
-import com.aionemu.gameserver.world.WorldMapInstance;
-import com.aionemu.gameserver.world.WorldPosition;
-
 import ai.AggressiveNpcAI2;
 
-/**
- * @author xTz
- */
+import com.aionemu.commons.utils.Rnd;
+import com.aionemu.commons.network.util.ThreadPoolManager;
+
+import com.aionemu.gameserver.ai2.AIName;
+import com.aionemu.gameserver.ai2.AI2Actions;
+import com.aionemu.gameserver.model.gameobjects.Npc;
+import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.model.templates.spawns.SpawnTemplate;
+import com.aionemu.gameserver.network.aion.serverpackets.*;
+import com.aionemu.gameserver.spawnengine.SpawnEngine;
+import com.aionemu.gameserver.skillengine.SkillEngine;
+import com.aionemu.gameserver.utils.MathUtil;
+import com.aionemu.gameserver.world.WorldMapInstance;
+
+import java.util.*;
+import java.util.concurrent.Future;
+
+/****/
+/** Author Rinzler (Encom)
+/****/
+
 @AIName("celestius")
-public class CelestiusAI2 extends AggressiveNpcAI2 {
-
-	private AtomicBoolean isHome = new AtomicBoolean(true);
-	private Future<?> helpersTask;
-
+public class CelestiusAI2 extends AggressiveNpcAI2
+{
+	private boolean canThink = true;
+	private int curentPercent = 100;
+	private List<Integer> percents = new ArrayList<Integer>();
+	
 	@Override
-	protected void handleAttack(Creature creature) {
+	public boolean canThink() {
+		return canThink;
+	}
+	
+	@Override
+	public void handleAttack(Creature creature) {
 		super.handleAttack(creature);
-		if (isHome.compareAndSet(true, false)) {
-			startHelpersCall();
-
+		checkPercentage(getLifeStats().getHpPercentage());
+	}
+	
+	private void addPercent() {
+		percents.clear();
+		Collections.addAll(percents, new Integer[]{95, 85, 75, 55, 25, 15, 5});
+	}
+	
+	private synchronized void checkPercentage(int hpPercentage) {
+		curentPercent = hpPercentage;
+		for (Integer percent: percents) {
+			if (hpPercentage <= percent) {
+				switch (percent) {
+					case 95:
+					case 85:
+					    scheduleSkill(18799, 0); //Celestius's Whip.
+						scheduleSkill(18803, 3000); //Spore Shower.
+					break;
+					case 75:
+						scheduleSkill(18801, 0); //Drain Moisture.
+						scheduleSkill(18804, 4000); //Grasping Tendrils.
+						scheduleSkill(18802, 8000); //Celestius's Thorn.
+					break;
+					case 55:
+					    komadSentry();
+					break;
+					case 25:
+					case 15:
+					case 5:
+					    scheduleSkill(18800, 0); //Celestius's Net.
+					break;
+				}
+				percents.remove(percent);
+				break;
+			}
 		}
 	}
-
-	private void cancelHelpersTask() {
-		if (helpersTask != null && !helpersTask.isDone()) {
-			helpersTask.cancel(true);
+	
+	private void komadSentry() {
+		if (getPosition().getWorldMapInstance().getNpc(281514) == null) {
+			rndSpawn(281514, 3);
+		}
+    }
+	
+	private void rndSpawn(int npcId, int count) {
+		for (int i = 0; i < count; i++) {
+			SpawnTemplate template = rndSpawnInRange(npcId, 8);
+			SpawnEngine.spawnObject(template, getPosition().getInstanceId());
 		}
 	}
-
-	private void startHelpersCall() {
-		helpersTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable() {
-
+	
+	protected SpawnTemplate rndSpawnInRange(int npcId, float distance) {
+		float direction = Rnd.get(0, 199) / 100f;
+		float x = (float) (Math.cos(Math.PI * direction) * distance);
+        float y = (float) (Math.sin(Math.PI * direction) * distance);
+		return SpawnEngine.addNewSingleTimeSpawn(getPosition().getMapId(), npcId, getPosition().getX() + x, getPosition().getY() + y, getPosition().getZ(), getPosition().getHeading());
+	}
+	
+	private void scheduleSkill(final int skillId , int delay) {
+		ThreadPoolManager.getInstance().schedule(new Runnable() {
 			@Override
 			public void run() {
-				if (isAlreadyDead() && getLifeStats().getHpPercentage() < 90) {
-					deleteHelpers();
-					cancelHelpersTask();
-				}
-				else {
-					deleteHelpers();
-					SkillEngine.getInstance().getSkill(getOwner(), 18981, 44, getOwner()).useNoAnimationSkill();
-					startRun((Npc) spawn(281514, 518, 813, 1378, (byte) 0), "3001900001");
-					startRun((Npc) spawn(281514, 551, 795, 1376, (byte) 0), "3001900002");
-					startRun((Npc) spawn(281514, 574, 854, 1375, (byte) 0), "3001900003");
+				if (!isAlreadyDead()) {
+					SkillEngine.getInstance().getSkill(getOwner(), skillId, 60, getTarget()).useNoAnimationSkill();
 				}
 			}
-		}, 1000, 25000);
+		}, delay);
 	}
-
-	private void startRun(Npc npc, String walkId) {
-		npc.getSpawn().setWalkerId(walkId);
-		WalkManager.startWalking((NpcAI2) npc.getAi2());
-		npc.setState(1);
-		PacketSendUtility.broadcastPacket(npc, new SM_EMOTION(npc, EmotionType.START_EMOTE2, 0, npc.getObjectId()));
-	}
-
-	private void deleteHelpers() {
-		WorldPosition p = getPosition();
-		if (p != null) {
-			WorldMapInstance instance = p.getWorldMapInstance();
-			if (instance != null) {
-				List<Npc> npcs = instance.getNpcs(281514);
-				for (Npc npc : npcs) {
-					SpawnTemplate template = npc.getSpawn();
-					if (npc != null && (template.getX() == 518 || template.getX() == 551 || template.getX() == 574)) {
-						npc.getController().onDelete();
-					}
-				}
-			}
+	
+	private void killNpc(List<Npc> npcs) {
+		for (Npc npc: npcs) {
+			AI2Actions.killSilently(this, npc);
 		}
 	}
-
+	
 	@Override
-	protected void handleBackHome() {
-		cancelHelpersTask();
-		deleteHelpers();
-		isHome.set(true);
-		super.handleBackHome();
-	}
-
+    protected void handleDespawned() {
+        super.handleDespawned();
+		percents.clear();
+    }
+	
 	@Override
-	protected void handleDespawned() {
-		cancelHelpersTask();
-		deleteHelpers();
-		super.handleDespawned();
+	protected void handleSpawned() {
+		super.handleSpawned();
+		addPercent();
 	}
-
+	
 	@Override
-	protected void handleDied() {
-		cancelHelpersTask();
-		deleteHelpers();
-		super.handleDied();
-	}
+    protected void handleBackHome() {
+        super.handleBackHome();
+		addPercent();
+		canThink = true;
+		curentPercent = 100;
+		WorldMapInstance instance = getPosition().getWorldMapInstance();
+		killNpc(instance.getNpcs(281514));
+    }
+	
+	@Override
+    protected void handleDied() {
+        super.handleDied();
+		percents.clear();
+        getOwner().getEffectController().removeAllEffects();
+		WorldMapInstance instance = getPosition().getWorldMapInstance();
+		killNpc(instance.getNpcs(281514));
+    }
 }

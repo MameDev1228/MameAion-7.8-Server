@@ -1,19 +1,3 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.utils.chathandlers;
 
 import com.aionemu.gameserver.model.gameobjects.player.Player;
@@ -35,9 +19,8 @@ public abstract class WeddingCommand extends ChatCommand {
 
 	@Override
 	boolean process(Player player, String text) {
-		if (!player.isMarried()) {
+		if (!player.isMarried())
 			return false;
-		}
 		String alias = this.getAlias();
 
 		if (!checkLevel(player)) {
@@ -46,12 +29,10 @@ public abstract class WeddingCommand extends ChatCommand {
 		}
 
 		boolean success = false;
-		if (text.length() == alias.length()) {
+		if (text.length() == alias.length())
 			success = this.run(player, EMPTY_PARAMS);
-		}
-		else {
+		else
 			success = this.run(player, text.substring(alias.length() + 1).split(" "));
-		}
 
 		return success;
 	}

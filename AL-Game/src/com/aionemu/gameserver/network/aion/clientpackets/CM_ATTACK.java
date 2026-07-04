@@ -1,72 +1,50 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.network.aion.clientpackets;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.utils.MameClientCompatDebug;
 
-/**
- * @author alexa026, Avol, ATracer, KID
- */
-public class CM_ATTACK extends AionClientPacket {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class CM_ATTACK extends AionClientPacket
+{
 	private static final Logger log = LoggerFactory.getLogger(CM_ATTACK.class);
-	/**
-	 * Target object id that client wants to TALK WITH or 0 if wants to unselect
-	 */
+	
 	private int targetObjectId;
 	private int attackNo;
 	private int time;
 	private int type;
-
+	
 	public CM_ATTACK(int opcode, State state, State... restStates) {
 		super(opcode, state, restStates);
 	}
-
+	
 	@Override
 	protected void readImpl() {
-		targetObjectId = readD();// empty
-		attackNo = readC();// AttackCounter 
-		time = readH();// empty
-		type = readC();// type
+		targetObjectId = readD();
+		attackNo = readC();
+		time = readH();
+		type = readC();
 	}
-
+	
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
 		if (player.getLifeStats().isAlreadyDead()) {
+			player.getController().cancelCurrentSkill();
 			return;
-		}
-
-		if (player.isProtectionActive()) {
+		} if (player.isProtectionActive()) {
 			player.getController().stopProtectionActiveTask();
 		}
-
 		VisibleObject obj = player.getKnownList().getObject(targetObjectId);
+		MameClientCompatDebug.logAttackPacket(player, targetObjectId, attackNo, time, type, obj);
 		if (obj != null && obj instanceof Creature) {
 			player.getController().attackTarget((Creature) obj, attackNo, time, type);
-		}
-		else {
+		} else {
 			if (obj != null) {
 				log.warn("Attacking unsupported target" + obj + " id " + obj.getObjectTemplate().getTemplateId());
 			}

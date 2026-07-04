@@ -1,25 +1,24 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.org>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.world.container;
 
 import com.aionemu.gameserver.model.team.legion.LegionMember;
 import com.aionemu.gameserver.model.team.legion.LegionMemberEx;
 import com.aionemu.gameserver.world.exceptions.DuplicateAionObjectException;
-
 import javolution.util.FastMap;
 
 /**
@@ -30,6 +29,7 @@ import javolution.util.FastMap;
 public class LegionMemberContainer {
 
 	private final FastMap<Integer, LegionMember> legionMemberById = new FastMap<Integer, LegionMember>().shared();
+
 	private final FastMap<Integer, LegionMemberEx> legionMemberExById = new FastMap<Integer, LegionMemberEx>().shared();
 	private final FastMap<String, LegionMemberEx> legionMemberExByName = new FastMap<String, LegionMemberEx>().shared();
 
@@ -39,9 +39,8 @@ public class LegionMemberContainer {
 	 * @param legionMember
 	 */
 	public void addMember(LegionMember legionMember) {
-		if (!legionMemberById.containsKey(legionMember.getObjectId())) {
+		if (!legionMemberById.containsKey(legionMember.getObjectId()))
 			legionMemberById.put(legionMember.getObjectId(), legionMember);
-		}
 	}
 
 	/**
@@ -59,9 +58,9 @@ public class LegionMemberContainer {
 	 * @param legionMember
 	 */
 	public void addMemberEx(LegionMemberEx legionMember) {
-		if (legionMemberExById.containsKey(legionMember.getObjectId()) || legionMemberExByName.containsKey(legionMember.getName())) {
+		if (legionMemberExById.containsKey(legionMember.getObjectId())
+			|| legionMemberExByName.containsKey(legionMember.getName()))
 			throw new DuplicateAionObjectException();
-		}
 		legionMemberExById.put(legionMember.getObjectId(), legionMember);
 		legionMemberExByName.put(legionMember.getName(), legionMember);
 	}

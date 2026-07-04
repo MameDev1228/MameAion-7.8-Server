@@ -1,22 +1,20 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.ai2.handler;
-
-import java.util.Collections;
 
 import com.aionemu.gameserver.ai2.NpcAI2;
 import com.aionemu.gameserver.ai2.event.AIEventType;
@@ -29,12 +27,13 @@ import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.templates.npc.NpcTemplateType;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_ATTACK;
-import com.aionemu.gameserver.services.TribeRelationService;
 import com.aionemu.gameserver.utils.MathUtil;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.geo.GeoService;
 import com.aionemu.gameserver.world.knownlist.Visitor;
+
+import java.util.Collections;
 
 /**
  * @author ATracer
@@ -43,14 +42,15 @@ public class AggroEventHandler {
 
 	/**
 	 * @param npcAI
-	 * @param myTarget
+	 * @param creature
 	 */
 	public static void onAggro(NpcAI2 npcAI, final Creature myTarget) {
 		final Npc owner = npcAI.getOwner();
 		// TODO move out?
-		if (myTarget.getAdminNeutral() == 1 || myTarget.getAdminNeutral() == 3 || myTarget.getAdminEnmity() == 1 || myTarget.getAdminEnmity() == 3 || TribeRelationService.isFriend(owner, myTarget)) {
+		if (myTarget.getAdminNeutral() == 1 || myTarget.getAdminNeutral() == 3 || myTarget.getAdminEnmity() == 1
+			|| myTarget.getAdminEnmity() == 3)
 			return;
-		}
+
 		PacketSendUtility.broadcastPacket(owner, new SM_ATTACK(owner, myTarget, 0, 633, 0, Collections.singletonList(new AttackResult(0, AttackStatus.NORMALHIT))));
 
 		ThreadPoolManager.getInstance().schedule(new AggroNotifier(owner, myTarget, true), 500);
@@ -58,10 +58,12 @@ public class AggroEventHandler {
 
 	public static boolean onCreatureNeedsSupport(NpcAI2 npcAI, Creature notMyTarget) {
 		Npc owner = npcAI.getOwner();
-		if (TribeRelationService.isSupport(notMyTarget, owner) && MathUtil.isInRange(owner, notMyTarget, owner.getAggroRange()) && GeoService.getInstance().canSee(owner, notMyTarget)) {
+		if (notMyTarget.isSupportFrom(owner) && MathUtil.isInRange(owner, notMyTarget, owner.getAggroRange())
+			&& GeoService.getInstance().canSee(owner, notMyTarget)) {
 			VisibleObject myTarget = notMyTarget.getTarget();
 			if (myTarget != null && myTarget instanceof Creature) {
 				Creature targetCreature = (Creature) myTarget;
+
 				PacketSendUtility.broadcastPacket(owner, new SM_ATTACK(owner, targetCreature, 0, 633, 0, Collections.singletonList(new AttackResult(0, AttackStatus.NORMALHIT))));
 				ThreadPoolManager.getInstance().schedule(new AggroNotifier(owner, targetCreature, false), 500);
 				return true;
@@ -114,5 +116,7 @@ public class AggroEventHandler {
 			aggressive = null;
 			target = null;
 		}
+
 	}
+
 }

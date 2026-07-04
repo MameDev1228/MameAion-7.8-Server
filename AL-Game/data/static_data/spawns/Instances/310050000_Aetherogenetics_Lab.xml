@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Aetherogenetics Lab 7.x
+    Spawn By Encom
+ -->
+<spawns>
+	<spawn_map map_id="310050000">
+		<!-- Special Lab Defender
+		<Lepharist Revolutionary> -->
+		<spawn npc_id="653228">
+            <spot h="0" z="147.60094" y="230.29419" x="354.18063"/>
+            <spot h="90" z="144.14427" y="229.62965" x="317.44022"/>
+            <spot h="90" z="144.15102" y="240.62965" x="333.94022"/>
+			<spot h="30" z="144.14981" y="219.62936" x="334.46262"/>
+        </spawn>
+		<!-- Gatekeeper -->
+        <spawn npc_id="653229">
+            <spot h="0" z="144.14554" y="230.16" x="312.18"/>
+        </spawn>
+		<!-- Librarian Selima
+		<Lepharist Key Keeper> -->
+        <spawn npc_id="653230">
+            <spot h="0" z="141.9798" y="275.46445" x="329.66553"/>
+        </spawn>
+		<!-- Expert Lab Scholar
+		<Lepharist Revolutionary>
+		A Lepharist scholar in the Aetherogenetics Lab -->
+        <spawn npc_id="653233">
+            <spot h="90" z="132.6022" y="255.51639" x="197.18045"/>
+            <spot h="31" z="132.6022" y="205.88258" x="194.13585"/>
+            <spot h="0" z="141.96971" y="274.66705" x="356.95557"/>
+            <spot h="75" z="132.8555" y="228.51639" x="180.68045"/>
+            <spot h="75" z="132.8555" y="217.07219" x="181.59688"/>
+            <spot h="49" z="132.8555" y="243.15842" x="181.38422"/>
+            <spot h="56" z="132.6022" y="255.68031" x="185.49867"/>
+            <spot h="112" z="132.6022" y="257.624" x="180.37556"/>
+        </spawn>
+		<!-- Special Lab Strategist
+		<Lepharist Revolutionary>
+		A Lepharist strategist in the Aetherogenetics Lab.
+		Guides & develops lines of research -->
+        <spawn npc_id="653234">
+            <spot h="61" z="144.19699" y="247.84096" x="352.64597"/>
+        </spawn>
+		<!-- Special Lab Fencer
+		<Lepharist Revolutionary> -->
+        <spawn npc_id="653235">
+            <spot h="16" z="141.97464" y="268.4968" x="355.9796"/>
+            <spot h="61" z="141.9837" y="258.8525" x="353.0162"/>
+        </spawn>
+		<!-- Special Lab Vaegir
+		<Lepharist Revolutionary> -->
+        <spawn npc_id="653236">
+            <spot h="90" z="141.97113" y="262.05008" x="330.53088"/>
+        </spawn>
+		<!-- Head Chef Pamsey
+		<Lepharist Revolutionary> -->
+        <spawn npc_id="653237">
+            <spot h="31" z="141.87166" y="168.79204" x="322.0778"/>
+        </spawn>
+		<!-- Expert Lab Medic
+		<Lepharist Revolutionary>
+		Lepharist medics in the Aetherogenetics Lab.
+		Once part of the Biological Research Center, they are now working on mutating live creatures -->
+        <spawn npc_id="653239">
+            <spot h="41" z="141.87166" y="192.68303" x="349.44116"/>
+        </spawn>
+		<!-- Special Lab Overseer
+		<Lepharist Revolutionary> -->
+        <spawn npc_id="653240">
+            <spot h="54" z="141.8723" y="201.0428" x="364.5379"/>
+        </spawn>
+		<!-- Special Lab Assassin
+		<Lepharist Revolutionary> -->
+        <spawn npc_id="653244">
+            <spot h="16" z="141.87166" y="173.31125" x="337.24213"/>
+            <spot h="61" z="141.87166" y="185.8606" x="325.5973"/>
+            <spot h="61" z="141.8729" y="194.8606" x="361.5973"/>
+        </spawn>
+		<!-- RM-108C
+		A test subject of the Lepharist Revolutionaries.
+		It can be found in the Aetherogenetics Lab -->
+        <spawn npc_id="653246">
+            <spot h="0" z="134.15724" y="224.5528" x="177.6112"/>
+        </spawn>
+		<!-- RM-113B -->
+        <spawn npc_id="653247">
+            <spot h="0" z="134.15515" y="235.8028" x="177.7362"/>
+            <spot h="0" z="134.20831" y="213.3028" x="177.4862"/>
+            <spot h="0" z="134.15515" y="245.9278" x="177.8612"/>
+        </spawn>
+		<!-- Pretor Key Keeper
+		<Key Keeper> -->
+        <spawn npc_id="653248">
+            <spot h="0" z="132.83391" y="246.04503" x="205.47473"/>
+        </spawn>
+		<!-- Pretor Lab Sentry -->
+        <spawn npc_id="653249">
+            <spot h="111" z="136.75626" y="243.52272" x="270.2454"/>
+            <spot h="16" z="136.75626" y="217.34218" x="270.50543"/>
+			<spot h="90" z="132.83432" y="254.02477" x="239.80101" random_walk="2"/>
+			<spot h="13" z="132.83458" y="242.88217" x="244.61212" random_walk="2"/>
+        </spawn>
+		<!-- Pretor Lab Sentry -->
+        <spawn npc_id="653250">
+            <spot h="0" z="132.83362" y="240.36446" x="215.33484" random_walk="2"/>
+            <spot h="31" z="132.83408" y="249.31749" x="223.65125" random_walk="2"/>
+            <spot h="31" z="132.83458" y="236.22812" x="230.8142" random_walk="2"/>
+        </spawn>
+		<!-- Hungry Mudthorn
+		<Key Keeper> -->
+		<spawn npc_id="653251">
+            <spot h="119" z="132.83397" y="215.13112" x="208.37508"/>
+        </spawn>
+		<!-- Laboratory Mudthorn -->
+		<spawn npc_id="653252">
+            <spot h="16" z="132.83449" y="206.15346" x="238.12444"/>
+            <spot h="103" z="132.83458" y="225.21617" x="240.1457"/>
+        </spawn>
+		<!-- Laboratory Mudthorn -->
+        <spawn npc_id="653253">
+            <spot h="1" z="132.83414" y="214.07637" x="227.847"/>
+            <spot h="115" z="132.83394" y="222.20135" x="220.58939"/>
+            <spot h="5" z="132.83423" y="209.50807" x="217.05524"/>
+        </spawn>
+		<!-- Laboratory Rotron -->
+        <spawn npc_id="653254">
+            <spot h="31" z="132.6022" y="205.90921" x="181.05304"/>
+        </spawn>
+		<!-- The Gatekeeper -->
+        <spawn npc_id="653255">
+            <spot h="61" z="124.85524" y="323.46" x="198.31"/>
+        </spawn>
+		<!-- Perfected Pretor -->
+        <spawn npc_id="653258">
+            <spot h="61" z="124.99657" y="322.75574" x="225.1916"/>
+        </spawn>
+		<!-- RM-78C
+		An artificial creature made by the Lepharist Revolutionaries.
+		It is kept in the deepest part of the Secret Laboratory under the Research Overwatch -->
+        <spawn npc_id="653259">
+            <spot h="61" z="127.27161" y="322.5528" x="253.66034"/>
+        </spawn>
+		<!-- The Keykeeper
+		<Lepharist Key Keeper> -->
+        <spawn npc_id="653262">
+            <spot h="47" z="141.87166" y="172.01823" x="359.94745"/>
+        </spawn>
+		<!-- Key Eater
+		<Key Keeper> -->
+        <spawn npc_id="653263">
+            <spot h="90" z="124.85524" y="345.9278" x="187.9862"/>
+        </spawn>
+	    
+		<!-- Giant Flask -->
+		<spawn npc_id="700219">
+			<spot x="236.520" y="303.010" z="129.350" entity_id="173"/>
+			<spot x="225.720" y="303.190" z="129.350" entity_id="174"/>
+			<spot x="215.510" y="303.190" z="129.350" entity_id="175"/>
+			<spot x="236.520" y="342.820" z="129.350" entity_id="176"/>
+			<spot x="225.720" y="343.000" z="129.350" entity_id="177"/>
+			<spot x="215.510" y="343.000" z="129.350" entity_id="178"/>
+			<spot x="177.560" y="245.980" z="136.990" entity_id="179"/>
+			<spot x="177.560" y="235.860" z="136.990" entity_id="180"/>
+			<spot x="177.560" y="224.560" z="136.990" entity_id="181"/>
+			<spot x="177.560" y="213.310" z="137.040" entity_id="182"/>
+		</spawn>
+		<!-- Stolen Book -->
+	    <spawn npc_id="700230">
+		    <spot x="351.150" y="259.890" z="143.160" h="51"/>
+	    </spawn>
+		<!-- Lepharist Secret Safe -->
+		<spawn npc_id="700279">
+			<spot x="255.302" y="310.364" z="128.250" entity_id="64"/>
+		</spawn>
+		<!-- Lepharist Research Data -->
+	    <spawn npc_id="700352">
+	        <spot x="249.913" y="253.594" z="134.000" h="00"/>
+		    <spot x="366.895" y="186.083" z="142.405" h="00"/>
+		    <spot x="327.831" y="284.247" z="142.698" h="00"/>
+		    <spot x="176.029" y="205.986" z="133.367" h="00"/>
+	    </spawn>
+		<!-- Research Center Cabinet -->
+		<spawn npc_id="700362">
+			<spot x="244.785" y="347.201" z="124.971" entity_id="184"/>
+			<spot x="175.471" y="206.045" z="132.599" entity_id="185"/>
+			<spot x="250.113" y="253.606" z="132.837" entity_id="186"/>
+			<spot x="250.075" y="205.785" z="132.837" entity_id="187"/>
+			<spot x="368.324" y="186.230" z="141.872" entity_id="188"/>
+			<spot x="327.493" y="284.263" z="142.001" entity_id="189"/>
+		</spawn>
+		<!-- Lepharist Research Diary
+		A diary of the Lepharists' experiments -->
+	    <spawn npc_id="700511">
+	        <spot x="328.204" y="275.623" z="142.929" entity_id="61"/>
+	    </spawn>
+		<!-- Lepharist Research Data
+		Research data written by the Lepharists -->
+	    <spawn npc_id="703524">
+		    <spot x="200.000" y="296.000" z="124.868" entity_id="221"/>
+	    </spawn>
+		<!-- Lepharist Research Data
+		Research data written by the Lepharists -->
+	    <spawn npc_id="703525">
+		    <spot x="176.011" y="324.000" z="124.860" entity_id="222"/>
+	    </spawn>
+		<!-- Lepharist Research Data
+		Research data written by the Lepharists -->
+	    <spawn npc_id="703526">
+		    <spot x="201.619" y="346.258" z="124.867" entity_id="223"/>
+	    </spawn>
+		<!-- Aetherogenetics Lab Exit -->
+	    <spawn npc_id="820051">
+		    <spot x="385.330" y="230.238" z="158.767" entity_id="183"/>
+	    </spawn>
+		<!-- Report Of The Research On Mutant Creatures 2 -->
+	    <spawn npc_id="730131">
+	        <spot x="327.362" y="267.952" z="143.020" entity_id="206"/>
+	    </spawn>
+		<!-- Old Book -->
+		<spawn npc_id="730195">
+			<spot x="331.331" y="265.599" z="144.013" entity_id="190"/>
+			<spot x="348.800" y="279.798" z="144.827" entity_id="191"/>
+		</spawn>
+	</spawn_map>
+</spawns>

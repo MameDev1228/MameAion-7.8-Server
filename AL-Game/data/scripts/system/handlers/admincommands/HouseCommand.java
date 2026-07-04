@@ -1,23 +1,22 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-lightning <aion-lightning.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-lightning is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-lightning is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-lightning.  If not, see <http://www.gnu.org/licenses/>.
  */
 package admincommands;
 
-import java.sql.Timestamp;
-
+import com.aionemu.gameserver.controllers.HouseController;
 import com.aionemu.gameserver.model.gameobjects.VisibleObject;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.player.PlayerHouseOwnerFlags;
@@ -32,39 +31,34 @@ import com.aionemu.gameserver.services.teleport.TeleportService2;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
 
-/**
- * @author Rolandas
- */
-public class HouseCommand extends AdminCommand {
+import java.sql.Timestamp;
 
+public class HouseCommand extends AdminCommand
+{
 	public HouseCommand() {
 		super("house");
 	}
-
+	
 	@Override
 	public void execute(Player admin, String... params) {
 		if (params.length == 0) {
 			PacketSendUtility.sendMessage(admin, "Syntax: //house <tp | acquire | revoke>");
 			return;
-		}
-
-		if (params[0].equals("acquire")) {
+		} if (params[0].equals("acquire")) {
 			if (params.length == 1) {
-				PacketSendUtility.sendMessage(admin, "Syntax: //house acquire <name>");
+				PacketSendUtility.sendMessage(admin, "Syntax: //house acquire <HOUSE_Id>");
 				return;
 			}
 			ChangeHouseOwner(admin, params[1].toUpperCase(), true);
-		}
-		else if (params[0].equals("revoke")) {
+		} else if (params[0].equals("revoke")) {
 			if (params.length == 1) {
-				PacketSendUtility.sendMessage(admin, "Syntax: //house revoke <name>");
+				PacketSendUtility.sendMessage(admin, "Syntax: //house revoke <HOUSE_Id>");
 				return;
 			}
 			ChangeHouseOwner(admin, params[1].toUpperCase(), false);
-		}
-		else if (params[0].equals("tp")) {
+		} else if (params[0].equals("tp")) {
 			if (params.length == 1) {
-				PacketSendUtility.sendMessage(admin, "Syntax: //house tp <name>");
+				PacketSendUtility.sendMessage(admin, "Syntax: //house tp <HOUSE_Id>");
 				return;
 			}
 			House house = HousingService.getInstance().getHouseByName(params[1].toUpperCase());
@@ -75,23 +69,17 @@ public class HouseCommand extends AdminCommand {
 			HouseAddress address = house.getAddress();
 			TeleportService2.teleportTo(admin, address.getMapId(), address.getX(), address.getY(), address.getZ());
 		}
-
 	}
-
+	
 	private void ChangeHouseOwner(Player admin, String houseName, boolean acquire) {
 		Player target = null;
 		VisibleObject creature = admin.getTarget();
-
 		if (admin.getTarget() instanceof Player) {
 			target = (Player) creature;
-		}
-
-		if (target == null) {
+		} if (target == null) {
 			PacketSendUtility.sendMessage(admin, "You should select a target first!");
 			return;
-		}
-
-		if (acquire) {
+		} if (acquire) {
 			if (target.getHouses().size() == 2) {
 				PacketSendUtility.sendMessage(admin, "Player can not own more than 2 houses!");
 				return;
@@ -100,15 +88,13 @@ public class HouseCommand extends AdminCommand {
 			if (house == null) {
 				PacketSendUtility.sendMessage(admin, "No such house!");
 				return;
-			}
-			if (target.getHouses().size() == 1) {
+			} if (target.getHouses().size() == 1) {
 				House current = target.getHouses().get(0);
 				current.revokeOwner();
 				if (current.getBuilding().getType() == BuildingType.PERSONAL_INS) {
 					target.getHouses().remove(current);
 					PacketSendUtility.sendMessage(admin, "Deleted studio.");
-				}
-				else {
+				} else {
 					current.setStatus(HouseStatus.ACTIVE);
 					current.setFeePaid(true);
 					current.setNextPay(null);
@@ -120,8 +106,8 @@ public class HouseCommand extends AdminCommand {
 			house.setOwnerId(target.getCommonData().getPlayerObjId());
 			house.setStatus(HouseStatus.ACTIVE);
 			house.setFeePaid(true);
-			house.setNextPay(null); // TODO: fix it
-			house.reloadHouseRegistry();
+			house.setNextPay(null);
+            house.reloadHouseRegistry();
 			house.save();
 			target.getHouses().add(house);
 			target.setHouseRegistry(house.getRegistry());
@@ -129,8 +115,7 @@ public class HouseCommand extends AdminCommand {
 			PacketSendUtility.sendMessage(admin, "House " + house.getName() + " acquired");
 			PacketSendUtility.sendPacket(target, new SM_HOUSE_OWNER_INFO(target, house));
 			PacketSendUtility.sendPacket(target, new SM_HOUSE_ACQUIRE(target.getObjectId(), house.getAddress().getId(), true));
-		}
-		else {
+		} else {
 			if (target.getHouses().size() == 0) {
 				PacketSendUtility.sendMessage(admin, "Nothing to revoke!");
 				return;
@@ -140,14 +125,12 @@ public class HouseCommand extends AdminCommand {
 				if (house.getName().equals(houseName)) {
 					revokedHouse = house;
 					house.revokeOwner();
-				}
-				else if (house.getStatus() != HouseStatus.ACTIVE) {
+				} else if (house.getStatus() != HouseStatus.ACTIVE) {
 					house.setStatus(HouseStatus.ACTIVE);
 					house.setSellStarted(null);
 					house.save();
 				}
-			}
-			if (revokedHouse == null) {
+			} if (revokedHouse == null) {
 				PacketSendUtility.sendMessage(admin, "Target doesn't own this house!");
 				return;
 			}
@@ -155,18 +138,17 @@ public class HouseCommand extends AdminCommand {
 			House oldHouse = null;
 			if (target.getHouses().size() != 0) {
 				oldHouse = target.getHouses().get(0);
-			}
-			else {
+			} else {
 				target.setBuildingOwnerState(PlayerHouseOwnerFlags.BUY_STUDIO_ALLOWED.getId());
 			}
 			target.setHouseRegistry(oldHouse == null ? null : oldHouse.getRegistry());
 			PacketSendUtility.sendMessage(admin, "House " + revokedHouse.getName() + " revoked");
 			PacketSendUtility.sendPacket(target, new SM_HOUSE_OWNER_INFO(target, oldHouse));
 			PacketSendUtility.sendPacket(target, new SM_HOUSE_ACQUIRE(target.getObjectId(), revokedHouse.getAddress().getId(), false));
-			revokedHouse.getController().updateAppearance();
+			((HouseController) revokedHouse.getController()).updateAppearance();
 		}
 	}
-
+	
 	@Override
 	public void onFail(Player player, String message) {
 		PacketSendUtility.sendMessage(player, "syntax //house <tp | list | acquire | revoke>");

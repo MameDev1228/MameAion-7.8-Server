@@ -1,18 +1,18 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
+/*
+ * This file is part of aion-unique <aion-unique.smfnew.com>.
  *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
+ *  aion-unique is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Aion-Lightning is distributed in the hope that it will be useful,
+ *  aion-unique is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
+ *  GNU General Public License for more details.
+ *
  *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
+ *  along with aion-unique.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.aionemu.gameserver.utils.stats;
 
@@ -22,7 +22,6 @@ import java.util.NoSuchElementException;
  * @author ATracer
  */
 public enum XPRewardEnum {
-
 	MINUS_11(-11, 0),
 	MINUS_10(-10, 1),
 	MINUS_9(-9, 10),
@@ -41,6 +40,7 @@ public enum XPRewardEnum {
 	PLUS_4(4, 120);
 
 	private int xpRewardPercent;
+
 	private int levelDifference;
 
 	private XPRewardEnum(int levelDifference, int xpRewardPercent) {
@@ -54,7 +54,7 @@ public enum XPRewardEnum {
 
 	/**
 	 * @param levelDifference
-	 *            between two objects
+	 *          between two objects
 	 * @return XP reward percentage
 	 */
 	public static int xpRewardFrom(int levelDifference) {

@@ -1,19 +1,3 @@
-/**
- * This file is part of Aion-Lightning <aion-lightning.org>.
- *
- *  Aion-Lightning is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Aion-Lightning is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details. *
- *  You should have received a copy of the GNU General Public License
- *  along with Aion-Lightning.
- *  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.aionemu.gameserver.dataholders;
 
 import java.util.Iterator;
@@ -34,31 +18,31 @@ import gnu.trove.map.hash.TIntObjectHashMap;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ItemEnchantChancesData {
 
-	@XmlElement(name = "enchant_chance")
-	private List<ItemEnchantChance> ItemEnchantChance;
-	private TIntObjectHashMap<List<ItemEnchantChanceList>> ItemEnchantChanceList = new TIntObjectHashMap<List<ItemEnchantChanceList>>();
+    @XmlElement(name = "enchant_chance")
+    private List<ItemEnchantChance> ItemEnchantChance;
+    private TIntObjectHashMap<List<ItemEnchantChanceList>> ItemEnchantChanceList = new TIntObjectHashMap<List<ItemEnchantChanceList>>();
 
-	void afterUnmarshal(Unmarshaller Unmarshaller, Object Object) {
-		ItemEnchantChanceList.clear();
-		Iterator<ItemEnchantChance> Iterator = ItemEnchantChance.iterator();
-		while (Iterator.hasNext()) {
-			ItemEnchantChance itemEnchantChance = Iterator.next();
-			ItemEnchantChanceList.put(itemEnchantChance.getId(), itemEnchantChance.getItemEnchantChanceList());
-		}
-	}
+    void afterUnmarshal(Unmarshaller Unmarshaller, Object Object) {
+        ItemEnchantChanceList.clear();
+        Iterator<ItemEnchantChance> Iterator = ItemEnchantChance.iterator();
+        while (Iterator.hasNext()) {
+            ItemEnchantChance itemEnchantChance = Iterator.next();
+            ItemEnchantChanceList.put(itemEnchantChance.getId(), itemEnchantChance.getItemEnchantChanceList());
+        }
+    }
 
-	public int size() {
-		return ItemEnchantChanceList.size();
-	}
+    public int size() {
+        return ItemEnchantChanceList.size();
+    }
 
-	public ItemEnchantChance getChanceById(int id) {
-		Iterator<ItemEnchantChance> Iterator = ItemEnchantChance.iterator();
-		while (Iterator.hasNext()) {
-			ItemEnchantChance itemEnchantChance = Iterator.next();
-			if (itemEnchantChance.getId() == id) {
-				return itemEnchantChance;
-			}
-		}
-		return null;
-	}
+    public ItemEnchantChance getChanceById(int id) {
+        Iterator<ItemEnchantChance> Iterator = ItemEnchantChance.iterator();
+        while (Iterator.hasNext()) {
+            ItemEnchantChance itemEnchantChance = Iterator.next();
+            if (itemEnchantChance.getId() == id) {
+                return itemEnchantChance;
+            }
+        }
+        return null;
+    }
 }

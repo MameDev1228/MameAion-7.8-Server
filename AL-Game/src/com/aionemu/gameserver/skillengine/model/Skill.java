@@ -337,8 +337,9 @@ public class Skill
 			if (skillTemplate.getCooldownDeltaLv() != 0)
 				cooldown = skillTemplate.getCooldownForLevel(this.skillLevel);
 			cooldown = StigmaEnchantCoolDown(this, cooldown);
-			effector.setSkillCoolDown(skillTemplate.getDelayId(), cooldown * 100 + this.duration + System.currentTimeMillis());
-			effector.setSkillCoolDownBase(skillTemplate.getDelayId(), System.currentTimeMillis());
+			long now = System.currentTimeMillis();
+			effector.setSkillCoolDown(skillTemplate.getDelayId(), cooldown * 100L + this.duration + now);
+			effector.setSkillCoolDownBase(skillTemplate.getDelayId(), now);
 		}
 	}
 	
@@ -347,10 +348,92 @@ public class Skill
 	*/
 	public int StigmaEnchantCoolDown(Skill skill, int cooldown) {
 		if (skill == null) {
+			return cooldown;
+		}
+		if (skill.getEffector() instanceof Player) {
+			return getStigmaEnchantCoolDown((Player) skill.getEffector(), skill.getSkillId(), cooldown);
+		}
+		return cooldown;
+	}
+
+	/**
+	 * Player-aware stigma enchant cooldown calculator.
+	 * MameAion75 v86:
+	 * - Use the equipped stigma stone enchant level, not the learned skill level.
+	 * - This prevents unenhanced characters and stigma-set bonus skill levels from
+	 *   receiving excessive cooldown reduction.
+	 * - Values are server cooldown ticks (100ms units), same as skill_template cooldown.
+	 */
+	public static int getStigmaEnchantCoolDown(Player player, int skillId, int cooldown) {
+		if (player == null || cooldown <= 0) {
+			return cooldown;
+		}
+		int enchantLevel = getEquippedStigmaEnchantLevel(player, skillId);
+		if (enchantLevel <= 0) {
+			return cooldown;
+		}
+		return getStigmaEnchantCoolDown(skillId, enchantLevel, cooldown);
+	}
+
+	private static int getEquippedStigmaEnchantLevel(Player player, int skillId) {
+		HashSet<String> skillGroups = new HashSet<String>();
+		SkillLearnTemplate[] learnTemplates = DataManager.SKILL_TREE_DATA.getTemplatesForSkill(skillId);
+		if (learnTemplates != null) {
+			for (SkillLearnTemplate learnTemplate : learnTemplates) {
+				if (learnTemplate != null) {
+					String group = normalizeStigmaSkillGroup(learnTemplate.getSkillGroup());
+					if (group != null) {
+						skillGroups.add(group);
+					}
+				}
+			}
+		}
+		if (skillGroups.isEmpty()) {
+			SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skillId);
+			if (template != null) {
+				String group = normalizeStigmaSkillGroup(template.getGroup());
+				if (group != null) {
+					skillGroups.add(group);
+				}
+			}
+		}
+		if (skillGroups.isEmpty() || player.getEquipment() == null) {
 			return 0;
 		}
-		int SkillLevel = skill.getSkillLevel();
-		switch (skill.getSkillId()) {
+		int enchantLevel = 0;
+		for (Item item : player.getEquipment().getEquippedItemsAllStigma()) {
+			if (item == null || item.getItemTemplate() == null || !item.getItemTemplate().isStigma()) {
+				continue;
+			}
+			String group = normalizeStigmaSkillGroup(item.getSkillGroup());
+			if (group != null && skillGroups.contains(group)) {
+				enchantLevel = Math.max(enchantLevel, item.getEnchantLevel());
+			}
+		}
+		return enchantLevel;
+	}
+
+	private static String normalizeStigmaSkillGroup(String group) {
+		if (group == null) {
+			return null;
+		}
+		String normalized = group.trim().toUpperCase(Locale.ENGLISH);
+		if (normalized.length() == 0 || "NONE".equals(normalized)) {
+			return null;
+		}
+		return normalized;
+	}
+
+	/**
+	 * Shared stigma-enchant cooldown calculator.
+	 * The second parameter is the real equipped stigma enchant level in v86.
+	 */
+	public static int getStigmaEnchantCoolDown(int skillId, int SkillLevel, int cooldown) {
+		// v86: Tendon/Ankle Slash +14 must be 30.0s - 4.2s = 25.8s, so 3 ticks per enchant.
+		if (skillId >= 612 && skillId <= 617) {
+			return Math.max(0, cooldown - 3 * SkillLevel);
+		}
+		switch (skillId) {
 			//Lockdown.
 			case 500:
 			case 501:
@@ -478,7 +561,7 @@ public class Skill
 			case 3965:
 			case 3966:
 			case 3967:
-			    return cooldown - 1 * SkillLevel;
+			    return Math.max(0, cooldown - 1 * SkillLevel);
 			//Heart Shot.
 			case 820:
 			case 821:
@@ -558,7 +641,7 @@ public class Skill
 			case 5494:
 			case 5495:
 			case 5496:
-			    return cooldown - 2 * SkillLevel;
+			    return Math.max(0, cooldown - 2 * SkillLevel);
 			//Sure Strike.
 			case 691:
 			case 692:
@@ -892,7 +975,7 @@ public class Skill
 			case 5565:
 			//유약 샤워.
 			case 5588:
-			    return cooldown - 3 * SkillLevel;
+			    return Math.max(0, cooldown - 3 * SkillLevel);
 			//Wind Lance.
 			case 727:
 			case 729:
@@ -921,7 +1004,7 @@ public class Skill
 			case 2923:
 			case 2924:
 			case 2925:
-			    return cooldown - 4 * SkillLevel;
+			    return Math.max(0, cooldown - 4 * SkillLevel);
 			//Dauntless Spirit.
 			case 564:
 			case 565:
@@ -1231,7 +1314,7 @@ public class Skill
 			case 5566:
 			//물감 샤워.
 			case 5574:
-			    return cooldown - 6 * SkillLevel;
+			    return Math.max(0, cooldown - 6 * SkillLevel);
 			//Magical Defense.
 			case 600:
 			//Tendon Slice.
@@ -1368,7 +1451,7 @@ public class Skill
 			case 5541:
 			//물감 보호막.
 			case 5573:
-			    return cooldown - 9 * SkillLevel;
+			    return Math.max(0, cooldown - 9 * SkillLevel);
 			//Boon Of Quickness.
 			case 1350:
 			//Repulsion Field.
@@ -1394,12 +1477,12 @@ public class Skill
 			case 2918:
 			//Cloaking Word.
 			case 3544:
-			    return cooldown - 12 * SkillLevel;
+			    return Math.max(0, cooldown - 12 * SkillLevel);
 			//Kinetic Bulwark.
 			case 2579:
 			case 2580:
 			case 2581:
-				return cooldown - 18 * SkillLevel;
+				return Math.max(0, cooldown - 18 * SkillLevel);
 			//Exhausting Wave.
 			case 539:
 			case 540:
@@ -1596,10 +1679,10 @@ public class Skill
 			case 5562:
 			case 5563:
 			case 5564:
-				return cooldown - 24 * SkillLevel;
+				return Math.max(0, cooldown - 24 * SkillLevel);
 			//Absolute Zero.
 			case 1216:
-			    return cooldown - 30 * SkillLevel;
+			    return Math.max(0, cooldown - 30 * SkillLevel);
 			//Wintry Armor.
 			case 1305:
 			case 1306:
@@ -1716,20 +1799,21 @@ public class Skill
 			case 4190:
 			case 4191:
 			case 4192:
-			    return cooldown - 36 * SkillLevel;
+			    return Math.max(0, cooldown - 36 * SkillLevel);
 			//Exchange Vitality.
 			case 1327:
 			//Slumberswept Wind.
 			case 1340:
 			case 1341:
 			case 1342:
-			    return cooldown - 60 * SkillLevel;
+			    return Math.max(0, cooldown - 60 * SkillLevel);
 			//Empyrean Providence.
 			case 2922:
-			    return cooldown - 80 * SkillLevel;
+			    return Math.max(0, cooldown - 80 * SkillLevel);
 		}
 		return cooldown;
 	}
+
 
 	protected void calculateSkillDuration() {
 		duration = 0;
@@ -2052,8 +2136,10 @@ public class Skill
 			skillTemplate = DataManager.SKILL_DATA.getSkillTemplate(skillId);
 
 			int cooldown = skillTemplate.getCooldownForLevel(this.skillLevel);
-			effector.setSkillCoolDown(skillTemplate.getDelayId(), cooldown * 100 + System.currentTimeMillis());
-			effector.setSkillCoolDownBase(skillTemplate.getDelayId(), System.currentTimeMillis());
+			cooldown = StigmaEnchantCoolDown(this, cooldown);
+			long now = System.currentTimeMillis();
+			effector.setSkillCoolDown(skillTemplate.getDelayId(), cooldown * 100L + now);
+			effector.setSkillCoolDownBase(skillTemplate.getDelayId(), now);
 		}
 
 		// if target out of range

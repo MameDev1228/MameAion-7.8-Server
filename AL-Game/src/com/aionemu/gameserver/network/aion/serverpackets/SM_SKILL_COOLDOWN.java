@@ -19,6 +19,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.skill.PlayerSkillEntry;
 import com.aionemu.gameserver.network.aion.AionConnection;
 import com.aionemu.gameserver.network.aion.AionServerPacket;
+import com.aionemu.gameserver.skillengine.model.Skill;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 
 public class SM_SKILL_COOLDOWN extends AionServerPacket {
@@ -88,7 +89,10 @@ public class SM_SKILL_COOLDOWN extends AionServerPacket {
 			if (expirationTime == null) {
 				continue;
 			}
-			cooldowns.add(new Cooldown(skill.getSkillId(), expirationTime, calculateRuntimeDurationMillis(player, delayId, expirationTime, template, skill.getSkillLevel())));
+			Cooldown cd = buildPlayerAwareCooldown(player, delayId, expirationTime, template, skill.getSkillId(), skill.getSkillLevel());
+			if (cd != null) {
+				cooldowns.add(cd);
+			}
 		}
 		sortForClient();
 	}
@@ -131,27 +135,45 @@ public class SM_SKILL_COOLDOWN extends AionServerPacket {
 	}
 
 	private static int calculateDurationMillis(SkillTemplate template) {
-		return calculateDurationMillis(template, 0);
+		return calculateDurationMillis(null, template, 0);
 	}
 
-	private static int calculateDurationMillis(SkillTemplate template, int skillLevel) {
+	private static int calculateDurationMillis(Player player, SkillTemplate template, int skillLevel) {
 		if (template == null || template.getCooldown() <= 0) {
 			return 0;
 		}
 		int cooldown = skillLevel > 0 ? template.getCooldownForLevel(skillLevel) : template.getCooldown();
+		if (player != null) {
+			cooldown = Skill.getStigmaEnchantCoolDown(player, template.getSkillId(), cooldown);
+		}
 		return Math.max(0, cooldown * 100);
 	}
 
-	private static int calculateRuntimeDurationMillis(Player player, int delayId, long expirationTime, SkillTemplate template, int skillLevel) {
-		long baseTime = player == null ? 0 : player.getSkillCoolDownBase(delayId);
-		if (baseTime > 0 && expirationTime > baseTime) {
-			long duration = expirationTime - baseTime;
-			if (duration > Integer.MAX_VALUE) {
-				return Integer.MAX_VALUE;
-			}
-			return (int) duration;
+	private static Cooldown buildPlayerAwareCooldown(Player player, int delayId, long groupExpirationTime, SkillTemplate template, int skillId, int skillLevel) {
+		if (template == null || skillId <= 0) {
+			return null;
 		}
-		return calculateDurationMillis(template, skillLevel);
+		if (groupExpirationTime <= 0) {
+			return new Cooldown(skillId, 0L, 0);
+		}
+		int skillDuration = calculateDurationMillis(player, template, skillLevel);
+		long baseTime = player == null ? 0 : player.getSkillCoolDownBase(delayId);
+		long groupDuration = (baseTime > 0 && groupExpirationTime > baseTime) ? groupExpirationTime - baseTime : skillDuration;
+		long runtimeDuration = groupDuration;
+		if (skillDuration > 0) {
+			runtimeDuration = Math.min(groupDuration, skillDuration);
+		}
+		if (runtimeDuration < 0) {
+			runtimeDuration = 0;
+		}
+		if (runtimeDuration > Integer.MAX_VALUE) {
+			runtimeDuration = Integer.MAX_VALUE;
+		}
+		long displayedExpiration = groupExpirationTime;
+		if (baseTime > 0 && runtimeDuration > 0) {
+			displayedExpiration = Math.min(groupExpirationTime, baseTime + runtimeDuration);
+		}
+		return new Cooldown(skillId, displayedExpiration, (int) runtimeDuration);
 	}
 
 	private static int getTemplateDurationMillis(int skillId) {

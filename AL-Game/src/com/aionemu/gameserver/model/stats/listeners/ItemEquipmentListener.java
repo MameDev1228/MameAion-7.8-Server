@@ -168,10 +168,19 @@ public class ItemEquipmentListener
 					}
 				}
 			}
-		} else if (modifiers != null) {
-			// Accessories/armour: apply every template modifier as-is.
-			// This is the path that carries accuracy/magic accuracy/evasion/resist from accessories.
-			allModifiers.addAll(modifiers);
+		} else {
+			if (modifiers != null) {
+				// Accessories/armour: apply every template modifier as-is.
+				// This is the path that carries block/evasion/resist/PvE/PvP bonus values.
+				allModifiers.addAll(modifiers);
+			}
+			// 7.x accessories store several visible base stats in <weapon_stats> even
+			// though the item is not a weapon. The profile tooltip shows these values
+			// as base/white stats, but the old equip listener ignored them, so only
+			// random/enchant bonus values were applied. Add them as ordinary base
+			// stat functions for every non-weapon equipment slot, while still avoiding
+			// duplicate counting if a template already exposes the same stat as a modifier.
+			addNonWeaponTemplateWeaponStats(itemTemplate, allModifiers);
 		}
 
 		item.setCurrentModifiers(allModifiers);
@@ -180,6 +189,42 @@ public class ItemEquipmentListener
 		}
 	}
 	
+	private static void addNonWeaponTemplateWeaponStats(ItemTemplate itemTemplate, List<StatFunction> allModifiers) {
+		if (itemTemplate == null || itemTemplate.isWeapon() || itemTemplate.getWeaponStats() == null) {
+			return;
+		}
+		WeaponStats stats = itemTemplate.getWeaponStats();
+		addBaseStatIfPresent(itemTemplate, allModifiers, StatEnum.PHYSICAL_ACCURACY, stats.getPhysicalAccuracy());
+		addBaseStatIfPresent(itemTemplate, allModifiers, StatEnum.MAGICAL_ACCURACY, stats.getMagicalAccuracy());
+		addBaseStatIfPresent(itemTemplate, allModifiers, StatEnum.PARRY, stats.getParry());
+		addBaseStatIfPresent(itemTemplate, allModifiers, StatEnum.PHYSICAL_CRITICAL, stats.getPhysicalCritical());
+		addBaseStatIfPresent(itemTemplate, allModifiers, StatEnum.BOOST_MAGICAL_SKILL, stats.getBoostMagicalSkill());
+		addBaseStatIfPresent(itemTemplate, allModifiers, StatEnum.PHYSICAL_POWER_BOOST, stats.getPhysicalPowerBoost());
+		addBaseStatIfPresent(itemTemplate, allModifiers, StatEnum.PHYSICAL_POWER_BOOST_RESIST, stats.getPhysicalPowerBoostResist());
+		addBaseStatIfPresent(itemTemplate, allModifiers, StatEnum.MAGICAL_POWER_BOOST, stats.getMagicalPowerBoost());
+		addBaseStatIfPresent(itemTemplate, allModifiers, StatEnum.MAGICAL_POWER_BOOST_RESIST, stats.getMagicalPowerBoostResist());
+	}
+
+	private static void addBaseStatIfPresent(ItemTemplate itemTemplate, List<StatFunction> allModifiers, StatEnum stat, int value) {
+		if (value == 0 || hasTemplateModifier(itemTemplate, stat)) {
+			return;
+		}
+		allModifiers.add(new StatAddFunction(stat, value, false));
+	}
+
+	private static boolean hasTemplateModifier(ItemTemplate itemTemplate, StatEnum stat) {
+		List<StatFunction> modifiers = itemTemplate.getModifiers();
+		if (modifiers == null) {
+			return false;
+		}
+		for (StatFunction modifier : modifiers) {
+			if (modifier != null && modifier.getName() == stat) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private static List<StatFunction> wrapModifiers(Item item, List<StatFunction> modifiers) {
 		List<StatFunction> allModifiers = new ArrayList<StatFunction>();
 		if (modifiers == null) {

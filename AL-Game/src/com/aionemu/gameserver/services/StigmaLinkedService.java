@@ -38,12 +38,12 @@ public class StigmaLinkedService
 		boolean check = false;
 		for (Integer Stigma: list) {
 			ItemTemplate it = DataManager.ITEM_DATA.getItemTemplate(Stigma);
-			if (it.getName().contains("(Inert)") ||
-			    it.getName().contains("stigma_a") ||
-				it.getName().contains("STIGMA_NE_")) {
+			if (it == null || it.getName() == null || it.getName().contains("(Inert)")) {
 				check = true;
 			}
-		} switch (player.getPlayerClass()) {
+		}
+		list = normalizeNormalStigmaIds(list);
+		switch (player.getPlayerClass()) {
 			case GLADIATOR:
 				if (list.size() >= 6 && !check) {
 					if (list.contains(140001119) && list.contains(140001107) && list.contains(140001108)
@@ -261,6 +261,58 @@ public class StigmaLinkedService
 	/**
 	 * Remove "Linked Skill"
 	 */
+
+	private static List<Integer> normalizeNormalStigmaIds(List<Integer> list) {
+		List<Integer> normalized = new ArrayList<Integer>();
+		if (list == null) {
+			return normalized;
+		}
+		for (Integer itemId : list) {
+			if (itemId == null) {
+				continue;
+			}
+			normalized.add(resolveNormalStigmaId(itemId));
+		}
+		return normalized;
+	}
+
+	private static int resolveNormalStigmaId(int itemId) {
+		ItemTemplate template = DataManager.ITEM_DATA.getItemTemplate(itemId);
+		if (template == null || !template.isStigma()) {
+			return itemId;
+		}
+		String group = normalizeGroup(template.getSkillGroup());
+		if (group == null) {
+			return itemId;
+		}
+		if (group.endsWith("_UPGRADED")) {
+			group = group.substring(0, group.length() - "_UPGRADED".length());
+		}
+		int best = itemId;
+		for (ItemTemplate candidate : DataManager.ITEM_DATA.getAllItems().values()) {
+			if (candidate == null || !candidate.isStigma()) {
+				continue;
+			}
+			String candidateGroup = normalizeGroup(candidate.getSkillGroup());
+			String candidateName = candidate.getName() == null ? "" : candidate.getName().toUpperCase(Locale.ENGLISH);
+			if (group.equals(candidateGroup) && candidateName.startsWith("STIGMA_N_")
+				&& !candidateName.startsWith("STIGMA_NE_") && !candidateName.contains("_OWNER")) {
+				if (best == itemId || candidate.getTemplateId() < best) {
+					best = candidate.getTemplateId();
+				}
+			}
+		}
+		return best;
+	}
+
+	private static String normalizeGroup(String group) {
+		if (group == null) {
+			return null;
+		}
+		String normalized = group.trim().toUpperCase(Locale.ENGLISH);
+		return normalized.length() == 0 || "NONE".equals(normalized) ? null : normalized;
+	}
+
 	public static void DeleteLinkedSkills(Player player) {
 		if (player == null) {
 			return;

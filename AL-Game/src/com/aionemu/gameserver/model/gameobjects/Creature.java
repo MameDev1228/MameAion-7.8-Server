@@ -13,6 +13,7 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureSeeState;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureVisualState;
+import com.aionemu.gameserver.model.skill.PlayerSkillEntry;
 import com.aionemu.gameserver.model.stats.container.CreatureGameStats;
 import com.aionemu.gameserver.model.stats.container.CreatureLifeStats;
 import com.aionemu.gameserver.model.templates.VisibleObjectTemplate;
@@ -603,21 +604,23 @@ public abstract class Creature extends VisibleObject
 		// transitions.  A 2 sec skill must not become 955 hours server-side.  Skill.java
 		// stores cooldown as templateCooldown * 100ms, so clamp any impossible remaining
 		// time to the real template cooldown window.
-		long maxRemaining = Math.max(1000L, template.getDuration() + (long) template.getCooldown() * 100L + 5000L);
+		int effectiveCooldown = getEffectiveCooldownForTemplate(template);
+		long maxRemaining = Math.max(1000L, template.getDuration() + (long) effectiveCooldown * 100L + 5000L);
 		if (coolDown - now > Math.max(60000L, maxRemaining)) {
 			long rawLeft = coolDown - now;
 			coolDown = now + maxRemaining;
 			skillCoolDowns.put(delayId, coolDown);
 			log.warn("[MAME-COOLDOWN][CLAMP_SERVER] creature=" + getName() + " skill=" + template.getSkillId()
 				+ " delayId=" + delayId + " rawLeftMs=" + rawLeft + " clampedLeftMs=" + maxRemaining
-				+ " templateCooldown=" + template.getCooldown() + " duration=" + template.getDuration());
+				+ " templateCooldown=" + template.getCooldown() + " effectiveCooldown=" + effectiveCooldown + " duration=" + template.getDuration());
 		}
 
 		/*
 		 * Some shared cooldown skills have indipendent and different cooldown they must not be blocked
 		 */
 		if (skillCoolDownsBase != null && skillCoolDownsBase.get(delayId) != null) {
-			if ((template.getDuration() + template.getCooldown() * 100 + skillCoolDownsBase.get(delayId)) < now)
+			long ownCooldownEnd = template.getDuration() + (long) effectiveCooldown * 100L + skillCoolDownsBase.get(delayId);
+			if (ownCooldownEnd < now)
 				return false;
 		}
 
@@ -695,6 +698,29 @@ public abstract class Creature extends VisibleObject
 			return 0;
 		Long value = skillCoolDownsBase.get(delayId);
 		return value == null ? 0 : value;
+	}
+
+	/**
+	 * Effective cooldown in server ticks (100ms units) for this creature.
+	 * Player skills must use learned/enhanced skill level and the 7.x stigma
+	 * cooldown table; otherwise server blocking and client cooldown display drift.
+	 */
+	private int getEffectiveCooldownForTemplate(SkillTemplate template) {
+		if (template == null)
+			return 0;
+		int skillLevel = 0;
+		if (this instanceof Player) {
+			Player player = (Player) this;
+			if (player.getSkillList() != null) {
+				PlayerSkillEntry entry = player.getSkillList().getSkillEntry(template.getSkillId());
+				if (entry != null)
+					skillLevel = entry.getSkillLevel();
+			}
+		}
+		int cooldown = skillLevel > 0 ? template.getCooldownForLevel(skillLevel) : template.getCooldown();
+		if (this instanceof Player)
+			cooldown = Skill.getStigmaEnchantCoolDown((Player) this, template.getSkillId(), cooldown);
+		return Math.max(0, cooldown);
 	}
 
 	/**

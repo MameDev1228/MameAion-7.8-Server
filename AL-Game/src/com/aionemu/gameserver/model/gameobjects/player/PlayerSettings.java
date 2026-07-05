@@ -17,6 +17,8 @@
 package com.aionemu.gameserver.model.gameobjects.player;
 
 import com.aionemu.gameserver.model.gameobjects.PersistentState;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author ATracer
@@ -28,6 +30,7 @@ public class PlayerSettings {
 	private byte[] uiSettings;
 	private byte[] shortcuts;
 	private byte[] houseBuddies;
+	private Map<Integer, byte[]> extraSettings = new LinkedHashMap<Integer, byte[]>();
 	private int deny = 0;
 	private int display = 0;
 
@@ -104,6 +107,25 @@ public class PlayerSettings {
 	public void setHouseBuddies(byte[] houseBuddies) {
 		this.houseBuddies = houseBuddies;
 		persistentState = PersistentState.UPDATE_REQUIRED;
+	}
+
+	public Map<Integer, byte[]> getExtraSettings() {
+		return extraSettings;
+	}
+
+	public void setExtraSetting(int type, byte[] data) {
+		if (type < 3 || data == null) {
+			return;
+		}
+		extraSettings.put(type, data);
+		persistentState = PersistentState.UPDATE_REQUIRED;
+	}
+
+	public void loadExtraSetting(int type, byte[] data) {
+		if (type < 3 || data == null) {
+			return;
+		}
+		extraSettings.put(type, data);
 	}
 
 	/**

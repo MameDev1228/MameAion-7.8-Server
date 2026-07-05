@@ -71,6 +71,10 @@ public class MySQL5PlayerSettingsDAO extends PlayerSettingsDAO {
 					case -2:
 						playerSettings.setDeny(resultSet.getInt("settings"));
 						break;
+					default:
+						if (type >= 3) {
+							playerSettings.loadExtraSetting(type, resultSet.getBytes("settings"));
+						}
 				}
 			}
 			resultSet.close();
@@ -139,6 +143,24 @@ public class MySQL5PlayerSettingsDAO extends PlayerSettingsDAO {
 			});
 		}
 
+		for (final java.util.Map.Entry<Integer, byte[]> entry : playerSettings.getExtraSettings().entrySet()) {
+			final int type = entry.getKey();
+			final byte[] settings = entry.getValue();
+			if (type < 3 || settings == null) {
+				continue;
+			}
+			DB.insertUpdate("REPLACE INTO player_settings values (?, ?, ?)", new IUStH() {
+
+				@Override
+				public void handleInsertUpdate(PreparedStatement stmt) throws SQLException {
+					stmt.setInt(1, playerId);
+					stmt.setInt(2, type);
+					stmt.setBytes(3, settings);
+					stmt.execute();
+				}
+			});
+		}
+
 		DB.insertUpdate("REPLACE INTO player_settings values (?, ?, ?)", new IUStH() {
 
 			@Override
@@ -161,6 +183,7 @@ public class MySQL5PlayerSettingsDAO extends PlayerSettingsDAO {
 			}
 		});
 
+		playerSettings.setPersistentState(PersistentState.UPDATED);
 	}
 
 	@Override

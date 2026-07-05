@@ -34,6 +34,7 @@ public class SM_STATS_INFO extends AionServerPacket
 	@Override
 	protected void writeImpl(AionConnection con) {
 		MameClientCompatDebug.logStats(player, "SM_STATS_INFO-" + MameClientCompatDebug.getStatsInfoModeName());
+		boolean modernSingleSource = GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE && GSConfig.ARCHSOFT_STATS_DISPLAY_SINGLE_SOURCE_ENABLE;
 		writeD(player.getObjectId());
 		writeD(GameTimeManager.getGameTime().getTime());
 		//Current Stats
@@ -103,8 +104,8 @@ public class SM_STATS_INFO extends AionServerPacket
 		// Keep the CC2/EU7.7 packet length, but do not duplicate heal boost into the
 		// magical defence slot. The previous mixed mapping made the profile tooltip compare
 		// against wrong base fields and showed unrelated red/negative values.
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMagicPowerBoost().getCurrent() : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getPhysicDamageBoost().getCurrent() : pgs.getMDef().getCurrent())); // ArchSoft current magical attack 2
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getMagicPowerBoostResist().getCurrent() : pgs.getHealBoost().getCurrent()); // ArchSoft current magical defence 2
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? (modernSingleSource ? 0 : pgs.getMagicPowerBoost().getCurrent()) : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getPhysicDamageBoost().getCurrent() : pgs.getMDef().getCurrent())); // v88: secondary/unknown magical attack slot; zero in single-source mode to avoid client-side merge/sum
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? (modernSingleSource ? 0 : pgs.getMagicPowerBoostResist().getCurrent()) : pgs.getHealBoost().getCurrent()); // v88: secondary/unknown magical defence slot; zero in single-source mode
 		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? pgs.getHealBoost().getCurrent() : 107); // ArchSoft current healing boost
 		writeD(0); // ArchSoft/7.x reserved, never write fake fixed stat here
 
@@ -170,64 +171,70 @@ public class SM_STATS_INFO extends AionServerPacket
 			writeH(24);
 		}
 
-		writeH(pgs.getPower().getBase());
-		writeH(pgs.getHealth().getBase());
-		writeH(pgs.getAccuracy().getBase());
-		writeH(pgs.getAgility().getBase());
-		writeH(pgs.getKnowledge().getBase());
-		writeH(pgs.getWill().getBase());
-		writeH(pgs.getStat(StatEnum.WATER_RESISTANCE, 0).getBase());
-		writeH(pgs.getStat(StatEnum.WIND_RESISTANCE, 0).getBase());
-		writeH(pgs.getStat(StatEnum.EARTH_RESISTANCE, 0).getBase());
-		writeH(pgs.getStat(StatEnum.FIRE_RESISTANCE, 0).getBase());
-		writeH(pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_LIGHT, 0).getBase());
-		writeH(pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_DARK, 0).getBase());
-		writeD(pgs.getMaxHp().getBase());
-		writeD(pgs.getMaxMp().getBase());
-		writeD(pgs.getMaxDp().getBase());
-		writeD(pgs.getFlyTime().getBase());
+		// Base/compare stats. In CC2/KR 7.x the profile window compares the current
+		// block against this second block to decide green/red tooltip values. If even one
+		// slot is shifted, unrelated stats become red/negative. When the anti-red flag is
+		// enabled, displayBase() mirrors the exact current value for every comparable slot.
+		writeH(displayBase(pgs.getPower()));
+		writeH(displayBase(pgs.getHealth()));
+		writeH(displayBase(pgs.getAccuracy()));
+		writeH(displayBase(pgs.getAgility()));
+		writeH(displayBase(pgs.getKnowledge()));
+		writeH(displayBase(pgs.getWill()));
+		writeH(displayBase(pgs.getStat(StatEnum.WATER_RESISTANCE, 0)));
+		writeH(displayBase(pgs.getStat(StatEnum.WIND_RESISTANCE, 0)));
+		writeH(displayBase(pgs.getStat(StatEnum.EARTH_RESISTANCE, 0)));
+		writeH(displayBase(pgs.getStat(StatEnum.FIRE_RESISTANCE, 0)));
+		writeH(displayBase(pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_LIGHT, 0)));
+		writeH(displayBase(pgs.getStat(StatEnum.ELEMENTAL_RESISTANCE_DARK, 0)));
+		writeD(displayBase(pgs.getMaxHp()));
+		writeD(displayBase(pgs.getMaxMp()));
+		writeD(displayBase(pgs.getMaxDp()));
+		writeD(displayBase(pgs.getFlyTime()));
 		writeD(displayBase(pgs.getMainHandPAttack()));
 		writeD(displayBase(pgs.getOffHandPAttack()));
         writeD(displayBase(pgs.getMainHandMAttack()));
         writeD(displayBase(pgs.getOffHandMAttack()));
 
 		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getPDef()) : 0); // base/current physical defence, ArchSoft confirmed
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getMDef()) : 0); // base/current magical defence, ArchSoft confirmed
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayCombatBase(pgs.getMDef()) : 0); // base/current magical defence, ArchSoft confirmed
 		writeD(0); //unk 7.5 //6039
 		writeH(0); //unk 7.5 //0
 		writeH(0); //unk 7.5 //16752
 
-		writeD(displayBase(pgs.getMResist())); //unk
+		writeD(displayCombatBase(pgs.getMResist())); //unk
 		writeF((displayBase(pgs.getAttackRange())) / 1000f);
-		writeD(displayBase(pgs.getEvasion())); //evasion
+		writeD(displayCombatBase(pgs.getEvasion())); //evasion
 
-		writeD(displayBase(pgs.getParry())); //base parry
-		writeD(displayBase(pgs.getBlock())); //base block
-		writeH(displayBase(pgs.getPCritical()));
-		writeH(displayBase(pgs.getOffHandPCritical()));
+		writeD(displayCombatBase(pgs.getParry())); //base parry
+		writeD(displayCombatBase(pgs.getBlock())); //base block
+		writeH(displayCombatBase(pgs.getPCritical()));
+		writeH(displayCombatBase(pgs.getOffHandPCritical()));
 
-		writeH(displayBase(pgs.getMCritical()));
-		writeH(displayBase(pgs.getMCritical())); //off hand
+		writeH(displayCombatBase(pgs.getMCritical()));
+		writeH(displayCombatBase(pgs.getMCritical())); //off hand
 
-		writeD(displayBase(pgs.getPAccuracy())); //base accu
-		writeD(displayBase(pgs.getOffHandPAccuracy()));
+		writeD(displayCombatBase(pgs.getPAccuracy())); //base accu
+		writeD(displayCombatBase(pgs.getOffHandPAccuracy()));
 
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? 0 : 1); // ArchSoft writes zero; keep legacy one only when disabled
-		// CC2/KR 7.7 reads this tooltip-base slot for modern Physical Attack.
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getPhysicPowerBoost()) : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getPhysicPowerBoost().getBase() : (MameClientCompatDebug.isStatsInfoBaseCurrentMode() ? pgs.getMAccuracy().getCurrent() : pgs.getMAccuracy().getBase())));
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getMAccuracy()) : 0); // base magic accuracy fallback, ArchSoft confirmed nearby slot
-		// Keep the original physical-power slot for legacy mode; ArchSoft mode sends the confirmed base Physical Attack.
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getPhysicPowerBoost()) : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getMAccuracy().getBase() : (displayBase(pgs.getPhysicPowerBoost())))); //base physical attack 6.x
-		writeD(displayBase(pgs.getPhysicPowerBoostResist())); //base physical defence 6.x
-		writeD(displayBase(pgs.getMagicPowerBoost())); //base magical attack 6.x
-		writeD(displayBase(pgs.getMagicPowerBoostResist())); //base magical defence 6.x
-
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getMagicPowerBoost()) : 0); //ArchSoft base magical attack 2 / legacy reserved
-		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getMagicPowerBoostResist()) : (MameClientCompatDebug.isStatsInfoCc2CleanMode() ? pgs.getPhysicDamageBoost().getBase() : (displayBase(pgs.getMDef())))); //ArchSoft base magical defence 2 / legacy CC2 probe
-		writeH(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getPhysicDamageBoost()) : 0); //7.2 Physical Damage Boost base
-		writeH(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? displayBase(pgs.getMagicDamageBoost()) : 0); //7.2 Magical Damage Boost base
-		writeH(displayBase(pgs.getPhysicDamageBoostResist())); //7.2 Physical Damage Boost Resist
-		writeH(displayBase(pgs.getMagicDamageBoostResist())); //7.2 Magical Damage Boost Resist
+		// Keep the 7.7 base/tooltip tail in the original slot order. v78 wrote modern
+		// physical attack into the legacy magic-accuracy compare slot, which makes the
+		// client compare magic accuracy/PvP/modern stats against unrelated families and
+		// shows false red negative values. ArchSoft values are used where the slot exists;
+		// 7.x-only damage boost fields remain in the 7.7 tail.
+		writeD(GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE ? 0 : 1);
+		writeD(displayCombatBase(pgs.getMAccuracy())); // base/compare magic accuracy
+		writeD(0); // reserved in 7.7
+		writeD(displayCombatBase(pgs.getPhysicPowerBoost())); // base/compare physical attack 6.x
+		writeD(displayCombatBase(pgs.getPhysicPowerBoostResist())); // base/compare physical defence 6.x
+		writeD(displayCombatBase(pgs.getMagicPowerBoost())); // base/compare magical attack 6.x
+		writeD(displayCombatBase(pgs.getMagicPowerBoostResist())); // base/compare magical defence 6.x
+		writeD(0); // reserved in 7.7
+		writeD(displayCombatBase(pgs.getMDef())); // base/compare classic magical defence
+		writeH(0);
+		writeH(0);
+		writeH(displayCombatBase(pgs.getPhysicDamageBoostResist())); // 7.x Physical Damage Boost Resist
+		writeH(displayCombatBase(pgs.getMagicDamageBoostResist())); // 7.x Magical Damage Boost Resist
 	}
 
 	private void writeSpecialStateResistBlock() {
@@ -260,10 +267,28 @@ public class SM_STATS_INFO extends AionServerPacket
 		writeH(statCurrent(StatEnum.SILENCE_RESISTANCE_PENETRATION));
 	}
 
+	private int displayCombatBase(Stat2 stat) {
+		if (stat == null) {
+			return 0;
+		}
+		// CC2/KR compares some combat tooltip fields against a compact 7.7 tail whose
+		// slot order is not identical to the visible current block. In single-source
+		// mode prefer a neutral zero compare value over a wrong cross-family value,
+		// which removes false red negatives such as physical critical showing -7000.
+		if (GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE && GSConfig.ARCHSOFT_STATS_DISPLAY_SINGLE_SOURCE_ENABLE) {
+			return 0;
+		}
+		return displayBase(stat);
+	}
+
 	private int displayBase(Stat2 stat) {
 		if (stat == null) {
 			return 0;
 		}
+		// Anti-red mode: CC2/KR decides red/green by comparing the current block with
+		// this base/tooltip block. Until every client slot is 100% decoded, mirror the
+		// exact current value so the visible number is real and no unrelated comparison
+		// can produce false negative/red stats.
 		if (GSConfig.ARCHSOFT_STATS_DISPLAY_ENABLE && GSConfig.ARCHSOFT_STATS_DISPLAY_FORCE_BASE_CURRENT) {
 			return stat.getCurrent();
 		}

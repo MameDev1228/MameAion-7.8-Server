@@ -43,6 +43,7 @@ public class SiegeLocation implements ZoneHandler
 	protected int outpostId;
 	protected int ownerAp;
 	protected int ownerGp;
+	protected long ownerKinah;
 	
 	public SiegeLocation() {
 	}
@@ -227,6 +228,10 @@ public class SiegeLocation implements ZoneHandler
 	
 	public int getOwnerGp() {
 		return ownerGp = template.getOwnerGp();
+	}
+	
+	public long getOwnerKinah() {
+		return ownerKinah = template.getOwnerKinah();
 	}
 	
 	public int getOutpostId() {

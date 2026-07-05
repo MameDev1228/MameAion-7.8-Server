@@ -71,7 +71,12 @@ public class RealGeoData implements GeoData {
 		}
 		Util.printEndProgress();
 
+		int loaded = geoMaps.size() - mapsWithErrors.size();
 		if (mapsWithErrors.size() > 0) {
+			log.warn("Geo maps loaded with errors: loaded=" + loaded + "/" + DataManager.WORLD_MAPS_DATA.size()
+				+ " dummy=" + mapsWithErrors.size() + " maps=" + mapsWithErrors);
+		} else {
+			log.info("Geo maps loaded: loaded=" + geoMaps.size() + "/" + DataManager.WORLD_MAPS_DATA.size());
 		}
 	}
 
@@ -86,6 +91,11 @@ public class RealGeoData implements GeoData {
 		}
 		catch (IOException e) {
 			throw new IllegalStateException("Problem loading meshes", e);
+		}
+		if (models == null || models.isEmpty()) {
+			log.warn("Geo mesh file loaded no models. Geodata will fall back to dummy maps unless world geo files are still independently resolvable.");
+		} else {
+			log.info("Geo meshes loaded: models=" + models.size());
 		}
 		return models;
 	}

@@ -16,6 +16,9 @@
  */
 package com.aionemu.gameserver.network.aion.clientpackets;
 
+import com.aionemu.commons.database.dao.DAOManager;
+
+import com.aionemu.gameserver.dao.PlayerSettingsDAO;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.AionClientPacket;
 import com.aionemu.gameserver.network.aion.AionConnection.State;
@@ -47,6 +50,9 @@ public class CM_UI_SETTINGS extends AionClientPacket {
 	@Override
 	protected void runImpl() {
 		Player player = getConnection().getActivePlayer();
+		if (player == null) {
+			return;
+		}
 
 		if (settingsType == 0) {
 			player.getPlayerSettings().setUiSettings(data);
@@ -57,5 +63,14 @@ public class CM_UI_SETTINGS extends AionClientPacket {
 		else if (settingsType == 2) {
 			player.getPlayerSettings().setHouseBuddies(data);
 		}
+		else if (settingsType >= 3) {
+			// 7.x clients can send additional UI/shortcut pages (minion/transform/etc.)
+			// as positive settings types beyond the classic 0/1/2 set. Keep them
+			// byte-exact and replay them on login instead of silently dropping them.
+			player.getPlayerSettings().setExtraSetting(settingsType, data);
+		}
+
+		// v84/v89: shortcut/minion shortcut changes must survive a relog even if logout saving is skipped or delayed.
+		DAOManager.getDAO(PlayerSettingsDAO.class).saveSettings(player);
 	}
 }

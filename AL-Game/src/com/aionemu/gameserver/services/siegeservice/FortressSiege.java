@@ -88,6 +88,7 @@ public class FortressSiege extends Siege<FortressLocation>
 		if (isBossKilled()) {
 			ownerAp();
 			ownerGp();
+			ownerKinah();
 			onCapture();
 			applyBuff();
 			broadcastUpdate(getSiegeLocation());
@@ -163,6 +164,20 @@ public class FortressSiege extends Siege<FortressLocation>
 			public void visit(Player player) {
 				//Reward GP for player.
 				AbyssPointsService.addGp(player, (int) (getSiegeLocation().getOwnerGp()));
+			}
+		});
+	}
+	
+	public void ownerKinah() {
+		final long ownerKinah = getSiegeLocation().getOwnerKinah();
+		if (ownerKinah <= 0) {
+			return;
+		}
+		getSiegeLocation().doOnAllPlayers(new Visitor<Player>() {
+			@Override
+			public void visit(Player player) {
+				//Reward Kinah for player.
+				player.getInventory().increaseKinah(ownerKinah);
 			}
 		});
 	}

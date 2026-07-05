@@ -79,6 +79,19 @@ public class GSConfig
 	@Property(key = "gameserver.damage.refly_formula.enable", defaultValue = "true")
 	public static boolean REFLY_DAMAGE_FORMULA_ENABLE;
 
+	/**
+	 * ReFly A_net upper cap. Official strict value is 20,000.
+	 * Set to 0 to disable the upper cap on custom high-stat servers.
+	 */
+	@Property(key = "gameserver.damage.refly_anet_cap", defaultValue = "0")
+	public static int REFLY_DAMAGE_ANET_CAP;
+
+	/**
+	 * v87: use the ReFly Stage2 official coefficient mapping.
+	 * false keeps the previous v83/v84 compatibility approximation.
+	 */
+	@Property(key = "gameserver.damage.refly_stage2.enable", defaultValue = "true")
+	public static boolean REFLY_DAMAGE_STAGE2_ENABLE; // Deprecated in v88: ReFly formula always uses Stage2 while REFLY_DAMAGE_FORMULA_ENABLE is true.
 
 	@Property(key = "gameserver.damage.refly_debug.enable", defaultValue = "false")
 	public static boolean REFLY_DAMAGE_DEBUG_ENABLE;
@@ -97,6 +110,42 @@ public class GSConfig
 	 */
 	@Property(key = "gameserver.stats.archsoft_display.force_base_current", defaultValue = "true")
 	public static boolean ARCHSOFT_STATS_DISPLAY_FORCE_BASE_CURRENT;
+
+	/**
+	 * v88: avoid writing duplicate 7.x modern magic attack/defence values into the
+	 * secondary/unknown current slots. Some 7.7 clients appear to merge adjacent
+	 * attack/defence fields in the profile window when both blocks are populated.
+	 */
+	@Property(key = "gameserver.stats.archsoft_display.single_source.enable", defaultValue = "true")
+	public static boolean ARCHSOFT_STATS_DISPLAY_SINGLE_SOURCE_ENABLE;
+
+	/**
+	 * MameAion75 v90: server-side scheduled restart control.
+	 * Keep daily reset available, but do not restart the game server unless explicitly enabled.
+	 */
+	@Property(key = "gameserver.restart.service.enable", defaultValue = "true")
+	public static boolean RESTART_SERVICE_ENABLE;
+
+	@Property(key = "gameserver.restart.daily_reset.enable", defaultValue = "true")
+	public static boolean RESTART_DAILY_RESET_ENABLE;
+
+	@Property(key = "gameserver.restart.daily_reset.schedule", defaultValue = "0 0 9 ? * * *")
+	public static String RESTART_DAILY_RESET_SCHEDULE;
+
+	@Property(key = "gameserver.restart.daily_reset.restart_after_reset", defaultValue = "false")
+	public static boolean RESTART_DAILY_RESET_RESTART_AFTER_RESET;
+
+	@Property(key = "gameserver.restart.server_reboot.enable", defaultValue = "false")
+	public static boolean RESTART_SERVER_REBOOT_ENABLE;
+
+	@Property(key = "gameserver.restart.server_reboot.schedule", defaultValue = "0 0 0/12 ? * * *")
+	public static String RESTART_SERVER_REBOOT_SCHEDULE;
+
+	@Property(key = "gameserver.restart.shutdown.delay", defaultValue = "300")
+	public static int RESTART_SHUTDOWN_DELAY;
+
+	@Property(key = "gameserver.restart.shutdown.announce_interval", defaultValue = "20")
+	public static int RESTART_SHUTDOWN_ANNOUNCE_INTERVAL;
 
 	@Property(key = "gameserver.master.server.enable", defaultValue = "false")
 	public static boolean MASTER_SERVER;

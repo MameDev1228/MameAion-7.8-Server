@@ -573,11 +573,15 @@ public class AttackUtil
 		Creature effector = effect.getEffector();
 		Creature effected = effect.getEffected();
 		
-		//TODO is damage multiplier used on dot?
+		// ReFly Stage2 applies Sm inside StatFunctions exactly once. Legacy path keeps old outer multiplier.
+		boolean reflyStage2 = GSConfig.REFLY_DAMAGE_FORMULA_ENABLE && GSConfig.REFLY_DAMAGE_STAGE2_ENABLE;
 		float damageMultiplier = effector.getObserveController().getBaseMagicalDamageMultiplier();
 		
-		int	damage = Math.round(StatFunctions.calculateMagicalSkillDamage(effect.getEffector(), effect.getEffected(), skillDamage,
-		0, element, useMagicBoost, false, false, effect.getSkillTemplate().getPvpDamage())	* damageMultiplier);
+		int damage = reflyStage2
+			? StatFunctions.calculateMagicalSkillDamage(effect.getEffector(), effect.getEffected(), skillDamage,
+				0, element, useMagicBoost, false, false, effect.getSkillTemplate().getPvpDamage())
+			: Math.round(StatFunctions.calculateMagicalSkillDamage(effect.getEffector(), effect.getEffected(), skillDamage,
+				0, element, useMagicBoost, false, false, effect.getSkillTemplate().getPvpDamage()) * damageMultiplier);
 		
 		AttackStatus status = effect.getAttackStatus();
 		// calculate attack status only if it has not been forced already
@@ -600,7 +604,7 @@ public class AttackUtil
 		if (damage <= 0)
 			damage = 1;
 		
-		if (effected instanceof Npc) {
+		if (effected instanceof Npc && !reflyStage2) {
 			damage = effected.getAi2().modifyDamage(damage);
 		}
 		
@@ -646,8 +650,13 @@ public class AttackUtil
 			}
 		}
 		
-		int damage = Math.round(StatFunctions.calculateMagicalSkillDamage(effect.getEffector(), effect.getEffected(), damages,
-		bonus, element, useMagicBoost, useKnowledge, noReduce, effect.getSkillTemplate().getPvpDamage()) * damageMultiplier);
+		// ReFly Stage2 applies Sm inside StatFunctions exactly once. Legacy path keeps old outer multiplier.
+		boolean reflyStage2 = GSConfig.REFLY_DAMAGE_FORMULA_ENABLE && GSConfig.REFLY_DAMAGE_STAGE2_ENABLE;
+		int damage = reflyStage2
+			? StatFunctions.calculateMagicalSkillDamage(effect.getEffector(), effect.getEffected(), damages,
+				bonus, element, useMagicBoost, useKnowledge, noReduce, effect.getSkillTemplate().getPvpDamage())
+			: Math.round(StatFunctions.calculateMagicalSkillDamage(effect.getEffector(), effect.getEffected(), damages,
+				bonus, element, useMagicBoost, useKnowledge, noReduce, effect.getSkillTemplate().getPvpDamage()) * damageMultiplier);
 
 
 		AttackStatus status = calculateMagicalStatus(effector, effected, critProbMod2, true);

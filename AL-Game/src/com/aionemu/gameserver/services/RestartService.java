@@ -16,70 +16,103 @@
  */
 package com.aionemu.gameserver.services;
 
-import com.aionemu.commons.database.dao.DAOManager;
-import com.aionemu.commons.services.CronService;
-import com.aionemu.gameserver.ShutdownHook;
-import com.aionemu.gameserver.dao.*;
-import com.aionemu.gameserver.model.gameobjects.player.achievement.AchievementType;
-import com.aionemu.gameserver.model.gameobjects.player.fame.PlayerFame;
-import com.aionemu.gameserver.services.player.AchievementService;
-import com.aionemu.gameserver.services.player.PlayerFameService;
-import com.aionemu.gameserver.utils.PacketSendUtility;
+import java.util.Calendar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
+import com.aionemu.commons.database.dao.DAOManager;
+import com.aionemu.commons.services.CronService;
+import com.aionemu.gameserver.ShutdownHook;
+import com.aionemu.gameserver.configs.main.GSConfig;
+import com.aionemu.gameserver.dao.PlayerAchievementActionDAO;
+import com.aionemu.gameserver.dao.PlayerAchievementDAO;
+import com.aionemu.gameserver.dao.PlayerLunaShopDAO;
+import com.aionemu.gameserver.dao.PlayerShugoSweepDAO;
+import com.aionemu.gameserver.model.gameobjects.player.achievement.AchievementType;
+import com.aionemu.gameserver.services.player.PlayerFameService;
 
-public class RestartService
-{
-    private Logger log = LoggerFactory.getLogger(RestartService.class);
-	
-    public void onStart() {
-        Timestamp date = new Timestamp(System.currentTimeMillis());
-        final Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(date.getTime());
-        String daily1 = "0 0 9 ? * * *";
-		String daily2 = "0 0 0/12 ? * * *";
-		CronService.getInstance().schedule(new Runnable() {
-            public void run() {
-                LoginEventService.getInstance().onReset();
-                if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) {
-                    DAOManager.getDAO(PlayerAchievementDAO.class).deleteAchievements(AchievementType.WEEKLY);
-                    DAOManager.getDAO(PlayerAchievementActionDAO.class).deleteAchievementsActions(AchievementType.WEEKLY);
-                    DAOManager.getDAO(PlayerAchievementDAO.class).deleteAchievements(AchievementType.DAILY);
-                    DAOManager.getDAO(PlayerAchievementActionDAO.class).deleteAchievementsActions(AchievementType.DAILY);
-                    DAOManager.getDAO(PlayerLunaShopDAO.class).delete();
-					DAOManager.getDAO(PlayerShugoSweepDAO.class).delete();
-                } else {
-                    DAOManager.getDAO(PlayerAchievementDAO.class).deleteAchievements(AchievementType.DAILY);
-                    DAOManager.getDAO(PlayerAchievementActionDAO.class).deleteAchievementsActions(AchievementType.DAILY);
-                    DAOManager.getDAO(PlayerLunaShopDAO.class).delete();
-					DAOManager.getDAO(PlayerShugoSweepDAO.class).delete();
-                } if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
-                    PlayerFameService.getInstance().onResetWeekly();
-                }
-                int delay1 = 300;
-				log.info("Restart Achievement + Luna Shop + Shugo Sweep");
-                ShutdownHook.getInstance().doShutdown(delay1, 20, ShutdownHook.ShutdownMode.RESTART);
-            }
-        }, daily1);
-		CronService.getInstance().schedule(new Runnable() {
-            public void run() {
-                int delay2 = 300;
-				log.info("Restart Server Service");
-                ShutdownHook.getInstance().doShutdown(delay2, 20, ShutdownHook.ShutdownMode.RESTART);
-            }
-        }, daily2);
-    }
-	
-    public static RestartService getInstance() {
-        return SingletonHolder.instance;
-    }
-	
+public class RestartService {
+	private final Logger log = LoggerFactory.getLogger(RestartService.class);
+
+	public void onStart() {
+		if (!GSConfig.RESTART_SERVICE_ENABLE) {
+			log.info("RestartService disabled by config. No daily reset/restart cron will be registered.");
+			return;
+		}
+
+		if (GSConfig.RESTART_DAILY_RESET_ENABLE) {
+			final String dailyResetSchedule = normalizeSchedule(GSConfig.RESTART_DAILY_RESET_SCHEDULE, "0 0 9 ? * * *");
+			CronService.getInstance().schedule(new Runnable() {
+				@Override
+				public void run() {
+					runDailyReset();
+					if (GSConfig.RESTART_DAILY_RESET_RESTART_AFTER_RESET) {
+						log.info("Daily reset completed. Restart is enabled by config, scheduling server restart.");
+						restartServer("Daily reset restart");
+					} else {
+						log.info("Daily reset completed. Restart skipped by config.");
+					}
+				}
+			}, dailyResetSchedule);
+			log.info("RestartService daily reset scheduled: schedule=" + dailyResetSchedule + " restartAfterReset=" + GSConfig.RESTART_DAILY_RESET_RESTART_AFTER_RESET);
+		} else {
+			log.info("RestartService daily reset cron disabled by config.");
+		}
+
+		if (GSConfig.RESTART_SERVER_REBOOT_ENABLE) {
+			final String rebootSchedule = normalizeSchedule(GSConfig.RESTART_SERVER_REBOOT_SCHEDULE, "0 0 0/12 ? * * *");
+			CronService.getInstance().schedule(new Runnable() {
+				@Override
+				public void run() {
+					restartServer("Scheduled server reboot");
+				}
+			}, rebootSchedule);
+			log.info("RestartService scheduled reboot enabled: schedule=" + rebootSchedule);
+		} else {
+			log.info("RestartService scheduled reboot disabled by config. The old 00:00/12:00 restart will not run.");
+		}
+	}
+
+	private void runDailyReset() {
+		Calendar calendar = Calendar.getInstance();
+		LoginEventService.getInstance().onReset();
+
+		boolean weeklyAchievementReset = calendar.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY;
+		if (weeklyAchievementReset) {
+			DAOManager.getDAO(PlayerAchievementDAO.class).deleteAchievements(AchievementType.WEEKLY);
+			DAOManager.getDAO(PlayerAchievementActionDAO.class).deleteAchievementsActions(AchievementType.WEEKLY);
+		}
+
+		DAOManager.getDAO(PlayerAchievementDAO.class).deleteAchievements(AchievementType.DAILY);
+		DAOManager.getDAO(PlayerAchievementActionDAO.class).deleteAchievementsActions(AchievementType.DAILY);
+		DAOManager.getDAO(PlayerLunaShopDAO.class).delete();
+		DAOManager.getDAO(PlayerShugoSweepDAO.class).delete();
+
+		if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+			PlayerFameService.getInstance().onResetWeekly();
+		}
+
+		log.info("Daily reset: loginEvent, achievements, luna shop, shugo sweep" + (weeklyAchievementReset ? ", weekly achievements" : "") + " reset.");
+	}
+
+	private void restartServer(String reason) {
+		int delay = Math.max(0, GSConfig.RESTART_SHUTDOWN_DELAY);
+		int announceInterval = Math.max(1, GSConfig.RESTART_SHUTDOWN_ANNOUNCE_INTERVAL);
+		log.info(reason + ": restart in " + delay + " seconds, announceInterval=" + announceInterval + ".");
+		ShutdownHook.getInstance().doShutdown(delay, announceInterval, ShutdownHook.ShutdownMode.RESTART);
+	}
+
+	private String normalizeSchedule(String schedule, String fallback) {
+		return schedule == null || schedule.trim().isEmpty() ? fallback : schedule.trim();
+	}
+
+	public static RestartService getInstance() {
+		return SingletonHolder.instance;
+	}
+
 	@SuppressWarnings("synthetic-access")
-    private static class SingletonHolder {
-        protected static final RestartService instance = new RestartService();
-    }
+	private static class SingletonHolder {
+		protected static final RestartService instance = new RestartService();
+	}
 }

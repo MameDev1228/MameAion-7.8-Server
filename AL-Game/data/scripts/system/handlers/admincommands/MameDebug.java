@@ -6,6 +6,8 @@ import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.utils.MameClientCompatDebug;
 import com.aionemu.gameserver.utils.PacketSendUtility;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_STATS_INFO;
+import com.aionemu.gameserver.model.skill.PlayerSkillEntry;
+import com.aionemu.gameserver.skillengine.model.Skill;
 import com.aionemu.gameserver.skillengine.model.SkillTemplate;
 import com.aionemu.gameserver.skillengine.effect.EffectTemplate;
 import com.aionemu.gameserver.utils.chathandlers.AdminCommand;
@@ -272,17 +274,49 @@ public class MameDebug extends AdminCommand {
             }
             Long end = cooldowns.get(delayId);
             long leftMs = end == null ? 0 : Math.max(0L, end - now);
+            long baseTime = target.getSkillCoolDownBase(delayId);
             ArrayList<Integer> group = DataManager.SKILL_DATA.getSkillsForDelayId(delayId);
             String line = "cooldown delayId=" + delayId + " leftMs=" + leftMs + " leftSec=" + (leftMs / 1000L)
+                    + " baseAgeMs=" + (baseTime <= 0 ? -1 : Math.max(0L, now - baseTime))
                     + " groupCount=" + (group == null ? 0 : group.size())
                     + " skills=" + (group == null ? "" : previewSkills(group, 12));
             PacketSendUtility.sendMessage(admin, line);
             log.info("[MAME-COOLDOWN][AUDIT] player=" + target.getName() + " " + line);
+            logOwnedCooldownDisplay(admin, target, delayId, end == null ? 0L : end, baseTime, now);
             printed++;
         }
         if (printed == 0) {
             PacketSendUtility.sendMessage(admin, "No active cooldown for delayId=" + filterDelayId + " on " + target.getName());
         }
+    }
+
+    private void logOwnedCooldownDisplay(Player admin, Player target, int delayId, long groupEnd, long baseTime, long now) {
+        if (target.getSkillList() == null)
+            return;
+        int count = 0;
+        for (PlayerSkillEntry entry : target.getSkillList().getAllSkills()) {
+            if (entry == null)
+                continue;
+            SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(entry.getSkillId());
+            if (template == null || template.getDelayId() != delayId)
+                continue;
+            int cooldown = template.getCooldownForLevel(entry.getSkillLevel());
+            cooldown = Skill.getStigmaEnchantCoolDown(template.getSkillId(), entry.getSkillLevel(), cooldown);
+            long durationMs = Math.max(0, cooldown) * 100L;
+            long displayEnd = groupEnd;
+            if (baseTime > 0 && durationMs > 0)
+                displayEnd = Math.min(groupEnd, baseTime + durationMs);
+            long displayLeft = Math.max(0L, displayEnd - now);
+            String line = "  owned skill=" + template.getSkillId() + " lvl=" + entry.getSkillLevel() + " name=\"" + safe(template.getName())
+                    + "\" rawCd=" + template.getCooldown() + " delta=" + template.getCooldownDeltaLv()
+                    + " effCd=" + cooldown + " displayLeftSec=" + (displayLeft / 1000L) + " displayDurationSec=" + (durationMs / 1000L);
+            if (count < 12)
+                PacketSendUtility.sendMessage(admin, line);
+            log.info("[MAME-COOLDOWN][OWNED] player=" + target.getName() + " delayId=" + delayId + line);
+            count++;
+        }
+        if (count > 12)
+            PacketSendUtility.sendMessage(admin, "  ... " + (count - 12) + " more owned skills written to console.log");
     }
 
     private void auditSkillTemplates(Player admin, String... params) {

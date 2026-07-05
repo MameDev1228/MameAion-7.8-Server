@@ -49,6 +49,9 @@ public class SiegeLocationTemplate
 	@XmlAttribute(name = "owner_gp")
 	protected int ownerGp = 0;
 	
+	@XmlAttribute(name = "owner_kinah")
+	protected long ownerKinah = 0;
+	
 	@XmlAttribute(name = "repeat_count")
 	protected int repeatCount = 1;
 	
@@ -121,6 +124,10 @@ public class SiegeLocationTemplate
 	
 	public int getOwnerGp() {
 		return ownerGp;
+	}
+	
+	public long getOwnerKinah() {
+		return ownerKinah;
 	}
 	
 	public int getOccupyCount() {

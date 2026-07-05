@@ -669,28 +669,22 @@ public class EffectController
 			Iterator<Map.Entry<String, Effect>> it = abnormalEffectMap.entrySet().iterator();
 			while (it.hasNext()) {
 				Map.Entry<String, Effect> entry = it.next();
-				if (!entry.getValue().getSkillTemplate().isNoRemoveAtDie() &&
-				    !entry.getValue().isXpBoost() &&
-					!entry.getValue().isApBoost() &&
-					!entry.getValue().isDrBoost() &&
-					!entry.getValue().isBdrBoost() &&
-					!entry.getValue().isEnchantBoost() &&
-					!entry.getValue().isIdunDropBoost() &&
-					!entry.getValue().isAuthorizeBoost() &&
-					!entry.getValue().isSprintFpReduce() &&
-					!entry.getValue().isReturnCoolReduce() &&
-					!entry.getValue().isEnchantOptionBoost() &&
-					!entry.getValue().isDeathPenaltyReduce() &&
-					!entry.getValue().isOdellaRecoverIncrease()) {
-					entry.getValue().endEffect();
+				Effect effect = entry.getValue();
+				if (!shouldKeepOnDeath(effect)) {
+					effect.endEffect();
 					it.remove();
 				}
 			}
 
-			for (Effect effect : noshowEffects.values()) {
-				effect.endEffect();
+			Iterator<Map.Entry<String, Effect>> noshowIt = noshowEffects.entrySet().iterator();
+			while (noshowIt.hasNext()) {
+				Map.Entry<String, Effect> entry = noshowIt.next();
+				Effect effect = entry.getValue();
+				if (!shouldKeepOnDeath(effect)) {
+					effect.endEffect();
+					noshowIt.remove();
+				}
 			}
-			noshowEffects.clear();
 		} else {
 			//remove all effects on logout
 			for (Effect effect : abnormalEffectMap.values()) {
@@ -706,6 +700,46 @@ public class EffectController
 			}
 			passiveEffectMap.clear();
 		}
+	}
+
+	private boolean shouldKeepOnDeath(Effect effect) {
+		if (effect == null) {
+			return false;
+		}
+		// MameAion v84: on player death, keep normal buffs/transform/support buffs; remove deity/avatar and debuffs.
+		if (owner instanceof Player) {
+			if (effect.isDeityAvatar()) {
+				return false;
+			}
+			return effect.getSkillTemplate().isNoRemoveAtDie()
+				|| effect.isBuff()
+				|| effect.isChant()
+				|| effect.isXpBoost()
+				|| effect.isApBoost()
+				|| effect.isDrBoost()
+				|| effect.isBdrBoost()
+				|| effect.isEnchantBoost()
+				|| effect.isIdunDropBoost()
+				|| effect.isAuthorizeBoost()
+				|| effect.isSprintFpReduce()
+				|| effect.isReturnCoolReduce()
+				|| effect.isEnchantOptionBoost()
+				|| effect.isDeathPenaltyReduce()
+				|| effect.isOdellaRecoverIncrease();
+		}
+		return effect.getSkillTemplate().isNoRemoveAtDie()
+			|| effect.isXpBoost()
+			|| effect.isApBoost()
+			|| effect.isDrBoost()
+			|| effect.isBdrBoost()
+			|| effect.isEnchantBoost()
+			|| effect.isIdunDropBoost()
+			|| effect.isAuthorizeBoost()
+			|| effect.isSprintFpReduce()
+			|| effect.isReturnCoolReduce()
+			|| effect.isEnchantOptionBoost()
+			|| effect.isDeathPenaltyReduce()
+			|| effect.isOdellaRecoverIncrease();
 	}
 
 	/**

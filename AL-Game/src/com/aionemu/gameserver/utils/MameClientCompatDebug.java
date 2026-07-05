@@ -3,6 +3,7 @@ package com.aionemu.gameserver.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.aionemu.gameserver.configs.main.GSConfig;
 import com.aionemu.gameserver.model.SkillElement;
 import com.aionemu.gameserver.model.gameobjects.Creature;
 import com.aionemu.gameserver.model.gameobjects.Item;
@@ -180,18 +181,21 @@ public final class MameClientCompatDebug {
     }
 
     public static String getPhysicalSkillDamageModeName() {
-        switch (physicalSkillDamageMode) {
-            default:
-                return "legacy-initial-source";
+        if (GSConfig.REFLY_DAMAGE_FORMULA_ENABLE) {
+            return "refly-stage2-only";
         }
+        if (GSConfig.ARCHSOFT_DAMAGE_FORMULA_ENABLE) {
+            return "archsoft";
+        }
+        return "legacy-disabled";
     }
 
     public static boolean isModernDamageMode() {
-        return false;
+        return GSConfig.REFLY_DAMAGE_FORMULA_ENABLE || GSConfig.ARCHSOFT_DAMAGE_FORMULA_ENABLE;
     }
 
     public static boolean isAggressiveDamageMode() {
-        return false;
+        return GSConfig.REFLY_DAMAGE_FORMULA_ENABLE;
     }
 
     public static boolean setPhysicalSkillDamageMode(String mode) {
@@ -201,6 +205,60 @@ public final class MameClientCompatDebug {
         physicalSkillDamageMode = 0;
         log.info("[MAME-CC2][DAMAGE_MODE] mode=" + getPhysicalSkillDamageModeName());
         return true;
+    }
+
+
+    private static int current(Stat2 stat) {
+        return stat == null ? 0 : stat.getCurrent();
+    }
+
+    private static int reflyAttackA(Creature attacker, boolean magical) {
+        if (attacker == null) {
+            return 0;
+        }
+        int modern = magical ? current(attacker.getGameStats().getMagicPowerBoost()) : current(attacker.getGameStats().getPhysicPowerBoost());
+        if (modern > 0) {
+            return modern;
+        }
+        return magical ? current(attacker.getGameStats().getMainHandMAttack()) : current(attacker.getGameStats().getMainHandPAttack());
+    }
+
+    private static int reflyDefenceD(Creature target, boolean magical) {
+        if (target == null) {
+            return 0;
+        }
+        int classic = magical ? current(target.getGameStats().getMDef()) : current(target.getGameStats().getPDef());
+        if (classic > 0) {
+            return classic;
+        }
+        return magical ? current(target.getGameStats().getMagicPowerBoostResist()) : current(target.getGameStats().getPhysicPowerBoostResist());
+    }
+
+    private static String reflyStage2Preview(Creature attacker, Creature target, int ds, boolean magical, float k, int dc, Float sm) {
+        int a = reflyAttackA(attacker, magical);
+        int d = reflyDefenceD(target, magical);
+        int ap = getDamageContextAttackBoost(attacker, target);
+        int dp = getDamageContextResist(target);
+        int cappedAp = Math.max(0, Math.min(ap, 1000));
+        int contextNet = Math.max(-900, cappedAp - dp);
+        int anet = Math.max(0, a + contextNet - d);
+        if (GSConfig.REFLY_DAMAGE_ANET_CAP > 0) {
+            anet = Math.min(anet, GSConfig.REFLY_DAMAGE_ANET_CAP);
+        }
+        String smText = sm == null ? "n/a" : String.valueOf(sm);
+        return "formula=refly-stage2-only"
+            + " Ds=" + ds
+            + " K=" + Math.round(k)
+            + " A=" + a
+            + " Ap=" + cappedAp
+            + " D=" + d
+            + " Dp=" + dp
+            + " contextNet=" + contextNet
+            + " anet=" + anet
+            + " anetCap=" + GSConfig.REFLY_DAMAGE_ANET_CAP
+            + " Dc=" + dc
+            + " Sm=" + smText
+            + " magical=" + magical;
     }
 
     public static int applyPhysicalSkillDamageMode(Creature effector, int skillDamage) {
@@ -321,6 +379,9 @@ public final class MameClientCompatDebug {
             return "preview=null";
         }
         try {
+            if (GSConfig.REFLY_DAMAGE_FORMULA_ENABLE) {
+                return reflyStage2Preview(effector, target, skillDamage, false, 100f, 0, null);
+            }
             int physBoost = effector.getGameStats().getPhysicPowerBoost().getCurrent();
             int pveBoost = effector.getGameStats().getPvePowerBoost().getCurrent();
             int pvpBoost = effector.getGameStats().getPvpPowerBoost().getCurrent();
@@ -375,6 +436,10 @@ public final class MameClientCompatDebug {
             return "preview=null";
         }
         try {
+            if (GSConfig.REFLY_DAMAGE_FORMULA_ENABLE) {
+                float k = useKnowledge ? speller.getGameStats().getKnowledge().getCurrent() : 100f;
+                return reflyStage2Preview(speller, target, baseDamages, useMagicBoost, k, 0, null);
+            }
             int magicBoost = useMagicBoost ? speller.getGameStats().getMagicPowerBoost().getCurrent() : 0;
             int magicDamageBoost = useMagicBoost ? speller.getGameStats().getMagicDamageBoost().getCurrent() : 0;
             int contextBoost = useMagicBoost ? getDamageContextAttackBoost(speller, target) : 0;

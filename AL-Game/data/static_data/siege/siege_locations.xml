@@ -196,62 +196,62 @@
 	</siege_location>
 	
 	<!-- 제1 제단 -->
-	<siege_location id="5021" type="FORTRESS" world="800060000" name_id="811135" buff_idA="8884" buff_idE="8875" owner_ap="100000" owner_gp="125" siege_duration="3600">
+	<siege_location id="5021" type="FORTRESS" world="800060000" name_id="811135" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="15"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="15"/>
 	</siege_location>
 	<!-- 제2 제단 -->
-	<siege_location id="5022" type="FORTRESS" world="800060000" name_id="811137" buff_idA="8884" buff_idE="8875" owner_ap="100000" owner_gp="125" siege_duration="3600">
+	<siege_location id="5022" type="FORTRESS" world="800060000" name_id="811137" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="15"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="15"/>
 	</siege_location>
 	<!-- 제3 제단 -->
-	<siege_location id="5023" type="FORTRESS" world="800060000" name_id="811139" buff_idA="8884" buff_idE="8875" owner_ap="100000" owner_gp="125" siege_duration="3600">
+	<siege_location id="5023" type="FORTRESS" world="800060000" name_id="811139" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="15"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="15"/>
 	</siege_location>
 	<!-- 제4 제단 -->
-	<siege_location id="5024" type="FORTRESS" world="800060000" name_id="811141" buff_idA="8884" buff_idE="8875" owner_ap="100000" owner_gp="125" siege_duration="3600">
+	<siege_location id="5024" type="FORTRESS" world="800060000" name_id="811141" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="15"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="15"/>
 	</siege_location>
 	<!-- 제5 제단 -->
-	<siege_location id="5025" type="FORTRESS" world="800060000" name_id="811143" buff_idA="8884" buff_idE="8875" owner_ap="150000" owner_gp="250" siege_duration="3600">
+	<siege_location id="5025" type="FORTRESS" world="800060000" name_id="811143" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="22"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="22"/>
 	</siege_location>
 	<!-- 제6 제단 -->
-	<siege_location id="5026" type="FORTRESS" world="800060000" name_id="811145" buff_idA="8884" buff_idE="8875" owner_ap="150000" owner_gp="250" siege_duration="3600">
+	<siege_location id="5026" type="FORTRESS" world="800060000" name_id="811145" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="22"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="22"/>
 	</siege_location>
 	<!-- 제7 제단 -->
-	<siege_location id="5027" type="FORTRESS" world="800060000" name_id="811147" buff_idA="8884" buff_idE="8875" owner_ap="150000" owner_gp="250" siege_duration="3600">
+	<siege_location id="5027" type="FORTRESS" world="800060000" name_id="811147" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="22"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="22"/>
 	</siege_location>
 	<!-- 제8 제단 -->
-	<siege_location id="5028" type="FORTRESS" world="800060000" name_id="811149" buff_idA="8884" buff_idE="8875" owner_ap="150000" owner_gp="250" siege_duration="3600">
+	<siege_location id="5028" type="FORTRESS" world="800060000" name_id="811149" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="22"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="22"/>
 	</siege_location>
 	<!-- 제9 제단 -->
-	<siege_location id="5029" type="FORTRESS" world="800060000" name_id="811151" buff_idA="8884" buff_idE="8875" owner_ap="200000" owner_gp="500" siege_duration="3600">
+	<siege_location id="5029" type="FORTRESS" world="800060000" name_id="811151" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="30"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="30"/>
 	</siege_location>
 	<!-- 제10 제단 -->
-	<siege_location id="5030" type="FORTRESS" world="800060000" name_id="811153" buff_idA="8884" buff_idE="8875" owner_ap="200000" owner_gp="500" siege_duration="3600">
+	<siege_location id="5030" type="FORTRESS" world="800060000" name_id="811153" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="30"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="30"/>
 	</siege_location>
 	<!-- 제11 제단 -->
-	<siege_location id="5031" type="FORTRESS" world="800060000" name_id="811155" buff_idA="8884" buff_idE="8875" owner_ap="200000" owner_gp="500" siege_duration="3600">
+	<siege_location id="5031" type="FORTRESS" world="800060000" name_id="811155" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="30"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="30"/>
 	</siege_location>
 	<!-- 제12 제단 -->
-	<siege_location id="5032" type="FORTRESS" world="800060000" name_id="812583" buff_idA="8884" buff_idE="8875" owner_ap="500000" owner_gp="1000" siege_duration="3600">
+	<siege_location id="5032" type="FORTRESS" world="800060000" name_id="812583" buff_idA="8884" buff_idE="8875" owner_ap="2500000" owner_gp="1250" owner_kinah="15000000" siege_duration="3600">
 	    <siege_reward top="10" itemid="164010028" m_count="50"/> <!-- 스텔리움 -->
 		<legion_reward itemid="164010028" m_count="50"/>
 	</siege_location>

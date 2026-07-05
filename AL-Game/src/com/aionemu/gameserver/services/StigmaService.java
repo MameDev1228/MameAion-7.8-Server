@@ -27,6 +27,7 @@ import com.aionemu.gameserver.model.items.ItemSlot;
 import com.aionemu.gameserver.model.skill.PlayerSkillEntry;
 import com.aionemu.gameserver.model.templates.item.RequireSkill;
 import com.aionemu.gameserver.model.templates.item.Stigma;
+import com.aionemu.gameserver.model.templates.item.ItemTemplate;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_CUBE_UPDATE;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_INVENTORY_UPDATE_ITEM;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SKILL_LIST;
@@ -42,6 +43,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Wnkrz (Encom)
@@ -96,8 +98,7 @@ public class StigmaService
             }
             List<Integer> sStigma = player.getEquipment().getEquippedItemsAllStigmaIds();
             sStigma.add(resultItem.getItemId());
-            StigmaLinkedService.checkEquipConditions(player, sStigma);
-			StigmaUpgradeLinkedService.checkEquipUpgradeConditions(player, sStigma);
+            checkVisionStigma(player, sStigma);
             checkStigmaEnchant(player, sStigma);
             //Stigma Set Effect.
 			if (player.getStigmaSet() != 0) {
@@ -224,6 +225,51 @@ public class StigmaService
         }
     }
 	
+    private static void addSpecialStigmaPairSkillsOnLogin(Player player, Item item) {
+        int itemId = item.getItemId();
+        int level = 1 + item.getEnchantLevel() + player.getStigmaSet();
+        if (itemId == 140001107) {
+            player.getSkillList().addStigmaSkill(player, 539, level);
+            player.getSkillList().addStigmaSkill(player, 749, level);
+            PacketSendUtility.sendPacket(player, new SM_SKILL_LIST(player, player.getSkillList().getStigmaSkills()));
+        } else if (itemId == 140001726) {
+            player.getSkillList().addStigmaSkill(player, 6027, level);
+            player.getSkillList().addStigmaSkill(player, 6028, level);
+            PacketSendUtility.sendPacket(player, new SM_SKILL_LIST(player, player.getSkillList().getStigmaSkills()));
+        } else if (itemId == 140001218) {
+            player.getSkillList().addStigmaSkill(player, 1640, level);
+            player.getSkillList().addStigmaSkill(player, 1883, level);
+            PacketSendUtility.sendPacket(player, new SM_SKILL_LIST(player, player.getSkillList().getStigmaSkills()));
+        } else if (itemId == 140001837) {
+            player.getSkillList().addStigmaSkill(player, 6168, level);
+            player.getSkillList().addStigmaSkill(player, 6169, level);
+            PacketSendUtility.sendPacket(player, new SM_SKILL_LIST(player, player.getSkillList().getStigmaSkills()));
+        }
+    }
+
+    private static boolean hasRequiredStigmaSkillOrSameGroup(Player player, int skillId) {
+        if (player.getSkillList().isSkillPresent(skillId)) {
+            return true;
+        }
+        SkillLearnTemplate[] requiredTemplates = DataManager.SKILL_TREE_DATA.getTemplatesForSkill(skillId);
+        for (SkillLearnTemplate requiredTemplate : requiredTemplates) {
+            String requiredGroup = requiredTemplate.getSkillGroup();
+            if (requiredGroup == null) {
+                continue;
+            }
+            for (int i = 1; i <= player.getLevel(); i++) {
+                SkillLearnTemplate[] classTemplates = DataManager.SKILL_TREE_DATA.getTemplatesFor(player.getPlayerClass(), i, player.getRace());
+                for (SkillLearnTemplate learnedTemplate : classTemplates) {
+                    if (requiredGroup.equals(learnedTemplate.getSkillGroup())
+                        && player.getSkillList().isSkillPresent(learnedTemplate.getSkillId())) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public static void onPlayerLogin(Player player) {
         List<Item> equippedItems = player.getEquipment().getEquippedItemsAllStigma();
         List<Integer> Stigma = player.getEquipment().getEquippedItemsAllStigmaIds();
@@ -238,6 +284,9 @@ public class StigmaService
                     }
                 }
             }
+            if (item.getItemTemplate().isStigma()) {
+                addSpecialStigmaPairSkillsOnLogin(player, item);
+            }
         } for (Item item : equippedItems) {
             if (item.getItemTemplate().isStigma()) {
                 Stigma stigmaInfo = item.getItemTemplate().getStigma();
@@ -248,7 +297,7 @@ public class StigmaService
                 int needSkill = stigmaInfo.getRequireSkill().size();
                 for (RequireSkill rs : stigmaInfo.getRequireSkill()) {
                     for (int id : rs.getSkillIds()) {
-                        if (player.getSkillList().isSkillPresent(id)) {
+                        if (hasRequiredStigmaSkillOrSameGroup(player, id)) {
                             needSkill--;
                             break;
                         }
@@ -264,12 +313,48 @@ public class StigmaService
                 }
             }
         }
-        /** Stigma Linked Skills **/
-        StigmaLinkedService.checkEquipConditions(player, Stigma);
-		/** Stigma Upgrade Linked Skills **/
-        StigmaUpgradeLinkedService.checkEquipUpgradeConditions(player, Stigma);
+        /** Stigma Linked / Upgrade Linked Skills **/
+        checkVisionStigma(player, Stigma);
     }
 	
+    private static void checkVisionStigma(Player player, List<Integer> stigmaIds) {
+        if (player == null || stigmaIds == null) {
+            return;
+        }
+        StigmaLinkedService.DeleteLinkedSkills(player);
+        StigmaUpgradeLinkedService.DeleteUpgradeLinkedSkills(player);
+        if (hasUpgradeStigma(stigmaIds)) {
+            StigmaUpgradeLinkedService.checkEquipUpgradeConditions(player, stigmaIds);
+        } else {
+            StigmaLinkedService.checkEquipConditions(player, stigmaIds);
+        }
+    }
+
+    private static boolean hasUpgradeStigma(List<Integer> stigmaIds) {
+        for (Integer stigmaId : stigmaIds) {
+            if (stigmaId == null) {
+                continue;
+            }
+            ItemTemplate template = DataManager.ITEM_DATA.getItemTemplate(stigmaId);
+            if (isUpgradeStigmaTemplate(template)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isUpgradeStigmaTemplate(ItemTemplate template) {
+        if (template == null || !template.isStigma()) {
+            return false;
+        }
+        String group = template.getSkillGroup();
+        if (group != null && group.toUpperCase(Locale.ENGLISH).endsWith("_UPGRADED")) {
+            return true;
+        }
+        String name = template.getName();
+        return name != null && name.toLowerCase(Locale.ENGLISH).contains("stigma_a_");
+    }
+
     private static int getPossibleStigmaCount(Player player) {
         if (player == null || player.getLevel() < 20) {
             return 0;

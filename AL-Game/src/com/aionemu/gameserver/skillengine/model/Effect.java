@@ -1261,8 +1261,8 @@ public class Effect implements StatOwner
 		if (effected instanceof Player && skillTemplate.getPvpDuration() != 0)
 			duration = duration * skillTemplate.getPvpDuration() / 100;
 
-		if (isMameSevenXTransformationSkill(getSkillId()) && duration > 0 && duration < 7200000) {
-			duration = 7200000;
+		if (isMameSevenXTransformationSkill(getSkillId()) && duration > 0 && duration < 86400000) {
+			duration = 86400000;
 		}
 		
 		if (duration > 86400000)

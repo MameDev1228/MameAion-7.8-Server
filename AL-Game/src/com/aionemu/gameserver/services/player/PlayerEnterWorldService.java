@@ -309,6 +309,11 @@ public final class PlayerEnterWorldService
 			} if (houseBuddies != null) {
 				client.sendPacket(new SM_UI_SETTINGS(houseBuddies, 2));
 			}
+			for (java.util.Map.Entry<Integer, byte[]> entry : player.getPlayerSettings().getExtraSettings().entrySet()) {
+				if (entry.getKey() >= 3 && entry.getValue() != null) {
+					client.sendPacket(new SM_UI_SETTINGS(entry.getValue(), entry.getKey()));
+				}
+			}
 			sendItemInfos(client, player);
 			playerLoggedIn(player);
 			client.sendPacket(new SM_INSTANCE_INFO(player, false, player.getCurrentTeam()));

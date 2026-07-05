@@ -270,12 +270,15 @@ public enum StatEnum
 	}
 	
 	public static StatEnum findByItemStoneMask(int mask) {
+		if (mask <= 0) {
+			return null;
+		}
 		for (StatEnum sEnum : values()) {
-			if (sEnum.getItemStoneMask() == mask) {
+			if (sEnum.getItemStoneMask() > 0 && sEnum.getItemStoneMask() == mask) {
 				return sEnum;
 			}
 		}
-		throw new IllegalArgumentException("Cannot find StatEnum for stone mask: " + mask);
+		return null;
 	}
 	
 	public StatEnum getHandStat(long itemSlot) {

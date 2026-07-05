@@ -257,37 +257,94 @@ public class StatFunctions
 		return GSConfig.REFLY_DAMAGE_FORMULA_ENABLE;
 	}
 
-	private static final int REFLY_OLD_CONTEXT_ATTACK_MAX = 1000; // PDF: Total old PvE/PvP attack maximum 100%.
-	private static final int REFLY_OLD_CONTEXT_NET_MIN = -900; // PDF: Net old PvE/PvP attack minimum -90%.
-	private static final int REFLY_ANET_MAX = 20000; // PDF: A_net maximum value 20,000.
-	private static final float REFLY_PVP_GLOBAL_REDUCTION = 0.26f; // PDF: Global PvP damage reduction.
+	private static boolean useReFlyStage2Formula() {
+		// v88: ReFly no longer has the v83/v84 compatibility approximation path.
+		// When the ReFly formula is enabled, always use the Stage2 official coefficient mapping.
+		return GSConfig.REFLY_DAMAGE_FORMULA_ENABLE;
+	}
+
+	private static final int REFLY_OLD_CONTEXT_ATTACK_MAX = 1000; // ReFly: Total old PvE/PvP attack maximum +100%.
+	private static final int REFLY_OLD_CONTEXT_NET_MIN = -900; // ReFly: Net old PvE/PvP attack minimum -90%.
+	private static final float REFLY_PVP_GLOBAL_REDUCTION = 0.26f; // ReFly global PvP damage reduction.
+
+	private static int getReFlyAnetCap() {
+		return GSConfig.REFLY_DAMAGE_ANET_CAP > 0 ? GSConfig.REFLY_DAMAGE_ANET_CAP : 0;
+	}
 
 	private static int clampReFlyAnet(int value) {
 		if (value < 0)
 			return 0;
-		return Math.min(value, REFLY_ANET_MAX);
+		int cap = getReFlyAnetCap();
+		if (cap <= 0)
+			return value;
+		return Math.min(value, cap);
+	}
+
+	private static final class ReFlyAnetTerms {
+		private int attack;
+		private int contextAttack;
+		private int defence;
+		private int contextDefence;
+		private int contextNet;
+		private int anet;
+		private boolean pvp;
+		private boolean magical;
+	}
+
+	private static int currentOrZero(Stat2 stat) {
+		return stat == null ? 0 : stat.getCurrent();
+	}
+
+	private static int getReFlyAttackA(Creature attacker, boolean magical) {
+		if (attacker == null)
+			return 0;
+		int attack = magical ? currentOrZero(attacker.getGameStats().getMagicPowerBoost()) : currentOrZero(attacker.getGameStats().getPhysicPowerBoost());
+		if (attack > 0)
+			return attack;
+		// Some NPC/incomplete templates expose their 6.x+ attack stat through the hand attack getter.
+		// This is a fallback only; player profile attack should normally come from PowerBoost.
+		return magical ? currentOrZero(attacker.getGameStats().getMainHandMAttack()) : currentOrZero(attacker.getGameStats().getMainHandPAttack());
+	}
+
+	private static int getReFlyDefenceD(Creature target, boolean magical) {
+		if (target == null)
+			return 0;
+		int defence = magical ? currentOrZero(target.getGameStats().getMDef()) : currentOrZero(target.getGameStats().getPDef());
+		if (defence > 0)
+			return defence;
+		// Fallback for older templates that put the same displayed defence into the modern resist stat.
+		return magical ? currentOrZero(target.getGameStats().getMagicPowerBoostResist()) : currentOrZero(target.getGameStats().getPhysicPowerBoostResist());
+	}
+
+	private static ReFlyAnetTerms getReFlyAnetTerms(Creature attacker, Creature target, boolean magical) {
+		ReFlyAnetTerms terms = new ReFlyAnetTerms();
+		terms.magical = magical;
+		terms.pvp = attacker != null && target != null && attacker.isPvpTarget(target);
+		terms.attack = getReFlyAttackA(attacker, magical);
+		terms.defence = getReFlyDefenceD(target, magical);
+		if (attacker != null) {
+			terms.contextAttack = terms.pvp ? currentOrZero(attacker.getGameStats().getPvpPowerBoost()) : currentOrZero(attacker.getGameStats().getPvePowerBoost());
+		}
+		if (target != null) {
+			terms.contextDefence = terms.pvp ? currentOrZero(target.getGameStats().getPvpPowerBoostResist()) : currentOrZero(target.getGameStats().getPvePowerBoostResist());
+		}
+		// ReFly spec: total old PvE/PvP attack is capped at +100%, then PvE/PvP defence is subtracted.
+		terms.contextAttack = Math.min(Math.max(terms.contextAttack, 0), REFLY_OLD_CONTEXT_ATTACK_MAX);
+		terms.contextNet = Math.max(REFLY_OLD_CONTEXT_NET_MIN, terms.contextAttack - terms.contextDefence);
+		terms.anet = clampReFlyAnet(terms.attack + terms.contextNet - terms.defence);
+		return terms;
 	}
 
 	private static int getReFlyOldPvePvpNet(Creature attacker, Creature target) {
-		if (attacker == null || target == null)
-			return 0;
-		int attack = attacker.isPvpTarget(target) ? attacker.getGameStats().getPvpPowerBoost().getCurrent() : attacker.getGameStats().getPvePowerBoost().getCurrent();
-		int defence = attacker.isPvpTarget(target) ? target.getGameStats().getPvpPowerBoostResist().getCurrent() : target.getGameStats().getPvePowerBoostResist().getCurrent();
-		// ReFly spec: Total PvE/PvP attack is capped at +100%, then defence is subtracted.
-		attack = Math.min(Math.max(attack, 0), REFLY_OLD_CONTEXT_ATTACK_MAX);
-		return Math.max(REFLY_OLD_CONTEXT_NET_MIN, attack - defence);
+		return getReFlyAnetTerms(attacker, target, false).contextNet;
 	}
 
 	private static int getReFlyPhysicalAnet(Creature attacker, Creature target) {
-		int attack = attacker.getGameStats().getPhysicPowerBoost().getCurrent();
-		int defence = target.getGameStats().getPhysicPowerBoostResist().getCurrent();
-		return clampReFlyAnet(attack + getReFlyOldPvePvpNet(attacker, target) - defence);
+		return getReFlyAnetTerms(attacker, target, false).anet;
 	}
 
 	private static int getReFlyMagicalAnet(Creature attacker, Creature target) {
-		int attack = attacker.getGameStats().getMagicPowerBoost().getCurrent();
-		int defence = target.getGameStats().getMagicPowerBoostResist().getCurrent();
-		return clampReFlyAnet(attack + getReFlyOldPvePvpNet(attacker, target) - defence);
+		return getReFlyAnetTerms(attacker, target, true).anet;
 	}
 
 	private static int getBasePower(Creature creature) {
@@ -296,6 +353,14 @@ public class StatFunctions
 
 	private static int getBaseKnowledge(Creature creature) {
 		return Math.max(1, creature.getGameStats().getKnowledge().getBase());
+	}
+
+	private static int getReFlyPowerTerm(Creature creature) {
+		return Math.max(1, useReFlyStage2Formula() ? creature.getGameStats().getPower().getCurrent() : creature.getGameStats().getPower().getBase());
+	}
+
+	private static int getReFlyKnowledgeTerm(Creature creature) {
+		return Math.max(1, useReFlyStage2Formula() ? creature.getGameStats().getKnowledge().getCurrent() : creature.getGameStats().getKnowledge().getBase());
 	}
 
 	private static float getReFlyShardMultiplier(Creature creature) {
@@ -317,16 +382,28 @@ public class StatFunctions
 		return Math.max(0, handStat.getBonus());
 	}
 
-	private static void logReFlyDamage(String type, Creature attacker, Creature target, float raw, float after, int anet, int pvpDamage) {
+	private static void logReFlyDamage(String type, Creature attacker, Creature target, float raw, float after, ReFlyAnetTerms terms, int pvpDamage) {
+		logReFlyDamage(type, attacker, target, raw, after, terms, pvpDamage, null);
+	}
+
+	private static void logReFlyDamage(String type, Creature attacker, Creature target, float raw, float after, ReFlyAnetTerms terms, int pvpDamage, String formulaTerms) {
 		if (!GSConfig.REFLY_DAMAGE_DEBUG_ENABLE || !MameClientCompatDebug.involves(attacker, target))
 			return;
-		log.info("[MAME-DAMAGE][REFLY_STRICT] type=" + type
+		log.info("[MAME-DAMAGE][REFLY_STAGE2] type=" + type
 			+ " attacker=" + MameClientCompatDebug.describe(attacker)
 			+ " target=" + MameClientCompatDebug.describe(target)
-			+ " anet=" + anet
-			+ " oldContextNet=" + getReFlyOldPvePvpNet(attacker, target)
-			+ " pvp=" + (attacker != null && target != null && attacker.isPvpTarget(target))
+			+ " A=" + terms.attack
+			+ " Ap=" + terms.contextAttack
+			+ " D=" + terms.defence
+			+ " Dp=" + terms.contextDefence
+			+ " contextNet=" + terms.contextNet
+			+ " anet=" + terms.anet
+			+ " anetCap=" + getReFlyAnetCap()
+			+ " stage2=" + useReFlyStage2Formula()
+			+ " magical=" + terms.magical
+			+ " pvp=" + terms.pvp
 			+ " pvpDamage=" + pvpDamage
+			+ (formulaTerms == null || formulaTerms.isEmpty() ? "" : " " + formulaTerms)
 			+ " raw=" + Math.round(raw)
 			+ " after=" + Math.round(after));
 	}
@@ -342,15 +419,19 @@ public class StatFunctions
 		Stat2 pAttack = isMainHand ? attacker.getGameStats().getMainHandPAttack() : ((Player) attacker).getGameStats().getOffHandPAttack();
 
 		if (useReFlyDamageFormula()) {
-			int anet = getReFlyPhysicalAnet(attacker, target);
+			ReFlyAnetTerms terms = getReFlyAnetTerms(attacker, target, false);
+			int anet = terms.anet;
 			float resultDamage;
+			String formulaTerms;
 			if (attacker instanceof Player) {
 				Player player = (Player) attacker;
 				Equipment equipment = player.getEquipment();
 				Item weapon = isMainHand ? equipment.getMainHandWeapon() : equipment.getOffHandWeapon();
 				if (weapon == null || weapon.getItemTemplate().getWeaponStats() == null) {
 					int dw = Rnd.get(16, 20);
-					resultDamage = dw * (getBasePower(attacker) / 100f + anet / 1000f);
+					float p = getReFlyPowerTerm(attacker);
+					resultDamage = dw * (p / 100f + anet / 1000f);
+					formulaTerms = "Dw=" + dw + " P=" + Math.round(p) + " WM_Dpct=0 Dadd=0";
 				} else {
 					WeaponStats weaponStat = weapon.getItemTemplate().getWeaponStats();
 					int min = weaponStat.getMinDamage();
@@ -359,20 +440,24 @@ public class StatFunctions
 					int mean = Math.max(1, weaponStat.getMeanDamage());
 					float wmAndDpct = getReFlyAutoStatPercent(pAttack, mean);
 					int dAdd = getReFlyAutoAdditiveDamage(pAttack);
-					resultDamage = dw * (getBasePower(attacker) / 100f + wmAndDpct / 100f + anet / 1000f) + dAdd;
+					float p = getReFlyPowerTerm(attacker);
+					resultDamage = dw * (p / 100f + wmAndDpct / 100f + anet / 1000f) + dAdd;
 					if (!isMainHand)
 						resultDamage *= 0.8f;
+					formulaTerms = "Dw=" + dw + " P=" + Math.round(p) + " WM_Dpct=" + Math.round(wmAndDpct) + " Dadd=" + dAdd;
 				}
 			} else {
 				// NPC templates in this source expose a single attack stat rather than weapon min/max.
 				// Use it as D_w fallback, then apply the same ReFly auto-attack coefficient.
 				float dw = Math.max(1, pAttack.getCurrent());
-				resultDamage = dw * (getBasePower(attacker) / 100f + anet / 1000f);
+				float p = getReFlyPowerTerm(attacker);
+				resultDamage = dw * (p / 100f + anet / 1000f);
+				formulaTerms = "Dw=" + Math.round(dw) + " P=" + Math.round(p) + " WM_Dpct=0 Dadd=0";
 			}
 			resultDamage *= getReFlyShardMultiplier(attacker);
 			if (resultDamage <= 0)
 				resultDamage = 1;
-			logReFlyDamage("physical-auto", attacker, target, resultDamage, resultDamage, anet, 0);
+			logReFlyDamage("physical-auto", attacker, target, resultDamage, resultDamage, terms, 0, formulaTerms);
 			return Math.round(resultDamage);
 		}
 
@@ -387,15 +472,19 @@ public class StatFunctions
 		Stat2 mAttack = isMainHand ? attacker.getGameStats().getMainHandMAttack() : ((Player) attacker).getGameStats().getOffHandMAttack();
 
 		if (useReFlyDamageFormula()) {
-			int anet = getReFlyMagicalAnet(attacker, target);
+			ReFlyAnetTerms terms = getReFlyAnetTerms(attacker, target, true);
+			int anet = terms.anet;
 			float resultDamage;
+			String formulaTerms;
 			if (attacker instanceof Player) {
 				Player player = (Player) attacker;
 				Equipment equipment = player.getEquipment();
 				Item weapon = isMainHand ? equipment.getMainHandWeapon() : equipment.getOffHandWeapon();
 				if (weapon == null || weapon.getItemTemplate().getWeaponStats() == null) {
 					int dw = Rnd.get(16, 20);
-					resultDamage = dw * (getBaseKnowledge(attacker) / 100f + anet / 1000f);
+					float k = getReFlyKnowledgeTerm(attacker);
+					resultDamage = dw * (k / 100f + anet / 1000f);
+					formulaTerms = "Dw=" + dw + " K=" + Math.round(k) + " WM_Dpct=0 Dadd=0";
 				} else {
 					WeaponStats weaponStat = weapon.getItemTemplate().getWeaponStats();
 					int min = weaponStat.getMinDamage();
@@ -404,18 +493,22 @@ public class StatFunctions
 					int mean = Math.max(1, weaponStat.getMeanDamage());
 					float wmAndDpct = getReFlyAutoStatPercent(mAttack, mean);
 					int dAdd = getReFlyAutoAdditiveDamage(mAttack);
-					resultDamage = dw * (getBaseKnowledge(attacker) / 100f + wmAndDpct / 100f + anet / 1000f) + dAdd;
+					float k = getReFlyKnowledgeTerm(attacker);
+					resultDamage = dw * (k / 100f + wmAndDpct / 100f + anet / 1000f) + dAdd;
 					if (!isMainHand)
 						resultDamage *= 0.8f;
+					formulaTerms = "Dw=" + dw + " K=" + Math.round(k) + " WM_Dpct=" + Math.round(wmAndDpct) + " Dadd=" + dAdd;
 				}
 			} else {
 				float dw = Math.max(1, mAttack.getCurrent());
-				resultDamage = dw * (getBaseKnowledge(attacker) / 100f + anet / 1000f);
+				float k = getReFlyKnowledgeTerm(attacker);
+				resultDamage = dw * (k / 100f + anet / 1000f);
+				formulaTerms = "Dw=" + Math.round(dw) + " K=" + Math.round(k) + " WM_Dpct=0 Dadd=0";
 			}
 			resultDamage *= getReFlyShardMultiplier(attacker);
 			if (resultDamage <= 0)
 				resultDamage = 1;
-			logReFlyDamage("magical-auto", attacker, target, resultDamage, resultDamage, anet, 0);
+			logReFlyDamage("magical-auto", attacker, target, resultDamage, resultDamage, terms, 0, formulaTerms);
 			return Math.round(resultDamage);
 		}
 
@@ -431,15 +524,22 @@ public class StatFunctions
 			damage = (int) adjustDamages(attacker, target, damage, pvpDamage, true);
 			return Math.max(0, damage);
 		}
-		int anet = getReFlyPhysicalAnet(attacker, target);
-		// ReFly spec: physical attack skills use K=100 and no longer take Power in the final formula.
-		// The incoming value is the client tooltip damage D_t, so derive D_s = 100 * D_t / base Power.
-		float baseSkillDamage = skillDamage * (100f / getBasePower(attacker));
+		ReFlyAnetTerms terms = getReFlyAnetTerms(attacker, target, false);
+		int anet = terms.anet;
 		float skillMultiplier = attacker.getObserveController().getBasePhysicalDamageMultiplier(true);
-		float raw = (baseSkillDamage * (1f + anet / 1000f) + bonus) * skillMultiplier;
+		float baseSkillDamage;
+		float k;
+		String formulaTerms;
+		// v88 Stage2-only: Official ReFly skill equation:
+		// Damage = (Ds * (K/100 + A_net/1000) + Dc) * Sm.
+		// Physical skills use K=100. The XML/effect Damage value is Ds; do not derive it from Power again.
+		baseSkillDamage = Math.max(0, skillDamage);
+		k = 100f;
+		formulaTerms = "Ds=" + Math.round(baseSkillDamage) + " K=" + Math.round(k) + " Dc=" + bonus + " Sm=" + skillMultiplier + " formula=stage2-only";
+		float raw = (baseSkillDamage * (k / 100f + anet / 1000f) + bonus) * skillMultiplier;
 		raw *= getReFlyShardMultiplier(attacker);
 		float adjusted = adjustDamages(attacker, target, raw, pvpDamage, true, element, noReduce);
-		logReFlyDamage("physical-skill", attacker, target, raw, adjusted, anet, pvpDamage);
+		logReFlyDamage("physical-skill", attacker, target, raw, adjusted, terms, pvpDamage, formulaTerms);
 		return Math.round(Math.max(0, adjusted));
 	}
 
@@ -447,18 +547,25 @@ public class StatFunctions
 		CreatureGameStats<?> sgs = speller.getGameStats();
 
 		if (useReFlyDamageFormula()) {
-			int anet = useMagicBoost ? getReFlyMagicalAnet(speller, target) : 0;
+			ReFlyAnetTerms terms = getReFlyAnetTerms(speller, target, true);
+			if (!useMagicBoost)
+				terms.anet = 0;
+			int anet = terms.anet;
 			float skillMultiplier = speller.getObserveController().getBaseMagicalDamageMultiplier();
 			float k = useKnowledge ? Math.max(1, sgs.getKnowledge().getCurrent()) : 100f;
-			// ReFly spec: magical DoT / SM damage-on-dispel can force K=100. For ordinary spells,
-			// derive D_s from tooltip D_t using base Knowledge, then multiply by current K.
-			float ds = useKnowledge ? baseDamages * (100f / getBaseKnowledge(speller)) : baseDamages;
+			float ds;
+			String formulaTerms;
+			// v88 Stage2-only: Official ReFly skill equation:
+			// Damage = (Ds * (K/100 + A_net/1000) + Dc) * Sm.
+			// skill_templates/skillcompare Damage value is Ds; K is Knowledge only for ordinary magical skills.
+			ds = Math.max(0, baseDamages);
+			formulaTerms = "Ds=" + Math.round(ds) + " K=" + Math.round(k) + " Dc=" + bonus + " Sm=" + skillMultiplier + " formula=stage2-only";
 			float raw = (ds * (k / 100f + anet / 1000f) + bonus) * skillMultiplier;
 			raw *= getReFlyShardMultiplier(speller);
 			elements = element;
 			float damages = adjustDamages(speller, target, raw, pvpDamage, useKnowledge, element, noReduce);
 			MameClientCompatDebug.logMagicalSkillFormula(speller, target, baseDamages, bonus, raw, raw, damages, element, useMagicBoost, useKnowledge, noReduce, pvpDamage);
-			logReFlyDamage("magical-skill", speller, target, raw, damages, anet, pvpDamage);
+			logReFlyDamage("magical-skill", speller, target, raw, damages, terms, pvpDamage, formulaTerms);
 			if (damages <= 0)
 				damages = 1;
 			if (target instanceof Npc)

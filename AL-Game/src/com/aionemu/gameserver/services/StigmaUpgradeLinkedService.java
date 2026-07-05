@@ -38,12 +38,12 @@ public class StigmaUpgradeLinkedService
 		boolean check = false;
 		for (Integer Stigma: list) {
 			ItemTemplate it = DataManager.ITEM_DATA.getItemTemplate(Stigma);
-			if (it.getName().contains("(Inert)") ||
-			    it.getName().contains("STIGMA_N_") ||
-				it.getName().contains("STIGMA_NE_")) {
+			if (it == null || it.getName() == null || it.getName().contains("(Inert)")) {
 				check = true;
 			}
-		} switch (player.getPlayerClass()) {
+		}
+		list = normalizeUpgradeStigmaIds(list);
+		switch (player.getPlayerClass()) {
 			case GLADIATOR:
 				if (list.size() >= 6 && !check) {
 					if (list.contains(140001721) && list.contains(140001726) && list.contains(140001727)
@@ -261,6 +261,55 @@ public class StigmaUpgradeLinkedService
 	/**
 	 * Remove "Upgrade Linked Skill"
 	 */
+
+	private static List<Integer> normalizeUpgradeStigmaIds(List<Integer> list) {
+		List<Integer> normalized = new ArrayList<Integer>();
+		if (list == null) {
+			return normalized;
+		}
+		for (Integer itemId : list) {
+			if (itemId == null) {
+				continue;
+			}
+			normalized.add(resolveUpgradeStigmaId(itemId));
+		}
+		return normalized;
+	}
+
+	private static int resolveUpgradeStigmaId(int itemId) {
+		ItemTemplate template = DataManager.ITEM_DATA.getItemTemplate(itemId);
+		if (template == null || !template.isStigma()) {
+			return itemId;
+		}
+		String group = normalizeGroup(template.getSkillGroup());
+		if (group == null) {
+			return itemId;
+		}
+		String targetGroup = group.endsWith("_UPGRADED") ? group : group + "_UPGRADED";
+		int best = itemId;
+		for (ItemTemplate candidate : DataManager.ITEM_DATA.getAllItems().values()) {
+			if (candidate == null || !candidate.isStigma()) {
+				continue;
+			}
+			String candidateGroup = normalizeGroup(candidate.getSkillGroup());
+			String candidateName = candidate.getName() == null ? "" : candidate.getName().toLowerCase(Locale.ENGLISH);
+			if (targetGroup.equals(candidateGroup) && candidateName.contains("stigma_a_")) {
+				if (best == itemId || candidate.getTemplateId() < best) {
+					best = candidate.getTemplateId();
+				}
+			}
+		}
+		return best;
+	}
+
+	private static String normalizeGroup(String group) {
+		if (group == null) {
+			return null;
+		}
+		String normalized = group.trim().toUpperCase(Locale.ENGLISH);
+		return normalized.length() == 0 || "NONE".equals(normalized) ? null : normalized;
+	}
+
 	public static void DeleteUpgradeLinkedSkills(Player player) {
 		if (player == null) {
 			return;

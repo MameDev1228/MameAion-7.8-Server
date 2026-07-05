@@ -32,6 +32,7 @@
 		<xs:attribute name="outpost_id" type="xs:int" use="optional" default="0"/>
 		<xs:attribute name="owner_ap" type="xs:int"/>
 		<xs:attribute name="owner_gp" type="xs:int"/>
+		<xs:attribute name="owner_kinah" type="xs:long"/>
 	</xs:complexType>
 	<xs:simpleType name="DependencyList">
 		<xs:list itemType="xs:int"/>
